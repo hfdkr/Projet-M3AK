@@ -15,10 +15,13 @@
         @theme{
             /* colors */
             --color-green-800:#0E9F6E;
+            --color-green-600:#006947;
+            --color-green-300:#BCCAC0;
+            --color-green-50: #EFF5EF;
             --color-white:#FFFFFF;
             --color-grey:#0F172A;
+            --color-blue-600:#316BF3;
             --color-slate-500:#64748B;
-            --color-blue-600:#2563EB;
             --color-slate-600:#475569;
             --color-slate-400:#94A3B8;
             --color-slate-200:#E2E8F0;
@@ -26,9 +29,51 @@
             --font-jakarta:"Plus Jakarta Sans", sans-serif;
             --font-hanken:"Hanken Grotesk", sans-serif;
         }
+        body{
+            font-family: var(--font-jakarta);
+        }
     </style>
 </head>
-<body>
+
+<body class="bg-green-300">
+        <!-- Header -->
+        <header>
+            <div class="flex justify-between items-center mt-[40px] mx-[24px]">
+                <div class="flex items-center gap-[8px]">
+                    <img src="./assets/img-mobile-1.png" alt="" class="w-[28px] h-[28px]">
+                    <h1
+                        class="font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600">
+                        M3ak
+                    </h1>
+                </div>
+                <div>
+                    <button class="font-hanken font-semibold text-[14px] text-slate-600 bg-white py-[8px] px-[16px] rounded-[999px]">
+                        Skip
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="flex-1 flex flex-col mt-[24px] mx-[24px]">
+
+            <!-- Image + floating badge -->
+            <section class="relative">
+                <div class="rounded-[24px] overflow-hidden">
+                    <img src="./assets/img-section.png" alt="digital identity card" class="w-full">
+                </div>
+
+                <div class="absolute top-[70%] right-[5%] bg-white rounded-[16px] shadow-lg px-[14px] py-[10px] flex items-center gap-[10px]">
+                    <div class="bg-blue-600 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0">
+                        <img src="./assets/security.png" alt="secure-icon" class="w-[18px] h-[18px]">
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span class="font-hanken text-[12px] text-slate-500">Status</span>
+                        <span class="font-hanken font-bold text-[14px] text-green-600">Secured</span>
+                    </div>
+                </div>
+            </section>
+        </main>
 </body>
 
 </html>
