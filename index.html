@@ -74,30 +74,44 @@
 
         <div class="md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[72px] md:pb-[96px] md:grid md:grid-cols-2 md:gap-[64px] md:items-center">
 
-            <!-- Image + floating badge -->
-            <section class="relative container mx-auto mt-0 md:order-2 md:mx-0">
-                <div class="rounded-[24px] overflow-hidden">
-                    <img src="./assets/img-section.png" alt="digital identity card" class="w-full">
-                </div>
+           <!-- Image + floating badge -->
+<section class="container mx-auto mt-0 md:order-2 md:mx-0">
+    <div class="relative rounded-[24px] overflow-hidden">
+        <img
+            src="./assets/img-section.png"
+            alt="digital identity card"
+            class="w-full">
 
-                <!-- top-left floating icon (desktop/tablet only) -->
-                <div
-                    class="hidden md:flex absolute top-[-18px] left-[-18px] w-[44px] h-[44px] bg-white rounded-full shadow-lg items-center justify-center">
-                    <img src="./assets/security.png" alt="pin-icon" class="w-[18px] h-[18px]">
-                </div>
+        <!-- Top Left Floating Icon -->
+        <div
+            class="hidden md:flex absolute top-[7px] left-[15px] bg-white rounded-[16px] shadow-lg items-center justify-center p-[19px]">
+            <img
+                src="./assets/icon-card.png"
+                alt="pin-icon"
+                class="w-[18px] h-[18px]">
+        </div>
 
-                <!-- div mobile -->
-                <div
-                    class="absolute top-[67%] right-[0%] rounded-[16px] shadow-lg pl-[16px] py-[16px] flex items-center gap-[10px] md:top-auto md:bottom-[60px] md:right-[-10px]">
-                    <div class="bg-blue-600 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0">
-                        <img src="./assets/security.png" alt="secure-icon" class="w-[18px] h-[18px]">
-                    </div>
-                    <div class="flex flex-col leading-tight my-[16px] mr-[16px] ml-[12px] ">
-                        <span class="font-hanken text-[16px] leading-[16px] text-green-700">Status</span>
-                        <span class="font-hanken font-bold text-[16px] leading-[24px] text-green-900">Secured</span>
-                    </div>
-                </div>
-            </section>
+        <!-- Status Badge -->
+        <div
+            class="absolute top-[67%] right-0 rounded-[16px] shadow-lg pl-[16px] py-[16px] flex items-center gap-[10px] md:top-auto md:bottom-[60px] md:right-[-10px]">
+            <div class="bg-blue-600 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0">
+                <img
+                    src="./assets/security.png"
+                    alt="secure-icon"
+                    class="w-[18px] h-[18px]">
+            </div>
+
+            <div class="flex flex-col leading-tight my-[16px] mr-[16px] ml-[12px]">
+                <span class="font-hanken text-[16px] leading-[16px] text-green-700">
+                    Status
+                </span>
+                <span class="font-hanken font-bold text-[16px] leading-[24px] text-green-900">
+                    Secured
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
          <!-- section 2-->
             <section class="flex items-center justify-center container mx-auto text-center my-[40px] md:order-1 md:justify-start md:text-left md:my-0 md:mx-0">
                 <div class="md:w-full">
@@ -160,6 +174,61 @@
 
             </section>
         </div>
+        
+        <!--  section (desktop/tablet only) -->
+        <section class="hidden md:block md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[96px] w-full">
+            <h2 class="font-jakarta text-center font-bold text-[30px] leading-[36px] text-grey mb-[64px]">
+                Why choose M3ak?
+            </h2>
+            <div class="grid grid-cols-3 gap-[40px]">
+                <div class="flex flex-col items-start">
+                    <div class="w-[48px] h-[48px] rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px]">
+                        <img src="./assets/Icon(1).png" alt="security-icon">
+                    </div>
+                    <h4 class="font-hanken font-bold text-[16px] text-black-700 mb-[8px]">Highest Security</h4>
+                    <p class="font-jakarta text-[14px] leading-[22px] text-slate-500">
+                        Government-graded biometric encryption keeps your identity always protected.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div class="w-[48px] h-[48px]  rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px]">
+                       <img src="./assets/Vector.png" alt="vector-icon">
+                    </div>
+                    <h4 class="font-hanken font-bold text-[16px] text-black-700 mb-[8px]">Instant Access</h4>
+                    <p class="font-jakarta text-[14px] leading-[22px] text-slate-500">
+                        Skip the lines. Access all Moroccan government portals instantly with one single login.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div class="w-[48px] h-[48px]  rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px]">
+                        <img src="./assets/Vector(1).png" alt="vector2-icon">
+                    </div>
+                    <h4 class="font-hanken font-bold text-[16px] text-black-700 mb-[8px]">Cloud Unified</h4>
+                    <p class="font-jakarta text-[14px] leading-[22px] text-slate-500">
+                        Your documents, always synchronized and ready wherever you need to prove your status.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (desktop/tablet only) -->
+    <footer class="hidden md:block bg-green-900 mt-[40px]">
+        <div class="max-w-[1200px] mx-auto px-[24px] py-[28px] flex items-center justify-between">
+            <div class="flex items-center gap-[8px]">
+                <img src="./assets/img-mobile-1.png" alt="logo-page" class="w-[24px] h-[24px]">
+                <span class="font-hanken font-bold text-[14px] text-white">M3ak</span>
+            </div>
+            <p class="font-jakarta text-[13px] text-green-300">
+                © 2024 M3ak Digital Identity. All rights reserved. Kingdom of Morocco.
+            </p>
+            <div class="flex items-center gap-[24px]">
+                <a href="#" class="font-jakarta text-[13px] text-green-300 hover:text-white">Privacy Policy</a>
+                <a href="#" class="font-jakarta text-[13px] text-green-300 hover:text-white">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+        
 </body>
 
 </html>
