@@ -14,10 +14,14 @@
     <style type="text/tailwindcss">
         @theme{
             /* colors */
+            --color-green-900:#006947;
             --color-green-800:#0E9F6E;
+            --color-green-700:#3D4A42;
             --color-green-600:#006947;
+            --color-green-500:#0E9F6E1A;
             --color-green-300:#BCCAC0;
             --color-green-50: #EFF5EF;
+            --color-mint-50: #F5FBF4;
             --color-white:#FFFFFF;
             --color-grey:#0F172A;
             --color-blue-600:#316BF3;
@@ -25,55 +29,76 @@
             --color-slate-600:#475569;
             --color-slate-400:#94A3B8;
             --color-slate-200:#E2E8F0;
+            --color-black-700:#171D19;
             /* fonts */
             --font-jakarta:"Plus Jakarta Sans", sans-serif;
             --font-hanken:"Hanken Grotesk", sans-serif;
         }
-        body{
-            font-family: var(--font-jakarta);
-        }
     </style>
 </head>
 
-<body class="bg-green-300">
-        <!-- Header -->
-        <header>
-            <div class="flex justify-between items-center mt-[40px] mx-[24px]">
-                <div class="flex items-center gap-[8px]">
-                    <img src="./assets/img-mobile-1.png" alt="" class="w-[28px] h-[28px]">
-                    <h1
-                        class="font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600">
-                        M3ak
-                    </h1>
-                </div>
-                <div>
-                    <button class="font-hanken font-semibold text-[14px] text-slate-600 bg-white py-[8px] px-[16px] rounded-[999px]">
-                        Skip
-                    </button>
-                </div>
+<body class="bg-mint-50">
+    <!-- Header -->
+    <header class="md:bg-white md:shadow-sm">
+        <div class="flex justify-between items-center mt-[40px] mx-[24px] md:mt-0 md:mx-0 md:max-w-[1200px] md:h-[88px] md:mx-auto md:px-[24px]">
+            <div class="flex items-center gap-[8px]">
+                <img src="./assets/img-mobile-1.png" alt="logo-page">
+                <h1 class="font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600">
+                    M3ak
+                </h1>
             </div>
-        </header>
 
-        <!-- Main -->
-        <main class="flex-1 flex flex-col mt-[24px] mx-[24px]">
+            <!-- Desktop / tablet nav links -->
+            <nav class="hidden md:flex items-center gap-[40px]">
+                <a href="#" class="font-hanken font-semibold text-[15px] text-black-700 hover:text-green-600">Home</a>
+                <a href="#" class="font-hanken font-semibold text-[15px] text-slate-600 hover:text-green-600">Services</a>
+                <a href="#" class="font-hanken font-semibold text-[15px] text-slate-600 hover:text-green-600">About</a>
+            </nav>
+
+            <!-- Mobile skip button -->
+            <button
+                class="md:hidden font-hanken font-semibold text-[14px] text-green-700 bg-white py-[8px] px-[16px] rounded-[999px]">
+                Skip
+            </button>
+
+            <!-- Desktop / tablet CTA -->
+            <a href="#"
+                class="hidden md:inline-flex items-center font-hanken font-bold text-[15px] text-white bg-green-900 py-[10px] px-[24px] rounded-[999px] hover:bg-blue-600 whitespace-nowrap">
+                Get Started
+            </a>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-1 flex flex-col mt-[24px] mx-[24px] md:mx-0 md:mt-0">
+
+        <div class="md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[72px] md:pb-[96px] md:grid md:grid-cols-2 md:gap-[64px] md:items-center">
 
             <!-- Image + floating badge -->
-            <section class="relative">
+            <section class="relative container mx-auto mt-0 md:order-2 md:mx-0">
                 <div class="rounded-[24px] overflow-hidden">
                     <img src="./assets/img-section.png" alt="digital identity card" class="w-full">
                 </div>
 
-                <div class="absolute top-[70%] right-[5%] bg-white rounded-[16px] shadow-lg px-[14px] py-[10px] flex items-center gap-[10px]">
+                <!-- top-left floating icon (desktop/tablet only) -->
+                <div
+                    class="hidden md:flex absolute top-[-18px] left-[-18px] w-[44px] h-[44px] bg-white rounded-full shadow-lg items-center justify-center">
+                    <img src="./assets/security.png" alt="pin-icon" class="w-[18px] h-[18px]">
+                </div>
+
+                <!-- div mobile -->
+                <div
+                    class="absolute top-[67%] right-[0%] rounded-[16px] shadow-lg pl-[16px] py-[16px] flex items-center gap-[10px] md:top-auto md:bottom-[60px] md:right-[-10px]">
                     <div class="bg-blue-600 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0">
                         <img src="./assets/security.png" alt="secure-icon" class="w-[18px] h-[18px]">
                     </div>
-                    <div class="flex flex-col leading-tight">
-                        <span class="font-hanken text-[12px] text-slate-500">Status</span>
-                        <span class="font-hanken font-bold text-[14px] text-green-600">Secured</span>
+                    <div class="flex flex-col leading-tight my-[16px] mr-[16px] ml-[12px] ">
+                        <span class="font-hanken text-[16px] leading-[16px] text-green-700">Status</span>
+                        <span class="font-hanken font-bold text-[16px] leading-[24px] text-green-900">Secured</span>
                     </div>
                 </div>
             </section>
-        </main>
+
 </body>
 
 </html>

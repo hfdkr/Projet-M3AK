@@ -13,7 +13,7 @@ A modern digital platform currently under development.
 
 ## Roadmap
 - [x] Project planning
-- [ ] UI/UX Design
+- [x] UI/UX Design
 - [ ] Frontend Development
 - [ ] Responsive Design
 - [ ] Testing
