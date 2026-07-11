@@ -35,88 +35,152 @@
             --font-hanken:"Hanken Grotesk", sans-serif;
         }
         body{
-            @apply bg-mint-50
+            @apply bg-mint-50;
         }
         header{
-            @apply md:bg-white md:shadow-sm
+            @apply md:bg-white md:shadow-sm;
         }
         .div-header{
-            @apply flex justify-between items-center mt-[40px] mx-[24px] md:mt-0 md:mx-0 md:max-w-[1200px] md:h-[88px] md:mx-auto md:px-[24px]
+            @apply flex justify-between items-center mt-[40px] mx-[24px] md:mt-0 md:mx-0 md:max-w-[1200px] md:h-[88px] md:mx-auto md:px-[24px];
         }
         .div-nav{
-            @apply flex items-center gap-[8px]
+            @apply flex items-center gap-[8px];
         }
         h1{
-            @apply font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600
+            @apply font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600;
         }
         .navbar{
-            @apply font-hanken font-semibold text-[15px] text-black-700 hover:text-green-600
+            @apply font-hanken font-semibold text-[15px] text-black-700 hover:text-green-600;
         }
         .button-header{
-            @apply md:hidden cursor-pointer font-hanken font-semibold text-[14px] text-green-700 bg-white py-[8px] px-[16px] rounded-[999px]
+            @apply md:hidden cursor-pointer font-hanken font-semibold text-[14px] text-green-700 bg-white py-[8px] px-[16px] rounded-[999px];
         }
         .button-start{
-            @apply hidden md:inline-flex items-center font-hanken font-bold text-[15px] text-white bg-green-900 py-[10px] px-[24px] rounded-[999px] hover:bg-blue-600 whitespace-nowrap
+            @apply hidden md:inline-flex items-center font-hanken font-bold text-[15px] text-white bg-green-900 py-[10px] px-[24px] rounded-[999px] hover:bg-blue-600 whitespace-nowrap;
         }
         main{
-            @apply flex-1 flex flex-col mt-[24px] mx-[24px] md:mx-0 md:mt-0
+            @apply flex-1 flex flex-col mt-[24px] mx-[24px] md:mx-0 md:mt-0;
         }
         .div-main{
-            @apply md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[72px] md:pb-[96px] md:grid md:grid-cols-2 md:gap-[64px] md:items-center
+            @apply md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[72px] md:pb-[96px] md:grid md:grid-cols-2 md:gap-[64px] md:items-center;
         }
         .section-1{
-            @apply container mx-auto mt-0 md:order-2 md:mx-0
+            @apply container mx-auto mt-0 md:order-2 md:mx-0;
         }
         .div-section{
-            @apply relative rounded-[24px] overflow-hidden
+            @apply relative rounded-[24px] overflow-hidden;
         }
         .div-left-icon{
-            @apply hidden md:flex absolute top-[7px] left-[15px] bg-white rounded-[16px] shadow-lg items-center justify-center p-[19px]
+            @apply hidden md:flex absolute top-[7px] left-[15px] bg-white rounded-[16px] shadow-lg items-center justify-center p-[19px];
         }
         .div-badge{
-            @apply absolute top-[67%] right-0 rounded-[16px] shadow-lg pl-[16px] py-[16px] flex items-center gap-[10px] md:top-auto md:bottom-[60px] md:right-[-10px]
+            @apply absolute top-[67%] right-0 rounded-[16px] shadow-lg pl-[16px] py-[16px] flex items-center gap-[10px] md:top-auto md:bottom-[60px] md:right-[-10px];
         }
         .div-img{
-            @apply bg-blue-600 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0
+            @apply bg-blue-600 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0;
         }
         .status-content{
-            @apply flex flex-col leading-tight my-[16px] mr-[16px] ml-[12px]
+            @apply flex flex-col leading-tight my-[16px] mr-[16px] ml-[12px];
         }
         .status-label{
-            @apply font-hanken text-[16px] leading-[16px] text-green-700
+            @apply font-hanken text-[16px] leading-[16px] text-green-700;
         }
         .status-value{
-            @apply font-hanken font-bold text-[16px] leading-[24px] text-green-900
+            @apply font-hanken font-bold text-[16px] leading-[24px] text-green-900;
         }
         .section-2{
-            @apply flex items-center justify-center container mx-auto text-center my-[40px] md:order-1 md:justify-start md:text-left md:my-0 md:mx-0
+            @apply flex items-center justify-center container mx-auto text-center my-[40px] md:order-1 md:justify-start md:text-left md:my-0 md:mx-0;
         }
         .span-section-2{
-            @apply hidden md:inline-flex items-center gap-[6px] bg-green-50 text-green-900 font-hanken font-semibold text-[13px] py-[6px] px-[14px] rounded-[999px] mb-[20px]
+            @apply hidden md:inline-flex items-center gap-[6px] bg-green-50 text-green-900 font-hanken font-semibold text-[13px] py-[6px] px-[14px] rounded-[999px] mb-[20px];
         }
         .status-dot{
-            @apply w-[6px] h-[6px] rounded-full bg-green-600 animate-ping [animation-duration:6s]
+            @apply w-[6px] h-[6px] rounded-full bg-green-600 animate-ping [animation-duration:6s];
         }
         .hero-title{
-            @apply font-hanken font-bold text-[24px] leading-[30px] text-black-700 md:text-[44px] md:leading-[52px]
+            @apply font-hanken font-bold text-[24px] leading-[30px] text-black-700 md:text-[44px] md:leading-[52px];
         }
         .hero-highlight{
-            @apply text-green-900
+            @apply text-green-900;
         }
         .hero-description{
-            @apply mx-auto max-w-[247px] font-jakarta text-[16px] leading-[26px] text-green-700 mt-[16px] md:mx-0 md:max-w-[380px] md:text-[16px]
+            @apply mx-auto max-w-[247px] font-jakarta text-[16px] leading-[26px] text-green-700 mt-[16px] md:mx-0 md:max-w-[380px] md:text-[16px];
         }
         .carousel-indicators{
-            @apply flex items-center justify-center gap-[8px] my-[24px] md:hidden
+            @apply flex items-center justify-center gap-[8px] my-[24px] md:hidden;
         }
         .indicator-active{
-            @apply w-[32px] h-[10px] bg-green-600 rounded-full
+            @apply w-[32px] h-[10px] bg-green-600 rounded-full;
         }
         .indicator{
-            @apply w-[10px] h-[10px] rounded-full bg-green-300
+            @apply w-[10px] h-[10px] rounded-full bg-green-300;
         }
         .hero-actions{
-            @apply md:flex md:items-center md:gap-[24px] md:mt-[36px]
+            @apply md:flex md:items-center md:gap-[24px] md:mt-[36px];
+        }
+        .button-get-started{
+            @apply flex items-center justify-between gap-[8px] bg-green-900 font-hanken font-bold text-[20px] leading-[28px] text-white px-[106px] py-[14px] rounded-[16px] whitespace-nowrap animate-bounce hover:bg-blue-600 hover:cursor-pointer md:px-[32px] md:py-[16px] md:text-[16px] md:w-fit;
+        }
+        .login-wrapper{
+            @apply my-[16px] md:my-0;
+        }
+        .login-text{
+            @apply font-hanken font-medium text-[20px] text-green-900 md:text-[15px] whitespace-nowrap;
+        }
+        .login-link{
+            @apply text-blue-600
+        }
+        .stats-row{
+            @apply hidden md:flex items-center gap-[56px] mt-[48px];
+        }
+        .stat-number{
+            @apply font-hanken font-bold text-[28px] text-black-700;
+        }
+        .stat-label{
+            @apply font-jakarta text-[13px] text-slate-500;
+        }
+        .section-features{
+            @apply hidden md:block md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[96px] w-full;
+        }
+        .features-title{
+            @apply font-jakarta text-center font-bold text-[30px] leading-[36px] text-grey mb-[64px];
+        }
+        .features-grid{
+            @apply grid grid-cols-3 gap-[40px];
+        }
+        .feature-card{ 
+            @apply flex flex-col items-start;
+        }
+        .feature-icon{
+            @apply w-[48px] h-[48px] rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px];
+        }
+
+        .feature-title{
+            @apply font-hanken font-bold text-[16px] text-black-700 mb-[8px];
+        }
+        .feature-description{
+            @apply font-jakarta text-[14px] leading-[22px] text-slate-500;
+        }
+        footer{
+            @apply hidden md:block bg-green-900 mt-[40px];
+        }
+        .div-footer{
+            @apply max-w-[1200px] mx-auto px-[24px] py-[28px] flex items-center justify-between;
+        }
+        .footer-logo{
+            @apply flex items-center gap-[8px];
+        }
+        .footer-brand{
+            @apply font-hanken font-bold text-[14px] text-white;
+        }
+        .footer-copyright{
+            @apply font-jakarta text-[13px] text-green-300;
+        }
+        .footer-links{
+            @apply flex items-center gap-[24px];
+        }
+        .footer-link{
+            @apply font-jakarta text-[13px] text-green-300 hover:text-white;
         }
     </style>
 </head>
@@ -162,16 +226,13 @@
                     <img src="./assets/images/img-section.png" alt="digital identity card" class="w-full">
 
                     <!-- Top Left Floating Icon -->
-                    <div
-                        class="div-left-icon">
+                    <div class="div-left-icon">
                         <img src="./assets/images/icon-card.png" alt="pin-icon" class="w-[18px] h-[18px]">
                     </div>
 
                     <!-- Status Badge -->
-                    <div
-                        class="div-badge">
-                        <div
-                            class="div-img">
+                    <div class="div-badge">
+                        <div class="div-img">
                             <img src="./assets/images/security.png" alt="secure-icon" class="w-[18px] h-[18px]">
                         </div>
 
@@ -187,30 +248,25 @@
                 </div>
             </section>
             <!-- section 2-->
-            <section
-                class="section-2">
+            <section class="section-2">
                 <div class="md:w-full">
 
                     <!-- Desktop eyebrow pill -->
-                    <span
-                        class="span-section-2">
-                        <span
-                            class="status-dot"></span>
+                    <span class="span-section-2">
+                        <span class="status-dot"></span>
                         Status Secured
                     </span>
 
                     <div>
                         <!-- Section Heading -->
-                        <h3
-                            class="hero-title ">
+                        <h3 class="hero-title ">
                             Your Unified
                             <span class="hero-highlight ">
                                 Digital Identity
                             </span>
                         </h3>
                         <!-- Section Description -->
-                        <p
-                            class="hero-description">
+                        <p class="hero-description">
                             Securely access all government
                             services with a single, biometric-
                             protected citizen profile. Designed for the modern
@@ -227,88 +283,112 @@
 
                     <!--Button started-->
                     <div class="hero-actions">
-                        <a
-                            class="flex items-center justify-between gap-[8px] bg-green-900 font-hanken font-bold text-[20px] leading-[28px] text-white px-[106px] py-[14px] rounded-[16px] whitespace-nowrap animate-bounce hover:bg-blue-600 hover:cursor-pointer md:px-[32px] md:py-[16px] md:text-[16px] md:w-fit">
+                        <a class="button-get-started">
                             Get Started
-                            <img src="./assets/images/icon-button.png" alt="button-icon" class="w-[16px] h-[16px]">
+                            <img src="./assets/images/icon-button.png" alt="button-icon">
                         </a>
-                        <div class="my-[16px] md:my-0">
-                            <span
-                                class="font-hanken font-medium text-[20px] text-green-900 md:text-[15px] whitespace-nowrap">Already
-                                have an accout? <a href="#login" class="text-blue-600">Login in</a></span>
+                        <div class="login-wrapper">
+                            <span class="login-text">Already
+                                have an accout?
+                                <a href="#login" class="login-link">Login in</a>
+                            </span>
                         </div>
                     </div>
 
                     <!-- Stats row (desktop/tablet only) -->
-                    <div class="hidden md:flex items-center gap-[56px] mt-[48px]">
+                    <div class="stats-row">
                         <div>
-                            <p class="font-hanken font-bold text-[28px] text-black-700">100%</p>
-                            <p class="font-jakarta text-[13px] text-slate-500">Biometric Secure</p>
+                            <p class="stat-number">100%</p>
+                            <p class="stat-label">Biometric Secure</p>
                         </div>
                         <div>
-                            <p class="font-hanken font-bold text-[28px] text-black-700">256-bit</p>
-                            <p class="font-jakarta text-[13px] text-slate-500">Encryption Standard</p>
+                            <p class="stat-number">256-bit</p>
+                            <p class="stat-label">Encryption Standard</p>
                         </div>
                     </div>
                 </div>
-
             </section>
         </div>
 
         <!--  section (desktop/tablet only) -->
-        <section class="hidden md:block md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[96px] w-full">
-            <h2 class="font-jakarta text-center font-bold text-[30px] leading-[36px] text-grey mb-[64px]">
+        <!-- Features Section -->
+        <section class="section-features">
+            <h2 class="features-title">
                 Why choose M3ak?
             </h2>
-            <div class="grid grid-cols-3 gap-[40px]">
-                <div class="flex flex-col items-start">
-                    <div
-                        class="w-[48px] h-[48px] rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px]">
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <img src="./assets/images/Icon(1).png" alt="security-icon">
                     </div>
-                    <h4 class="font-hanken font-bold text-[16px] text-black-700 mb-[8px]">Highest Security</h4>
-                    <p class="font-jakarta text-[14px] leading-[22px] text-slate-500">
+
+                    <h4 class="feature-title">
+                        Highest Security
+                    </h4>
+
+                    <p class="feature-description">
                         Government-graded biometric encryption keeps your identity always protected.
                     </p>
                 </div>
-                <div class="flex flex-col items-start">
-                    <div
-                        class="w-[48px] h-[48px]  rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px]">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <img src="./assets/images/Vector.png" alt="vector-icon">
                     </div>
-                    <h4 class="font-hanken font-bold text-[16px] text-black-700 mb-[8px]">Instant Access</h4>
-                    <p class="font-jakarta text-[14px] leading-[22px] text-slate-500">
+
+                    <h4 class="feature-title">
+                        Instant Access
+                    </h4>
+
+                    <p class="feature-description">
                         Skip the lines. Access all Moroccan government portals instantly with one single login.
                     </p>
                 </div>
-                <div class="flex flex-col items-start">
-                    <div
-                        class="w-[48px] h-[48px]  rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px]">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <img src="./assets/images/Vector(1).png" alt="vector2-icon">
                     </div>
-                    <h4 class="font-hanken font-bold text-[16px] text-black-700 mb-[8px]">Cloud Unified</h4>
-                    <p class="font-jakarta text-[14px] leading-[22px] text-slate-500">
+
+                    <h4 class="feature-title">
+                        Cloud Unified
+                    </h4>
+
+                    <p class="feature-description">
                         Your documents, always synchronized and ready wherever you need to prove your status.
                     </p>
                 </div>
+
             </div>
         </section>
     </main>
-
     <!-- Footer (desktop/tablet only) -->
-    <footer class="hidden md:block bg-green-900 mt-[40px]">
-        <div class="max-w-[1200px] mx-auto px-[24px] py-[28px] flex items-center justify-between">
-            <div class="flex items-center gap-[8px]">
+    <footer>
+        <div class="div-footer">
+
+            <div class="footer-logo">
                 <img src="./assets/images/img-mobile-1.png" alt="logo-page">
-                <span class="font-hanken font-bold text-[14px] text-white">M3ak</span>
+                <span class="footer-brand">
+                    M3ak
+                </span>
             </div>
-            <p class="font-jakarta text-[13px] text-green-300">
+
+            <p class="footer-copyright">
                 © 2026 M3ak Digital Identity. All rights reserved. Kingdom of Morocco.
             </p>
-            <div class="flex items-center gap-[24px]">
-                <a href="#" class="font-jakarta text-[13px] text-green-300 hover:text-white">Privacy Policy</a>
-                <a href="#" class="font-jakarta text-[13px] text-green-300 hover:text-white">Terms of Service</a>
+
+            <div class="footer-links">
+                <a href="#" class="footer-link">
+                    Privacy Policy
+                </a>
+
+                <a href="#" class="footer-link">
+                    Terms of Service
+                </a>
             </div>
+
         </div>
     </footer>
 
