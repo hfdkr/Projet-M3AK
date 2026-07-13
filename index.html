@@ -95,7 +95,7 @@
             @apply w-[6px] h-[6px] rounded-full bg-green-600 animate-ping [animation-duration:6s];
         }
         .hero-title{
-            @apply font-hanken font-bold text-[24px] leading-[30px] text-black-700 md:text-[44px] md:leading-[52px];
+            @apply font-hanken font-bold text-[24px] leading-[30px] text-black-700 md:text-[52px] md:leading-[52px] lg:text-[72px] lg:leading-[72px];
         }
         .hero-highlight{
             @apply text-green-900;
@@ -203,7 +203,7 @@
 
         /* ---------- Screen 2: Why choose M3ak? ---------- */
         .step2-title{
-            @apply font-hanken font-bold text-[22px] leading-[28px] text-black-700 text-center mb-[32px];
+            @apply font-jakarta font-bold text-[30px] leading-[36px] text-grey text-center mb-[32px];
         }
         .step2-card{
             @apply bg-white rounded-[16px] p-[24px] shadow-sm text-left mb-[40px];
@@ -212,21 +212,21 @@
             @apply w-[48px] h-[48px] rounded-[12px] bg-green-500 flex items-center justify-center mb-[16px];
         }
         .step2-card-title{
-            @apply font-hanken font-bold text-[16px] text-black-700 mb-[8px];
+            @apply font-jakarta font-bold text-[30px] leading-[36px] text-grey mb-[8px];
         }
         .step2-card-desc{
-            @apply font-jakarta text-[14px] leading-[22px] text-slate-500;
+            @apply font-jakarta text-[16px] leading-[24px] text-slate-500;
         }
 
         /* ---------- Screen 3: Contact Us ---------- */
         .step3-title{
-            @apply font-hanken font-bold text-[22px] leading-[28px] text-black-700 text-left mb-[24px];
+            @apply font-jakarta font-bold text-[30px] leading-[32px] text-grey text-left mb-[24px];
         }
         .step3-btn-primary{
-            @apply flex items-center justify-center gap-[8px] bg-green-900 text-white font-hanken font-semibold text-[15px] py-[14px] rounded-[12px] w-full mb-[12px] hover:bg-blue-600 hover:cursor-pointer;
+            @apply flex items-center justify-center gap-[8px] bg-green-900 text-white font-jakarta font-semibold text-[14px] py-[16px] rounded-[12px] w-full mb-[12px] hover:bg-blue-600 hover:cursor-pointer;
         }
         .step3-btn-secondary{
-            @apply flex items-center justify-center gap-[8px] bg-white border border-slate-200 text-black-700 font-hanken font-semibold text-[15px] py-[14px] rounded-[12px] w-full mb-[40px] hover:border-green-600 hover:cursor-pointer;
+            @apply flex items-center justify-center gap-[8px] bg-white border border-slate-200 text-grey font-jakarta font-semibold text-[14px] py-[16px] rounded-[12px] w-full mb-[40px] hover:border-green-600 hover:cursor-pointer;
         }
         .step3-brand{
             @apply font-hanken font-bold text-[16px] text-green-900 text-center mb-[4px];
@@ -318,7 +318,7 @@
                         <div>
                             <h3 class="hero-title">
                                 Your Unified
-                                <span class="hero-highlight">
+                                <span class="hero-highlight md:whitespace-nowrap">
                                     Digital Identity
                                 </span>
                             </h3>
@@ -409,19 +409,40 @@
             <div class="container mx-auto max-w-[420px] px-[8px] pt-[8px] flex flex-col">
 
                 <h3 class="step2-title">Why choose M3ak?</h3>
-
-                <div class="step2-card">
-                    <div class="step2-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="#006947" stroke-width="1.8" stroke-linejoin="round"/>
-                            <path d="M9 12L11 14L15.5 9.5" stroke="#006947" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                <div class="carousel flex gap-6 overflow-x-auto cursor-grab active:cursor-grabbing select-none">
+                    <div class="step2-card w-[300px] shrink-0">
+                        <div class="step2-icon">
+                            <img src="./assets/images/card-secure.png" alt="security icon">
+                        </div>
+                        <h4 class="step2-card-title">Highest Security</h4>
+                        <p class="step2-card-desc">
+                            Government-grade biometric encryption ensures your identity stays yours, and yours
+                            alone.
+                        </p>
                     </div>
-                    <h4 class="step2-card-title">Highest Security</h4>
-                    <p class="step2-card-desc">
-                        Government-grade biometric encryption ensures your identity stays yours, and yours alone.
-                    </p>
+                    <div class="step2-card w-[300px] shrink-0">
+                        <div class="step2-icon">
+                            <img src="./assets/images/Vector.png" alt="icon instant acces">
+                        </div>
+                        <h4 class="step2-card-title">Instant Access</h4>
+                        <p class="step2-card-desc">
+                            Skip the lines. Access all Moroccan
+                            government portals instantly with one
+                            single login.
+                        </p>
+                    </div>
+                    <div class="step2-card w-[300px] shrink-0">
+                        <div class="step2-icon">
+                            <img src="./assets/images/Vector(1).png" alt="icon claude">
+                        </div>
+                        <h4 class="step2-card-title">Cloud Unified</h4>
+                        <p class="step2-card-desc">Your documents, always synchr-
+                            onized and ready whenever
+                            you need to prove your status.
+                        </p>
+                    </div>
                 </div>
+
 
                 <div class="carousel-indicators my-0 mb-[24px]" data-indicators="2">
                     <div class="indicator" data-goto="1"></div>
