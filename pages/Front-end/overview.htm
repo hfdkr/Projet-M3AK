@@ -15,7 +15,7 @@
         @theme{
             /* colors */
             --color-green-900:#006947;
-            --color-green-800:#0E9F6E;
+            --color-green-800:#005734;
             --color-green-700:#3D4A42;
             --color-green-600:#006947;
             --color-green-500:#9EF5C0;
@@ -24,11 +24,12 @@
             --color-mint-50: #F5FBF4;
             --color-mint-100:#E3F3E9;
             --color-white:#FFFFFF;
+            --color-white-100:#F3F3F6;
             --color-grey:#0F172A;
             --color-blue-600:#316BF3;
             --color-blue-700:#274FC2;
             --color-navy-900:#0B1F3A;
-            --color-slate-500:#64748B;
+            --color-slate-500:#3F4942;
             --color-slate-600:#475569;
             --color-slate-400:#94A3B8;
             --color-slate-200:#E2E8F0;
@@ -172,6 +173,21 @@
         .stats-row{
             @apply hidden md:flex items-center gap-[56px] mt-[48px];
         }
+        .div-card{
+            @apply bg-white-100 md:bg-transparent p-[16px] rounded-[12px] border-[#BEC9BF4D]/30;
+        }
+        .section-3{
+            @apply bg-white px-[16px] py-[48px] my-[60px] items-center;
+        }
+        .div-section-3{
+            @apply grid grid-cols-2 gap-6 md:grid md:grid-cols-4 md:bg-white;
+        }
+        h5{
+            @apply text-green-800 font-jakarta font-bold text-[24px] leading-[32px]
+        }
+        .par-div{
+            @apply font-jakarta font-semibold text-[12px] leading-[16px] tracking-[0.6px] text-slate-500 whitespace-nowrap
+        }
     </style>
 </head>
 
@@ -270,6 +286,29 @@
                             <span class="status-value">+ 1,240 MAD</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-3">
+            <div class="div-section-3">
+                <div class="div-card">
+                    <h5>5M+</h5>
+                    <p class="par-div">ACTIVE USERS</p>
+                </div>
+
+                <div class="div-card">
+                    <h5>150+</h5>
+                    <p class="par-div">PUBLIC SERVICES</p>
+                </div>
+
+                <div class="div-card">
+                    <h5>99.9%</h5>
+                    <p class="par-div">UPTIME SECURITY</p>
+                </div>
+
+                <div class="div-card">
+                    <h5>24/7</h5>
+                    <p class="par-div">EXPERT SUPPORT</p>
                 </div>
             </div>
         </section>
