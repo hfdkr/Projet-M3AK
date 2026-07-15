@@ -186,11 +186,6 @@
         .onboarding-step.hidden{
             @apply hidden;
         }
-
-        /* The 3-step onboarding carousel (Skip button, dots, Step 2/3)
-           is mobile-only. From tablet width up, always show Step 1
-           (the normal landing page) no matter which step JS thinks
-           is active - this overrides the .hidden toggling above. */
         @media (min-width: 768px){
             .onboarding-step[data-step="2"],
             .onboarding-step[data-step="3"]{
@@ -276,7 +271,6 @@
         <!-- ============================================= -->
         <section class="onboarding-step" data-step="1">
             <div class="div-main">
-
                 <!-- Image + floating badge -->
                 <section class="section-1">
                     <div class="div-section">
