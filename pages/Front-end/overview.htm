@@ -25,6 +25,7 @@
             --color-mint-100:#E3F3E9;
             --color-white:#FFFFFF;
             --color-white-100:#F3F3F6;
+            --color-grey-200:#DEE4DE;
             --color-grey:#0F172A;
             --color-blue-600:#316BF3;
             --color-blue-700:#274FC2;
@@ -156,7 +157,7 @@
             @apply flex items-center justify-center gap-[8px] bg-green-900 font-hanken font-bold text-[15px] leading-[20px] text-white px-[28px] py-[14px] rounded-[16px] whitespace-nowrap hover:bg-blue-600 hover:cursor-pointer w-full md:w-fit md:px-[32px] md:py-[16px] md:text-[16px];
         }
         .button-how{
-            @apply flex items-center justify-center gap-[8px] bg-white border border-green-300 font-hanken font-semibold text-[15px] leading-[20px] text-black-700 px-[28px] py-[14px] rounded-[16px] whitespace-nowrap hover:border-green-600 hover:cursor-pointer w-full md:w-fit md:px-[24px] md:py-[16px] md:text-[16px];
+            @apply flex items-center justify-center gap-[8px] bg-grey-200 border border-green-300 font-hanken font-semibold text-[15px] leading-[20px] text-black-700 px-[28px] py-[14px] rounded-[16px] whitespace-nowrap hover:border-green-600 hover:cursor-pointer w-full md:w-fit md:px-[24px] md:py-[16px] md:text-[16px];
         }
         .trusted-text{
             @apply font-jakarta text-[12px] text-slate-500 mt-[16px] md:mt-[20px];
@@ -183,10 +184,10 @@
             @apply grid grid-cols-2 gap-6 md:grid md:grid-cols-4 md:bg-white;
         }
         h5{
-            @apply text-green-800 font-jakarta font-bold text-[24px] leading-[32px]
+            @apply text-green-800 font-jakarta font-bold text-[24px] leading-[32px] md:text-[40px] leading-[60px];
         }
         .par-div{
-            @apply font-jakarta font-semibold text-[12px] leading-[16px] tracking-[0.6px] text-slate-500 whitespace-nowrap
+            @apply font-jakarta font-semibold text-[12px] leading-[16px] tracking-[0.6px] text-slate-500 whitespace-nowrap md:text-[14px] md:leading-[20px] ;
         }
     </style>
 </head>
@@ -262,6 +263,7 @@
                                 Get Started Free
                             </button>
                             <button class="button-how">
+                                <img src="/assets/images/icon-video.png" alt="icon how it work">
                                 <span>How it works</span>
                             </button>
                         </div>
