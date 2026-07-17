@@ -272,7 +272,7 @@
         }
 
         .section-features {
-            @apply hidden md:block md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[96px] w-full;
+            @apply md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[96px] w-full;
         }
 
         .features-title {
@@ -302,6 +302,118 @@
        .feature-bg {
           @apply absolute bottom-0 right-0;
        }
+        .section-4 {
+            @apply bg-[#F9F9FC];
+        }
+
+        .section-features {
+            @apply w-full md:max-w-[1200px] md:mx-auto md:px-[24px] md:pb-[96px];
+        }
+
+        .features-title {
+            @apply font-jakarta text-center font-bold text-[30px] leading-[36px] text-grey mb-[64px];
+        }
+
+        /* Grid: 1 column stack on mobile -> 3-track bento on md+.
+           Cards below use md:col-span-2 / md:col-span-1 to form the
+           crisscross pattern (wide/narrow, then narrow/wide). */
+        .features-grid {
+            @apply grid grid-cols-1 gap-[16px] px-[16px] py-[32px]
+                   md:grid-cols-3 md:gap-[24px] md:px-0 md:py-0 md:items-stretch;
+        }
+
+        /* --- Secure Digital Identity (wide, light card) --- */
+        .feature-card {
+            @apply relative overflow-hidden w-full max-w-[358px] flex flex-col items-start
+                   bg-green-50 p-[24px] rounded-[24px] space-y-[8px] mx-auto
+                   md:max-w-none md:mx-0 md:col-span-2 md:p-[32px];
+        }
+
+        .feature-icon {
+            @apply w-[48px] h-[48px] rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px];
+        }
+
+        .feature-title {
+            @apply font-hanken font-bold text-[16px] text-black-700 mb-[8px] md:text-[20px];
+        }
+
+        .feature-description {
+            @apply font-jakarta text-[16px] leading-[24px] text-slate-500 md:max-w-[380px];
+        }
+
+        .feature-bg {
+            @apply absolute bottom-0 right-0 w-[160px] md:w-[220px] pointer-events-none;
+        }
+
+        /* --- Shared shell for the two colored action cards --- */
+        .action-card {
+            @apply w-full max-w-[358px] mx-auto rounded-[24px] p-[24px] text-white
+                   md:max-w-none md:mx-0 md:col-span-1 md:p-[28px];
+        }
+
+        .action-card-payments {
+            @apply bg-blue-600;
+        }
+
+        .action-card-transport {
+            @apply bg-green-800;
+        }
+
+        .action-card-icon {
+            @apply rounded-[10px] flex  mb-[16px];
+        }
+
+        .action-card-title {
+            @apply font-hanken font-bold text-[17px] leading-[22px] mb-[6px] md:text-[19px];
+        }
+
+        .action-card-description {
+            @apply font-jakarta text-[13px] leading-[18px] text-white/80 md:text-[14px];
+        }
+
+        /* --- Integrated Health (wide card, preview + text) --- */
+        .health-card {
+            @apply w-full max-w-[358px] mx-auto flex flex-col bg-white rounded-[24px] p-[24px]
+                   md:max-w-none md:mx-0 md:col-span-2 md:flex-row md:items-center
+                   md:gap-[28px] md:p-[28px];
+        }
+
+        .health-content {
+            @apply md:order-2 md:flex-1;
+        }
+
+        .health-title {
+            @apply font-hanken font-bold text-[18px] text-black-700 mb-[8px] md:text-[20px];
+        }
+
+        .health-description {
+            @apply font-jakarta text-[14px] leading-[20px] text-slate-500 mb-[16px] md:max-w-[360px];
+        }
+
+        .health-button {
+            @apply inline-flex items-center gap-[8px] bg-black-700 text-white font-hanken
+                   font-semibold text-[14px] rounded-[12px] px-[16px] py-[10px]
+                   hover:bg-green-900 hover:cursor-pointer;
+        }
+
+        .health-preview {
+            @apply relative mt-[16px] h-[110px] bg-green-900 rounded-[16px] overflow-hidden
+                   p-[14px] flex items-end gap-[10px]
+                   md:order-1 md:mt-0 md:w-[180px] md:h-[160px] md:shrink-0 md:items-center md:justify-center;
+        }
+
+        .health-preview-card {
+            @apply bg-white rounded-[10px] w-[70px] h-[80px] shrink-0 p-[8px]
+                   flex flex-col gap-[6px] md:w-[64px] md:h-[130px];
+        }
+
+        .health-preview-line {
+            @apply h-[4px] rounded-full bg-grey-200;
+        }
+
+        .health-preview-bar {
+            @apply flex-1 bg-white/25 rounded-t-[6px] md:hidden;
+        }
     </style>
 </head>
 
@@ -481,6 +593,100 @@
                             <img src="/assets/images/icon-right.png" alt="Right Icon">
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================================
+             QUICK ACTIONS — Payments / Transport / Health
+        ======================================================= -->
+        <section class="section-4">
+            <div class="section-features">
+                <div class="items-center text-center pt-[48px] pb-[32px] px-[16px] md:px-0">
+                    <h2
+                        class="font-jakarta font-semibold text-[24px] leading-[32px] text-[#1A1C1E] md:text-[32px] md:leading-[40px]">
+                        Everything you need in one Super App
+                    </h2>
+                    <p class="font-jakarta text-[16px] leading-[24px] text-slate-500 md:max-w-[520px] md:mx-auto">
+                        We've unified the citizen experience, bringing fragmented services into
+                        a single, high-performance ecosystem.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+
+                    <!-- Secure Digital Identity — wide card (row 1, col span 2) -->
+                    <div class="feature-card">
+                        <div class="login-wrapper">
+                            <span class="login-text">Learn about security</span>
+                            <a href="#login" class="login-link">
+                                <img src="/assets/images/icon-right.png" alt="Right Icon">
+                            </a>
+                        </div>
+
+                        <div class="feature-icon">
+                            <img src="/assets/images/secure-icon.png" alt="Secure Icon">
+                        </div>
+
+                        <h4 class="feature-title">
+                            Secure Digital Identity
+                        </h4>
+
+                        <p class="feature-description">
+                            The MoroccoID standard ensures your data is protected with
+                            military-grade encryption and biometric verification.
+                        </p>
+
+                        <div class="login-wrapper">
+                            <span class="login-text">Learn about security</span>
+                            <a href="#login" class="login-link">
+                                <img src="/assets/images/icon-right.png" alt="Right Icon">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Instant Payments — narrow card (row 1, col span 1) -->
+                    <div class="action-card action-card-payments">
+                        <div class="action-card-icon">
+                            <img src="/assets/images/Icon-payment.png" alt="icon payment">
+                        </div>
+                        <h4 class="action-card-title">Instant Payments</h4>
+                        <p class="action-card-description">
+                            Pay utility bills, taxes, and school fees in under 30 seconds with M3ak Pay.
+                        </p>
+                    </div>
+
+                    <!-- Smart Transport — narrow card (row 2, col span 1) -->
+                    <div class="action-card action-card-transport">
+                        <div class="action-card-icon">
+                           <img src="/assets/images/transparent-icon.png" alt="transpor-icon">
+                        </div>
+                        <h4 class="action-card-title">Smart Transport</h4>
+                        <p class="action-card-description">
+                            Real-time tracking for ONCF, CTM, and urban buses in every major city.
+                        </p>
+                    </div>
+
+                    <!-- Integrated Health — wide card (row 2, col span 2) -->
+                    <div class="health-card">
+                        <div class="health-content">
+                            <h4 class="health-title">Integrated Health</h4>
+                            <p class="health-description">
+                                Sync your medical history with AMO/CNOPS and book appointments
+                                with national health providers instantly.
+                            </p>
+                            <button class="health-button">
+                                Explore Health Portal
+                            </button>
+                        </div>
+
+                        <!-- Decorative app preview -->
+                        <div class="health-preview">
+                            <img src="" alt="">
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
