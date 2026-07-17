@@ -48,6 +48,9 @@
             --color-slate-400: #94A3B8;
             --color-slate-200: #E2E8F0;
 
+            /* Colors — accent */
+            --color-amber-500: #F5A623;
+
             /* Fonts */
             --font-jakarta: "Plus Jakarta Sans", sans-serif;
             --font-hanken:  "Hanken Grotesk", sans-serif;
@@ -57,7 +60,7 @@
            2. BASE
         ========================================================== */
         body {
-            @apply bg-[#D5E2DC];
+            @apply bg-[#D5E2DC] pb-[76px] md:pb-0;
         }
 
         h1 {
@@ -107,7 +110,7 @@
         }
 
         .div-main {
-            @apply px-[16px] pt-[32px] pb-[8px]
+            @apply w-full px-[16px] pt-[32px] pb-[8px]
                    md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[72px] md:pb-[96px]
                    md:grid md:grid-cols-2 md:gap-[64px] md:items-center;
         }
@@ -272,41 +275,6 @@
         }
 
         .section-features {
-            @apply md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[96px] w-full;
-        }
-
-        .features-title {
-            @apply font-jakarta text-center font-bold text-[30px] leading-[36px] text-grey mb-[64px];
-        }
-
-        .features-grid {
-            @apply grid grid-cols-3 gap-[40px];
-        }
-
-        .feature-card {
-            @apply relative overflow-hidden w-full max-w-[358px] flex flex-col items-start bg-white p-[24px] rounded-[24px] space-y-[8px] mx-auto;
-        }
-
-        .feature-icon {
-            @apply w-[48px] h-[48px] rounded-[12px] bg-green-500 flex items-center justify-center mb-[20px];
-        }
-
-        .feature-title {
-            @apply font-hanken font-bold text-[16px] text-black-700 mb-[8px];
-        }
-
-        .feature-description {
-            @apply font-jakarta text-[16px] leading-[24px] text-slate-500;
-        }
-
-       .feature-bg {
-          @apply absolute bottom-0 right-0;
-       }
-        .section-4 {
-            @apply bg-[#F9F9FC];
-        }
-
-        .section-features {
             @apply w-full md:max-w-[1200px] md:mx-auto md:px-[24px] md:pb-[96px];
         }
 
@@ -324,8 +292,8 @@
 
         /* --- Secure Digital Identity (wide, light card) --- */
         .feature-card {
-            @apply relative overflow-hidden w-full max-w-[358px] flex flex-col items-start
-                   bg-green-50 p-[24px] rounded-[24px] space-y-[8px] mx-auto
+            @apply relative overflow-hidden flex flex-col items-start
+                   bg-white p-[24px] rounded-[24px] space-y-[8px]
                    md:max-w-none md:mx-0 md:col-span-2 md:p-[32px];
         }
 
@@ -342,12 +310,12 @@
         }
 
         .feature-bg {
-            @apply absolute bottom-0 right-0 w-[160px] md:w-[220px] pointer-events-none;
+            @apply absolute bottom-[-10px] right-[-1px] w-[160px] pointer-events-none md:w-[220px];
         }
 
         /* --- Shared shell for the two colored action cards --- */
         .action-card {
-            @apply w-full max-w-[358px] mx-auto rounded-[24px] p-[24px] text-white
+            @apply w-full rounded-[24px] p-[24px] text-white
                    md:max-w-none md:mx-0 md:col-span-1 md:p-[28px];
         }
 
@@ -360,7 +328,7 @@
         }
 
         .action-card-icon {
-            @apply rounded-[10px] flex  mb-[16px];
+            @apply w-[36px] h-[36px] bg-white/20 rounded-[10px] flex items-center justify-center mb-[16px];
         }
 
         .action-card-title {
@@ -373,7 +341,7 @@
 
         /* --- Integrated Health (wide card, preview + text) --- */
         .health-card {
-            @apply w-full max-w-[358px] mx-auto flex flex-col bg-white rounded-[24px] p-[24px]
+            @apply w-full flex flex-col bg-white rounded-[24px] p-[24px]
                    md:max-w-none md:mx-0 md:col-span-2 md:flex-row md:items-center
                    md:gap-[28px] md:p-[28px];
         }
@@ -413,6 +381,154 @@
 
         .health-preview-bar {
             @apply flex-1 bg-white/25 rounded-t-[6px] md:hidden;
+        }
+
+        /* ==========================================================
+           7. PUBLIC SERVICES SECTION
+        ========================================================== */
+        .section-services {
+            @apply px-[16px] py-[32px] md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[64px];
+        }
+
+        .services-header {
+            @apply flex items-start justify-between gap-[16px] mb-[20px] md:mb-[32px] md:items-center;
+        }
+
+        .services-title {
+            @apply font-jakarta font-bold text-[20px] leading-[26px] text-black-700 md:text-[26px] md:leading-[32px];
+        }
+
+        .services-description {
+            @apply font-jakarta text-[13px] leading-[18px] text-slate-500 mt-[4px] md:text-[14px];
+        }
+
+        .services-view-all {
+            @apply hidden md:inline-flex items-center gap-[6px] font-hanken font-semibold
+                   text-[14px] text-green-800 hover:text-green-900 whitespace-nowrap;
+        }
+
+        .services-grid {
+            @apply grid grid-cols-3 gap-[10px] md:grid-cols-6 md:gap-[16px];
+        }
+
+        .service-tile {
+            @apply flex flex-col items-center justify-center gap-[10px] bg-mint-100
+                   rounded-[16px] py-[16px] px-[8px] text-center
+                   hover:bg-green-50 cursor-pointer transition-colors;
+        }
+         .service-tile-2 {
+            @apply hidden md:flex md:flex-col md:items-center md:justify-center md:gap-[10px] md:bg-mint-100
+                   md:rounded-[16px] md:py-[16px] md:px-[8px] md:text-center
+                   md:hover:bg-green-50 md:cursor-pointer md:transition-colors;
+        }
+
+        .service-tile-icon {
+            @apply w-[16px] h-[18px] md:w-[20px] md:h-[20px];
+        }
+
+        .service-tile-label {
+            @apply font-hanken font-medium text-[12px] text-black-700 leading-[16px] md:text-[13px];
+        }
+
+        /* ==========================================================
+           8. TESTIMONIALS SECTION
+        ========================================================== */
+        .section-testimonials {
+            @apply px-[16px] py-[32px] md:max-w-[1200px] md:mx-auto md:px-[24px] md:py-[64px];
+        }
+
+        .testimonials-title {
+            @apply font-jakarta text-center font-bold text-[20px] leading-[26px]
+                   text-black-700 mb-[20px] md:text-[26px] md:mb-[32px];
+        }
+
+        .testimonials-grid {
+            @apply grid grid-cols-1 gap-[16px] md:grid-cols-4 md:gap-[20px];
+        }
+
+        .testimonial-card {
+            @apply flex flex-col gap-[10px] bg-white rounded-[16px] p-[20px];
+        }
+
+        .testimonial-stars {
+            @apply flex items-center gap-[2px];
+        }
+
+        .testimonial-star {
+            @apply w-[14px] h-[14px] fill-amber-500;
+        }
+
+        .testimonial-quote {
+            @apply font-jakarta text-[13px] leading-[19px] text-slate-600;
+        }
+
+        .testimonial-author {
+            @apply flex items-center gap-[10px] mt-[6px];
+        }
+
+        .testimonial-avatar {
+            @apply w-[32px] h-[32px] rounded-full bg-green-500 text-green-900
+                   flex items-center justify-center font-hanken font-bold text-[12px] shrink-0;
+        }
+
+        .testimonial-name {
+            @apply font-hanken font-semibold text-[13px] text-black-700 leading-tight;
+        }
+
+        .testimonial-role {
+            @apply font-jakarta text-[11px] text-slate-500 leading-tight;
+        }
+
+        /* ==========================================================
+           9. FOOTER
+        ========================================================== */
+        footer {
+            @apply bg-white border-t border-grey-200 px-[16px] py-[32px] md:px-[24px];
+        }
+
+        .footer-inner {
+            @apply md:max-w-[1200px] md:mx-auto md:flex md:items-center md:justify-between;
+        }
+
+        .footer-brand {
+            @apply flex items-center justify-center gap-[8px] mb-[16px] md:mb-0 md:justify-start;
+        }
+
+        .footer-links {
+            @apply flex items-center justify-center gap-[16px] font-hanken font-medium
+                   text-[13px] text-slate-500 mb-[12px] md:mb-0 md:order-2;
+        }
+
+        .footer-links a {
+            @apply hover:text-green-800;
+        }
+
+        .footer-copyright {
+            @apply text-center font-jakarta text-[12px] text-slate-400 md:text-left md:order-1;
+        }
+
+        /* ==========================================================
+           10. MOBILE BOTTOM NAV
+        ========================================================== */
+        .mobile-nav {
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-grey-200
+                   flex items-center justify-around py-[8px] px-[8px];
+        }
+
+        .mobile-nav-item {
+            @apply flex flex-col items-center gap-[4px] text-slate-400 w-[64px];
+        }
+
+        .mobile-nav-item-active {
+            @apply text-green-900;
+        }
+
+        .mobile-nav-icon {
+            @apply w-[20px] h-[20px];
+        }
+
+        .mobile-nav-label {
+            @apply font-hanken font-medium text-[10px];
         }
     </style>
 </head>
@@ -556,56 +672,9 @@
              FEATURES
         ======================================================= -->
         <section class="section-4">
-            <div>
-                <div class="items-center text-center pt-[48px] pb-[32px] px-[16px]">
-                    <h2 class="font-jakarta font-semibold text-[24px] leading-[32px] text-[#1A1C1E]">
-                        Everything you need in one Super App
-                    </h2>
-                    <p class="font-jakarta text-[16px] leading-[24px] text-slate-500">
-                        We've unified the citizen experience, bringing fragmented services into
-                        a single, high-performance ecosystem.
-                    </p>
-                </div>
-
-                <div class="feature-card">
-                    <!-- Fingerprint watermark — placed first so the card content (below, in
-                         normal flow) paints on top of it without needing z-index -->
-                    <div class="feature-bg">
-                        <img src="/assets/images/id-image.png" alt="Fingerprint">
-                    </div>
-
-                    <div class="feature-icon">
-                        <img src="/assets/images/secure-icon.png" alt="Secure Icon">
-                    </div>
-
-                    <h4 class="feature-title">
-                        Secure Digital Identity
-                    </h4>
-
-                    <p class="feature-description">
-                        The MoroccoID standard ensures your data is protected with
-                        military-grade encryption and biometric verification.
-                    </p>
-
-                    <div class="login-wrapper">
-                        <span class="login-text">Learn about security</span>
-                        <a href="#login" class="login-link">
-                            <img src="/assets/images/icon-right.png" alt="Right Icon">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ======================================================
-             QUICK ACTIONS — Payments / Transport / Health
-        ======================================================= -->
-        <section class="section-4">
             <div class="section-features">
                 <div class="items-center text-center pt-[48px] pb-[32px] px-[16px] md:px-0">
-                    <h2
-                        class="font-jakarta font-semibold text-[24px] leading-[32px] text-[#1A1C1E] md:text-[32px] md:leading-[40px]">
+                    <h2 class="font-jakarta font-semibold text-[24px] leading-[32px] text-[#1A1C1E] md:text-[32px] md:leading-[40px]">
                         Everything you need in one Super App
                     </h2>
                     <p class="font-jakarta text-[16px] leading-[24px] text-slate-500 md:max-w-[520px] md:mx-auto">
@@ -618,11 +687,10 @@
 
                     <!-- Secure Digital Identity — wide card (row 1, col span 2) -->
                     <div class="feature-card">
-                        <div class="login-wrapper">
-                            <span class="login-text">Learn about security</span>
-                            <a href="#login" class="login-link">
-                                <img src="/assets/images/icon-right.png" alt="Right Icon">
-                            </a>
+                        <!-- Fingerprint watermark — placed first so the card content (below, in
+                             normal flow) paints on top of it without needing z-index -->
+                        <div class="feature-bg">
+                            <img src="/assets/images/id-image.png" alt="Fingerprint">
                         </div>
 
                         <div class="feature-icon">
@@ -660,7 +728,7 @@
                     <!-- Smart Transport — narrow card (row 2, col span 1) -->
                     <div class="action-card action-card-transport">
                         <div class="action-card-icon">
-                           <img src="/assets/images/transparent-icon.png" alt="transpor-icon">
+                            <img src="/assets/images/transparent-icon.png" alt="transport icon">
                         </div>
                         <h4 class="action-card-title">Smart Transport</h4>
                         <p class="action-card-description">
@@ -682,8 +750,24 @@
                         </div>
 
                         <!-- Decorative app preview -->
-                        <div class="health-preview">
-                            <img src="" alt="">
+                        <div class="health-preview" aria-hidden="true">
+                            <div class="health-preview-card">
+                                <div class="health-preview-line w-full"></div>
+                                <div class="health-preview-line w-[70%]"></div>
+                                <div class="health-preview-line w-[85%]"></div>
+                                <div class="health-preview-line w-[50%]"></div>
+                            </div>
+                            <div class="health-preview-bar h-[40%]"></div>
+                            <div class="health-preview-bar h-[65%]"></div>
+                            <div class="health-preview-bar h-[45%]"></div>
+                            <div class="health-preview-bar h-[80%]"></div>
+                            <div class="health-preview-bar h-[55%]"></div>
+                            <div class="health-preview-card">
+                                <div class="health-preview-line w-full"></div>
+                                <div class="health-preview-line w-[60%]"></div>
+                                <div class="health-preview-line w-[80%]"></div>
+                                <div class="health-preview-line w-[40%]"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -691,7 +775,212 @@
             </div>
         </section>
 
+        <!-- ======================================================
+             EXPLORE PUBLIC SERVICES
+        ======================================================= -->
+        <section class="section-services">
+            <div class="services-header">
+                <div>
+                    <h2 class="services-title">Explore Public Services</h2>
+                    <p class="services-description">
+                        Direct access to over 150 administrative procedures and citizen utilities.
+                    </p>
+                </div>
+                <a href="#" class="services-view-all">
+                    View All Services
+                    <img src="/assets/images/icon-grid.png" alt="" class="w-[16px] h-[16px]">
+                </a>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-tile">
+                    <img src="/assets/images/house-icon.png" alt="Housing" class="service-tile-icon">
+                    <span class="service-tile-label">Housing</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/job-icon.png" alt="Jobs" class="service-tile-icon">
+                    <span class="service-tile-label">Jobs</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/education-icon.png" alt="Education" class="service-tile-icon">
+                    <span class="service-tile-label">Education</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/Health.png" alt="Health" class="service-tile-icon">
+                    <span class="service-tile-label">Health</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/card-icon.png" alt="Registry" class="service-tile-icon">
+                    <span class="service-tile-label">Registry</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/Vehicles.png" alt="Vehicles" class="service-tile-icon">
+                    <span class="service-tile-label">Vehicles</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/Icon(1).png" alt="Security" class="service-tile-icon">
+                    <span class="service-tile-label">Security</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/justice-icon.png" alt="Justice" class="service-tile-icon">
+                    <span class="service-tile-label">Justice</span>
+                </div>
+                <div class="service-tile">
+                    <img src="/assets/images/icon-foreign-affairs.png" alt="Foreign Affairs" class="service-tile-icon">
+                    <span class="service-tile-label">Foreign Affairs</span>
+                </div>
+                <div class="service-tile-2">
+                    <img src="/assets/images/icon-agriculture.png" alt="Agriculture" class="service-tile-icon">
+                    <span class="service-tile-label">Agriculture</span>
+                </div>
+                <div class="service-tile-2">
+                    <img src="/assets/images/icon-culture.png" alt="Culture" class="service-tile-icon">
+                    <span class="service-tile-label">Culture</span>
+                </div>
+                <div class="service-tile-2">
+                    <img src="/assets/images/icon-taxation.png" alt="Taxation" class="service-tile-icon">
+                    <span class="service-tile-label">Taxation</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================
+             TESTIMONIALS
+        ======================================================= -->
+        <section class="section-testimonials">
+            <h2 class="testimonials-title">What Citizens are Saying</h2>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-hidden="true">
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">
+                        "Finally, an app that works as hard as we do. Paying bills and renewing my
+                        passport was never this easy."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AK</div>
+                        <div>
+                            <p class="testimonial-name">Ahmed K.</p>
+                            <p class="testimonial-role">Casablanca Resident</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-hidden="true">
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">
+                        "The digital ID feature is a game-changer for university students. Everything
+                        is in my pocket now."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SB</div>
+                        <div>
+                            <p class="testimonial-name">Sara B.</p>
+                            <p class="testimonial-role">Student, Rabat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-hidden="true">
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">
+                        "The digital ID feature is a game-changer for university students. Everything
+                        is in my pocket now."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">NB</div>
+                        <div>
+                            <p class="testimonial-name">Nora B.</p>
+                            <p class="testimonial-role">Student, Rabat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars" aria-hidden="true">
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                        <svg class="testimonial-star" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">
+                        "The digital ID feature is a game-changer for university students. Everything
+                        is in my pocket now."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">HK</div>
+                        <div>
+                            <p class="testimonial-name">Hafid K.</p>
+                            <p class="testimonial-role">Student, Rabat</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
+
+    <!-- ======================================================
+         FOOTER
+    ======================================================= -->
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-copyright">
+                © 2026 M3ak Digital. All rights reserved. Kingdom of Morocco.
+            </p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-brand md:hidden">
+            <img src="/assets/images/icon-card.png" alt="logo-icon" class="w-[20px] h-[20px]">
+            <span class="font-hanken font-bold text-[15px] text-green-900">M3ak Morocco</span>
+        </div>
+    </footer>
+
+    <!-- ======================================================
+         MOBILE BOTTOM NAV
+    ======================================================= -->
+    <nav class="mobile-nav">
+        <a href="#" class="mobile-nav-item mobile-nav-item-active">
+            <img src="/assets/images/icon-nav-home.png" alt="" class="mobile-nav-icon">
+            <span class="mobile-nav-label">Home</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <img src="/assets/images/icon-nav-services.png" alt="" class="mobile-nav-icon">
+            <span class="mobile-nav-label">Services</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <img src="/assets/images/icon-nav-wallet.png" alt="" class="mobile-nav-icon">
+            <span class="mobile-nav-label">Wallet</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <img src="/assets/images/icon-nav-profile.png" alt="" class="mobile-nav-icon">
+            <span class="mobile-nav-label">Profile</span>
+        </a>
+    </nav>
 
 </body>
 
