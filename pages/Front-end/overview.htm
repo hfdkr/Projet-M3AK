@@ -365,9 +365,9 @@
         }
 
         .health-preview {
-            @apply relative mt-[16px] h-[110px] bg-green-900 rounded-[16px] overflow-hidden
+            @apply relative mt-[16px] h-[110px] rounded-[16px] overflow-hidden
                    p-[14px] flex items-end gap-[10px]
-                   md:order-1 md:mt-0 md:w-[180px] md:h-[160px] md:shrink-0 md:items-center md:justify-center;
+                   md:order-1 md:mt-0 md:shrink-0 md:items-center md:justify-center;
         }
 
         .health-preview-card {
@@ -750,7 +750,8 @@
                         </div>
 
                         <!-- Decorative app preview -->
-                        <div class="health-preview" aria-hidden="true">
+                        <div>
+                            <img class="health-preview" src="/assets/images/preview-img.png" alt="">
                         </div>
                     </div>
 
