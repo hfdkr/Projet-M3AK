@@ -310,7 +310,7 @@
         }
 
         .feature-bg {
-            @apply absolute bottom-[-10px] right-[-1px] md:bottom-[-1px] md:right-[-150px] w-[160px] pointer-events-none md:w-[220px];
+            @apply absolute bottom-[-10px] right-[-65px] md:bottom-[-1px] md:right-[-150px] w-[160px] pointer-events-none md:w-[220px];
         }
 
         /* --- Shared shell for the two colored action cards --- */
@@ -343,7 +343,7 @@
         .health-card {
             @apply w-full flex flex-col bg-white rounded-[24px] p-[24px]
                    md:max-w-none md:mx-0 md:col-span-2 md:flex-row md:items-center
-                   md:gap-[28px] md:p-[28px];
+                   md:gap-[28px] md:p-[28px] md:bg-mint-50;
         }
 
         .health-content {
@@ -364,10 +364,18 @@
                    hover:bg-green-900 hover:cursor-pointer;
         }
 
+        .health-preview-wrap {
+            @apply relative w-full mt-[16px] h-[110px] rounded-[16px] overflow-hidden bg-mint-100
+                   md:order-1 md:mt-0 md:shrink-0 md:w-[180px] md:h-[110px];
+        }
+
         .health-preview {
-            @apply relative mt-[16px] h-[110px] rounded-[16px] overflow-hidden
-                   p-[14px] flex items-end gap-[10px]
-                   md:order-1 md:mt-0 md:shrink-0 md:items-center md:justify-center;
+            @apply w-full h-full object-cover;
+        }
+
+        .health-badge {
+            @apply absolute top-[10px] left-[10px] bg-white/90 rounded-[6px] px-[8px] py-[2px]
+                   font-hanken font-bold text-[11px] tracking-wide text-black-700;
         }
 
         .health-preview-card {
@@ -750,8 +758,9 @@
                         </div>
 
                         <!-- Decorative app preview -->
-                        <div>
+                        <div class="health-preview-wrap">
                             <img class="health-preview" src="/assets/images/preview-img.png" alt="">
+                            <span class="health-badge">M3AK</span>
                         </div>
                     </div>
 
