@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Create Account — M3ak Morocco</title>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-green-900: #006947;
+            --color-green-800: #005734;
+            --color-mint-50:   #F5FBF4;
+            --color-mint-100:  #E3F3E9;
+            --color-grey-200:  #DEE4DE;
+            --color-black-700: #171D19;
+            --color-blue-600:  #316BF3;
+            --color-slate-500: #3F4942;
+            --color-slate-400: #94A3B8;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black-700">
+
+    <div class="min-h-screen md:grid md:grid-cols-2">
+
+        <!-- ======================================================
+             LEFT — brand / visual panel (desktop only)
+        ======================================================= -->
+        <section class="hidden md:flex md:flex-col md:justify-center md:items-center md:bg-mint-50 md:p-12 md:relative">
+
+            <div class="flex items-center gap-2 absolute top-8 left-12">
+                <div class="w-7 h-7 rounded-lg bg-green-900 flex items-center justify-center shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                    </svg>
+                </div>
+                <span class="text-green-900">M3ak Morocco</span>
+            </div>
+
+            <div class="relative w-full max-w-[380px] rounded-3xl overflow-hidden bg-white shadow-sm">
+                <img src="/assets/images/id-card-phone.png" alt="Digital ID preview" class="w-full h-[300px] object-cover">
+
+                <div class="absolute bottom-4 right-4 bg-white rounded-2xl shadow-md px-3.5 py-2.5 flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-slate-500">Security Status</p>
+                        <p class="text-green-900">Advanced Protection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-7 max-w-[360px]">
+                <h2>Secure Your Digital Identity</h2>
+                <p class="text-slate-500 mt-2">
+                    Join thousands of Moroccan citizens accessing government services
+                    with ease, speed, and industry-leading biometric security.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>
