@@ -1,10 +1,21 @@
 ﻿# 🇲🇦 Projet-M3AK
 
-A modern digital identity platform for Morocco, currently under development.
+A modern digital identity platform for Morocco, currently under development. This project focuses on creating a secure, user-friendly, and responsive platform for managing digital identity and public services.
+
+---
 
 ## 📸 Preview
 
-![Projet-M3AK Preview](./assets/screenshots/screen-index.png)
+<p align="center">
+  <img src="./assets/screenshots/screen-index.png" alt="Landing Page" width="48%">
+  <img src="./assets/screenshots/screen-overview.png" alt="Overview Page" width="48%">
+</p>
+
+<p align="center">
+  <b>Landing Page</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Overview Page</b>
+</p>
 
 ---
 
@@ -18,30 +29,48 @@ A modern digital identity platform for Morocco, currently under development.
 
 ## 📋 Roadmap
 
+### ✅ Project Setup
+
 - [x] Project Planning
 - [x] UI/UX Design
+- [x] Project Structure
 
-- 🚧 Frontend Development
-  - [x] Index Page
-  - [ ] Landing Page
-  - [ ] Sign In Page
-  - [ ] Sign Up Page
-  - [ ] Forgot Password Page
-  - [ ] Reset Password Page
-  - [ ] New Password Page
-  - [ ] Home Page
-  - [ ] Dashboard Page
-  - [ ] Marketplace Page
-  - [ ] User Profile Page
-  - [ ] Transactions Page
-  - [ ] Support Center Page
-  - [ ] Digital Identity Page
-  - [ ] Settings Page
-  - [ ] Overview Page
+### 🚧 Frontend Development
 
-- [ ] Responsive Design
-- [ ] Testing
-- [ ] Deployment
+#### Authentication
+
+- [x] Landing Page
+- [ ] Sign In Page
+- [🚧] Sign Up Page *(In Progress)*
+- [ ] Forgot Password Page
+- [ ] Reset Password Page
+- [ ] New Password Page
+
+#### Dashboard
+
+- [🚧] Overview Page *(In Progress)*
+- [ ] Home Page
+- [ ] Marketplace Page
+- [ ] User Profile Page
+- [ ] Transactions Page
+- [ ] Support Center Page
+- [ ] Digital Identity Page
+- [ ] Settings Page
+
+### 📱 Responsive Design
+
+- [ ] Mobile
+- [ ] Tablet
+- [ ] Desktop
+
+### 🧪 Testing
+
+- [ ] Cross-browser Testing
+- [ ] Performance Optimization
+
+### 🚀 Deployment
+
+- [ ] GitHub Pages
 
 ---
 
@@ -53,12 +82,55 @@ Projet-M3AK/
 ├── assets/
 │   ├── images/
 │   └── screenshots/
-│       └── screen-index.png
+│       ├── screen-index.png
+│       └── screen-overview.png
 │
 ├── pages/
-│   └── overview.html
+│   ├── auth/
+│   │   └── signup.html
+│   │
+│   └── dashboard/
+│       └── overview.html
+│
+├── js/
 │
 ├── index.html
 ├── .gitignore
 └── README.md
 ```
+
+---
+
+## ✨ Features
+
+- Modern and responsive UI
+- Secure authentication flow
+- Dashboard interface
+- Digital identity management
+- Public service integration
+- Marketplace
+- User profile management
+- Clean and accessible design
+
+---
+
+## 📌 Current Progress
+
+- ✅ Project setup completed
+- ✅ Landing page completed
+- 🚧 Sign Up page in development
+- 🚧 Dashboard Overview page in development
+
+---
+
+## 👨‍💻 Author
+
+**Hafid Karkouch**
+
+- GitHub: https://github.com/hafidkarkouch
+
+---
+
+## 📄 License
+
+This project is developed for learning and portfolio purposes.
