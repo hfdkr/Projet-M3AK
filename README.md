@@ -130,7 +130,3 @@ Projet-M3AK/
 - GitHub: https://github.com/hfdkr
 
 ---
-
-## 📄 License
-
-This project is developed for learning and portfolio purposes.
