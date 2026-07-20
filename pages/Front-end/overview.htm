@@ -35,6 +35,7 @@
             --color-white-100: #F3F3F6;
             --color-grey-200:  #DEE4DE;
             --color-grey:      #0F172A;
+            --color-grey-primary:#1A1C1E;
             --color-black-700: #171D19;
 
             /* Colors — blue / navy */
@@ -60,11 +61,11 @@
            2. BASE
         ========================================================== */
         body {
-            @apply bg-[#D5E2DC] pb-[76px] md:pb-0;
+            @apply bg-mint-50 pb-[76px] md:pb-0;
         }
 
         h1 {
-            @apply font-hanken font-bold text-[18px] leading-[28px] text-green-600;
+            @apply font-jakarta font-bold text-[18px] leading-[28px] tracking-[0.45px] text-green-800;
         }
 
         /* ==========================================================
@@ -84,7 +85,7 @@
         }
 
         .navbar {
-            @apply font-hanken font-semibold text-[15px] text-black-700 hover:text-green-600;
+            @apply font-hanken font-medium text-[14px] leading-[20px] text-green-700 hover:text-green-600 ;
         }
 
         .button-header {
@@ -270,14 +271,15 @@
         /* ==========================================================
            6. FEATURES SECTION
         ========================================================== */
-        .section-4 {
-            @apply bg-[#F9F9FC];
-        }
-
         .section-features {
             @apply w-full md:max-w-[1200px] md:mx-auto md:px-[24px] md:pb-[96px];
         }
-
+        .div-features{
+            @apply items-center text-center pt-[48px] pb-[32px] px-[16px] md:px-0;
+        }
+        .header-2{
+            @apply font-jakarta font-semibold text-[24px] leading-[32px] text-grey-primary md:text-[32px] md:leading-[40px] md:tracking-[-0.32px];
+        }
         .features-title {
             @apply font-jakarta text-center font-bold text-[30px] leading-[36px] text-grey mb-[64px];
         }
@@ -553,9 +555,10 @@
 
             <!-- Desktop / tablet nav links -->
             <nav class="hidden md:flex items-center gap-[40px]">
-                <a href="#" class="navbar">Home</a>
-                <a href="#" class="navbar">Services</a>
                 <a href="#" class="navbar">About</a>
+                <a href="#" class="navbar">Features</a>
+                <a href="#" class="navbar">Services</a>
+                <a href="#" class="navbar">Help</a>
             </nav>
 
             <!-- Search, notifications, sign in, profile -->
@@ -678,11 +681,10 @@
         <!-- ======================================================
              FEATURES
         ======================================================= -->
-        <section class="section-4">
+        <section>
             <div class="section-features">
-                <div class="items-center text-center pt-[48px] pb-[32px] px-[16px] md:px-0">
-                    <h2
-                        class="font-jakarta font-semibold text-[24px] leading-[32px] text-[#1A1C1E] md:text-[32px] md:leading-[40px]">
+                <div class="div-features">
+                    <h2 class="header-2">
                         Everything you need in one Super App
                     </h2>
                     <p class="font-jakarta text-[16px] leading-[24px] text-slate-500 md:max-w-[520px] md:mx-auto">
