@@ -240,7 +240,7 @@
         }
 
         .login-text {
-            @apply font-hanken font-medium text-[20px] text-green-900 md:text-[15px] whitespace-nowrap;
+            @apply font-jakarta font-semibold text-[14px] leading-[20px] text-green-800 md:font-hanken md:font-bold md:text-[16px] md:leading-[24px] whitespace-nowrap;
         }
 
         .login-link {
@@ -296,7 +296,7 @@
         .feature-card {
             @apply relative overflow-hidden flex flex-col items-start
                    bg-white p-[24px] rounded-[24px] space-y-[8px]
-                   md:max-w-none md:mx-0 md:col-span-2 md:p-[32px];
+                   md:max-w-none md:mx-0 md:col-span-2 md:p-[32px] md:bg-green-50;
         }
 
         .feature-icon {
@@ -304,7 +304,7 @@
         }
 
         .feature-title {
-            @apply font-hanken font-bold text-[16px] text-black-700 mb-[8px] md:text-[20px];
+            @apply font-hanken font-semibold text-[24px] leading-[32px] text-grey-primary mb-[8px] md:text-[32px] md:leading-[40px] tracking-[-0.32px];
         }
 
         .feature-description {
@@ -312,12 +312,12 @@
         }
 
         .feature-bg {
-            @apply absolute bottom-[-10px] right-[-65px] md:bottom-[-1px] md:right-[-150px] w-[160px] pointer-events-none md:w-[220px];
+            @apply absolute bottom-[-10px] right-[-65px] md:bottom-[-30px] md:right-[-130px] w-[160px] pointer-events-none md:w-[220px];
         }
 
         /* --- Shared shell for the two colored action cards --- */
         .action-card {
-            @apply w-full rounded-[24px] p-[24px] text-white
+            @apply w-full md:h-[206px] rounded-[24px] p-[24px] text-white
                    md:max-w-none md:mx-0 md:col-span-1 md:p-[28px];
         }
 
@@ -334,7 +334,7 @@
         }
 
         .action-card-title {
-            @apply font-hanken font-bold text-[17px] leading-[22px] mb-[6px] md:text-[19px];
+            @apply font-jakarta font-semibold text-[24px] leading-[32px] mb-[24px] text-white md:text-[20px] md:leading-[28px];
         }
 
         .action-card-description {
