@@ -93,7 +93,7 @@ Projet-M3AK/
 │       └── overview.html
 │
 ├── js/
-│    └──onboarding.js 
+│    └── onboarding.js 
 │
 ├── index.html
 ├── .gitignore
