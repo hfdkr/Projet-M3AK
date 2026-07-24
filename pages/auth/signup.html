@@ -16,6 +16,7 @@
         @theme {
             --color-green-900: #006947;
             --color-green-800: #005734;
+            --color-green:#127147;
             --color-green-700: #3D4A42;
             --color-mint-50:   #F5FBF4;
             --color-mint-100:  #E3F3E9;
@@ -73,7 +74,7 @@
             @apply text-center mt-[28px] max-w-[360px];
         }
         .signup-heading-title{
-            @apply font-hanken font-bold text-[22px] leading-[28px] text-black-700;
+            @apply font-jakarta font-bold text-[48px] leading-[57.6px] tracking-[-0.96px] text-black;
         }
         .signup-heading-desc{
             @apply font-jakarta text-[14px] leading-[20px] text-slate-500 mt-[8px];
@@ -125,8 +126,8 @@
                    focus:border-green-900 focus:bg-white transition-colors;
         }
         .signup-btn-primary{
-            @apply w-full flex items-center justify-center gap-[8px] bg-green-900 text-white
-                   font-jakarta font-medium text-[14px] rounded-[20px] py-[12px] mt-[16px]
+            @apply w-full flex items-center justify-center gap-[8px] bg-green text-white
+                   font-jakarta font-medium text-[14px] rounded-[20px] tracking-[0.14px] py-[12px] mt-[16px]
                    hover:bg-green-800 cursor-pointer transition-colors;
         }
         .signup-login-note{
@@ -277,9 +278,7 @@
 
                     <button type="submit" class="signup-btn-primary">
                         Create Account
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M13 6l6 6-6 6" />
-                        </svg>
+                        <img src="/assets/image-signUp/icon-right.png" alt="icon right">
                     </button>
                 </form>
 
