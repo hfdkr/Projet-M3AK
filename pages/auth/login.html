@@ -220,6 +220,241 @@
             </div>
         </section>
 
+        <!-- ======================================================
+
+             RIGHT — form panel
+
+        ======================================================= -->
+
+        <section class="newpass-panel-right">
+
+
+
+            <!-- mobile-only top bar: back link + secured pill -->
+
+            <div class="newpass-topbar">
+
+                <a href="#" class="newpass-back-link">
+
+                    <img src="/assets/image-signUp/back-icon.png" alt="icon back">
+
+                    Back to Log in
+
+                </a>
+
+                <span class="newpass-secured-pill">
+
+                    <img src="/assets/image-signUp/Icon(1).png" alt="secure icon">
+
+                    Secured
+
+                </span>
+
+            </div>
+
+
+
+            <div class="newpass-form-shell">
+
+
+
+                <div class="newpass-brand-mobile">
+
+                    <div class="newpass-brand-mark">
+
+                        <img src="/assets/image-signUp/img-mobile-1.png" alt="Logo Page">
+
+                    </div>
+
+                    <span class="newpass-brand-name">M3ak Morocco</span>
+
+                </div>
+
+
+
+                <div class="newpass-header">
+
+                    <h1 class="newpass-header-title">Create New Password</h1>
+
+                    <p class="newpass-header-desc">Please enter and confirm your new password below.</p>
+
+                </div>
+
+
+
+                <form class="newpass-form" id="newPasswordForm">
+
+                    <div>
+
+                        <label for="newPassword" class="newpass-field-label">New Password</label>
+
+                        <div class="newpass-field-wrap">
+
+                            <input class="newpass-field-input" type="password" id="newPassword" placeholder="••••••••"
+                                autocomplete="new-password">
+
+                            <span class="newpass-field-toggle" data-toggle="newPassword">
+
+                                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+
+                                    <circle cx="12" cy="12" r="3" />
+
+                                </svg>
+
+                                <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+
+                                    <path
+                                        d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+
+                                    <line x1="1" y1="1" x2="23" y2="23" />
+
+                                </svg>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <label for="confirmPassword" class="newpass-field-label">Confirm New Password</label>
+
+                        <div class="newpass-field-wrap">
+
+                            <input class="newpass-field-input" type="password" id="confirmPassword"
+                                placeholder="••••••••" autocomplete="new-password">
+
+                            <span class="newpass-field-toggle" data-toggle="confirmPassword">
+
+                                <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+
+                                    <circle cx="12" cy="12" r="3" />
+
+                                </svg>
+
+                                <svg class="eye-closed hidden" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+
+                                    <path
+                                        d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+
+                                    <line x1="1" y1="1" x2="23" y2="23" />
+
+                                </svg>
+
+                            </span>
+
+                        </div>
+
+                        <p class="newpass-field-error hidden" id="matchError">Passwords do not match.</p>
+
+                    </div>
+
+
+
+                    <div class="newpass-rules">
+
+                        <p class="newpass-rules-title">PASSWORD REQUIREMENTS</p>
+
+                        <ul class="newpass-rules-list">
+
+                            <li class="newpass-rule" data-rule="length">
+
+                                <span class="newpass-rule-icon"></span>
+
+                                <span class="newpass-rule-text">At least 8 characters long</span>
+
+                            </li>
+
+                            <li class="newpass-rule" data-rule="number">
+
+                                <span class="newpass-rule-icon"></span>
+
+                                <span class="newpass-rule-text">At least one number</span>
+
+                            </li>
+
+                            <li class="newpass-rule" data-rule="special">
+
+                                <span class="newpass-rule-icon"></span>
+
+                                <span class="newpass-rule-text">One special character (!@#$%^&amp;*)</span>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                    <button type="submit" class="newpass-btn-primary" id="resetBtn" disabled>
+
+                        Reset Password
+
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                            <polyline points="23 4 23 10 17 10" />
+
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+
+                        </svg>
+
+                    </button>
+
+                </form>
+
+
+
+                <p class="newpass-help-note">
+
+                    Need help? <a href="#" class="newpass-help-link">Contact M3ak Support</a>
+
+                </p>
+
+
+
+                <div class="newpass-footer">
+
+                    <span class="newpass-secure-pill">
+
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+
+                            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+
+                        </svg>
+
+                        Secure &amp; 256-bit AES Encrypted
+
+                    </span>
+
+                    <p class="newpass-terms">
+
+                        © 2026 Kingdom of Morocco Digital Services. All rights reserved.
+
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+
     </div>
 
     <script src="/pages/js/new-password.js"></script>
