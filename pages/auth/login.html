@@ -37,6 +37,104 @@
         </div>
 
         <hr class="border-gray-100" />
+        <!-- Content -->
+        <div class="px-6 pt-6 pb-6">
+            <h1 class="text-2xl font-bold text-gray-900">Create New Password</h1>
+            <p class="text-sm text-gray-500 mt-2 leading-relaxed">
+                Please enter and confirm your new password below.
+            </p>
+
+            <!-- New Password -->
+            <div class="mt-6">
+                <label for="newPassword" class="block text-sm font-medium text-gray-800 mb-1.5">New Password</label>
+                <div class="relative">
+                    <input id="newPassword" type="password"
+                        class="w-full bg-gray-100 border border-gray-200 rounded-lg px-4 py-3 pr-11 text-sm text-gray-800 tracking-widest focus:outline-none focus:ring-2 focus:ring-emerald-700/40 focus:border-emerald-700"
+                        placeholder="••••••••" />
+                    <button type="button" data-toggle="newPassword"
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600">
+                        <svg class="eye-open w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mt-5">
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-800 mb-1.5">Confirm New
+                    Password</label>
+                <div class="relative">
+                    <input id="confirmPassword" type="password"
+                        class="w-full bg-gray-100 border border-gray-200 rounded-lg px-4 py-3 pr-11 text-sm text-gray-800 tracking-widest focus:outline-none focus:ring-2 focus:ring-emerald-700/40 focus:border-emerald-700"
+                        placeholder="••••••••" />
+                    <button type="button" data-toggle="confirmPassword"
+                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600">
+                        <svg class="eye-open w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <p id="matchError" class="hidden text-xs text-red-600 mt-1.5">Passwords do not match.</p>
+            </div>
+
+            <!-- Requirements -->
+            <div class="mt-5 bg-gray-50 border border-gray-100 rounded-xl px-4 py-4">
+                <p class="text-xs font-semibold tracking-wide text-gray-500 mb-3">PASSWORD REQUIREMENTS</p>
+                <ul class="space-y-2.5">
+                    <li class="flex items-center gap-2 text-sm" data-rule="length">
+                        <span
+                            class="rule-icon flex items-center justify-center w-4 h-4 rounded-full border border-gray-300 shrink-0"></span>
+                        <span class="rule-text text-gray-400">At least 8 characters long</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-sm" data-rule="number">
+                        <span
+                            class="rule-icon flex items-center justify-center w-4 h-4 rounded-full border border-gray-300 shrink-0"></span>
+                        <span class="rule-text text-gray-400">At least one number</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-sm" data-rule="special">
+                        <span
+                            class="rule-icon flex items-center justify-center w-4 h-4 rounded-full border border-gray-300 shrink-0"></span>
+                        <span class="rule-text text-gray-400">One special character (!@#$%^&amp;*)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Submit -->
+            <button id="resetBtn"
+                class="mt-6 w-full flex items-center justify-center gap-2 bg-emerald-800 hover:bg-emerald-900 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium text-sm rounded-lg py-3.5 transition-colors">
+                Reset Password
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+            </button>
+
+            <p class="text-center text-sm text-gray-500 mt-5">
+                Need help? <a href="#" class="text-blue-600 hover:underline">Contact M3ak Support</a>
+            </p>
+        </div>
     </div>
 
 </body>
