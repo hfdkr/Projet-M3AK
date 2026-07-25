@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <title>Create New Password — M3ak Morocco</title>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-green-900: #006947;
+            --color-green-800: #005734;
+            --color-green:#127147;
+            --color-green-700: #3D4A42;
+            --color-mint-50:   #F5FBF4;
+            --color-mint-100:  #E3F3E9;
+            --color-grey-200:  #DEE4DE;
+            --color-black-700: #171D19;
+            --color-black:#1A1C1E;
+            --color-blue-600:  #316BF3;
+            --color-slate-500: #3F4942;
+            --color-slate-400: #94A3B8;
+            --color-red-600:   #DC2626;
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        body {
+            @apply bg-white text-black;
+        }
+
+        /* ---------- New Password: page shell (same 2-col shell as Sign Up) ---------- */
+        .newpass-page{
+            @apply min-h-screen md:grid md:grid-cols-2;
+        }
+
+        /* ---------- New Password: left brand/visual panel (desktop only) ---------- */
+        .newpass-panel-left{
+            @apply hidden md:flex md:flex-col md:justify-center md:items-center md:bg-mint-50 md:p-[48px] md:relative;
+        }
+        .newpass-brand{
+            @apply flex items-center gap-[8px] absolute top-[32px] left-[48px];
+        }
+        .newpass-brand-mark{
+            @apply rounded-[8px] flex items-center justify-center shrink-0;
+        }
+        .newpass-brand-name{
+            @apply font-jakarta font-semibold text-[24px] leading-[32px] tracking-[-0.6px] text-green-800;
+        }
+        .newpass-visual{
+            @apply relative w-full max-w-[380px] rounded-[24px] overflow-hidden bg-white shadow-sm;
+        }
+        .newpass-visual-img{
+            @apply w-full h-[300px] object-cover;
+        }
+        .newpass-status-badge{
+            @apply absolute bottom-[16px] right-[16px] bg-white rounded-[16px] shadow-md px-[14px] py-[10px] flex items-center gap-[10px];
+        }
+        .newpass-status-icon{
+            @apply w-[28px] h-[28px] rounded-full bg-blue-600 flex items-center justify-center shrink-0;
+        }
+        .newpass-status-label{
+            @apply font-jakarta text-[11px] leading-[14px] text-slate-500;
+        }
+        .newpass-status-value{
+            @apply font-hanken font-bold text-[13px] leading-[18px] text-green-900;
+        }
+        .newpass-heading{
+            @apply text-center mt-[28px] max-w-[360px];
+        }
+        .newpass-heading-title{
+            @apply font-jakarta font-bold text-[40px] leading-[48px] tracking-[-0.8px] text-black;
+        }
+        .newpass-heading-desc{
+            @apply font-jakarta text-[14px] leading-[20px] text-slate-500 mt-[8px];
+        }
+
+        /* ---------- New Password: right form panel ---------- */
+        .newpass-panel-right{
+            @apply flex flex-col justify-center px-[20px] py-[24px] md:px-[64px] md:py-[48px];
+        }
+        .newpass-topbar{
+            @apply flex items-center justify-between mb-[20px] md:hidden;
+        }
+        .newpass-back-link{
+            @apply flex items-center gap-[4px] font-jakarta font-medium text-[14px] leading-[20px] tracking-[0.14px] text-green-800 hover:text-green-900 cursor-pointer;
+        }
+        .newpass-secured-pill{
+            @apply inline-flex items-center gap-[6px] text-slate-500 font-jakarta font-semibold text-[12px] leading-[16px] bg-white rounded-full px-[12px] py-[6px] border-1 border-[#BEC9BF4D]/30 shadow-[0_1px_2px_rgba(0,0,0,0.05)];
+        }
+        .newpass-form-shell{
+            @apply w-full max-w-[420px] mx-auto;
+        }
+        .newpass-brand-mobile{
+            @apply flex items-center gap-[8px] mb-[20px] md:hidden;
+        }
+        .newpass-header{
+            @apply mb-[24px];
+        }
+        .newpass-header-title{
+            @apply font-jakarta font-semibold text-[24px] leading-[32px] text-black md:text-[32px] md:leading-[40px] tracking-[-0.32px];
+        }
+        .newpass-header-desc{
+            @apply font-jakarta text-[16px] leading-[24px] text-slate-500 mt-[8px];
+        }
+        .newpass-form{
+            @apply flex flex-col gap-[16px] mb-[20px] mt-[32px];
+        }
+        .newpass-field-label{
+            @apply block font-jakarta font-medium text-[14px] leading-[20px] tracking-[0.14px] text-black mb-[4px];
+        }
+        .newpass-field-wrap{
+            @apply relative;
+        }
+        .newpass-field-input{
+            @apply w-full bg-mint-50 border border-grey-200 rounded-[12px] pl-[14px] pr-[42px] py-[12px]
+                   font-jakarta text-[14px] text-black-700 tracking-[2px] placeholder:text-slate-400 placeholder:tracking-normal outline-none
+                   focus:border-green-900 focus:bg-white transition-colors;
+        }
+        .newpass-field-toggle{
+            @apply absolute right-[14px] top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-500 cursor-pointer;
+        }
+        .newpass-field-error{
+            @apply font-jakarta text-[12px] text-red-600 mt-[6px];
+        }
+
+        /* ---------- New Password: requirements card ---------- */
+        .newpass-rules{
+            @apply bg-mint-50 border border-grey-200 rounded-[12px] px-[16px] py-[16px];
+        }
+        .newpass-rules-title{
+            @apply font-jakarta font-semibold text-[11px] leading-[14px] tracking-[0.6px] text-slate-500;
+        }
+        .newpass-rules-list{
+            @apply flex flex-col gap-[10px] mt-[12px];
+        }
+        .newpass-rule{
+            @apply flex items-center gap-[8px];
+        }
+        .newpass-rule-icon{
+            @apply flex items-center justify-center w-[16px] h-[16px] rounded-full border border-grey-200 shrink-0 transition-colors;
+        }
+        .newpass-rule-icon.is-done{
+            @apply bg-green border-green;
+        }
+        .newpass-rule-text{
+            @apply font-jakarta text-[14px] text-slate-400 transition-colors;
+        }
+        .newpass-rule-text.is-done{
+            @apply text-black-700;
+        }
+
+        .newpass-btn-primary{
+            @apply w-full flex items-center justify-center gap-[8px] bg-green text-white
+                   font-jakarta font-medium text-[14px] rounded-[20px] tracking-[0.14px] py-[12px] mt-[16px]
+                   hover:bg-green-800 disabled:opacity-40 disabled:hover:bg-green disabled:cursor-not-allowed
+                   cursor-pointer transition-colors;
+        }
+        .newpass-help-note{
+            @apply text-center font-jakarta text-[13px] text-slate-500;
+        }
+        .newpass-help-link{
+            @apply font-hanken font-semibold text-green-800 hover:text-green-900 cursor-pointer;
+        }
+        .newpass-footer{
+            @apply mt-[24px] pt-[20px] border-t border-grey-200 text-center;
+        }
+        .newpass-secure-pill{
+            @apply inline-flex items-center gap-[6px] bg-mint-50 text-green-800 font-hanken font-semibold text-[12px] rounded-full px-[12px] py-[6px] mb-[10px];
+        }
+        .newpass-terms{
+            @apply font-jakarta text-[12px] leading-[16px] text-slate-400;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="newpass-page">
+
+        <!-- ======================================================
+             LEFT — brand / visual panel (desktop only)
+        ======================================================= -->
+        <section class="newpass-panel-left">
+
+            <div class="newpass-brand">
+                <div class="newpass-brand-mark">
+                </div>
+                <span class="newpass-brand-name">M3ak Morocco</span>
+            </div>
+
+            <div class="newpass-visual">
+                <img class="newpass-visual-img" src="" alt="Account security preview">
+
+                <div class="newpass-status-badge">
+                    <div class="newpass-status-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="newpass-status-label">Security Status</p>
+                        <p class="newpass-status-value">Password Protected</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="newpass-heading">
+                <h2 class="newpass-heading-title">Set New Password</h2>
+                <p class="newpass-heading-desc">
+                    Create a strong, secure password to protect your
+                    digital identity and access government services.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="/pages/js/new-password.js"></script>
+
+</body>
+
+</html>
