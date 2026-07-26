@@ -41,14 +41,14 @@ A modern digital identity platform for Morocco, currently under development. Thi
 
 - [x] Landing Page
 - [ ] Sign In Page
-- [🚧] Sign Up Page *(In Progress)*
+- [x] Sign Up Page *(In Progress)*
 - [ ] Forgot Password Page
 - [ ] Reset Password Page
 - [ ] New Password Page
 
 #### Dashboard
 
-- [🚧] Overview Page *(In Progress)*
+- [x] Overview Page *(In Progress)*
 - [ ] Home Page
 - [ ] Marketplace Page
 - [ ] User Profile Page
@@ -80,23 +80,36 @@ A modern digital identity platform for Morocco, currently under development. Thi
 Projet-M3AK/
 │
 ├── assets/
+│   │
+│   ├── image-signUp/
+│   │  
 │   ├── images/
+│   │
 │   └── screenshots/
+│       │
 │       ├── screen-index.png
+│       │
 │       └── screen-overview.png
 │
 ├── pages/
 │   ├── auth/
+│   │   │
+│   │   ├── login.html
+│   │   │
 │   │   └── signup.html
 │   │
 │   └── dashboard/
+│       │
 │       └── overview.html
 │
 ├── js/
+│    │
 │    └── onboarding.js 
 │
 ├── index.html
+│
 ├── .gitignore
+│
 └── README.md
 ```
 
