@@ -1,11 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>M3ak Morocco | Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: #F7FFF8;
+        }
+
+        .glass {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, .82);
+        }
+
+        .shadow-card {
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, .08);
+        }
+
+        .input {
+            @apply w-full bg-[#F4F7F5] rounded-xl h-12 px-11 outline-none border border-transparent transition-all;
+        }
+
+        .input:focus {
+            border-color: #0B6B45;
+            box-shadow: 0 0 0 3px rgba(11, 107, 69, .15);
+        }
+
+        .social {
+            transition: .25s;
+        }
+
+        .social:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+        }
+
+        .btn {
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .bg-gradient {
+            background:
+                radial-gradient(circle at top, #DBF7E6, transparent 45%),
+                radial-gradient(circle at bottom, #CEF8D7, transparent 45%),
+                #F7FFF8;
+        }
+
+        .fade {
+            animation: fade .7s;
+        }
+
+        @keyframes fade {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+
+        }
+    </style>
+
 </head>
-<body>
-    
+
+<body class="bg-gradient min-h-screen">
+
+    <div class="min-h-screen flex flex-col">
+        <!-- TOP -->
+        <div class="lg:hidden px-6 pt-6">
+
+            <a href="#" class="flex items-center gap-2 text-[#0B6B45] font-medium">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+
+                </svg>
+
+                Back to Onboarding
+
+            </a>
+
+        </div>
+    </div>
+
 </body>
+
 </html>
