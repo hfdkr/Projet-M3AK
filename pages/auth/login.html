@@ -135,17 +135,131 @@
                         </div>
                         <h1 class="mt-6 text-4xl font-bold text-[#0B6B45]"> M3ak Morocco </h1>
                         <p class="mt-2 text-gray-500"> Access your unified citizen portal </p>
+                        <!-- CARD -->
+                        <div class="glass shadow-card rounded-3xl w-full max-w-md mt-10 p-8">
+                            <form class="space-y-6">
+
+                                <!-- EMAIL -->
+
+                                <div>
+
+                                    <label class="text-sm font-medium text-gray-700">
+
+                                        National ID or Email
+
+                                    </label>
+
+                                    <div class="relative mt-2">
+
+                                        <div class="absolute left-4 top-1/2 -translate-y-1/2">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="#6B7280" class="w-5 h-5">
+
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M5.121 17.804A7 7 0 1119 12" />
+
+                                            </svg>
+
+                                        </div>
+
+                                        <input type="text" placeholder="e.g. AB123456"
+                                            class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-4 focus:ring-4 focus:ring-green-100 outline-none">
+
+                                    </div>
+
+                                </div>
+
+                                <!-- PASSWORD -->
+
+                                <div>
+
+                                    <div class="flex justify-between">
+
+                                        <label class="text-sm font-medium text-gray-700">
+                                            Password
+                                        </label>
+
+                                        <a href="#" class="text-sm text-blue-600">
+                                            Forgot?
+                                        </a>
+
+                                    </div>
+
+                                    <div class="relative mt-2">
+
+                                        <div class="absolute left-4 top-1/2 -translate-y-1/2">
+                                            <img src="" alt="secure icon">
+                                        </div>
+
+                                        <input id="password" type="password" placeholder="••••••••"
+                                            class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-12 outline-none focus:ring-4 focus:ring-green-100">
+
+                                        <button type="button" onclick="togglePassword()"
+                                            class="absolute right-4 top-1/2 -translate-y-1/2">
+                                            <img src="" alt="show icon">
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                                <button
+                                    class="btn w-full h-12 rounded-xl bg-[#0B6B45] hover:bg-[#095638] text-white font-semibold">
+
+                                    Sign In
+
+                                </button>
+
+                                <div class="flex items-center gap-3">
+
+                                    <div class="flex-1 h-px bg-gray-200"></div>
+
+                                    <span class="text-xs text-gray-400">
+
+                                        OR CONTINUE WITH
+
+                                    </span>
+
+                                    <div class="flex-1 h-px bg-gray-200"></div>
+
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+
+                                    <button class="social border rounded-xl h-12 bg-white">
+                                        <img src="" alt="google icon">
+                                        Google
+                                    </button>
+
+                                    <button class="social border rounded-xl h-12 bg-white">
+                                        <img src="" alt="apple icon">
+                                        Apple
+
+                                    </button>
+
+                                </div>
+
+                                <p class="text-center text-gray-600">
+
+                                    Don't have an account?
+
+                                    <a href="#" class="text-blue-600 font-medium">
+
+                                        Create ID
+
+                                    </a>
+
+                                </p>
+
+                            </form>
+                        </div>
                     </div>
                     <!-- RIGHT SIDE (Desktop only) -->
-
                 </div>
-
             </div>
-
         </section>
-
     </div>
-
 </body>
 
 </html>
