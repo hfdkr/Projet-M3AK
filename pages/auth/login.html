@@ -109,11 +109,11 @@
     </header>
 
     <!-- CONTENT -->
-    <main>
+    <main class="mt-[9px]">
         <section>
             <div class="flex flex-col items-center justify-center text-center">
-                <div>
-                    <img src="/assets/images/img-mobile-1.png" alt="logo-page">
+                <div class="w-[64px] py-[14px] bg-[#127147] items-center text-center flex justify-center rounded-[16px]">
+                    <img src="/assets/image-login/logo.png" alt="logo-page">
                 </div>
 
                 <h1 class="mt-4 text-4xl font-bold text-[#0B6B45]">
@@ -226,21 +226,45 @@
         </section>
     </main>
     <!-- FOOTER -->
-    <footer>
-        <div class="mt-10 text-center text-sm text-gray-500 space-y-4 md:flex">
+   <footer class="border-t border-gray-200 py-6">
+    <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 md:flex md:justify-center">
 
-            <div class="flex justify-center gap-6">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Help Center</a>
-                <select class="border rounded px-3 py-2">
-                    <option value="en">English</option>
-                    <option value="ar">العربية</option>
+        <!-- Mobile -->
+        <div class="items-center gap-4 md:hidden">
+            <div class="flex items-center justify-center gap-6">
+                <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
+                <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
+
+                <select class="bg-transparent border-none outline-none cursor-pointer">
+                    <option>Arabic</option>
+                    <option>English</option>
                 </select>
             </div>
-            <p> © 2026 Kingdom of Morocco. Digital transformation for all citizens. </p>
-        </div>
-    </footer>
 
+            <p class="text-center">
+                © 2026 Kingdom of Morocco. Digital transformation for all citizens.
+            </p>
+        </div>
+
+        <!-- Desktop -->
+        <div class="hidden md:flex items-center justify-between">
+            <p>
+                © 2026 Kingdom of Morocco.
+            </p>
+
+            <div class="flex items-center gap-8">
+                <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
+                <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
+
+                <select class="bg-transparent border-none outline-none cursor-pointer">
+                    <option>Arabic</option>
+                    <option>English</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</footer>
 </body>
 
 </html>
