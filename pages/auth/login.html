@@ -88,8 +88,8 @@
 </head>
 
 <body class="bg-gradient min-h-screen">
-    <div class="min-h-screen flex flex-col">
-        <!-- TOP -->
+    <!-- TOP -->
+    <header>
         <div class="lg:hidden px-6 pt-6">
 
             <a href="#" class="flex items-center gap-2 text-[#0B6B45] font-medium">
@@ -106,31 +106,32 @@
             </a>
 
         </div>
-        <!-- CONTENT -->
-        <section class="flex-1 flex items-center justify-center">
+    </header>
+
+    <!-- CONTENT -->
+    <main>
+        <section>
+            <div class="flex flex-col items-center justify-center text-center">
+                <div>
+                    <img src="/assets/images/img-mobile-1.png" alt="logo-page">
+                </div>
+
+                <h1 class="mt-4 text-4xl font-bold text-[#0B6B45]">
+                    M3ak Morocco
+                </h1>
+
+                <p class="mt-2 text-gray-500">
+                    Access your unified citizen portal
+                </p>
+            </div>
+        </section>
+        <section class="flex-1 flex items-center justify-center mt-[30px]">
             <div class="w-full max-w-7xl px-6">
                 <div class="flex justify-center gap-16 items-center">
                     <!-- LEFT -->
                     <div class="fade items-center ">
-                        <!-- LOGO -->
-                        <div class="w-16 h-16 rounded-2xl bg-[#0B6B45] flex items-center justify-center shadow-lg">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"
-                                class="w-8 h-8">
-
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z" />
-
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9.5 12.5l2 2 3-4" />
-
-                            </svg>
-
-                        </div>
-                        <h1 class="mt-6 text-4xl font-bold text-[#0B6B45]"> M3ak Morocco </h1>
-                        <p class="mt-2 text-gray-500"> Access your unified citizen portal </p>
                         <!-- CARD -->
-                        <div class="glass shadow-card rounded-3xl w-full max-w-md mt-10 p-8">
+                        <div class="glass shadow-card rounded-3xl w-full max-w-md p-8">
                             <form class="space-y-6">
 
                                 <!-- EMAIL -->
@@ -146,15 +147,7 @@
                                     <div class="relative mt-2">
 
                                         <div class="absolute left-4 top-1/2 -translate-y-1/2">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="#6B7280" class="w-5 h-5">
-
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M5.121 17.804A7 7 0 1119 12" />
-
-                                            </svg>
-
+                                            <img src="/assets/image-login/user-icon.png" alt="user-icon">
                                         </div>
 
                                         <input type="text" placeholder="e.g. AB123456"
@@ -183,7 +176,7 @@
                                     <div class="relative mt-2">
 
                                         <div class="absolute left-4 top-1/2 -translate-y-1/2">
-                                            <img src="" alt="secure icon">
+                                            <img src="/assets/image-login/securety-icon.png" alt="secure icon">
                                         </div>
 
                                         <input id="password" type="password" placeholder="••••••••"
@@ -191,77 +184,63 @@
 
                                         <button type="button" onclick="togglePassword()"
                                             class="absolute right-4 top-1/2 -translate-y-1/2">
-                                            <img src="" alt="show icon">
+                                            <img src="/assets/image-login/show-icon.png" alt="show icon">
                                         </button>
-
                                     </div>
-
                                 </div>
-
                                 <button
                                     class="btn w-full h-12 rounded-xl bg-[#0B6B45] hover:bg-[#095638] text-white font-semibold">
-
                                     Sign In
-
                                 </button>
-
                                 <div class="flex items-center gap-3">
-
                                     <div class="flex-1 h-px bg-gray-200"></div>
-
                                     <span class="text-xs text-gray-400">
-
                                         OR CONTINUE WITH
-
                                     </span>
-
                                     <div class="flex-1 h-px bg-gray-200"></div>
-
                                 </div>
-
                                 <div class="grid grid-cols-2 gap-4">
-
-                                    <button class="social border rounded-xl h-12 bg-white">
-                                        <img src="" alt="google icon">
+                                    <button
+                                        class="social flex justify-center gap-[8px] items-center border rounded-xl h-12 bg-white">
+                                        <img src="/assets/image-login/google.png" alt="google icon"
+                                            class="w-[20px] h-[20px]">
                                         Google
                                     </button>
-
-                                    <button class="social border rounded-xl h-12 bg-white">
-                                        <img src="" alt="apple icon">
+                                    <button
+                                        class="social flex justify-center gap-[8px] items-center border rounded-xl h-12 bg-white">
+                                        <img src="/assets/image-login/apple.png" alt="apple icon" class="w-[20px]">
                                         Apple
-
                                     </button>
-
                                 </div>
-
                                 <p class="text-center text-gray-600">
-
                                     Don't have an account?
-
                                     <a href="#" class="text-blue-600 font-medium">
-
                                         Create ID
-
                                     </a>
-
                                 </p>
-
                             </form>
                         </div>
-                           <!-- FOOTER -->
-                        <div class="mt-10 text-center text-sm text-gray-500 space-y-4">
-
-                            <div class="flex justify-center gap-6">
-                                <a href="#">Privacy Policy</a>
-                                <a href="#">Help Center</a>
-                                <a href="#">Arabic</a>
-                            </div>
-                            <p> © 2026 Kingdom of Morocco. Digital transformation for all citizens. </p>
-                        </div>
-                    </div>                </div>
+                    </div>
+                </div>
             </div>
         </section>
-    </div>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+        <div class="mt-10 text-center text-sm text-gray-500 space-y-4 md:flex">
+
+            <div class="flex justify-center gap-6">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Help Center</a>
+                <select class="border rounded px-3 py-2">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
+            <p> © 2026 Kingdom of Morocco. Digital transformation for all citizens. </p>
+        </div>
+    </footer>
+
 </body>
 
 </html>
