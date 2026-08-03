@@ -84,7 +84,7 @@
 
         }
     </style>
-
+    <script src="/pages/js/login.js"></script>
 </head>
 
 <body class="bg-gradient relative min-h-screen">
@@ -114,7 +114,8 @@
     <main class="mt-[9px] md:mt-[93px]">
         <section>
             <div class="flex flex-col items-center justify-center text-center">
-                <div class="w-[64px] py-[14px] bg-[#127147] items-center text-center flex justify-center rounded-[16px]">
+                <div
+                    class="w-[64px] py-[14px] bg-[#127147] items-center text-center flex justify-center rounded-[16px]">
                     <img src="/assets/image-login/logo.png" alt="logo-page">
                 </div>
 
@@ -190,7 +191,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <button
+                                <button type="submit"
                                     class="btn w-full h-12 rounded-xl bg-[#0B6B45] hover:bg-[#095638] text-white font-semibold">
                                     Sign In
                                 </button>
@@ -228,45 +229,45 @@
         </section>
     </main>
     <!-- FOOTER -->
-   <footer class="border-t border-[#BEC9BF4D]/30 md:border-hidden py-6">
-    <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 md:flex md:justify-center">
+    <footer class="border-t border-[#BEC9BF4D]/30 md:border-hidden py-6">
+        <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 md:flex md:justify-center">
 
-        <!-- Mobile -->
-        <div class="items-center gap-4 md:hidden">
-            <div class="flex items-center justify-center gap-6">
-                <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
-                <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
+            <!-- Mobile -->
+            <div class="items-center gap-4 md:hidden">
+                <div class="flex items-center justify-center gap-6">
+                    <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
+                    <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
 
-                <select class="bg-transparent border-none outline-none cursor-pointer">
-                    <option>Arabic</option>
-                    <option>English</option>
-                </select>
+                    <select class="bg-transparent border-none outline-none cursor-pointer">
+                        <option>Arabic</option>
+                        <option>English</option>
+                    </select>
+                </div>
+
+                <p class="text-center">
+                    © 2026 Kingdom of Morocco. Digital transformation for all citizens.
+                </p>
             </div>
 
-            <p class="text-center">
-                © 2026 Kingdom of Morocco. Digital transformation for all citizens.
-            </p>
-        </div>
+            <!-- Desktop -->
+            <div class="hidden md:flex items-center justify-between">
+                <p>
+                    © 2026 Kingdom of Morocco.
+                </p>
 
-        <!-- Desktop -->
-        <div class="hidden md:flex items-center justify-between">
-            <p>
-                © 2026 Kingdom of Morocco.
-            </p>
+                <div class="flex items-center gap-8">
+                    <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
+                    <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
 
-            <div class="flex items-center gap-8">
-                <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
-                <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
-
-                <select class="bg-transparent border-none outline-none cursor-pointer">
-                    <option>Arabic</option>
-                    <option>English</option>
-                </select>
+                    <select class="bg-transparent border-none outline-none cursor-pointer">
+                        <option>Arabic</option>
+                        <option>English</option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-    </div>
-</footer>
+        </div>
+    </footer>
 </body>
 
 </html>
