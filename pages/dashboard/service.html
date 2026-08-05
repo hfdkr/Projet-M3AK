@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <title>M3ak Services — Government Services Directory</title>
+    <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        /* ==========================================================
+           1. THEME TOKENS
+        ========================================================== */
+        @theme {
+            --color-green-900: #006947;
+            --color-green-800: #005734;
+            --color-green-700: #3D4A42;
+            --color-green-50:  #EFF5EF;
+
+            --color-mint-50:  #F5FBF4;
+            --color-mint-100: #E3F3E9;
+
+            --color-white:    #FFFFFF;
+            --color-grey-200: #DEE4DE;
+            --color-black-700:#171D19;
+
+            --color-slate-600: #475569;
+            --color-slate-500: #3F4942;
+            --color-slate-400: #94A3B8;
+
+            --color-lavender-50: #E7ECFB;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        /* ==========================================================
+           2. BASE
+        ========================================================== */
+        body {
+            @apply bg-mint-50 pb-[76px] md:pb-0;
+        }
+
+        /* ==========================================================
+           3. HEADER
+        ========================================================== */
+        header {
+            @apply bg-white shadow-sm sticky top-0 z-40;
+        }
+
+        .div-header {
+            @apply flex justify-between items-center px-[16px] py-[14px]
+                   md:max-w-[1200px] md:h-[88px] md:mx-auto md:px-[24px];
+        }
+
+        .brand {
+            @apply flex items-center gap-[10px];
+        }
+
+        .brand-mark {
+            @apply w-[32px] h-[32px] rounded-[10px] bg-green-900 text-white font-jakarta
+                   font-bold text-[16px] flex items-center justify-center;
+        }
+
+        .brand-name {
+            @apply font-jakarta font-bold text-[18px] leading-[28px] tracking-[0.45px] text-green-800;
+        }
+
+        .navbar {
+            @apply font-hanken font-medium text-[14px] text-green-700 hover:text-green-900;
+        }
+
+        .navbar-active {
+            @apply font-hanken font-semibold text-[14px] text-green-900 border-b-2 border-green-900 pb-[2px];
+        }
+
+        .icon-button {
+            @apply w-[36px] h-[36px] rounded-full bg-white border border-grey-200
+                   flex items-center justify-center cursor-pointer;
+        }
+
+        .user-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-green-50 py-[5px] pl-[5px] pr-[10px]
+                   md:pr-[14px] cursor-pointer;
+        }
+
+        .user-avatar {
+            @apply w-[28px] h-[28px] rounded-full bg-green-900 text-white font-hanken
+                   font-bold text-[12px] flex items-center justify-center shrink-0;
+        }
+
+        .user-menu {
+            @apply absolute right-0 mt-[8px] w-[190px] bg-white rounded-[12px] shadow-lg
+                   border border-grey-200 py-[6px] z-50;
+        }
+
+        .user-menu a, .user-menu button {
+            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
+                   text-slate-600 hover:bg-mint-50 cursor-pointer;
+        }
+
+        /* ==========================================================
+           4. DIRECTORY INTRO
+        ========================================================== */
+        .directory {
+            @apply relative px-[16px] pt-[28px] pb-[16px]
+                   md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[56px];
+        }
+
+        .directory-title {
+            @apply font-jakarta font-extrabold text-[26px] leading-[32px] text-black-700
+                   md:text-[40px] md:leading-[48px];
+        }
+
+        .directory-title-accent {
+            @apply block text-green-900;
+        }
+
+        .directory-description {
+            @apply font-jakarta text-[13px] leading-[20px] text-slate-500 mt-[10px]
+                   max-w-[520px] md:text-[15px] md:leading-[24px];
+        }
+
+        .directory-emblem {
+            @apply hidden md:block absolute right-[24px] top-[48px] w-[180px] h-[130px] text-mint-100;
+        }
+
+        /* ---- search ---- */
+        .search-bar {
+            @apply flex items-center gap-[10px] mt-[20px] max-w-[560px];
+        }
+
+        .search-field {
+            @apply relative flex-1;
+        }
+
+        .search-input {
+            @apply w-full h-[44px] bg-white border border-grey-200 rounded-[10px]
+                   pl-[38px] pr-[14px] font-jakarta text-[13px] text-black-700
+                   outline-none focus:border-green-900 transition;
+        }
+
+        .search-icon {
+            @apply absolute left-[13px] top-1/2 -translate-y-1/2 w-[15px] h-[15px] text-slate-400;
+        }
+
+        .search-button {
+            @apply h-[44px] px-[22px] bg-green-900 hover:bg-green-800 text-white rounded-[10px]
+                   font-hanken font-semibold text-[13px] transition cursor-pointer;
+        }
+
+        /* ==========================================================
+           5. SERVICE CARDS
+        ========================================================== */
+        .directory-grid {
+            @apply grid grid-cols-2 gap-[12px] px-[16px] pb-[32px]
+                   md:grid-cols-4 md:gap-[20px] md:max-w-[1200px] md:mx-auto md:px-[24px];
+        }
+
+        .directory-card {
+            @apply bg-white rounded-[14px] p-[16px] border border-transparent
+                   hover:border-green-900 hover:-translate-y-[2px] transition md:p-[20px];
+        }
+
+        .directory-card-icon {
+            @apply w-[34px] h-[34px] rounded-[10px] bg-mint-100 text-green-900
+                   flex items-center justify-center mb-[12px];
+        }
+
+        .directory-card-title {
+            @apply font-jakarta font-bold text-[14px] text-black-700 md:text-[16px];
+        }
+
+        .directory-card-text {
+            @apply font-jakarta text-[11px] leading-[17px] text-slate-400 mt-[5px] md:text-[12px];
+        }
+
+        .directory-empty {
+            @apply hidden col-span-2 md:col-span-4 text-center font-jakarta text-[13px]
+                   text-slate-400 py-[32px];
+        }
+
+        /* ==========================================================
+           6. WALLET BANNER
+        ========================================================== */
+        .wallet {
+            @apply relative overflow-hidden bg-green-900 text-white rounded-[18px]
+                   mx-[16px] mb-[40px] p-[24px]
+                   md:max-w-[1200px] md:mx-auto md:mb-[64px] md:px-[48px] md:py-[44px]
+                   md:flex md:items-center md:justify-between md:gap-[40px];
+        }
+
+        .wallet-pill {
+            @apply inline-flex bg-white/15 rounded-full px-[12px] py-[5px]
+                   font-hanken font-medium text-[11px] text-white/90;
+        }
+
+        .wallet-title {
+            @apply font-jakarta font-extrabold text-[24px] leading-[30px] mt-[14px]
+                   md:text-[34px] md:leading-[42px];
+        }
+
+        .wallet-text {
+            @apply font-jakarta text-[12px] leading-[19px] text-white/75 mt-[10px]
+                   max-w-[420px] md:text-[14px] md:leading-[22px];
+        }
+
+        .wallet-button {
+            @apply inline-flex mt-[20px] bg-white text-green-900 rounded-[10px] px-[20px] py-[11px]
+                   font-hanken font-semibold text-[13px] hover:bg-mint-100 transition;
+        }
+
+        .wallet-visual {
+            @apply hidden md:flex w-[180px] h-[180px] shrink-0 rounded-[36px] bg-white/10
+                   items-center justify-center;
+        }
+
+        /* ==========================================================
+           7. FOOTER
+        ========================================================== */
+        footer {
+            @apply bg-lavender-50 px-[16px] py-[28px] md:px-[24px];
+        }
+
+        .footer-inner {
+            @apply md:max-w-[1200px] md:mx-auto md:flex md:items-center md:justify-between;
+        }
+
+        .footer-brand-name {
+            @apply font-jakarta font-bold text-[15px] text-green-800;
+        }
+
+        .footer-tagline {
+            @apply font-jakarta text-[11px] text-slate-400 mt-[2px];
+        }
+
+        .footer-links {
+            @apply flex flex-wrap items-center gap-[16px] mt-[16px] md:mt-0
+                   font-hanken font-medium text-[13px] text-slate-500;
+        }
+
+        .footer-links a {
+            @apply hover:text-green-800;
+        }
+
+        /* ==========================================================
+           8. MOBILE BOTTOM NAV
+        ========================================================== */
+        .mobile-nav {
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-grey-200
+                   flex items-center justify-around py-[8px];
+        }
+
+        .mobile-nav-item {
+            @apply flex flex-col items-center gap-[4px] text-slate-400 w-[64px];
+        }
+
+        .mobile-nav-item-active {
+            @apply text-green-900;
+        }
+
+        .mobile-nav-label {
+            @apply font-hanken font-medium text-[10px];
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======================================================
+         HEADER
+    ======================================================= -->
+    <header>
+        <div class="div-header">
+            <div class="brand">
+                <span class="brand-mark">M</span>
+                <span class="brand-name">M3ak Morocco</span>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-[36px]">
+                <a href="/pages/dashboard/home.html" class="navbar">Home</a>
+                <a href="/pages/dashboard/services.html" class="navbar-active">Services</a>
+                <a href="#" class="navbar">Payments</a>
+                <a href="#" class="navbar">Help</a>
+            </nav>
+
+            <div class="flex items-center gap-[10px]">
+                <button class="icon-button" aria-label="Notifications">
+                    <svg class="w-[16px] h-[16px] text-green-900" fill="none" stroke="currentColor"
+                        stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                    </svg>
+                </button>
+
+                <div class="relative" data-auth="user">
+                    <button type="button" class="user-chip" data-menu-toggle>
+                        <span></span>
+                    </button>
+
+                    <div class="user-menu hidden" data-menu>
+                        <a href="#">My profile</a>
+                        <a href="#">My documents</a>
+                        <a href="#">Settings</a>
+                        <button type="button" data-action="logout" class="text-red-600">Sign out</button>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>
