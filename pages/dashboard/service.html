@@ -317,6 +317,45 @@
         </div>
     </header>
 
+    <main>
+
+        <!-- ======================================================
+             DIRECTORY INTRO + SEARCH
+        ======================================================= -->
+        <section class="directory">
+            <svg class="directory-emblem" fill="currentColor" viewBox="0 0 120 90" aria-hidden="true">
+                <path d="M60 0 118 26H2z" />
+                <rect x="18" y="38" width="14" height="34" rx="2" />
+                <rect x="53" y="38" width="14" height="34" rx="2" />
+                <rect x="88" y="38" width="14" height="34" rx="2" />
+                <rect x="2" y="80" width="116" height="10" rx="3" />
+            </svg>
+
+            <h1 class="directory-title">
+                Government Services
+                <span class="directory-title-accent">Directory</span>
+            </h1>
+
+            <p class="directory-description">
+                Browse every public service by ministry. Each entry opens the online procedure,
+                the required documents, and the expected processing time.
+            </p>
+
+            <div class="search-bar">
+                <div class="search-field">
+                    <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                    </svg>
+                    <input id="service-search" type="search" class="search-input"
+                        placeholder="Search a ministry, a service or a document..." autocomplete="off">
+                </div>
+
+                <button type="button" id="service-search-button" class="search-button">Search</button>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
