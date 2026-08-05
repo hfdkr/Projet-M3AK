@@ -240,6 +240,7 @@
 
                     <select class="bg-transparent border-none outline-none cursor-pointer">
                         <option>Arabic</option>
+                        <option>Français</option>
                         <option>English</option>
                     </select>
                 </div>
@@ -259,10 +260,32 @@
                     <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
                     <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
 
-                    <select class="bg-transparent border-none outline-none cursor-pointer">
-                        <option>Arabic</option>
-                        <option>English</option>
-                    </select>
+                    <div class="relative inline-block" id="languageDropdown">
+                        <button id="selectedLanguage" class="flex items-center gap-2 bg-transparent cursor-pointer">
+                            English
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div id="languageMenu"
+                            class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
+
+                            <div class="language-option px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                Arabic
+                            </div>
+
+                            <div class="language-option px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                Français
+                            </div>
+
+                            <div class="language-option px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                English
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
