@@ -148,7 +148,7 @@
         }
 
         .admin-chip {
-            @apply flex items-center gap-[8px] rounded-full bg-green-50 py-[4px] pl-[4px] pr-[12px] cursor-pointer;
+            @apply flex items-center cursor-pointer;
         }
 
         .admin-avatar {
@@ -168,6 +168,44 @@
         .user-menu a, .user-menu button {
             @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
                    text-slate-600 hover:bg-mint-50 cursor-pointer;
+        }
+
+        /* ==========================================================
+           5. PAGE HEAD
+        ========================================================== */
+        .main {
+            @apply flex-1 min-w-0;
+        }
+
+        .page {
+            @apply flex flex-col px-[16px] py-[20px] md:px-[28px] md:py-[26px];
+        }
+
+        .page-head {
+            @apply md:flex md:items-start md:justify-between mb-[18px];
+        }
+
+        .page-title {
+            @apply font-jakarta font-extrabold text-[21px] text-black-700 md:text-[24px];
+        }
+
+        .page-subtitle {
+            @apply text-[12px] text-slate-500 mt-[3px] md:text-[13px];
+        }
+
+        .page-actions {
+            @apply hidden md:flex items-center gap-[10px];
+        }
+
+        .button-ghost {
+            @apply flex items-center gap-[7px] h-[34px] px-[14px] bg-white border border-grey-200
+                   rounded-[9px] font-hanken font-medium text-[12px] text-green-700
+                   hover:border-green-900 transition cursor-pointer;
+        }
+
+        .button-solid {
+            @apply flex items-center gap-[7px] h-[34px] px-[14px] bg-green-900 hover:bg-green-800
+                   rounded-[9px] font-hanken font-semibold text-[12px] text-white transition cursor-pointer;
         }
     </style>
 </head>
@@ -258,7 +296,104 @@
                 </nav>
             </aside>
         </header>
+
+        <!-- ==================================================
+             MAIN
+        =================================================== -->
+        <main class="main">
+
+            <!-- TOPBAR -->
+            <div class="topbar">
+                <button class="icon-button md:hidden" id="sidebar-toggle" aria-label="Open menu">
+                    <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+                    </svg>
+                </button>
+
+                <span class="md:hidden font-jakarta font-extrabold text-[15px] text-green-900">
+                    M3ak Dashboard
+                </span>
+
+                <div class="topbar-search">
+                    <svg class="topbar-search-icon" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                    </svg>
+                    <input type="search" class="topbar-input" placeholder="Search citizens, services, or reports...">
+                </div>
+
+                <div class="flex items-center gap-[6px] ml-auto">
+                    <button class="icon-button" aria-label="Notifications">
+                        <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                        </svg>
+                    </button>
+
+                    <button class="icon-button hidden md:flex" aria-label="Help">
+                        <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9" />
+                            <path stroke-linecap="round"
+                                d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
+                        </svg>
+                    </button>
+
+                    <div class="relative">
+                        <button type="button" class="admin-chip" onclick="toggleMenu()">
+                            <img src="/assets/dashboard-assets/icon-admin.png" class="rounded-full" alt="profile-icon">
+                        </button>
+
+                        <div class="user-menu hidden">
+                            <a href="#">My profile</a>
+                            <a href="#">Admin settings</a>
+                            <button type="button" class="text-brick-600">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE -->
+            <div class="page">
+
+                <div class="page-head">
+                    <div>
+                        <h1 class="page-title">Dashboard Overview</h1>
+                        <p class="page-subtitle">Real-time citizen engagement and infrastructure monitoring.</p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="button-ghost">
+                            <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                viewBox="0 0 24 24">
+                                <rect x="3" y="5" width="18" height="16" rx="2.5" />
+                                <path stroke-linecap="round" d="M8 3v4m8-4v4M3 10h18" />
+                            </svg>
+                            Last 30 Days
+                        </button>
+
+                        <button class="button-solid">
+                            <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" />
+                            </svg>
+                            Export Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
+    <script>
+        const userMenu = document.querySelector(".user-menu");
+
+        function toggleMenu() {
+            userMenu.classList.toggle("hidden");
+        }
+    </script>
 </body>
 
 </html>
