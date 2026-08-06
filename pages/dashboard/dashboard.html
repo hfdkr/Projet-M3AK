@@ -12,9 +12,253 @@
         rel="stylesheet">
     <title>M3ak Morocco — Admin Dashboard</title>
     <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        /* ==========================================================
+           1. THEME TOKENS
+        ========================================================== */
+        @theme {
+            --color-green-900: #006947;
+            --color-green-800: #005734;
+            --color-green-700: #3D4A42;
+            --color-green-400: #6FA98C;
+            --color-green-200: #A9CDBB;
+            --color-green-100: #D6EADF;
+            --color-green-50:  #EFF5EF;
+
+            --color-mint-50:  #F5FBF4;
+            --color-mint-100: #E3F3E9;
+
+            --color-white:     #FFFFFF;
+            --color-grey-200:  #DEE4DE;
+            --color-grey-100:  #EDF1ED;
+            --color-black-700: #171D19;
+
+            --color-blue-600: #1156E8;
+            --color-blue-500: #316BF3;
+            --color-blue-50:  #E6EEFE;
+
+            --color-brick-600: #B5504F;
+            --color-brick-700: #9B403F;
+            --color-brick-50:  #FBEBEB;
+
+            --color-amber-600: #E8862E;
+            --color-amber-50:  #FDEEDF;
+
+            --color-slate-600: #475569;
+            --color-slate-500: #64748B;
+            --color-slate-400: #94A3B8;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        /* ==========================================================
+           2. BASE / SHELL
+        ========================================================== */
+        body {
+            @apply bg-mint-50 font-jakarta pb-[68px] md:pb-0;
+        }
+
+        .shell {
+            @apply md:flex md:min-h-screen;
+        }
+
+        /* ==========================================================
+           3. SIDEBAR
+        ========================================================== */
+        .sidebar {
+            @apply fixed inset-y-0 left-0 z-50 w-[240px] bg-mint-50 border-r border-grey-200
+                   -translate-x-full transition-transform duration-300
+                   md:static md:translate-x-0 md:shrink-0;
+        }
+
+        .sidebar-open {
+            @apply translate-x-0;
+        }
+
+        .sidebar-brand {
+            @apply h-[64px] flex items-center px-[24px] border-b border-grey-200;
+        }
+
+        .sidebar-brand-name {
+            @apply font-jakarta font-extrabold text-[18px] tracking-[0.4px] text-green-900;
+        }
+
+        .sidebar-nav {
+            @apply px-[12px] py-[20px];
+        }
+
+        .sidebar-section {
+            @apply font-hanken font-medium text-[11px] uppercase tracking-[1.2px]
+                   text-slate-400 px-[12px] mb-[10px];
+        }
+
+        .nav-item {
+            @apply relative flex items-center gap-[12px] rounded-[10px] px-[12px] py-[10px] mb-[2px]
+                   font-hanken font-medium text-[13px] text-green-700 hover:bg-mint-100 transition;
+        }
+
+        .nav-item-active {
+            @apply bg-mint-100 text-green-900 font-semibold;
+        }
+
+        .nav-item-active::before {
+            content: "";
+            @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-green-900;
+        }
+
+        .nav-item-danger {
+            @apply bg-brick-600 text-white hover:bg-brick-700;
+        }
+
+        .nav-icon {
+            @apply w-[17px] h-[17px] shrink-0;
+        }
+
+        .sidebar-backdrop {
+            @apply fixed inset-0 z-40 bg-black/30 hidden md:hidden;
+        }
+
+        /* ==========================================================
+           4. TOPBAR
+        ========================================================== */
+        .topbar {
+            @apply sticky top-0 z-30 bg-white border-b border-grey-200
+                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-[28px];
+        }
+
+        .topbar-search {
+            @apply hidden md:block relative flex-1 max-w-[420px];
+        }
+
+        .topbar-input {
+            @apply w-full h-[36px] bg-mint-50 border border-grey-200 rounded-[10px]
+                   pl-[36px] pr-[14px] text-[13px] text-black-700 outline-none
+                   focus:border-green-900 transition;
+        }
+
+        .topbar-search-icon {
+            @apply absolute left-[12px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] text-slate-400;
+        }
+
+        .icon-button {
+            @apply w-[34px] h-[34px] rounded-full flex items-center justify-center
+                   text-green-700 hover:bg-mint-50 cursor-pointer;
+        }
+
+        .admin-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-green-50 py-[4px] pl-[4px] pr-[12px] cursor-pointer;
+        }
+
+        .admin-avatar {
+            @apply w-[26px] h-[26px] rounded-full bg-green-900 text-white font-hanken
+                   font-bold text-[11px] flex items-center justify-center;
+        }
+
+        .admin-name {
+            @apply hidden md:block font-hanken font-semibold text-[13px] text-green-800;
+        }
+
+        .user-menu {
+            @apply absolute right-0 mt-[8px] w-[180px] bg-white rounded-[12px] shadow-lg
+                   border border-grey-200 py-[6px] z-50;
+        }
+
+        .user-menu a, .user-menu button {
+            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
+                   text-slate-600 hover:bg-mint-50 cursor-pointer;
+        }
+    </style>
 </head>
 
 <body>
+
+    <div class="shell">
+
+        <!-- ==================================================
+             SIDEBAR
+        =================================================== -->
+        <header>
+            <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-brand">
+                    <span class="sidebar-brand-name">M3ak Morocco</span>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <p class="sidebar-section">Main menu</p>
+
+                    <a href="#" class="nav-item nav-item-active">
+                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="18" height="18" rx="3" />
+                            <path stroke-linecap="round" d="M8 15V9m4 6v-3m4 3v-5" />
+                        </svg>
+                        Analytics
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="3.4" />
+                            <path stroke-linecap="round" d="M5.5 20c0-3.3 2.9-5.4 6.5-5.4s6.5 2.1 6.5 5.4" />
+                        </svg>
+                        Users
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
+                        </svg>
+                        Services
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                            <path stroke-linecap="round" d="M14 3v5h5M9 13h6M9 17h4" />
+                        </svg>
+                        Reports
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                            <circle cx="12" cy="12" r="2.4" />
+                        </svg>
+                        Payments
+                    </a>
+
+                    <p class="sidebar-section mt-[26px]">Support</p>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.9 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.6a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z" />
+                        </svg>
+                        Settings
+                    </a>
+
+                    <a href="#" class="nav-item nav-item-danger">
+                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                        </svg>
+                        Emergency Support
+                    </a>
+                </nav>
+            </aside>
+        </header>
+    </div>
 </body>
 
 </html>
