@@ -38,7 +38,7 @@
             --color-blue-500: #316BF3;
             --color-blue-50:  #E6EEFE;
 
-            --color-brick-600: ;
+            --color-brick-600: #C0433F;
             --color-brick-700: #9B403F;
             --color-brick-50:  #FBEBEB;
 
@@ -60,8 +60,13 @@
             @apply bg-mint-50 font-jakarta pb-[68px] md:pb-0;
         }
 
+        /* Topbar pleine largeur, puis sidebar + contenu en dessous */
+        .app {
+            @apply md:flex md:min-h-screen md:flex-col;
+        }
+
         .shell {
-            @apply md:flex md:min-h-screen;
+            @apply md:flex md:flex-1 md:min-h-0;
         }
 
         /* ==========================================================
@@ -69,16 +74,18 @@
         ========================================================== */
         .sidebar {
             @apply fixed inset-y-0 left-0 z-50 w-[240px] bg-mint-50 border-r border-grey-200
-                   -translate-x-full transition-transform duration-300
-                   md:static md:translate-x-0 md:shrink-0;
+                   flex flex-col -translate-x-full transition-transform duration-300
+                   md:sticky md:top-[64px] md:z-0 md:h-[calc(100vh-64px)] md:w-[212px]
+                   md:translate-x-0 md:shrink-0;
         }
 
         .sidebar-open {
             @apply translate-x-0;
         }
 
+        /* Sur desktop la marque vit dans la topbar */
         .sidebar-brand {
-            @apply h-[64px] flex items-center px-[24px] border-b border-grey-200;
+            @apply h-[64px] flex items-center px-[24px] border-b border-grey-200 md:hidden;
         }
 
         .sidebar-brand-name {
@@ -86,12 +93,11 @@
         }
 
         .sidebar-nav {
-            @apply px-[12px] py-[20px];
+            @apply flex-1 overflow-y-auto px-[12px] py-[18px];
         }
 
-        .sidebar-section {
-            @apply font-hanken font-medium text-[11px] uppercase tracking-[1.2px]
-                   text-slate-400 px-[12px] mb-[10px];
+        .sidebar-foot {
+            @apply px-[12px] pb-[18px] pt-[8px];
         }
 
         .nav-item {
@@ -108,8 +114,11 @@
             @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-green-900;
         }
 
-        .nav-item-danger {
-            @apply bg-brick-600 text-white hover:bg-brick-700;
+        /* Bouton plein rouge, poussé en bas de la sidebar */
+        .nav-emergency {
+            @apply flex items-center justify-center gap-[8px] rounded-[10px] px-[12px] py-[11px]
+                   bg-brick-600 text-white font-hanken font-semibold text-[12px]
+                   hover:bg-brick-700 transition;
         }
 
         .nav-icon {
@@ -124,12 +133,17 @@
            4. TOPBAR
         ========================================================== */
         .topbar {
-            @apply sticky top-0 z-30 bg-white border-b border-grey-200
-                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-[28px];
+            @apply sticky top-0 z-40 bg-white border-b border-grey-200
+                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-[24px];
+        }
+
+        .topbar-brand {
+            @apply hidden md:block font-jakarta font-extrabold text-[18px] tracking-[0.4px]
+                   text-green-900 w-[188px] shrink-0;
         }
 
         .topbar-search {
-            @apply hidden md:block relative flex-1 max-w-[420px];
+            @apply hidden md:block relative flex-1 max-w-[420px] mx-auto;
         }
 
         .topbar-input {
@@ -152,12 +166,8 @@
         }
 
         .admin-avatar {
-            @apply w-[26px] h-[26px] rounded-full bg-green-900 text-white font-hanken
+            @apply w-[28px] h-[28px] rounded-full bg-green-900 text-white font-hanken
                    font-bold text-[11px] flex items-center justify-center;
-        }
-
-        .admin-name {
-            @apply hidden md:block font-hanken font-semibold text-[13px] text-green-800;
         }
 
         .user-menu {
@@ -178,7 +188,7 @@
         }
 
         .page {
-            @apply flex flex-col px-[16px] py-[20px] md:px-[28px] md:py-[26px];
+            @apply flex flex-col px-[16px] py-[20px] md:px-[26px] md:py-[24px];
         }
 
         .page-head {
@@ -216,7 +226,7 @@
         }
 
         .kpi-card {
-            @apply bg-white rounded-[14px] p-[14px] md:p-[18px];
+            @apply bg-white rounded-[14px] border border-grey-200 p-[14px] md:p-[18px];
         }
 
         .kpi-top {
@@ -252,7 +262,7 @@
            7. PANELS
         ========================================================== */
         .panel {
-            @apply bg-white rounded-[14px] p-[16px] md:p-[20px];
+            @apply bg-white rounded-[14px] border border-grey-200 p-[16px] md:p-[20px];
         }
 
         .panel-head {
@@ -415,7 +425,7 @@
            11. FOOTER
         ========================================================== */
         footer {
-            @apply hidden md:block border-t border-grey-200 px-[28px] py-[20px] mt-[8px];
+            @apply hidden md:block border-t border-grey-200 px-[28px] py-[18px];
         }
 
         .footer-inner {
@@ -454,12 +464,70 @@
 
 <body>
 
-    <div class="shell">
+    <div class="app">
 
         <!-- ==================================================
-             SIDEBAR
+             TOPBAR (pleine largeur, au-dessus de la sidebar)
         =================================================== -->
-        <header>
+        <div class="topbar">
+            <button class="icon-button md:hidden" id="sidebar-toggle" aria-label="Open menu">
+                <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+                </svg>
+            </button>
+
+            <span class="md:hidden font-jakarta font-extrabold text-[15px] text-green-900">
+                M3ak Dashboard
+            </span>
+
+            <span class="topbar-brand">M3ak Morocco</span>
+
+            <div class="topbar-search">
+                <svg class="topbar-search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                </svg>
+                <input type="search" class="topbar-input" placeholder="Search citizens, services, or reports...">
+            </div>
+
+            <div class="flex items-center gap-[6px] ml-auto">
+                <button class="icon-button" aria-label="Notifications">
+                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                    </svg>
+                </button>
+
+                <button class="icon-button hidden md:flex" aria-label="Help">
+                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" />
+                        <path stroke-linecap="round"
+                            d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
+                    </svg>
+                </button>
+
+                <div class="relative" id="user-menu-wrap">
+                    <button type="button" class="admin-chip" id="user-menu-button" aria-expanded="false"
+                        aria-label="Account menu">
+                        <img src="/assets/dashboard-assets/icon-admin.png"
+                            class="w-[28px] h-[28px] rounded-full object-cover" alt="Admin profile">
+                    </button>
+
+                    <div class="user-menu hidden">
+                        <a href="#">My profile</a>
+                        <a href="#">Admin settings</a>
+                        <button type="button" class="text-brick-600">Sign out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shell">
+
+            <!-- ==================================================
+                 SIDEBAR
+            =================================================== -->
             <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
             <aside class="sidebar" id="sidebar">
@@ -468,45 +536,51 @@
                 </div>
 
                 <nav class="sidebar-nav">
-                    <p class="sidebar-section">Main menu</p>
-
-                    <a href="#" class="nav-item nav-item-active">
+                    <a href="/pages/dashboard/service.html" class="nav-item nav-item-active">
                         <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
-                        </svg>
-                        Dashboard
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="3" />
-                            <path stroke-linecap="round" d="M8 15V9m4 6v-3m4 3v-5" />
-                        </svg>
-                        Analytics
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <circle cx="12" cy="8" r="3.4" />
-                            <path stroke-linecap="round" d="M5.5 20c0-3.3 2.9-5.4 6.5-5.4s6.5 2.1 6.5 5.4" />
-                        </svg>
-                        Users
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
                         </svg>
                         Services
                     </a>
 
+                    <a href="/pages/dashboard/transport.html" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="5" y="3" width="14" height="13" rx="2.5" />
+                            <path stroke-linecap="round" d="M5 9h14M8 20l-1.5 2M16 20l1.5 2" />
+                        </svg>
+                        Transport
+                    </a>
+
                     <a href="#" class="nav-item">
                         <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                            <path stroke-linecap="round" d="M14 3v5h5M9 13h6M9 17h4" />
+                            <path stroke-linejoin="round" d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                            <path stroke-linejoin="round" d="M9 21v-7h6v7" />
                         </svg>
-                        Reports
+                        Housing
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="3" y="7" width="18" height="13" rx="2" />
+                            <path stroke-linejoin="round" d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
+                        </svg>
+                        Jobs
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="m2 8 10-4 10 4-10 4z" />
+                            <path stroke-linejoin="round" d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
+                        </svg>
+                        Education
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="3" y="6" width="18" height="14" rx="2.5" />
+                            <path stroke-linecap="round" d="M12 10v6M9 13h6" />
+                        </svg>
+                        Healthcare
                     </a>
 
                     <a href="#" class="nav-item">
@@ -517,9 +591,34 @@
                         Payments
                     </a>
 
-                    <p class="sidebar-section mt-[26px]">Support</p>
+                    <a href="/pages/dashboard/marketplace.html" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M3 9.5 4.5 4h15L21 9.5" />
+                            <path stroke-linejoin="round"
+                                d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" />
+                            <path stroke-linejoin="round" d="M5 12v8h14v-8" />
+                        </svg>
+                        Marketplace
+                    </a>
 
                     <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                        </svg>
+                        Emergency
+                    </a>
+                </nav>
+
+                <div class="sidebar-foot">
+                    <a href="#" class="nav-emergency">
+                        <span class="rounded bg-white/25 px-[5px] py-[1px] text-[9px] font-extrabold tracking-[0.6px]">
+                            SOS
+                        </span>
+                        Emergency Support
+                    </a>
+
+                    <a href="#" class="nav-item mt-[12px]">
                         <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="3" />
                             <path
@@ -528,443 +627,390 @@
                         Settings
                     </a>
 
-                    <a href="#" class="nav-item nav-item-danger">
-                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
-                        </svg>
-                        Emergency Support
-                    </a>
-                </nav>
-            </aside>
-        </header>
-
-        <!-- ==================================================
-             MAIN
-        =================================================== -->
-        <main class="main">
-
-            <!-- TOPBAR -->
-            <div class="topbar">
-                <button class="icon-button md:hidden" id="sidebar-toggle" aria-label="Open menu">
-                    <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
-                    </svg>
-                </button>
-
-                <span class="md:hidden font-jakarta font-extrabold text-[15px] text-green-900">
-                    M3ak Dashboard
-                </span>
-
-                <div class="topbar-search">
-                    <svg class="topbar-search-icon" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
-                    </svg>
-                    <input type="search" class="topbar-input" placeholder="Search citizens, services, or reports...">
-                </div>
-
-                <div class="flex items-center gap-[6px] ml-auto">
-                    <button class="icon-button" aria-label="Notifications">
-                        <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                            viewBox="0 0 24 24">
+                    <a href="/pages/auth/login.html" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                                d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 16l-4-4 4-4M6 12h9" />
                         </svg>
-                    </button>
-
-                    <button class="icon-button hidden md:flex" aria-label="Help">
-                        <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                            viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9" />
-                            <path stroke-linecap="round"
-                                d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
-                        </svg>
-                    </button>
-
-                    <div class="relative">
-                        <button type="button" class="admin-chip" onclick="toggleMenu()">
-                            <img src="/assets/dashboard-assets/icon-admin.png" class="rounded-full" alt="profile-icon">
-                        </button>
-
-                        <div class="user-menu hidden">
-                            <a href="#">My profile</a>
-                            <a href="#">Admin settings</a>
-                            <button type="button" class="text-brick-600">Sign out</button>
-                        </div>
-                    </div>
+                        Logout
+                    </a>
                 </div>
-            </div>
+            </aside>
 
-            <!-- PAGE -->
-            <div class="page">
+            <!-- ==================================================
+                 MAIN
+            =================================================== -->
+            <main class="main">
+                <div class="page">
 
-                <div class="page-head">
-                    <div>
-                        <h1 class="page-title">Dashboard Overview</h1>
-                        <p class="page-subtitle">Real-time citizen engagement and infrastructure monitoring.</p>
-                    </div>
-
-                    <div class="page-actions">
-                        <button class="button-ghost">
-                            <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                viewBox="0 0 24 24">
-                                <rect x="3" y="5" width="18" height="16" rx="2.5" />
-                                <path stroke-linecap="round" d="M8 3v4m8-4v4M3 10h18" />
-                            </svg>
-                            Last 30 Days
-                        </button>
-
-                        <button class="button-solid">
-                            <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" />
-                            </svg>
-                            Export Report
-                        </button>
-                    </div>
-                </div>
-
-                <!-- ==============================================
-                     KPI CARDS
-                =============================================== -->
-                <section class="kpi-grid">
-
-                    <article class="kpi-card">
-                        <div class="kpi-top">
-                            <span class="kpi-icon bg-mint-100 text-green-900">
-                                <svg class="w-[17px] h-[17px]" fill="currentColor" viewBox="0 0 24 24">
-                                    <path
-                                        d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9 13c-3 0-6 1.5-6 4v2h12v-2c0-2.5-3-4-6-4zm7 .5c-.6 0-1.2.1-1.7.2 1.1.9 1.7 2 1.7 3.3v2h5v-2c0-2.2-2.5-3.5-5-3.5z" />
-                                </svg>
-                            </span>
-                            <span class="kpi-badge badge-up">
-                                +12.5%
-                                <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" d="M5 17 19 7m0 0h-7m7 0v7" />
-                                </svg>
-                            </span>
-                        </div>
-                        <p class="kpi-label">Active Citizens</p>
-                        <p class="kpi-value">1,284,502</p>
-                    </article>
-
-                    <article class="kpi-card">
-                        <div class="kpi-top">
-                            <span class="kpi-icon bg-blue-50 text-blue-600">
-                                <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    viewBox="0 0 24 24">
-                                    <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
-                                    <circle cx="12" cy="12" r="2.4" />
-                                </svg>
-                            </span>
-                            <span class="kpi-badge badge-up">
-                                +8.1%
-                                <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" d="M5 17 19 7m0 0h-7m7 0v7" />
-                                </svg>
-                            </span>
-                        </div>
-                        <p class="kpi-label">Total Payments</p>
-                        <p class="kpi-value">DH 42.8M</p>
-                    </article>
-
-                    <article class="kpi-card">
-                        <div class="kpi-top">
-                            <span class="kpi-icon bg-brick-50 text-brick-600">
-                                <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="8.5" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.5 12 2.5 2.5 4.5-5" />
-                                </svg>
-                            </span>
-                            <span class="kpi-badge badge-up">
-                                94.2%
-                                <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
-                                </svg>
-                            </span>
-                        </div>
-                        <p class="kpi-label">Resolution Rate</p>
-                        <p class="kpi-value">24,192</p>
-                    </article>
-
-                    <article class="kpi-card">
-                        <div class="kpi-top">
-                            <span class="kpi-icon bg-amber-50 text-amber-600">
-                                <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    viewBox="0 0 24 24">
-                                    <rect x="5" y="4" width="14" height="17" rx="2.5" />
-                                    <path stroke-linecap="round" d="M9 3.5h6M12 9v3.5l2 1.5" />
-                                </svg>
-                            </span>
-                            <span class="kpi-badge badge-down">
-                                -2.4%
-                                <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" d="M5 7 19 17m0 0v-7m0 7h-7" />
-                                </svg>
-                            </span>
-                        </div>
-                        <p class="kpi-label">Avg. Response Time</p>
-                        <p class="kpi-value">14.2m</p>
-                    </article>
-                </section>
-
-                <!-- ==============================================
-                     CHARTS  (order swaps on mobile)
-                =============================================== -->
-                <section class="analytics-row order-2 md:order-1">
-
-                    <!-- Engagement Trends -->
-                    <div class="panel lg:col-span-2">
-                        <div class="panel-head">
-                            <h2 class="panel-title">Engagement Trends</h2>
-
-                            <div class="chart-legend">
-                                <span class="legend-item">
-                                    <span class="legend-dot bg-green-200"></span>
-                                    Services
-                                </span>
-                                <span class="legend-item">
-                                    <span class="legend-dot bg-green-900"></span>
-                                    Payments
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="chart">
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:26%"></span>
-                                    <span class="bar bar-payments" style="height:18%"></span>
-                                </div>
-                                <span class="chart-label">Mon</span>
-                            </div>
-
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:44%"></span>
-                                    <span class="bar bar-payments" style="height:30%"></span>
-                                </div>
-                                <span class="chart-label">Tue</span>
-                            </div>
-
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:66%"></span>
-                                    <span class="bar bar-payments" style="height:79%"></span>
-                                </div>
-                                <span class="chart-label">Wed</span>
-                            </div>
-
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:52%"></span>
-                                    <span class="bar bar-payments" style="height:97%"></span>
-                                </div>
-                                <span class="chart-label">Thu</span>
-                            </div>
-
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:60%"></span>
-                                    <span class="bar bar-payments" style="height:72%"></span>
-                                </div>
-                                <span class="chart-label">Fri</span>
-                            </div>
-
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:38%"></span>
-                                    <span class="bar bar-payments" style="height:22%"></span>
-                                </div>
-                                <span class="chart-label">Sat</span>
-                            </div>
-
-                            <div class="chart-day">
-                                <div class="chart-bars">
-                                    <span class="bar bar-services" style="height:47%"></span>
-                                    <span class="bar bar-payments" style="height:34%"></span>
-                                </div>
-                                <span class="chart-label">Sun</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Usage -->
-                    <div class="panel">
-                        <div class="panel-head">
-                            <h2 class="panel-title">Service Usage</h2>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-head">
-                                <span class="usage-name">Transport</span>
-                                <span class="usage-value">43%</span>
-                            </div>
-                            <div class="usage-track">
-                                <div class="usage-fill bg-green-900" style="width:43%"></div>
-                            </div>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-head">
-                                <span class="usage-name">Education</span>
-                                <span class="usage-value">28%</span>
-                            </div>
-                            <div class="usage-track">
-                                <div class="usage-fill bg-blue-500" style="width:28%"></div>
-                            </div>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-head">
-                                <span class="usage-name">Healthcare</span>
-                                <span class="usage-value">15%</span>
-                            </div>
-                            <div class="usage-track">
-                                <div class="usage-fill bg-brick-700" style="width:15%"></div>
-                            </div>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-head">
-                                <span class="usage-name">Jobs</span>
-                                <span class="usage-value">10%</span>
-                            </div>
-                            <div class="usage-track">
-                                <div class="usage-fill bg-brick-600" style="width:10%"></div>
-                            </div>
-                        </div>
-
-                        <div class="usage-item">
-                            <div class="usage-head">
-                                <span class="usage-name">Other</span>
-                                <span class="usage-value">6%</span>
-                            </div>
-                            <div class="usage-track">
-                                <div class="usage-fill bg-green-400" style="width:6%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- ==============================================
-                     RECENT ACTIVITY
-                =============================================== -->
-                <section class="panel order-1 md:order-2 mb-[16px] md:mb-0">
-                    <div class="panel-head">
+                    <div class="page-head">
                         <div>
-                            <h2 class="panel-title">Recent Activity</h2>
-                            <p class="panel-subtitle">Real-time updates across the kingdom.</p>
+                            <h1 class="page-title">Dashboard Overview</h1>
+                            <p class="page-subtitle">Real-time citizen engagement and infrastructure monitoring.</p>
                         </div>
-                        <a href="#" class="panel-link">View All Logs</a>
+
+                        <div class="page-actions">
+                            <button class="button-ghost">
+                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <rect x="3" y="5" width="18" height="16" rx="2.5" />
+                                    <path stroke-linecap="round" d="M8 3v4m8-4v4M3 10h18" />
+                                </svg>
+                                Last 30 Days
+                            </button>
+
+                            <button class="button-solid">
+                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" />
+                                </svg>
+                                Export Report
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>User / Citizen</th>
-                                    <th>Action Type</th>
-                                    <th>Location</th>
-                                    <th>Status</th>
-                                    <th class="text-right">Timestamp</th>
-                                </tr>
-                            </thead>
+                    <!-- ==============================================
+                         KPI CARDS
+                    =============================================== -->
+                    <section class="kpi-grid">
 
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="cell-user">
-                                            <span class="cell-avatar bg-blue-50 text-blue-600">AY</span>
-                                            <span>
-                                                <span class="cell-name block">Ahmed Yassine</span>
-                                                <span class="cell-id block">ID: #48129</span>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>Service Request: Transit Pass</td>
-                                    <td>Casablanca, MA</td>
-                                    <td><span class="status status-processed">Processed</span></td>
-                                    <td class="cell-time text-right">2 mins ago</td>
-                                </tr>
+                        <article class="kpi-card">
+                            <div class="kpi-top">
+                                <span class="kpi-icon bg-mint-100 text-green-900">
+                                    <svg class="w-[17px] h-[17px]" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9 13c-3 0-6 1.5-6 4v2h12v-2c0-2.5-3-4-6-4zm7 .5c-.6 0-1.2.1-1.7.2 1.1.9 1.7 2 1.7 3.3v2h5v-2c0-2.2-2.5-3.5-5-3.5z" />
+                                    </svg>
+                                </span>
+                                <span class="kpi-badge badge-up">
+                                    +12.5%
+                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" d="M5 17 19 7m0 0h-7m7 0v7" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <p class="kpi-label">Active Citizens</p>
+                            <p class="kpi-value">1,284,502</p>
+                        </article>
 
-                                <tr>
-                                    <td>
-                                        <div class="cell-user">
-                                            <span class="cell-avatar bg-brick-50 text-brick-600">MB</span>
-                                            <span>
-                                                <span class="cell-name block">Meryem Benani</span>
-                                                <span class="cell-id block">ID: #48128</span>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>Payment: Utility Bill</td>
-                                    <td>Rabat, MA</td>
-                                    <td><span class="status status-pending">Pending</span></td>
-                                    <td class="cell-time text-right">14 mins ago</td>
-                                </tr>
+                        <article class="kpi-card">
+                            <div class="kpi-top">
+                                <span class="kpi-icon bg-blue-50 text-blue-600">
+                                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                        viewBox="0 0 24 24">
+                                        <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                                        <circle cx="12" cy="12" r="2.4" />
+                                    </svg>
+                                </span>
+                                <span class="kpi-badge badge-up">
+                                    +8.1%
+                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" d="M5 17 19 7m0 0h-7m7 0v7" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <p class="kpi-label">Total Payments</p>
+                            <p class="kpi-value">DH 42.8M</p>
+                        </article>
 
-                                <tr>
-                                    <td>
-                                        <div class="cell-user">
-                                            <span class="cell-avatar bg-mint-100 text-green-900">KH</span>
-                                            <span>
-                                                <span class="cell-name block">Khalid Hafidi</span>
-                                                <span class="cell-id block">ID: #48127</span>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>Profile Update: Address</td>
-                                    <td>Marrakech, MA</td>
-                                    <td><span class="status status-processed">Processed</span></td>
-                                    <td class="cell-time text-right">28 mins ago</td>
-                                </tr>
+                        <article class="kpi-card">
+                            <div class="kpi-top">
+                                <span class="kpi-icon bg-brick-50 text-brick-600">
+                                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                        viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="8.5" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.5 12 2.5 2.5 4.5-5" />
+                                    </svg>
+                                </span>
+                                <span class="kpi-badge badge-up">
+                                    94.2%
+                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <p class="kpi-label">Resolution Rate</p>
+                            <p class="kpi-value">24,192</p>
+                        </article>
 
-                                <tr>
-                                    <td>
-                                        <div class="cell-user">
-                                            <span class="cell-avatar bg-brick-50 text-brick-600">ZS</span>
-                                            <span>
-                                                <span class="cell-name block">Zineb Saidi</span>
-                                                <span class="cell-id block">ID: #48126</span>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>Emergency Alert: Support</td>
-                                    <td>Tangier, MA</td>
-                                    <td><span class="status status-urgent">Urgent</span></td>
-                                    <td class="cell-time text-right">1 hour ago</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
+                        <article class="kpi-card">
+                            <div class="kpi-top">
+                                <span class="kpi-icon bg-amber-50 text-amber-600">
+                                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                        viewBox="0 0 24 24">
+                                        <rect x="5" y="4" width="14" height="17" rx="2.5" />
+                                        <path stroke-linecap="round" d="M9 3.5h6M12 9v3.5l2 1.5" />
+                                    </svg>
+                                </span>
+                                <span class="kpi-badge badge-down">
+                                    -2.4%
+                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" d="M5 7 19 17m0 0v-7m0 7h-7" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <p class="kpi-label">Avg. Response Time</p>
+                            <p class="kpi-value">14.2m</p>
+                        </article>
+                    </section>
+
+                    <!-- ==============================================
+                         CHARTS  (order swaps on mobile)
+                    =============================================== -->
+                    <section class="analytics-row order-2 md:order-1">
+
+                        <!-- Engagement Trends -->
+                        <div class="panel lg:col-span-2">
+                            <div class="panel-head">
+                                <h2 class="panel-title">Engagement Trends</h2>
+
+                                <div class="chart-legend">
+                                    <span class="legend-item">
+                                        <span class="legend-dot bg-green-200"></span>
+                                        Services
+                                    </span>
+                                    <span class="legend-item">
+                                        <span class="legend-dot bg-green-900"></span>
+                                        Payments
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="chart">
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:26%"></span>
+                                        <span class="bar bar-payments" style="height:18%"></span>
+                                    </div>
+                                    <span class="chart-label">Mon</span>
+                                </div>
+
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:44%"></span>
+                                        <span class="bar bar-payments" style="height:30%"></span>
+                                    </div>
+                                    <span class="chart-label">Tue</span>
+                                </div>
+
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:66%"></span>
+                                        <span class="bar bar-payments" style="height:79%"></span>
+                                    </div>
+                                    <span class="chart-label">Wed</span>
+                                </div>
+
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:52%"></span>
+                                        <span class="bar bar-payments" style="height:97%"></span>
+                                    </div>
+                                    <span class="chart-label">Thu</span>
+                                </div>
+
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:60%"></span>
+                                        <span class="bar bar-payments" style="height:72%"></span>
+                                    </div>
+                                    <span class="chart-label">Fri</span>
+                                </div>
+
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:38%"></span>
+                                        <span class="bar bar-payments" style="height:22%"></span>
+                                    </div>
+                                    <span class="chart-label">Sat</span>
+                                </div>
+
+                                <div class="chart-day">
+                                    <div class="chart-bars">
+                                        <span class="bar bar-services" style="height:47%"></span>
+                                        <span class="bar bar-payments" style="height:34%"></span>
+                                    </div>
+                                    <span class="chart-label">Sun</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Usage -->
+                        <div class="panel">
+                            <div class="panel-head">
+                                <h2 class="panel-title">Service Usage</h2>
+                            </div>
+
+                            <div class="usage-item">
+                                <div class="usage-head">
+                                    <span class="usage-name">Transport</span>
+                                    <span class="usage-value">43%</span>
+                                </div>
+                                <div class="usage-track">
+                                    <div class="usage-fill bg-green-900" style="width:43%"></div>
+                                </div>
+                            </div>
+
+                            <div class="usage-item">
+                                <div class="usage-head">
+                                    <span class="usage-name">Education</span>
+                                    <span class="usage-value">28%</span>
+                                </div>
+                                <div class="usage-track">
+                                    <div class="usage-fill bg-blue-500" style="width:28%"></div>
+                                </div>
+                            </div>
+
+                            <div class="usage-item">
+                                <div class="usage-head">
+                                    <span class="usage-name">Healthcare</span>
+                                    <span class="usage-value">15%</span>
+                                </div>
+                                <div class="usage-track">
+                                    <div class="usage-fill bg-brick-700" style="width:15%"></div>
+                                </div>
+                            </div>
+
+                            <div class="usage-item">
+                                <div class="usage-head">
+                                    <span class="usage-name">Jobs</span>
+                                    <span class="usage-value">10%</span>
+                                </div>
+                                <div class="usage-track">
+                                    <div class="usage-fill bg-brick-600" style="width:10%"></div>
+                                </div>
+                            </div>
+
+                            <div class="usage-item">
+                                <div class="usage-head">
+                                    <span class="usage-name">Other</span>
+                                    <span class="usage-value">6%</span>
+                                </div>
+                                <div class="usage-track">
+                                    <div class="usage-fill bg-green-400" style="width:6%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ==============================================
+                         RECENT ACTIVITY
+                    =============================================== -->
+                    <section class="panel order-1 md:order-2 mb-[16px] md:mb-0">
+                        <div class="panel-head">
+                            <div>
+                                <h2 class="panel-title">Recent Activity</h2>
+                                <p class="panel-subtitle">Real-time updates across the kingdom.</p>
+                            </div>
+                            <a href="#" class="panel-link">View All Logs</a>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User / Citizen</th>
+                                        <th>Action Type</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Timestamp</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="cell-user">
+                                                <span class="cell-avatar bg-blue-50 text-blue-600">AY</span>
+                                                <span>
+                                                    <span class="cell-name block">Ahmed Yassine</span>
+                                                    <span class="cell-id block">ID: #48129</span>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>Service Request: Transit Pass</td>
+                                        <td>Casablanca, MA</td>
+                                        <td><span class="status status-processed">Processed</span></td>
+                                        <td class="cell-time text-right">2 mins ago</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="cell-user">
+                                                <span class="cell-avatar bg-brick-50 text-brick-600">MB</span>
+                                                <span>
+                                                    <span class="cell-name block">Meryem Benani</span>
+                                                    <span class="cell-id block">ID: #48128</span>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>Payment: Utility Bill</td>
+                                        <td>Rabat, MA</td>
+                                        <td><span class="status status-pending">Pending</span></td>
+                                        <td class="cell-time text-right">14 mins ago</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="cell-user">
+                                                <span class="cell-avatar bg-mint-100 text-green-900">KH</span>
+                                                <span>
+                                                    <span class="cell-name block">Khalid Hafidi</span>
+                                                    <span class="cell-id block">ID: #48127</span>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>Profile Update: Address</td>
+                                        <td>Marrakech, MA</td>
+                                        <td><span class="status status-processed">Processed</span></td>
+                                        <td class="cell-time text-right">28 mins ago</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="cell-user">
+                                                <span class="cell-avatar bg-brick-50 text-brick-600">ZS</span>
+                                                <span>
+                                                    <span class="cell-name block">Zineb Saidi</span>
+                                                    <span class="cell-id block">ID: #48126</span>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>Emergency Alert: Support</td>
+                                        <td>Tangier, MA</td>
+                                        <td><span class="status status-urgent">Urgent</span></td>
+                                        <td class="cell-time text-right">1 hour ago</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-inner">
+                <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
+
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Public Data</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Help Center</a>
+                </div>
             </div>
-        </main>
+        </footer>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-inner">
-            <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
-
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Public Data</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Help Center</a>
-            </div>
-        </div>
-    </footer>
     <!-- ==================================================
          MOBILE BOTTOM NAV
     =================================================== -->
@@ -1001,11 +1047,48 @@
     </nav>
 
     <script>
+        /* ---------- Menu utilisateur ---------- */
         const userMenu = document.querySelector(".user-menu");
+        const userMenuButton = document.getElementById("user-menu-button");
 
         function toggleMenu() {
-            userMenu.classList.toggle("hidden");
+            const open = userMenu.classList.toggle("hidden") === false;
+            userMenuButton.setAttribute("aria-expanded", open);
         }
+
+        userMenuButton.addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleMenu();
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!userMenu.classList.contains("hidden") && !e.target.closest("#user-menu-wrap")) {
+                userMenu.classList.add("hidden");
+                userMenuButton.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        /* ---------- Sidebar mobile ---------- */
+        const sidebar = document.getElementById("sidebar");
+        const backdrop = document.getElementById("sidebar-backdrop");
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+
+        function openSidebar(open) {
+            sidebar.classList.toggle("sidebar-open", open);
+            backdrop.classList.toggle("hidden", !open);
+            document.body.classList.toggle("overflow-hidden", open);
+        }
+
+        sidebarToggle.addEventListener("click", () => openSidebar(true));
+        backdrop.addEventListener("click", () => openSidebar(false));
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                openSidebar(false);
+                userMenu.classList.add("hidden");
+                userMenuButton.setAttribute("aria-expanded", "false");
+            }
+        });
     </script>
 </body>
 
