@@ -71,7 +71,10 @@
                 width: 232px;
                 height: 100vh;
                 flex-shrink: 0;
+                /* -translate-x-full pose la propriete `translate` en v4 :
+                   neutraliser `transform` seul laisserait le tiroir hors ecran. */
                 transform: none;
+                translate: none;
             }
         }
 

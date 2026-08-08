@@ -89,7 +89,10 @@
                 width: 212px;
                 height: calc(100vh - 64px);
                 flex-shrink: 0;
+                /* -translate-x-full pose la propriete `translate` en v4 :
+                   neutraliser `transform` seul laisserait le tiroir hors ecran. */
                 transform: none;
+                translate: none;
             }
         }
 
@@ -185,8 +188,12 @@
             @apply absolute left-[12px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] text-slate-400;
         }
 
+        /* Pas de `display` ici : ces boutons basculent en `hidden` /
+           `md:hidden`, et un display posé par @apply dans une règle
+           non layerisée l'emporterait sur l'utilitaire. Le display
+           reste donc dans l'attribut class du HTML. */
         .icon-button {
-            @apply w-[34px] h-[34px] rounded-full flex items-center justify-center
+            @apply w-[34px] h-[34px] rounded-full items-center justify-center
                    text-green-700 hover:bg-mint-50 cursor-pointer;
         }
 
@@ -501,7 +508,7 @@
          TOPBAR — pleine largeur, au-dessus de la sidebar
     =================================================== -->
     <div class="topbar">
-        <button class="icon-button md:hidden" id="sidebar-toggle" aria-label="Open menu" aria-expanded="false"
+        <button class="icon-button flex md:hidden" id="sidebar-toggle" aria-label="Open menu" aria-expanded="false"
             aria-controls="sidebar">
             <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
@@ -527,7 +534,7 @@
         </div>
 
         <div class="topbar-actions">
-            <button class="icon-button" aria-label="Notifications">
+            <button class="icon-button flex" aria-label="Notifications">
                 <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
@@ -632,14 +639,6 @@
                             <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
                         </svg>
                         Marketplace
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linejoin="round" d="M12 3.2 3.5 18.3h17z" />
-                            <path stroke-linecap="round" d="M12 9v4m0 2.6h.01" />
-                        </svg>
-                        Emergency
                     </a>
                 </nav>
 

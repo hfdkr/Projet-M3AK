@@ -15,24 +15,21 @@
 
     <style type="text/tailwindcss">
         /* ==========================================================
-           1. THEME TOKENS
+           1. TOKENS
         ========================================================== */
         @theme {
-            --color-green-900: #006947;
-            --color-green-800: #005734;
-            --color-green-700: #3D4A42;
-            --color-green-50:  #EFF5EF;
+            --color-brand:      #0B6B45;
+            --color-brand-dark: #095638;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-100:  #D6EADF;
+            --color-danger:     #E1362C;
 
-            --color-mint-50:  #F5FBF4;
-            --color-mint-100: #E3F3E9;
-
-            --color-white:    #FFFFFF;
-            --color-grey-200: #DEE4DE;
-            --color-black-700:#171D19;
-
-            --color-slate-600: #475569;
-            --color-slate-500: #3F4942;
-            --color-slate-400: #94A3B8;
+            --color-ink:        #171D19;
+            --color-ink-muted:  #5B6B62;
+            --color-line:       #DEE4DE;
+            --color-surface:    #FFFFFF;
+            --color-canvas:     #F5FBF4;
+            --color-slate-400:  #94A3B8;
 
             --color-lavender-50: #E7ECFB;
 
@@ -40,159 +37,197 @@
             --font-hanken:  "Hanken Grotesk", sans-serif;
         }
 
-        /* ==========================================================
-           2. BASE
-        ========================================================== */
         body {
-            @apply bg-mint-50 pb-[76px] md:pb-0;
+            @apply bg-canvas font-jakarta text-ink pb-[76px] md:pb-0;
         }
 
+        .shell { @apply md:flex md:min-h-screen; }
+
         /* ==========================================================
-           3. HEADER
+           2. SIDEBAR
+              Mobile : tiroir hors écran ouvert par le burger.
+              Desktop : colonne collante, comme sur les autres
+              pages citoyennes.
         ========================================================== */
-        header {
-            @apply bg-white shadow-sm sticky top-0 z-40;
+        .sidebar {
+            @apply fixed inset-y-0 left-0 z-50 w-[248px] bg-surface border-r border-line
+                   -translate-x-full transition-transform duration-300 flex flex-col;
+        }
+        .sidebar-open { @apply translate-x-0; }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                position: sticky; top: 0; bottom: auto; left: auto; z-index: 10;
+                width: 232px; height: 100vh; flex-shrink: 0;
+                /* -translate-x-full pose la propriete `translate` en v4. */
+                transform: none; translate: none;
+            }
         }
 
-        .div-header {
-            @apply flex justify-between items-center px-[16px] py-[14px]
-                   md:max-w-[1200px] md:h-[88px] md:mx-auto md:px-[24px];
-        }
+        .sidebar-backdrop { @apply fixed inset-0 z-40 bg-black/35 hidden md:hidden; }
 
-        .brand {
-            @apply flex items-center gap-[10px];
+        .sidebar-brand {
+            @apply shrink-0 flex items-center gap-[10px] px-[20px] h-[68px] border-b border-line;
         }
-
         .brand-mark {
-            @apply w-[32px] h-[32px] rounded-[10px] bg-green-900 text-white font-jakarta
-                   font-bold text-[16px] flex items-center justify-center;
+            @apply w-[34px] h-[34px] rounded-[10px] bg-brand flex items-center justify-center shrink-0;
         }
+        .brand-name { @apply font-hanken font-extrabold text-[15px] leading-[18px] text-brand; }
+        .brand-sub  { @apply font-jakarta text-[11px] leading-[14px] text-slate-400; }
 
-        .brand-name {
-            @apply font-jakarta font-bold text-[18px] leading-[28px] tracking-[0.45px] text-green-800;
+        .sidebar-nav { @apply flex-1 overflow-y-auto px-[12px] py-[16px]; }
+
+        .nav-item {
+            @apply relative flex items-center gap-[12px] w-full rounded-[10px] px-[12px] py-[10px] mb-[2px]
+                   font-hanken font-medium text-[13px] text-ink-muted hover:bg-brand-soft transition;
         }
-
-        .navbar {
-            @apply font-hanken font-medium text-[14px] text-green-700 hover:text-green-900;
+        .nav-item-active { @apply bg-brand-soft text-brand font-semibold; }
+        .nav-item-active::before {
+            content: "";
+            @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-brand;
         }
+        .nav-icon { @apply w-[17px] h-[17px] shrink-0; }
 
-        .navbar-active {
-            @apply font-hanken font-semibold text-[14px] text-green-900 border-b-2 border-green-900 pb-[2px];
+        .sidebar-footer { @apply shrink-0 px-[12px] pt-[12px] pb-[16px] border-t border-line; }
+
+        .sos-button {
+            @apply w-full flex items-center gap-[10px] rounded-[10px] px-[12px] py-[11px] mb-[8px]
+                   bg-danger hover:brightness-95 transition font-hanken font-semibold text-[13px] text-white;
         }
-
-        .icon-button {
-            @apply w-[36px] h-[36px] rounded-full bg-white border border-grey-200
-                   flex items-center justify-center cursor-pointer;
-        }
-
-        .user-chip {
-            @apply flex items-center gap-[8px] rounded-full bg-green-50 py-[5px] pl-[5px] pr-[10px]
-                   md:pr-[14px] cursor-pointer;
-        }
-
-        .user-avatar {
-            @apply w-[28px] h-[28px] rounded-full bg-green-900 text-white font-hanken
-                   font-bold text-[12px] flex items-center justify-center shrink-0;
-        }
-
-        .user-menu {
-            @apply absolute right-0 mt-[8px] w-[190px] bg-white rounded-[12px] shadow-lg
-                   border border-grey-200 py-[6px] z-50;
-        }
-
-        .user-menu a, .user-menu button {
-            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
-                   text-slate-600 hover:bg-mint-50 cursor-pointer;
+        .sos-badge {
+            @apply ml-auto rounded-full bg-white/20 px-[7px] py-[2px]
+                   font-hanken font-bold text-[10px] tracking-[0.6px] text-white;
         }
 
         /* ==========================================================
-           4. DIRECTORY INTRO
+           3. TOPBAR / HEADER MOBILE
+        ========================================================== */
+        .topbar {
+            @apply hidden md:flex sticky top-0 z-30 h-[68px] items-center gap-[14px]
+                   bg-surface border-b border-line px-[24px];
+        }
+
+        .mobile-header {
+            @apply md:hidden sticky top-0 z-30 flex items-center gap-[10px]
+                   bg-surface border-b border-line px-[16px] py-[10px];
+        }
+
+        .search-wrap { @apply relative flex-1 max-w-[440px]; }
+        .field-icon {
+            @apply absolute left-[13px] top-1/2 -translate-y-1/2 w-[15px] h-[15px] text-slate-400;
+        }
+        .search-input {
+            @apply w-full h-[38px] rounded-[10px] bg-canvas border border-line pl-[36px] pr-[14px]
+                   text-[13px] text-ink outline-none focus:border-brand transition;
+        }
+
+        /* Pas de `display` ici : ce bouton bascule en `md:hidden`. */
+        .icon-button {
+            @apply relative w-[36px] h-[36px] rounded-full items-center justify-center
+                   text-ink-muted hover:bg-brand-soft cursor-pointer;
+        }
+        .bell-dot {
+            @apply absolute top-[7px] right-[8px] w-[7px] h-[7px] rounded-full bg-danger ring-2 ring-white;
+        }
+
+        .avatar {
+            @apply w-[28px] h-[28px] rounded-full bg-brand text-white font-hanken font-bold text-[11px]
+                   flex items-center justify-center shrink-0;
+        }
+        .profile-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-brand-soft pl-[5px] pr-[11px] py-[5px]
+                   hover:bg-brand-100 transition cursor-pointer;
+        }
+        .profile-name { @apply font-hanken font-semibold text-[13px] text-brand max-w-[130px] truncate; }
+
+        .menu-panel {
+            @apply absolute right-0 mt-[8px] w-[190px] bg-surface rounded-[12px] shadow-lg
+                   border border-line py-[6px] z-50;
+        }
+        .menu-panel a, .menu-panel button {
+            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
+                   text-ink-muted hover:bg-brand-soft cursor-pointer;
+        }
+
+        .main { @apply flex-1 min-w-0; }
+
+        /* ==========================================================
+           4. INTRO
         ========================================================== */
         .directory {
-            @apply relative px-[16px] pt-[28px] pb-[16px]
-                   md:max-w-[1200px] md:mx-auto md:px-[24px] md:pt-[56px];
+            @apply relative px-[16px] pt-[22px] pb-[14px] md:px-[26px] md:pt-[36px];
         }
 
         .directory-title {
-            @apply font-jakarta font-extrabold text-[26px] leading-[32px] text-black-700
-                   md:text-[40px] md:leading-[48px];
+            @apply font-jakarta font-extrabold text-[24px] leading-[30px] text-ink
+                   md:text-[38px] md:leading-[46px];
         }
-
-        .directory-title-accent {
-            @apply block text-green-900;
-        }
+        .directory-title-accent { @apply block text-brand; }
 
         .directory-description {
-            @apply font-jakarta text-[13px] leading-[20px] text-slate-500 mt-[10px]
+            @apply font-jakarta text-[13px] leading-[20px] text-ink-muted mt-[10px]
                    max-w-[520px] md:text-[15px] md:leading-[24px];
         }
 
         .directory-emblem {
-            @apply hidden md:block absolute right-[24px] top-[48px] w-[180px] h-[130px] text-mint-100;
+            @apply hidden md:block absolute right-[26px] top-[36px] w-[180px] h-[130px] text-brand-100;
         }
 
-        /* ---- search ---- */
-        .search-bar {
-            @apply flex items-center gap-[10px] mt-[20px] max-w-[560px];
-        }
+        /* Recherche pleine largeur, visible sur les deux tailles */
+        .search-bar { @apply flex items-center gap-[10px] mt-[18px] max-w-[560px]; }
 
-        .search-field {
-            @apply relative flex-1;
-        }
+        .search-field { @apply relative flex-1; }
 
-        .search-input {
-            @apply w-full h-[44px] bg-white border border-grey-200 rounded-[10px]
-                   pl-[38px] pr-[14px] font-jakarta text-[13px] text-black-700
-                   outline-none focus:border-green-900 transition;
-        }
-
-        .search-icon {
-            @apply absolute left-[13px] top-1/2 -translate-y-1/2 w-[15px] h-[15px] text-slate-400;
+        .search-field input {
+            @apply w-full h-[44px] bg-surface border border-line rounded-[10px]
+                   pl-[38px] pr-[14px] font-jakarta text-[13px] text-ink
+                   outline-none focus:border-brand transition;
         }
 
         .search-button {
-            @apply h-[44px] px-[22px] bg-green-900 hover:bg-green-800 text-white rounded-[10px]
+            @apply h-[44px] px-[22px] bg-brand hover:bg-brand-dark text-white rounded-[10px]
                    font-hanken font-semibold text-[13px] transition cursor-pointer;
         }
 
         /* ==========================================================
-           5. SERVICE CARDS
+           5. CARTES DE SERVICE
         ========================================================== */
         .directory-grid {
-            @apply grid grid-cols-2 gap-[12px] px-[16px] pb-[32px]
-                   md:grid-cols-4 md:gap-[20px] md:max-w-[1200px] md:mx-auto md:px-[24px];
+            @apply grid grid-cols-2 gap-[12px] px-[16px] pb-[28px]
+                   md:grid-cols-4 md:gap-[18px] md:px-[26px];
         }
 
         .directory-card {
-            @apply bg-white rounded-[14px] p-[16px] border border-transparent
-                   hover:border-green-900 hover:-translate-y-[2px] transition md:p-[20px];
+            @apply bg-surface rounded-[14px] p-[16px] border border-line
+                   hover:border-brand hover:-translate-y-[2px] transition md:p-[20px];
         }
 
         .directory-card-icon {
-            @apply w-[34px] h-[34px] rounded-[10px] bg-mint-100 text-green-900
+            @apply w-[36px] h-[36px] rounded-[10px] bg-brand-soft text-brand
                    flex items-center justify-center mb-[12px];
         }
 
         .directory-card-title {
-            @apply font-jakarta font-bold text-[14px] text-black-700 md:text-[16px];
+            @apply font-jakarta font-bold text-[14px] text-ink md:text-[16px];
         }
 
         .directory-card-text {
             @apply font-jakarta text-[11px] leading-[17px] text-slate-400 mt-[5px] md:text-[12px];
         }
 
+        /* Pas de `display` ici : l'état vide bascule en `hidden`. */
         .directory-empty {
-            @apply hidden col-span-2 md:col-span-4 text-center font-jakarta text-[13px]
+            @apply col-span-2 md:col-span-4 text-center font-jakarta text-[13px]
                    text-slate-400 py-[32px];
         }
 
         /* ==========================================================
-           6. WALLET BANNER
+           6. BANNIÈRE WALLET
         ========================================================== */
         .wallet {
-            @apply relative overflow-hidden bg-green-900 text-white rounded-[18px]
-                   mx-[16px] mb-[40px] p-[24px]
-                   md:max-w-[1200px] md:mx-auto md:mb-[64px] md:px-[48px] md:py-[44px]
+            @apply relative overflow-hidden bg-brand text-white rounded-[18px]
+                   mx-[16px] mb-[32px] p-[24px]
+                   md:mx-[26px] md:mb-[40px] md:px-[44px] md:py-[40px]
                    md:flex md:items-center md:justify-between md:gap-[40px];
         }
 
@@ -200,321 +235,607 @@
             @apply inline-flex bg-white/15 rounded-full px-[12px] py-[5px]
                    font-hanken font-medium text-[11px] text-white/90;
         }
-
         .wallet-title {
             @apply font-jakarta font-extrabold text-[24px] leading-[30px] mt-[14px]
-                   md:text-[34px] md:leading-[42px];
+                   md:text-[32px] md:leading-[40px];
         }
-
         .wallet-text {
             @apply font-jakarta text-[12px] leading-[19px] text-white/75 mt-[10px]
                    max-w-[420px] md:text-[14px] md:leading-[22px];
         }
-
         .wallet-button {
-            @apply inline-flex mt-[20px] bg-white text-green-900 rounded-[10px] px-[20px] py-[11px]
-                   font-hanken font-semibold text-[13px] hover:bg-mint-100 transition;
+            @apply inline-flex mt-[20px] bg-white text-brand rounded-[10px] px-[20px] py-[11px]
+                   font-hanken font-semibold text-[13px] hover:bg-brand-soft transition;
         }
-
         .wallet-visual {
-            @apply hidden md:flex w-[180px] h-[180px] shrink-0 rounded-[36px] bg-white/10
+            @apply hidden md:flex w-[170px] h-[170px] shrink-0 rounded-[36px] bg-white/10
                    items-center justify-center;
         }
 
         /* ==========================================================
            7. FOOTER
         ========================================================== */
-        footer {
-            @apply bg-lavender-50 px-[16px] py-[28px] md:px-[24px];
-        }
+        .site-footer { @apply bg-lavender-50 px-[16px] py-[26px] md:px-[26px]; }
 
         .footer-inner {
-            @apply md:max-w-[1200px] md:mx-auto md:flex md:items-center md:justify-between;
+            @apply flex flex-col gap-[16px] md:flex-row md:items-center md:justify-between;
         }
-
-        .footer-brand-name {
-            @apply font-jakarta font-bold text-[15px] text-green-800;
-        }
-
-        .footer-tagline {
-            @apply font-jakarta text-[11px] text-slate-400 mt-[2px];
-        }
-
+        .footer-brand-name { @apply font-jakarta font-bold text-[15px] text-brand; }
+        .footer-tagline { @apply font-jakarta text-[11px] text-slate-400 mt-[2px]; }
         .footer-links {
-            @apply flex flex-wrap items-center gap-[16px] mt-[16px] md:mt-0
-                   font-hanken font-medium text-[13px] text-slate-500;
+            @apply flex flex-wrap items-center gap-[16px]
+                   font-hanken font-medium text-[13px] text-ink-muted;
         }
-
-        .footer-links a {
-            @apply hover:text-green-800;
-        }
+        .footer-links a { @apply hover:text-brand; }
 
         /* ==========================================================
-           8. MOBILE BOTTOM NAV
+           8. BOTTOM NAV MOBILE
         ========================================================== */
-        .mobile-nav {
-            @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-grey-200
+        .bottom-nav {
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface border-t border-line
                    flex items-center justify-around py-[8px];
         }
-
-        .mobile-nav-item {
-            @apply flex flex-col items-center gap-[4px] text-slate-400 w-[64px];
+        .bottom-nav-item {
+            @apply flex flex-col items-center gap-[4px] w-[70px] text-slate-400;
         }
+        .bottom-nav-item-active { @apply text-brand; }
+        .bottom-nav-label { @apply font-hanken font-medium text-[10px]; }
 
-        .mobile-nav-item-active {
-            @apply text-green-900;
-        }
-
-        .mobile-nav-label {
-            @apply font-hanken font-medium text-[10px];
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition-duration: .001ms !important;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ======================================================
-         HEADER
-    ======================================================= -->
-    <header>
-        <div class="div-header">
-            <div class="brand">
-                <span class="brand-mark">M</span>
-                <span class="brand-name">M3ak Morocco</span>
+    <div class="shell">
+
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- ==================================================
+             SIDEBAR — colonne de gauche sur desktop,
+             tiroir ouvert par le burger sur mobile
+        =================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-mark">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                    </svg>
+                </span>
+                <span>
+                    <span class="brand-name block">M3ak</span>
+                    <span class="brand-sub block">Citizen Portal</span>
+                </span>
             </div>
 
-            <nav class="hidden md:flex items-center gap-[36px]">
-                <a href="/pages/dashboard/overview.html" class="navbar">Home</a>
-                <a href="/pages/dashboard/service.html" class="navbar-active">Services</a>
-                <a href="#" class="navbar">Payments</a>
-                <a href="#" class="navbar">Help</a>
+            <nav class="sidebar-nav">
+                <a href="/pages/dashboard/service.html" class="nav-item nav-item-active" aria-current="page">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
+                    </svg>
+                    Services
+                </a>
+
+                <a href="/pages/dashboard/transport.html" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                        <path stroke-linecap="round" d="M4 10h16M8 20h.01M16 20h.01M7 16v3M17 16v3" />
+                    </svg>
+                    Transport
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <path stroke-linecap="round" d="M9.5 21v-6h5v6" />
+                    </svg>
+                    Housing
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="7" width="18" height="13" rx="2.5" />
+                        <path stroke-linecap="round" d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18" />
+                    </svg>
+                    Jobs
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M12 4 2.5 9 12 14l9.5-5z" />
+                        <path stroke-linecap="round" d="M6 11.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.8" />
+                    </svg>
+                    Education
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="15" rx="2.5" />
+                        <path stroke-linecap="round" d="M12 9v7M8.5 12.5h7" />
+                    </svg>
+                    Healthcare
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                        <circle cx="12" cy="12" r="2.4" />
+                    </svg>
+                    Payments
+                </a>
+
+                <a href="/pages/dashboard/marketplace.html" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                        <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                    </svg>
+                    Marketplace
+                </a>
             </nav>
 
-            <div class="flex items-center gap-[10px]">
-                <button class="icon-button" aria-label="Notifications">
-                    <svg class="w-[16px] h-[16px] text-green-900" fill="none" stroke="currentColor"
-                        stroke-width="1.8" viewBox="0 0 24 24">
+            <div class="sidebar-footer">
+                <a href="#" class="sos-button">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                    </svg>
+                    Emergency
+                    <span class="sos-badge">SOS</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.9 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.6a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z" />
+                    </svg>
+                    Settings
+                </a>
+
+                <button type="button" class="nav-item" data-action="logout">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                            d="M15 17l5-5-5-5m5 5H9M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6" />
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- ==================================================
+             MAIN
+        =================================================== -->
+        <main class="main">
+
+            <!-- Topbar desktop -->
+            <div class="topbar">
+                <div class="search-wrap">
+                    <svg class="field-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                    </svg>
+                    <input type="search" id="topbarSearch" class="search-input"
+                        placeholder="Search citizens, services, or reports...">
+                </div>
+
+                <div class="flex items-center gap-[8px] ml-auto">
+                    <button type="button" class="icon-button flex" aria-label="Notifications">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                        </svg>
+                        <span class="bell-dot"></span>
+                    </button>
+
+                    <button type="button" class="icon-button flex" aria-label="Help">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9" />
+                            <path stroke-linecap="round"
+                                d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
+                        </svg>
+                    </button>
+
+                    <div class="relative">
+                        <button type="button" class="profile-chip" data-menu-toggle aria-expanded="false"
+                            aria-haspopup="true">
+                            <span class="avatar" data-user-initials>M3</span>
+                            <span class="profile-name" data-user-name>Citizen</span>
+                        </button>
+
+                        <div class="menu-panel hidden" data-menu>
+                            <a href="/pages/dashboard/overview.html">My dashboard</a>
+                            <a href="#">My documents</a>
+                            <a href="#">Settings</a>
+                            <button type="button" class="text-danger!" data-action="logout">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header mobile : le burger ouvre le menu de gauche -->
+            <div class="mobile-header">
+                <button type="button" class="icon-button flex md:hidden" id="sidebar-toggle" aria-label="Open menu"
+                    aria-expanded="false" aria-controls="sidebar">
+                    <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
                     </svg>
                 </button>
 
-                <div class="relative" data-auth="user">
-                    <button type="button" class="user-chip" data-menu-toggle>
-                        <span></span>
-                    </button>
+                <span class="font-hanken font-extrabold text-[16px] text-brand">M3ak</span>
 
-                    <div class="user-menu hidden" data-menu>
-                        <a href="#">My profile</a>
-                        <a href="#">My documents</a>
-                        <a href="#">Settings</a>
-                        <button type="button" data-action="logout" class="text-red-600">Sign out</button>
-                    </div>
-                </div>
-
-               
+                <span class="avatar ml-auto" data-user-initials>M3</span>
             </div>
-        </div>
-    </header>
 
-    <main>
+            <!-- ==============================================
+                 INTRO + RECHERCHE
+            =============================================== -->
+            <section class="directory">
+                <svg class="directory-emblem" fill="currentColor" viewBox="0 0 120 90" aria-hidden="true">
+                    <path d="M60 0 118 26H2z" />
+                    <rect x="18" y="38" width="14" height="34" rx="2" />
+                    <rect x="53" y="38" width="14" height="34" rx="2" />
+                    <rect x="88" y="38" width="14" height="34" rx="2" />
+                    <rect x="2" y="80" width="116" height="10" rx="3" />
+                </svg>
 
-        <!-- ======================================================
-             DIRECTORY INTRO + SEARCH
-        ======================================================= -->
-        <section class="directory">
-            <svg class="directory-emblem" fill="currentColor" viewBox="0 0 120 90" aria-hidden="true">
-                <path d="M60 0 118 26H2z" />
-                <rect x="18" y="38" width="14" height="34" rx="2" />
-                <rect x="53" y="38" width="14" height="34" rx="2" />
-                <rect x="88" y="38" width="14" height="34" rx="2" />
-                <rect x="2" y="80" width="116" height="10" rx="3" />
-            </svg>
+                <h1 class="directory-title">
+                    Government Services
+                    <span class="directory-title-accent">Directory</span>
+                </h1>
 
-            <h1 class="directory-title">
-                Government Services
-                <span class="directory-title-accent">Directory</span>
-            </h1>
-
-            <p class="directory-description">
-                Browse every public service by ministry. Each entry opens the online procedure,
-                the required documents, and the expected processing time.
-            </p>
-
-            <div class="search-bar">
-                <div class="search-field">
-                    <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
-                    </svg>
-                    <input id="service-search" type="search" class="search-input"
-                        placeholder="Search a ministry, a service or a document..." autocomplete="off">
-                </div>
-
-                <button type="button" id="service-search-button" class="search-button">Search</button>
-            </div>
-        </section>
-
-        <!-- ======================================================
-             SERVICE CARDS
-        ======================================================= -->
-        <section class="directory-grid" id="service-grid">
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 3 3 10v11h6v-6h6v6h6V10z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Housing</h2>
-                <p class="directory-card-text">Building permits, social housing and property records.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M10 3h4a2 2 0 0 1 2 2v1h3a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3V5a2 2 0 0 1 2-2zm0 3h4V5h-4z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Jobs</h2>
-                <p class="directory-card-text">Public sector openings, contests and ANAPEC offers.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Education</h2>
-                <p class="directory-card-text">School registration, scholarships and diploma requests.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Health</h2>
-                <p class="directory-card-text">AMO coverage, appointments and medical records.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3 4v2h10V7zm0 4v2h10v-2zm0 4v2h6v-2z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Registry</h2>
-                <p class="directory-card-text">Birth, marriage and residence certificates.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2 4 5v6.5c0 4.7 3.4 8.6 8 9.5 4.6-.9 8-4.8 8-9.5V5zm0 5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm0 11c-2 0-3.8-1-4.8-2.5.9-1.2 2.8-1.9 4.8-1.9s3.9.7 4.8 1.9C15.8 17 14 18 12 18z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Interior</h2>
-                <p class="directory-card-text">National ID, passports and residence permits.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15.9V19h-2v-1.1c-1.6-.3-2.8-1.3-3-3h2c.1.8.9 1.4 2 1.4 1.2 0 1.9-.5 1.9-1.3 0-.7-.5-1.1-2.2-1.5-2.2-.5-3.4-1.3-3.4-3 0-1.6 1.1-2.6 2.7-2.9V6h2v1.6c1.5.3 2.6 1.3 2.7 2.9h-2c-.1-.7-.7-1.2-1.7-1.2s-1.7.5-1.7 1.2c0 .7.6 1 2.2 1.4 2.3.5 3.4 1.4 3.4 3.1 0 1.7-1.2 2.7-2.9 2.9z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Finance</h2>
-                <p class="directory-card-text">Income tax, VAT declarations and payment receipts.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M11 2h2v3.1l7 2.3-.6 1.9-1.6-.5-2.3 5.7c1.1 1.5 2.6 1.6 4.5.4v.6c0 1.9-1.6 3.5-3.5 3.5S13 17.4 13 15.5v-.6l-2.4-5.9-.9-.3V20h6v2H6v-2h4V7.9l-1.7-.6L6 13.2c1.1 1.5 2.6 1.6 4.5.4v.6C10.5 16.1 8.9 17.7 7 17.7S3.5 16.1 3.5 14.2v-.6L5.8 7.9l-1.6.5L3.6 6.5l7.4-2.4z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Justice</h2>
-                <p class="directory-card-text">Criminal records, court filings and legal aid.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 2c1.3 0 2.6 3 2.9 7H9.1C9.4 7 10.7 4 12 4zM4.3 11h2.8c.1-2 .5-3.8 1.2-5.2A8 8 0 0 0 4.3 11zm0 2a8 8 0 0 0 4 5.2c-.7-1.4-1.1-3.2-1.2-5.2H4.3zm4.8 0h5.8c-.3 4-1.6 7-2.9 7s-2.6-3-2.9-7zm7.8 0c-.1 2-.5 3.8-1.2 5.2a8 8 0 0 0 4-5.2h-2.8zm2.8-2a8 8 0 0 0-4-5.2c.7 1.4 1.1 3.2 1.2 5.2h2.8z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Foreign Affairs</h2>
-                <p class="directory-card-text">Visas, consular services and legalisation abroad.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20 4c-6 0-10 3-10 8v3.6l-2.4-2.4a4 4 0 0 1-1.1-2.8V8H4.5v2.4c0 1.5.6 2.9 1.6 4L10 18.2V21h2v-2.9c5.4-.4 8-4.4 8-9.1z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Agriculture</h2>
-                <p class="directory-card-text">Farm subsidies, irrigation permits and land records.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 3a9 9 0 0 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-.8.7-1.5 1.5-1.5H16a5 5 0 0 0 5-5c0-3.9-4-7-9-7zM7 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Culture</h2>
-                <p class="directory-card-text">Heritage grants, libraries and artist registration.</p>
-            </a>
-
-            <a href="#" class="directory-card">
-                <span class="directory-card-icon">
-                    <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21 16v-2l-8-5V4a1.5 1.5 0 0 0-3 0v5l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-4.5z" />
-                    </svg>
-                </span>
-                <h2 class="directory-card-title">Tourism</h2>
-                <p class="directory-card-text">Guide licences, hotel classification and permits.</p>
-            </a>
-
-            <p class="directory-empty" id="service-empty">
-                No service matches your search. Try another ministry or keyword.
-            </p>
-        </section>
-
-        <!-- ======================================================
-             WALLET BANNER
-        ======================================================= -->
-        <section class="wallet">
-            <div>
-                <span class="wallet-pill">M3ak Pay</span>
-
-                <h2 class="wallet-title">
-                    Unified Wallet<br class="hidden md:block">
-                    Integration
-                </h2>
-
-                <p class="wallet-text">
-                    Pay every fee in this directory from one balance. Receipts are archived in your
-                    citizen profile and accepted by all administrations.
+                <p class="directory-description">
+                    Access official digital identity and administrative services of the Kingdom of
+                    Morocco in one secure location.
                 </p>
 
-                <a href="#" class="wallet-button">Explore Wallet</a>
-            </div>
+                <div class="search-bar">
+                    <div class="search-field">
+                        <svg class="field-icon" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                        </svg>
+                        <input id="service-search" type="search"
+                            placeholder="Search for a service (e.g. Passport, Health Records...)"
+                            autocomplete="off">
+                    </div>
 
-            <div class="wallet-visual">
-                <svg class="w-[64px] h-[64px] text-white" fill="none" stroke="currentColor" stroke-width="1.6"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM17 12h.01" />
-                </svg>
-            </div>
-        </section>
-    </main>
+                    <button type="button" id="service-search-button" class="search-button">Find</button>
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 CARTES DE SERVICE
+            =============================================== -->
+            <section class="directory-grid" id="service-grid">
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <path stroke-linecap="round" d="M9.5 21v-6h5v6" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Housing</h2>
+                    <p class="directory-card-text">Property registration, permits, and housing aid.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <rect x="3" y="7" width="18" height="13" rx="2.5" />
+                            <path stroke-linecap="round" d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Jobs</h2>
+                    <p class="directory-card-text">Employment opportunities and government labour services.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M12 4 2.5 9 12 14l9.5-5z" />
+                            <path stroke-linecap="round" d="M6 11.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.8" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Education</h2>
+                    <p class="directory-card-text">School enrolment, scholarships, and diplomas.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <rect x="3" y="5" width="18" height="15" rx="2.5" />
+                            <path stroke-linecap="round" d="M12 9v7M8.5 12.5h7" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Health</h2>
+                    <p class="directory-card-text">Medical appointments, health records, and AMO.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                            <path stroke-linecap="round" d="M14 3v5h5M9 13h6M9 17h4" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Registry</h2>
+                    <p class="directory-card-text">Identity cards, passports, and civil status.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round"
+                                d="M4 13l1.6-4.4A2 2 0 0 1 7.5 7h9a2 2 0 0 1 1.9 1.6L20 13v5h-3v-2H7v2H4z" />
+                            <path stroke-linecap="round" d="M7 16h.01M17 16h.01" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Vehicles</h2>
+                    <p class="directory-card-text">Driver's licences, registration, and traffic fines.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M12 2.5l8 3.5v6c0 5-3.5 8.5-8 9.5-4.5-1-8-4.5-8-9.5V6z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2.2 2.2L15.5 10" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Security</h2>
+                    <p class="directory-card-text">National security, police records, and emergencies.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" d="M12 3v18M7 21h10M5 8l7-3 7 3" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 8l-2 6h4zM19 8l-2 6h4z" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Justice</h2>
+                    <p class="directory-card-text">Legal aid, court cases, and public notary services.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9" />
+                            <path stroke-linecap="round" d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18-2.5-3-2.5-15.4 0-18z" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Foreign Affairs</h2>
+                    <p class="directory-card-text">Visas, consulate services, and international relations.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M20 5c-7 0-11 3.5-11 8.5V17M9 17c-3 0-5-2-5-5h3M9 17H4" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Agriculture</h2>
+                    <p class="directory-card-text">Farming subsidies, land management, and irrigation.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M12 3 3 8h18zM5 8v10m4-10v10m6-10v10m4-10v10" />
+                            <path stroke-linecap="round" d="M3 21h18" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Culture</h2>
+                    <p class="directory-card-text">Heritage protection, cultural events, and library.</p>
+                </a>
+
+                <a href="#" class="directory-card" data-service>
+                    <span class="directory-card-icon">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                            <circle cx="12" cy="12" r="2.4" />
+                        </svg>
+                    </span>
+                    <h2 class="directory-card-title">Taxation</h2>
+                    <p class="directory-card-text">Income tax, corporate tax filing, and customs duties.</p>
+                </a>
+
+                <p class="directory-empty hidden" id="service-empty">
+                    No service matches your search. Try another ministry or keyword.
+                </p>
+            </section>
+
+            <!-- ==============================================
+                 BANNIÈRE WALLET
+            =============================================== -->
+            <section class="wallet">
+                <div>
+                    <span class="wallet-pill">New feature</span>
+
+                    <h2 class="wallet-title">
+                        Unified Wallet<br class="hidden md:block">
+                        Integration
+                    </h2>
+
+                    <p class="wallet-text">
+                        Manage your payments, fines, and subsidies from a single secure interface
+                        linked to your biometric identity.
+                    </p>
+
+                    <a href="#" class="wallet-button">Explore Wallet</a>
+                </div>
+
+                <div class="wallet-visual">
+                    <svg class="w-[64px] h-[64px] text-white" fill="none" stroke="currentColor" stroke-width="1.6"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM17 12h.01" />
+                    </svg>
+                </div>
+            </section>
+
+            <!-- ==============================================
+                 FOOTER
+            =============================================== -->
+            <footer class="site-footer">
+                <div class="footer-inner">
+                    <div>
+                        <p class="footer-brand-name">M3ak Portal</p>
+                        <p class="footer-tagline">© 2026 Kingdom of Morocco · Digital Identity Portal</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Accessibility</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- ==================================================
+         BOTTOM NAV MOBILE — les 4 raccourcis de la maquette.
+         Le reste du menu de gauche passe par le burger.
+    =================================================== -->
+    <nav class="bottom-nav">
+        <a href="/pages/dashboard/overview.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+            </svg>
+            <span class="bottom-nav-label">Dashboard</span>
+        </a>
+
+        <a href="/pages/dashboard/service.html" class="bottom-nav-item bottom-nav-item-active" aria-current="page">
+            <svg class="w-[19px] h-[19px]" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
+            </svg>
+            <span class="bottom-nav-label">My Services</span>
+        </a>
+
+        <a href="#" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path stroke-linecap="round" d="M14 3v5h5M9 13h6M9 17h4" />
+            </svg>
+            <span class="bottom-nav-label">Registry</span>
+        </a>
+
+        <a href="#" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                    d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.9 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.6a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z" />
+            </svg>
+            <span class="bottom-nav-label">Settings</span>
+        </a>
+    </nav>
+
+    <script src="/pages/js/ui.js"></script>
+    <script>
+        (function () {
+            "use strict";
+
+            var $ = M3akUI.$;
+            var $$ = M3akUI.$$;
+
+            /* ==================================================
+               1. Menu de gauche en tiroir sur mobile
+            =================================================== */
+            (function sidebarDrawer() {
+                var sidebar = $("#sidebar");
+                var toggle = $("#sidebar-toggle");
+                var backdrop = $("#sidebar-backdrop");
+                if (!sidebar || !toggle || !backdrop) return;
+
+                function setOpen(open) {
+                    sidebar.classList.toggle("sidebar-open", open);
+                    backdrop.classList.toggle("hidden", !open);
+                    toggle.setAttribute("aria-expanded", String(open));
+                    document.body.style.overflow = open ? "hidden" : "";
+                }
+
+                toggle.addEventListener("click", function () {
+                    setOpen(!sidebar.classList.contains("sidebar-open"));
+                });
+                backdrop.addEventListener("click", function () { setOpen(false); });
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape") setOpen(false);
+                });
+                window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+                    if (e.matches) setOpen(false);
+                });
+            })();
+
+            /* ==================================================
+               2. Filtrage du répertoire
+                  Les champs desktop et mobile partagent le même
+                  filtre ; l'état vide s'affiche quand rien ne sort.
+            =================================================== */
+            var cards = $$("[data-service]");
+            var empty = $("#service-empty");
+            var field = $("#service-search");
+            var button = $("#service-search-button");
+            var topbarField = $("#topbarSearch");
+
+            function filter(rawQuery) {
+                var query = String(rawQuery || "").trim().toLowerCase();
+                var visible = 0;
+
+                cards.forEach(function (card) {
+                    var match = !query || card.textContent.toLowerCase().indexOf(query) > -1;
+                    card.classList.toggle("hidden", !match);
+                    if (match) visible += 1;
+                });
+
+                empty.classList.toggle("hidden", visible > 0);
+            }
+
+            if (field) {
+                field.addEventListener("input", function () {
+                    if (topbarField && topbarField.value !== field.value) topbarField.value = field.value;
+                    filter(field.value);
+                });
+            }
+
+            if (topbarField) {
+                topbarField.addEventListener("input", function () {
+                    if (field && field.value !== topbarField.value) field.value = topbarField.value;
+                    filter(topbarField.value);
+                });
+            }
+
+            if (button) {
+                button.addEventListener("click", function () {
+                    filter(field ? field.value : "");
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>
