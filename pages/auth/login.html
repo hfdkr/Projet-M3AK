@@ -33,15 +33,6 @@
                 0 10px 35px rgba(0, 0, 0, .08);
         }
 
-        .input {
-            @apply w-full bg-[#F4F7F5] rounded-xl h-12 px-11 outline-none border border-transparent transition-all;
-        }
-
-        .input:focus {
-            border-color: #0B6B45;
-            box-shadow: 0 0 0 3px rgba(11, 107, 69, .15);
-        }
-
         .social {
             transition: .25s;
         }
@@ -57,6 +48,12 @@
 
         .btn:hover {
             transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: .6;
+            transform: none;
+            cursor: not-allowed;
         }
 
         .bg-gradient {
@@ -83,20 +80,33 @@
             }
 
         }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition-duration: .001ms !important;
+            }
+        }
     </style>
+
     <script src="/pages/js/session.js"></script>
-   <script src="/pages/js/login.js" defer></script>
+    <script src="/pages/js/auth-store.js"></script>
+    <script src="/pages/js/login.js" defer></script>
 </head>
 
 <body class="bg-gradient relative min-h-screen">
     <div class="hidden md:block md:absolute md:top-[390px] md:right-6">
-        <img src="/assets/image-login/Visual Flourish.png" alt="Visual Flourish">
+        <img src="/assets/image-login/Visual Flourish.png" alt="">
     </div>
+
     <!-- TOP -->
     <header>
         <div class="lg:hidden px-6 pt-6">
 
-            <a href="#" class="flex items-center gap-2 text-[#0B6B45] font-medium">
+            <a href="/index.html" class="flex items-center gap-2 text-[#0B6B45] font-medium">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -111,13 +121,14 @@
 
         </div>
     </header>
+
     <!-- CONTENT -->
     <main class="mt-[9px] md:mt-[93px]">
         <section>
             <div class="flex flex-col items-center justify-center text-center">
                 <div
                     class="w-[64px] py-[14px] bg-[#127147] items-center text-center flex justify-center rounded-[16px]">
-                    <img src="/assets/image-login/logo.png" alt="logo-page">
+                    <img src="/assets/image-login/logo.png" alt="">
                 </div>
 
                 <h1 class="mt-4 text-4xl font-bold text-[#0B6B45]">
@@ -129,73 +140,73 @@
                 </p>
             </div>
         </section>
+
         <section class="flex-1 flex items-center justify-center mt-[30px] pb-[96px]">
             <div class="w-full max-w-7xl px-6">
                 <div class="flex justify-center gap-16 items-center">
+
                     <!-- LEFT -->
-                    <div class="fade items-center ">
+                    <div class="fade items-center">
+
                         <!-- CARD -->
                         <div class="glass shadow-card rounded-3xl w-full max-w-md p-8">
-                            <form class="space-y-6">
+                            <form id="loginForm" novalidate class="space-y-6">
 
                                 <!-- EMAIL -->
-
                                 <div>
-
-                                    <label class="text-sm font-medium text-gray-700">
-
+                                    <label for="identifier" class="text-sm font-medium text-gray-700">
                                         National ID or Email
-
                                     </label>
 
                                     <div class="relative mt-2">
-
                                         <div class="absolute left-4 top-1/2 -translate-y-1/2">
-                                            <img src="/assets/image-login/user-icon.png" alt="user-icon">
+                                            <img src="/assets/image-login/user-icon.png" alt="">
                                         </div>
 
-                                        <input type="text" placeholder="e.g. AB123456"
+                                        <input id="identifier" name="identifier" type="text" autocomplete="username"
+                                            placeholder="e.g. AB123456"
                                             class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-4 focus:ring-4 focus:ring-green-100 outline-none">
-
                                     </div>
-
                                 </div>
 
                                 <!-- PASSWORD -->
-
                                 <div>
-
                                     <div class="flex justify-between">
-
-                                        <label class="text-sm font-medium text-gray-700">
+                                        <label for="password" class="text-sm font-medium text-gray-700">
                                             Password
                                         </label>
 
-                                        <a href="#" class="text-sm text-blue-600">
+                                        <a href="/pages/auth/new-password.html" class="text-sm text-blue-600">
                                             Forgot?
                                         </a>
-
                                     </div>
 
                                     <div class="relative mt-2">
-
                                         <div class="absolute left-4 top-1/2 -translate-y-1/2">
-                                            <img src="/assets/image-login/securety-icon.png" alt="secure icon">
+                                            <img src="/assets/image-login/securety-icon.png" alt="">
                                         </div>
 
-                                        <input id="password" type="password" placeholder="••••••••"
+                                        <input id="password" name="password" type="password"
+                                            autocomplete="current-password" placeholder="••••••••"
                                             class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-12 outline-none focus:ring-4 focus:ring-green-100">
 
-                                        <button type="button" onclick="togglePassword()"
-                                            class="absolute right-4 top-1/2 -translate-y-1/2">
-                                            <img src="/assets/image-login/show-icon.png" alt="show icon">
+                                        <button id="togglePasswordBtn" type="button" aria-pressed="false"
+                                            aria-controls="password" class="absolute right-4 top-1/2 -translate-y-1/2">
+                                            <span class="sr-only">Show password</span>
+                                            <img src="/assets/image-login/show-icon.png" alt="">
                                         </button>
                                     </div>
                                 </div>
-                                <button type="submit"
+
+                                <!-- ERREUR -->
+                                <p id="formError" role="alert" aria-live="polite"
+                                    class="hidden rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+
+                                <button id="submitBtn" type="submit"
                                     class="btn w-full h-12 rounded-xl bg-[#0B6B45] hover:bg-[#095638] text-white font-semibold">
                                     Sign In
                                 </button>
+
                                 <div class="flex items-center gap-3">
                                     <div class="flex-1 h-px bg-gray-200"></div>
                                     <span class="text-xs text-gray-400">
@@ -203,22 +214,24 @@
                                     </span>
                                     <div class="flex-1 h-px bg-gray-200"></div>
                                 </div>
+
                                 <div class="grid grid-cols-2 gap-4">
-                                    <button
+                                    <button type="button" data-social="Google"
                                         class="social flex justify-center gap-[8px] items-center border rounded-xl h-12 bg-white">
-                                        <img src="/assets/image-login/google.png" alt="google icon"
-                                            class="w-[20px] h-[20px]">
+                                        <img src="/assets/image-login/google.png" alt="" class="w-[20px] h-[20px]">
                                         Google
                                     </button>
-                                    <button
+
+                                    <button type="button" data-social="Apple"
                                         class="social flex justify-center gap-[8px] items-center border rounded-xl h-12 bg-white">
-                                        <img src="/assets/image-login/apple.png" alt="apple icon" class="w-[20px]">
+                                        <img src="/assets/image-login/apple.png" alt="" class="w-[20px]">
                                         Apple
                                     </button>
                                 </div>
+
                                 <p class="text-center text-gray-600">
                                     Don't have an account?
-                                    <a href="#" class="text-blue-600 font-medium">
+                                    <a href="/pages/auth/signup.html" class="text-blue-600 font-medium">
                                         Create ID
                                     </a>
                                 </p>
@@ -229,6 +242,7 @@
             </div>
         </section>
     </main>
+
     <!-- FOOTER -->
     <footer class="border-t border-[#BEC9BF4D]/30 md:border-hidden py-6">
         <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 md:flex md:justify-center">
@@ -239,10 +253,11 @@
                     <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
                     <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
 
-                    <select class="bg-transparent border-none outline-none cursor-pointer">
+                    <label class="sr-only" for="languageSelect">Language</label>
+                    <select id="languageSelect" class="bg-transparent border-none outline-none cursor-pointer">
                         <option>Arabic</option>
                         <option>Français</option>
-                        <option>English</option>
+                        <option selected>English</option>
                     </select>
                 </div>
 
@@ -262,7 +277,8 @@
                     <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
 
                     <div class="relative inline-block" id="languageDropdown">
-                        <button id="selectedLanguage" class="flex items-center gap-2 bg-transparent cursor-pointer">
+                        <button type="button" id="selectedLanguage" aria-expanded="false" aria-controls="languageMenu"
+                            class="flex items-center gap-2 bg-transparent cursor-pointer">
                             English
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

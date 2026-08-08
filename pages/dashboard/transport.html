@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <title>M3ak Morocco — Transport</title>
+    <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand:      #0B6B45;
+            --color-brand-dark: #095638;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-100:  #D6EADF;
+            --color-danger:     #E1362C;
+            --color-danger-soft:#FCE9E8;
+            --color-ticket:     #1156E8;
+
+            --color-ink:        #171D19;
+            --color-ink-muted:  #5B6B62;
+            --color-line:       #DEE4DE;
+            --color-line-soft:  #EDF1ED;
+            --color-surface:    #FFFFFF;
+            --color-canvas:     #F5FBF4;
+            --color-slate-400:  #94A3B8;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        body {
+            @apply bg-canvas font-jakarta text-ink pb-[76px] md:pb-0;
+        }
+
+        .shell { @apply md:flex md:min-h-screen; }
+
+        /* ---------- Sidebar ---------- */
+        .sidebar {
+            @apply fixed inset-y-0 left-0 z-50 w-[248px] bg-surface border-r border-line
+                   -translate-x-full transition-transform duration-300 flex flex-col;
+        }
+        .sidebar-open { @apply translate-x-0; }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                position: sticky; top: 0; bottom: auto; left: auto; z-index: 10;
+                width: 232px; height: 100vh; flex-shrink: 0; transform: none;
+            }
+        }
+
+        .sidebar-backdrop { @apply fixed inset-0 z-40 bg-black/35 hidden md:hidden; }
+
+        .sidebar-brand {
+            @apply shrink-0 flex items-center gap-[10px] px-[20px] h-[68px] border-b border-line;
+        }
+        .brand-mark {
+            @apply w-[34px] h-[34px] rounded-[10px] bg-brand flex items-center justify-center shrink-0;
+        }
+        .brand-name { @apply font-hanken font-extrabold text-[15px] leading-[18px] text-brand; }
+        .brand-sub  { @apply font-jakarta text-[11px] leading-[14px] text-slate-400; }
+
+        .sidebar-nav { @apply flex-1 overflow-y-auto px-[12px] py-[16px]; }
+
+        .nav-item {
+            @apply relative flex items-center gap-[12px] w-full rounded-[10px] px-[12px] py-[10px] mb-[2px]
+                   font-hanken font-medium text-[13px] text-ink-muted hover:bg-brand-soft transition;
+        }
+        .nav-item-active { @apply bg-brand-soft text-brand font-semibold; }
+        .nav-item-active::before {
+            content: "";
+            @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-brand;
+        }
+        .nav-icon { @apply w-[17px] h-[17px] shrink-0; }
+
+        .sidebar-footer { @apply shrink-0 px-[12px] pt-[12px] pb-[16px] border-t border-line; }
+
+        .sos-button {
+            @apply w-full flex items-center gap-[10px] rounded-[10px] px-[12px] py-[11px] mb-[8px]
+                   bg-danger hover:brightness-95 transition font-hanken font-semibold text-[13px] text-white;
+        }
+        .sos-badge {
+            @apply ml-auto rounded-full bg-white/20 px-[7px] py-[2px]
+                   font-hanken font-bold text-[10px] tracking-[0.6px] text-white;
+        }
+
+        .avatar {
+            @apply w-[28px] h-[28px] rounded-full bg-brand text-white font-hanken font-bold text-[11px]
+                   flex items-center justify-center shrink-0;
+        }
+        .icon-button {
+            @apply relative w-[36px] h-[36px] rounded-full flex items-center justify-center
+                   text-ink-muted hover:bg-brand-soft cursor-pointer;
+        }
+        .menu-panel {
+            @apply absolute right-0 mt-[8px] w-[190px] bg-surface rounded-[12px] shadow-lg
+                   border border-line py-[6px] z-50;
+        }
+        .menu-panel a, .menu-panel button {
+            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
+                   text-ink-muted hover:bg-brand-soft cursor-pointer;
+        }
+        .profile-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-brand-soft pl-[5px] pr-[11px] py-[5px]
+                   hover:bg-brand-100 transition cursor-pointer;
+        }
+        .profile-name { @apply font-hanken font-semibold text-[13px] text-brand max-w-[130px] truncate; }
+
+        .main { @apply flex-1 min-w-0; }
+
+        /* ==========================================================
+           DESKTOP — carte plein cadre, panneaux flottants
+        ========================================================== */
+        .desk {
+            @apply hidden md:grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            gap: 18px;
+            padding: 20px 22px;
+            height: 100vh;
+        }
+
+        .map-stage {
+            @apply relative rounded-[20px] overflow-hidden bg-[#0E1F19] border border-line;
+        }
+
+        .map-svg { @apply absolute inset-0 w-full h-full; }
+
+        .float-card {
+            @apply absolute rounded-[16px] bg-surface/95 backdrop-blur border border-line
+                   shadow-lg p-[16px];
+        }
+
+        .float-search { @apply top-[16px] left-[16px] w-[320px]; }
+        .float-alert  { @apply bottom-[16px] left-[16px] right-[16px] max-w-[420px]; }
+
+        .rail { @apply flex flex-col gap-[16px] overflow-y-auto; }
+
+        .panel { @apply rounded-[16px] bg-surface border border-line p-[16px]; }
+
+        .panel-head { @apply flex items-start justify-between gap-[10px] mb-[12px]; }
+        .panel-title { @apply font-hanken font-bold text-[15px] text-ink; }
+        .panel-subtitle { @apply font-jakarta text-[11px] text-slate-400 mt-[2px]; }
+        .panel-link { @apply font-hanken font-semibold text-[11px] text-brand hover:underline; }
+
+        /* ---------- Formulaire trajet ---------- */
+        .form-title { @apply font-hanken font-extrabold text-[16px] text-ink mb-[12px]; }
+
+        .mode-row { @apply grid grid-cols-4 gap-[6px] mb-[12px]; }
+
+        .mode-button {
+            @apply flex flex-col items-center gap-[4px] rounded-[10px] border border-line
+                   py-[8px] font-hanken font-semibold text-[10px] text-ink-muted
+                   hover:border-brand cursor-pointer transition;
+        }
+        .mode-active { @apply bg-brand border-brand text-white; }
+
+        .field-row { @apply relative flex flex-col gap-[8px]; }
+
+        .field {
+            @apply relative;
+        }
+        .field input {
+            @apply w-full h-[42px] rounded-[12px] bg-canvas border border-line pl-[36px] pr-[14px]
+                   font-jakarta text-[13px] text-ink outline-none focus:border-brand transition;
+        }
+        .field-dot {
+            @apply absolute left-[14px] top-1/2 -translate-y-1/2 w-[9px] h-[9px] rounded-full;
+        }
+
+        .swap-button {
+            @apply absolute right-[10px] top-1/2 -translate-y-1/2 z-10 w-[30px] h-[30px] rounded-full
+                   bg-surface border border-line text-ink-muted flex items-center justify-center
+                   hover:border-brand hover:text-brand cursor-pointer transition;
+        }
+
+        .chip-row { @apply flex items-center gap-[7px] mt-[10px] flex-wrap; }
+
+        .chip {
+            @apply rounded-full border border-line bg-surface px-[11px] py-[5px]
+                   font-hanken font-semibold text-[11px] text-ink-muted
+                   hover:border-brand hover:text-brand cursor-pointer transition;
+        }
+
+        .button-primary {
+            @apply w-full mt-[12px] flex items-center justify-center gap-[8px] rounded-[12px]
+                   bg-brand hover:bg-brand-dark py-[12px]
+                   font-hanken font-semibold text-[13px] text-white cursor-pointer transition;
+        }
+
+        .form-error {
+            @apply mt-[10px] rounded-[10px] bg-danger-soft px-[12px] py-[8px]
+                   font-jakarta text-[12px] text-danger;
+        }
+
+        /* ---------- Lignes ---------- */
+        .line-row {
+            @apply flex items-center gap-[10px] py-[10px] border-b border-line-soft last:border-0;
+        }
+        .line-mark {
+            @apply w-[34px] h-[34px] rounded-[10px] flex items-center justify-center shrink-0
+                   font-hanken font-extrabold text-[11px] text-white;
+        }
+        .line-name { @apply font-hanken font-semibold text-[12px] text-ink leading-tight; }
+        .line-meta { @apply font-jakarta text-[10px] text-slate-400 leading-tight; }
+        .line-eta  { @apply font-hanken font-extrabold text-[13px] text-brand tabular-nums; }
+        .line-eta-unit { @apply font-hanken font-medium text-[9px] text-slate-400 block text-right; }
+
+        .badge {
+            @apply inline-flex items-center rounded-full px-[9px] py-[3px]
+                   font-hanken font-semibold text-[10px] whitespace-nowrap;
+        }
+        .badge-ok   { @apply bg-brand-soft text-brand; }
+        .badge-warn { @apply bg-danger-soft text-danger; }
+
+        /* ---------- Alerte ---------- */
+        .alert-card { @apply flex items-start gap-[12px]; }
+        .alert-icon {
+            @apply w-[36px] h-[36px] rounded-[10px] bg-danger-soft text-danger
+                   flex items-center justify-center shrink-0;
+        }
+        .alert-title { @apply font-hanken font-bold text-[13px] text-ink; }
+        .alert-text { @apply font-jakarta text-[12px] leading-[18px] text-ink-muted mt-[3px]; }
+        .alert-link { @apply font-hanken font-semibold text-[12px] text-danger hover:underline mt-[6px] inline-block; }
+
+        /* ---------- Fast Pass ---------- */
+        .pass-card {
+            @apply rounded-[16px] p-[16px] text-white;
+            background: linear-gradient(140deg, #0B6B45 0%, #0E8A57 60%, #12A167 100%);
+        }
+        .pass-label { @apply font-hanken font-bold text-[10px] uppercase tracking-[1px] text-white/70; }
+        .pass-value { @apply font-hanken font-extrabold text-[22px] mt-[4px]; }
+        .pass-meta { @apply font-jakarta text-[11px] text-white/75 mt-[2px]; }
+        .pass-button {
+            @apply mt-[14px] w-full rounded-[10px] bg-white/95 py-[9px]
+                   font-hanken font-semibold text-[12px] text-brand hover:bg-white
+                   cursor-pointer transition;
+        }
+
+        /* ---------- FAB ticket ---------- */
+        .fab {
+            @apply fixed right-[26px] bottom-[26px] z-30 w-[54px] h-[54px] rounded-full
+                   bg-ticket text-white shadow-lg items-center justify-center
+                   hover:brightness-110 cursor-pointer transition;
+        }
+
+        /* ==========================================================
+           MOBILE — hero vert + feuille remontante
+        ========================================================== */
+        .mob { @apply md:hidden; }
+
+        .mob-hero {
+            @apply relative px-[16px] pt-[12px] pb-[52px];
+            background: linear-gradient(165deg, #0B6B45 0%, #0E8A57 70%, #12A167 100%);
+        }
+
+        .mob-topbar { @apply flex items-center gap-[10px] mb-[16px]; }
+
+        .mob-icon-button {
+            @apply w-[36px] h-[36px] rounded-full bg-white/15 text-white
+                   flex items-center justify-center cursor-pointer;
+        }
+
+        .mob-title { @apply font-hanken font-extrabold text-[16px] text-white; }
+
+        .mob-panel { @apply rounded-[18px] bg-white/12 backdrop-blur border border-white/20 p-[14px]; }
+
+        .mob-panel .field input {
+            @apply bg-white/95 border-transparent;
+        }
+
+        .mob-panel .chip {
+            @apply bg-white/15 border-white/25 text-white hover:bg-white/25 hover:text-white;
+        }
+
+        .mob-panel .mode-button {
+            @apply border-white/25 text-white/85;
+        }
+        .mob-panel .mode-active { @apply bg-white text-brand border-white; }
+
+        .mob-panel .button-primary { @apply bg-white text-brand hover:bg-brand-soft; }
+
+        /* La feuille remonte sur le hero */
+        .mob-sheet {
+            @apply relative -mt-[32px] rounded-t-[24px] bg-canvas px-[16px] pt-[10px] pb-[20px];
+        }
+
+        .mob-handle {
+            @apply mx-auto mb-[14px] h-[4px] w-[42px] rounded-full bg-line;
+        }
+
+        /* ---------- Bottom nav avec FAB central ---------- */
+        .bottom-nav {
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface border-t border-line
+                   flex items-end justify-around px-[6px] pt-[7px] pb-[7px];
+        }
+        .bottom-nav-item {
+            @apply flex flex-col items-center gap-[3px] w-[58px] text-slate-400;
+        }
+        .bottom-nav-item-active { @apply text-brand; }
+        .bottom-nav-label { @apply font-hanken font-medium text-[10px]; }
+
+        .bottom-fab {
+            @apply -mt-[26px] w-[52px] h-[52px] rounded-full bg-ticket text-white shadow-lg
+                   flex items-center justify-center border-4 border-canvas cursor-pointer shrink-0;
+        }
+
+        /* ==========================================================
+           CARTE SVG
+        ========================================================== */
+        .route-line {
+            stroke-dasharray: 26 14;
+            animation: route-run 3.4s linear infinite;
+        }
+
+        @keyframes route-run {
+            to { stroke-dashoffset: -80; }
+        }
+
+        .station-halo {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: station-pulse 2.6s ease-out infinite;
+        }
+
+        @keyframes station-pulse {
+            0%   { transform: scale(.6); opacity: .75; }
+            70%  { transform: scale(2.4); opacity: 0; }
+            100% { transform: scale(2.4); opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .route-line, .station-halo { animation: none !important; }
+            *, *::before, *::after { transition-duration: .001ms !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shell">
+
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- ==================================================
+             SIDEBAR
+        =================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-mark">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                    </svg>
+                </span>
+                <span>
+                    <span class="brand-name block">M3ak</span>
+                    <span class="brand-sub block">Citizen Portal</span>
+                </span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="/pages/dashboard/overview.html" class="nav-item">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+                    </svg>
+                    Home
+                </a>
+
+                <a href="/pages/dashboard/service.html" class="nav-item">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
+                    </svg>
+                    Services
+                </a>
+
+                <a href="/pages/dashboard/transport.html" class="nav-item nav-item-active" aria-current="page">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                        <path stroke-linecap="round" d="M4 10h16M8 20h.01M16 20h.01M7 16v3M17 16v3" />
+                    </svg>
+                    Transport
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <path stroke-linecap="round" d="M9.5 21v-6h5v6" />
+                    </svg>
+                    Housing
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="7" width="18" height="13" rx="2.5" />
+                        <path stroke-linecap="round" d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18" />
+                    </svg>
+                    Jobs
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M12 4 2.5 9 12 14l9.5-5z" />
+                        <path stroke-linecap="round" d="M6 11.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.8" />
+                    </svg>
+                    Education
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="15" rx="2.5" />
+                        <path stroke-linecap="round" d="M12 9v7M8.5 12.5h7" />
+                    </svg>
+                    Healthcare
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                        <circle cx="12" cy="12" r="2.4" />
+                    </svg>
+                    Payments
+                </a>
+
+                <a href="/pages/dashboard/marketplace.html" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                        <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                    </svg>
+                    Marketplace
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="sos-button">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                    </svg>
+                    Emergency
+                    <span class="sos-badge">SOS</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.9 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.6a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z" />
+                    </svg>
+                    Settings
+                </a>
+
+                <button type="button" class="nav-item" data-action="logout">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 17l5-5-5-5m5 5H9M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6" />
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- ==================================================
+             MAIN
+        =================================================== -->
+        <main class="main">
+
+            <!-- ==============================================
+                 DESKTOP
+            =============================================== -->
+            <div class="desk">
+
+                <!-- Carte plein cadre -->
+                <section class="map-stage">
+                    <svg class="map-svg" viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" role="img"
+                        aria-label="Live map of the Casablanca transport network">
+
+                        <defs>
+                            <linearGradient id="trMapFade" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#123B2C" />
+                                <stop offset="100%" stop-color="#0A1610" />
+                            </linearGradient>
+                        </defs>
+
+                        <rect width="800" height="560" fill="url(#trMapFade)" />
+
+                        <!-- Grille urbaine pivotée à -24° -->
+                        <g transform="rotate(-24 400 280)" stroke="#1E3A2E" stroke-width="1">
+                            <path d="M-200 40H1000M-200 100H1000M-200 160H1000M-200 220H1000M-200 280H1000
+                                     M-200 340H1000M-200 400H1000M-200 460H1000M-200 520H1000" />
+                            <path d="M-80 -160V760M-20 -160V760M40 -160V760M100 -160V760M160 -160V760
+                                     M220 -160V760M280 -160V760M340 -160V760M400 -160V760M460 -160V760
+                                     M520 -160V760M580 -160V760M640 -160V760M700 -160V760M760 -160V760
+                                     M820 -160V760M880 -160V760" />
+                        </g>
+
+                        <!-- Îlots bâtis -->
+                        <g transform="rotate(-24 400 280)" fill="#16302512" stroke="#1E3A2E" stroke-width="1">
+                            <rect x="100" y="100" width="120" height="60" />
+                            <rect x="340" y="220" width="120" height="60" />
+                            <rect x="560" y="100" width="120" height="60" />
+                            <rect x="220" y="400" width="120" height="60" />
+                            <rect x="580" y="360" width="120" height="60" />
+                        </g>
+
+                        <!-- Fleuve / corniche -->
+                        <path d="M-20 470C140 450 250 500 400 470S680 380 820 400" fill="none" stroke="#123049"
+                            stroke-width="16" opacity=".55" />
+
+                        <!-- Tracé principal en fond -->
+                        <path d="M70 470C190 470 240 300 390 296S610 190 750 120" fill="none" stroke="#1E3A2E"
+                            stroke-width="12" stroke-linecap="round" />
+
+                        <!-- Tracé animé -->
+                        <path class="route-line" d="M70 470C190 470 240 300 390 296S610 190 750 120" fill="none"
+                            stroke="#3FD68C" stroke-width="4" stroke-linecap="round" />
+
+                        <!-- Branche secondaire -->
+                        <path d="M390 296C440 380 540 420 690 430" fill="none" stroke="#1E3A2E" stroke-width="10"
+                            stroke-linecap="round" />
+                        <path class="route-line" d="M390 296C440 380 540 420 690 430" fill="none" stroke="#5FA8FF"
+                            stroke-width="3.5" stroke-linecap="round" style="animation-delay:1.1s" />
+
+                        <!-- Stations -->
+                        <g>
+                            <circle class="station-halo" cx="70" cy="470" r="7" fill="#3FD68C" opacity=".5" />
+                            <circle cx="70" cy="470" r="6" fill="#0E1F19" stroke="#3FD68C" stroke-width="3" />
+
+                            <circle class="station-halo" cx="390" cy="296" r="8" fill="#3FD68C" opacity=".5"
+                                style="animation-delay:.8s" />
+                            <circle cx="390" cy="296" r="8" fill="#3FD68C" />
+
+                            <circle class="station-halo" cx="750" cy="120" r="7" fill="#3FD68C" opacity=".5"
+                                style="animation-delay:1.6s" />
+                            <circle cx="750" cy="120" r="6" fill="#0E1F19" stroke="#3FD68C" stroke-width="3" />
+
+                            <circle cx="690" cy="430" r="6" fill="#0E1F19" stroke="#5FA8FF" stroke-width="3" />
+                        </g>
+
+                        <text x="390" y="274" text-anchor="middle" fill="#CFF3E1"
+                            font-family="Hanken Grotesk, sans-serif" font-size="13" font-weight="700">
+                            Casa Port
+                        </text>
+                        <text x="750" y="100" text-anchor="middle" fill="#CFF3E1"
+                            font-family="Hanken Grotesk, sans-serif" font-size="12" font-weight="600">
+                            Ain Diab
+                        </text>
+                        <text x="70" y="500" text-anchor="middle" fill="#CFF3E1"
+                            font-family="Hanken Grotesk, sans-serif" font-size="12" font-weight="600">
+                            Sidi Moumen
+                        </text>
+                    </svg>
+
+                    <!-- Panneau « Where to? » flottant -->
+                    <div class="float-card float-search">
+                        <h2 class="form-title">Where to?</h2>
+                        <div data-journey-form="desktop"></div>
+                    </div>
+
+                    <!-- Carte d'alerte flottante -->
+                    <div class="float-card float-alert" data-alert-mount="desktop"></div>
+                </section>
+
+                <!-- Colonne droite -->
+                <aside class="rail">
+                    <section class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h2 class="panel-title">Live Tracking</h2>
+                                <p class="panel-subtitle">Arrivals refresh every second</p>
+                            </div>
+                            <a href="/pages/dashboard/overview.html" class="panel-link">Dashboard</a>
+                        </div>
+
+                        <div data-line-list="desktop"></div>
+                    </section>
+
+                    <section class="pass-card">
+                        <p class="pass-label">Fast Pass</p>
+                        <p class="pass-value">DH 230</p>
+                        <p class="pass-meta">Monthly · valid until 31 Aug 2026</p>
+                        <button type="button" class="pass-button" data-buy-ticket>Renew Fast Pass</button>
+                    </section>
+                </aside>
+            </div>
+
+            <!-- ==============================================
+                 MOBILE
+            =============================================== -->
+            <div class="mob">
+
+                <!-- Hero vert -->
+                <section class="mob-hero">
+                    <div class="mob-topbar">
+                        <button type="button" class="mob-icon-button" id="sidebar-toggle" aria-label="Open menu"
+                            aria-expanded="false" aria-controls="sidebar">
+                            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+                            </svg>
+                        </button>
+
+                        <span class="mob-title">Transport</span>
+
+                        <span class="avatar ml-auto bg-white/20" data-user-initials>M3</span>
+                    </div>
+
+                    <div class="mob-panel">
+                        <div data-journey-form="mobile"></div>
+                    </div>
+                </section>
+
+                <!-- Feuille remontante -->
+                <section class="mob-sheet">
+                    <div class="mob-handle"></div>
+
+                    <div class="panel mb-[14px]" data-alert-mount="mobile"></div>
+
+                    <div class="panel mb-[14px]">
+                        <div class="panel-head">
+                            <div>
+                                <h2 class="panel-title">Live Tracking</h2>
+                                <p class="panel-subtitle">Arrivals near you</p>
+                            </div>
+                        </div>
+
+                        <div data-line-list="mobile"></div>
+                    </div>
+
+                    <div class="pass-card">
+                        <p class="pass-label">Fast Pass</p>
+                        <p class="pass-value">DH 230</p>
+                        <p class="pass-meta">Monthly · valid until 31 Aug 2026</p>
+                        <button type="button" class="pass-button" data-buy-ticket>Renew Fast Pass</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- FAB desktop -->
+    <button type="button" class="fab hidden md:flex" aria-label="Buy a ticket" data-buy-ticket>
+        <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linejoin="round"
+                d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5V10a2 2 0 0 0 0 4v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 15.5V14a2 2 0 0 0 0-4z" />
+            <path stroke-linecap="round" d="M14 7v10" />
+        </svg>
+    </button>
+
+    <!-- ==================================================
+         BOTTOM NAV MOBILE (FAB central)
+    =================================================== -->
+    <nav class="bottom-nav">
+        <a href="/pages/dashboard/overview.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+
+        <a href="/pages/dashboard/service.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linejoin="round" d="M12 3 3 8l9 5 9-5zM3 13l9 5 9-5" />
+            </svg>
+            <span class="bottom-nav-label">Services</span>
+        </a>
+
+        <button type="button" class="bottom-fab" aria-label="Buy a ticket" data-buy-ticket>
+            <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linejoin="round"
+                    d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5V10a2 2 0 0 0 0 4v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 15.5V14a2 2 0 0 0 0-4z" />
+                <path stroke-linecap="round" d="M14 7v10" />
+            </svg>
+        </button>
+
+        <a href="/pages/dashboard/transport.html" class="bottom-nav-item bottom-nav-item-active" aria-current="page">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                <path stroke-linecap="round" d="M4 10h16M7 16v3M17 16v3" />
+            </svg>
+            <span class="bottom-nav-label">Transport</span>
+        </a>
+
+        <a href="/pages/dashboard/marketplace.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+            </svg>
+            <span class="bottom-nav-label">Market</span>
+        </a>
+    </nav>
+
+    <script src="/pages/js/ui.js"></script>
+    <script>
+        (function () {
+            "use strict";
+
+            var $ = M3akUI.$;
+            var $$ = M3akUI.$$;
+            var toast = M3akUI.toast;
+
+            var ARRIVING_THRESHOLD = 30;   /* secondes */
+
+            /* ==================================================
+               1. Formulaire de trajet
+                  Le même balisage est monté deux fois : une fois
+                  dans le panneau flottant desktop, une fois dans
+                  le hero mobile. Un seul gabarit à maintenir.
+            =================================================== */
+            var MODES = [
+                { key: "bus", label: "Bus", icon: '<rect x="4" y="4" width="16" height="12" rx="2.5"/><path stroke-linecap="round" d="M4 10h16M7 16v3M17 16v3"/>' },
+                { key: "tram", label: "Tram", icon: '<rect x="5" y="3" width="14" height="14" rx="3"/><path stroke-linecap="round" d="M5 10h14M9 20l-2 2M15 20l2 2M12 3V1"/>' },
+                { key: "train", label: "Train", icon: '<rect x="5" y="3" width="14" height="13" rx="4"/><path stroke-linecap="round" d="M5 11h14M9 20l-2 2M15 20l2 2"/>' },
+                { key: "taxi", label: "Taxi", icon: '<path stroke-linejoin="round" d="M4 13l1.6-4.4A2 2 0 0 1 7.5 7h9a2 2 0 0 1 1.9 1.6L20 13v5h-3v-2H7v2H4z"/><path stroke-linecap="round" d="M9 4h6"/>' }
+            ];
+
+            function formTemplate(scope) {
+                var modes = MODES.map(function (mode, index) {
+                    return '' +
+                        '<button type="button" class="mode-button' + (index === 0 ? " mode-active" : "") + '"' +
+                        '        data-mode="' + mode.key + '" aria-pressed="' + (index === 0) + '">' +
+                        '  <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">' +
+                        mode.icon + '</svg>' +
+                        mode.label +
+                        '</button>';
+                }).join("");
+
+                return '' +
+                    '<div class="mode-row">' + modes + '</div>' +
+
+                    '<div class="field-row">' +
+                    '  <div class="field">' +
+                    '    <span class="field-dot bg-brand"></span>' +
+                    '    <label class="sr-only" for="from-' + scope + '">Departure</label>' +
+                    '    <input id="from-' + scope + '" data-from type="text" value="Current location"' +
+                    '           placeholder="Departure">' +
+                    '  </div>' +
+
+                    '  <div class="field">' +
+                    '    <span class="field-dot bg-danger"></span>' +
+                    '    <label class="sr-only" for="to-' + scope + '">Destination</label>' +
+                    '    <input id="to-' + scope + '" data-to type="text" placeholder="Where to?">' +
+                    '    <button type="button" class="swap-button" data-swap aria-label="Swap departure and destination">' +
+                    '      <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">' +
+                    '        <path stroke-linecap="round" stroke-linejoin="round" d="M7 4v13m0 0-3-3m3 3 3-3M17 20V7m0 0-3 3m3-3 3 3"/>' +
+                    '      </svg>' +
+                    '    </button>' +
+                    '  </div>' +
+                    '</div>' +
+
+                    '<div class="chip-row">' +
+                    '  <button type="button" class="chip" data-chip="Home">Home</button>' +
+                    '  <button type="button" class="chip" data-chip="Office">Office</button>' +
+                    '  <button type="button" class="chip" data-chip="Marina Mall">Marina Mall</button>' +
+                    '</div>' +
+
+                    '<p class="form-error hidden" data-form-error role="alert" aria-live="polite"></p>' +
+
+                    '<button type="button" class="button-primary" data-find>' +
+                    '  Find Routes' +
+                    '  <svg class="w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">' +
+                    '    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6"/>' +
+                    '  </svg>' +
+                    '</button>';
+            }
+
+            function mountForm(host, scope) {
+                host.innerHTML = formTemplate(scope);
+
+                var from = $("[data-from]", host);
+                var to = $("[data-to]", host);
+                var error = $("[data-form-error]", host);
+
+                function clearError() {
+                    error.textContent = "";
+                    error.classList.add("hidden");
+                }
+
+                /* Sélection du mode */
+                $$("[data-mode]", host).forEach(function (button) {
+                    button.addEventListener("click", function () {
+                        $$("[data-mode]", host).forEach(function (other) {
+                            other.classList.remove("mode-active");
+                            other.setAttribute("aria-pressed", "false");
+                        });
+                        button.classList.add("mode-active");
+                        button.setAttribute("aria-pressed", "true");
+                    });
+                });
+
+                /* Inversion départ / destination */
+                $("[data-swap]", host).addEventListener("click", function () {
+                    var swap = from.value;
+                    from.value = to.value;
+                    to.value = swap;
+                    clearError();
+                });
+
+                /* Les raccourcis remplissent la destination */
+                $$("[data-chip]", host).forEach(function (chip) {
+                    chip.addEventListener("click", function () {
+                        to.value = chip.dataset.chip;
+                        clearError();
+                    });
+                });
+
+                to.addEventListener("input", clearError);
+
+                /* Recherche : la destination est obligatoire */
+                $("[data-find]", host).addEventListener("click", function () {
+                    if (!to.value.trim()) {
+                        error.textContent = "Tell us where you're heading first.";
+                        error.classList.remove("hidden");
+                        to.focus();
+                        return;
+                    }
+
+                    clearError();
+                    toast("3 routes found to " + to.value.trim());
+                });
+            }
+
+            $$("[data-journey-form]").forEach(function (host) {
+                mountForm(host, host.dataset.journeyForm);
+            });
+
+            /* ==================================================
+               2. Carte d'alerte
+                  Une seule fonction, deux conteneurs : la position
+                  change entre desktop et mobile, le contenu n'a
+                  qu'un seul endroit où être modifié.
+            =================================================== */
+            var serviceAlert = {
+                line: "Line L12",
+                title: "Line L12 — reduced service",
+                text: "Roadworks on Boulevard Zerktouni add about 5 minutes between Maarif and Anfa Place until 18:00.",
+                action: "See alternative routes"
+            };
+
+            function renderAlert(host) {
+                host.innerHTML = '' +
+                    '<div class="alert-card">' +
+                    '  <span class="alert-icon">' +
+                    '    <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">' +
+                    '      <path stroke-linejoin="round" d="M12 3.2 3.5 18.3h17z"/>' +
+                    '      <path stroke-linecap="round" d="M12 9v4m0 2.6h.01"/>' +
+                    '    </svg>' +
+                    '  </span>' +
+                    '  <span class="flex-1 min-w-0">' +
+                    '    <span class="alert-title block">' + serviceAlert.title + '</span>' +
+                    '    <span class="alert-text block">' + serviceAlert.text + '</span>' +
+                    '    <button type="button" class="alert-link" data-alert-action>' + serviceAlert.action + '</button>' +
+                    '  </span>' +
+                    '</div>';
+            }
+
+            $$("[data-alert-mount]").forEach(renderAlert);
+
+            document.addEventListener("click", function (e) {
+                if (e.target.closest("[data-alert-action]")) {
+                    toast("2 alternative routes avoid " + serviceAlert.line + ".");
+                }
+                if (e.target.closest("[data-buy-ticket]")) {
+                    toast("Ticket added to your wallet.");
+                }
+            });
+
+            /* ==================================================
+               3. Lignes en direct
+                  Le même tableau alimente les deux conteneurs.
+            =================================================== */
+            var lines = [
+                { code: "T1", name: "Tramway T1", route: "Sidi Moumen ⇄ Ain Diab", color: "#0B6B45", seconds: 196, reset: 480, onTime: true },
+                { code: "L12", name: "Bus L12", route: "Maarif ⇄ Anfa Place", color: "#1156E8", seconds: 355, reset: 620, onTime: false },
+                { code: "T2", name: "Tramway T2", route: "Sidi Bernoussi ⇄ Ain Sebaa", color: "#5B6B62", seconds: 92, reset: 540, onTime: true },
+                { code: "TX", name: "Grand Taxi", route: "Casa Port stand", color: "#E8862E", seconds: 44, reset: 300, onTime: true }
+            ];
+
+            function etaLabel(seconds) {
+                if (seconds <= ARRIVING_THRESHOLD) return "Arriving";
+                var minutes = Math.floor(seconds / 60);
+                return minutes + ":" + String(seconds % 60).padStart(2, "0");
+            }
+
+            function renderLines(host) {
+                host.innerHTML = lines.map(function (line, index) {
+                    var arriving = line.seconds <= ARRIVING_THRESHOLD;
+                    return '' +
+                        '<div class="line-row">' +
+                        '  <span class="line-mark" style="background:' + line.color + '">' + line.code + '</span>' +
+                        '  <span class="flex-1 min-w-0">' +
+                        '    <span class="line-name block">' + line.name + '</span>' +
+                        '    <span class="line-meta block truncate">' + line.route + '</span>' +
+                        '  </span>' +
+                        '  <span class="badge ' + (line.onTime ? "badge-ok" : "badge-warn") + '">' +
+                        (line.onTime ? "On Time" : "+5 min Delay") + '</span>' +
+                        '  <span class="text-right w-[52px]">' +
+                        '    <span class="line-eta" data-eta="' + index + '">' + etaLabel(line.seconds) + '</span>' +
+                        '    <span class="line-eta-unit">' + (arriving ? "now" : "min") + '</span>' +
+                        '  </span>' +
+                        '</div>';
+                }).join("");
+            }
+
+            var lineHosts = $$("[data-line-list]");
+            lineHosts.forEach(renderLines);
+
+            /* Décompte réel, puis relance quand le véhicule est passé. */
+            window.setInterval(function () {
+                lines.forEach(function (line, index) {
+                    line.seconds -= 1;
+                    if (line.seconds <= 0) line.seconds = line.reset;
+
+                    var arriving = line.seconds <= ARRIVING_THRESHOLD;
+                    var label = etaLabel(line.seconds);
+
+                    lineHosts.forEach(function (host) {
+                        var cell = $('[data-eta="' + index + '"]', host);
+                        if (!cell) return;
+                        cell.textContent = label;
+                        cell.nextElementSibling.textContent = arriving ? "now" : "min";
+                    });
+                });
+            }, 1000);
+
+            /* ==================================================
+               4. Sidebar mobile
+            =================================================== */
+            (function sidebarDrawer() {
+                var sidebar = $("#sidebar");
+                var toggle = $("#sidebar-toggle");
+                var backdrop = $("#sidebar-backdrop");
+                if (!sidebar || !toggle || !backdrop) return;
+
+                function setOpen(open) {
+                    sidebar.classList.toggle("sidebar-open", open);
+                    backdrop.classList.toggle("hidden", !open);
+                    toggle.setAttribute("aria-expanded", String(open));
+                    document.body.style.overflow = open ? "hidden" : "";
+                }
+
+                toggle.addEventListener("click", function () {
+                    setOpen(!sidebar.classList.contains("sidebar-open"));
+                });
+                backdrop.addEventListener("click", function () { setOpen(false); });
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape") setOpen(false);
+                });
+                window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+                    if (e.matches) setOpen(false);
+                });
+            })();
+        })();
+    </script>
+</body>
+
+</html>

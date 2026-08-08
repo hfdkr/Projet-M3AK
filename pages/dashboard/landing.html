@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <title>M3ak Morocco — Your Gateway to Digital Morocco</title>
+    <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-green-900: #0B6B45;
+            --color-green-800: #095638;
+            --color-green-700: #3D4A42;
+            --color-green-100: #D6EADF;
+            --color-green-50:  #E9F3EE;
+            --color-mint-50:   #F5FBF4;
+
+            --color-grey-200:  #DEE4DE;
+            --color-grey-100:  #EDF1ED;
+            --color-black-700: #171D19;
+
+            --color-blue-600:  #316BF3;
+            --color-danger:    #E1362C;
+
+            --color-slate-500: #64748B;
+            --color-slate-400: #94A3B8;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        body {
+            @apply bg-mint-50 font-jakarta text-black-700;
+        }
+
+        /* ---------- Header ---------- */
+        .site-header {
+            @apply sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-grey-200;
+        }
+
+        .header-inner {
+            @apply max-w-[1200px] mx-auto px-[20px] h-[68px] flex items-center gap-[16px];
+        }
+
+        .brand {
+            @apply flex items-center gap-[8px] shrink-0;
+        }
+
+        .brand-mark {
+            @apply w-[34px] h-[34px] rounded-[10px] bg-green-900 flex items-center justify-center;
+        }
+
+        .brand-name {
+            @apply font-hanken font-extrabold text-[18px] tracking-[-0.2px] text-green-900;
+        }
+
+        .header-nav {
+            @apply hidden md:flex items-center gap-[28px] ml-[24px];
+        }
+
+        .header-link {
+            @apply font-hanken font-semibold text-[14px] text-green-700 hover:text-green-900 transition;
+        }
+
+        .header-actions {
+            @apply flex items-center gap-[10px] ml-auto;
+        }
+
+        .button-primary {
+            @apply inline-flex items-center justify-center gap-[8px] rounded-[12px] bg-green-900
+                   px-[20px] py-[11px] font-hanken font-semibold text-[14px] text-white
+                   hover:bg-green-800 transition cursor-pointer;
+        }
+
+        .button-secondary {
+            @apply inline-flex items-center justify-center gap-[8px] rounded-[12px] bg-white
+                   border border-grey-200 px-[20px] py-[11px] font-hanken font-semibold text-[14px]
+                   text-green-900 hover:border-green-900 transition cursor-pointer;
+        }
+
+        .icon-button {
+            @apply relative w-[38px] h-[38px] rounded-full flex items-center justify-center
+                   text-green-700 hover:bg-green-50 cursor-pointer;
+        }
+
+        .bell-dot {
+            @apply absolute top-[8px] right-[9px] w-[7px] h-[7px] rounded-full bg-danger
+                   ring-2 ring-white;
+        }
+
+        /* ---------- Profil ---------- */
+        .profile-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-green-50 pl-[6px] pr-[12px] py-[5px]
+                   hover:bg-green-100 transition cursor-pointer;
+        }
+
+        .avatar {
+            @apply w-[30px] h-[30px] rounded-full bg-green-900 text-white font-hanken font-bold
+                   text-[12px] flex items-center justify-center shrink-0;
+        }
+
+        .profile-name {
+            @apply hidden sm:block font-hanken font-semibold text-[13px] text-green-900 max-w-[140px] truncate;
+        }
+
+        .profile-menu {
+            @apply absolute right-0 mt-[10px] w-[200px] bg-white rounded-[14px] shadow-lg
+                   border border-grey-200 py-[6px] z-50;
+        }
+
+        .profile-menu a,
+        .profile-menu button {
+            @apply block w-full text-left px-[16px] py-[10px] font-hanken text-[13px]
+                   text-green-700 hover:bg-mint-50 cursor-pointer;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            @apply max-w-[1200px] mx-auto px-[20px] pt-[48px] pb-[64px]
+                   md:grid md:grid-cols-2 md:gap-[56px] md:items-center md:pt-[72px] md:pb-[96px];
+        }
+
+        .hero-pill {
+            @apply inline-flex items-center gap-[8px] rounded-full bg-green-50 text-green-900
+                   font-hanken font-semibold text-[12px] px-[14px] py-[6px] mb-[20px];
+        }
+
+        .hero-pill-dot {
+            @apply w-[6px] h-[6px] rounded-full bg-green-900 animate-ping [animation-duration:5s];
+        }
+
+        .hero-title {
+            @apply font-hanken font-extrabold text-[34px] leading-[40px] tracking-[-0.5px]
+                   md:text-[52px] md:leading-[56px];
+        }
+
+        .hero-highlight {
+            @apply text-green-900;
+        }
+
+        .hero-description {
+            @apply font-jakarta text-[16px] leading-[26px] text-slate-500 mt-[16px] max-w-[460px];
+        }
+
+        .hero-actions {
+            @apply flex flex-col gap-[12px] mt-[28px] sm:flex-row sm:items-center;
+        }
+
+        .trusted-text {
+            @apply font-jakarta text-[13px] text-slate-500 mt-[20px];
+        }
+
+        .hero-stats {
+            @apply flex items-center gap-[36px] mt-[36px];
+        }
+
+        .stat-number {
+            @apply font-hanken font-extrabold text-[24px] text-black-700 md:text-[28px];
+        }
+
+        .stat-label {
+            @apply font-jakarta text-[12px] text-slate-500;
+        }
+
+        /* ---------- Visuel hero ---------- */
+        .hero-visual {
+            @apply relative mt-[40px] md:mt-0;
+        }
+
+        .hero-card {
+            @apply rounded-[24px] bg-white border border-grey-200 p-[24px] shadow-sm;
+        }
+
+        .hero-card-head {
+            @apply flex items-center justify-between mb-[20px];
+        }
+
+        .hero-card-title {
+            @apply font-hanken font-bold text-[15px] text-black-700;
+        }
+
+        .hero-card-badge {
+            @apply rounded-full bg-green-50 text-green-900 font-hanken font-semibold text-[11px]
+                   px-[10px] py-[4px];
+        }
+
+        .service-tile {
+            @apply flex flex-col items-start gap-[10px] rounded-[16px] bg-mint-50 border border-grey-200
+                   p-[14px] hover:border-green-900 transition;
+        }
+
+        .service-tile-icon {
+            @apply w-[36px] h-[36px] rounded-[10px] bg-green-100 text-green-900
+                   flex items-center justify-center;
+        }
+
+        .service-tile-name {
+            @apply font-hanken font-semibold text-[13px] text-black-700;
+        }
+
+        .service-tile-meta {
+            @apply font-jakarta text-[11px] text-slate-400;
+        }
+
+        /* ---------- Sections ---------- */
+        .section {
+            @apply max-w-[1200px] mx-auto px-[20px] py-[56px] md:py-[80px];
+        }
+
+        .section-title {
+            @apply font-hanken font-extrabold text-[26px] leading-[32px] text-black-700 text-center
+                   md:text-[34px] md:leading-[40px];
+        }
+
+        .section-subtitle {
+            @apply font-jakarta text-[15px] text-slate-500 text-center mt-[10px] max-w-[560px] mx-auto;
+        }
+
+        .feature-grid {
+            @apply grid gap-[20px] mt-[44px] md:grid-cols-3;
+        }
+
+        .feature-card {
+            @apply rounded-[18px] bg-white border border-grey-200 p-[24px];
+        }
+
+        .feature-icon {
+            @apply w-[44px] h-[44px] rounded-[12px] bg-green-50 text-green-900
+                   flex items-center justify-center mb-[16px];
+        }
+
+        .feature-title {
+            @apply font-hanken font-bold text-[16px] text-black-700 mb-[8px];
+        }
+
+        .feature-description {
+            @apply font-jakarta text-[14px] leading-[22px] text-slate-500;
+        }
+
+        /* ---------- Bandeau final ---------- */
+        .cta {
+            @apply max-w-[1200px] mx-auto px-[20px] pb-[72px];
+        }
+
+        .cta-inner {
+            @apply rounded-[24px] bg-green-900 px-[28px] py-[44px] text-center md:px-[64px] md:py-[56px];
+        }
+
+        .cta-title {
+            @apply font-hanken font-extrabold text-[24px] leading-[32px] text-white md:text-[32px] md:leading-[40px];
+        }
+
+        .cta-description {
+            @apply font-jakarta text-[14px] leading-[22px] text-green-100 mt-[12px] max-w-[520px] mx-auto;
+        }
+
+        .button-on-dark {
+            @apply inline-flex items-center justify-center gap-[8px] rounded-[12px] bg-white
+                   px-[24px] py-[12px] font-hanken font-semibold text-[14px] text-green-900
+                   hover:bg-green-50 transition cursor-pointer mt-[24px];
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer {
+            @apply border-t border-grey-200 bg-white;
+        }
+
+        .footer-inner {
+            @apply max-w-[1200px] mx-auto px-[20px] py-[28px] flex flex-col gap-[16px]
+                   md:flex-row md:items-center md:justify-between;
+        }
+
+        .footer-copyright {
+            @apply font-jakarta text-[12px] text-slate-400;
+        }
+
+        .footer-links {
+            @apply flex flex-wrap items-center gap-[20px];
+        }
+
+        .footer-links a {
+            @apply font-jakarta text-[12px] text-slate-500 hover:text-green-900;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition-duration: .001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/index.html" class="brand">
+                <span class="brand-mark">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                    </svg>
+                </span>
+                <span class="brand-name">M3ak Morocco</span>
+            </a>
+
+            <nav class="header-nav">
+                <a href="/pages/dashboard/service.html" class="header-link">Services</a>
+                <a href="/pages/dashboard/transport.html" class="header-link">Transport</a>
+                <a href="/pages/dashboard/marketplace.html" class="header-link">Marketplace</a>
+                <a href="#features" class="header-link">Why M3ak</a>
+            </nav>
+
+            <div class="header-actions">
+
+                <!-- Connecté : notifications -->
+                <button type="button" class="icon-button" aria-label="Notifications" data-auth="user">
+                    <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                    </svg>
+                    <span class="bell-dot"></span>
+                </button>
+
+                <!-- Connecté : avatar + menu profil (desktop compris) -->
+                <div class="relative" data-auth="user">
+                    <button type="button" class="profile-chip" data-menu-toggle aria-expanded="false"
+                        aria-haspopup="true">
+                        <span class="avatar" data-user-initials>M3</span>
+                        <span class="profile-name" data-user-name>Citizen</span>
+                        <svg class="w-[14px] h-[14px] text-green-700" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div class="profile-menu hidden" data-menu>
+                        <a href="/pages/dashboard/overview.html">My dashboard</a>
+                        <a href="#">My profile</a>
+                        <a href="#">Settings</a>
+                        <button type="button" class="text-danger!" data-action="logout">Sign out</button>
+                    </div>
+                </div>
+
+                <!-- Visiteur : connexion -->
+                <a href="/pages/auth/login.html" class="button-primary" data-auth="guest">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================================================
+         HERO
+    =================================================== -->
+    <main>
+        <section class="hero">
+            <div>
+                <span class="hero-pill">
+                    <span class="hero-pill-dot"></span>
+                    Kingdom of Morocco · Verified Portal
+                </span>
+
+                <h1 class="hero-title">
+                    Your Gateway to
+                    <span class="hero-highlight">Digital Morocco</span>
+                </h1>
+
+                <p class="hero-description">
+                    One secure account for transport, housing, healthcare, payments and every public
+                    service across the kingdom. No queues, no paperwork, no second login.
+                </p>
+
+                <!-- Visiteur -->
+                <div class="hero-actions" data-auth="guest">
+                    <a href="/pages/auth/signup.html" class="button-primary">
+                        Get Started Free
+                        <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6" />
+                        </svg>
+                    </a>
+                    <a href="/pages/dashboard/service.html" class="button-secondary">Browse Services</a>
+                </div>
+
+                <!-- Connecté -->
+                <div class="hero-actions" data-auth="user">
+                    <a href="/pages/dashboard/overview.html" class="button-primary">
+                        Go to My Dashboard
+                        <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6" />
+                        </svg>
+                    </a>
+                    <a href="/pages/dashboard/transport.html" class="button-secondary">Live Transport</a>
+                </div>
+
+                <!-- Visiteur -->
+                <p class="trusted-text" data-auth="guest">
+                    Trusted by <strong class="text-green-900">1.2M+ citizens</strong> across 12 regions.
+                </p>
+
+                <!-- Connecté -->
+                <p class="trusted-text" data-auth="user">
+                    Welcome back, <strong class="text-green-900" data-user-name>Citizen</strong>.
+                    Your services are ready.
+                </p>
+
+                <div class="hero-stats">
+                    <div>
+                        <p class="stat-number">1.2M+</p>
+                        <p class="stat-label">Active citizens</p>
+                    </div>
+                    <div>
+                        <p class="stat-number">40+</p>
+                        <p class="stat-label">Public services</p>
+                    </div>
+                    <div>
+                        <p class="stat-number">256-bit</p>
+                        <p class="stat-label">Encryption</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aperçu du portail -->
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-head">
+                        <div>
+                            <p class="hero-card-title">Citizen Portal</p>
+                            <p class="service-tile-meta">Everything in one place</p>
+                        </div>
+                        <span class="hero-card-badge">Live</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-[12px]">
+                        <a href="/pages/dashboard/transport.html" class="service-tile">
+                            <span class="service-tile-icon">
+                                <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                                    <path stroke-linecap="round" d="M4 10h16M7 16v3M17 16v3" />
+                                </svg>
+                            </span>
+                            <span class="service-tile-name">Transport</span>
+                            <span class="service-tile-meta">Tram T1 · 4 min</span>
+                        </a>
+
+                        <a href="/pages/dashboard/service.html" class="service-tile">
+                            <span class="service-tile-icon">
+                                <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
+                                </svg>
+                            </span>
+                            <span class="service-tile-name">Services</span>
+                            <span class="service-tile-meta">40+ available</span>
+                        </a>
+
+                        <a href="/pages/dashboard/marketplace.html" class="service-tile">
+                            <span class="service-tile-icon">
+                                <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linejoin="round"
+                                        d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                                    <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                                </svg>
+                            </span>
+                            <span class="service-tile-name">Marketplace</span>
+                            <span class="service-tile-meta">Local artisans</span>
+                        </a>
+
+                        <a href="#" class="service-tile">
+                            <span class="service-tile-icon">
+                                <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                                    <circle cx="12" cy="12" r="2.4" />
+                                </svg>
+                            </span>
+                            <span class="service-tile-name">Payments</span>
+                            <span class="service-tile-meta">Bills &amp; fees</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================
+             FEATURES
+        =================================================== -->
+        <section class="section" id="features">
+            <h2 class="section-title">Why citizens choose M3ak</h2>
+            <p class="section-subtitle">
+                Built with the Kingdom's digital transformation standards, from biometric identity
+                to real-time public transport.
+            </p>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="feature-icon">
+                        <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M12 2.5l8 3.5v6c0 5-3.5 8.5-8 9.5-4.5-1-8-4.5-8-9.5V6z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2.2 2.2L15.5 10" />
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">Biometric-grade security</h3>
+                    <p class="feature-description">
+                        Government-grade encryption protects your identity end to end. Your documents
+                        never leave the kingdom's infrastructure.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-icon">
+                        <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z" />
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">One login, every service</h3>
+                    <p class="feature-description">
+                        Skip the counters. Transport passes, housing files, tax payments and health
+                        appointments all answer to the same account.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <span class="feature-icon">
+                        <svg class="w-[20px] h-[20px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9" />
+                            <path stroke-linecap="round" d="M12 7v5l3.5 2" />
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">Real-time by default</h3>
+                    <p class="feature-description">
+                        Live tram and bus arrivals, instant payment receipts and appointment
+                        confirmations that update while you watch.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ==================================================
+             CTA
+        =================================================== -->
+        <section class="cta">
+            <div class="cta-inner">
+                <h2 class="cta-title">Ready when you are</h2>
+                <p class="cta-description">
+                    Create your digital identity in a few minutes and start using every public
+                    service the kingdom offers online.
+                </p>
+
+                <div data-auth="guest">
+                    <a href="/pages/auth/signup.html" class="button-on-dark">Create my digital ID</a>
+                </div>
+
+                <div data-auth="user">
+                    <a href="/pages/dashboard/overview.html" class="button-on-dark">Open my dashboard</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-copyright">
+                © 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.
+            </p>
+
+            <div class="footer-links">
+                <a href="/pages/dashboard/service.html">Services</a>
+                <a href="/pages/dashboard/transport.html">Transport</a>
+                <a href="/pages/dashboard/marketplace.html">Marketplace</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

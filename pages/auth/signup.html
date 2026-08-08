@@ -145,7 +145,38 @@
         .signup-terms{
             @apply font-jakarta text-[12px] leading-[16px] text-slate-400;
         }
+        .signup-field-toggle{
+            @apply absolute right-[14px] top-1/2 -translate-y-1/2 text-slate-400
+                   hover:text-green-800 cursor-pointer;
+        }
+        .signup-grid-2{
+            @apply grid grid-cols-1 gap-[16px] sm:grid-cols-2;
+        }
+        .signup-consent{
+            @apply flex items-start gap-[10px] mt-[4px];
+        }
+        .signup-consent input{
+            @apply mt-[2px] w-[16px] h-[16px] accent-green-900 cursor-pointer shrink-0;
+        }
+        .signup-consent label{
+            @apply font-jakarta text-[12px] leading-[18px] text-slate-500 cursor-pointer;
+        }
+        .signup-error{
+            @apply rounded-[12px] bg-[#FCE9E8] px-[14px] py-[10px]
+                   font-jakarta text-[13px] leading-[18px] text-[#9B2C22];
+        }
+
+        @media (prefers-reduced-motion: reduce){
+            *, *::before, *::after{
+                animation: none !important;
+                transition-duration: .001ms !important;
+            }
+        }
     </style>
+
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/auth-store.js"></script>
+    <script src="/pages/js/signup.js" defer></script>
 </head>
 
 <body>
@@ -198,8 +229,8 @@
 
             <!-- mobile-only top bar: back link + secured pill -->
             <div class="signup-topbar">
-                <a href="#" class="signup-back-link">
-                    <img src="/assets/image-signUp/back-icon.png" alt="icon back">
+                <a href="/pages/auth/login.html" class="signup-back-link">
+                    <img src="/assets/image-signUp/back-icon.png" alt="">
                     Back to Log in
                 </a>
                 <span class="signup-secured-pill">
@@ -222,7 +253,7 @@
                     <p class="signup-header-desc">Start your journey into the Moroccan digital ecosystem.</p>
                 </div>
 
-                <form class="signup-form">
+                <form class="signup-form" id="signupForm" novalidate>
                     <div>
                         <label for="fullName" class="signup-field-label">Full Name</label>
                         <div class="signup-field-wrap">
@@ -232,12 +263,13 @@
                                     <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
                                 </svg>
                             </span>
-                            <input class="signup-field-input" type="text" id="fullName" placeholder="Mohamed El Idrissi">
+                            <input class="signup-field-input" type="text" id="fullName" name="fullName"
+                                autocomplete="name" placeholder="Mohamed El Idrissi">
                         </div>
                     </div>
 
                     <div>
-                        <label for="cni" class="signup-field-label">National ID (CNI)</label>
+                        <label for="nationalId" class="signup-field-label">National ID (CNI)</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -246,7 +278,8 @@
                                     <path d="M14 10h4M14 14h4" />
                                 </svg>
                             </span>
-                            <input class="signup-field-input" type="text" id="cni" placeholder="E.G. AB123456">
+                            <input class="signup-field-input" type="text" id="nationalId" name="nationalId"
+                                autocomplete="off" placeholder="E.G. AB123456">
                         </div>
                     </div>
 
@@ -259,31 +292,104 @@
                                     <path d="M2 6l10 7 10-7" />
                                 </svg>
                             </span>
-                            <input class="signup-field-input" type="email" id="email" placeholder="mohamed@example.ma">
+                            <input class="signup-field-input" type="email" id="email" name="email"
+                                autocomplete="email" placeholder="mohamed@example.ma">
                         </div>
                     </div>
 
                     <div>
-                        <label for="phone" class="signup-field-label">Phone Number</label>
+                        <label for="password" class="signup-field-label">Password</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="6" y="2" width="12" height="20" rx="2" />
-                                    <path d="M11 18h2" />
+                                    <rect x="4" y="10" width="16" height="11" rx="2" />
+                                    <path d="M8 10V7a4 4 0 0 1 8 0v3" />
                                 </svg>
                             </span>
-                            <input class="signup-field-input" type="tel" id="phone" placeholder="+212 600 000 000">
+                            <input class="signup-field-input pr-[42px]" type="password" id="password" name="password"
+                                autocomplete="new-password" placeholder="At least 8 characters">
+                            <button type="button" class="signup-field-toggle" data-toggle-password="password"
+                                aria-pressed="false" aria-controls="password">
+                                <span class="sr-only">Show password</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" />
+                                    <circle cx="12" cy="12" r="2.6" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
 
-                    <button type="submit" class="signup-btn-primary">
+                    <div>
+                        <label for="confirmPassword" class="signup-field-label">Confirm Password</label>
+                        <div class="signup-field-wrap">
+                            <span class="signup-field-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="4" y="10" width="16" height="11" rx="2" />
+                                    <path d="M8 10V7a4 4 0 0 1 8 0v3M9.5 15.5l1.8 1.8 3.2-3.4" />
+                                </svg>
+                            </span>
+                            <input class="signup-field-input pr-[42px]" type="password" id="confirmPassword"
+                                name="confirmPassword" autocomplete="new-password" placeholder="Repeat your password">
+                            <button type="button" class="signup-field-toggle" data-toggle-password="confirmPassword"
+                                aria-pressed="false" aria-controls="confirmPassword">
+                                <span class="sr-only">Show password</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" />
+                                    <circle cx="12" cy="12" r="2.6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Facultatifs -->
+                    <div class="signup-grid-2">
+                        <div>
+                            <label for="city" class="signup-field-label">City <span class="text-slate-400">(optional)</span></label>
+                            <div class="signup-field-wrap">
+                                <span class="signup-field-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" />
+                                        <circle cx="12" cy="10" r="2.5" />
+                                    </svg>
+                                </span>
+                                <input class="signup-field-input" type="text" id="city" name="city"
+                                    autocomplete="address-level2" placeholder="Casablanca">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="signup-field-label">Phone <span class="text-slate-400">(optional)</span></label>
+                            <div class="signup-field-wrap">
+                                <span class="signup-field-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="6" y="2" width="12" height="20" rx="2" />
+                                        <path d="M11 18h2" />
+                                    </svg>
+                                </span>
+                                <input class="signup-field-input" type="tel" id="phone" name="phone"
+                                    autocomplete="tel" placeholder="+212 600 000 000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="signup-consent">
+                        <input type="checkbox" id="terms" name="terms">
+                        <label for="terms">
+                            I accept the Terms of Service and the Privacy Policy of the Kingdom of Morocco
+                            Digital Services.
+                        </label>
+                    </div>
+
+                    <p id="formError" role="alert" aria-live="polite" class="signup-error hidden"></p>
+
+                    <button type="submit" id="submitBtn" class="signup-btn-primary">
                         Create Account
-                        <img src="/assets/image-signUp/icon-right.png" alt="icon right">
+                        <img src="/assets/image-signUp/icon-right.png" alt="">
                     </button>
                 </form>
 
                 <p class="signup-login-note">
-                    Already have an account? <a href="#" class="signup-login-link">Log in</a>
+                    Already have an account? <a href="/pages/auth/login.html" class="signup-login-link">Log in</a>
                 </p>
 
                 <div class="signup-footer">

@@ -38,7 +38,7 @@
             --color-blue-500: #316BF3;
             --color-blue-50:  #E6EEFE;
 
-            --color-brick-600: ;
+            --color-brick-600: #C0433F;
             --color-brick-700: #9B403F;
             --color-brick-50:  #FBEBEB;
 
@@ -67,18 +67,36 @@
         /* ==========================================================
            3. SIDEBAR
         ========================================================== */
+        /* Mobile : tiroir hors écran, ramené par .sidebar-open.
+           Desktop : colonne collante démarrant sous la topbar. */
         .sidebar {
             @apply fixed inset-y-0 left-0 z-50 w-[240px] bg-mint-50 border-r border-grey-200
                    -translate-x-full transition-transform duration-300
-                   md:static md:translate-x-0 md:shrink-0;
+                   flex flex-col;
         }
 
         .sidebar-open {
             @apply translate-x-0;
         }
 
+        @media (min-width: 768px) {
+            .sidebar {
+                position: sticky;
+                top: 64px;
+                bottom: auto;
+                left: auto;
+                z-index: 10;
+                width: 212px;
+                height: calc(100vh - 64px);
+                flex-shrink: 0;
+                transform: none;
+            }
+        }
+
+        /* La marque vit dans la topbar sur desktop : ce bloc ne
+           sert plus qu'à coiffer le tiroir mobile. */
         .sidebar-brand {
-            @apply h-[64px] flex items-center px-[24px] border-b border-grey-200;
+            @apply h-[64px] flex items-center px-[24px] border-b border-grey-200 md:hidden;
         }
 
         .sidebar-brand-name {
@@ -86,12 +104,22 @@
         }
 
         .sidebar-nav {
-            @apply px-[12px] py-[20px];
+            @apply flex-1 overflow-y-auto px-[12px] py-[20px];
         }
 
-        .sidebar-section {
-            @apply font-hanken font-medium text-[11px] uppercase tracking-[1.2px]
-                   text-slate-400 px-[12px] mb-[10px];
+        .sidebar-footer {
+            @apply shrink-0 px-[12px] pb-[16px] pt-[12px] border-t border-grey-200;
+        }
+
+        .emergency-button {
+            @apply w-full flex items-center gap-[10px] rounded-[10px] px-[12px] py-[11px] mb-[10px]
+                   bg-brick-600 hover:bg-brick-700 transition
+                   font-hanken font-semibold text-[13px] text-white;
+        }
+
+        .emergency-badge {
+            @apply ml-auto rounded-full bg-white/20 px-[7px] py-[2px]
+                   font-hanken font-bold text-[10px] tracking-[0.6px] text-white;
         }
 
         .nav-item {
@@ -108,10 +136,6 @@
             @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-green-900;
         }
 
-        .nav-item-danger {
-            @apply bg-brick-600 text-white hover:bg-brick-700;
-        }
-
         .nav-icon {
             @apply w-[17px] h-[17px] shrink-0;
         }
@@ -123,13 +147,32 @@
         /* ==========================================================
            4. TOPBAR
         ========================================================== */
+        /* Bandeau pleine largeur, posé AU-DESSUS de la sidebar :
+           la sidebar démarre à 64px, d'où le top collant de la
+           colonne de gauche. */
         .topbar {
-            @apply sticky top-0 z-30 bg-white border-b border-grey-200
-                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-[28px];
+            @apply sticky top-0 z-40 bg-white border-b border-grey-200
+                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-0;
+        }
+
+        .topbar-brand {
+            @apply hidden md:flex items-center shrink-0 w-[212px] px-[24px];
+        }
+
+        .topbar-brand-name {
+            @apply font-jakarta font-extrabold text-[18px] tracking-[0.4px] text-green-900;
+        }
+
+        .topbar-center {
+            @apply hidden md:flex flex-1 justify-center px-[24px];
+        }
+
+        .topbar-actions {
+            @apply flex items-center gap-[6px] ml-auto md:pr-[28px];
         }
 
         .topbar-search {
-            @apply hidden md:block relative flex-1 max-w-[420px];
+            @apply relative w-full max-w-[420px];
         }
 
         .topbar-input {
@@ -216,7 +259,7 @@
         }
 
         .kpi-card {
-            @apply bg-white rounded-[14px] p-[14px] md:p-[18px];
+            @apply bg-white border border-grey-200 rounded-[14px] p-[14px] md:p-[18px];
         }
 
         .kpi-top {
@@ -252,7 +295,7 @@
            7. PANELS
         ========================================================== */
         .panel {
-            @apply bg-white rounded-[14px] p-[16px] md:p-[20px];
+            @apply bg-white border border-grey-200 rounded-[14px] p-[16px] md:p-[20px];
         }
 
         .panel-head {
@@ -454,6 +497,65 @@
 
 <body>
 
+    <!-- ==================================================
+         TOPBAR — pleine largeur, au-dessus de la sidebar
+    =================================================== -->
+    <div class="topbar">
+        <button class="icon-button md:hidden" id="sidebar-toggle" aria-label="Open menu" aria-expanded="false"
+            aria-controls="sidebar">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+        </button>
+
+        <span class="md:hidden font-jakarta font-extrabold text-[15px] text-green-900">
+            M3ak Dashboard
+        </span>
+
+        <!-- aligné sur la colonne de la sidebar -->
+        <div class="topbar-brand">
+            <span class="topbar-brand-name">M3ak Morocco</span>
+        </div>
+
+        <div class="topbar-center">
+            <div class="topbar-search">
+                <svg class="topbar-search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                </svg>
+                <input type="search" class="topbar-input" placeholder="Search citizens, services, or reports...">
+            </div>
+        </div>
+
+        <div class="topbar-actions">
+            <button class="icon-button" aria-label="Notifications">
+                <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                </svg>
+            </button>
+
+            <button class="icon-button hidden md:flex" aria-label="Help">
+                <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path stroke-linecap="round" d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
+                </svg>
+            </button>
+
+            <div class="relative">
+                <button type="button" class="admin-chip" data-menu-toggle aria-expanded="false"
+                    aria-label="Account menu">
+                    <img src="/assets/dashboard-assets/icon-admin.png" class="rounded-full" alt="profile-icon">
+                </button>
+
+                <div class="user-menu hidden" data-menu>
+                    <a href="#">My profile</a>
+                    <a href="#">Admin settings</a>
+                    <button type="button" class="text-brick-600" data-action="logout">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="shell">
 
         <!-- ==================================================
@@ -468,32 +570,7 @@
                 </div>
 
                 <nav class="sidebar-nav">
-                    <p class="sidebar-section">Main menu</p>
-
-                    <a href="#" class="nav-item nav-item-active">
-                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
-                        </svg>
-                        Dashboard
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <rect x="3" y="3" width="18" height="18" rx="3" />
-                            <path stroke-linecap="round" d="M8 15V9m4 6v-3m4 3v-5" />
-                        </svg>
-                        Analytics
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <circle cx="12" cy="8" r="3.4" />
-                            <path stroke-linecap="round" d="M5.5 20c0-3.3 2.9-5.4 6.5-5.4s6.5 2.1 6.5 5.4" />
-                        </svg>
-                        Users
-                    </a>
-
-                    <a href="#" class="nav-item">
+                    <a href="/pages/dashboard/service.html" class="nav-item nav-item-active" aria-current="page">
                         <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
@@ -501,12 +578,44 @@
                         Services
                     </a>
 
+                    <a href="/pages/dashboard/transport.html" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                            <path stroke-linecap="round" d="M4 10h16M8 20h.01M16 20h.01M7 16v3M17 16v3" />
+                        </svg>
+                        Transport
+                    </a>
+
                     <a href="#" class="nav-item">
                         <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-                            <path stroke-linecap="round" d="M14 3v5h5M9 13h6M9 17h4" />
+                            <path stroke-linejoin="round" d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <path stroke-linecap="round" d="M9.5 21v-6h5v6" />
                         </svg>
-                        Reports
+                        Housing
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="3" y="7" width="18" height="13" rx="2.5" />
+                            <path stroke-linecap="round" d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18" />
+                        </svg>
+                        Jobs
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M12 4 2.5 9 12 14l9.5-5z" />
+                            <path stroke-linecap="round" d="M6 11.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.8" />
+                        </svg>
+                        Education
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <rect x="3" y="5" width="18" height="15" rx="2.5" />
+                            <path stroke-linecap="round" d="M12 9v7M8.5 12.5h7" />
+                        </svg>
+                        Healthcare
                     </a>
 
                     <a href="#" class="nav-item">
@@ -517,7 +626,33 @@
                         Payments
                     </a>
 
-                    <p class="sidebar-section mt-[26px]">Support</p>
+                    <a href="/pages/dashboard/marketplace.html" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                            <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                        </svg>
+                        Marketplace
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M12 3.2 3.5 18.3h17z" />
+                            <path stroke-linecap="round" d="M12 9v4m0 2.6h.01" />
+                        </svg>
+                        Emergency
+                    </a>
+                </nav>
+
+                <!-- Poussé en bas par .sidebar-nav en flex-1 -->
+                <div class="sidebar-footer">
+                    <a href="#" class="emergency-button">
+                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                        </svg>
+                        Emergency Support
+                        <span class="emergency-badge">SOS</span>
+                    </a>
 
                     <a href="#" class="nav-item">
                         <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -528,14 +663,14 @@
                         Settings
                     </a>
 
-                    <a href="#" class="nav-item nav-item-danger">
-                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                    <button type="button" class="nav-item w-full" data-action="logout">
+                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 17l5-5-5-5m5 5H9M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6" />
                         </svg>
-                        Emergency Support
-                    </a>
-                </nav>
+                        Logout
+                    </button>
+                </div>
             </aside>
         </header>
 
@@ -543,59 +678,6 @@
              MAIN
         =================================================== -->
         <main class="main">
-
-            <!-- TOPBAR -->
-            <div class="topbar">
-                <button class="icon-button md:hidden" id="sidebar-toggle" aria-label="Open menu">
-                    <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
-                    </svg>
-                </button>
-
-                <span class="md:hidden font-jakarta font-extrabold text-[15px] text-green-900">
-                    M3ak Dashboard
-                </span>
-
-                <div class="topbar-search">
-                    <svg class="topbar-search-icon" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
-                    </svg>
-                    <input type="search" class="topbar-input" placeholder="Search citizens, services, or reports...">
-                </div>
-
-                <div class="flex items-center gap-[6px] ml-auto">
-                    <button class="icon-button" aria-label="Notifications">
-                        <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
-                        </svg>
-                    </button>
-
-                    <button class="icon-button hidden md:flex" aria-label="Help">
-                        <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                            viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9" />
-                            <path stroke-linecap="round"
-                                d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
-                        </svg>
-                    </button>
-
-                    <div class="relative">
-                        <button type="button" class="admin-chip" onclick="toggleMenu()">
-                            <img src="/assets/dashboard-assets/icon-admin.png" class="rounded-full" alt="profile-icon">
-                        </button>
-
-                        <div class="user-menu hidden">
-                            <a href="#">My profile</a>
-                            <a href="#">Admin settings</a>
-                            <button type="button" class="text-brick-600">Sign out</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- PAGE -->
             <div class="page">
@@ -1001,11 +1083,45 @@
     </nav>
 
     <script>
-        const userMenu = document.querySelector(".user-menu");
+        /* ------------------------------------------------------
+           Sidebar mobile : le bouton et le fond existaient mais
+           n'étaient branchés à rien. Le tiroir se ferme au clic
+           sur le fond et à Échap, et le scroll de la page est
+           verrouillé pendant qu'il est ouvert.
+        ------------------------------------------------------ */
+        (function () {
+            "use strict";
 
-        function toggleMenu() {
-            userMenu.classList.toggle("hidden");
-        }
+            var sidebar = document.getElementById("sidebar");
+            var toggle = document.getElementById("sidebar-toggle");
+            var backdrop = document.getElementById("sidebar-backdrop");
+
+            if (!sidebar || !toggle || !backdrop) return;
+
+            function setOpen(open) {
+                sidebar.classList.toggle("sidebar-open", open);
+                backdrop.classList.toggle("hidden", !open);
+                toggle.setAttribute("aria-expanded", String(open));
+                document.body.style.overflow = open ? "hidden" : "";
+            }
+
+            toggle.addEventListener("click", function () {
+                setOpen(!sidebar.classList.contains("sidebar-open"));
+            });
+
+            backdrop.addEventListener("click", function () {
+                setOpen(false);
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") setOpen(false);
+            });
+
+            /* Passage en desktop : le tiroir n'a plus lieu d'être. */
+            window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+                if (e.matches) setOpen(false);
+            });
+        })();
     </script>
 </body>
 

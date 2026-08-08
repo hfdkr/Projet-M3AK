@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <title>M3ak Morocco — Marketplace</title>
+    <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+            --color-brand:      #0B6B45;
+            --color-brand-dark: #095638;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-100:  #D6EADF;
+            --color-danger:     #E1362C;
+            --color-danger-soft:#FCE9E8;
+            --color-amber:      #E8862E;
+
+            --color-ink:        #171D19;
+            --color-ink-muted:  #5B6B62;
+            --color-line:       #DEE4DE;
+            --color-line-soft:  #EDF1ED;
+            --color-surface:    #FFFFFF;
+            --color-canvas:     #F5FBF4;
+            --color-slate-400:  #94A3B8;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        body {
+            @apply bg-canvas font-jakarta text-ink pb-[72px] md:pb-0;
+        }
+
+        .shell { @apply md:flex md:min-h-screen; }
+
+        /* ---------- Sidebar ---------- */
+        .sidebar {
+            @apply fixed inset-y-0 left-0 z-50 w-[248px] bg-surface border-r border-line
+                   -translate-x-full transition-transform duration-300 flex flex-col;
+        }
+        .sidebar-open { @apply translate-x-0; }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                position: sticky; top: 0; bottom: auto; left: auto; z-index: 10;
+                width: 232px; height: 100vh; flex-shrink: 0; transform: none;
+            }
+        }
+
+        .sidebar-backdrop { @apply fixed inset-0 z-40 bg-black/35 hidden md:hidden; }
+
+        .sidebar-brand {
+            @apply shrink-0 flex items-center gap-[10px] px-[20px] h-[68px] border-b border-line;
+        }
+        .brand-mark {
+            @apply w-[34px] h-[34px] rounded-[10px] bg-brand flex items-center justify-center shrink-0;
+        }
+        .brand-name { @apply font-hanken font-extrabold text-[15px] leading-[18px] text-brand; }
+        .brand-sub  { @apply font-jakarta text-[11px] leading-[14px] text-slate-400; }
+
+        .sidebar-nav { @apply flex-1 overflow-y-auto px-[12px] py-[16px]; }
+
+        .nav-item {
+            @apply relative flex items-center gap-[12px] w-full rounded-[10px] px-[12px] py-[10px] mb-[2px]
+                   font-hanken font-medium text-[13px] text-ink-muted hover:bg-brand-soft transition;
+        }
+        .nav-item-active { @apply bg-brand-soft text-brand font-semibold; }
+        .nav-item-active::before {
+            content: "";
+            @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-brand;
+        }
+        .nav-icon { @apply w-[17px] h-[17px] shrink-0; }
+
+        .sidebar-footer { @apply shrink-0 px-[12px] pt-[12px] pb-[16px] border-t border-line; }
+
+        .sos-button {
+            @apply w-full flex items-center gap-[10px] rounded-[10px] px-[12px] py-[11px] mb-[8px]
+                   bg-danger hover:brightness-95 transition font-hanken font-semibold text-[13px] text-white;
+        }
+        .sos-badge {
+            @apply ml-auto rounded-full bg-white/20 px-[7px] py-[2px]
+                   font-hanken font-bold text-[10px] tracking-[0.6px] text-white;
+        }
+
+        /* ---------- Topbar ---------- */
+        .topbar {
+            @apply hidden md:flex sticky top-0 z-30 h-[68px] items-center gap-[14px]
+                   bg-surface border-b border-line px-[24px];
+        }
+        .mobile-header {
+            @apply md:hidden sticky top-0 z-30 flex flex-col gap-[10px]
+                   bg-surface border-b border-line px-[16px] py-[10px];
+        }
+
+        .search-wrap { @apply relative flex-1 max-w-[440px]; }
+        .field-icon {
+            @apply absolute left-[13px] top-1/2 -translate-y-1/2 w-[15px] h-[15px] text-slate-400;
+        }
+        .search-input {
+            @apply w-full h-[38px] rounded-[10px] bg-canvas border border-line pl-[36px] pr-[14px]
+                   text-[13px] text-ink outline-none focus:border-brand transition;
+        }
+
+        .icon-button {
+            @apply relative w-[36px] h-[36px] rounded-full flex items-center justify-center
+                   text-ink-muted hover:bg-brand-soft cursor-pointer;
+        }
+        .bell-dot {
+            @apply absolute top-[7px] right-[8px] w-[7px] h-[7px] rounded-full bg-danger ring-2 ring-white;
+        }
+
+        .avatar {
+            @apply w-[28px] h-[28px] rounded-full bg-brand text-white font-hanken font-bold text-[11px]
+                   flex items-center justify-center shrink-0;
+        }
+        .profile-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-brand-soft pl-[5px] pr-[11px] py-[5px]
+                   hover:bg-brand-100 transition cursor-pointer;
+        }
+        .profile-name { @apply font-hanken font-semibold text-[13px] text-brand max-w-[130px] truncate; }
+
+        .menu-panel {
+            @apply absolute right-0 mt-[8px] w-[190px] bg-surface rounded-[12px] shadow-lg
+                   border border-line py-[6px] z-50;
+        }
+        .menu-panel a, .menu-panel button {
+            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
+                   text-ink-muted hover:bg-brand-soft cursor-pointer;
+        }
+
+        /* ---------- Page ---------- */
+        .main { @apply flex-1 min-w-0; }
+        .page { @apply px-[16px] py-[18px] md:px-[26px] md:py-[24px]; }
+
+        .page-title {
+            @apply font-hanken font-extrabold text-[22px] leading-[28px] text-ink md:text-[26px] md:leading-[32px];
+        }
+        .page-subtitle { @apply font-jakarta text-[13px] text-ink-muted mt-[4px]; }
+
+        /* ---------- Barre d'outils ---------- */
+        .toolbar {
+            @apply flex flex-wrap items-center gap-[10px] mt-[18px] mb-[14px];
+        }
+
+        .pill-row {
+            @apply flex items-center gap-[8px] overflow-x-auto pb-[2px] -mx-[2px] px-[2px];
+        }
+
+        .pill {
+            @apply shrink-0 rounded-full border border-line bg-surface px-[14px] py-[7px]
+                   font-hanken font-semibold text-[12px] text-ink-muted whitespace-nowrap
+                   hover:border-brand cursor-pointer transition;
+        }
+        .pill-active { @apply bg-brand border-brand text-white; }
+
+        .control {
+            @apply h-[36px] rounded-[10px] border border-line bg-surface px-[12px]
+                   font-hanken font-semibold text-[12px] text-ink-muted
+                   hover:border-brand cursor-pointer transition outline-none;
+        }
+
+        .control-button { @apply relative flex items-center gap-[7px]; }
+
+        /* Pas de `display` ici : ces éléments basculent en `hidden`,
+           et une propriété posée par @apply dans une règle non
+           layerisée l'emporterait sur l'utilitaire. Le display
+           reste donc dans l'attribut class du HTML. */
+        .filter-count {
+            @apply absolute -top-[6px] -right-[6px] min-w-[18px] h-[18px] rounded-full bg-brand
+                   px-[5px] font-hanken font-bold text-[10px] text-white;
+        }
+
+        .filter-panel {
+            @apply rounded-[14px] border border-line bg-surface p-[16px] mb-[16px];
+        }
+        .filter-label {
+            @apply font-hanken font-semibold text-[12px] text-ink mb-[6px] flex items-center justify-between;
+        }
+        .filter-value { @apply font-hanken font-bold text-[12px] text-brand tabular-nums; }
+        .filter-range { @apply w-full accent-brand cursor-pointer; }
+
+        /* ---------- Grille ---------- */
+        .product-grid {
+            @apply grid grid-cols-2 gap-[12px] md:grid-cols-3 md:gap-[16px] xl:grid-cols-4;
+        }
+
+        .product-card {
+            @apply flex flex-col rounded-[16px] border border-line bg-surface overflow-hidden
+                   hover:border-brand transition;
+        }
+
+        /* Le dégradé vit sur le conteneur : si le fichier image
+           manque, onerror masque le <img> et la teinte reste. */
+        .product-media {
+            @apply relative h-[132px] md:h-[156px] overflow-hidden;
+        }
+        .product-image { @apply w-full h-full object-cover; }
+
+        .product-initial {
+            @apply absolute inset-0 flex items-center justify-center
+                   font-hanken font-extrabold text-[34px] text-white/70 pointer-events-none;
+        }
+
+        .wishlist-button {
+            @apply absolute top-[8px] right-[8px] w-[30px] h-[30px] rounded-full bg-white/90
+                   flex items-center justify-center text-[14px] leading-none
+                   hover:bg-white cursor-pointer transition z-10;
+        }
+
+        .product-tag {
+            @apply absolute top-[8px] left-[8px] rounded-full bg-black/55 px-[8px] py-[3px]
+                   font-hanken font-semibold text-[10px] text-white;
+        }
+
+        .product-body { @apply flex flex-col flex-1 p-[12px] md:p-[14px]; }
+        .product-name {
+            @apply font-hanken font-bold text-[13px] leading-[18px] text-ink line-clamp-2;
+        }
+        .product-meta { @apply font-jakarta text-[11px] text-slate-400 mt-[3px]; }
+
+        .product-foot { @apply flex items-end justify-between gap-[8px] mt-auto pt-[10px]; }
+        .product-price { @apply font-hanken font-extrabold text-[14px] text-brand whitespace-nowrap; }
+        .product-rating {
+            @apply flex items-center gap-[3px] font-hanken font-semibold text-[11px] text-amber;
+        }
+
+        /* ---------- Carte service expert ---------- */
+        .expert-card {
+            @apply flex flex-col rounded-[16px] overflow-hidden text-white
+                   order-first md:order-none col-span-2 md:col-span-1;
+            background: linear-gradient(150deg, #0B6B45 0%, #0E8A57 55%, #12A167 100%);
+        }
+        .expert-body { @apply flex flex-col flex-1 p-[16px]; }
+        .expert-kicker {
+            @apply inline-flex w-fit items-center gap-[6px] rounded-full bg-white/18 px-[10px] py-[4px]
+                   font-hanken font-bold text-[10px] tracking-[0.6px] uppercase;
+        }
+        .expert-title { @apply font-hanken font-extrabold text-[17px] leading-[22px] mt-[12px]; }
+        .expert-text { @apply font-jakarta text-[12px] leading-[18px] text-white/80 mt-[6px]; }
+        .expert-button {
+            @apply mt-auto pt-[14px];
+        }
+        .expert-button span {
+            @apply inline-flex items-center gap-[7px] rounded-[10px] bg-white px-[14px] py-[8px]
+                   font-hanken font-semibold text-[12px] text-brand hover:bg-brand-soft
+                   cursor-pointer transition;
+        }
+
+        /* ---------- État vide / plus de produits ---------- */
+        .empty-state {
+            @apply rounded-[16px] border border-dashed border-line bg-surface
+                   px-[20px] py-[48px] text-center;
+        }
+        .empty-title { @apply font-hanken font-bold text-[15px] text-ink; }
+        .empty-text { @apply font-jakarta text-[13px] text-slate-400 mt-[6px]; }
+
+        .load-more {
+            @apply mx-auto mt-[20px] items-center gap-[8px] rounded-[12px] border border-line
+                   bg-surface px-[22px] py-[11px] font-hanken font-semibold text-[13px] text-brand
+                   hover:border-brand cursor-pointer transition;
+        }
+
+        /* ---------- Bottom nav ---------- */
+        .bottom-nav {
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface border-t border-line
+                   flex items-center justify-around py-[7px];
+        }
+        .bottom-nav-item {
+            @apply flex flex-col items-center gap-[3px] w-[64px] text-slate-400;
+        }
+        .bottom-nav-item-active { @apply text-brand; }
+        .bottom-nav-label { @apply font-hanken font-medium text-[10px]; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition-duration: .001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shell">
+
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- ==================================================
+             SIDEBAR
+        =================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-mark">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" />
+                    </svg>
+                </span>
+                <span>
+                    <span class="brand-name block">M3ak</span>
+                    <span class="brand-sub block">Citizen Portal</span>
+                </span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="/pages/dashboard/overview.html" class="nav-item">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+                    </svg>
+                    Home
+                </a>
+
+                <a href="/pages/dashboard/service.html" class="nav-item">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 4h3v3H4zm6.5 0h3v3h-3zM17 4h3v3h-3zM4 10.5h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3zM4 17h3v3H4zm6.5 0h3v3h-3zm6.5 0h3v3h-3z" />
+                    </svg>
+                    Services
+                </a>
+
+                <a href="/pages/dashboard/transport.html" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                        <path stroke-linecap="round" d="M4 10h16M8 20h.01M16 20h.01M7 16v3M17 16v3" />
+                    </svg>
+                    Transport
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <path stroke-linecap="round" d="M9.5 21v-6h5v6" />
+                    </svg>
+                    Housing
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="7" width="18" height="13" rx="2.5" />
+                        <path stroke-linecap="round" d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18" />
+                    </svg>
+                    Jobs
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M12 4 2.5 9 12 14l9.5-5z" />
+                        <path stroke-linecap="round" d="M6 11.2V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.8" />
+                    </svg>
+                    Education
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="15" rx="2.5" />
+                        <path stroke-linecap="round" d="M12 9v7M8.5 12.5h7" />
+                    </svg>
+                    Healthcare
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
+                        <circle cx="12" cy="12" r="2.4" />
+                    </svg>
+                    Payments
+                </a>
+
+                <a href="/pages/dashboard/marketplace.html" class="nav-item nav-item-active" aria-current="page">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                        <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                    </svg>
+                    Marketplace
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="sos-button">
+                    <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
+                    </svg>
+                    Emergency
+                    <span class="sos-badge">SOS</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.9 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.6a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z" />
+                    </svg>
+                    Settings
+                </a>
+
+                <button type="button" class="nav-item" data-action="logout">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 17l5-5-5-5m5 5H9M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6" />
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- ==================================================
+             MAIN
+        =================================================== -->
+        <main class="main">
+
+            <!-- Topbar desktop -->
+            <div class="topbar">
+                <div class="search-wrap">
+                    <svg class="field-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                    </svg>
+                    <input type="search" id="searchDesktop" class="search-input"
+                        placeholder="Search rugs, ceramics, argan oil...">
+                </div>
+
+                <div class="flex items-center gap-[8px] ml-auto">
+                    <a href="#" class="icon-button" aria-label="Cart">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                            <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                        </svg>
+                    </a>
+
+                    <button type="button" class="icon-button" aria-label="Notifications">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
+                        </svg>
+                        <span class="bell-dot"></span>
+                    </button>
+
+                    <div class="relative">
+                        <button type="button" class="profile-chip" data-menu-toggle aria-expanded="false"
+                            aria-haspopup="true">
+                            <span class="avatar" data-user-initials>M3</span>
+                            <span class="profile-name" data-user-name>Citizen</span>
+                        </button>
+
+                        <div class="menu-panel hidden" data-menu>
+                            <a href="/pages/dashboard/overview.html">My dashboard</a>
+                            <a href="#">My profile</a>
+                            <button type="button" class="text-danger!" data-action="logout">Sign out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header mobile -->
+            <div class="mobile-header">
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="icon-button" id="sidebar-toggle" aria-label="Open menu"
+                        aria-expanded="false" aria-controls="sidebar">
+                        <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+                        </svg>
+                    </button>
+
+                    <span class="font-hanken font-extrabold text-[15px] text-brand">Marketplace</span>
+
+                    <a href="#" class="icon-button ml-auto" aria-label="Cart">
+                        <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                            viewBox="0 0 24 24">
+                            <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                            <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+                        </svg>
+                    </a>
+
+                    <span class="avatar" data-user-initials>M3</span>
+                </div>
+
+                <div class="search-wrap max-w-none">
+                    <svg class="field-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+                    </svg>
+                    <input type="search" id="searchMobile" class="search-input" placeholder="Search the marketplace...">
+                </div>
+            </div>
+
+            <!-- ==============================================
+                 PAGE
+            =============================================== -->
+            <div class="page">
+
+                <div>
+                    <h1 class="page-title">Moroccan Marketplace</h1>
+                    <p class="page-subtitle">
+                        Crafts, produce and expert services from verified artisans across the kingdom.
+                    </p>
+                </div>
+
+                <!-- Catégories -->
+                <div class="toolbar">
+                    <div class="pill-row flex-1" id="categoryRow"></div>
+
+                    <label class="sr-only" for="sortSelect">Sort products</label>
+                    <select id="sortSelect" class="control">
+                        <option value="newest">Newest</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+
+                    <button type="button" class="control control-button" id="filterToggle" aria-expanded="false"
+                        aria-controls="filterPanel">
+                        <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" d="M4 6h16M7 12h10M10 18h4" />
+                        </svg>
+                        Filter
+                        <span class="filter-count flex items-center justify-center hidden"
+                            id="filterCount">0</span>
+                    </button>
+                </div>
+
+                <!-- Panneau de filtres -->
+                <div class="filter-panel hidden" id="filterPanel">
+                    <div class="grid gap-[18px] sm:grid-cols-2">
+                        <div>
+                            <p class="filter-label">
+                                Maximum price
+                                <span class="filter-value" id="priceValue">DH 3,000</span>
+                            </p>
+                            <input type="range" id="priceRange" class="filter-range" min="100" max="3000" step="50"
+                                value="3000">
+                        </div>
+
+                        <div>
+                            <p class="filter-label">
+                                Minimum rating
+                                <span class="filter-value" id="ratingValue">Any</span>
+                            </p>
+                            <input type="range" id="ratingRange" class="filter-range" min="0" max="5" step="0.5"
+                                value="0">
+                        </div>
+                    </div>
+
+                    <button type="button" class="control mt-[14px]" id="filterReset">Reset filters</button>
+                </div>
+
+                <!-- Grille produits -->
+                <div class="product-grid" id="productGrid"></div>
+
+                <!-- État vide -->
+                <div class="empty-state hidden" id="emptyState">
+                    <p class="empty-title">Nothing matches that search</p>
+                    <p class="empty-text">Try another keyword, widen the price range, or reset the filters.</p>
+                </div>
+
+                <!-- Charger plus -->
+                <button type="button" class="load-more flex hidden" id="loadMore">
+                    Discover More Goods
+                    <svg class="w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0-6-6m6 6 6-6" />
+                    </svg>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==================================================
+         BOTTOM NAV
+    =================================================== -->
+    <nav class="bottom-nav">
+        <a href="/pages/dashboard/overview.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
+            </svg>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+
+        <a href="/pages/dashboard/service.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linejoin="round" d="M12 3 3 8l9 5 9-5zM3 13l9 5 9-5" />
+            </svg>
+            <span class="bottom-nav-label">Services</span>
+        </a>
+
+        <a href="/pages/dashboard/transport.html" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="12" rx="2.5" />
+                <path stroke-linecap="round" d="M4 10h16M7 16v3M17 16v3" />
+            </svg>
+            <span class="bottom-nav-label">Transport</span>
+        </a>
+
+        <a href="/pages/dashboard/marketplace.html" class="bottom-nav-item bottom-nav-item-active" aria-current="page">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linejoin="round" d="M4 8h16l-1.2 11a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8z" />
+                <path stroke-linecap="round" d="M8.5 11V7a3.5 3.5 0 0 1 7 0v4" />
+            </svg>
+            <span class="bottom-nav-label">Market</span>
+        </a>
+
+        <a href="#" class="bottom-nav-item">
+            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="3.4" />
+                <path stroke-linecap="round" d="M5.5 20c0-3.3 2.9-5.4 6.5-5.4s6.5 2.1 6.5 5.4" />
+            </svg>
+            <span class="bottom-nav-label">Account</span>
+        </a>
+    </nav>
+
+    <script src="/pages/js/ui.js"></script>
+    <script>
+        (function () {
+            "use strict";
+
+            var $ = M3akUI.$;
+            var $$ = M3akUI.$$;
+            var toast = M3akUI.toast;
+
+            var PAGE_SIZE = 8;
+            var SEARCH_DEBOUNCE = 220;
+            var EXPERT_POSITION = 2;      /* 3ᵉ carte sur desktop */
+            var MAX_PRICE = 3000;
+
+            /* ==================================================
+               1. Catalogue
+            =================================================== */
+            var products = [
+                { slug: "beni-ourain-rug", name: "Beni Ourain Wool Rug", category: "Crafts", city: "Azilal", price: 2450, rating: 4.9, added: 12, hue: 24, tag: "Handwoven" },
+                { slug: "fes-blue-plate", name: "Fès Blue Ceramic Plate", category: "Ceramics", city: "Fès", price: 320, rating: 4.7, added: 9, hue: 208 },
+                { slug: "argan-oil-500", name: "Pure Argan Oil 500ml", category: "Food", city: "Essaouira", price: 260, rating: 4.8, added: 14, hue: 44, tag: "Cooperative" },
+                { slug: "safi-tagine", name: "Safi Clay Tagine", category: "Ceramics", city: "Safi", price: 185, rating: 4.4, added: 5, hue: 16 },
+                { slug: "marrakech-lantern", name: "Pierced Brass Lantern", category: "Decor", city: "Marrakech", price: 540, rating: 4.6, added: 11, hue: 38 },
+                { slug: "sabra-cushion", name: "Sabra Silk Cushion Cover", category: "Textiles", city: "Rabat", price: 145, rating: 4.3, added: 3, hue: 320 },
+                { slug: "saffron-taliouine", name: "Taliouine Saffron 2g", category: "Food", city: "Taliouine", price: 380, rating: 5.0, added: 15, hue: 350, tag: "Rare" },
+                { slug: "leather-babouche", name: "Hand-stitched Babouche", category: "Leather", city: "Fès", price: 220, rating: 4.2, added: 7, hue: 12 },
+                { slug: "cedar-jewel-box", name: "Cedar Wood Jewellery Box", category: "Decor", city: "Essaouira", price: 410, rating: 4.5, added: 8, hue: 28 },
+                { slug: "amlou-jar", name: "Amlou Almond Spread", category: "Food", city: "Agadir", price: 95, rating: 4.6, added: 13, hue: 36 },
+                { slug: "atlas-kilim", name: "Middle Atlas Kilim Runner", category: "Crafts", city: "Khenifra", price: 1280, rating: 4.7, added: 6, hue: 356 },
+                { slug: "tan-leather-pouf", name: "Tan Leather Pouf", category: "Leather", city: "Marrakech", price: 690, rating: 4.1, added: 4, hue: 20 }
+            ];
+
+            var categories = ["All"].concat(products
+                .map(function (p) { return p.category; })
+                .filter(function (value, index, list) { return list.indexOf(value) === index; })
+                .sort());
+
+            /* ==================================================
+               2. État
+            =================================================== */
+            var state = {
+                query: "",
+                category: "All",
+                sort: "newest",
+                maxPrice: MAX_PRICE,
+                minRating: 0,
+                visible: PAGE_SIZE
+            };
+
+            var wishlist = Object.create(null);
+
+            /* ==================================================
+               3. Rendu
+            =================================================== */
+            var grid = $("#productGrid");
+            var emptyState = $("#emptyState");
+            var loadMore = $("#loadMore");
+
+            function escapeHtml(value) {
+                return String(value)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;");
+            }
+
+            function priceLabel(value) {
+                return "DH " + value.toLocaleString("en-US");
+            }
+
+            /* Le dégradé est porté par le conteneur : quand
+               /assets/image-marketplace/<slug>.jpg n'existe pas,
+               onerror masque l'image et la teinte reste visible. */
+            function mediaStyle(product) {
+                return "background:linear-gradient(140deg," +
+                    "hsl(" + product.hue + " 52% 62%) 0%," +
+                    "hsl(" + ((product.hue + 26) % 360) + " 46% 38%) 100%)";
+            }
+
+            function productCard(product) {
+                var liked = wishlist[product.slug] === true;
+
+                return '' +
+                    '<article class="product-card">' +
+                    '  <div class="product-media" style="' + mediaStyle(product) + '">' +
+                    '    <span class="product-initial">' + escapeHtml(product.name.charAt(0)) + '</span>' +
+                    '    <img class="product-image" src="/assets/image-marketplace/' + product.slug + '.jpg"' +
+                    '         alt="" loading="lazy" onerror="this.style.display=\'none\'">' +
+                    (product.tag ? '    <span class="product-tag">' + escapeHtml(product.tag) + '</span>' : "") +
+                    '    <button type="button" class="wishlist-button" data-wishlist="' + product.slug + '"' +
+                    '            aria-pressed="' + liked + '" aria-label="Add to wishlist">' +
+                    (liked ? "❤️" : "🤍") +
+                    '    </button>' +
+                    '  </div>' +
+                    '  <div class="product-body">' +
+                    '    <h3 class="product-name">' + escapeHtml(product.name) + '</h3>' +
+                    '    <p class="product-meta">' + escapeHtml(product.city) + ' · ' + escapeHtml(product.category) + '</p>' +
+                    '    <div class="product-foot">' +
+                    '      <span class="product-price">' + priceLabel(product.price) + '</span>' +
+                    '      <span class="product-rating">★ ' + product.rating.toFixed(1) + '</span>' +
+                    '    </div>' +
+                    '  </div>' +
+                    '</article>';
+            }
+
+            var EXPERT_CARD = '' +
+                '<article class="expert-card">' +
+                '  <div class="expert-body">' +
+                '    <span class="expert-kicker">Expert Service</span>' +
+                '    <h3 class="expert-title">Zellige Master Craftsman</h3>' +
+                '    <p class="expert-text">' +
+                '      Book a certified zellige artisan for a restoration or a custom mosaic.' +
+                '      Verified by the Chamber of Crafts, quoted within 48 hours.' +
+                '    </p>' +
+                '    <div class="expert-button">' +
+                '      <span data-expert>Request a quote</span>' +
+                '    </div>' +
+                '  </div>' +
+                '</article>';
+
+            function matches(product) {
+                var query = state.query.trim().toLowerCase();
+
+                if (state.category !== "All" && product.category !== state.category) return false;
+                if (product.price > state.maxPrice) return false;
+                if (product.rating < state.minRating) return false;
+
+                if (!query) return true;
+                return (product.name + " " + product.city + " " + product.category)
+                    .toLowerCase().indexOf(query) > -1;
+            }
+
+            var SORTERS = {
+                "newest": function (a, b) { return b.added - a.added; },
+                "price-asc": function (a, b) { return a.price - b.price; },
+                "price-desc": function (a, b) { return b.price - a.price; },
+                "rating": function (a, b) { return b.rating - a.rating; }
+            };
+
+            function render() {
+                var found = products.filter(matches).sort(SORTERS[state.sort]);
+                var shown = found.slice(0, state.visible);
+
+                var cards = shown.map(productCard);
+
+                /* La carte expert s'insère en 3ᵉ position ; sur mobile
+                   c'est order-first qui la fait remonter en premier. */
+                cards.splice(Math.min(EXPERT_POSITION, cards.length), 0, EXPERT_CARD);
+
+                /* Aucun résultat : on vide la grille plutôt que de la
+                   masquer, une grille vide n'occupe aucune place. */
+                grid.innerHTML = found.length ? cards.join("") : "";
+
+                emptyState.classList.toggle("hidden", found.length > 0);
+                loadMore.classList.toggle("hidden", found.length <= state.visible);
+            }
+
+            /* ==================================================
+               4. Catégories
+            =================================================== */
+            var categoryRow = $("#categoryRow");
+
+            categoryRow.innerHTML = categories.map(function (name) {
+                return '<button type="button" class="pill" data-category="' + escapeHtml(name) + '">' +
+                    escapeHtml(name) + '</button>';
+            }).join("");
+
+            function paintCategories() {
+                $$("[data-category]", categoryRow).forEach(function (pill) {
+                    var active = pill.dataset.category === state.category;
+                    pill.classList.toggle("pill-active", active);
+                    pill.setAttribute("aria-pressed", String(active));
+                });
+            }
+
+            categoryRow.addEventListener("click", function (e) {
+                var pill = e.target.closest("[data-category]");
+                if (!pill) return;
+
+                state.category = pill.dataset.category;
+                state.visible = PAGE_SIZE;
+                paintCategories();
+                render();
+            });
+
+            paintCategories();
+
+            /* ==================================================
+               5. Recherche — les deux champs restent alignés
+            =================================================== */
+            var searchDesktop = $("#searchDesktop");
+            var searchMobile = $("#searchMobile");
+            var searchTimer = null;
+
+            function onSearch(source, mirror) {
+                source.addEventListener("input", function () {
+                    if (mirror.value !== source.value) mirror.value = source.value;
+
+                    window.clearTimeout(searchTimer);
+                    searchTimer = window.setTimeout(function () {
+                        state.query = source.value;
+                        state.visible = PAGE_SIZE;
+                        render();
+                    }, SEARCH_DEBOUNCE);
+                });
+            }
+
+            onSearch(searchDesktop, searchMobile);
+            onSearch(searchMobile, searchDesktop);
+
+            /* ==================================================
+               6. Tri
+            =================================================== */
+            $("#sortSelect").addEventListener("change", function (e) {
+                state.sort = e.target.value;
+                render();
+            });
+
+            /* ==================================================
+               7. Filtres
+            =================================================== */
+            var filterToggle = $("#filterToggle");
+            var filterPanel = $("#filterPanel");
+            var filterCount = $("#filterCount");
+            var priceRange = $("#priceRange");
+            var ratingRange = $("#ratingRange");
+            var priceValue = $("#priceValue");
+            var ratingValue = $("#ratingValue");
+
+            filterToggle.addEventListener("click", function () {
+                var open = filterPanel.classList.toggle("hidden") === false;
+                filterToggle.setAttribute("aria-expanded", String(open));
+            });
+
+            function paintFilterCount() {
+                var active = 0;
+                if (state.maxPrice < MAX_PRICE) active += 1;
+                if (state.minRating > 0) active += 1;
+
+                filterCount.textContent = String(active);
+                filterCount.classList.toggle("hidden", active === 0);
+            }
+
+            priceRange.addEventListener("input", function () {
+                state.maxPrice = Number(priceRange.value);
+                state.visible = PAGE_SIZE;
+                priceValue.textContent = priceLabel(state.maxPrice);
+                paintFilterCount();
+                render();
+            });
+
+            ratingRange.addEventListener("input", function () {
+                state.minRating = Number(ratingRange.value);
+                state.visible = PAGE_SIZE;
+                ratingValue.textContent = state.minRating > 0 ? state.minRating.toFixed(1) + "★" : "Any";
+                paintFilterCount();
+                render();
+            });
+
+            $("#filterReset").addEventListener("click", function () {
+                state.maxPrice = MAX_PRICE;
+                state.minRating = 0;
+                state.visible = PAGE_SIZE;
+
+                priceRange.value = String(MAX_PRICE);
+                ratingRange.value = "0";
+                priceValue.textContent = priceLabel(MAX_PRICE);
+                ratingValue.textContent = "Any";
+
+                paintFilterCount();
+                render();
+                toast("Filters reset");
+            });
+
+            /* ==================================================
+               8. Charger plus
+            =================================================== */
+            loadMore.addEventListener("click", function () {
+                state.visible += PAGE_SIZE;
+                render();
+            });
+
+            /* ==================================================
+               9. Wishlist et devis expert
+            =================================================== */
+            grid.addEventListener("click", function (e) {
+                var heart = e.target.closest("[data-wishlist]");
+                if (heart) {
+                    var slug = heart.dataset.wishlist;
+                    var liked = wishlist[slug] !== true;
+
+                    wishlist[slug] = liked;
+                    heart.textContent = liked ? "❤️" : "🤍";
+                    heart.setAttribute("aria-pressed", String(liked));
+
+                    toast(liked ? "Saved to your wishlist" : "Removed from your wishlist");
+                    return;
+                }
+
+                if (e.target.closest("[data-expert]")) {
+                    toast("Quote requested — an artisan will answer within 48 hours.");
+                }
+            });
+
+            /* ==================================================
+               10. Sidebar mobile
+            =================================================== */
+            (function sidebarDrawer() {
+                var sidebar = $("#sidebar");
+                var toggle = $("#sidebar-toggle");
+                var backdrop = $("#sidebar-backdrop");
+                if (!sidebar || !toggle || !backdrop) return;
+
+                function setOpen(open) {
+                    sidebar.classList.toggle("sidebar-open", open);
+                    backdrop.classList.toggle("hidden", !open);
+                    toggle.setAttribute("aria-expanded", String(open));
+                    document.body.style.overflow = open ? "hidden" : "";
+                }
+
+                toggle.addEventListener("click", function () {
+                    setOpen(!sidebar.classList.contains("sidebar-open"));
+                });
+                backdrop.addEventListener("click", function () { setOpen(false); });
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape") setOpen(false);
+                });
+                window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+                    if (e.matches) setOpen(false);
+                });
+            })();
+
+            render();
+        })();
+    </script>
+</body>
+
+</html>

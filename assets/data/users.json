@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "users": [
+    {
+      "id": "usr_ay_48129",
+      "name": "Ahmed Yassine",
+      "email": "ahmed.yassine@m3ak.ma",
+      "nationalId": "AB123456",
+      "role": "citizen",
+      "city": "Casablanca",
+      "phone": "+212 600 112 233",
+      "createdAt": "2026-01-14T09:20:00.000Z",
+      "salt": "ec31761ae30bf8ab0f548ca178d81b30",
+      "iterations": 100000,
+      "passwordHash": "a30f4c57a89dc7c8076ddd7b1d30560a1426a10841115781e531c65874acf2c5"
+    },
+    {
+      "id": "usr_mb_48128",
+      "name": "Meryem Benani",
+      "email": "meryem.benani@m3ak.ma",
+      "nationalId": "CD789012",
+      "role": "citizen",
+      "city": "Rabat",
+      "phone": "+212 661 445 566",
+      "createdAt": "2026-02-03T14:05:00.000Z",
+      "salt": "9bc7bb050888e7de51707f67e9dbc61f",
+      "iterations": 100000,
+      "passwordHash": "ff15453a261c6ab29dba1076b48fec30791815dad0a45c11ed7a13d3f5d8575d"
+    },
+    {
+      "id": "usr_admin_001",
+      "name": "Nadia El Amrani",
+      "email": "admin@m3ak.ma",
+      "nationalId": "ZZ000001",
+      "role": "admin",
+      "city": "Rabat",
+      "phone": "+212 537 000 001",
+      "createdAt": "2025-11-02T08:00:00.000Z",
+      "salt": "29a124c0a9a3c1e2a65d0d1143ae3667",
+      "iterations": 100000,
+      "passwordHash": "2f6e1be147b4a6d44904910982ad6a83ab7f38965c13a53a2f43b955101beecd"
+    }
+  ]
+}

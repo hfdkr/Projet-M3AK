@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
     <title>M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
     <style type="text/tailwindcss">
         @theme{
             /* colors */
@@ -54,7 +55,10 @@
         }
         .button-header{
             @apply md:hidden cursor-pointer font-hanken font-semibold text-[14px] text-green-700 bg-white py-[8px] px-[16px] rounded-[999px];
-        }   
+        }
+        .button-account{
+            @apply flex items-center gap-[8px] font-hanken font-semibold text-[14px] text-green-900 bg-white py-[8px] px-[16px] rounded-[999px] hover:text-blue-600;
+        }
         main{
             @apply flex-1 flex flex-col mt-[24px] mx-[24px] md:mx-0 md:mt-0;
         }
@@ -235,6 +239,17 @@
         .step3-links a:hover{
             @apply text-green-600;
         }
+
+        /* ---------- Accessibilité : mouvement réduit ---------- */
+        @media (prefers-reduced-motion: reduce){
+            .button-get-started,
+            .status-dot{
+                animation: none !important;
+            }
+            *, *::before, *::after{
+                transition-duration: .001ms !important;
+            }
+        }
     </style>
 </head>
 
@@ -243,7 +258,7 @@
     <header>
         <div class="div-header">
             <div class="div-nav">
-                <img src="/assets/images/img-mobile-1.png" alt="logo-page">
+                <img src="/assets/images/img-mobile-1.png" alt="">
                 <h1>
                     M3ak
                 </h1>
@@ -251,15 +266,23 @@
 
             <!-- Desktop / tablet nav links -->
             <nav class="hidden md:flex items-center gap-[40px]">
-                <a href="#" class="navbar">Home</a>
-                <a href="#" class="navbar">Services</a>
-                <a href="./pages/dashboard/overview.htm" class="navbar">About</a>
+                <a href="/index.html" class="navbar">Home</a>
+                <a href="/pages/dashboard/landing.html" class="navbar">Services</a>
+                <a href="/pages/dashboard/landing.html" class="navbar">About</a>
             </nav>
 
-            <!-- Mobile skip button -->
-            <button class="button-header" id="skip-btn">
+            <!-- Visiteur : passer l'onboarding -->
+            <button class="button-header" id="skip-btn" data-auth="guest">
                 Skip
             </button>
+
+            <!-- Connecté : accès direct au portail -->
+            <a href="/pages/dashboard/overview.html" class="button-account" data-auth="user">
+                <span data-user-name>Citizen</span>
+                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
         </div>
     </header>
 
@@ -274,17 +297,17 @@
                 <!-- Image + floating badge -->
                 <section class="section-1">
                     <div class="div-section">
-                        <img src="./assets/images/img-section.png" alt="digital identity card" class="w-full">
+                        <img src="/assets/images/img-section.png" alt="Digital identity card" class="w-full">
 
                         <!-- Top Left Floating Icon -->
                         <div class="div-left-icon">
-                            <img src="./assets/images/icon-card.png" alt="pin-icon" class="w-[18px] h-[18px]">
+                            <img src="/assets/images/icon-card.png" alt="" class="w-[18px] h-[18px]">
                         </div>
 
                         <!-- Status Badge -->
                         <div class="div-badge">
                             <div class="div-img">
-                                <img src="./assets/images/security.png" alt="secure-icon" class="w-[18px] h-[18px]">
+                                <img src="/assets/images/security.png" alt="" class="w-[18px] h-[18px]">
                             </div>
 
                             <div class="status-content">
@@ -332,14 +355,14 @@
                         </div>
 
                         <div class="hero-actions" id="hero-actions-source">
-                            <a href="#about" class="button-get-started">
+                            <a href="/pages/auth/signup.html" class="button-get-started">
                                 Get Started
-                                <img src="./assets/images/icon-button.png" alt="button-icon">
+                                <img src="/assets/images/icon-button.png" alt="">
                             </a>
                             <div class="login-wrapper">
                                 <span class="login-text">Already
-                                    have an accout?
-                                    <a href="#login" class="login-link">Login in</a>
+                                    have an account?
+                                    <a href="/pages/auth/login.html" class="login-link">Log in</a>
                                 </span>
                             </div>
                         </div>
@@ -367,7 +390,7 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <img src="./assets/images/Icon(1).png" alt="security-icon">
+                            <img src="/assets/images/Icon(1).png" alt="">
                         </div>
                         <h4 class="feature-title">Highest Security</h4>
                         <p class="feature-description">
@@ -376,7 +399,7 @@
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <img src="./assets/images/Vector.png" alt="vector-icon">
+                            <img src="/assets/images/Vector.png" alt="">
                         </div>
                         <h4 class="feature-title">Instant Access</h4>
                         <p class="feature-description">
@@ -385,7 +408,7 @@
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <img src="./assets/images/Vector(1).png" alt="vector2-icon">
+                            <img src="/assets/images/Vector(1).png" alt="">
                         </div>
                         <h4 class="feature-title">Cloud Unified</h4>
                         <p class="feature-description">
@@ -406,7 +429,7 @@
                 <div class="carousel flex gap-6 overflow-x-auto cursor-grab active:cursor-grabbing select-none">
                     <div class="step2-card w-[300px] shrink-0">
                         <div class="step2-icon">
-                            <img src="./assets/images/card-secure.png" alt="security icon">
+                            <img src="/assets/images/card-secure.png" alt="">
                         </div>
                         <h4 class="step2-card-title">Highest Security</h4>
                         <p class="step2-card-desc">
@@ -416,7 +439,7 @@
                     </div>
                     <div class="step2-card w-[300px] shrink-0">
                         <div class="step2-icon">
-                            <img src="./assets/images/Vector.png" alt="icon instant acces">
+                            <img src="/assets/images/Vector.png" alt="">
                         </div>
                         <h4 class="step2-card-title">Instant Access</h4>
                         <p class="step2-card-desc">
@@ -427,7 +450,7 @@
                     </div>
                     <div class="step2-card w-[300px] shrink-0">
                         <div class="step2-icon">
-                            <img src="./assets/images/Vector(1).png" alt="icon claude">
+                            <img src="/assets/images/Vector(1).png" alt="">
                         </div>
                         <h4 class="step2-card-title">Cloud Unified</h4>
                         <p class="step2-card-desc">Your documents, always synchr-
@@ -457,12 +480,12 @@
                 <h3 class="step3-title">Contact Us</h3>
 
                 <a href="#" class="step3-btn-primary">
-                    <img src="./assets/images/icon-chat.png" alt="chat support icon">
+                    <img src="/assets/images/icon-chat.png" alt="">
                     Chat with Support
                 </a>
 
                 <a href="#" class="step3-btn-secondary">
-                    <img src="./assets/images/icon-email.png" alt="email chat icon">
+                    <img src="/assets/images/icon-email.png" alt="">
                     Email Support
                 </a>
 
@@ -470,7 +493,7 @@
                     <p class="step3-brand">M3ak</p>
                     <p class="step3-copyright">© 2026 M3ak Morocco. All rights reserved.</p>
                     <div class="step3-links">
-                        <a href="./pages/dashboard/overview.htm">About</a>
+                        <a href="/pages/dashboard/landing.html">About</a>
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>
                         <a href="#">Legal Notice</a>
@@ -493,7 +516,7 @@
     <footer>
         <div class="div-footer">
             <div class="footer-logo">
-                <img src="./assets/images/img-mobile-1.png" alt="logo-page">
+                <img src="/assets/images/img-mobile-1.png" alt="">
                 <span class="footer-brand">M3ak</span>
             </div>
             <p class="footer-copyright">
@@ -506,7 +529,7 @@
         </div>
     </footer>
 
-    <script src="./pages/js/onboarding.js"></script>
+    <script src="/pages/js/onboarding.js"></script>
 </body>
 
 </html>
