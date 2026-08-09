@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Marketplace — M3ak Morocco</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace — M3ak Morocco</title>
     <script src="/pages/js/session.js"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-<style type="text/tailwindcss">
-  @theme {
+    <style type="text/tailwindcss">
+        @theme {
     --color-brand:        #0B6B45;
     --color-brand-dark:   #084F34;
     --color-brand-soft:   #E9F3EE;
@@ -26,300 +28,496 @@
   }
 </style>
 
-<style>
-  html { scroll-behavior: smooth; }
-  body { -webkit-font-smoothing: antialiased; }
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-  /* Fallback visuel si les images locales ne sont pas encore présentes */
-  .ph { background-color: #DFE5E0; background-image: var(--ph); background-size: cover; }
-  .ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
 
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Fallback visuel si les images locales ne sont pas encore présentes */
+        .ph {
+            background-color: #DFE5E0;
+            background-image: var(--ph);
+            background-size: cover;
+        }
 
-  .card-in { animation: cardIn .35s ease both; }
-  @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+        .ph img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
-  }
-</style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .card-in {
+            animation: cardIn .35s ease both;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .001ms !important;
+                transition-duration: .001ms !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-canvas font-sans text-ink antialiased">
 
-<!-- ══════════════ HEADER ══════════════ -->
-<header class="sticky top-0 z-40 hidden border-b border-black/5 bg-white/90 backdrop-blur lg:block">
-  <div class="mx-auto flex h-16 max-w-[1400px] items-center gap-10 px-6">
-    <a href="/index.html" class="text-xl font-extrabold tracking-tight text-brand">M3ak Morocco</a>
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header class="sticky top-0 z-40 hidden border-b border-black/5 bg-white/90 backdrop-blur lg:block">
+        <div class="mx-auto flex h-16 max-w-[1400px] items-center gap-10 px-6">
+            <a href="/index.html" class="text-xl font-extrabold tracking-tight text-brand">M3ak Morocco</a>
 
-    <nav class="flex items-center gap-7 text-sm font-medium text-muted">
-      <a href="/pages/dashboard/service.html" class="hover:text-ink">Services</a>
-      <a href="/pages/dashboard/marketplace.html" class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">Marketplace</a>
-      <a href="#" class="hover:text-ink">Jobs</a>
-    </nav>
+            <nav class="flex items-center gap-7 text-sm font-medium text-muted">
+                <a href="/pages/dashboard/service.html" class="hover:text-ink">Services</a>
+                <a href="/pages/dashboard/marketplace.html"
+                    class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">Marketplace</a>
+                <a href="#" class="hover:text-ink">Jobs</a>
+            </nav>
 
-    <div class="ml-auto flex items-center gap-4">
-      <label class="relative block w-72">
-        <span class="sr-only">Search Moroccan goods</span>
-        <svg class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-        <input id="searchDesktop" type="search" placeholder="Search Moroccan goods..."
-               class="w-full rounded-full border border-black/10 bg-canvas py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
-      </label>
+            <div class="ml-auto flex items-center gap-4">
+                <label class="relative block w-72">
+                    <span class="sr-only">Search Moroccan goods</span>
+                    <svg class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.2-3.2" />
+                    </svg>
+                    <input id="searchDesktop" type="search" placeholder="Search Moroccan goods..."
+                        class="w-full rounded-full border border-black/10 bg-canvas py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                </label>
 
-      <button type="button" class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
-        <span class="sr-only">Notifications</span>
-        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-        <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
-      </button>
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Notifications</span>
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+                    </svg>
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
+                </button>
 
-      <button type="button" class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft text-sm font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
-        <span class="sr-only">Your profile</span>SA
-      </button>
-    </div>
-  </div>
-</header>
+                <button type="button"
+                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft text-sm font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Your profile</span>SA
+                </button>
+            </div>
+        </div>
+    </header>
 
-<div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
+    <div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
 
-  <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
-  <aside class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 py-8 pr-6 lg:block">
-    <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Categories</p>
+        <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
+        <aside
+            class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 py-8 pr-6 lg:block">
+            <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Categories</p>
 
-    <nav class="space-y-1 text-sm font-medium">
-      <a href="/pages/dashboard/service.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
-        <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-        All Services
-      </a>
-      <a href="/pages/dashboard/marketplace.html" aria-current="page" class="flex items-center gap-3 rounded-xl bg-brand-soft px-3 py-2.5 font-semibold text-brand">
-        <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0"/><path d="M5 12v8h14v-8"/></svg>
-        Marketplace
-      </a>
-      <a href="#" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
-        <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg>
-        Housing
-      </a>
-      <a href="/pages/dashboard/transport.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
-        <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 17h14"/><path d="M4 17V9.5L6 5h12l2 4.5V17"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/></svg>
-        Transport
-      </a>
-      <a href="#" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
-        <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m2 8 10-4 10 4-10 4z"/><path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
-        Education
-      </a>
-    </nav>
+            <nav class="space-y-1 text-sm font-medium">
+                <a href="/pages/dashboard/service.html"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                    </svg>
+                    All Services
+                </a>
+                <a href="/pages/dashboard/marketplace.html" aria-current="page"
+                    class="flex items-center gap-3 rounded-xl bg-brand-soft px-3 py-2.5 font-semibold text-brand">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linejoin="round">
+                        <path d="M3 9.5 4.5 4h15L21 9.5" />
+                        <path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" />
+                        <path d="M5 12v8h14v-8" />
+                    </svg>
+                    Marketplace
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linejoin="round">
+                        <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                        <path d="M9 21v-7h6v7" />
+                    </svg>
+                    Housing
+                </a>
+                <a href="/pages/dashboard/transport.html"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linejoin="round">
+                        <path d="M5 17h14" />
+                        <path d="M4 17V9.5L6 5h12l2 4.5V17" />
+                        <circle cx="7.5" cy="17" r="2" />
+                        <circle cx="16.5" cy="17" r="2" />
+                    </svg>
+                    Transport
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linejoin="round">
+                        <path d="m2 8 10-4 10 4-10 4z" />
+                        <path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
+                    </svg>
+                    Education
+                </a>
+            </nav>
 
-    <a href="#" class="mt-6 flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-      <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M2 12h20" transform="rotate(45 12 12)"/><path d="M12 2v20M2 12h20"/></svg>
-      Emergency Support
-    </a>
+            <a href="#"
+                class="mt-6 flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+                <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M12 2v20M2 12h20" transform="rotate(45 12 12)" />
+                    <path d="M12 2v20M2 12h20" />
+                </svg>
+                Emergency Support
+            </a>
 
-    <a href="#" class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-ink">
-      <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z"/></svg>
-      Settings
-    </a>
-  </aside>
+            <a href="#"
+                class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-ink">
+                <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" />
+                </svg>
+                Settings
+            </a>
+        </aside>
 
-  <!-- ══════════════ MAIN ══════════════ -->
-  <main class="min-w-0 flex-1 pb-28 pt-6 lg:pb-16 lg:pt-8">
+        <!-- ══════════════ MAIN ══════════════ -->
+        <main class="min-w-0 flex-1 pb-28 pt-6 lg:pb-16 lg:pt-8">
 
-    <!-- Titre mobile + recherche mobile -->
-    <div class="lg:hidden">
-      <h1 class="text-2xl font-extrabold tracking-tight text-brand">Marketplace</h1>
-      <label class="relative mt-4 block">
-        <span class="sr-only">Search Moroccan goods</span>
-        <svg class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-        <input id="searchMobile" type="search" placeholder="Search Moroccan goods..."
-               class="w-full rounded-full border border-black/10 bg-white py-3 pl-11 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
-      </label>
-    </div>
-
-    <!-- En-tête desktop -->
-    <div class="hidden items-start justify-between gap-6 lg:flex">
-      <div class="max-w-xl">
-        <h1 class="text-[26px] font-extrabold tracking-tight">Moroccan Marketplace</h1>
-        <p class="mt-2 text-sm leading-relaxed text-muted">
-          Discover authentic local products, hand-crafted goods, and premium professional services across the Kingdom.
-        </p>
-      </div>
-
-      <div class="flex shrink-0 items-center gap-2">
-        <!-- Filter -->
-        <div class="relative">
-          <button id="filterBtn" type="button" aria-expanded="false" aria-controls="filterPanel"
-                  class="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3.5 py-2 text-sm font-medium hover:border-brand-line focus-visible:ring-2 focus-visible:ring-brand/30">
-            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
-            Filter
-            <span id="filterCount" class="hidden rounded-full bg-brand px-1.5 text-[10px] font-bold text-white">1</span>
-          </button>
-
-          <div id="filterPanel" class="absolute right-0 top-11 z-30 hidden w-72 rounded-2xl border border-black/5 bg-white p-4 shadow-xl">
-            <p class="text-xs font-bold uppercase tracking-wider text-muted">Max price</p>
-            <input id="priceRange" type="range" min="100" max="4000" step="50" value="4000" class="mt-3 w-full accent-[#0B6B45]" />
-            <p class="mt-1 text-sm font-semibold">Up to <span id="priceValue">4,000</span> MAD</p>
-
-            <p class="mt-5 text-xs font-bold uppercase tracking-wider text-muted">Minimum rating</p>
-            <div class="mt-2 flex gap-2" id="ratingGroup">
-              <button type="button" data-rating="0" class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">Any</button>
-              <button type="button" data-rating="4.5" class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">4.5+</button>
-              <button type="button" data-rating="4.8" class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">4.8+</button>
+            <!-- Titre mobile + recherche mobile -->
+            <div class="lg:hidden">
+                <h1 class="text-2xl font-extrabold tracking-tight text-brand">Marketplace</h1>
+                <label class="relative mt-4 block">
+                    <span class="sr-only">Search Moroccan goods</span>
+                    <svg class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.2-3.2" />
+                    </svg>
+                    <input id="searchMobile" type="search" placeholder="Search Moroccan goods..."
+                        class="w-full rounded-full border border-black/10 bg-white py-3 pl-11 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                </label>
             </div>
 
-            <button id="resetFilters" type="button" class="mt-5 w-full rounded-lg bg-canvas py-2 text-sm font-semibold hover:bg-brand-soft hover:text-brand">Reset filters</button>
-          </div>
+            <!-- En-tête desktop -->
+            <div class="hidden items-start justify-between gap-6 lg:flex">
+                <div class="max-w-xl">
+                    <h1 class="text-[26px] font-extrabold tracking-tight">Moroccan Marketplace</h1>
+                    <p class="mt-2 text-sm leading-relaxed text-muted">
+                        Discover authentic local products, hand-crafted goods, and premium professional services across
+                        the Kingdom.
+                    </p>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2">
+                    <!-- Filter -->
+                    <div class="relative">
+                        <button id="filterBtn" type="button" aria-expanded="false" aria-controls="filterPanel"
+                            class="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3.5 py-2 text-sm font-medium hover:border-brand-line focus-visible:ring-2 focus-visible:ring-brand/30">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round">
+                                <path d="M4 6h16M7 12h10M10 18h4" />
+                            </svg>
+                            Filter
+                            <span id="filterCount"
+                                class="hidden rounded-full bg-brand px-1.5 text-[10px] font-bold text-white">1</span>
+                        </button>
+
+                        <div id="filterPanel"
+                            class="absolute right-0 top-11 z-30 hidden w-72 rounded-2xl border border-black/5 bg-white p-4 shadow-xl">
+                            <p class="text-xs font-bold uppercase tracking-wider text-muted">Max price</p>
+                            <input id="priceRange" type="range" min="100" max="4000" step="50" value="4000"
+                                class="mt-3 w-full accent-[#0B6B45]" />
+                            <p class="mt-1 text-sm font-semibold">Up to <span id="priceValue">4,000</span> MAD</p>
+
+                            <p class="mt-5 text-xs font-bold uppercase tracking-wider text-muted">Minimum rating</p>
+                            <div class="mt-2 flex gap-2" id="ratingGroup">
+                                <button type="button" data-rating="0"
+                                    class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">Any</button>
+                                <button type="button" data-rating="4.5"
+                                    class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">4.5+</button>
+                                <button type="button" data-rating="4.8"
+                                    class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">4.8+</button>
+                            </div>
+
+                            <button id="resetFilters" type="button"
+                                class="mt-5 w-full rounded-lg bg-canvas py-2 text-sm font-semibold hover:bg-brand-soft hover:text-brand">Reset
+                                filters</button>
+                        </div>
+                    </div>
+
+                    <!-- Sort -->
+                    <div class="relative">
+                        <button id="sortBtn" type="button" aria-expanded="false" aria-controls="sortMenu"
+                            class="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3.5 py-2 text-sm font-medium hover:border-brand-line focus-visible:ring-2 focus-visible:ring-brand/30">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3" />
+                            </svg>
+                            <span id="sortLabel">Newest First</span>
+                        </button>
+
+                        <div id="sortMenu"
+                            class="absolute right-0 top-11 z-30 hidden w-56 overflow-hidden rounded-2xl border border-black/5 bg-white py-1.5 shadow-xl">
+                            <button type="button" data-sort="newest"
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Newest
+                                First</button>
+                            <button type="button" data-sort="price-asc"
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Price:
+                                Low to High</button>
+                            <button type="button" data-sort="price-desc"
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Price:
+                                High to Low</button>
+                            <button type="button" data-sort="rating"
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Top
+                                Rated</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pills catégories -->
+            <div class="no-scrollbar -mx-4 mt-5 flex gap-2 overflow-x-auto px-4 lg:mx-0 lg:mt-6 lg:px-0">
+                <button type="button" data-category="all"
+                    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">All Products</button>
+                <button type="button" data-category="crafts"
+                    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Artisan Crafts</button>
+                <button type="button" data-category="textiles"
+                    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Textiles &amp; Apparel</button>
+                <button type="button" data-category="decor"
+                    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Home Decor</button>
+                <button type="button" data-category="food"
+                    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Gourmet Food</button>
+                <button type="button" data-category="services"
+                    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Professional Services</button>
+            </div>
+
+            <!-- Grille -->
+            <div id="grid" class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5"></div>
+
+            <!-- Aucun résultat -->
+            <div id="empty" class="hidden py-20 text-center">
+                <p class="text-base font-semibold">No goods match this search</p>
+                <p class="mt-1 text-sm text-muted">Try another keyword, or clear the filters to see the full
+                    marketplace.</p>
+                <button id="emptyReset" type="button"
+                    class="mt-5 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark">Show
+                    all products</button>
+            </div>
+
+            <!-- Load more -->
+            <div id="moreWrap" class="mt-8 flex flex-col items-center gap-3">
+                <button id="loadMore" type="button"
+                    class="rounded-full bg-brand-soft px-7 py-3 text-sm font-semibold text-brand transition hover:bg-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
+                    Discover More Goods
+                </button>
+                <p class="text-[11px] text-muted">Showing <span id="shownCount">8</span> of 2,466 local products</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- ══════════════ FOOTER (desktop) ══════════════ -->
+    <footer class="mt-8 hidden border-t border-black/5 bg-white lg:block">
+        <div class="mx-auto max-w-[1400px] px-6 py-10">
+            <div class="flex flex-wrap items-start justify-between gap-6">
+                <div>
+                    <p class="text-lg font-extrabold text-brand">M3ak Super App</p>
+                    <p class="mt-1 text-sm text-muted">Empowering citizens through the digital transformation of the
+                        Kingdom.</p>
+                </div>
+                <nav class="flex flex-wrap gap-7 text-sm text-muted">
+                    <a href="#" class="hover:text-brand">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand">Terms of Service</a>
+                    <a href="#" class="hover:text-brand">Contact Us</a>
+                    <a href="#" class="hover:text-brand">Help Center</a>
+                </nav>
+            </div>
+            <p class="mt-8 border-t border-black/5 pt-6 text-center text-xs text-muted">© 2026 Kingdom of Morocco · M3ak
+                Super App. All rights reserved.</p>
         </div>
+    </footer>
 
-        <!-- Sort -->
-        <div class="relative">
-          <button id="sortBtn" type="button" aria-expanded="false" aria-controls="sortMenu"
-                  class="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3.5 py-2 text-sm font-medium hover:border-brand-line focus-visible:ring-2 focus-visible:ring-brand/30">
-            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3"/></svg>
-            <span id="sortLabel">Newest First</span>
-          </button>
-
-          <div id="sortMenu" class="absolute right-0 top-11 z-30 hidden w-56 overflow-hidden rounded-2xl border border-black/5 bg-white py-1.5 shadow-xl">
-            <button type="button" data-sort="newest"   class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Newest First</button>
-            <button type="button" data-sort="price-asc"  class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Price: Low to High</button>
-            <button type="button" data-sort="price-desc" class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Price: High to Low</button>
-            <button type="button" data-sort="rating"     class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Top Rated</button>
-          </div>
+    <!-- ══════════════ BOTTOM NAV (mobile) ══════════════ -->
+    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
+        <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
+            <a href="/pages/dashboard/overview.html"
+                class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linejoin="round">
+                    <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+                    <path d="M9 21v-7h6v7" />
+                </svg>
+                Home
+            </a>
+            <a href="/pages/dashboard/marketplace.html" aria-current="page"
+                class="flex flex-col items-center gap-1 rounded-full bg-brand px-5 py-2 text-[11px] font-semibold text-white shadow-sm">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linejoin="round">
+                    <path d="M3 9.5 4.5 4h15L21 9.5" />
+                    <path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" />
+                    <path d="M5 12v8h14v-8" />
+                </svg>
+                Market
+            </a>
+            <a href="#"
+                class="relative flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 4h2l2.2 10.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.5L20 7H6" />
+                    <circle cx="9.5" cy="19.5" r="1.4" />
+                    <circle cx="17" cy="19.5" r="1.4" />
+                </svg>
+                <span id="cartBadge"
+                    class="absolute right-2 top-0 hidden min-w-4 rounded-full bg-danger px-1 text-[9px] font-bold leading-4 text-white">0</span>
+                Cart
+            </a>
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="8" r="3.5" />
+                    <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+                </svg>
+                Profile
+            </a>
         </div>
-      </div>
+    </nav>
+
+    <!-- Toast -->
+    <div id="toast"
+        class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
     </div>
-
-    <!-- Pills catégories -->
-    <div class="no-scrollbar -mx-4 mt-5 flex gap-2 overflow-x-auto px-4 lg:mx-0 lg:mt-6 lg:px-0">
-      <button type="button" data-category="all"      class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">All Products</button>
-      <button type="button" data-category="crafts"   class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Artisan Crafts</button>
-      <button type="button" data-category="textiles" class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Textiles &amp; Apparel</button>
-      <button type="button" data-category="decor"    class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Home Decor</button>
-      <button type="button" data-category="food"     class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Gourmet Food</button>
-      <button type="button" data-category="services" class="pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold">Professional Services</button>
-    </div>
-
-    <!-- Grille -->
-    <div id="grid" class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5"></div>
-
-    <!-- Aucun résultat -->
-    <div id="empty" class="hidden py-20 text-center">
-      <p class="text-base font-semibold">No goods match this search</p>
-      <p class="mt-1 text-sm text-muted">Try another keyword, or clear the filters to see the full marketplace.</p>
-      <button id="emptyReset" type="button" class="mt-5 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark">Show all products</button>
-    </div>
-
-    <!-- Load more -->
-    <div id="moreWrap" class="mt-8 flex flex-col items-center gap-3">
-      <button id="loadMore" type="button" class="rounded-full bg-brand-soft px-7 py-3 text-sm font-semibold text-brand transition hover:bg-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
-        Discover More Goods
-      </button>
-      <p class="text-[11px] text-muted">Showing <span id="shownCount">8</span> of 2,466 local products</p>
-    </div>
-  </main>
-</div>
-
-<!-- ══════════════ FOOTER (desktop) ══════════════ -->
-<footer class="mt-8 hidden border-t border-black/5 bg-white lg:block">
-  <div class="mx-auto max-w-[1400px] px-6 py-10">
-    <div class="flex flex-wrap items-start justify-between gap-6">
-      <div>
-        <p class="text-lg font-extrabold text-brand">M3ak Super App</p>
-        <p class="mt-1 text-sm text-muted">Empowering citizens through the digital transformation of the Kingdom.</p>
-      </div>
-      <nav class="flex flex-wrap gap-7 text-sm text-muted">
-        <a href="#" class="hover:text-brand">Privacy Policy</a>
-        <a href="#" class="hover:text-brand">Terms of Service</a>
-        <a href="#" class="hover:text-brand">Contact Us</a>
-        <a href="#" class="hover:text-brand">Help Center</a>
-      </nav>
-    </div>
-    <p class="mt-8 border-t border-black/5 pt-6 text-center text-xs text-muted">© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
-  </div>
-</footer>
-
-<!-- ══════════════ BOTTOM NAV (mobile) ══════════════ -->
-<nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
-  <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
-    <a href="/pages/dashboard/overview.html" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
-      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg>
-      Home
-    </a>
-    <a href="/pages/dashboard/marketplace.html" aria-current="page" class="flex flex-col items-center gap-1 rounded-full bg-brand px-5 py-2 text-[11px] font-semibold text-white shadow-sm">
-      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0"/><path d="M5 12v8h14v-8"/></svg>
-      Market
-    </a>
-    <a href="#" class="relative flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
-      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 10.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.5L20 7H6"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>
-      <span id="cartBadge" class="absolute right-2 top-0 hidden min-w-4 rounded-full bg-danger px-1 text-[9px] font-bold leading-4 text-white">0</span>
-      Cart
-    </a>
-    <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
-      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
-      Profile
-    </a>
-  </div>
-</nav>
-
-<!-- Toast -->
-<div id="toast" class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8"></div>
-
+</body>
 <script>
-/* ─────────────── Données ─────────────── */
-const FEATURED = {
-  title: "Bespoke Zellige Interior Design",
-  desc: "Elevate your space with traditional geometric mosaic art. Full-service consultation and installation by master artisans.",
-  price: 15000,
-  img: "/assets/image-marketplace/zellige-riad.jpg",
-  tint: "linear-gradient(150deg,#2E6F63,#1C4A47 55%,#8C6239)"
-};
+    /* ─────────────── Données ─────────────── */
 
-const PRODUCTS = [
-  { id:1, name:"Handcrafted Leather Pouf",   price:850,   city:"Marrakech",      seller:"Artisan District",      rating:4.9, reviews:128, cat:"crafts",   added:12, img:"leather-pouf.jpg",  tint:"linear-gradient(160deg,#C98B4B,#8A5225)" },
-  { id:2, name:"Premium Taliouine Saffron",  price:120,   city:"Taliouine",      seller:"Organic Cooperative",   rating:5.0, reviews:348, cat:"food",     added:11, img:"saffron.jpg",       tint:"linear-gradient(160deg,#D9531E,#7A1E12)" },
-  { id:3, name:"Hand-blown Beldi Glass",     price:240,   city:"Casablanca",     seller:"Glass Workshop",        rating:4.7, reviews:83,  cat:"decor",    added:10, img:"beldi-glass.jpg",   tint:"linear-gradient(160deg,#4FA79B,#1E4F4A)" },
-  { id:4, name:"Authentic Beni Ourain Rug",  price:3200,  city:"Atlas Mountains",seller:"Weaver Collective",     rating:4.8, reviews:219, cat:"textiles", added:9,  img:"beni-ourain.jpg",   tint:"linear-gradient(160deg,#F2EDE3,#CFC4B2)" },
-  { id:5, name:"Organic Argan Beauty Oil",   price:350,   city:"Essaouira",      seller:"Eco-Certified",         rating:4.9, reviews:413, cat:"food",     added:8,  img:"argan-oil.jpg",     tint:"linear-gradient(160deg,#8A6A2F,#2A1D0C)" },
-  { id:6, name:"Carved Cedar Chest",         price:2100,  city:"Tetouan",        seller:"Woodworker's Guild",    rating:4.6, reviews:46,  cat:"crafts",   added:7,  img:"cedar-chest.jpg",   tint:"linear-gradient(160deg,#9A5B2C,#4A2611)" },
-  { id:7, name:"Fez Blue Ceramic Tagine",    price:480,   city:"Fès",            seller:"Potters of Aïn Nokbi",  rating:4.8, reviews:167, cat:"decor",    added:6,  img:"tagine.jpg",        tint:"linear-gradient(160deg,#2F5FA8,#12294C)" },
-  { id:8, name:"Handwoven Sabra Throw",      price:690,   city:"Chefchaouen",    seller:"Rif Textile House",     rating:4.7, reviews:94,  cat:"textiles", added:5,  img:"sabra-throw.jpg",   tint:"linear-gradient(160deg,#5C86C4,#26456E)" },
-  { id:9, name:"Traditional Riad Restoration", price:9500,city:"Marrakech",      seller:"Heritage Builders",     rating:5.0, reviews:31,  cat:"services", added:4,  img:"riad-resto.jpg",    tint:"linear-gradient(160deg,#B0764A,#523018)" },
-  { id:10,name:"Amlou Almond Spread",        price:95,    city:"Agadir",         seller:"Souss Women's Co-op",   rating:4.9, reviews:271, cat:"food",     added:3,  img:"amlou.jpg",         tint:"linear-gradient(160deg,#C79A5B,#6A4A21)" },
-  { id:11,name:"Embroidered Fez Kaftan",     price:1750,  city:"Rabat",          seller:"Maalem Atelier",        rating:4.8, reviews:58,  cat:"textiles", added:2,  img:"kaftan.jpg",        tint:"linear-gradient(160deg,#7E4B86,#341B3C)" },
-  { id:12,name:"Brass Filigree Lantern",     price:560,   city:"Meknès",         seller:"Metalwork Souk",        rating:4.6, reviews:112, cat:"decor",    added:1,  img:"lantern.jpg",       tint:"linear-gradient(160deg,#C9A227,#5C4409)" }
-];
+    /* ─── Résolution des images ───
+       Je ne connais pas le nom exact de ton dossier ni l'extension
+       de tes fichiers, alors le code essaie plusieurs combinaisons :
+       au premier chemin qui répond, il s'arrête. Si aucun ne marche,
+       la console liste les URL essayées et le dégradé reste affiché.
+    
+       Une fois que tu sais quel chemin fonctionne, ne garde que
+       celui-là dans IMG_BASES : les autres ne servent qu'à chercher. */
+    const IMG_BASES = [
+        "/assets/image-marketplace/",
+        "/assets/marketplace-image/",
+        "/assets/images/"
+    ];
+    const IMG_EXTS = [".jpg", ".png", ".jpeg", ".webp"];
 
-const PAGE_SIZE = 8;
+    function imgCandidates(file) {
+        const stem = String(file).replace(/\.[a-z]+$/i, "");
+        const list = [];
+        IMG_BASES.forEach(base => IMG_EXTS.forEach(ext => list.push(base + stem + ext)));
+        return list;
+    }
 
-/* ─────────────── État ─────────────── */
-const state = { category:"all", query:"", sort:"newest", maxPrice:4000, minRating:0, visible:PAGE_SIZE };
-const wishlist = new Set();
-let cartCount = 0;
+    /* Appelé par onerror : passe au chemin suivant, puis abandonne. */
+    function nextImgSource(el) {
+        const list = JSON.parse(el.dataset.candidates);
+        const i = Number(el.dataset.candidate) + 1;
 
-/* ─────────────── Helpers ─────────────── */
-const $  = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const money = n => n.toLocaleString("en-US");
+        if (i < list.length) {
+            el.dataset.candidate = i;
+            el.src = list[i];
+            return;
+        }
 
-function toast(msg) {
-  const t = $("#toast");
-  t.textContent = msg;
-  t.style.opacity = "1";
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => (t.style.opacity = "0"), 2200);
-}
+        el.style.display = "none";
+        console.warn("Image introuvable. Chemins essayés :", list);
+    }
 
-const pinIcon   = `<svg class="size-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>`;
-const starIcon  = `<svg class="size-3 shrink-0 text-amber-500" viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.8 6.6 19.7l1.2-6.1L3.3 9.4l6.1-.8z"/></svg>`;
-const heartIcon = `<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.5A4 4 0 0 1 12 7.6 4 4 0 0 1 19 10.5C19 15.4 12 20 12 20z"/></svg>`;
+    const FEATURED = {
+        title: "Bespoke Zellige Interior Design",
+        desc: "Elevate your space with traditional geometric mosaic art. Full-service consultation and installation by master artisans.",
+        price: 15000,
+        img: "zellige-riad.jpg",
+        tint: "linear-gradient(150deg,#2E6F63,#1C4A47 55%,#8C6239)"
+    };
 
-/* ─────────────── Rendu ─────────────── */
-function productCard(p) {
-  const liked = wishlist.has(p.id);
-  return `
+    const PRODUCTS = [
+        { id: 1, name: "Handcrafted Leather Pouf", price: 850, city: "Marrakech", seller: "Artisan District", rating: 4.9, reviews: 128, cat: "crafts", added: 12, img: "pouf.png", tint: "linear-gradient(160deg,#C98B4B,#8A5225)" },
+        { id: 2, name: "Premium Taliouine Saffron", price: 120, city: "Taliouine", seller: "Organic Cooperative", rating: 5.0, reviews: 348, cat: "food", added: 11, img: "safron.png", tint: "linear-gradient(160deg,#D9531E,#7A1E12)" },
+        { id: 3, name: "Hand-blown Beldi Glass", price: 240, city: "Casablanca", seller: "Glass Workshop", rating: 4.7, reviews: 83, cat: "decor", added: 10, img: "beldi-glass.jpg", tint: "linear-gradient(160deg,#4FA79B,#1E4F4A)" },
+        { id: 4, name: "Authentic Beni Ourain Rug", price: 3200, city: "Atlas Mountains", seller: "Weaver Collective", rating: 4.8, reviews: 219, cat: "textiles", added: 9, img: "beni-ourain.jpg", tint: "linear-gradient(160deg,#F2EDE3,#CFC4B2)" },
+        { id: 5, name: "Organic Argan Beauty Oil", price: 350, city: "Essaouira", seller: "Eco-Certified", rating: 4.9, reviews: 413, cat: "food", added: 8, img: "argan-oil.jpg", tint: "linear-gradient(160deg,#8A6A2F,#2A1D0C)" },
+        { id: 6, name: "Carved Cedar Chest", price: 2100, city: "Tetouan", seller: "Woodworker's Guild", rating: 4.6, reviews: 46, cat: "crafts", added: 7, img: "cedar-chest.jpg", tint: "linear-gradient(160deg,#9A5B2C,#4A2611)" },
+        { id: 7, name: "Fez Blue Ceramic Tagine", price: 480, city: "Fès", seller: "Potters of Aïn Nokbi", rating: 4.8, reviews: 167, cat: "decor", added: 6, img: "tagine.jpg", tint: "linear-gradient(160deg,#2F5FA8,#12294C)" },
+        { id: 8, name: "Handwoven Sabra Throw", price: 690, city: "Chefchaouen", seller: "Rif Textile House", rating: 4.7, reviews: 94, cat: "textiles", added: 5, img: "sabra-throw.jpg", tint: "linear-gradient(160deg,#5C86C4,#26456E)" },
+        { id: 9, name: "Traditional Riad Restoration", price: 9500, city: "Marrakech", seller: "Heritage Builders", rating: 5.0, reviews: 31, cat: "services", added: 4, img: "riad-resto.jpg", tint: "linear-gradient(160deg,#B0764A,#523018)" },
+        { id: 10, name: "Amlou Almond Spread", price: 95, city: "Agadir", seller: "Souss Women's Co-op", rating: 4.9, reviews: 271, cat: "food", added: 3, img: "amlou.jpg", tint: "linear-gradient(160deg,#C79A5B,#6A4A21)" },
+        { id: 11, name: "Embroidered Fez Kaftan", price: 1750, city: "Rabat", seller: "Maalem Atelier", rating: 4.8, reviews: 58, cat: "textiles", added: 2, img: "kaftan.jpg", tint: "linear-gradient(160deg,#7E4B86,#341B3C)" },
+        { id: 12, name: "Brass Filigree Lantern", price: 560, city: "Meknès", seller: "Metalwork Souk", rating: 4.6, reviews: 112, cat: "decor", added: 1, img: "lantern.jpg", tint: "linear-gradient(160deg,#C9A227,#5C4409)" }
+    ];
+
+    const PAGE_SIZE = 8;
+
+    /* ─────────────── État ─────────────── */
+    const state = { category: "all", query: "", sort: "newest", maxPrice: 4000, minRating: 0, visible: PAGE_SIZE };
+    const wishlist = new Set();
+    let cartCount = 0;
+
+    /* ─────────────── Helpers ─────────────── */
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const money = n => n.toLocaleString("en-US");
+
+    function toast(msg) {
+        const t = $("#toast");
+        t.textContent = msg;
+        t.style.opacity = "1";
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => (t.style.opacity = "0"), 2200);
+    }
+
+    const pinIcon = `<svg class="size-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>`;
+    const starIcon = `<svg class="size-3 shrink-0 text-amber-500" viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.8 6.6 19.7l1.2-6.1L3.3 9.4l6.1-.8z"/></svg>`;
+    const heartIcon = `<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.5A4 4 0 0 1 12 7.6 4 4 0 0 1 19 10.5C19 15.4 12 20 12 20z"/></svg>`;
+
+    /* ─────────────── Rendu ─────────────── */
+    function productCard(p) {
+        const liked = wishlist.has(p.id);
+        return `
   <article class="card-in group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-lg">
     <div class="ph relative aspect-[4/3] overflow-hidden" style="--ph:${p.tint}">
-      <img src="/assets/image-marketplace/${p.img}" alt="${p.name}" loading="lazy"
-           onerror="this.style.display='none'"
+      <img src="${imgCandidates(p.img)[0]}" alt="${p.name}" loading="lazy"
+           data-candidates='${JSON.stringify(imgCandidates(p.img))}' data-candidate="0"
+           onerror="nextImgSource(this)"
            class="size-full object-cover transition duration-500 group-hover:scale-105" />
       <button type="button" data-wish="${p.id}" aria-pressed="${liked}"
               class="absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/85 text-ink backdrop-blur transition hover:bg-white focus-visible:ring-2 focus-visible:ring-brand/50 ${liked ? "text-danger" : ""}">
@@ -338,13 +536,15 @@ function productCard(p) {
       </p>
     </div>
   </article>`;
-}
+    }
 
-function featuredCard() {
-  return `
+    function featuredCard() {
+        return `
   <article class="card-in order-first col-span-2 overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 lg:order-none lg:flex">
     <div class="ph relative aspect-[16/10] shrink-0 lg:aspect-auto lg:w-1/2" style="--ph:${FEATURED.tint}">
-      <img src="${FEATURED.img}" alt="${FEATURED.title}" loading="lazy" onerror="this.style.display='none'" class="size-full object-cover" />
+      <img src="${imgCandidates(FEATURED.img)[0]}" alt="${FEATURED.title}" loading="lazy"
+           data-candidates='${JSON.stringify(imgCandidates(FEATURED.img))}' data-candidate="0"
+           onerror="nextImgSource(this)" class="size-full object-cover" />
       <span class="absolute left-3 top-3 rounded-md bg-brand-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand lg:hidden">Expert Service</span>
     </div>
 
@@ -365,168 +565,175 @@ function featuredCard() {
       </div>
     </div>
   </article>`;
-}
+    }
 
-function filtered() {
-  const q = state.query.trim().toLowerCase();
-  let list = PRODUCTS.filter(p =>
-    (state.category === "all" || p.cat === state.category) &&
-    p.price <= state.maxPrice &&
-    p.rating >= state.minRating &&
-    (!q || `${p.name} ${p.city} ${p.seller}`.toLowerCase().includes(q))
-  );
+    function filtered() {
+        const q = state.query.trim().toLowerCase();
+        let list = PRODUCTS.filter(p =>
+            (state.category === "all" || p.cat === state.category) &&
+            p.price <= state.maxPrice &&
+            p.rating >= state.minRating &&
+            (!q || `${p.name} ${p.city} ${p.seller}`.toLowerCase().includes(q))
+        );
 
-  const sorters = {
-    newest:      (a, b) => b.added - a.added,
-    "price-asc": (a, b) => a.price - b.price,
-    "price-desc":(a, b) => b.price - a.price,
-    rating:      (a, b) => b.rating - a.rating || b.reviews - a.reviews
-  };
-  return list.sort(sorters[state.sort]);
-}
+        const sorters = {
+            newest: (a, b) => b.added - a.added,
+            "price-asc": (a, b) => a.price - b.price,
+            "price-desc": (a, b) => b.price - a.price,
+            rating: (a, b) => b.rating - a.rating || b.reviews - a.reviews
+        };
+        return list.sort(sorters[state.sort]);
+    }
 
-function render() {
-  const list = filtered();
-  const shown = list.slice(0, state.visible);
-  const showFeatured = state.category === "all" || state.category === "services";
+    function render() {
+        const list = filtered();
+        const shown = list.slice(0, state.visible);
+        const showFeatured = state.category === "all" || state.category === "services";
 
-  const cards = shown.map(productCard);
-  if (showFeatured) cards.splice(2, 0, featuredCard());
+        const cards = shown.map(productCard);
+        if (showFeatured) cards.splice(2, 0, featuredCard());
 
-  $("#grid").innerHTML = cards.join("");
-  $("#grid").classList.toggle("hidden", list.length === 0);
-  $("#empty").classList.toggle("hidden", list.length !== 0);
-  $("#moreWrap").classList.toggle("hidden", list.length === 0);
+        $("#grid").innerHTML = cards.join("");
+        $("#grid").classList.toggle("hidden", list.length === 0);
+        $("#empty").classList.toggle("hidden", list.length !== 0);
+        $("#moreWrap").classList.toggle("hidden", list.length === 0);
 
-  $("#shownCount").textContent = shown.length;
-  const done = shown.length >= list.length;
-  $("#loadMore").textContent = done ? "You've reached the end" : "Discover More Goods";
-  $("#loadMore").disabled = done;
-  $("#loadMore").classList.toggle("opacity-50", done);
-  $("#loadMore").classList.toggle("cursor-not-allowed", done);
-}
+        $("#shownCount").textContent = shown.length;
+        const done = shown.length >= list.length;
+        $("#loadMore").textContent = done ? "You've reached the end" : "Discover More Goods";
+        $("#loadMore").disabled = done;
+        $("#loadMore").classList.toggle("opacity-50", done);
+        $("#loadMore").classList.toggle("cursor-not-allowed", done);
+    }
 
-/* ─────────────── Pills ─────────────── */
-function paintPills() {
-  $$(".pill").forEach(b => {
-    const on = b.dataset.category === state.category;
-    b.className = `pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${
-      on ? "bg-brand text-white" : "bg-white text-muted ring-1 ring-black/5 hover:text-ink"}`;
-    b.setAttribute("aria-pressed", on);
-  });
-}
+    /* ─────────────── Pills ─────────────── */
+    function paintPills() {
+        $$(".pill").forEach(b => {
+            const on = b.dataset.category === state.category;
+            b.className = `pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${on ? "bg-brand text-white" : "bg-white text-muted ring-1 ring-black/5 hover:text-ink"}`;
+            b.setAttribute("aria-pressed", on);
+        });
+    }
 
-$$(".pill").forEach(b => b.addEventListener("click", () => {
-  state.category = b.dataset.category;
-  state.visible = PAGE_SIZE;
-  paintPills(); render();
-}));
+    $$(".pill").forEach(b => b.addEventListener("click", () => {
+        state.category = b.dataset.category;
+        state.visible = PAGE_SIZE;
+        paintPills(); render();
+    }));
 
-/* ─────────────── Recherche ─────────────── */
-let debounce;
-function onSearch(e) {
-  const v = e.target.value;
-  ["#searchDesktop", "#searchMobile"].forEach(s => { if ($(s) !== e.target) $(s).value = v; });
-  clearTimeout(debounce);
-  debounce = setTimeout(() => { state.query = v; state.visible = PAGE_SIZE; render(); }, 180);
-}
-$("#searchDesktop").addEventListener("input", onSearch);
-$("#searchMobile").addEventListener("input", onSearch);
+    /* ─────────────── Recherche ─────────────── */
+    let debounce;
+    function onSearch(e) {
+        const v = e.target.value;
+        ["#searchDesktop", "#searchMobile"].forEach(s => { if ($(s) !== e.target) $(s).value = v; });
+        clearTimeout(debounce);
+        debounce = setTimeout(() => { state.query = v; state.visible = PAGE_SIZE; render(); }, 180);
+    }
+    $("#searchDesktop").addEventListener("input", onSearch);
+    $("#searchMobile").addEventListener("input", onSearch);
 
-/* ─────────────── Tri ─────────────── */
-const sortMenu = $("#sortMenu"), sortBtn = $("#sortBtn");
-sortBtn.addEventListener("click", e => {
-  e.stopPropagation();
-  const open = sortMenu.classList.toggle("hidden") === false;
-  sortBtn.setAttribute("aria-expanded", open);
-  filterPanel.classList.add("hidden");
-});
-$$(".sort-opt").forEach(o => o.addEventListener("click", () => {
-  state.sort = o.dataset.sort;
-  $("#sortLabel").textContent = o.textContent.trim();
-  sortMenu.classList.add("hidden");
-  sortBtn.setAttribute("aria-expanded", false);
-  render();
-}));
+    /* ─────────────── Tri ─────────────── */
+    const sortMenu = $("#sortMenu"), sortBtn = $("#sortBtn");
+    sortBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        const open = sortMenu.classList.toggle("hidden") === false;
+        sortBtn.setAttribute("aria-expanded", open);
+        filterPanel.classList.add("hidden");
+    });
+    $$(".sort-opt").forEach(o => o.addEventListener("click", () => {
+        state.sort = o.dataset.sort;
+        $("#sortLabel").textContent = o.textContent.trim();
+        sortMenu.classList.add("hidden");
+        sortBtn.setAttribute("aria-expanded", false);
+        render();
+    }));
 
-/* ─────────────── Filtres ─────────────── */
-const filterPanel = $("#filterPanel"), filterBtn = $("#filterBtn");
-filterBtn.addEventListener("click", e => {
-  e.stopPropagation();
-  const open = filterPanel.classList.toggle("hidden") === false;
-  filterBtn.setAttribute("aria-expanded", open);
-  sortMenu.classList.add("hidden");
-});
-filterPanel.addEventListener("click", e => e.stopPropagation());
-sortMenu.addEventListener("click", e => e.stopPropagation());
-document.addEventListener("click", () => { filterPanel.classList.add("hidden"); sortMenu.classList.add("hidden"); });
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") { filterPanel.classList.add("hidden"); sortMenu.classList.add("hidden"); }
-});
+    /* ─────────────── Filtres ─────────────── */
+    const filterPanel = $("#filterPanel"), filterBtn = $("#filterBtn");
+    filterBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        const open = filterPanel.classList.toggle("hidden") === false;
+        filterBtn.setAttribute("aria-expanded", open);
+        sortMenu.classList.add("hidden");
+    });
+    filterPanel.addEventListener("click", e => e.stopPropagation());
+    sortMenu.addEventListener("click", e => e.stopPropagation());
+    document.addEventListener("click", () => { filterPanel.classList.add("hidden"); sortMenu.classList.add("hidden"); });
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") { filterPanel.classList.add("hidden"); sortMenu.classList.add("hidden"); }
+    });
 
-$("#priceRange").addEventListener("input", e => {
-  state.maxPrice = +e.target.value;
-  $("#priceValue").textContent = money(state.maxPrice);
-  state.visible = PAGE_SIZE;
-  paintFilterBadge(); render();
-});
+    $("#priceRange").addEventListener("input", e => {
+        state.maxPrice = +e.target.value;
+        $("#priceValue").textContent = money(state.maxPrice);
+        state.visible = PAGE_SIZE;
+        paintFilterBadge(); render();
+    });
 
-function paintRatingChips() {
-  $$(".rating-chip").forEach(c => {
-    const on = +c.dataset.rating === state.minRating;
-    c.className = `rating-chip rounded-full border px-3 py-1.5 text-xs font-medium transition ${
-      on ? "border-brand bg-brand-soft text-brand" : "border-black/10 text-muted hover:text-ink"}`;
-  });
-}
-$$(".rating-chip").forEach(c => c.addEventListener("click", () => {
-  state.minRating = +c.dataset.rating;
-  state.visible = PAGE_SIZE;
-  paintRatingChips(); paintFilterBadge(); render();
-}));
+    function paintRatingChips() {
+        $$(".rating-chip").forEach(c => {
+            const on = +c.dataset.rating === state.minRating;
+            c.className = `rating-chip rounded-full border px-3 py-1.5 text-xs font-medium transition ${on ? "border-brand bg-brand-soft text-brand" : "border-black/10 text-muted hover:text-ink"}`;
+        });
+    }
+    $$(".rating-chip").forEach(c => c.addEventListener("click", () => {
+        state.minRating = +c.dataset.rating;
+        state.visible = PAGE_SIZE;
+        paintRatingChips(); paintFilterBadge(); render();
+    }));
 
-function paintFilterBadge() {
-  const n = (state.maxPrice < 4000 ? 1 : 0) + (state.minRating > 0 ? 1 : 0);
-  const badge = $("#filterCount");
-  badge.textContent = n;
-  badge.classList.toggle("hidden", n === 0);
-}
+    function paintFilterBadge() {
+        const n = (state.maxPrice < 4000 ? 1 : 0) + (state.minRating > 0 ? 1 : 0);
+        const badge = $("#filterCount");
+        badge.textContent = n;
+        badge.classList.toggle("hidden", n === 0);
+    }
 
-function resetAll() {
-  state.category = "all"; state.query = ""; state.maxPrice = 4000; state.minRating = 0; state.visible = PAGE_SIZE;
-  $("#searchDesktop").value = ""; $("#searchMobile").value = "";
-  $("#priceRange").value = 4000; $("#priceValue").textContent = "4,000";
-  paintPills(); paintRatingChips(); paintFilterBadge(); render();
-}
-$("#resetFilters").addEventListener("click", resetAll);
-$("#emptyReset").addEventListener("click", resetAll);
+    function resetAll() {
+        state.category = "all"; state.query = ""; state.maxPrice = 4000; state.minRating = 0; state.visible = PAGE_SIZE;
+        $("#searchDesktop").value = ""; $("#searchMobile").value = "";
+        $("#priceRange").value = 4000; $("#priceValue").textContent = "4,000";
+        paintPills(); paintRatingChips(); paintFilterBadge(); render();
+    }
+    $("#resetFilters").addEventListener("click", resetAll);
+    $("#emptyReset").addEventListener("click", resetAll);
 
-/* ─────────────── Load more ─────────────── */
-$("#loadMore").addEventListener("click", () => {
-  state.visible += PAGE_SIZE;
-  render();
-});
+    /* ─────────────── Load more ─────────────── */
+    $("#loadMore").addEventListener("click", () => {
+        state.visible += PAGE_SIZE;
+        render();
+    });
 
-/* ─────────────── Wishlist + consult (délégation) ─────────────── */
-$("#grid").addEventListener("click", e => {
-  const wish = e.target.closest("[data-wish]");
-  if (wish) {
-    const id = +wish.dataset.wish;
-    if (wishlist.has(id)) { wishlist.delete(id); toast("Removed from your saved goods"); }
-    else { wishlist.add(id); toast("Saved to your list"); }
-    render();
-    return;
-  }
-  if (e.target.closest("#bookConsult")) {
-    cartCount++;
-    const badge = $("#cartBadge");
-    badge.textContent = cartCount;
-    badge.classList.remove("hidden");
-    toast("Consultation requested — an artisan replies within 24h");
-  }
-});
+    /* ─────────────── Wishlist + consult (délégation) ─────────────── */
+    $("#grid").addEventListener("click", e => {
+        const wish = e.target.closest("[data-wish]");
+        if (wish) {
+            const id = +wish.dataset.wish;
+            if (wishlist.has(id)) { wishlist.delete(id); toast("Removed from your saved goods"); }
+            else { wishlist.add(id); toast("Saved to your list"); }
+            render();
+            return;
+        }
+        if (e.target.closest("#bookConsult")) {
+            cartCount++;
+            const badge = $("#cartBadge");
+            badge.textContent = cartCount;
+            badge.classList.remove("hidden");
+            toast("Consultation requested — an artisan replies within 24h");
+        }
+    });
 
-/* ─────────────── Init ─────────────── */
-paintPills(); paintRatingChips(); render();
+    /* ─────────────── Init ─────────────── */
+    paintPills(); paintRatingChips(); render();
+
+    /* Diagnostic : après le rendu, dit ce qui a chargé et ce qui manque.
+       Retire ce bloc une fois tes images en place. */
+    window.setTimeout(() => {
+        const imgs = $$("#grid img");
+        const ok = imgs.filter(i => i.naturalWidth > 0);
+        console.log(`Images : ${ok.length}/${imgs.length} chargées.`);
+        ok.forEach(i => console.log("OK", i.getAttribute("src")));
+    }, 1500);
 </script>
-</body>
+
 </html>
