@@ -132,7 +132,7 @@
         }
 
         .nav-icon {
-            @apply w-[17px] h-[17px] shrink-0;
+            @apply w-[17px] h-[17px] shrink-0 object-contain;
         }
 
         .sidebar-backdrop {
@@ -163,12 +163,16 @@
         }
 
         .topbar-search-icon {
-            @apply absolute left-[12px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] text-slate-400;
+            @apply absolute left-[12px] top-1/2 -translate-y-1/2 w-[14px] h-[14px] object-contain;
         }
 
         .icon-button {
             @apply w-[34px] h-[34px] rounded-full flex items-center justify-center
                    text-green-700 hover:bg-mint-50 cursor-pointer;
+        }
+
+        .icon-button img {
+            @apply w-[17px] h-[17px] object-contain;
         }
 
         .admin-chip {
@@ -228,6 +232,10 @@
                    rounded-[9px] font-hanken font-semibold text-[12px] text-white transition cursor-pointer;
         }
 
+        .button-icon {
+            @apply w-[14px] h-[14px] object-contain;
+        }
+
         /* ==========================================================
            6. KPI CARDS
         ========================================================== */
@@ -247,9 +255,17 @@
             @apply w-[32px] h-[32px] rounded-[10px] flex items-center justify-center md:w-[36px] md:h-[36px];
         }
 
+        .kpi-icon img {
+            @apply w-[17px] h-[17px] object-contain;
+        }
+
         .kpi-badge {
             @apply flex items-center gap-[3px] rounded-full px-[8px] py-[3px]
                    font-hanken font-semibold text-[10px] md:text-[11px];
+        }
+
+        .kpi-badge img {
+            @apply w-[9px] h-[9px] object-contain;
         }
 
         .badge-up {
@@ -462,6 +478,10 @@
             @apply flex flex-col items-center gap-[3px] text-slate-400 w-[68px];
         }
 
+        .mobile-nav-item img {
+            @apply w-[19px] h-[19px] object-contain;
+        }
+
         .mobile-nav-item-active {
             @apply text-green-900;
         }
@@ -480,11 +500,9 @@
              TOPBAR (pleine largeur, au-dessus de la sidebar)
         =================================================== -->
         <div class="topbar">
-            <button type="button" class="icon-button" id="sidebar-toggle"
-                aria-label="Toggle menu" aria-expanded="false" aria-controls="sidebar">
-                <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
-                </svg>
+            <button type="button" class="icon-button" id="sidebar-toggle" aria-label="Toggle menu" aria-expanded="false"
+                aria-controls="sidebar">
+                <img src="/assets/dashboard/menu.png" alt="" class="w-[19px] h-[19px] object-contain">
             </button>
 
             <span class="md:hidden font-jakarta font-extrabold text-[15px] text-green-900">
@@ -494,28 +512,17 @@
             <span class="topbar-brand">M3ak Morocco</span>
 
             <div class="topbar-search">
-                <svg class="topbar-search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" d="M21 21l-4.3-4.3M17 11a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
-                </svg>
+                <img src="/assets/dashboard/search.png" alt="" class="topbar-search-icon">
                 <input type="search" class="topbar-input" placeholder="Search citizens, services, or reports...">
             </div>
 
             <div class="flex items-center gap-[6px] ml-auto">
                 <button class="icon-button" aria-label="Notifications">
-                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
-                    </svg>
+                    <img src="/assets/dashboard/notification.png" alt="">
                 </button>
 
                 <button class="icon-button hidden md:flex" aria-label="Help">
-                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                        viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="9" />
-                        <path stroke-linecap="round"
-                            d="M9.7 9.4a2.4 2.4 0 1 1 3.2 2.3c-.6.2-.9.8-.9 1.4v.4M12 16.8h.01" />
-                    </svg>
+                    <img src="/assets/dashboard/help.png" alt="">
                 </button>
 
                 <div class="relative" id="user-menu-wrap">
@@ -546,90 +553,59 @@
                     <span class="sidebar-brand-name">M3ak Morocco</span>
 
                     <button type="button" class="icon-button" id="sidebar-close" aria-label="Close menu">
-                        <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" d="M6 6l12 12M18 6 6 18" />
-                        </svg>
+                        <img src="/assets/dashboard/close.png" alt="" class="w-[19px] h-[19px] object-contain">
                     </button>
                 </div>
 
                 <nav class="sidebar-nav">
                     <a href="/pages/dashboard/service.html" class="nav-item nav-item-active">
-                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
-                        </svg>
+                        <img src="/assets/dashboard/services.png" alt="" class="nav-icon">
                         Services
                     </a>
 
                     <a href="/pages/dashboard/transport.html" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <rect x="5" y="3" width="14" height="13" rx="2.5" />
-                            <path stroke-linecap="round" d="M5 9h14M8 20l-1.5 2M16 20l1.5 2" />
-                        </svg>
+                        <img src="/assets/dashboard/transport.png" alt="" class="nav-icon">
                         Transport
                     </a>
 
                     <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linejoin="round" d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
-                            <path stroke-linejoin="round" d="M9 21v-7h6v7" />
-                        </svg>
+                        <img src="/assets/dashboard/housing.png" alt="" class="nav-icon">
                         Housing
                     </a>
 
                     <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <rect x="3" y="7" width="18" height="13" rx="2" />
-                            <path stroke-linejoin="round" d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
-                        </svg>
+                        <img src="/assets/dashboard/jobs.png" alt="" class="nav-icon">
                         Jobs
                     </a>
 
                     <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linejoin="round" d="m2 8 10-4 10 4-10 4z" />
-                            <path stroke-linejoin="round" d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
-                        </svg>
+                        <img src="/assets/dashboard/education.png" alt="" class="nav-icon">
                         Education
                     </a>
 
                     <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <rect x="3" y="6" width="18" height="14" rx="2.5" />
-                            <path stroke-linecap="round" d="M12 10v6M9 13h6" />
-                        </svg>
+                        <img src="/assets/dashboard/healthcare.png" alt="" class="nav-icon">
                         Healthcare
                     </a>
 
                     <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
-                            <circle cx="12" cy="12" r="2.4" />
-                        </svg>
+                        <img src="/assets/dashboard/payments.png" alt="" class="nav-icon">
                         Payments
                     </a>
 
                     <a href="/pages/dashboard/marketplace.html" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linejoin="round" d="M3 9.5 4.5 4h15L21 9.5" />
-                            <path stroke-linejoin="round"
-                                d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" />
-                            <path stroke-linejoin="round" d="M5 12v8h14v-8" />
-                        </svg>
+                        <img src="/assets/dashboard/marketplace.png" alt="" class="nav-icon">
                         Marketplace
                     </a>
 
-                    <a href="#" class="nav-item">
-                        <svg class="nav-icon" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M11 2h2v6.3l4.4-4.4 1.4 1.4L14.4 11H21v2h-6.6l4.4 4.3-1.4 1.4L13 14.3V21h-2v-6.7l-4.4 4.4-1.4-1.4L9.6 13H3v-2h6.6L5.2 6.7l1.4-1.4L11 9.7z" />
-                        </svg>
+                    <a href="/pages/dashboard/emergence.html" class="nav-item">
+                        <img src="/assets/dashboard/emergency.png" alt="" class="nav-icon">
                         Emergency
                     </a>
                 </nav>
 
                 <div class="sidebar-foot">
-                    <a href="#" class="nav-emergency">
+                    <a href="/pages/dashboard/emergence.html" class="nav-emergency">
                         <span class="rounded bg-white/25 px-[5px] py-[1px] text-[9px] font-extrabold tracking-[0.6px]">
                             SOS
                         </span>
@@ -637,20 +613,12 @@
                     </a>
 
                     <a href="#" class="nav-item mt-[12px]">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="3" />
-                            <path
-                                d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7.9 19.4l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.6a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 7.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 3.1V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3z" />
-                        </svg>
+                        <img src="/assets/dashboard/settings.png" alt="" class="nav-icon">
                         Settings
                     </a>
 
                     <a href="/pages/auth/login.html" class="nav-item">
-                        <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 16l-4-4 4-4M6 12h9" />
-                        </svg>
+                        <img src="/assets/dashboard/logout.png" alt="" class="nav-icon">
                         Logout
                     </a>
                 </div>
@@ -670,20 +638,12 @@
 
                         <div class="page-actions">
                             <button class="button-ghost">
-                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    viewBox="0 0 24 24">
-                                    <rect x="3" y="5" width="18" height="16" rx="2.5" />
-                                    <path stroke-linecap="round" d="M8 3v4m8-4v4M3 10h18" />
-                                </svg>
+                                <img src="/assets/dashboard/calendar.png" alt="" class="button-icon">
                                 Last 30 Days
                             </button>
 
                             <button class="button-solid">
-                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" />
-                                </svg>
+                                <img src="/assets/dashboard/export.png" alt="" class="button-icon">
                                 Export Report
                             </button>
                         </div>
@@ -696,18 +656,12 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-mint-100 text-green-900">
-                                    <svg class="w-[17px] h-[17px]" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM9 13c-3 0-6 1.5-6 4v2h12v-2c0-2.5-3-4-6-4zm7 .5c-.6 0-1.2.1-1.7.2 1.1.9 1.7 2 1.7 3.3v2h5v-2c0-2.2-2.5-3.5-5-3.5z" />
-                                    </svg>
+                                <span class="kpi-icon bg-mint-100">
+                                    <img src="/assets/dashboard/kpi-citizens.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-up">
                                     +12.5%
-                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" d="M5 17 19 7m0 0h-7m7 0v7" />
-                                    </svg>
+                                    <img src="/assets/dashboard/arrow-up.png" alt="">
                                 </span>
                             </div>
                             <p class="kpi-label">Active Citizens</p>
@@ -716,19 +670,12 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-blue-50 text-blue-600">
-                                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                        viewBox="0 0 24 24">
-                                        <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
-                                        <circle cx="12" cy="12" r="2.4" />
-                                    </svg>
+                                <span class="kpi-icon bg-blue-50">
+                                    <img src="/assets/dashboard/kpi-payments.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-up">
                                     +8.1%
-                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" d="M5 17 19 7m0 0h-7m7 0v7" />
-                                    </svg>
+                                    <img src="/assets/dashboard/arrow-up.png" alt="">
                                 </span>
                             </div>
                             <p class="kpi-label">Total Payments</p>
@@ -737,19 +684,12 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-brick-50 text-brick-600">
-                                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                        viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="8.5" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.5 12 2.5 2.5 4.5-5" />
-                                    </svg>
+                                <span class="kpi-icon bg-brick-50">
+                                    <img src="/assets/dashboard/kpi-resolution.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-up">
                                     94.2%
-                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
-                                    </svg>
+                                    <img src="/assets/dashboard/check.png" alt="">
                                 </span>
                             </div>
                             <p class="kpi-label">Resolution Rate</p>
@@ -758,19 +698,12 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-amber-50 text-amber-600">
-                                    <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.8"
-                                        viewBox="0 0 24 24">
-                                        <rect x="5" y="4" width="14" height="17" rx="2.5" />
-                                        <path stroke-linecap="round" d="M9 3.5h6M12 9v3.5l2 1.5" />
-                                    </svg>
+                                <span class="kpi-icon bg-amber-50">
+                                    <img src="/assets/dashboard/kpi-time.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-down">
                                     -2.4%
-                                    <svg class="w-[9px] h-[9px]" fill="none" stroke="currentColor" stroke-width="2.5"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" d="M5 7 19 17m0 0v-7m0 7h-7" />
-                                    </svg>
+                                    <img src="/assets/dashboard/arrow-down.png" alt="">
                                 </span>
                             </div>
                             <p class="kpi-label">Avg. Response Time</p>
@@ -1034,32 +967,22 @@
     =================================================== -->
     <nav class="mobile-nav">
         <a href="#" class="mobile-nav-item mobile-nav-item-active">
-            <svg class="w-[19px] h-[19px]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z" />
-            </svg>
+            <img src="/assets/dashboard/nav-overview.png" alt="">
             <span class="mobile-nav-label">Overview</span>
         </a>
 
         <a href="#" class="mobile-nav-item">
-            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <path stroke-linejoin="round" d="M12 3 3 8l9 5 9-5zM3 13l9 5 9-5" />
-            </svg>
+            <img src="/assets/dashboard/nav-services.png" alt="">
             <span class="mobile-nav-label">Services</span>
         </a>
 
         <a href="#" class="mobile-nav-item">
-            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <rect x="2.5" y="6" width="19" height="12" rx="2.5" />
-                <circle cx="12" cy="12" r="2.4" />
-            </svg>
+            <img src="/assets/dashboard/nav-payments.png" alt="">
             <span class="mobile-nav-label">Payments</span>
         </a>
 
         <a href="#" class="mobile-nav-item">
-            <svg class="w-[19px] h-[19px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="3.4" />
-                <path stroke-linecap="round" d="M5.5 20c0-3.3 2.9-5.4 6.5-5.4s6.5 2.1 6.5 5.4" />
-            </svg>
+            <img src="/assets/dashboard/nav-citizens.png" alt="">
             <span class="mobile-nav-label">Citizens</span>
         </a>
     </nav>
