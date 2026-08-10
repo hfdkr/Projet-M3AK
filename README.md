@@ -17,6 +17,17 @@ A modern digital identity platform for Morocco, currently under development. Thi
   <b>Overview Page</b>
 </p>
 
+<p align="center">
+  <img src="./assets/screenshots/screen-marketplace.png" alt="Marketplace Page" width="48%">
+  <img src="./assets/screenshots/screen-emergency.png" alt="Emergency Hub" width="48%">
+</p>
+
+<p align="center">
+  <b>Marketplace Page</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Emergency Hub</b>
+</p>
+
 ---
 
 ## 🚀 Tech Stack
@@ -24,6 +35,7 @@ A modern digital identity platform for Morocco, currently under development. Thi
 - HTML5
 - Tailwind CSS v4
 - JavaScript
+- OpenStreetMap / Leaflet *(live maps & geolocation)*
 
 ---
 
@@ -40,28 +52,33 @@ A modern digital identity platform for Morocco, currently under development. Thi
 #### Authentication
 
 - [x] Landing Page
-- [ ] Sign In Page
-- [x] Sign Up Page *(In Progress)*
+- [x] Sign In Page
+- [x] Sign Up Page
 - [ ] Forgot Password Page
 - [ ] Reset Password Page
-- [ ] New Password Page
+- [x] New Password Page
 
 #### Dashboard
 
-- [x] Overview Page *(In Progress)*
-- [ ] Home Page
-- [ ] Marketplace Page
+- [x] Overview Page
+- [x] Services Page
+- [x] Transport Page
+- [x] Marketplace Page
+- [x] Emergency Hub Page
+- [ ] Housing Page
+- [ ] Jobs Page
+- [ ] Education Page
+- [ ] Healthcare Page
+- [ ] Payments Page
 - [ ] User Profile Page
-- [ ] Transactions Page
-- [ ] Support Center Page
 - [ ] Digital Identity Page
 - [ ] Settings Page
 
 ### 📱 Responsive Design
 
-- [ ] Mobile
+- [x] Mobile
 - [ ] Tablet
-- [ ] Desktop
+- [x] Desktop
 
 ### 🧪 Testing
 
@@ -81,30 +98,51 @@ Projet-M3AK/
 │
 ├── assets/
 │   │
+│   ├── image-login/
+│   │
 │   ├── image-signUp/
-│   │  
+│   │
 │   ├── images/
 │   │
+│   ├── marketplace-image/
+│   │
+│   ├── emrgence-image/
+│   │
 │   └── screenshots/
-│       │
-│       ├── screen-index.png
-│       │
-│       └── screen-overview.png
+│
 │
 ├── pages/
+│   │
 │   ├── auth/
 │   │   │
 │   │   ├── login.html
 │   │   │
-│   │   └── signup.html
+│   │   ├── signup.html
+│   │   │
+│   │   └── new-password.html
 │   │
-│   └── dashboard/
+│   ├── dashboard/
+│   │   │
+│   │   ├── overview.html
+│   │   │
+│   │   ├── service.html
+│   │   │
+│   │   ├── transport.html
+│   │   │
+│   │   ├── marketplace.html
+│   │   │
+│   │   └── emergency.html
+│   │
+│   └── js/
 │       │
-│       └── overview.html
+│       ├── session.js
+│       │
+│       ├── onboarding.js
+│       │
+│       ├── new-password.js
+│       │
+│       └─── login.js
 │
-├── js/
-│    │
-│    └── onboarding.js 
 │
 ├── index.html
 │
@@ -118,11 +156,12 @@ Projet-M3AK/
 ## ✨ Features
 
 - Modern and responsive UI
-- Secure authentication flow
-- Dashboard interface
+- Dashboard interface with live transport status
 - Digital identity management
 - Public service integration
-- Marketplace
+- Marketplace with search, filters, sorting and wishlist
+- Emergency Hub: hold-to-trigger SOS, quick dial, live map, medical ID
+- Real-time geolocation on the network map
 - User profile management
 - Clean and accessible design
 
@@ -132,8 +171,11 @@ Projet-M3AK/
 
 - ✅ Project setup completed
 - ✅ Landing page completed
-- 🚧 Sign Up page in development
-- 🚧 Dashboard Overview page in development
+- ✅ Dashboard Overview completed
+- ✅ Services, Transport and Marketplace pages completed
+- ✅ Emergency Hub completed
+- 🚧 Remaining dashboard sections in development
+- 🚧 Tablet breakpoint and cross-browser testing pending
 
 ---
 
@@ -142,5 +184,3 @@ Projet-M3AK/
 **Hafid Karkouch**
 
 - GitHub: https://github.com/hfdkr
-
----
