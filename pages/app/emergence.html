@@ -430,6 +430,59 @@
             </div>
         </section>
     </main>
+
+    <!-- ══════════════ FOOTER (desktop) ══════════════ -->
+    <footer class="mt-8 hidden border-t border-black/5 bg-white lg:block">
+        <div class="mx-auto max-w-[1280px] px-6 py-8">
+            <p class="text-center text-xs text-muted">© 2026 Kingdom of Morocco · M3ak Super App · Emergency Hub</p>
+        </div>
+    </footer>
+
+    <!-- ══════════════ BOTTOM NAV (mobile) ══════════════ -->
+    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
+        <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
+            <a href="/pages/dashboard/emergency.html" aria-current="page"
+                class="flex flex-col items-center gap-1 rounded-2xl bg-brand px-5 py-2 text-[11px] font-semibold text-white shadow-sm">
+                <img src="/assets/emrgence-image/sos-white.png" alt="" class="size-5 object-contain" />
+                SOS
+            </a>
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+                <img src="/assets/emrgence-image/map.png" alt="" class="size-5 object-contain" />
+                Map
+            </a>
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+                <img src="/assets/emrgence-image/first-aid-nav.png" alt="" class="size-5 object-contain" />
+                First Aid
+            </a>
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+                <img src="/assets/emrgence-image/history.png" alt="" class="size-5 object-contain" />
+                History
+            </a>
+        </div>
+    </nav>
+
+    <!-- ══════════════ MODALE ══════════════ -->
+    <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/45 p-4 backdrop-blur-sm">
+        <div role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+            class="fade-in w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
+            <span class="mx-auto grid size-12 place-items-center rounded-full bg-danger-soft">
+                <img src="/assets/emrgence-image/alert.png" alt="" class="size-6 object-contain" />
+            </span>
+            <h2 id="modalTitle" class="mt-4 text-base font-extrabold">SOS alert sent</h2>
+            <p id="modalText" class="mt-2 text-sm leading-relaxed text-muted"></p>
+            <div class="mt-6 flex gap-2">
+                <button id="modalCancel" type="button"
+                    class="flex-1 rounded-xl bg-canvas py-2.5 text-sm font-semibold hover:bg-brand-soft hover:text-brand">Cancel</button>
+                <button id="modalConfirm" type="button"
+                    class="flex-1 rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"
+        class="pointer-events-none fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
+    </div>
 </body>
 
 </html>
