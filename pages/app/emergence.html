@@ -167,6 +167,105 @@
             <img src="/assets/emrgence-image/shield.png" alt="" class="size-5 object-contain" />
         </div>
     </header>
+
+    <main class="mx-auto max-w-[1280px] px-4 pb-28 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
+
+        <!-- Titre desktop + horloge -->
+        <div class="mb-6 hidden items-end justify-between gap-6 lg:flex">
+            <div>
+                <h1 class="text-lg font-extrabold tracking-tight">Emergency Hub</h1>
+                <p class="mt-1 text-sm text-muted">Command center for immediate assistance and critical resources.</p>
+            </div>
+            <div class="text-right">
+                <p id="clock" class="font-mono text-lg font-semibold tabular-nums">--:--:--</p>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Rabat, Morocco</p>
+            </div>
+        </div>
+
+        <!-- ══════════════ RANGÉE 1 : SOS + appels rapides ══════════════ -->
+        <div class="grid gap-4 lg:grid-cols-3 lg:gap-5">
+
+            <!-- Carte SOS -->
+            <section id="sosCard" class="rounded-2xl bg-white p-6 text-center ring-1 ring-black/5 lg:col-span-2 lg:p-8">
+                <h2 class="text-sm font-bold">Need Emergency Help?</h2>
+                <p class="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted">
+                    Press and hold the button for 3 seconds to trigger an SOS alert to all emergency services and
+                    primary contacts.
+                </p>
+
+                <div class="sos-halo relative mx-auto mt-7 grid size-40 place-items-center lg:mt-8">
+                    <button id="sosBtn" type="button" aria-describedby="sosHint"
+                        class="relative grid size-40 select-none touch-none place-items-center rounded-full bg-danger text-white shadow-[0_12px_34px_rgba(225,54,44,.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-danger/35">
+                        <svg class="pointer-events-none absolute inset-0 size-full -rotate-90" viewBox="0 0 100 100"
+                            aria-hidden="true">
+                            <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.28)"
+                                stroke-width="4" />
+                            <circle id="sosRing" cx="50" cy="50" r="46" fill="none" stroke="#fff" stroke-width="4"
+                                stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" />
+                        </svg>
+                        <span class="pointer-events-none flex flex-col items-center gap-1.5">
+                            <img src="/assets/emrgence-image/sos-star-white.png" alt="" class="size-8 object-contain" />
+                            <span class="text-sm font-extrabold tracking-[0.12em]">SOS</span>
+                        </span>
+                    </button>
+                </div>
+
+                <p id="sosHint" class="mt-6 text-[11px] font-bold uppercase tracking-[0.18em] text-danger">
+                    Press to trigger</p>
+            </section>
+
+            <!-- Appels rapides -->
+            <div class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <button type="button" data-call="19" data-service="Police"
+                    class="flex items-center gap-3 rounded-2xl bg-brand-soft p-4 text-left ring-1 ring-brand-line transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40 lg:flex-1">
+                    <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white shadow-sm">
+                        <img src="/assets/emrgence-image/police.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="block text-sm font-bold">Police</span>
+                        <span class="block truncate text-[11px] text-muted">National Emergency Line</span>
+                    </span>
+                    <span class="shrink-0 text-right">
+                        <span class="block text-lg font-extrabold leading-none text-brand">19</span>
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">Quick
+                            Dial</span>
+                    </span>
+                </button>
+
+                <button type="button" data-call="15" data-service="Ambulance"
+                    class="flex items-center gap-3 rounded-2xl bg-[#EAF0FA] p-4 text-left ring-1 ring-[#D3E0F2] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40 lg:flex-1">
+                    <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white shadow-sm">
+                        <img src="/assets/emrgence-image/ambulance.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="block text-sm font-bold">Ambulance</span>
+                        <span class="block truncate text-[11px] text-muted">Fire Dept &amp; Medical</span>
+                    </span>
+                    <span class="shrink-0 text-right">
+                        <span class="block text-lg font-extrabold leading-none text-brand">15</span>
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">Quick
+                            Dial</span>
+                    </span>
+                </button>
+
+                <button type="button" data-call="177" data-service="Gendarmerie Royale"
+                    class="flex items-center gap-3 rounded-2xl bg-[#E7EEF7] p-4 text-left ring-1 ring-[#CFDDEE] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40 lg:flex-1">
+                    <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-white shadow-sm">
+                        <img src="/assets/emrgence-image/gendarmerie.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <span class="min-w-0 flex-1">
+                        <span class="block text-sm font-bold">Gendarmerie</span>
+                        <span class="block truncate text-[11px] text-muted">Rural Emergency Line</span>
+                    </span>
+                    <span class="shrink-0 text-right">
+                        <span class="block text-lg font-extrabold leading-none text-brand">177</span>
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">Quick
+                            Dial</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
