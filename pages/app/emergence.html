@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emergency Hub — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @theme {
+    --color-brand:        #0B6B45;
+    --color-brand-dark:   #084F34;
+    --color-brand-soft:   #E9F3EE;
+    --color-brand-line:   #CFE3D8;
+    --color-danger:       #E1362C;
+    --color-danger-soft:  #FDECEA;
+    --color-ink:          #0F1A15;
+    --color-muted:        #6B7A73;
+    --color-canvas:       #F6F7F5;
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+</style>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Halo respirant autour du bouton SOS (s'arrête pendant l'appui) */
+        .sos-halo::before {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border-radius: 9999px;
+            background: rgba(225, 54, 44, .14);
+            animation: halo 2.4s ease-out infinite;
+        }
+
+        .sos-halo.is-holding::before {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes halo {
+
+            0%,
+            100% {
+                transform: scale(.92);
+                opacity: .55;
+            }
+
+            50% {
+                transform: scale(1.06);
+                opacity: 0;
+            }
+        }
+
+        #sosBtn {
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        #sosBtn.is-holding {
+            transform: scale(.94);
+        }
+
+        .fade-in {
+            animation: fadeIn .25s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-canvas font-sans text-ink antialiased">
+
+    <!-- ══════════════ HEADER DESKTOP ══════════════ -->
+    <header class="sticky top-0 z-40 hidden border-b border-black/5 bg-white/90 backdrop-blur lg:block">
+        <div class="mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6">
+            <a href="/index.html" class="text-lg font-extrabold tracking-tight text-brand">Morocco Public Service</a>
+
+            <nav class="flex items-center gap-7 text-sm font-medium text-muted">
+                <a href="/pages/dashboard/overview.html" class="hover:text-ink">Dashboard</a>
+                <a href="/pages/dashboard/emergency.html"
+                    class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">Emergency
+                    Hub</a>
+                <a href="/pages/dashboard/service.html" class="hover:text-ink">Directories</a>
+                <a href="#" class="hover:text-ink">Reports</a>
+            </nav>
+
+            <div class="ml-auto flex items-center gap-3">
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Notifications</span>
+                    <img src="/assets/emrgence-image/notification.png" alt="" class="size-5 object-contain" />
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
+                </button>
+
+                <a href="#"
+                    class="grid size-9 place-items-center rounded-full text-muted hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Settings</span>
+                    <img src="/assets/emrgence-image/setting.png" alt="" class="size-5 object-contain" />
+                </a>
+
+                <button type="button"
+                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft text-sm font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Your profile</span>SA
+                </button>
+
+                <button type="button" data-jump-sos
+                    class="flex items-center gap-2 rounded-full bg-danger px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+                    <img src="/assets/emrgence-image/sos-white.png" alt="" class="size-4 object-contain" />
+                    SOS Trigger
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════ HEADER MOBILE ══════════════ -->
+    <header class="sticky top-0 z-40 border-b border-black/5 bg-white/95 px-4 py-3.5 backdrop-blur lg:hidden">
+        <div class="flex items-center justify-between">
+            <p class="text-base font-extrabold tracking-tight text-brand">Emergency Services</p>
+            <img src="/assets/emrgence-image/shield.png" alt="" class="size-5 object-contain" />
+        </div>
+    </header>
+</body>
+
+</html>
