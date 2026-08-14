@@ -17,25 +17,72 @@ A modern digital identity platform for Morocco, currently under development. Thi
   <b>Overview Page</b>
 </p>
 
-<p align="center">
-  <img src="./assets/screenshots/screen-marketplace.png" alt="Marketplace Page" width="48%">
-  <img src="./assets/screenshots/screen-emergency.png" alt="Emergency Hub" width="48%">
-</p>
-
-<p align="center">
-  <b>Marketplace Page</b>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Emergency Hub</b>
-</p>
+> More screenshots (Marketplace, Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
 
 ---
 
 ## 🚀 Tech Stack
 
 - HTML5
-- Tailwind CSS v4
-- JavaScript
+- Tailwind CSS v4 *(via CDN — build step planned, see Roadmap)*
+- JavaScript (vanilla, no framework)
 - OpenStreetMap / Leaflet *(live maps & geolocation)*
+
+---
+
+## 📂 Project Structure
+
+```text
+Projet-M3AK/
+│
+├── assets/
+│   ├── image-login/
+│   ├── image-signUp/
+│   ├── image-new-password/
+│   ├── images/
+│   ├── marketplace-image/
+│   ├── emergence-image/
+│   ├── dashboard-assets/
+│   └── screenshots/
+│
+├── pages/
+│   ├── auth/
+│   │   ├── login.html
+│   │   ├── signup.html
+│   │   └── new-password.html
+│   │
+│   ├── app/
+│   │   ├── overview.html
+│   │   ├── service.html
+│   │   ├── transport.html
+│   │   ├── marketplace.html
+│   │   ├── emergence.html
+│   │   └── dashboard.html        # Admin Dashboard
+│   │
+│   └── js/
+│       ├── session.js
+│       ├── onboarding.js
+│       ├── login.js
+│       └── new-password.js
+│
+├── index.html
+├── .gitignore
+└── README.md
+```
+
+---
+
+## ✨ Features
+
+- Modern and responsive UI
+- Dashboard interface with live transport status
+- Digital identity management (UI)
+- Public service directory (12 government services)
+- Marketplace with search, filters, sorting and wishlist
+- Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
+- Admin Dashboard: KPIs, engagement trends, service usage
+- Session handling shared across pages via `localStorage` (`session.js`)
+- Clean and accessible design (ARIA attributes on interactive elements)
 
 ---
 
@@ -52,19 +99,19 @@ A modern digital identity platform for Morocco, currently under development. Thi
 #### Authentication
 
 - [x] Landing Page
-- [x] Sign In Page
-- [x] Sign Up Page
+- [x] Sign In Page (UI + validation)
+- [x] Sign Up Page (UI only — no JS wired yet)
 - [ ] Forgot Password Page
-- [ ] Reset Password Page
-- [x] New Password Page
+- [x] New Password Page (UI only — `new-password.js` is empty)
 
-#### Dashboard
+#### Dashboard / App
 
 - [x] Overview Page
 - [x] Services Page
 - [x] Transport Page
 - [x] Marketplace Page
 - [x] Emergency Hub Page
+- [x] Admin Dashboard
 - [ ] Housing Page
 - [ ] Jobs Page
 - [ ] Education Page
@@ -83,87 +130,27 @@ A modern digital identity platform for Morocco, currently under development. Thi
 ### 🧪 Testing
 
 - [ ] Cross-browser Testing
+- [ ] Automated broken-link check (GitHub Actions)
 - [ ] Performance Optimization
 
 ### 🚀 Deployment
 
+- [ ] Switch internal links to relative paths (required for GitHub Pages)
 - [ ] GitHub Pages
 
 ---
 
-## 📂 Project Structure
+## 🐛 Known Issues
 
-```text
-Projet-M3AK/
-│
-├── assets/
-│   │
-│   ├── image-login/
-│   │
-│   ├── image-signUp/
-│   │
-│   ├── images/
-│   │
-│   ├── marketplace-image/
-│   │
-│   ├── emrgence-image/
-│   │
-│   └── screenshots/
-│
-│
-├── pages/
-│   │
-│   ├── auth/
-│   │   │
-│   │   ├── login.html
-│   │   │
-│   │   ├── signup.html
-│   │   │
-│   │   └── new-password.html
-│   │
-│   ├── dashboard/
-│   │   │
-│   │   ├── overview.html
-│   │   │
-│   │   ├── service.html
-│   │   │
-│   │   ├── transport.html
-│   │   │
-│   │   ├── marketplace.html
-│   │   │
-│   │   └── emergency.html
-│   │
-│   └── js/
-│       │
-│       ├── session.js
-│       │
-│       ├── onboarding.js
-│       │
-│       ├── new-password.js
-│       │
-│       └─── login.js
-│
-│
-├── index.html
-│
-├── .gitignore
-│
-└── README.md
-```
+Tracking honestly so nothing is hidden behind a green checklist:
 
----
-
-## ✨ Features
-
-- Modern and responsive UI
-- Dashboard interface with live transport status
-- Digital identity management
-- Public service integration
-- Marketplace with search, filters, sorting and wishlist
-- Emergency Hub: hold-to-trigger SOS, quick dial, live map, medical ID
-- Real-time geolocation on the network map
-- User profile management
-- Clean and accessible design
+- **Internal navigation is broken.** Links across `pages/app/*.html` point to `/pages/dashboard/...`, but the real folder is `/pages/app/...`.
+- **Login can't complete.** `login.js` calls `window.M3akAuth`, but `session.js` exposes `window.M3ak`. Needs a consistent namespace.
+- **`new-password.js` is empty** and not loaded on `new-password.html` — no validation or submit logic yet.
+- **`onboarding.js`** redirects to `./pages/overview.htm` (wrong extension/path).
+- A few links use inconsistent filenames (`service.html`/`services.html`, `emergence.html`/`emergency.html`, `home.html`).
+- Absolute paths (`/pages/...`) will 404 once deployed on GitHub Pages (served under a subpath).
+- `signup.html` has no JS attached yet.
 
 ---
 
@@ -171,10 +158,10 @@ Projet-M3AK/
 
 - ✅ Project setup completed
 - ✅ Landing page completed
-- ✅ Dashboard Overview completed
-- ✅ Services, Transport and Marketplace pages completed
-- ✅ Emergency Hub completed
-- 🚧 Remaining dashboard sections in development
+- ✅ Auth pages (login, signup, new-password) — UI complete, JS partially wired (see Known Issues)
+- ✅ Dashboard Overview, Services, Transport, Marketplace, Emergency Hub, Admin Dashboard — UI complete
+- 🚧 Fixing internal navigation & auth JS (top priority)
+- 🚧 Remaining dashboard sections (Housing, Jobs, Education, Healthcare, Payments, Profile, Digital ID, Settings)
 - 🚧 Tablet breakpoint and cross-browser testing pending
 
 ---
