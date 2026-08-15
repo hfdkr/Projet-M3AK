@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emergency Hub — M3ak Morocco</title>
+
     <script src="/pages/js/session.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,21 +17,21 @@
 
     <style type="text/tailwindcss">
         @theme {
-    --color-brand:        #0B6B45;
-    --color-brand-dark:   #084F34;
-    --color-green-900:    #006947;
-    --color-blue:         #316BF3;
-    --color-brand-soft:   #E9F3EE;
-    --color-brand-line:   #CFE3D8;
-    --color-danger:       #E1362C;
-    --color-danger-soft:  #FDECEA;
-    --color-ink:          #0F1A15;
-    --color-muted:        #6B7A73;
-    --color-muted-900:    #3D4A42;
-    --color-canvas:       #F6F7F5;
-    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  }
-</style>
+            --color-brand: #0B6B45;
+            --color-brand-dark: #084F34;
+            --color-green-900: #006947;
+            --color-blue: #316BF3;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-line: #CFE3D8;
+            --color-danger: #E1362C;
+            --color-danger-soft: #FDECEA;
+            --color-ink: #0F1A15;
+            --color-muted: #6B7A73;
+            --color-muted-900: #3D4A42;
+            --color-canvas: #F6F7F5;
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+    </style>
 
     <style>
         html {
@@ -50,7 +51,7 @@
             scrollbar-width: none;
         }
 
-        /* Halo respirant autour du bouton SOS (s'arrête pendant l'appui) */
+        /* SOS halo */
         .sos-halo::before {
             content: "";
             position: absolute;
@@ -121,611 +122,1388 @@
 
 <body class="bg-canvas font-sans text-ink antialiased">
 
-    <!-- ══════════════ HEADER DESKTOP ══════════════ -->
+    <!-- HEADER DESKTOP -->
     <header class="sticky top-0 z-40 hidden border-b border-black/5 bg-white/90 backdrop-blur lg:block">
         <div class="mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6">
-            <a href="/index.html" class="text-lg font-extrabold tracking-tight text-brand">Morocco Public Service</a>
+
+            <a href="/index.html" class="text-lg font-extrabold tracking-tight text-brand">
+                Morocco Public Service
+            </a>
 
             <nav class="flex items-center gap-7 text-sm font-medium text-muted">
-                <a href="/pages/dashboard/overview.html" class="hover:text-ink">Dashboard</a>
+                <a href="/pages/dashboard/overview.html" class="hover:text-ink">
+                    Dashboard
+                </a>
+
                 <a href="/pages/dashboard/emergency.html"
-                    class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">Emergency
-                    Hub</a>
-                <a href="/pages/dashboard/service.html" class="hover:text-ink">Directories</a>
-                <a href="#" class="hover:text-ink">Reports</a>
+                    class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">
+                    Emergency Hub
+                </a>
+
+                <a href="/pages/dashboard/service.html" class="hover:text-ink">
+                    Directories
+                </a>
+
+                <a href="#" class="hover:text-ink">
+                    Reports
+                </a>
             </nav>
 
             <div class="ml-auto flex items-center gap-3">
+
                 <button type="button"
                     class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/emergence-image/notification.png" alt="" class="size-5 object-contain" />
+                    <img src="/assets/emergence-image/notification.png" alt="notification-icon" class="size-5 object-contain" />
                     <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
                 </button>
 
                 <a href="#"
                     class="grid size-9 place-items-center rounded-full text-muted hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Settings</span>
-                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-5 object-contain" />
+                    <img src="/assets/emergence-image/setting-icon.png" alt="Setting-icon" class="size-5 object-contain" />
                 </a>
 
                 <button type="button"
                     class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft text-sm font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Your profile</span>SA
+                    <span class="sr-only">Your profile</span>
+                    SA
                 </button>
 
                 <button type="button" data-jump-sos
                     class="flex items-center gap-2 rounded-full bg-danger px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
                     SOS Trigger
                 </button>
+
             </div>
         </div>
     </header>
 
-    <!-- ══════════════ HEADER MOBILE ══════════════ -->
+    <!-- HEADER MOBILE -->
     <header class="sticky top-0 z-40 border-b border-black/5 bg-white/95 px-4 py-3.5 backdrop-blur lg:hidden">
         <div class="flex items-center justify-between">
-            <p class="text-base font-extrabold tracking-tight text-brand">Emergency Services</p>
-            <img src="/assets/emergence-image/shield.png" alt="" class="size-5 object-contain" />
+            <p class="text-base font-extrabold tracking-tight text-brand">
+                Emergency Services
+            </p>
+
+            <img src="/assets/emergence-image/shield.png" alt="shield-icon" class="size-5 object-contain" />
         </div>
     </header>
 
     <main class="mx-auto max-w-[1280px] px-4 pb-28 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
 
-        <!-- Titre desktop + horloge -->
+        <!-- TITLE -->
         <div class="mb-6 hidden items-end justify-between gap-6 lg:flex">
+
             <div>
-                <h1 class="text-lg font-extrabold tracking-tight">Emergency Hub</h1>
-                <p class="mt-1 text-sm text-muted">Command center for immediate assistance and critical resources.</p>
+                <h1 class="text-lg font-extrabold tracking-tight">
+                    Emergency Hub
+                </h1>
+
+                <p class="mt-1 text-sm text-muted">
+                    Command center for immediate assistance and critical resources.
+                </p>
             </div>
+
             <div class="text-right">
-                <p id="clock" class="font-mono text-lg font-semibold tabular-nums">--:--:--</p>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Agadir, Morocco</p>
+                <p id="clock" class="font-mono text-lg font-semibold tabular-nums">
+                    --:--:--
+                </p>
+
+                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                    Agadir, Morocco
+                </p>
             </div>
+
         </div>
 
-        <!-- ══════════════ RANGÉE 1 : SOS + appels rapides ══════════════ -->
+        <!-- SOS + QUICK CALLS -->
         <div class="grid gap-4 lg:grid-cols-3 lg:gap-5">
 
-            <!-- Carte SOS -->
+            <!-- SOS CARD -->
             <section id="sosCard" class="rounded-2xl bg-white p-6 text-center ring-1 ring-black/5 lg:col-span-2 lg:p-8">
-                <h2 class="text-sm font-bold">Need Emergency Help?</h2>
+
+                <h2 class="text-sm font-bold">
+                    Need Emergency Help?
+                </h2>
+
                 <p class="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted">
                     Press and hold the button for 3 seconds to trigger an SOS alert to all emergency services and
                     primary contacts.
                 </p>
 
                 <div class="sos-halo relative mx-auto mt-7 grid size-40 place-items-center lg:mt-8">
+
                     <button id="sosBtn" type="button" aria-describedby="sosHint"
                         class="relative grid size-40 select-none touch-none place-items-center rounded-full bg-danger text-white shadow-[0_12px_34px_rgba(225,54,44,.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-danger/35">
+
                         <svg class="pointer-events-none absolute inset-0 size-full -rotate-90" viewBox="0 0 100 100"
                             aria-hidden="true">
+
                             <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.28)"
                                 stroke-width="4" />
+
                             <circle id="sosRing" cx="50" cy="50" r="46" fill="none" stroke="#fff" stroke-width="4"
                                 stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" />
                         </svg>
+
                         <span class="pointer-events-none flex flex-col items-center gap-1.5">
-                            <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-8 object-contain" />
-                            <span class="text-sm font-extrabold tracking-[0.12em]">SOS</span>
+
+                            <img src="/assets/emergence-image/sos-logo.png" alt="SOS-logo" class="size-8 object-contain" />
+
+                            <span class="text-sm font-extrabold tracking-[0.12em]">
+                                SOS
+                            </span>
+
                         </span>
+
                     </button>
                 </div>
 
                 <p id="sosHint" class="mt-6 text-[11px] font-bold uppercase tracking-[0.18em] text-danger">
-                    Press to trigger</p>
+                    Press to trigger
+                </p>
+
             </section>
 
-            <!-- Appels rapides -->
+            <!-- QUICK CALLS -->
             <div class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+
+                <!-- POLICE -->
                 <button type="button" data-call="19" data-service="Police"
-                    class="flex items-center gap-3 rounded-2xl bg-brand-soft p-4 text-left ring-1 ring-brand-line transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40 lg:flex-1">
+                    class="flex items-center gap-3 rounded-2xl bg-brand-soft p-4 text-left ring-1 ring-brand-line transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
+
                     <span class="flex size-10 shrink-0 items-center justify-center bg-green-900 rounded-xl shadow-sm">
-                        <img src="/assets/emergence-image/police-icon.png" alt="Police"
+                        <img src="/assets/emergence-image/police-icon.png" alt="Police-icon"
                             class="h-5 w-5 object-contain" />
                     </span>
+
                     <span class="min-w-0 flex-1">
-                        <span class="block text-sm font-bold">Police</span>
-                        <span class="block truncate text-[11px] text-muted">National Emergency Line</span>
+                        <span class="block text-sm font-bold">
+                            Police
+                        </span>
+
+                        <span class="block truncate text-[11px] text-muted">
+                            National Emergency Line
+                        </span>
                     </span>
+
                     <span class="shrink-0 text-right">
-                        <span class="block text-lg font-extrabold leading-none text-brand">19</span>
-                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">Quick
-                            Dial</span>
+                        <span class="block text-lg font-extrabold leading-none text-brand">
+                            19
+                        </span>
+
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">
+                            Quick Dial
+                        </span>
                     </span>
+
                 </button>
 
+                <!-- AMBULANCE -->
                 <button type="button" data-call="15" data-service="Ambulance"
-                    class="flex items-center gap-3 rounded-2xl bg-[#EAF0FA] p-4 text-left ring-1 ring-[#D3E0F2] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40 lg:flex-1">
+                    class="flex items-center gap-3 rounded-2xl bg-[#EAF0FA] p-4 text-left ring-1 ring-[#D3E0F2] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
+
                     <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-blue shadow-sm">
-                        <img src="/assets/emergence-image/ambulance-icon.png" alt="" class="size-5 object-contain" />
+                        <img src="/assets/emergence-image/ambulance-icon.png" alt="Ambulance"
+                            class="size-5 object-contain" />
                     </span>
+
                     <span class="min-w-0 flex-1">
-                        <span class="block text-sm font-bold">Ambulance</span>
-                        <span class="block truncate text-[11px] text-muted">Fire Dept &amp; Medical</span>
+                        <span class="block text-sm font-bold">
+                            Ambulance
+                        </span>
+
+                        <span class="block truncate text-[11px] text-muted">
+                            Fire Dept &amp; Medical
+                        </span>
                     </span>
+
                     <span class="shrink-0 text-right">
-                        <span class="block text-lg font-extrabold leading-none text-brand">15</span>
-                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">Quick
-                            Dial</span>
+                        <span class="block text-lg font-extrabold leading-none text-brand">
+                            15
+                        </span>
+
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">
+                            Quick Dial
+                        </span>
                     </span>
+
                 </button>
 
+                <!-- GENDARMERIE -->
                 <button type="button" data-call="177" data-service="Gendarmerie Royale"
-                    class="flex items-center gap-3 rounded-2xl bg-[#E7EEF7] p-4 text-left ring-1 ring-[#CFDDEE] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40 lg:flex-1">
+                    class="flex items-center gap-3 rounded-2xl bg-[#E7EEF7] p-4 text-left ring-1 ring-[#CFDDEE] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
+
                     <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-muted-900 shadow-sm">
-                        <img src="/assets/emergence-image/gendarme-icon.png" alt="" class="size-5 object-contain" />
+                        <img src="/assets/emergence-image/gendarme-icon.png" alt="Gendarmerie"
+                            class="size-5 object-contain" />
                     </span>
+
                     <span class="min-w-0 flex-1">
-                        <span class="block text-sm font-bold">Gendarmerie</span>
-                        <span class="block truncate text-[11px] text-muted">Rural Emergency Line</span>
+                        <span class="block text-sm font-bold">
+                            Gendarmerie
+                        </span>
+
+                        <span class="block truncate text-[11px] text-muted">
+                            Rural Emergency Line
+                        </span>
                     </span>
+
                     <span class="shrink-0 text-right">
-                        <span class="block text-lg font-extrabold leading-none text-brand">177</span>
-                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">Quick
-                            Dial</span>
+                        <span class="block text-lg font-extrabold leading-none text-brand">
+                            177
+                        </span>
+
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">
+                            Quick Dial
+                        </span>
                     </span>
+
                 </button>
+
             </div>
         </div>
 
-        <!-- ══════════════ RANGÉE 2 : carte + dossier médical + contacts ══════════════ -->
+        <!-- MAP + MEDICAL + CONTACTS -->
         <div class="mt-4 grid gap-4 lg:mt-5 lg:grid-cols-3 lg:gap-5">
 
-            <!-- Carte temps réel -->
+            <!-- MAP -->
             <section class="overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 lg:col-span-2">
+
                 <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+
                     <p class="flex items-center gap-2 text-sm font-bold">
-                        <img src="/assets/emergence-image/maps-icon.png" alt="" class="size-4 object-contain" />
+                        <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="size-4 object-contain" />
                         Real-time Emergency Map
                     </p>
+
                     <div class="no-scrollbar flex gap-2 overflow-x-auto" id="mapTabs">
+
                         <button type="button" data-layer="hospitals"
-                            class="map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold">Hospitals</button>
+                            class="map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold">
+                            Hospitals
+                        </button>
+
                         <button type="button" data-layer="pharmacies"
-                            class="map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold">Pharmacies</button>
+                            class="map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold">
+                            Pharmacies
+                        </button>
+
                         <button type="button" data-layer="police"
-                            class="map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold">Police
-                            Stations</button>
+                            class="map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold">
+                            Police Stations
+                        </button>
+
                     </div>
                 </div>
 
                 <div class="relative aspect-[16/10] w-full bg-[#DFE5E0] lg:aspect-[16/7]">
-                    <iframe id="mapFrame" title="Nearby emergency facilities" loading="lazy"
-                        class="size-full border-0"></iframe>
+
+                    <iframe id="mapFrame" title="Nearby emergency facilities" loading="lazy" class="size-full border-0">
+                    </iframe>
 
                     <div
                         class="pointer-events-none absolute bottom-3 left-3 right-3 rounded-xl bg-white/95 p-3 shadow-lg backdrop-blur sm:right-auto sm:w-64">
+
                         <p class="flex items-start gap-2">
-                            <img id="placeIcon" src="/assets/emergence-image/hopitale-Icon.png" alt=""
+
+                            <img id="placeIcon" src="/assets/emergence-image/hopitale-Icon.png" alt="hopitale-Icon"
                                 class="mt-0.5 size-4 shrink-0 object-contain" />
+
                             <span class="min-w-0">
-                                <span id="placeName" class="block text-xs font-bold leading-snug">Hôpital Militaire
-                                    d'Instruction</span>
-                                <span id="placeMeta" class="mt-0.5 block text-[11px] text-muted">0.8 km · 4 mins
-                                    away</span>
+
+                                <span id="placeName" class="block text-xs font-bold leading-snug">
+                                    Hôpital Militaire d'Instruction
+                                </span>
+
+                                <span id="placeMeta" class="mt-0.5 block text-[11px] text-muted">
+                                    0.8 km · 4 mins away
+                                </span>
+
                             </span>
                         </p>
+
                         <p id="placeStatus" class="mt-2 text-[10px] font-bold uppercase tracking-wider text-brand">
-                            ER open · Occupancy low</p>
+                            ER open · Occupancy low
+                        </p>
+
                     </div>
                 </div>
             </section>
 
-            <!-- Colonne droite -->
+            <!-- RIGHT COLUMN -->
             <div class="grid gap-4 lg:gap-5">
 
-                <!-- Medical ID -->
+                <!-- MEDICAL ID -->
                 <section class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm">
+
                     <div class="flex items-start justify-between gap-3">
-                        <p class="text-sm font-bold">Medical ID</p>
+
+                        <p class="text-sm font-bold">
+                            Medical ID
+                        </p>
+
                         <button id="editMedical" type="button"
                             class="grid size-8 place-items-center rounded-lg bg-white/15 transition hover:bg-white/25 focus-visible:ring-2 focus-visible:ring-white/60">
-                            <span class="sr-only">Edit medical ID</span>
-                            <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-4 object-contain" />
+
+                            <span class="sr-only">
+                                Edit medical ID
+                            </span>
+
+                            <img src="/assets/emergence-image/edit-Icon.png" alt="edit-Icon" class="size-4 object-contain" />
+
                         </button>
                     </div>
 
                     <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
+
                         <div>
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">Blood type</dt>
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-bold outline-none">A Positive
+                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                                Blood type
+                            </dt>
+
+                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-bold outline-none">
+                                A Positive
                             </dd>
                         </div>
+
                         <div>
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">Weight</dt>
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-bold outline-none">78 kg</dd>
+                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                                Weight
+                            </dt>
+
+                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-bold outline-none">
+                                78 kg
+                            </dd>
                         </div>
+
                         <div class="col-span-2">
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">Allergies</dt>
+                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                                Allergies
+                            </dt>
+
                             <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-semibold outline-none">
-                                Penicillin,
-                                Peanuts</dd>
+                                Penicillin, Peanuts
+                            </dd>
                         </div>
+
                         <div class="col-span-2">
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">Medications</dt>
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-semibold outline-none">None</dd>
+                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                                Medications
+                            </dt>
+
+                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-semibold outline-none">
+                                None
+                            </dd>
                         </div>
+
                     </dl>
                 </section>
 
-                <!-- Contacts d'urgence -->
+                <!-- EMERGENCY CONTACTS -->
                 <section class="rounded-2xl bg-white p-5 ring-1 ring-black/5">
+
                     <div class="flex items-center justify-between gap-3">
-                        <p class="text-sm font-bold">Emergency Contacts</p>
+
+                        <p class="text-sm font-bold">
+                            Emergency Contacts
+                        </p>
+
                         <button id="addContact" type="button"
                             class="grid size-8 place-items-center rounded-lg transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
-                            <span class="sr-only">Add a contact</span>
-                            <img src="/assets/emergence-image/add-Icon.png" alt="" class="size-5 object-contain" />
+
+                            <span class="sr-only">
+                                Add a contact
+                            </span>
+
+                            <img src="/assets/emergence-image/add-Icon.png" alt="add-Icon" class="size-5 object-contain" />
+
                         </button>
+
                     </div>
 
-                    <ul id="contactList" class="mt-4 divide-y divide-black/5"></ul>
+                    <ul id="contactList" class="mt-4 divide-y divide-black/5">
+                    </ul>
 
-                    <!-- Formulaire d'ajout -->
+                    <!-- CONTACT FORM -->
                     <div id="contactForm" class="mt-4 hidden rounded-xl bg-canvas p-3">
+
                         <div class="grid gap-2">
+
                             <input id="cName" type="text" placeholder="Full name"
                                 class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+
                             <input id="cRole" type="text" placeholder="Relationship (e.g. Sister)"
                                 class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+
                             <input id="cPhone" type="tel" placeholder="+212 6xx-xxxxxx"
                                 class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+
                         </div>
+
                         <div class="mt-3 flex gap-2">
+
                             <button id="saveContact" type="button"
-                                class="flex-1 rounded-lg bg-brand py-2 text-sm font-semibold text-white hover:bg-brand-dark">Save
-                                contact</button>
+                                class="flex-1 rounded-lg bg-brand py-2 text-sm font-semibold text-white hover:bg-brand-dark">
+                                Save contact
+                            </button>
+
                             <button id="cancelContact" type="button"
-                                class="rounded-lg px-3 py-2 text-sm font-semibold text-muted hover:text-ink">Cancel</button>
+                                class="rounded-lg px-3 py-2 text-sm font-semibold text-muted hover:text-ink">
+                                Cancel
+                            </button>
+
                         </div>
                     </div>
                 </section>
+
             </div>
         </div>
 
-        <!-- ══════════════ PROCÉDURES ══════════════ -->
+        <!-- EMERGENCY PROCEDURES -->
         <section class="mt-10 lg:mt-12">
-            <h2 class="text-base font-extrabold lg:text-center">Emergency Procedures</h2>
-            <p class="mt-1 text-xs text-muted lg:text-center">Follow these protocols while waiting for professional
-                help.
+
+            <h2 class="text-base font-extrabold lg:text-center">
+                Emergency Procedures
+            </h2>
+
+            <p class="mt-1 text-xs text-muted lg:text-center">
+                Follow these protocols while waiting for professional help.
             </p>
 
-            <div class="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2
-                        lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0">
+            <div
+                class="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0">
 
                 <article
                     class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+
                     <span class="grid size-9 place-items-center rounded-xl bg-brand-soft">
-                        <img src="/assets/emergence-image/aid-Icon.png" alt="" class="size-5 object-contain" />
+                        <img src="/assets/emergence-image/aid-Icon.png" alt="aid-Icon" class="size-5 object-contain" />
                     </span>
-                    <h3 class="mt-3 text-sm font-bold">First Aid</h3>
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">CPR instructions, wound care, and choking
-                        maneuvers.</p>
+
+                    <h3 class="mt-3 text-sm font-bold">
+                        First Aid
+                    </h3>
+
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                        CPR instructions, wound care, and choking maneuvers.
+                    </p>
+
                 </article>
 
                 <article
                     class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+
                     <span class="grid size-9 place-items-center rounded-xl bg-[#E8EFFA]">
-                        <img src="/assets/emergence-image/safety-Icon.png" alt="" class="size-5 object-contain" />
+                        <img src="/assets/emergence-image/safety-Icon.png" alt="safety-Icon" class="size-5 object-contain" />
                     </span>
-                    <h3 class="mt-3 text-sm font-bold">Fire Safety</h3>
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">Evacuation routes, fire extinguisher use,
-                        and containment.</p>
+
+                    <h3 class="mt-3 text-sm font-bold">
+                        Fire Safety
+                    </h3>
+
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                        Evacuation routes, fire extinguisher use, and containment.
+                    </p>
+
                 </article>
 
                 <article
                     class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+
                     <span class="grid size-9 place-items-center rounded-xl bg-[#FDF0DF]">
-                        <img src="/assets/emergence-image/earthquake-Icon.png" alt="" class="size-5 object-contain" />
+                        <img src="/assets/emergence-image/earthquake-Icon.png" alt="earthquake-Icon" class="size-5 object-contain" />
                     </span>
-                    <h3 class="mt-3 text-sm font-bold">Earthquake</h3>
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">Drop, cover, and hold procedures for
-                        seismic
-                        events.</p>
+
+                    <h3 class="mt-3 text-sm font-bold">
+                        Earthquake
+                    </h3>
+
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                        Drop, cover, and hold procedures for seismic events.
+                    </p>
+
                 </article>
 
                 <article
                     class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+
                     <span class="grid size-9 place-items-center rounded-xl bg-danger-soft">
-                        <img src="/assets/emergence-image/accedent-Icon.png" alt="" class="size-5 object-contain" />
+                        <img src="/assets/emergence-image/accedent-Icon.png" alt="accedent-Icon" class="size-5 object-contain" />
                     </span>
-                    <h3 class="mt-3 text-sm font-bold">Road Accident</h3>
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">Securing the scene and initial victim
-                        assessment.</p>
+
+                    <h3 class="mt-3 text-sm font-bold">
+                        Road Accident
+                    </h3>
+
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                        Securing the scene and initial victim assessment.
+                    </p>
+
                 </article>
+
             </div>
         </section>
+
     </main>
 
-    <!-- ══════════════ FOOTER (desktop) ══════════════ -->
+    <!-- FOOTER -->
     <footer class="mt-8 hidden border-t border-black/5 bg-white lg:block">
+
         <div class="mx-auto max-w-[1280px] px-6 py-8">
+
             <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted">
-                <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
+
+                <p>
+                    © 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.
+                </p>
+
                 <nav class="flex gap-7">
-                    <a href="#" class="hover:text-brand">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand">Terms of Service</a>
-                    <a href="#" class="hover:text-brand">Help Center</a>
+
+                    <a href="#" class="hover:text-brand">
+                        Privacy Policy
+                    </a>
+
+                    <a href="#" class="hover:text-brand">
+                        Terms of Service
+                    </a>
+
+                    <a href="#" class="hover:text-brand">
+                        Help Center
+                    </a>
+
                 </nav>
+
             </div>
         </div>
-
     </footer>
 
-    <!-- ══════════════ BOTTOM NAV (mobile) ══════════════ -->
+    <!-- BOTTOM NAV -->
     <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
+
         <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
+
             <a href="/pages/dashboard/emergency.html" aria-current="page"
                 class="flex flex-col items-center gap-1 rounded-2xl bg-brand px-5 py-2 text-[11px] font-semibold text-white shadow-sm">
-                <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-5 object-contain" />
+
+                <img src="/assets/emergence-image/sos-logo.png" alt="sos-logo" class="size-5 object-contain" />
+
                 SOS
             </a>
+
             <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
-                <img src="/assets/emergence-image/maps-icon.png" alt="" class="size-5 object-contain" />
+
+                <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="size-5 object-contain" />
+
                 Map
             </a>
+
             <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
-                <img src="/assets/emergence-image/aid-Icon.png" alt="" class="size-5 object-contain" />
+
+                <img src="/assets/emergence-image/aid-Icon.png" alt="aid-Icon" class="size-5 object-contain" />
+
                 First Aid
             </a>
+
             <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
-                <img src="/assets/emergence-image/history.png" alt="" class="size-5 object-contain" />
+
+                <img src="/assets/emergence-image/history.png" alt="history-icon" class="size-5 object-contain" />
+
                 History
             </a>
+
         </div>
     </nav>
 
-    <!-- ══════════════ MODALE ══════════════ -->
+    <!-- MODAL -->
     <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/45 p-4 backdrop-blur-sm">
+
         <div role="dialog" aria-modal="true" aria-labelledby="modalTitle"
             class="fade-in w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
-            <span class="mx-auto grid size-12 place-items-center rounded-full bg-danger-soft">
-                <img src="/assets/emergence-image/alert.png" alt="" class="size-6 object-contain" />
+
+            <!-- DYNAMIC ICON -->
+            <span id="modalIconContainer" class="mx-auto grid size-12 place-items-center rounded-full bg-[#C82C23]">
+
+                <img id="modalIcon" src="/assets/emergence-image/sos-logo.png" alt="Emergency"
+                    class="size-6 object-contain" />
+
             </span>
-            <h2 id="modalTitle" class="mt-4 text-base font-extrabold">SOS alert sent</h2>
-            <p id="modalText" class="mt-2 text-sm leading-relaxed text-muted"></p>
+
+            <h2 id="modalTitle" class="mt-4 text-base font-extrabold">
+                SOS Alert
+            </h2>
+
+            <p id="modalText" class="mt-2 text-sm leading-relaxed text-muted">
+            </p>
+
             <div class="mt-6 flex gap-2">
+
                 <button id="modalCancel" type="button"
-                    class="flex-1 rounded-xl bg-canvas py-2.5 text-sm font-semibold hover:bg-brand-soft hover:text-brand">Cancel</button>
+                    class="flex-1 rounded-xl bg-canvas py-2.5 text-sm font-semibold hover:bg-brand-soft hover:text-brand">
+                    Cancel
+                </button>
+
                 <button id="modalConfirm" type="button"
-                    class="flex-1 rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">Confirm</button>
+                    class="flex-1 rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">
+                    Confirm
+                </button>
+
             </div>
         </div>
     </div>
 
-    <!-- Toast -->
+    <!-- TOAST -->
     <div id="toast"
         class="pointer-events-none fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
     </div>
 
     <script>
-        /* ─────────────── Helpers ─────────────── */
+
+        /* ─────────────────────────────
+           HELPERS
+        ───────────────────────────── */
+
         const $ = (s, r = document) => r.querySelector(s);
         const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
         function toast(msg) {
+
             const t = $("#toast");
+
             t.textContent = msg;
             t.style.opacity = "1";
+
             clearTimeout(t._timer);
-            t._timer = setTimeout(() => (t.style.opacity = "0"), 2400);
+
+            t._timer = setTimeout(() => {
+                t.style.opacity = "0";
+            }, 2400);
         }
 
-        /* ─────────────── Horloge ─────────────── */
+
+        /* ─────────────────────────────
+           CLOCK
+        ───────────────────────────── */
+
         function tickClock() {
-            $("#clock").textContent = new Date().toLocaleTimeString("fr-FR", { hour12: false });
+
+            $("#clock").textContent =
+                new Date().toLocaleTimeString("fr-FR", {
+                    hour12: false
+                });
         }
+
         tickClock();
         setInterval(tickClock, 1000);
 
-        /* ─────────────── Modale générique ─────────────── */
-        const modal = $("#modal");
-        let onConfirm = null, onCancel = null;
 
-        function openModal({ title, text, confirm = "Confirm", cancel = "Cancel", action, cancelAction }) {
+        /* ─────────────────────────────
+           GENERIC MODAL
+        ───────────────────────────── */
+
+        const modal = $("#modal");
+
+        let onConfirm = null;
+        let onCancel = null;
+
+
+        function openModal({
+            title,
+            text,
+            icon = "sos-logo.png",
+            confirm = "Confirm",
+            cancel = "Cancel",
+            action,
+            cancelAction
+        }) {
+
+            /* CHANGE ICON */
+            $("#modalIcon").src =
+                `/assets/emergence-image/${icon}`;
+
+            $("#modalIcon").alt = title;
+
+            /* CHANGE TITLE */
             $("#modalTitle").textContent = title;
+
+            /* CHANGE TEXT */
             $("#modalText").textContent = text;
+
+            /* CHANGE BUTTONS */
             $("#modalConfirm").textContent = confirm;
             $("#modalCancel").textContent = cancel;
+
+            /* SAVE ACTIONS */
             onConfirm = action || null;
             onCancel = cancelAction || null;
+
+            /* SHOW MODAL */
             modal.classList.remove("hidden");
             modal.classList.add("flex");
+
             $("#modalConfirm").focus();
         }
 
+
         function closeModal(runCancel = false) {
+
             const fn = onCancel;
+
             modal.classList.add("hidden");
             modal.classList.remove("flex");
+
             onConfirm = null;
             onCancel = null;
-            if (runCancel && fn) fn();
+
+            if (runCancel && fn) {
+                fn();
+            }
         }
 
-        $("#modalCancel").addEventListener("click", () => closeModal(true));
-        $("#modalConfirm").addEventListener("click", () => {
-            const fn = onConfirm;
-            closeModal();
-            if (fn) fn();
-        });
-        modal.addEventListener("click", e => { if (e.target === modal) closeModal(true); });
-        document.addEventListener("keydown", e => {
-            if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal(true);
+
+        $("#modalCancel").addEventListener("click", () => {
+            closeModal(true);
         });
 
-        /* ─────────────── Bouton SOS (appui 3 s) ─────────────── */
+
+        $("#modalConfirm").addEventListener("click", () => {
+
+            const fn = onConfirm;
+
+            closeModal();
+
+            if (fn) {
+                fn();
+            }
+        });
+
+
+        modal.addEventListener("click", e => {
+
+            if (e.target === modal) {
+                closeModal(true);
+            }
+        });
+
+
+        document.addEventListener("keydown", e => {
+
+            if (
+                e.key === "Escape" &&
+                !modal.classList.contains("hidden")
+            ) {
+                closeModal(true);
+            }
+        });
+
+
+        /* ─────────────────────────────
+           SOS BUTTON
+        ───────────────────────────── */
+
         const HOLD_MS = 3000;
         const RING_LEN = 2 * Math.PI * 46;
-        const sosBtn = $("#sosBtn"), ring = $("#sosRing"), hint = $("#sosHint"), halo = $(".sos-halo");
-        let rafId = null, startedAt = 0;
 
-        ring.setAttribute("stroke-dasharray", RING_LEN.toFixed(1));
+        const sosBtn = $("#sosBtn");
+        const ring = $("#sosRing");
+        const hint = $("#sosHint");
+        const halo = $(".sos-halo");
+
+        let rafId = null;
+        let startedAt = 0;
+
+
+        ring.setAttribute(
+            "stroke-dasharray",
+            RING_LEN.toFixed(1)
+        );
+
         ring.style.strokeDashoffset = RING_LEN;
 
+
         function frame(now) {
-            const p = Math.min((now - startedAt) / HOLD_MS, 1);
-            ring.style.strokeDashoffset = RING_LEN * (1 - p);
-            hint.textContent = `Hold ${Math.ceil((1 - p) * 3)}s`;
-            if (p < 1) rafId = requestAnimationFrame(frame);
-            else fireAlert();
+
+            const p =
+                Math.min(
+                    (now - startedAt) / HOLD_MS,
+                    1
+                );
+
+            ring.style.strokeDashoffset =
+                RING_LEN * (1 - p);
+
+            hint.textContent =
+                `Hold ${Math.ceil((1 - p) * 3)}s`;
+
+            if (p < 1) {
+
+                rafId =
+                    requestAnimationFrame(frame);
+
+            } else {
+
+                fireAlert();
+            }
         }
+
 
         function startHold(e) {
+
             if (rafId) return;
+
             e.preventDefault();
+
             sosBtn.classList.add("is-holding");
             halo.classList.add("is-holding");
+
             navigator.vibrate?.(25);
+
             startedAt = performance.now();
-            rafId = requestAnimationFrame(frame);
+
+            rafId =
+                requestAnimationFrame(frame);
         }
+
 
         function cancelHold() {
+
             if (!rafId) return;
+
             cancelAnimationFrame(rafId);
+
             rafId = null;
-            ring.style.strokeDashoffset = RING_LEN;
+
+            ring.style.strokeDashoffset =
+                RING_LEN;
+
             sosBtn.classList.remove("is-holding");
             halo.classList.remove("is-holding");
-            hint.textContent = "Press to trigger";
+
+            hint.textContent =
+                "Press to trigger";
         }
+
 
         function resetRing() {
-            ring.style.strokeDashoffset = RING_LEN;
-            hint.textContent = "Press to trigger";
+
+            ring.style.strokeDashoffset =
+                RING_LEN;
+
+            hint.textContent =
+                "Press to trigger";
         }
+
 
         function fireAlert() {
+
             cancelAnimationFrame(rafId);
+
             rafId = null;
+
             sosBtn.classList.remove("is-holding");
             halo.classList.remove("is-holding");
-            ring.style.strokeDashoffset = 0;
-            hint.textContent = "Alert active";
-            navigator.vibrate?.([60, 40, 60]);
 
+            ring.style.strokeDashoffset = 0;
+
+            hint.textContent =
+                "Alert active";
+
+            navigator.vibrate?.([
+                60,
+                40,
+                60
+            ]);
+
+
+            /* SOS MODAL */
             openModal({
-                title: "SOS alert sent",
-                text: "Your location in Rabat was shared with emergency services and your primary contacts. Help is on the way.",
-                confirm: "Keep alert active",
-                cancel: "Cancel alert",
-                action: () => toast("Alert stays active — responders can track your location"),
-                cancelAction: () => { resetRing(); toast("Alert cancelled"); }
+
+                title: "SOS Alert",
+
+                text:
+                    "Your emergency alert has been activated. Your location will be shared with emergency services and your primary contacts.",
+
+                icon: "sos-logo.png",
+
+                confirm:
+                    "Keep alert active",
+
+                cancel:
+                    "Cancel alert",
+
+                action: () => {
+
+                    toast(
+                        "Alert stays active — responders can track your location"
+                    );
+                },
+
+                cancelAction: () => {
+
+                    resetRing();
+
+                    toast(
+                        "Alert cancelled"
+                    );
+                }
             });
         }
 
-        sosBtn.addEventListener("pointerdown", startHold);
-        sosBtn.addEventListener("pointerup", cancelHold);
-        sosBtn.addEventListener("pointerleave", cancelHold);
-        sosBtn.addEventListener("pointercancel", cancelHold);
-        sosBtn.addEventListener("contextmenu", e => e.preventDefault());
-        sosBtn.addEventListener("keydown", e => {
-            if ((e.key === " " || e.key === "Enter") && !e.repeat) startHold(e);
+
+        sosBtn.addEventListener(
+            "pointerdown",
+            startHold
+        );
+
+        sosBtn.addEventListener(
+            "pointerup",
+            cancelHold
+        );
+
+        sosBtn.addEventListener(
+            "pointerleave",
+            cancelHold
+        );
+
+        sosBtn.addEventListener(
+            "pointercancel",
+            cancelHold
+        );
+
+        sosBtn.addEventListener(
+            "contextmenu",
+            e => e.preventDefault()
+        );
+
+        sosBtn.addEventListener(
+            "keydown",
+            e => {
+
+                if (
+                    (e.key === " " ||
+                        e.key === "Enter") &&
+                    !e.repeat
+                ) {
+                    startHold(e);
+                }
+            }
+        );
+
+        sosBtn.addEventListener(
+            "keyup",
+            cancelHold
+        );
+
+        sosBtn.addEventListener(
+            "blur",
+            cancelHold
+        );
+
+
+        /* HEADER SOS BUTTON */
+
+        $$("[data-jump-sos]").forEach(b => {
+
+            b.addEventListener(
+                "click",
+                () => {
+
+                    $("#sosCard").scrollIntoView({
+                        block: "center"
+                    });
+
+                    sosBtn.focus();
+
+                    toast(
+                        "Press and hold the SOS button for 3 seconds"
+                    );
+                }
+            );
+
         });
-        sosBtn.addEventListener("keyup", cancelHold);
-        sosBtn.addEventListener("blur", cancelHold);
 
-        $$("[data-jump-sos]").forEach(b => b.addEventListener("click", () => {
-            $("#sosCard").scrollIntoView({ block: "center" });
-            sosBtn.focus();
-            toast("Press and hold the SOS button for 3 seconds");
-        }));
 
-        /* ─────────────── Appels rapides (confirmation avant d'appeler) ─────────────── */
-        $$("[data-call]").forEach(btn => btn.addEventListener("click", () => {
-            const num = btn.dataset.call, service = btn.dataset.service;
-            openModal({
-                title: `Call ${service}`,
-                text: `This dials ${num}, a live emergency line. Only confirm if you need help right now.`,
-                confirm: `Call ${num}`,
-                cancel: "Not now",
-                action: () => { window.location.href = `tel:${num}`; }
-            });
-        }));
+        /* ─────────────────────────────
+           QUICK EMERGENCY CALLS
+        ───────────────────────────── */
 
-        /* ─────────────── Carte ─────────────── */
+        $$("[data-call]").forEach(btn => {
+
+            btn.addEventListener(
+                "click",
+                () => {
+
+                    const num =
+                        btn.dataset.call;
+
+                    const service =
+                        btn.dataset.service;
+
+
+                    /* EACH SERVICE HAS ITS OWN ICON */
+
+                    const icons = {
+
+                        "Police":
+                            "police-icon.png",
+
+                        "Ambulance":
+                            "ambulance-icon.png",
+
+                        "Gendarmerie Royale":
+                            "gendarme-icon.png"
+                    };
+
+
+                    openModal({
+
+                        title:
+                            `Call ${service}`,
+
+                        text:
+                            `You are about to call ${service} on ${num}. Only confirm if you need emergency assistance.`,
+
+                        icon:
+                            icons[service],
+
+                        confirm:
+                            `Call ${num}`,
+
+                        cancel:
+                            "Not now",
+
+                        action: () => {
+
+                            window.location.href =
+                                `tel:${num}`;
+                        }
+                    });
+
+                }
+            );
+
+        });
+
+
+        /* ─────────────────────────────
+           MAP
+        ───────────────────────────── */
+
         const PLACES = {
-            hospitals: { name: "Hôpital Militaire d'Instruction", meta: "0.8 km · 4 mins away", status: "ER open · Occupancy low", icon: "hopitale-Icon.png", lat: 34.0075, lon: -6.8489 },
-            pharmacies: { name: "Pharmacie de la Gare (24h)", meta: "0.4 km · 2 mins away", status: "Open now · Night duty", icon: "pharmacy.jpg", lat: 34.0132, lon: -6.8326 },
-            police: { name: "Préfecture de Police de Rabat", meta: "1.2 km · 6 mins away", status: "Open 24/7 · Patrol nearby", icon: "police-icon.png", lat: 34.0209, lon: -6.8416 }
+
+            hospitals: {
+                name: "Hôpital Militaire d'Instruction",
+                meta: "0.8 km · 4 mins away",
+                status: "ER open · Occupancy low",
+                icon: "hopitale-Icon.png",
+                lat: 34.0075,
+                lon: -6.8489
+            },
+
+            pharmacies: {
+                name: "Pharmacie de la Gare (24h)",
+                meta: "0.4 km · 2 mins away",
+                status: "Open now · Night duty",
+                icon: "pharmacy.jpg",
+                lat: 34.0132,
+                lon: -6.8326
+            },
+
+            police: {
+                name: "Préfecture de Police de Rabat",
+                meta: "1.2 km · 6 mins away",
+                status: "Open 24/7 · Patrol nearby",
+                icon: "police-icon.png",
+                lat: 34.0209,
+                lon: -6.8416
+            }
         };
 
+
         function paintTabs(active) {
+
             $$(".map-tab").forEach(t => {
-                const on = t.dataset.layer === active;
-                t.className = `map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${on ? "bg-brand-soft text-brand" : "text-muted hover:text-ink"}`;
-                t.setAttribute("aria-pressed", on);
+
+                const on =
+                    t.dataset.layer === active;
+
+                t.className =
+                    `map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${on
+                        ? "bg-brand-soft text-brand"
+                        : "text-muted hover:text-ink"
+                    }`;
+
+                t.setAttribute(
+                    "aria-pressed",
+                    on
+                );
             });
         }
 
+
         function showLayer(key) {
+
             const p = PLACES[key];
-            $("#placeName").textContent = p.name;
-            $("#placeMeta").textContent = p.meta;
-            $("#placeStatus").textContent = p.status;
-            $("#placeIcon").src = `/assets/emergence-image/${p.icon}`;
-            const bbox = [p.lon - .012, p.lat - .006, p.lon + .012, p.lat + .006].join("%2C");
-            $("#mapFrame").src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${p.lat}%2C${p.lon}`;
+
+            $("#placeName").textContent =
+                p.name;
+
+            $("#placeMeta").textContent =
+                p.meta;
+
+            $("#placeStatus").textContent =
+                p.status;
+
+            $("#placeIcon").src =
+                `/assets/emergence-image/${p.icon}`;
+
+
+            const bbox = [
+                p.lon - .012,
+                p.lat - .006,
+                p.lon + .012,
+                p.lat + .006
+            ].join("%2C");
+
+
+            $("#mapFrame").src =
+                `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${p.lat}%2C${p.lon}`;
+
+
             paintTabs(key);
         }
 
-        $$(".map-tab").forEach(t => t.addEventListener("click", () => showLayer(t.dataset.layer)));
+
+        $$(".map-tab").forEach(t => {
+
+            t.addEventListener(
+                "click",
+                () => showLayer(t.dataset.layer)
+            );
+
+        });
+
+
         showLayer("hospitals");
 
-        /* ─────────────── Dossier médical (édition en place) ─────────────── */
-        let editing = false;
-        $("#editMedical").addEventListener("click", () => {
-            editing = !editing;
-            $$(".med-field").forEach(f => {
-                f.contentEditable = editing;
-                f.classList.toggle("bg-white/15", editing);
-                f.classList.toggle("ring-1", editing);
-                f.classList.toggle("ring-white/30", editing);
-            });
-            if (editing) $$(".med-field")[0].focus();
-            else toast("Medical ID updated");
-        });
 
-        /* ─────────────── Contacts d'urgence ─────────────── */
+        /* ─────────────────────────────
+           MEDICAL ID
+        ───────────────────────────── */
+
+        let editing = false;
+
+
+        $("#editMedical").addEventListener(
+            "click",
+            () => {
+
+                editing = !editing;
+
+                $$(".med-field").forEach(f => {
+
+                    f.contentEditable =
+                        editing;
+
+                    f.classList.toggle(
+                        "bg-white/15",
+                        editing
+                    );
+
+                    f.classList.toggle(
+                        "ring-1",
+                        editing
+                    );
+
+                    f.classList.toggle(
+                        "ring-white/30",
+                        editing
+                    );
+                });
+
+
+                if (editing) {
+
+                    $$(".med-field")[0].focus();
+
+                } else {
+
+                    toast(
+                        "Medical ID updated"
+                    );
+                }
+            }
+        );
+
+
+        /* ─────────────────────────────
+           EMERGENCY CONTACTS
+        ───────────────────────────── */
+
         const CONTACTS = [
-            { name: "Amina Mansouri", role: "Mother", phone: "+212 6xx-xxxxxx", online: true },
-            { name: "Driss El Fassi", role: "Brother", phone: "+212 7xx-xxxxxx", online: false },
-            { name: "Dr. Sarah Tazi", role: "Personal Physician", phone: "+212 5xx-xxxxxx", online: true }
+
+            {
+                name: "Amina Mansouri",
+                role: "Mother",
+                phone: "+212 6xx-xxxxxx",
+                online: true
+            },
+
+            {
+                name: "Driss El Fassi",
+                role: "Brother",
+                phone: "+212 7xx-xxxxxx",
+                online: false
+            },
+
+            {
+                name: "Dr. Sarah Tazi",
+                role: "Personal Physician",
+                phone: "+212 5xx-xxxxxx",
+                online: true
+            }
         ];
 
-        const initials = n => n.replace(/^Dr\.\s*/i, "").split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+
+        const initials = n =>
+
+            n.replace(/^Dr\.\s*/i, "")
+                .split(" ")
+                .map(w => w[0])
+                .slice(0, 2)
+                .join("")
+                .toUpperCase();
+
 
         function renderContacts() {
-            $("#contactList").innerHTML = CONTACTS.map(c => `
-      <li class="flex items-center gap-3 py-3">
-        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft text-[11px] font-bold text-brand">${initials(c.name)}</span>
-        <span class="min-w-0 flex-1">
-          <span class="block truncate text-xs font-bold">${c.name}</span>
-          <span class="block truncate text-[11px] text-muted">${c.role} · ${c.phone}</span>
-        </span>
-        <span class="size-2 shrink-0 rounded-full ${c.online ? "bg-brand" : "bg-black/15"}" title="${c.online ? "Reachable" : "Unreachable"}"></span>
-      </li>`).join("");
+
+            $("#contactList").innerHTML =
+                CONTACTS.map(c => `
+
+                    <li class="flex items-center gap-3 py-3">
+
+                        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft text-[11px] font-bold text-brand">
+                            ${initials(c.name)}
+                        </span>
+
+                        <span class="min-w-0 flex-1">
+
+                            <span class="block truncate text-xs font-bold">
+                                ${c.name}
+                            </span>
+
+                            <span class="block truncate text-[11px] text-muted">
+                                ${c.role} · ${c.phone}
+                            </span>
+
+                        </span>
+
+                        <span
+                            class="size-2 shrink-0 rounded-full ${c.online
+                        ? "bg-brand"
+                        : "bg-black/15"
+                    }"
+                            title="${c.online
+                        ? "Reachable"
+                        : "Unreachable"
+                    }">
+                        </span>
+
+                    </li>
+
+                `).join("");
         }
+
+
         renderContacts();
 
-        const form = $("#contactForm");
-        $("#addContact").addEventListener("click", () => {
-            form.classList.toggle("hidden");
-            if (!form.classList.contains("hidden")) $("#cName").focus();
-        });
-        $("#cancelContact").addEventListener("click", () => form.classList.add("hidden"));
-        $("#saveContact").addEventListener("click", () => {
-            const name = $("#cName").value.trim(), role = $("#cRole").value.trim(), phone = $("#cPhone").value.trim();
-            if (!name || !phone) { toast("Add a name and a phone number to save"); return; }
-            CONTACTS.push({ name, role: role || "Contact", phone, online: true });
-            ["#cName", "#cRole", "#cPhone"].forEach(s => ($(s).value = ""));
-            form.classList.add("hidden");
-            renderContacts();
-            toast("Contact added to your alert list");
-        });
+
+        const form =
+            $("#contactForm");
+
+
+        $("#addContact").addEventListener(
+            "click",
+            () => {
+
+                form.classList.toggle(
+                    "hidden"
+                );
+
+                if (!form.classList.contains("hidden")) {
+
+                    $("#cName").focus();
+                }
+            }
+        );
+
+
+        $("#cancelContact").addEventListener(
+            "click",
+            () => {
+
+                form.classList.add(
+                    "hidden"
+                );
+            }
+        );
+
+
+        $("#saveContact").addEventListener(
+            "click",
+            () => {
+
+                const name =
+                    $("#cName").value.trim();
+
+                const role =
+                    $("#cRole").value.trim();
+
+                const phone =
+                    $("#cPhone").value.trim();
+
+
+                if (!name || !phone) {
+
+                    toast(
+                        "Add a name and a phone number to save"
+                    );
+
+                    return;
+                }
+
+
+                CONTACTS.push({
+
+                    name,
+                    role:
+                        role || "Contact",
+
+                    phone,
+                    online: true
+                });
+
+
+                ["#cName", "#cRole", "#cPhone"]
+                    .forEach(
+                        s => ($(s).value = "")
+                    );
+
+
+                form.classList.add(
+                    "hidden"
+                );
+
+
+                renderContacts();
+
+
+                toast(
+                    "Contact added to your alert list"
+                );
+            }
+        );
     </script>
 </body>
-
 </html>
