@@ -1257,16 +1257,12 @@
 
             $("#placeIcon").src =
                 `/assets/emergence-image/${p.icon}`;
-
-
             const bbox = [
                 p.lon - .012,
                 p.lat - .006,
                 p.lon + .012,
                 p.lat + .006
             ].join("%2C");
-
-
             $("#mapFrame").src =
                 `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${p.lat}%2C${p.lon}`;
             paintTabs(key);
