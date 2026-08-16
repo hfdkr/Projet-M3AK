@@ -1269,94 +1269,64 @@
 
             $("#mapFrame").src =
                 `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${p.lat}%2C${p.lon}`;
-
-
             paintTabs(key);
         }
-
-
         $$(".map-tab").forEach(t => {
-
             t.addEventListener(
                 "click",
                 () => showLayer(t.dataset.layer)
             );
-
         });
-
-
         showLayer("hospitals");
-
-
         /* ─────────────────────────────
            MEDICAL ID
         ───────────────────────────── */
-
         let editing = false;
-
-
         $("#editMedical").addEventListener(
             "click",
             () => {
-
                 editing = !editing;
-
                 $$(".med-field").forEach(f => {
-
                     f.contentEditable =
                         editing;
-
                     f.classList.toggle(
                         "bg-white/15",
                         editing
                     );
-
                     f.classList.toggle(
                         "ring-1",
                         editing
                     );
-
                     f.classList.toggle(
                         "ring-white/30",
                         editing
                     );
                 });
-
-
                 if (editing) {
-
                     $$(".med-field")[0].focus();
-
                 } else {
-
                     toast(
                         "Medical ID updated"
                     );
                 }
             }
         );
-
-
         /* ─────────────────────────────
            EMERGENCY CONTACTS
         ───────────────────────────── */
-
         const CONTACTS = [
-
             {
                 name: "Amina Mansouri",
                 role: "Mother",
                 phone: "+212 6xx-xxxxxx",
                 online: true
             },
-
             {
                 name: "Driss El Fassi",
                 role: "Brother",
                 phone: "+212 7xx-xxxxxx",
                 online: false
             },
-
             {
                 name: "Dr. Sarah Tazi",
                 role: "Personal Physician",
@@ -1364,41 +1334,28 @@
                 online: true
             }
         ];
-
-
         const initials = n =>
-
             n.replace(/^Dr\.\s*/i, "")
                 .split(" ")
                 .map(w => w[0])
                 .slice(0, 2)
                 .join("")
                 .toUpperCase();
-
-
         function renderContacts() {
-
             $("#contactList").innerHTML =
                 CONTACTS.map(c => `
-
                     <li class="flex items-center gap-3 py-3">
-
                         <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft text-[11px] font-bold text-brand">
                             ${initials(c.name)}
                         </span>
-
                         <span class="min-w-0 flex-1">
-
                             <span class="block truncate text-xs font-bold">
                                 ${c.name}
                             </span>
-
                             <span class="block truncate text-[11px] text-muted">
                                 ${c.role} · ${c.phone}
                             </span>
-
                         </span>
-
                         <span
                             class="size-2 shrink-0 rounded-full ${c.online
                         ? "bg-brand"
@@ -1411,18 +1368,11 @@
                         </span>
 
                     </li>
-
                 `).join("");
         }
-
-
         renderContacts();
-
-
         const form =
             $("#contactForm");
-
-
         $("#addContact").addEventListener(
             "click",
             () => {
@@ -1437,76 +1387,49 @@
                 }
             }
         );
-
-
         $("#cancelContact").addEventListener(
             "click",
             () => {
-
                 form.classList.add(
                     "hidden"
                 );
             }
         );
-
-
         $("#saveContact").addEventListener(
             "click",
             () => {
-
                 const name =
                     $("#cName").value.trim();
-
                 const role =
                     $("#cRole").value.trim();
-
                 const phone =
                     $("#cPhone").value.trim();
-
-
                 if (!name || !phone) {
-
                     toast(
                         "Add a name and a phone number to save"
                     );
-
                     return;
                 }
-
-
                 CONTACTS.push({
-
                     name,
                     role:
                         role || "Contact",
-
                     phone,
                     online: true
                 });
-
-
                 ["#cName", "#cRole", "#cPhone"]
                     .forEach(
                         s => ($(s).value = "")
                     );
-
-
                 form.classList.add(
                     "hidden"
                 );
-
-
                 renderContacts();
-
-
                 toast(
                     "Contact added to your alert list"
                 );
             }
         );
-
     </script>
-
 </body>
-
 </html>
