@@ -17,6 +17,11 @@
 
     <style type="text/tailwindcss">
         /* ==========================================================
+           0. DARK MODE (class strategy) — .dark sur <html>, posé par theme.js
+        ========================================================== */
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        /* ==========================================================
            1. THEME TOKENS
         ========================================================== */
         @theme {
@@ -51,6 +56,16 @@
             --color-slate-500: #64748B;
             --color-slate-400: #94A3B8;
 
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
             --font-jakarta: "Plus Jakarta Sans", sans-serif;
             --font-hanken:  "Hanken Grotesk", sans-serif;
         }
@@ -59,7 +74,7 @@
            2. BASE / SHELL
         ========================================================== */
         body {
-            @apply bg-mint-50 font-jakarta pb-[68px] md:pb-0;
+            @apply bg-mint-50 dark:bg-night-900 font-jakarta pb-[68px] md:pb-0 transition-colors duration-200;
         }
 
         /* Topbar pleine largeur, puis sidebar + contenu en dessous */
@@ -75,7 +90,7 @@
            3. SIDEBAR
         ========================================================== */
         .sidebar {
-            @apply fixed inset-y-0 left-0 z-50 w-[240px] bg-mint-50 border-r border-grey-200
+            @apply fixed inset-y-0 left-0 z-50 w-[240px] bg-mint-50 dark:bg-night-900 border-r border-grey-200 dark:border-night-600
                    flex flex-col -translate-x-full transition-transform duration-300
                    md:sticky md:top-[64px] md:z-0 md:h-[calc(100vh-64px)] md:w-[212px]
                    md:translate-x-0 md:shrink-0;
@@ -97,11 +112,11 @@
         /* Sur desktop la marque vit dans la topbar */
         .sidebar-brand {
             @apply h-[64px] flex items-center justify-between gap-[12px]
-                   px-[20px] border-b border-grey-200 md:hidden;
+                   px-[20px] border-b border-grey-200 dark:border-night-600 md:hidden;
         }
 
         .sidebar-brand-name {
-            @apply font-jakarta font-extrabold text-[18px] tracking-[0.4px] text-green-900;
+            @apply font-jakarta font-extrabold text-[18px] tracking-[0.4px] text-green-900 dark:text-mist-100;
         }
 
         .sidebar-nav {
@@ -114,16 +129,17 @@
 
         .nav-item {
             @apply relative flex items-center gap-[12px] rounded-[10px] px-[12px] py-[10px] mb-[2px]
-                   font-hanken font-medium text-[13px] text-green-700 hover:bg-mint-100 transition;
+                   font-hanken font-medium text-[13px] text-green-700 dark:text-mist-200
+                   hover:bg-mint-100 dark:hover:bg-night-700 transition;
         }
 
         .nav-item-active {
-            @apply bg-mint-100 text-green-900 font-semibold;
+            @apply bg-mint-100 dark:bg-night-700 text-green-900 dark:text-accent-400 font-semibold;
         }
 
         .nav-item-active::before {
             content: "";
-            @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-green-900;
+            @apply absolute left-0 top-[8px] bottom-[8px] w-[3px] rounded-full bg-green-900 dark:bg-accent-400;
         }
 
         /* Bouton plein rouge, poussé en bas de la sidebar */
@@ -145,13 +161,13 @@
            4. TOPBAR
         ========================================================== */
         .topbar {
-            @apply sticky top-0 z-40 bg-white border-b border-grey-200
-                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-[24px];
+            @apply sticky top-0 z-40 bg-white dark:bg-night-800 border-b border-grey-200 dark:border-night-600
+                   h-[56px] md:h-[64px] flex items-center gap-[12px] px-[16px] md:px-[24px] transition-colors;
         }
 
         .topbar-brand {
             @apply hidden md:block font-jakarta font-extrabold text-[18px] tracking-[0.4px]
-                   text-green-900 w-[188px] shrink-0;
+                   text-green-900 dark:text-mist-100 w-[188px] shrink-0;
         }
 
         .topbar-search {
@@ -159,9 +175,9 @@
         }
 
         .topbar-input {
-            @apply w-full h-[36px] bg-mint-50 border border-grey-200 rounded-[10px]
-                   pl-[36px] pr-[14px] text-[13px] text-black-700 outline-none
-                   focus:border-green-900 transition;
+            @apply w-full h-[36px] bg-mint-50 dark:bg-night-700 border border-grey-200 dark:border-night-600 rounded-[10px]
+                   pl-[36px] pr-[14px] text-[13px] text-black-700 dark:text-mist-100 outline-none
+                   focus:border-green-900 dark:focus:border-accent-400 transition;
         }
 
         .topbar-search-icon {
@@ -170,8 +186,11 @@
 
         .icon-button {
             @apply w-[34px] h-[34px] rounded-full flex items-center justify-center
-                   text-green-700 hover:bg-mint-50 cursor-pointer;
+                   text-green-700 dark:text-mist-200 hover:bg-mint-50 dark:hover:bg-night-700 cursor-pointer transition-colors;
         }
+
+        .theme-toggle-sun { @apply w-[16px] h-[16px] dark:hidden; }
+        .theme-toggle-moon { @apply hidden dark:block w-[16px] h-[16px] text-accent-400; }
 
         .icon-button img {
             @apply w-[17px] h-[17px] object-contain;
@@ -182,18 +201,18 @@
         }
 
         .admin-avatar {
-            @apply w-[28px] h-[28px] rounded-full bg-green-900 text-white font-hanken
+            @apply w-[28px] h-[28px] rounded-full bg-green-900 dark:bg-accent-400 text-white dark:text-night-900 font-hanken
                    font-bold text-[11px] flex items-center justify-center;
         }
 
         .user-menu {
-            @apply absolute right-0 mt-[8px] w-[180px] bg-white rounded-[12px] shadow-lg
-                   border border-grey-200 py-[6px] z-50;
+            @apply absolute right-0 mt-[8px] w-[180px] bg-white dark:bg-night-700 rounded-[12px] shadow-lg
+                   border border-grey-200 dark:border-night-600 py-[6px] z-50;
         }
 
         .user-menu a, .user-menu button {
             @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
-                   text-slate-600 hover:bg-mint-50 cursor-pointer;
+                   text-slate-600 dark:text-mist-200 hover:bg-mint-50 dark:hover:bg-night-600 cursor-pointer;
         }
 
         /* ==========================================================
@@ -212,11 +231,11 @@
         }
 
         .page-title {
-            @apply font-jakarta font-extrabold text-[21px] text-black-700 md:text-[24px];
+            @apply font-jakarta font-extrabold text-[21px] text-black-700 dark:text-mist-100 md:text-[24px];
         }
 
         .page-subtitle {
-            @apply text-[12px] text-slate-500 mt-[3px] md:text-[13px];
+            @apply text-[12px] text-slate-500 dark:text-mist-300 mt-[3px] md:text-[13px];
         }
 
         .page-actions {
@@ -224,14 +243,14 @@
         }
 
         .button-ghost {
-            @apply flex items-center gap-[7px] h-[34px] px-[14px] bg-white border border-grey-200
-                   rounded-[9px] font-hanken font-medium text-[12px] text-green-700
-                   hover:border-green-900 transition cursor-pointer;
+            @apply flex items-center gap-[7px] h-[34px] px-[14px] bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600
+                   rounded-[9px] font-hanken font-medium text-[12px] text-green-700 dark:text-mist-200
+                   hover:border-green-900 dark:hover:border-accent-400 transition cursor-pointer;
         }
 
         .button-solid {
-            @apply flex items-center gap-[7px] h-[34px] px-[14px] bg-green-900 hover:bg-green-800
-                   rounded-[9px] font-hanken font-semibold text-[12px] text-white transition cursor-pointer;
+            @apply flex items-center gap-[7px] h-[34px] px-[14px] bg-green-900 dark:bg-accent-400 hover:bg-green-800 dark:hover:bg-accent-300
+                   rounded-[9px] font-hanken font-semibold text-[12px] text-white dark:text-night-900 transition cursor-pointer;
         }
 
         .button-icon {
@@ -246,7 +265,7 @@
         }
 
         .kpi-card {
-            @apply bg-white rounded-[14px] border border-grey-200 p-[14px] md:p-[18px];
+            @apply bg-white dark:bg-night-700 rounded-[14px] border border-grey-200 dark:border-night-600 p-[14px] md:p-[18px];
         }
 
         .kpi-top {
@@ -271,26 +290,26 @@
         }
 
         .badge-up {
-            @apply bg-mint-100 text-green-900;
+            @apply bg-mint-100 dark:bg-accent-400/15 text-green-900 dark:text-accent-400;
         }
 
         .badge-down {
-            @apply bg-brick-50 text-brick-600;
+            @apply bg-brick-50 dark:bg-brick-600/15 text-brick-600;
         }
 
         .kpi-label {
-            @apply font-hanken text-[10px] uppercase tracking-[0.6px] text-slate-400 md:text-[11px];
+            @apply font-hanken text-[10px] uppercase tracking-[0.6px] text-slate-400 dark:text-mist-300 md:text-[11px];
         }
 
         .kpi-value {
-            @apply font-jakarta font-extrabold text-[20px] text-black-700 mt-[2px] md:text-[26px];
+            @apply font-jakarta font-extrabold text-[20px] text-black-700 dark:text-mist-100 mt-[2px] md:text-[26px];
         }
 
         /* ==========================================================
            7. PANELS
         ========================================================== */
         .panel {
-            @apply bg-white rounded-[14px] border border-grey-200 p-[16px] md:p-[20px];
+            @apply bg-white dark:bg-night-700 rounded-[14px] border border-grey-200 dark:border-night-600 p-[16px] md:p-[20px];
         }
 
         .panel-head {
@@ -298,15 +317,15 @@
         }
 
         .panel-title {
-            @apply font-jakarta font-bold text-[15px] text-black-700 md:text-[17px];
+            @apply font-jakarta font-bold text-[15px] text-black-700 dark:text-mist-100 md:text-[17px];
         }
 
         .panel-subtitle {
-            @apply text-[11px] text-slate-400 mt-[2px] md:text-[12px];
+            @apply text-[11px] text-slate-400 dark:text-mist-300 mt-[2px] md:text-[12px];
         }
 
         .panel-link {
-            @apply font-hanken font-semibold text-[11px] text-green-900 whitespace-nowrap
+            @apply font-hanken font-semibold text-[11px] text-green-900 dark:text-accent-400 whitespace-nowrap
                    hover:underline md:text-[12px];
         }
 
@@ -322,7 +341,7 @@
         }
 
         .legend-item {
-            @apply flex items-center gap-[5px] font-hanken text-[10px] text-slate-500 md:text-[11px];
+            @apply flex items-center gap-[5px] font-hanken text-[10px] text-slate-500 dark:text-mist-300 md:text-[11px];
         }
 
         .legend-dot {
@@ -346,15 +365,15 @@
         }
 
         .bar-services {
-            @apply bg-green-200;
+            @apply bg-green-200 dark:bg-night-600;
         }
 
         .bar-payments {
-            @apply bg-green-900;
+            @apply bg-green-900 dark:bg-accent-400;
         }
 
         .chart-label {
-            @apply font-hanken text-[10px] text-slate-400 md:text-[11px];
+            @apply font-hanken text-[10px] text-slate-400 dark:text-mist-300 md:text-[11px];
         }
 
         /* ==========================================================
@@ -369,15 +388,15 @@
         }
 
         .usage-name {
-            @apply font-hanken font-medium text-[12px] text-black-700 md:text-[13px];
+            @apply font-hanken font-medium text-[12px] text-black-700 dark:text-mist-100 md:text-[13px];
         }
 
         .usage-value {
-            @apply font-hanken font-bold text-[11px] text-black-700 md:text-[12px];
+            @apply font-hanken font-bold text-[11px] text-black-700 dark:text-mist-100 md:text-[12px];
         }
 
         .usage-track {
-            @apply h-[7px] w-full rounded-full bg-grey-100 overflow-hidden;
+            @apply h-[7px] w-full rounded-full bg-grey-100 dark:bg-night-600 overflow-hidden;
         }
 
         .usage-fill {
@@ -396,20 +415,20 @@
         }
 
         thead tr {
-            @apply bg-mint-50;
+            @apply bg-mint-50 dark:bg-night-800;
         }
 
         th {
-            @apply text-left font-hanken font-medium text-[11px] text-slate-500
+            @apply text-left font-hanken font-medium text-[11px] text-slate-500 dark:text-mist-300
                    px-[14px] py-[11px] first:rounded-l-[10px] last:rounded-r-[10px] md:text-[12px];
         }
 
         tbody tr {
-            @apply border-b border-grey-100 last:border-0;
+            @apply border-b border-grey-100 dark:border-night-600 last:border-0;
         }
 
         td {
-            @apply px-[14px] py-[13px] font-jakarta text-[12px] text-slate-600 md:text-[13px];
+            @apply px-[14px] py-[13px] font-jakarta text-[12px] text-slate-600 dark:text-mist-200 md:text-[13px];
         }
 
         .cell-user {
@@ -422,11 +441,11 @@
         }
 
         .cell-name {
-            @apply font-jakarta font-bold text-[12px] text-black-700 leading-tight md:text-[13px];
+            @apply font-jakarta font-bold text-[12px] text-black-700 dark:text-mist-100 leading-tight md:text-[13px];
         }
 
         .cell-id {
-            @apply font-hanken text-[10px] text-slate-400 leading-tight;
+            @apply font-hanken text-[10px] text-slate-400 dark:text-mist-300 leading-tight;
         }
 
         .status {
@@ -434,30 +453,30 @@
         }
 
         .status-processed {
-            @apply bg-mint-100 text-green-900;
+            @apply bg-mint-100 dark:bg-accent-400/15 text-green-900 dark:text-accent-400;
         }
 
         .status-pending {
-            @apply bg-blue-50 text-blue-600;
+            @apply bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400;
         }
 
         .status-urgent {
-            @apply bg-brick-50 text-brick-600;
+            @apply bg-brick-50 dark:bg-brick-600/15 text-brick-600;
         }
 
         .cell-time {
-            @apply text-slate-400 whitespace-nowrap;
+            @apply text-slate-400 dark:text-mist-300 whitespace-nowrap;
         }
 
         /* ==========================================================
            11. FOOTER
         ========================================================== */
         footer {
-            @apply hidden md:block border-t border-grey-200 px-[28px] py-[18px];
+            @apply hidden md:block border-t border-grey-200 dark:border-night-600 px-[28px] py-[18px];
         }
 
         .footer-inner {
-            @apply flex items-center justify-between font-hanken text-[12px] text-slate-400;
+            @apply flex items-center justify-between font-hanken text-[12px] text-slate-400 dark:text-mist-300;
         }
 
         .footer-links {
@@ -465,19 +484,19 @@
         }
 
         .footer-links a {
-            @apply hover:text-green-800;
+            @apply hover:text-green-800 dark:hover:text-accent-400;
         }
 
         /* ==========================================================
            12. MOBILE BOTTOM NAV
         ========================================================== */
         .mobile-nav {
-            @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-grey-200
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-night-800 border-t border-grey-200 dark:border-night-600
                    flex items-center justify-around py-[7px];
         }
 
         .mobile-nav-item {
-            @apply flex flex-col items-center gap-[3px] text-slate-400 w-[68px];
+            @apply flex flex-col items-center gap-[3px] text-slate-400 dark:text-mist-300 w-[68px];
         }
 
         .mobile-nav-item img {
@@ -485,7 +504,7 @@
         }
 
         .mobile-nav-item-active {
-            @apply text-green-900;
+            @apply text-green-900 dark:text-accent-400;
         }
 
         .mobile-nav-label {
@@ -519,6 +538,16 @@
             </div>
 
             <div class="flex items-center gap-[6px] ml-auto">
+                <button type="button" class="icon-button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <svg class="theme-toggle-sun" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4" />
+                        <path stroke-linecap="round" d="M12 2.5v2M12 19.5v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2.5 12h2M19.5 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                    </svg>
+                    <svg class="theme-toggle-moon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.7 14.6A8.5 8.5 0 1 1 9.4 3.3a7 7 0 0 0 11.3 11.3z" />
+                    </svg>
+                </button>
+
                 <button class="icon-button" aria-label="Notifications">
                     <img src="/assets/dashboard/notification.png" alt="">
                 </button>
@@ -658,7 +687,7 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-mint-100">
+                                <span class="kpi-icon bg-mint-100 dark:bg-accent-400/15">
                                     <img src="/assets/dashboard/kpi-citizens.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-up">
@@ -672,7 +701,7 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-blue-50">
+                                <span class="kpi-icon bg-blue-50 dark:bg-blue-500/15">
                                     <img src="/assets/dashboard/kpi-payments.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-up">
@@ -686,7 +715,7 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-brick-50">
+                                <span class="kpi-icon bg-brick-50 dark:bg-brick-600/15">
                                     <img src="/assets/dashboard/kpi-resolution.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-up">
@@ -700,7 +729,7 @@
 
                         <article class="kpi-card">
                             <div class="kpi-top">
-                                <span class="kpi-icon bg-amber-50">
+                                <span class="kpi-icon bg-amber-50 dark:bg-amber-600/15">
                                     <img src="/assets/dashboard/kpi-time.png" alt="">
                                 </span>
                                 <span class="kpi-badge badge-down">
@@ -880,7 +909,7 @@
                                     <tr>
                                         <td>
                                             <div class="cell-user">
-                                                <span class="cell-avatar bg-blue-50 text-blue-600">AY</span>
+                                                <span class="cell-avatar bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">AY</span>
                                                 <span>
                                                     <span class="cell-name block">Ahmed Yassine</span>
                                                     <span class="cell-id block">ID: #48129</span>
@@ -896,7 +925,7 @@
                                     <tr>
                                         <td>
                                             <div class="cell-user">
-                                                <span class="cell-avatar bg-brick-50 text-brick-600">MB</span>
+                                                <span class="cell-avatar bg-brick-50 dark:bg-brick-600/15 text-brick-600">MB</span>
                                                 <span>
                                                     <span class="cell-name block">Meryem Benani</span>
                                                     <span class="cell-id block">ID: #48128</span>
@@ -912,7 +941,7 @@
                                     <tr>
                                         <td>
                                             <div class="cell-user">
-                                                <span class="cell-avatar bg-mint-100 text-green-900">KH</span>
+                                                <span class="cell-avatar bg-mint-100 dark:bg-accent-400/15 text-green-900 dark:text-accent-400">KH</span>
                                                 <span>
                                                     <span class="cell-name block">Khalid Hafidi</span>
                                                     <span class="cell-id block">ID: #48127</span>
@@ -928,7 +957,7 @@
                                     <tr>
                                         <td>
                                             <div class="cell-user">
-                                                <span class="cell-avatar bg-brick-50 text-brick-600">ZS</span>
+                                                <span class="cell-avatar bg-brick-50 dark:bg-brick-600/15 text-brick-600">ZS</span>
                                                 <span>
                                                     <span class="cell-name block">Zineb Saidi</span>
                                                     <span class="cell-id block">ID: #48126</span>
