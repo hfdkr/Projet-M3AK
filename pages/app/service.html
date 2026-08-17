@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="/pages/js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +15,11 @@
     <script src="/pages/js/session.js"></script>
 
     <style type="text/tailwindcss">
+        /* ==========================================================
+           0. DARK MODE (class strategy) — .dark sur <html>, posé par theme.js
+        ========================================================== */
+        @custom-variant dark (&:where(.dark, .dark *));
+
         /* ==========================================================
            1. THEME TOKENS
         ========================================================== */
@@ -36,6 +42,20 @@
 
             --color-lavender-50: #E7ECFB;
 
+            /* ---- dark mode surfaces & accent ---- */
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-night-500: #2E3830;
+
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
             --font-jakarta: "Plus Jakarta Sans", sans-serif;
             --font-hanken:  "Hanken Grotesk", sans-serif;
         }
@@ -44,14 +64,14 @@
            2. BASE
         ========================================================== */
         body {
-            @apply bg-mint-50 pb-[76px] md:pb-0;
+            @apply bg-mint-50 dark:bg-night-900 pb-[76px] md:pb-0 transition-colors duration-200;
         }
 
         /* ==========================================================
            3. HEADER
         ========================================================== */
         header {
-            @apply bg-white shadow-sm sticky top-0 z-40;
+            @apply bg-white dark:bg-night-800 shadow-sm dark:shadow-none dark:border-b dark:border-night-600 sticky top-0 z-40 transition-colors;
         }
 
         .div-header {
@@ -69,40 +89,71 @@
         }
 
         .brand-name {
-            @apply font-jakarta font-bold text-[18px] leading-[28px] tracking-[0.45px] text-green-800;
+            @apply font-jakarta font-bold text-[18px] leading-[28px] tracking-[0.45px] text-green-800 dark:text-mist-100;
         }
 
         .navbar {
-            @apply font-hanken font-medium text-[14px] text-green-700 hover:text-green-900;
+            @apply font-hanken font-medium text-[14px] text-green-700 dark:text-mist-200
+                   hover:text-green-900 dark:hover:text-accent-400 transition-colors;
         }
 
         .navbar-active {
-            @apply font-hanken font-semibold text-[14px] text-green-900 border-b-2 border-green-900 pb-[2px];
+            @apply font-hanken font-semibold text-[14px] text-green-900 dark:text-accent-400
+                   border-b-2 border-green-900 dark:border-accent-400 pb-[2px];
         }
 
         .icon-button {
-            @apply w-[36px] h-[36px] rounded-full bg-white border border-grey-200
-                   flex items-center justify-center cursor-pointer;
+            @apply w-[36px] h-[36px] rounded-full bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600
+                   flex items-center justify-center cursor-pointer transition-colors;
         }
 
+        .theme-toggle-sun { @apply w-[16px] h-[16px] text-green-900 dark:hidden; }
+        .theme-toggle-moon { @apply hidden dark:block w-[16px] h-[16px] text-accent-400; }
+
         .user-chip {
-            @apply flex items-center gap-[8px] rounded-full bg-green-50 py-[5px] pl-[5px] pr-[10px]
-                   md:pr-[14px] cursor-pointer;
+            @apply flex items-center gap-[8px] rounded-full bg-green-50 dark:bg-night-700 py-[5px] pl-[5px] pr-[10px]
+                   md:pr-[14px] cursor-pointer transition-colors;
         }
 
         .user-avatar {
-            @apply w-[28px] h-[28px] rounded-full bg-green-900 text-white font-hanken
+            @apply w-[28px] h-[28px] rounded-full bg-green-900 dark:bg-accent-400 text-white dark:text-night-900 font-hanken
                    font-bold text-[12px] flex items-center justify-center shrink-0;
         }
 
         .user-menu {
-            @apply absolute right-0 mt-[8px] w-[190px] bg-white rounded-[12px] shadow-lg
-                   border border-grey-200 py-[6px] z-50;
+            @apply absolute right-0 mt-[8px] w-[190px] bg-white dark:bg-night-700 rounded-[12px] shadow-lg
+                   border border-grey-200 dark:border-night-600 py-[6px] z-50;
         }
 
         .user-menu a, .user-menu button {
             @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
-                   text-slate-600 hover:bg-mint-50 cursor-pointer;
+                   text-slate-600 dark:text-mist-200 hover:bg-mint-50 dark:hover:bg-night-600 cursor-pointer;
+        }
+
+        /* ==========================================================
+           3b. SERVICES SUB-NAV (Directory / Housing / Support / Hub)
+        ========================================================== */
+        .services-subnav {
+            @apply bg-mint-50 dark:bg-night-900 border-b border-grey-200 dark:border-night-600
+                   sticky top-[65px] md:top-[89px] z-30 transition-colors;
+        }
+
+        .services-subnav-inner {
+            @apply flex items-center gap-[8px] px-[16px] py-[10px] overflow-x-auto
+                   md:max-w-[1200px] md:mx-auto md:px-[24px];
+        }
+
+        .subnav-pill {
+            @apply shrink-0 font-hanken font-medium text-[12px] text-slate-500 dark:text-mist-300
+                   bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600
+                   rounded-full px-[14px] py-[7px] hover:border-green-900 dark:hover:border-accent-400
+                   hover:text-green-900 dark:hover:text-accent-400 transition-colors;
+        }
+
+        .subnav-pill-active {
+            @apply shrink-0 font-hanken font-semibold text-[12px] text-white dark:text-night-900
+                   bg-green-900 dark:bg-accent-400 border border-green-900 dark:border-accent-400
+                   rounded-full px-[14px] py-[7px];
         }
 
         /* ==========================================================
@@ -114,21 +165,21 @@
         }
 
         .directory-title {
-            @apply font-jakarta font-extrabold text-[26px] leading-[32px] text-black-700
+            @apply font-jakarta font-extrabold text-[26px] leading-[32px] text-black-700 dark:text-mist-100
                    md:text-[40px] md:leading-[48px];
         }
 
         .directory-title-accent {
-            @apply block text-green-900;
+            @apply block text-green-900 dark:text-accent-400;
         }
 
         .directory-description {
-            @apply font-jakarta text-[13px] leading-[20px] text-slate-500 mt-[10px]
+            @apply font-jakarta text-[13px] leading-[20px] text-slate-500 dark:text-mist-300 mt-[10px]
                    max-w-[520px] md:text-[15px] md:leading-[24px];
         }
 
         .directory-emblem {
-            @apply hidden md:block absolute right-[24px] top-[48px] w-[180px] h-[130px] text-mint-100;
+            @apply hidden md:block absolute right-[24px] top-[48px] w-[180px] h-[130px] text-mint-100 dark:text-night-700;
         }
 
         /* ---- search ---- */
@@ -141,17 +192,19 @@
         }
 
         .search-input {
-            @apply w-full h-[44px] bg-white border border-grey-200 rounded-[10px]
-                   pl-[38px] pr-[14px] font-jakarta text-[13px] text-black-700
-                   outline-none focus:border-green-900 transition;
+            @apply w-full h-[44px] bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600 rounded-[10px]
+                   pl-[38px] pr-[14px] font-jakarta text-[13px] text-black-700 dark:text-mist-100
+                   placeholder:text-slate-400 dark:placeholder:text-mist-300
+                   outline-none focus:border-green-900 dark:focus:border-accent-400 transition;
         }
 
         .search-icon {
-            @apply absolute left-[13px] top-1/2 -translate-y-1/2 w-[15px] h-[15px] text-slate-400;
+            @apply absolute left-[13px] top-1/2 -translate-y-1/2 w-[15px] h-[15px] text-slate-400 dark:text-mist-300;
         }
 
         .search-button {
-            @apply h-[44px] px-[22px] bg-green-900 hover:bg-green-800 text-white rounded-[10px]
+            @apply h-[44px] px-[22px] bg-green-900 dark:bg-accent-400 hover:bg-green-800 dark:hover:bg-accent-300
+                   text-white dark:text-night-900 rounded-[10px]
                    font-hanken font-semibold text-[13px] transition cursor-pointer;
         }
 
@@ -164,33 +217,34 @@
         }
 
         .directory-card {
-            @apply bg-white rounded-[14px] p-[16px] border border-transparent
-                   hover:border-green-900 hover:-translate-y-[2px] transition md:p-[20px];
+            @apply bg-white dark:bg-night-700 rounded-[14px] p-[16px] border border-transparent dark:border-night-600
+                   hover:border-green-900 dark:hover:border-accent-400 hover:-translate-y-[2px] transition md:p-[20px];
         }
 
         .directory-card-icon {
-            @apply w-[34px] h-[34px] rounded-[10px] bg-mint-100 text-green-900
+            @apply w-[34px] h-[34px] rounded-[10px] bg-mint-100 dark:bg-night-600 text-green-900 dark:text-accent-400
                    flex items-center justify-center mb-[12px];
         }
 
         .directory-card-title {
-            @apply font-jakarta font-bold text-[14px] text-black-700 md:text-[16px];
+            @apply font-jakarta font-bold text-[14px] text-black-700 dark:text-mist-100 md:text-[16px];
         }
 
         .directory-card-text {
-            @apply font-jakarta text-[11px] leading-[17px] text-slate-400 mt-[5px] md:text-[12px];
+            @apply font-jakarta text-[11px] leading-[17px] text-slate-400 dark:text-mist-300 mt-[5px] md:text-[12px];
         }
 
         .directory-empty {
             @apply hidden col-span-2 md:col-span-4 text-center font-jakarta text-[13px]
-                   text-slate-400 py-[32px];
+                   text-slate-400 dark:text-mist-300 py-[32px];
         }
 
         /* ==========================================================
            6. WALLET BANNER
         ========================================================== */
         .wallet {
-            @apply relative overflow-hidden bg-green-900 text-white rounded-[18px]
+            @apply relative overflow-hidden bg-green-900 dark:bg-night-700 text-white rounded-[18px]
+                   dark:border dark:border-accent-400/25
                    mx-[16px] mb-[40px] p-[24px]
                    md:max-w-[1200px] md:mx-auto md:mb-[64px] md:px-[48px] md:py-[44px]
                    md:flex md:items-center md:justify-between md:gap-[40px];
@@ -212,8 +266,9 @@
         }
 
         .wallet-button {
-            @apply inline-flex mt-[20px] bg-white text-green-900 rounded-[10px] px-[20px] py-[11px]
-                   font-hanken font-semibold text-[13px] hover:bg-mint-100 transition;
+            @apply inline-flex mt-[20px] bg-white dark:bg-accent-400 text-green-900 dark:text-night-900
+                   rounded-[10px] px-[20px] py-[11px]
+                   font-hanken font-semibold text-[13px] hover:bg-mint-100 dark:hover:bg-accent-300 transition;
         }
 
         .wallet-visual {
@@ -225,7 +280,8 @@
            7. FOOTER
         ========================================================== */
         footer {
-            @apply bg-lavender-50 px-[16px] py-[28px] md:px-[24px];
+            @apply bg-lavender-50 dark:bg-night-800 dark:border-t dark:border-night-600
+                   px-[16px] py-[28px] md:px-[24px] transition-colors;
         }
 
         .footer-inner {
@@ -233,41 +289,48 @@
         }
 
         .footer-brand-name {
-            @apply font-jakarta font-bold text-[15px] text-green-800;
+            @apply font-jakarta font-bold text-[15px] text-green-800 dark:text-mist-100;
         }
 
         .footer-tagline {
-            @apply font-jakarta text-[11px] text-slate-400 mt-[2px];
+            @apply font-jakarta text-[11px] text-slate-400 dark:text-mist-300 mt-[2px];
         }
 
         .footer-links {
             @apply flex flex-wrap items-center gap-[16px] mt-[16px] md:mt-0
-                   font-hanken font-medium text-[13px] text-slate-500;
+                   font-hanken font-medium text-[13px] text-slate-500 dark:text-mist-200;
         }
 
         .footer-links a {
-            @apply hover:text-green-800;
+            @apply hover:text-green-800 dark:hover:text-accent-400;
         }
 
         /* ==========================================================
            8. MOBILE BOTTOM NAV
         ========================================================== */
         .mobile-nav {
-            @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-grey-200
-                   flex items-center justify-around py-[8px];
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-night-800
+                   border-t border-grey-200 dark:border-night-600
+                   flex items-center justify-around py-[8px] transition-colors;
         }
 
         .mobile-nav-item {
-            @apply flex flex-col items-center gap-[4px] text-slate-400 w-[64px];
+            @apply flex flex-col items-center gap-[4px] text-slate-400 dark:text-mist-300 w-[64px];
         }
 
         .mobile-nav-item-active {
-            @apply text-green-900;
+            @apply text-green-900 dark:text-accent-400;
         }
 
         .mobile-nav-label {
             @apply font-hanken font-medium text-[10px];
         }
+
+        /* ==========================================================
+           9. UTILITIES
+        ========================================================== */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 
@@ -284,15 +347,26 @@
             </div>
 
             <nav class="hidden md:flex items-center gap-[36px]">
-                <a href="/pages/dashboard/home.html" class="navbar">Home</a>
-                <a href="/pages/dashboard/services.html" class="navbar-active">Services</a>
+                <a href="/pages/app/overview.html" class="navbar">Home</a>
+                <a href="/pages/app/services-hub.html" class="navbar-active">Services</a>
                 <a href="#" class="navbar">Payments</a>
-                <a href="#" class="navbar">Help</a>
+                <a href="/pages/app/support.html" class="navbar">Help</a>
             </nav>
 
             <div class="flex items-center gap-[10px]">
+                <button type="button" class="icon-button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <svg class="theme-toggle-sun" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4" />
+                        <path stroke-linecap="round"
+                            d="M12 2.5v2M12 19.5v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2.5 12h2M19.5 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                    </svg>
+                    <svg class="theme-toggle-moon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.7 14.6A8.5 8.5 0 1 1 9.4 3.3a7 7 0 0 0 11.3 11.3z" />
+                    </svg>
+                </button>
+
                 <button class="icon-button" aria-label="Notifications">
-                    <svg class="w-[16px] h-[16px] text-green-900" fill="none" stroke="currentColor"
+                    <svg class="w-[16px] h-[16px] text-green-900 dark:text-mist-100" fill="none" stroke="currentColor"
                         stroke-width="1.8" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0" />
@@ -301,7 +375,7 @@
 
                 <div class="relative" data-auth="user">
                     <button type="button" class="user-chip" data-menu-toggle>
-                        <span></span>
+                        <span class="user-avatar" data-user-initials></span>
                     </button>
 
                     <div class="user-menu hidden" data-menu>
@@ -316,6 +390,18 @@
             </div>
         </div>
     </header>
+
+    <!-- ======================================================
+         SERVICES SUB-NAV
+    ======================================================= -->
+    <nav class="services-subnav" aria-label="Services sections">
+        <div class="services-subnav-inner no-scrollbar">
+            <a href="/pages/app/services-hub.html" class="subnav-pill">Overview</a>
+            <a href="/pages/app/service.html" class="subnav-pill-active">Directory</a>
+            <a href="/pages/app/housing.html" class="subnav-pill">Housing</a>
+            <a href="/pages/app/support.html" class="subnav-pill">Support</a>
+        </div>
+    </nav>
 
     <main>
 
@@ -515,6 +601,55 @@
             </div>
         </section>
     </main>
+
+    <!-- ======================================================
+         FOOTER
+    ======================================================= -->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <p class="footer-brand-name">M3ak Morocco</p>
+                <p class="footer-tagline">Every public service, in one citizen platform.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="/pages/app/services-hub.html">Services</a>
+                <a href="/pages/app/support.html">Help Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================
+         MOBILE BOTTOM NAV
+    ======================================================= -->
+    <nav class="mobile-nav" aria-label="Primary">
+        <a href="/pages/app/overview.html" class="mobile-nav-item">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" />
+            </svg>
+            <span class="mobile-nav-label">Home</span>
+        </a>
+        <a href="/pages/app/services-hub.html" class="mobile-nav-item mobile-nav-item-active">
+            <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3 4v2h10V7zm0 4v2h10v-2zm0 4v2h6v-2z" />
+            </svg>
+            <span class="mobile-nav-label">Services</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M6 6h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+            </svg>
+            <span class="mobile-nav-label">Payments</span>
+        </a>
+        <a href="/pages/app/support.html" class="mobile-nav-item">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z" />
+            </svg>
+            <span class="mobile-nav-label">Help</span>
+        </a>
+    </nav>
 </body>
 
 </html>
