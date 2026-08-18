@@ -838,7 +838,6 @@
                                     <div class="usage-fill bg-green-900" style="width:43%"></div>
                                 </div>
                             </div>
-
                             <div class="usage-item">
                                 <div class="usage-head">
                                     <span class="usage-name">Education</span>
@@ -848,7 +847,6 @@
                                     <div class="usage-fill bg-blue-500" style="width:28%"></div>
                                 </div>
                             </div>
-
                             <div class="usage-item">
                                 <div class="usage-head">
                                     <span class="usage-name">Healthcare</span>
@@ -858,7 +856,6 @@
                                     <div class="usage-fill bg-brick-700" style="width:15%"></div>
                                 </div>
                             </div>
-
                             <div class="usage-item">
                                 <div class="usage-head">
                                     <span class="usage-name">Jobs</span>
@@ -868,7 +865,6 @@
                                     <div class="usage-fill bg-brick-600" style="width:10%"></div>
                                 </div>
                             </div>
-
                             <div class="usage-item">
                                 <div class="usage-head">
                                     <span class="usage-name">Other</span>
@@ -880,7 +876,6 @@
                             </div>
                         </div>
                     </section>
-
                     <!-- ==============================================
                          RECENT ACTIVITY
                     =============================================== -->
@@ -892,7 +887,6 @@
                             </div>
                             <a href="#" class="panel-link">View All Logs</a>
                         </div>
-
                         <div class="table-wrap">
                             <table>
                                 <thead>
@@ -904,7 +898,6 @@
                                         <th class="text-right">Timestamp</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <tr>
                                         <td>
@@ -921,7 +914,6 @@
                                         <td><span class="status status-processed">Processed</span></td>
                                         <td class="cell-time text-right">2 mins ago</td>
                                     </tr>
-
                                     <tr>
                                         <td>
                                             <div class="cell-user">
@@ -937,7 +929,6 @@
                                         <td><span class="status status-pending">Pending</span></td>
                                         <td class="cell-time text-right">14 mins ago</td>
                                     </tr>
-
                                     <tr>
                                         <td>
                                             <div class="cell-user">
@@ -976,7 +967,6 @@
                 </div>
             </main>
         </div>
-
         <!-- FOOTER -->
         <footer>
             <div class="footer-inner">
@@ -992,32 +982,27 @@
             </div>
         </footer>
     </div>
-
     <!-- ==================================================
-         MOBILE BOTTOM NAV
+        MOBILE BOTTOM NAV
     =================================================== -->
     <nav class="mobile-nav">
         <a href="#" class="mobile-nav-item mobile-nav-item-active">
             <img src="/assets/dashboard/nav-overview.png" alt="">
             <span class="mobile-nav-label">Overview</span>
         </a>
-
         <a href="#" class="mobile-nav-item">
             <img src="/assets/dashboard/nav-services.png" alt="">
             <span class="mobile-nav-label">Services</span>
         </a>
-
         <a href="#" class="mobile-nav-item">
             <img src="/assets/dashboard/nav-payments.png" alt="">
             <span class="mobile-nav-label">Payments</span>
         </a>
-
         <a href="#" class="mobile-nav-item">
             <img src="/assets/dashboard/nav-citizens.png" alt="">
             <span class="mobile-nav-label">Citizens</span>
         </a>
     </nav>
-
     <script>
         /* ---------- Menu utilisateur ---------- */
         const userMenu = document.querySelector(".user-menu");
@@ -1027,32 +1012,27 @@
             const open = userMenu.classList.toggle("hidden") === false;
             userMenuButton.setAttribute("aria-expanded", open);
         }
-
         userMenuButton.addEventListener("click", (e) => {
             e.stopPropagation();
             toggleMenu();
         });
-
         document.addEventListener("click", (e) => {
             if (!userMenu.classList.contains("hidden") && !e.target.closest("#user-menu-wrap")) {
                 userMenu.classList.add("hidden");
                 userMenuButton.setAttribute("aria-expanded", "false");
             }
         });
-
         /* ---------- Sidebar : drawer sur mobile, repli sur desktop ---------- */
         const app = document.querySelector(".app");
         const sidebar = document.getElementById("sidebar");
         const backdrop = document.getElementById("sidebar-backdrop");
         const sidebarToggle = document.getElementById("sidebar-toggle");
         const desktop = window.matchMedia("(min-width: 768px)");
-
         function sidebarIsOpen() {
             return desktop.matches
                 ? !app.classList.contains("sidebar-collapsed")
                 : sidebar.classList.contains("sidebar-open");
         }
-
         function setSidebar(open) {
             if (desktop.matches) {
                 /* Tablette et desktop : on replie, sans voile ni verrou
@@ -1065,24 +1045,19 @@
                 backdrop.classList.toggle("hidden", !open);
                 document.body.classList.toggle("overflow-hidden", open);
             }
-
             sidebarToggle.setAttribute("aria-expanded", String(open));
         }
-
         /* Un seul bouton, qui bascule dans les deux sens */
         sidebarToggle.addEventListener("click", () => setSidebar(!sidebarIsOpen()));
         backdrop.addEventListener("click", () => setSidebar(false));
-
         /* Le drawer passe au-dessus de la topbar : sans cette croix,
            le bouton menu est inaccessible une fois le tiroir ouvert. */
         const sidebarClose = document.getElementById("sidebar-close");
         if (sidebarClose) sidebarClose.addEventListener("click", () => setSidebar(false));
-
         /* Sur mobile, suivre un lien doit refermer le tiroir */
         sidebar.addEventListener("click", (e) => {
             if (!desktop.matches && e.target.closest("a")) setSidebar(false);
         });
-
         /* Au changement de format, on repart d'un état propre : sinon
            un tiroir laissé ouvert en mobile bloque le scroll en desktop. */
         desktop.addEventListener("change", () => {
@@ -1092,9 +1067,7 @@
             document.body.classList.remove("overflow-hidden");
             sidebarToggle.setAttribute("aria-expanded", String(desktop.matches));
         });
-
         sidebarToggle.setAttribute("aria-expanded", String(desktop.matches));
-
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") {
                 if (!desktop.matches) setSidebar(false);
