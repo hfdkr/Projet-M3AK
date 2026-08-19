@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="/pages/js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>M3ak Morocco | Login</title>
@@ -83,6 +84,66 @@
             }
 
         }
+
+        /* ---------- Dark mode overrides (raw hex classes above) ---------- */
+        .dark .bg-gradient {
+            background:
+                radial-gradient(circle at top, #10241C, transparent 45%),
+                radial-gradient(circle at bottom, #0D1F17, transparent 45%),
+                #0A0F0D;
+        }
+
+        .dark .glass {
+            background: rgba(21, 28, 24, .82);
+        }
+
+        .dark .shadow-card {
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .4);
+        }
+
+        .dark .input {
+            background-color: #0F1512;
+            color: #E7ECE9;
+        }
+
+        .dark .input::placeholder {
+            color: #7C8981;
+        }
+
+        .dark .input:focus {
+            border-color: #2ED573;
+            box-shadow: 0 0 0 3px rgba(46, 213, 115, .15);
+        }
+
+        .dark .social {
+            background-color: #151C18 !important;
+            border-color: #232C27 !important;
+            color: #E7ECE9;
+        }
+    </style>
+
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+        }
+
+        .theme-toggle-btn {
+            @apply w-[36px] h-[36px] rounded-full bg-white dark:bg-night-700 border border-gray-200 dark:border-night-600
+                   flex items-center justify-center cursor-pointer shrink-0;
+        }
+
+        .theme-toggle-sun { @apply w-[16px] h-[16px] dark:hidden; }
+        .theme-toggle-moon { @apply hidden dark:block w-[16px] h-[16px]; }
     </style>
     <script src="/pages/js/session.js"></script>
    <script src="/pages/js/login.js" defer></script>
@@ -94,9 +155,9 @@
     </div>
     <!-- TOP -->
     <header>
-        <div class="lg:hidden px-6 pt-6">
+        <div class="flex items-center justify-between px-6 pt-6">
 
-            <a href="#" class="flex items-center gap-2 text-[#0B6B45] font-medium">
+            <a href="#" class="lg:hidden flex items-center gap-2 text-[#0B6B45] dark:text-accent-400 font-medium">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -109,6 +170,11 @@
 
             </a>
 
+            <button type="button" class="theme-toggle-btn ml-auto" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <img src="/assets/image-login/icon-sun.png" alt="" class="theme-toggle-sun object-contain">
+                <img src="/assets/image-login/icon-moon.png" alt="" class="theme-toggle-moon object-contain">
+            </button>
+
         </div>
     </header>
     <!-- CONTENT -->
@@ -120,11 +186,11 @@
                     <img src="/assets/image-login/logo.png" alt="logo-page">
                 </div>
 
-                <h1 class="mt-4 text-4xl font-bold text-[#0B6B45]">
+                <h1 class="mt-4 text-4xl font-bold text-[#0B6B45] dark:text-accent-400">
                     M3ak Morocco
                 </h1>
 
-                <p class="mt-2 text-gray-500">
+                <p class="mt-2 text-gray-500 dark:text-mist-300">
                     Access your unified citizen portal
                 </p>
             </div>
@@ -142,7 +208,7 @@
 
                                 <div>
 
-                                    <label class="text-sm font-medium text-gray-700">
+                                    <label class="text-sm font-medium text-gray-700 dark:text-mist-200">
 
                                         National ID or Email
 
@@ -167,11 +233,11 @@
 
                                     <div class="flex justify-between">
 
-                                        <label class="text-sm font-medium text-gray-700">
+                                        <label class="text-sm font-medium text-gray-700 dark:text-mist-200">
                                             Password
                                         </label>
 
-                                        <a href="#" class="text-sm text-blue-600">
+                                        <a href="#" class="text-sm text-blue-600 dark:text-accent-400">
                                             Forgot?
                                         </a>
 
@@ -197,11 +263,11 @@
                                     Sign In
                                 </button>
                                 <div class="flex items-center gap-3">
-                                    <div class="flex-1 h-px bg-gray-200"></div>
-                                    <span class="text-xs text-gray-400">
+                                    <div class="flex-1 h-px bg-gray-200 dark:bg-night-600"></div>
+                                    <span class="text-xs text-gray-400 dark:text-mist-300">
                                         OR CONTINUE WITH
                                     </span>
-                                    <div class="flex-1 h-px bg-gray-200"></div>
+                                    <div class="flex-1 h-px bg-gray-200 dark:bg-night-600"></div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <button
@@ -211,14 +277,14 @@
                                         Google
                                     </button>
                                     <button
-                                        class="social flex justify-center gap-[8px] items-center border rounded-xl h-12 bg-white">
+                                        class="social flex justify-center gap-[8px] items-center border rounded-full h-12 bg-white">
                                         <img src="/assets/image-login/apple.png" alt="apple icon" class="w-[20px]">
                                         Apple
                                     </button>
                                 </div>
-                                <p class="text-center text-gray-600">
+                                <p class="text-center text-gray-600 dark:text-mist-300">
                                     Don't have an account?
-                                    <a href="#" class="text-blue-600 font-medium">
+                                    <a href="#" class="text-blue-600 dark:text-accent-400 font-medium">
                                         Create ID
                                     </a>
                                 </p>
@@ -230,14 +296,14 @@
         </section>
     </main>
     <!-- FOOTER -->
-    <footer class="border-t border-[#BEC9BF4D]/30 md:border-hidden py-6">
-        <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 md:flex md:justify-center">
+    <footer class="border-t border-[#BEC9BF4D]/30 dark:border-night-600 md:border-hidden py-6">
+        <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 dark:text-mist-300 md:flex md:justify-center">
 
             <!-- Mobile -->
             <div class="items-center gap-4 md:hidden">
                 <div class="flex items-center justify-center gap-6">
-                    <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
-                    <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
+                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
 
                     <select class="bg-transparent border-none outline-none cursor-pointer">
                         <option>Arabic</option>
@@ -258,8 +324,8 @@
                 </p>
 
                 <div class="flex items-center gap-8">
-                    <a href="#" class="hover:text-[#0B6B45]">Privacy Policy</a>
-                    <a href="#" class="hover:text-[#0B6B45]">Help Center</a>
+                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
 
                     <div class="relative inline-block" id="languageDropdown">
                         <button id="selectedLanguage" class="flex items-center gap-2 bg-transparent cursor-pointer">
@@ -271,17 +337,17 @@
                         </button>
 
                         <div id="languageMenu"
-                            class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg z-50">
+                            class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-night-700 border dark:border-night-600 rounded-lg shadow-lg z-50">
 
-                            <div class="language-option px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                            <div class="language-option px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer">
                                 Arabic
                             </div>
 
-                            <div class="language-option px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                            <div class="language-option px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer">
                                 Français
                             </div>
 
-                            <div class="language-option px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                            <div class="language-option px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer">
                                 English
                             </div>
 

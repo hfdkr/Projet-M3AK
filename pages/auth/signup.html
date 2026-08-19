@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="/pages/js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +14,8 @@
     <title>Create Account — M3ak Morocco</title>
 
     <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
         @theme {
             --color-green-900: #006947;
             --color-green-800: #005734;
@@ -26,13 +29,32 @@
             --color-blue-600:  #316BF3;
             --color-slate-500: #3F4942;
             --color-slate-400: #94A3B8;
+
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
             --font-jakarta: "Plus Jakarta Sans", sans-serif;
             --font-hanken:  "Hanken Grotesk", sans-serif;
         }
 
         body {
-            @apply bg-white text-black;
+            @apply bg-white dark:bg-night-900 text-black dark:text-mist-100 transition-colors duration-200;
         }
+
+        .theme-toggle-btn {
+            @apply w-[36px] h-[36px] rounded-full bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600
+                   flex items-center justify-center cursor-pointer shrink-0;
+        }
+
+        .theme-toggle-sun { @apply w-[16px] h-[16px] dark:hidden; }
+        .theme-toggle-moon { @apply hidden dark:block w-[16px] h-[16px]; }
 
         /* ---------- Signup: page shell ---------- */
         .signup-page{
@@ -41,7 +63,7 @@
 
         /* ---------- Signup: left brand/visual panel (desktop only) ---------- */
         .signup-panel-left{
-            @apply hidden md:flex md:flex-col md:justify-center md:items-center md:bg-mint-50 md:p-[48px] md:relative;
+            @apply hidden md:flex md:flex-col md:justify-center md:items-center md:bg-mint-50 dark:md:bg-night-800 md:p-[48px] md:relative;
         }
         .signup-brand{
             @apply flex items-center gap-[8px] absolute top-[32px] left-[48px];
@@ -50,34 +72,34 @@
             @apply rounded-[8px] flex items-center justify-center shrink-0;
         }
         .signup-brand-name{
-            @apply font-jakarta font-semibold text-[24px] leading-[32px] tracking-[-0.6px] text-green-800;
+            @apply font-jakarta font-semibold text-[24px] leading-[32px] tracking-[-0.6px] text-green-800 dark:text-accent-400;
         }
         .signup-visual{
-            @apply relative w-full max-w-[380px] rounded-[24px] overflow-hidden bg-white shadow-sm;
+            @apply relative w-full max-w-[380px] rounded-[24px] overflow-hidden bg-white dark:bg-night-700 shadow-sm;
         }
         .signup-visual-img{
             @apply w-full h-[300px] object-cover;
         }
         .signup-status-badge{
-            @apply absolute bottom-[16px] right-[16px] bg-white rounded-[16px] shadow-md px-[14px] py-[10px] flex items-center gap-[10px];
+            @apply absolute bottom-[16px] right-[16px] bg-white dark:bg-night-700 rounded-[16px] shadow-md px-[14px] py-[10px] flex items-center gap-[10px];
         }
         .signup-status-icon{
             @apply w-[28px] h-[28px] rounded-full bg-blue-600 flex items-center justify-center shrink-0;
         }
         .signup-status-label{
-            @apply font-jakarta text-[11px] leading-[14px] text-slate-500;
+            @apply font-jakarta text-[11px] leading-[14px] text-slate-500 dark:text-mist-300;
         }
         .signup-status-value{
-            @apply font-hanken font-bold text-[13px] leading-[18px] text-green-900;
+            @apply font-hanken font-bold text-[13px] leading-[18px] text-green-900 dark:text-accent-400;
         }
         .signup-heading{
             @apply text-center mt-[28px] max-w-[360px];
         }
         .signup-heading-title{
-            @apply font-jakarta font-bold text-[48px] leading-[57.6px] tracking-[-0.96px] text-black;
+            @apply font-jakarta font-bold text-[48px] leading-[57.6px] tracking-[-0.96px] text-black dark:text-mist-100;
         }
         .signup-heading-desc{
-            @apply font-jakarta text-[14px] leading-[20px] text-slate-500 mt-[8px];
+            @apply font-jakarta text-[14px] leading-[20px] text-slate-500 dark:text-mist-300 mt-[8px];
         }
 
         /* ---------- Signup: right form panel ---------- */
@@ -88,10 +110,10 @@
             @apply flex items-center justify-between mb-[20px] md:hidden;
         }
         .signup-back-link{
-            @apply flex items-center gap-[4px] font-jakarta font-medium text-[14px] leading-[20px] tracking-[0.14px] text-green-800 hover:text-green-900 cursor-pointer;
+            @apply flex items-center gap-[4px] font-jakarta font-medium text-[14px] leading-[20px] tracking-[0.14px] text-green-800 dark:text-mist-200 hover:text-green-900 dark:hover:text-accent-400 cursor-pointer;
         }
         .signup-secured-pill{
-            @apply inline-flex items-center gap-[6px] text-slate-500 font-jakarta font-semibold text-[12px] leading-[16px]  bg-white rounded-full px-[12px] py-[6px] border-1 border-[#BEC9BF4D]/30 shadow-[0_1px_2px_rgba(0,0,0,0.05)];
+            @apply inline-flex items-center gap-[6px] text-slate-500 dark:text-mist-300 font-jakarta font-semibold text-[12px] leading-[16px]  bg-white dark:bg-night-700 rounded-full px-[12px] py-[6px] border-1 border-[#BEC9BF4D]/30 dark:border-night-600 shadow-[0_1px_2px_rgba(0,0,0,0.05)];
         }
         .signup-form-shell{
             @apply w-full max-w-[420px] mx-auto;
@@ -103,47 +125,47 @@
             @apply mb-[24px];
         }
         .signup-header-title{
-            @apply font-jakarta font-semibold text-[24px] leading-[32px] text-black md:text-[32px] md:leading-[40px] tracking-[-0.32px];
+            @apply font-jakarta font-semibold text-[24px] leading-[32px] text-black dark:text-mist-100 md:text-[32px] md:leading-[40px] tracking-[-0.32px];
         }
         .signup-header-desc{
-            @apply font-jakarta text-[16px] leading-[24px] text-slate-500 mt-[8px];
+            @apply font-jakarta text-[16px] leading-[24px] text-slate-500 dark:text-mist-300 mt-[8px];
         }
         .signup-form{
             @apply flex flex-col gap-[16px] mb-[20px] mt-[32px];
         }
         .signup-field-label{
-            @apply block font-jakarta font-medium text-[14px] leading-[20px] tracking-[0.14px] text-black mb-[4px];
+            @apply block font-jakarta font-medium text-[14px] leading-[20px] tracking-[0.14px] text-black dark:text-mist-100 mb-[4px];
         }
         .signup-field-wrap{
             @apply relative;
         }
         .signup-field-icon{
-            @apply absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400;
+            @apply absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 dark:text-mist-300;
         }
         .signup-field-input{
-            @apply w-full bg-mint-50 border border-grey-200 rounded-[12px] pl-[42px] pr-[14px] py-[12px]
-                   font-jakarta text-[14px] text-black-700 placeholder:text-slate-400 outline-none
-                   focus:border-green-900 focus:bg-white transition-colors;
+            @apply w-full bg-mint-50 dark:bg-night-800 border border-grey-200 dark:border-night-600 rounded-[12px] pl-[42px] pr-[14px] py-[12px]
+                   font-jakarta text-[14px] text-black-700 dark:text-mist-100 placeholder:text-slate-400 dark:placeholder:text-mist-300 outline-none
+                   focus:border-green-900 dark:focus:border-accent-400 focus:bg-white dark:focus:bg-night-700 transition-colors;
         }
         .signup-btn-primary{
-            @apply w-full flex items-center justify-center gap-[8px] bg-green text-white
+            @apply w-full flex items-center justify-center gap-[8px] bg-green dark:bg-accent-400 text-white dark:text-night-900
                    font-jakarta font-medium text-[14px] rounded-[20px] tracking-[0.14px] py-[12px] mt-[16px]
-                   hover:bg-green-800 cursor-pointer transition-colors;
+                   hover:bg-green-800 dark:hover:bg-accent-300 cursor-pointer transition-colors;
         }
         .signup-login-note{
-            @apply text-center font-jakarta text-[13px] text-slate-500;
+            @apply text-center font-jakarta text-[13px] text-slate-500 dark:text-mist-300;
         }
         .signup-login-link{
-            @apply font-hanken font-semibold text-green-800 hover:text-green-900 cursor-pointer;
+            @apply font-hanken font-semibold text-green-800 dark:text-accent-400 hover:text-green-900 dark:hover:text-accent-300 cursor-pointer;
         }
         .signup-footer{
-            @apply mt-[24px] pt-[20px] border-t border-grey-200 text-center;
+            @apply mt-[24px] pt-[20px] border-t border-grey-200 dark:border-night-600 text-center;
         }
         .signup-secure-pill{
-            @apply inline-flex items-center gap-[6px] bg-mint-50 text-green-800 font-hanken font-semibold text-[12px] rounded-full px-[12px] py-[6px] mb-[10px];
+            @apply inline-flex items-center gap-[6px] bg-mint-50 dark:bg-night-700 text-green-800 dark:text-accent-400 font-hanken font-semibold text-[12px] rounded-full px-[12px] py-[6px] mb-[10px];
         }
         .signup-terms{
-            @apply font-jakarta text-[12px] leading-[16px] text-slate-400;
+            @apply font-jakarta text-[12px] leading-[16px] text-slate-400 dark:text-mist-300;
         }
     </style>
 </head>
@@ -165,6 +187,12 @@
                 </div>
                 <span class="signup-brand-name">Maak Morocco</span>
             </div>
+
+            <button type="button" class="theme-toggle-btn absolute top-[32px] right-[48px]" data-theme-toggle
+                aria-label="Toggle dark mode" aria-pressed="false">
+                <img src="/assets/image-signUp/icon-sun.png" alt="" class="theme-toggle-sun object-contain">
+                <img src="/assets/image-signUp/icon-moon.png" alt="" class="theme-toggle-moon object-contain">
+            </button>
 
             <div class="signup-visual">
                 <img class="signup-visual-img" src="/assets/image-signUp/image 8.png" alt="Digital ID preview">
@@ -202,10 +230,16 @@
                     <img src="/assets/image-signUp/back-icon.png" alt="icon back">
                     Back to Log in
                 </a>
-                <span class="signup-secured-pill">
-                    <img src="/assets/image-signUp/Icon(1).png" alt="secure icon" class="">
-                    Secured
-                </span>
+                <div class="flex items-center gap-[10px]">
+                    <button type="button" class="theme-toggle-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                        <img src="/assets/image-signUp/icon-sun.png" alt="" class="theme-toggle-sun object-contain">
+                        <img src="/assets/image-signUp/icon-moon.png" alt="" class="theme-toggle-moon object-contain">
+                    </button>
+                    <span class="signup-secured-pill">
+                        <img src="/assets/image-signUp/Icon(1).png" alt="secure icon" class="">
+                        Secured
+                    </span>
+                </div>
             </div>
 
             <div class="signup-form-shell">
