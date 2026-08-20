@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="/pages/js/theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <title>M3ak — Compte Info</title>
+    <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        /* ==========================================================
+           0. DARK MODE (class strategy) — .dark sur <html>, posé par theme.js
+        ========================================================== */
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        /* ==========================================================
+           1. THEME TOKENS
+        ========================================================== */
+        @theme {
+            --color-green-900: #006947;
+            --color-green-800: #005734;
+            --color-green-700: #3D4A42;
+            --color-green-50:  #EFF5EF;
+
+            --color-mint-50:  #F5FBF4;
+            --color-mint-100: #E3F3E9;
+
+            --color-white:    #FFFFFF;
+            --color-grey-200: #DEE4DE;
+            --color-black-700:#171D19;
+
+            --color-slate-600: #475569;
+            --color-slate-500: #3F4942;
+            --color-slate-400: #94A3B8;
+
+            --color-lavender-50: #E7ECFB;
+
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-night-500: #2E3830;
+
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --font-hanken:  "Hanken Grotesk", sans-serif;
+        }
+
+        /* ==========================================================
+           2. BASE
+        ========================================================== */
+        body {
+            @apply bg-mint-50 dark:bg-night-900 pb-[76px] md:pb-0 transition-colors duration-200;
+        }
+
+        /* ==========================================================
+           3. HEADER
+        ========================================================== */
+        header {
+            @apply bg-white dark:bg-night-800 shadow-sm dark:shadow-none dark:border-b dark:border-night-600 sticky top-0 z-40 transition-colors;
+        }
+
+        .div-header {
+            @apply flex justify-between items-center px-[16px] py-[14px]
+                   md:max-w-[1200px] md:h-[88px] md:mx-auto md:px-[24px];
+        }
+
+        .brand { @apply flex items-center gap-[10px]; }
+
+        .brand-mark {
+            @apply w-[32px] h-[32px] rounded-[10px] bg-green-900 dark:bg-accent-400 text-white dark:text-night-900 font-jakarta
+                   font-bold text-[16px] flex items-center justify-center;
+        }
+
+        .brand-name {
+            @apply font-jakarta font-bold text-[18px] leading-[28px] tracking-[0.45px] text-green-800 dark:text-mist-100;
+        }
+
+        .navbar {
+            @apply font-hanken font-medium text-[14px] text-green-700 dark:text-mist-200
+                   hover:text-green-900 dark:hover:text-accent-400 transition-colors;
+        }
+
+        .navbar-active {
+            @apply font-hanken font-semibold text-[14px] text-green-900 dark:text-accent-400
+                   border-b-2 border-green-900 dark:border-accent-400 pb-[2px];
+        }
+
+        .icon-button {
+            @apply w-[36px] h-[36px] rounded-full bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600
+                   flex items-center justify-center cursor-pointer transition-colors;
+        }
+
+        .theme-toggle-sun { @apply w-[16px] h-[16px] dark:hidden; }
+        .theme-toggle-moon { @apply hidden dark:block w-[16px] h-[16px]; }
+
+        .user-chip {
+            @apply flex items-center gap-[8px] rounded-full bg-green-50 dark:bg-night-700 py-[5px] pl-[5px] pr-[10px]
+                   md:pr-[14px] cursor-pointer transition-colors;
+        }
+
+        .user-avatar {
+            @apply w-[28px] h-[28px] rounded-full bg-green-900 dark:bg-accent-400 text-white dark:text-night-900 font-hanken
+                   font-bold text-[12px] flex items-center justify-center shrink-0;
+        }
+
+        .user-menu {
+            @apply absolute right-0 mt-[8px] w-[190px] bg-white dark:bg-night-700 rounded-[12px] shadow-lg
+                   border border-grey-200 dark:border-night-600 py-[6px] z-50;
+        }
+
+        .user-menu a, .user-menu button {
+            @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
+                   text-slate-600 dark:text-mist-200 hover:bg-mint-50 dark:hover:bg-night-600 cursor-pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======================================================
+         HEADER
+    ======================================================= -->
+    <header>
+        <div class="div-header">
+            <div class="brand">
+                <span class="brand-mark">M</span>
+                <span class="brand-name">M3ak</span>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-[36px]">
+                <a href="/pages/app/overview.html" class="navbar">Dashboard</a>
+                <a href="/pages/app/services-hub.html" class="navbar">Services</a>
+                <a href="#" class="navbar">Health</a>
+                <a href="#" class="navbar">My Documents</a>
+            </nav>
+
+            <div class="flex items-center gap-[10px]">
+                <button type="button" class="icon-button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun object-contain">
+                    <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon object-contain">
+                </button>
+
+                <button class="icon-button" aria-label="Notifications">
+                    <img src="/assets/settings/notification.png" alt="Notifications" class="w-[16px] h-[16px] object-contain">
+                </button>
+
+                <button class="icon-button hidden md:flex" aria-label="Help">
+                    <img src="/assets/settings/help.png" alt="Help" class="w-[16px] h-[16px] object-contain">
+                </button>
+
+                <div class="relative" data-auth="user">
+                    <button type="button" class="user-chip" data-menu-toggle>
+                        <span class="user-avatar" data-user-initials></span>
+                    </button>
+
+                    <div class="user-menu hidden" data-menu>
+                        <a href="#">My profile</a>
+                        <a href="#">My documents</a>
+                        <a href="#">Settings</a>
+                        <button type="button" data-action="logout" class="text-red-600">Sign out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>
