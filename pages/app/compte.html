@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        /* ==========================================================
+           0. DARK MODE (class strategy) — .dark on <html>, set by theme.js
+        ========================================================== */
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        /* ==========================================================
+           1. THEME TOKENS
+        ========================================================== */
+        @theme {
+            /* brand / light surfaces */
+            --color-brand:        #0B6B45;
+            --color-brand-dark:   #084F34;
+            --color-brand-soft:   #E9F3EE;
+            --color-brand-line:   #CFE3D8;
+            --color-danger:       #E1362C;
+            --color-ink:          #0F1A15;
+            --color-muted:        #6B7A73;
+            --color-canvas:       #F6F7F5;
+            --color-mint-50:      #F5FBF4;
+            --color-white:        #FFFFFF;
+
+            /* dark surfaces + text (mirrors the account pages' dark palette) */
+            --color-night-900:    #0A0F0D;
+            --color-night-800:    #0F1512;
+            --color-night-700:    #151C18;
+            --color-night-600:    #232C27;
+            --color-night-500:    #2E3830;
+            --color-mist-300:     #7C8981;
+            --color-mist-200:     #B4BEB8;
+            --color-mist-100:     #E7ECE9;
+            --color-accent-400:   #2ED573;
+            --color-accent-300:   #5BE0A0;
+
+            /* font */
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        /* ==========================================================
+           2. BASE
+        ========================================================== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            @apply bg-mint-50 dark:bg-night-900 text-ink dark:text-mist-100 pb-[76px] md:pb-0 transition-colors duration-200;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Visual fallback while local images aren't in place yet */
+        .ph {
+            background-color: #DFE5E0;
+            background-image: var(--ph);
+            background-size: cover;
+        }
+        .dark .ph { background-color: #1B2620; }
+
+        .ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Monochrome PNG icons: invert so they stay visible on dark surfaces */
+        .mp-icon {
+            @apply dark:invert dark:opacity-90;
+        }
+
+        .card-in { animation: cardIn .35s ease both; }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                transition-duration: .001ms !important;
+            }
+        }
+
+        /* ==========================================================
+           3. HEADER
+        ========================================================== */
+        .mp-header {
+            @apply sticky top-0 z-40 hidden border-b border-black/5 dark:border-night-600
+                   bg-white/90 dark:bg-night-900/95 backdrop-blur lg:block transition-colors duration-200;
+        }
+        .mp-logo { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .mp-navlink { @apply hover:text-ink dark:hover:text-white text-muted dark:text-mist-200 transition-colors; }
+        .mp-navlink-active {
+            @apply relative font-semibold text-brand dark:text-accent-400
+                   after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full
+                   after:bg-brand dark:after:bg-accent-400;
+        }
+        .mp-search-input {
+            @apply w-full rounded-full border border-black/10 dark:border-night-600
+                   bg-canvas dark:bg-night-700 py-2 pl-9 pr-4 text-sm outline-none
+                   text-ink dark:text-mist-100 placeholder:text-muted dark:placeholder:text-mist-300
+                   focus-visible:border-brand dark:focus-visible:border-accent-400
+                   focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25;
+        }
+        .mp-search-input-mobile {
+            @apply w-full rounded-full border border-black/10 dark:border-night-600
+                   bg-white dark:bg-night-700 py-3 pl-11 pr-4 text-sm outline-none
+                   text-ink dark:text-mist-100 placeholder:text-muted dark:placeholder:text-mist-300
+                   focus-visible:border-brand dark:focus-visible:border-accent-400
+                   focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25;
+        }
+        .mp-theme-toggle {
+            @apply relative flex h-8 w-14 cursor-pointer items-center rounded-full
+                   bg-slate-200 dark:bg-slate-700 p-1 transition-colors duration-300;
+        }
+        .mp-theme-thumb {
+            @apply flex h-6 w-6 items-center justify-center rounded-full
+                   bg-white dark:bg-slate-900 shadow-md transition-transform duration-300 dark:translate-x-6;
+        }
+        .mp-icon-btn {
+            @apply relative grid size-9 place-items-center rounded-full
+                   text-muted dark:text-mist-200 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-white
+                   focus-visible:ring-2 focus-visible:ring-brand/40 dark:focus-visible:ring-accent-400/40;
+        }
+        .mp-avatar {
+            @apply grid size-9 place-items-center overflow-hidden rounded-full
+                   bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400
+                   ring-1 ring-brand-line dark:ring-night-600
+                   focus-visible:ring-2 focus-visible:ring-brand/40 dark:focus-visible:ring-accent-400/40;
+        }
+
+        /* ==========================================================
+           4. SIDEBAR
+        ========================================================== */
+        .mp-sidebar { @apply sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-night-600 py-8 pr-6 lg:block; }
+        .mp-sidebar-label { @apply mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300; }
+        .mp-sidebar-link {
+            @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-200
+                   hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-white transition-colors;
+        }
+        .mp-sidebar-link-active {
+            @apply flex items-center gap-3 rounded-xl bg-brand-soft dark:bg-night-700 px-3 py-2.5
+                   font-semibold text-brand dark:text-accent-400;
+        }
+        .mp-emergency-btn {
+            @apply mt-6 flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3
+                   text-sm font-semibold text-white shadow-sm dark:shadow-none transition
+                   hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40;
+        }
+        .mp-settings-link {
+            @apply mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium
+                   text-muted dark:text-mist-200 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-white transition-colors;
+        }
+
+        /* ==========================================================
+           5. MAIN / TOOLBAR
+        ========================================================== */
+        .mp-title { @apply text-[26px] font-extrabold tracking-tight text-ink dark:text-white; }
+        .mp-subtitle { @apply mt-2 text-sm leading-relaxed text-muted dark:text-mist-300; }
+
+        .mp-toolbar-btn {
+            @apply flex items-center gap-2 rounded-lg border border-black/10 dark:border-night-600
+                   bg-white dark:bg-night-700 px-3.5 py-2 text-sm font-medium text-ink dark:text-mist-100
+                   hover:border-brand-line dark:hover:border-night-500
+                   focus-visible:ring-2 focus-visible:ring-brand/30 dark:focus-visible:ring-accent-400/30 transition-colors;
+        }
+        .mp-toolbar-badge { @apply rounded-full bg-brand dark:bg-accent-400 px-1.5 text-[10px] font-bold text-white dark:text-night-900; }
+
+        .mp-dropdown {
+            @apply absolute right-0 top-11 z-30 w-72 rounded-2xl border border-black/5 dark:border-night-600
+                   bg-white dark:bg-night-800 p-4 shadow-xl dark:shadow-none;
+        }
+        .mp-dropdown-menu {
+            @apply absolute right-0 top-11 z-30 w-56 overflow-hidden rounded-2xl border border-black/5 dark:border-night-600
+                   bg-white dark:bg-night-800 py-1.5 shadow-xl dark:shadow-none;
+        }
+        .mp-dropdown-label { @apply text-xs font-bold uppercase tracking-wider text-muted dark:text-mist-300; }
+        .mp-dropdown-value { @apply mt-1 text-sm font-semibold text-ink dark:text-mist-100; }
+        .mp-range { @apply mt-3 w-full accent-[#0B6B45] dark:accent-accent-400; }
+
+        .mp-sort-opt {
+            @apply flex w-full items-center px-4 py-2.5 text-left text-sm
+                   text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-700;
+        }
+        .mp-dropdown-reset {
+            @apply mt-5 w-full rounded-lg bg-canvas dark:bg-night-700 py-2 text-sm font-semibold
+                   text-ink dark:text-mist-100 hover:bg-brand-soft dark:hover:bg-night-600 hover:text-brand dark:hover:text-accent-400;
+        }
+
+        .rating-chip { @apply rounded-full border px-3 py-1.5 text-xs font-medium transition; }
+        .rating-chip-off { @apply border-black/10 dark:border-night-600 text-muted dark:text-mist-200 hover:text-ink dark:hover:text-white; }
+        .rating-chip-on { @apply border-brand dark:border-accent-400 bg-brand-soft dark:bg-night-700 text-brand dark:text-accent-400; }
+
+        .pill { @apply shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition; }
+        .pill-off { @apply bg-white dark:bg-night-700 text-muted dark:text-mist-200 ring-1 ring-black/5 dark:ring-night-600 hover:text-ink dark:hover:text-white; }
+        .pill-on { @apply bg-brand dark:bg-accent-400 text-white dark:text-night-900; }
+
+        /* ==========================================================
+           6. CARDS
+        ========================================================== */
+        .mp-card {
+            @apply flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-night-800
+                   ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5
+                   hover:shadow-lg dark:hover:shadow-none dark:hover:ring-night-500;
+        }
+        .mp-card-wish {
+            @apply absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full
+                   bg-white/85 dark:bg-night-900/75 text-ink dark:text-mist-100 backdrop-blur transition
+                   hover:bg-white dark:hover:bg-night-900 focus-visible:ring-2 focus-visible:ring-brand/50 dark:focus-visible:ring-accent-400/50;
+        }
+        .mp-card-title { @apply text-[13px] font-semibold leading-snug text-ink dark:text-mist-100; }
+        .mp-card-price { @apply w-[68px] shrink-0 text-right text-[13px] font-extrabold leading-snug text-brand dark:text-accent-400; }
+        .mp-card-meta { @apply flex items-center gap-1 text-[11px] text-muted dark:text-mist-300; }
+        .mp-card-rating { @apply mt-auto flex items-center gap-1 pt-1 text-[11px] font-semibold text-ink dark:text-mist-100; }
+        .mp-card-reviews { @apply font-normal text-muted dark:text-mist-300; }
+
+        .mp-featured {
+            @apply order-first col-span-2 overflow-hidden rounded-2xl bg-white dark:bg-night-800
+                   ring-1 ring-black/5 dark:ring-night-600 lg:order-none lg:flex;
+        }
+        .mp-featured-badge { @apply rounded-md bg-brand-soft dark:bg-night-700 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400; }
+        .mp-featured-title { @apply text-lg font-extrabold leading-tight text-ink dark:text-white lg:text-[17px]; }
+        .mp-featured-desc { @apply mt-2 text-[13px] leading-relaxed text-muted dark:text-mist-300 lg:text-xs; }
+        .mp-featured-label { @apply text-[11px] text-muted dark:text-mist-300; }
+        .mp-featured-price { @apply text-xl font-extrabold text-brand dark:text-accent-400 lg:text-lg; }
+        .mp-featured-btn {
+            @apply rounded-full bg-brand dark:bg-accent-400 px-5 py-2.5 text-sm font-semibold text-white dark:text-night-900
+                   transition hover:bg-brand-dark dark:hover:bg-accent-300
+                   focus-visible:ring-2 focus-visible:ring-brand/40 dark:focus-visible:ring-accent-400/40 lg:mt-3 lg:w-full;
+        }
+
+        /* ==========================================================
+           7. EMPTY STATE / LOAD MORE
+        ========================================================== */
+        .mp-empty-title { @apply text-base font-semibold text-ink dark:text-white; }
+        .mp-empty-desc { @apply mt-1 text-sm text-muted dark:text-mist-300; }
+        .mp-empty-btn {
+            @apply mt-5 rounded-full bg-brand dark:bg-accent-400 px-5 py-2.5 text-sm font-semibold
+                   text-white dark:text-night-900 hover:bg-brand-dark dark:hover:bg-accent-300;
+        }
+        .mp-loadmore {
+            @apply rounded-full bg-brand-soft dark:bg-night-700 px-7 py-3 text-sm font-semibold
+                   text-brand dark:text-accent-400 transition hover:bg-brand-line dark:hover:bg-night-600
+                   focus-visible:ring-2 focus-visible:ring-brand/40 dark:focus-visible:ring-accent-400/40;
+        }
+        .mp-loadmore-count { @apply text-[11px] text-muted dark:text-mist-300; }
+
+        /* ==========================================================
+           8. FOOTER / BOTTOM NAV / TOAST
+        ========================================================== */
+        .mp-footer { @apply mt-8 hidden border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 lg:block; }
+        .mp-footer-brand { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
+        .mp-footer-tagline { @apply mt-1 text-sm text-muted dark:text-mist-300; }
+        .mp-footer-link { @apply text-muted dark:text-mist-200 hover:text-brand dark:hover:text-accent-400; }
+        .mp-footer-copy { @apply mt-8 border-t border-black/5 dark:border-night-600 pt-6 text-center text-xs text-muted dark:text-mist-300; }
+
+        .mp-bottomnav { @apply fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-900/95 backdrop-blur lg:hidden; }
+        .mp-bottomnav-link { @apply flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-200; }
+        .mp-bottomnav-link-active { @apply flex flex-col items-center gap-1 rounded-full bg-brand dark:bg-accent-400 px-5 py-2 text-[11px] font-semibold text-white dark:text-night-900 shadow-sm; }
+
+        .mp-toast {
+            @apply pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full
+                   bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white dark:text-mist-100
+                   opacity-0 shadow-lg dark:shadow-none dark:ring-1 dark:ring-night-500 transition-opacity duration-300 lg:bottom-8;
+        }
+    </style>
+</head>
+
+<body class="transition-colors duration-200">
+
+    <!-- ══════════════ HEADER ══════════════ -->
+    <header class="mp-header">
+        <div class="mx-auto flex h-16 max-w-[1400px] items-center gap-10 px-6">
+            <a href="/index.html" class="mp-logo">M3ak Morocco</a>
+
+            <nav class="flex items-center gap-7 text-sm font-medium">
+                <a href="/pages/dashboard/service.html" class="mp-navlink">Services</a>
+                <a href="/pages/dashboard/marketplace.html" class="mp-navlink-active">Marketplace</a>
+                <a href="#" class="mp-navlink">Jobs</a>
+            </nav>
+
+            <div class="ml-auto flex items-center gap-4">
+                <label class="relative block w-72">
+                    <span class="sr-only">Search Moroccan goods</span>
+                    <img src="/assets/marketplace-image/search.png" alt="Search"
+                        class="mp-icon pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2" />
+                    <input id="searchDesktop" type="search" placeholder="Search Moroccan goods..."
+                        class="mp-search-input pl-9" />
+                </label>
+                <button type="button" class="mp-theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <!-- Toggle Circle -->
+                    <span class="theme-toggle-thumb mp-theme-thumb">
+                        <!-- Sun -->
+                        <img src="/assets/settings/sun.png" alt="Light mode"
+                            class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
+                        <!-- Moon -->
+                        <img src="/assets/settings/moon.png" alt="Dark mode"
+                            class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+                    </span>
+                </button>
+                <button type="button" class="mp-icon-btn">
+                    <span class="sr-only">Notifications</span>
+                    <img src="/assets/marketplace-image/notification.png" alt="" class="mp-icon size-5" />
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                </button>
+
+                <button type="button" class="mp-avatar">
+                    <span class="sr-only">Your profile</span>SA
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
+
+        <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
+        <aside class="mp-sidebar">
+            <p class="mp-sidebar-label">Categories</p>
+
+            <nav class="space-y-1 text-sm font-medium">
+                <a href="/pages/dashboard/service.html" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/service.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Services
+                </a>
+
+                <a href="/pages/dashboard/transport.html" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/transport.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Transport
+                </a>
+
+                <a href="#" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/house.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Housing
+                </a>
+
+                <a href="#" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/job.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Jobs
+                </a>
+
+                <a href="#" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/education.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Education
+                </a>
+
+                <a href="#" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/health.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Healthcare
+                </a>
+
+                <a href="#" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/payment.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Payments
+                </a>
+
+                <a href="/pages/dashboard/marketplace.html" aria-current="page" class="mp-sidebar-link-active">
+                    <img src="/assets/marketplace-image/marketplace.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Marketplace
+                </a>
+
+                <a href="/pages/dashboard/emergence.html" class="mp-sidebar-link">
+                    <img src="/assets/marketplace-image/emergence.png" alt="" class="mp-icon size-[18px] shrink-0 object-contain" />
+                    Emergency
+                </a>
+            </nav>
+
+            <a href="/pages/dashboard/emergence.html" class="mp-emergency-btn">
+                <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M12 2v20M2 12h20" transform="rotate(45 12 12)" />
+                    <path d="M12 2v20M2 12h20" />
+                </svg>
+                Emergency Support
+            </a>
+
+            <a href="#" class="mp-settings-link">
+                <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" />
+                </svg>
+                Settings
+            </a>
+        </aside>
+        <!-- ══════════════ MAIN ══════════════ -->
+        <main class="min-w-0 flex-1 pb-28 pt-6 lg:pb-16 lg:pt-8">
+
+            <!-- Mobile title + search -->
+            <div class="lg:hidden">
+                <h1 class="mp-title"></h1>
+                <label class="relative mt-4 block">
+                    <span class="sr-only">Search Moroccan goods</span>
+                    <img src="/assets/marketplace-image/search.png" alt="Search"
+                        class="mp-icon pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2" />
+                    <input id="searchMobile" type="search" placeholder="Search Moroccan goods..."
+                        class="mp-search-input-mobile pl-11" />
+                </label>
+            </div>
+
+            <!-- Desktop header -->
+            <div class="hidden items-start justify-between gap-6 lg:flex">
+                <div class="max-w-xl">
+                    <h1 class="mp-title">Moroccan Marketplace</h1>
+                    <p class="mp-subtitle">
+                        Discover authentic local products, hand-crafted goods, and premium professional services across
+                        the Kingdom.
+                    </p>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2">
+                    <!-- Filter -->
+                    <div class="relative">
+                        <button id="filterBtn" type="button" aria-expanded="false" aria-controls="filterPanel" class="mp-toolbar-btn">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                                <path d="M4 6h16M7 12h10M10 18h4" />
+                            </svg>
+                            Filter
+                            <span id="filterCount" class="mp-toolbar-badge hidden">1</span>
+                        </button>
+
+                        <div id="filterPanel" class="mp-dropdown hidden">
+                            <p class="mp-dropdown-label">Max price</p>
+                            <input id="priceRange" type="range" min="100" max="4000" step="50" value="4000" class="mp-range" />
+                            <p class="mp-dropdown-value">Up to <span id="priceValue">4,000</span> MAD</p>
+
+                            <p class="mp-dropdown-label mt-5">Minimum rating</p>
+                            <div class="mt-2 flex gap-2" id="ratingGroup">
+                                <button type="button" data-rating="0" class="rating-chip rating-chip-off">Any</button>
+                                <button type="button" data-rating="4.5" class="rating-chip rating-chip-off">4.5+</button>
+                                <button type="button" data-rating="4.8" class="rating-chip rating-chip-off">4.8+</button>
+                            </div>
+
+                            <button id="resetFilters" type="button" class="mp-dropdown-reset">Reset filters</button>
+                        </div>
+                    </div>
+
+                    <!-- Sort -->
+                    <div class="relative">
+                        <button id="sortBtn" type="button" aria-expanded="false" aria-controls="sortMenu" class="mp-toolbar-btn">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3" />
+                            </svg>
+                            <span id="sortLabel">Newest First</span>
+                        </button>
+
+                        <div id="sortMenu" class="mp-dropdown-menu hidden">
+                            <button type="button" data-sort="newest" class="mp-sort-opt sort-opt">Newest First</button>
+                            <button type="button" data-sort="price-asc" class="mp-sort-opt sort-opt">Price: Low to High</button>
+                            <button type="button" data-sort="price-desc" class="mp-sort-opt sort-opt">Price: High to Low</button>
+                            <button type="button" data-sort="rating" class="mp-sort-opt sort-opt">Top Rated</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category pills -->
+            <div class="no-scrollbar -mx-4 mt-5 flex gap-2 overflow-x-auto px-4 lg:mx-0 lg:mt-6 lg:px-0">
+                <button type="button" data-category="all" class="pill">All Products</button>
+                <button type="button" data-category="crafts" class="pill">Artisan Crafts</button>
+                <button type="button" data-category="textiles" class="pill">Textiles</button>
+                <button type="button" data-category="decor" class="pill">Home Decor</button>
+                <button type="button" data-category="food" class="pill">Gourmet Food</button>
+            </div>
+
+            <!-- Grid -->
+            <div id="grid" class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5"></div>
+
+            <!-- No results -->
+            <div id="empty" class="hidden py-20 text-center">
+                <p class="mp-empty-title">No goods match this search</p>
+                <p class="mp-empty-desc">Try another keyword, or clear the filters to see the full marketplace.</p>
+                <button id="emptyReset" type="button" class="mp-empty-btn">Show all products</button>
+            </div>
+
+            <!-- Load more -->
+            <div id="moreWrap" class="mt-8 flex flex-col items-center gap-3">
+                <button id="loadMore" type="button" class="mp-loadmore">
+                    Discover More Goods
+                </button>
+                <p class="mp-loadmore-count">Showing <span id="shownCount">8</span> of 2,466 local products</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- ══════════════ FOOTER (desktop) ══════════════ -->
+    <footer class="mp-footer">
+        <div class="mx-auto max-w-[1400px] px-6 py-10">
+            <div class="flex flex-wrap items-start justify-between gap-6">
+                <div>
+                    <p class="mp-footer-brand">M3ak Super App</p>
+                    <p class="mp-footer-tagline">Empowering citizens through the digital transformation of the Kingdom.</p>
+                </div>
+                <nav class="flex flex-wrap gap-7 text-sm">
+                    <a href="#" class="mp-footer-link">Privacy Policy</a>
+                    <a href="#" class="mp-footer-link">Terms of Service</a>
+                    <a href="#" class="mp-footer-link">Contact Us</a>
+                    <a href="#" class="mp-footer-link">Help Center</a>
+                </nav>
+            </div>
+            <p class="mp-footer-copy">© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ══════════════ BOTTOM NAV (mobile) ══════════════ -->
+    <nav class="mp-bottomnav">
+        <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
+            <a href="/pages/dashboard/overview.html" class="mp-bottomnav-link">
+                <img src="/assets/marketplace-image/house.png" alt="" class="mp-icon size-5" />
+                Home
+            </a>
+            <a href="/pages/dashboard/marketplace.html" aria-current="page" class="mp-bottomnav-link-active">
+                <img src="/assets/marketplace-image/marketplace.png" alt="" class="size-5" />
+                Market
+            </a>
+            <a href="#" class="relative mp-bottomnav-link">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 4h2l2.2 10.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.5L20 7H6" />
+                    <circle cx="9.5" cy="19.5" r="1.4" />
+                    <circle cx="17" cy="19.5" r="1.4" />
+                </svg>
+                <span id="cartBadge" class="absolute right-2 top-0 hidden min-w-4 rounded-full bg-danger px-1 text-[9px] font-bold leading-4 text-white">0</span>
+                Cart
+            </a>
+            <a href="#" class="mp-bottomnav-link">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                    <circle cx="12" cy="8" r="3.5" />
+                    <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+                </svg>
+                Profile
+            </a>
+        </div>
+    </nav>
+
+    <!-- Toast -->
+    <div id="toast" class="mp-toast"></div>
+</body>
+<script>
+    /* ─────────────── Data ─────────────── */
+
+    /* ─── Image resolution ───
+       We don't know the exact folder name or extension of your files,
+       so the code tries several combinations and stops at the first
+       one that responds. If none work, the console lists the URLs
+       that were tried and the gradient placeholder stays visible.
+
+       Once you know which path works, keep only that one in
+       IMG_BASES — the others are just for probing. */
+    const IMG_BASES = [
+        "/assets/marketplace-image/"
+    ];
+    const IMG_EXTS = [".png", ".avif", ".jpg"];
+    function imgCandidates(file) {
+        const stem = String(file).replace(/\.[a-z]+$/i, "");
+        const list = [];
+        IMG_BASES.forEach(base => IMG_EXTS.forEach(ext => list.push(base + stem + ext)));
+        return list;
+    }
+
+    /* Called by onerror: moves to the next path, then gives up. */
+    function nextImgSource(el) {
+        const list = JSON.parse(el.dataset.candidates);
+        const i = Number(el.dataset.candidate) + 1;
+
+        if (i < list.length) {
+            el.dataset.candidate = i;
+            el.src = list[i];
+            return;
+        }
+
+        el.style.display = "none";
+        console.warn("Image not found. Paths tried:", list);
+    }
+
+    const FEATURED = {
+        title: "Bespoke Zellige Interior Design",
+        desc: "Elevate your space with traditional geometric mosaic art. Full-service consultation and installation by master artisans.",
+        price: 15000,
+        img: "zellig.avif",
+        tint: "linear-gradient(150deg,#2E6F63,#1C4A47 55%,#8C6239)"
+    };
+
+    const PRODUCTS = [
+        { id: 1, name: "Handcrafted Leather Pouf", price: 850, city: "Marrakech", seller: "Artisan District", rating: 4.9, reviews: 128, cat: "crafts", added: 12, img: "pouf.png", tint: "linear-gradient(160deg,#C98B4B,#8A5225)" },
+
+        { id: 2, name: "Premium Taliouine Saffron", price: 120, city: "Taliouine", seller: "Organic Cooperative", rating: 5.0, reviews: 348, cat: "food", added: 11, img: "safron.png", tint: "linear-gradient(160deg,#D9531E,#7A1E12)" },
+
+        { id: 3, name: "Hand-blown Beldi Glass", price: 240, city: "Casablanca", seller: "Glass Workshop", rating: 4.7, reviews: 83, cat: "decor", added: 10, img: "glass.png", tint: "linear-gradient(160deg,#4FA79B,#1E4F4A)" },
+
+        { id: 4, name: "Authentic Beni Ourain Rug", price: 3200, city: "Atlas Mountains", seller: "Weaver Collective", rating: 4.8, reviews: 219, cat: "textiles", added: 9, img: "rug.png", tint: "linear-gradient(160deg,#F2EDE3,#CFC4B2)" },
+
+        { id: 5, name: "Organic Argan Beauty Oil", price: 350, city: "Essaouira", seller: "Eco-Certified", rating: 4.9, reviews: 413, cat: "food", added: 8, img: "argan.png", tint: "linear-gradient(160deg,#8A6A2F,#2A1D0C)" },
+
+        { id: 6, name: "Carved Cedar Chest", price: 2100, city: "Tetouan", seller: "Woodworker's Guild", rating: 4.6, reviews: 46, cat: "crafts", added: 7, img: "chest.png", tint: "linear-gradient(160deg,#9A5B2C,#4A2611)" },
+
+        { id: 7, name: "Traditional Moroccan Tea Set", price: 780, city: "Fez", seller: "Heritage Crafts", rating: 4.9, reviews: 96, cat: "crafts", added: 7, img: "tea-set.jpg", tint: "linear-gradient(160deg,#B87333,#5A321D)" },
+
+        { id: 8, name: "Moroccan Brass Lantern", price: 1250, city: "Marrakech", seller: "Medina Crafts", rating: 4.8, reviews: 64, cat: "decor", added: 6, img: "brass-lantern.jpg", tint: "linear-gradient(160deg,#C58A45,#70451F)" },
+
+        { id: 9, name: "Handwoven Moroccan Basket", price: 480, city: "Essaouira", seller: "Coastal Artisans", rating: 4.7, reviews: 52, cat: "crafts", added: 5, img: "biggest-collection.jpg", tint: "linear-gradient(160deg,#D2A86A,#806039)" },
+
+        { id: 10, name: "Handcrafted Berber Cushion", price: 650, city: "Agadir", seller: "Atlas Weavers", rating: 4.8, reviews: 73, cat: "textiles", added: 4, img: "berber-cushion.jpg", tint: "linear-gradient(160deg,#A66A45,#59382A)" },
+    ];
+
+    const PAGE_SIZE = 6;
+
+    /* ─────────────── State ─────────────── */
+    const state = { category: "all", query: "", sort: "newest", maxPrice: 4000, minRating: 0, visible: PAGE_SIZE };
+    const wishlist = new Set();
+    let cartCount = 0;
+
+    /* ─────────────── Helpers ─────────────── */
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const money = n => n.toLocaleString("en-US");
+
+    function toast(msg) {
+        const t = $("#toast");
+        t.textContent = msg;
+        t.style.opacity = "1";
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => (t.style.opacity = "0"), 2200);
+    }
+
+    const pinIcon = `<img src="/assets/marketplace-image/location.png" alt="" class="mp-icon size-3 shrink-0" />`;
+    const starIcon = `<img src="/assets/marketplace-image/star.png" alt="" class="mp-icon size-3 shrink-0" />`;
+    const heartIcon = `<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.5A4 4 0 0 1 12 7.6 4 4 0 0 1 19 10.5C19 15.4 12 20 12 20z"/></svg>`;
+
+    /* ─────────────── Render ─────────────── */
+    function productCard(p) {
+        const liked = wishlist.has(p.id);
+        return `
+  <article class="card-in group mp-card">
+    <div class="ph relative aspect-[4/3] overflow-hidden" style="--ph:${p.tint}">
+      <img src="${imgCandidates(p.img)[0]}" alt="${p.name}" loading="lazy"
+           data-candidates='${JSON.stringify(imgCandidates(p.img))}' data-candidate="0"
+           onerror="nextImgSource(this)"
+           class="size-full object-cover transition duration-500 group-hover:scale-105" />
+      <button type="button" data-wish="${p.id}" aria-pressed="${liked}"
+              class="mp-card-wish ${liked ? "text-danger dark:text-red-400" : ""}">
+        <span class="sr-only">Save ${p.name}</span>${heartIcon}
+      </button>
+    </div>
+
+    <div class="flex flex-1 flex-col gap-1.5 p-3">
+      <div class="flex items-start justify-between gap-2">
+        <h3 class="mp-card-title">${p.name}</h3>
+        <p class="mp-card-price">${money(p.price)} MAD</p>
+      </div>
+      <p class="mp-card-meta">${pinIcon}<span class="truncate">${p.city} · ${p.seller}</span></p>
+      <p class="mp-card-rating">${starIcon}${p.rating.toFixed(1)}
+        <span class="mp-card-reviews">(${p.reviews} reviews)</span>
+      </p>
+    </div>
+  </article>`;
+    }
+
+    function featuredCard() {
+        return `
+  <article class="card-in mp-featured">
+    <div class="ph relative aspect-[16/10] shrink-0 lg:aspect-auto lg:w-1/2" style="--ph:${FEATURED.tint}">
+      <img src="${imgCandidates(FEATURED.img)[0]}" alt="${FEATURED.title}" loading="lazy"
+           data-candidates='${JSON.stringify(imgCandidates(FEATURED.img))}' data-candidate="0"
+           onerror="nextImgSource(this)" class="size-full object-cover" />
+      <span class="mp-featured-badge absolute left-3 top-3 lg:hidden">Expert Service</span>
+    </div>
+
+    <div class="flex flex-col p-4 lg:w-1/2 lg:p-5">
+      <span class="mp-featured-badge mb-3 hidden w-fit lg:inline-block">Expert Service</span>
+      <h3 class="mp-featured-title">${FEATURED.title}</h3>
+      <p class="mp-featured-desc">${FEATURED.desc}</p>
+
+      <div class="mt-5 flex items-end justify-between gap-3 lg:mt-auto lg:block lg:pt-5">
+        <div>
+          <p class="mp-featured-label">From</p>
+          <p class="mp-featured-price">${money(FEATURED.price)} MAD</p>
+        </div>
+        <button id="bookConsult" type="button" class="mp-featured-btn">
+          Book Consult
+        </button>
+      </div>
+    </div>
+  </article>`;
+    }
+
+    function filtered() {
+        const q = state.query.trim().toLowerCase();
+        let list = PRODUCTS.filter(p =>
+            (state.category === "all" || p.cat === state.category) &&
+            p.price <= state.maxPrice &&
+            p.rating >= state.minRating &&
+            (!q || `${p.name} ${p.city} ${p.seller}`.toLowerCase().includes(q))
+        );
+
+        const sorters = {
+            newest: (a, b) => b.added - a.added,
+            "price-asc": (a, b) => a.price - b.price,
+            "price-desc": (a, b) => b.price - a.price,
+            rating: (a, b) => b.rating - a.rating || b.reviews - a.reviews
+        };
+        return list.sort(sorters[state.sort]);
+    }
+
+    function render() {
+        const list = filtered();
+        const shown = list.slice(0, state.visible);
+        const showFeatured = state.category === "all" || state.category === "services";
+
+        const cards = shown.map(productCard);
+        if (showFeatured) cards.splice(2, 0, featuredCard());
+
+        $("#grid").innerHTML = cards.join("");
+        $("#grid").classList.toggle("hidden", list.length === 0);
+        $("#empty").classList.toggle("hidden", list.length !== 0);
+        $("#moreWrap").classList.toggle("hidden", list.length === 0);
+
+        $("#shownCount").textContent = shown.length;
+        const done = shown.length >= list.length;
+        $("#loadMore").textContent = done ? "You've reached the end" : "Discover More Goods";
+        $("#loadMore").disabled = done;
+        $("#loadMore").classList.toggle("opacity-50", done);
+        $("#loadMore").classList.toggle("cursor-not-allowed", done);
+    }
+
+    /* ─────────────── Pills ─────────────── */
+    function paintPills() {
+        $$(".pill").forEach(b => {
+            const on = b.dataset.category === state.category;
+            b.classList.toggle("pill-on", on);
+            b.classList.toggle("pill-off", !on);
+            b.setAttribute("aria-pressed", on);
+        });
+    }
+
+    $$(".pill").forEach(b => b.addEventListener("click", () => {
+        state.category = b.dataset.category;
+        state.visible = PAGE_SIZE;
+        paintPills(); render();
+    }));
+
+    /* ─────────────── Search ─────────────── */
+    let debounce;
+    function onSearch(e) {
+        const v = e.target.value;
+        ["#searchDesktop", "#searchMobile"].forEach(s => { if ($(s) !== e.target) $(s).value = v; });
+        clearTimeout(debounce);
+        debounce = setTimeout(() => { state.query = v; state.visible = PAGE_SIZE; render(); }, 180);
+    }
+    $("#searchDesktop").addEventListener("input", onSearch);
+    $("#searchMobile").addEventListener("input", onSearch);
+
+    /* ─────────────── Sort ─────────────── */
+    const sortMenu = $("#sortMenu"), sortBtn = $("#sortBtn");
+    sortBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        const open = sortMenu.classList.toggle("hidden") === false;
+        sortBtn.setAttribute("aria-expanded", open);
+        filterPanel.classList.add("hidden");
+    });
+    $$(".sort-opt").forEach(o => o.addEventListener("click", () => {
+        state.sort = o.dataset.sort;
+        $("#sortLabel").textContent = o.textContent.trim();
+        sortMenu.classList.add("hidden");
+        sortBtn.setAttribute("aria-expanded", false);
+        render();
+    }));
+
+    /* ─────────────── Filters ─────────────── */
+    const filterPanel = $("#filterPanel"), filterBtn = $("#filterBtn");
+    filterBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        const open = filterPanel.classList.toggle("hidden") === false;
+        filterBtn.setAttribute("aria-expanded", open);
+        sortMenu.classList.add("hidden");
+    });
+    filterPanel.addEventListener("click", e => e.stopPropagation());
+    sortMenu.addEventListener("click", e => e.stopPropagation());
+    document.addEventListener("click", () => { filterPanel.classList.add("hidden"); sortMenu.classList.add("hidden"); });
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") { filterPanel.classList.add("hidden"); sortMenu.classList.add("hidden"); }
+    });
+
+    $("#priceRange").addEventListener("input", e => {
+        state.maxPrice = +e.target.value;
+        $("#priceValue").textContent = money(state.maxPrice);
+        state.visible = PAGE_SIZE;
+        paintFilterBadge(); render();
+    });
+
+    function paintRatingChips() {
+        $$(".rating-chip").forEach(c => {
+            const on = +c.dataset.rating === state.minRating;
+            c.classList.toggle("rating-chip-on", on);
+            c.classList.toggle("rating-chip-off", !on);
+        });
+    }
+    $$(".rating-chip").forEach(c => c.addEventListener("click", () => {
+        state.minRating = +c.dataset.rating;
+        state.visible = PAGE_SIZE;
+        paintRatingChips(); paintFilterBadge(); render();
+    }));
+
+    function paintFilterBadge() {
+        const n = (state.maxPrice < 4000 ? 1 : 0) + (state.minRating > 0 ? 1 : 0);
+        const badge = $("#filterCount");
+        badge.textContent = n;
+        badge.classList.toggle("hidden", n === 0);
+    }
+
+    function resetAll() {
+        state.category = "all"; state.query = ""; state.maxPrice = 4000; state.minRating = 0; state.visible = PAGE_SIZE;
+        $("#searchDesktop").value = ""; $("#searchMobile").value = "";
+        $("#priceRange").value = 4000; $("#priceValue").textContent = "4,000";
+        paintPills(); paintRatingChips(); paintFilterBadge(); render();
+    }
+    $("#resetFilters").addEventListener("click", resetAll);
+    $("#emptyReset").addEventListener("click", resetAll);
+
+    /* ─────────────── Load more ─────────────── */
+    $("#loadMore").addEventListener("click", () => {
+        state.visible += PAGE_SIZE;
+        render();
+    });
+
+    /* ─────────────── Wishlist + consult (delegation) ─────────────── */
+    $("#grid").addEventListener("click", e => {
+        const wish = e.target.closest("[data-wish]");
+        if (wish) {
+            const id = +wish.dataset.wish;
+            if (wishlist.has(id)) { wishlist.delete(id); toast("Removed from your saved goods"); }
+            else { wishlist.add(id); toast("Saved to your list"); }
+            render();
+            return;
+        }
+        if (e.target.closest("#bookConsult")) {
+            cartCount++;
+            const badge = $("#cartBadge");
+            badge.textContent = cartCount;
+            badge.classList.remove("hidden");
+            toast("Consultation requested — an artisan replies within 24h");
+        }
+    });
+
+    /* ─────────────── Init ─────────────── */
+    paintPills(); paintRatingChips(); render();
+
+    /* Diagnostic: after render, logs what loaded and what's missing.
+       Remove this block once your images are in place. */
+    window.setTimeout(() => {
+        const imgs = $$("#grid img");
+        const ok = imgs.filter(i => i.naturalWidth > 0);
+        console.log(`Images: ${ok.length}/${imgs.length} loaded.`);
+        ok.forEach(i => console.log("OK", i.getAttribute("src")));
+    }, 1500);
+</script>
+
+</html>
