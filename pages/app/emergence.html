@@ -15,6 +15,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style type="text/tailwindcss">
+        /* ==========================================================
+           0. DARK MODE (class strategy) — .dark on <html>, set by theme.js
+        ========================================================== */
+        @custom-variant dark (&:where(.dark, .dark *));
+
         @theme {
             --color-brand: #0B6B45;
             --color-brand-dark: #084F34;
@@ -28,7 +33,28 @@
             --color-muted: #6B7A73;
             --color-muted-900: #3D4A42;
             --color-canvas: #F6F7F5;
+
+            /* dark surfaces */
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-night-500: #2E3830;
+
+            /* dark text */
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+
+            /* dark accent (stands in for --color-brand on dark surfaces) */
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body {
+            @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 transition-colors duration-200;
         }
     </style>
 
@@ -50,7 +76,7 @@
             scrollbar-width: none;
         }
 
-        /* SOS halo */
+        /* SOS halo — paused while the button is held down */
         .sos-halo::before {
             content: "";
             position: absolute;
@@ -60,7 +86,7 @@
             animation: halo 2.4s ease-out infinite;
         }
 
-        .sos-halo.is-holding::before {
+        .sos-halo:has(#sosBtn:active)::before {
             animation: none;
             opacity: 0;
         }
@@ -83,11 +109,11 @@
             transition: transform .18s ease, box-shadow .18s ease;
         }
 
-        #sosBtn.is-holding {
+        #sosBtn:active {
             transform: scale(.94);
         }
 
-        .fade-in {
+        dialog[open] {
             animation: fadeIn .25s ease both;
         }
 
@@ -119,69 +145,81 @@
     </style>
 </head>
 
-<body class="bg-canvas font-sans text-ink antialiased">
+<body>
 
     <!-- HEADER DESKTOP -->
-    <header class="sticky top-0 z-40 hidden border-b border-black/5 bg-white/90 backdrop-blur lg:block">
+    <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-night-600 bg-white/90 dark:bg-night-800/90 backdrop-blur transition-colors lg:block">
         <div class="mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6">
 
-            <h1 class="text-lg font-extrabold tracking-tight text-brand">
+            <h1 class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">
                 Morocco Public Service
             </h1>
 
-            <nav class="flex items-center gap-7 text-sm font-medium text-muted">
-                <a href="/pages/dashboard/overview.html" class="hover:text-ink">
+            <nav class="flex items-center gap-7 text-sm font-medium text-muted dark:text-mist-300">
+                <a href="/pages/admin-pages/dashboard.html" class="hover:text-ink dark:hover:text-white">
                     Dashboard
                 </a>
 
                 <a href="/pages/dashboard/emergency.html"
-                    class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">
+                    class="relative font-semibold text-brand dark:text-accent-400 after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand dark:after:bg-accent-400">
                     Emergency Hub
                 </a>
 
-                <a href="/pages/dashboard/service.html" class="hover:text-ink">
+                <a href="/pages/dashboard/service.html" class="hover:text-ink dark:hover:text-white">
                     Directories
                 </a>
 
-                <a href="#" class="hover:text-ink">
+                <a href="#" class="hover:text-ink dark:hover:text-white">
                     Reports
                 </a>
             </nav>
 
             <div class="ml-auto flex items-center gap-3">
-
+                <!-- dark light mode — theme.js does the work, this button just carries the data-theme-toggle hook -->
                 <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+                    data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <span
+                        class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+                        <img src="/assets/settings/sun.png" alt="Light mode"
+                            class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
+                        <img src="/assets/settings/moon.png" alt="Dark mode"
+                            class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+                    </span>
+                </button>
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
                     <img src="/assets/emergence-image/notification.png" alt="notification-icon" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800"></span>
                 </button>
 
                 <a href="#"
-                    class="grid size-9 place-items-center rounded-full text-muted hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Settings</span>
                     <img src="/assets/emergence-image/setting-icon.png" alt="Setting-icon" class="size-5 object-contain" />
                 </a>
 
                 <button type="button"
-                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft text-sm font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Your profile</span>
                     SA
                 </button>
 
-                <button type="button" data-jump-sos
+                <!-- Just a link to the SOS card — no JS needed, scroll-behavior:smooth (in the CSS above) handles the animation -->
+                <a href="#sosCard"
                     class="flex items-center gap-2 rounded-full bg-danger px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
                     SOS Trigger
-                </button>
+                </a>
 
             </div>
         </div>
     </header>
 
     <!-- HEADER MOBILE -->
-    <header class="sticky top-0 z-40 border-b border-black/5 bg-white/95 px-4 py-3.5 backdrop-blur lg:hidden">
+    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-800/95 px-4 py-3.5 backdrop-blur lg:hidden">
         <div class="flex items-center justify-between">
-            <p class="text-base font-extrabold tracking-tight text-brand">
+            <p class="text-base font-extrabold tracking-tight text-brand dark:text-accent-400">
                 Emergency Services
             </p>
 
@@ -195,21 +233,21 @@
         <div class="mb-6 hidden items-end justify-between gap-6 lg:flex">
 
             <div>
-                <h2 class="text-lg font-extrabold tracking-tight">
+                <h2 class="text-lg font-extrabold tracking-tight dark:text-white">
                     Emergency Hub
                 </h2>
 
-                <p class="mt-1 text-sm text-muted">
+                <p class="mt-1 text-sm text-muted dark:text-mist-300">
                     Command center for immediate assistance and critical resources.
                 </p>
             </div>
 
             <div class="text-right">
-                <p id="clock" class="font-mono text-lg font-semibold tabular-nums">
+                <p id="clock" class="font-mono text-lg font-semibold tabular-nums dark:text-white">
                     --:--:--
                 </p>
 
-                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted dark:text-mist-300">
                     Agadir, Morocco
                 </p>
             </div>
@@ -220,21 +258,27 @@
         <div class="grid gap-4 lg:grid-cols-3 lg:gap-5">
 
             <!-- SOS CARD -->
-            <section id="sosCard" class="rounded-2xl bg-white p-6 text-center ring-1 ring-black/5 lg:col-span-2 lg:p-8">
+            <section id="sosCard" class="rounded-2xl bg-white dark:bg-night-800 p-6 text-center ring-1 ring-black/5 dark:ring-night-600 transition-colors lg:col-span-2 lg:p-8">
 
-                <h2 class="text-sm font-bold">
+                <h2 class="text-sm font-bold dark:text-white">
                     Need Emergency Help?
                 </h2>
 
-                <p class="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted">
+                <p class="mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted dark:text-mist-300">
                     Press and hold the button for 3 seconds to trigger an SOS alert to all emergency services and
                     primary contacts.
                 </p>
 
                 <div class="sos-halo relative mx-auto mt-7 grid size-40 place-items-center lg:mt-8">
 
-                    <button id="sosBtn" type="button" aria-describedby="sosHint"
-                        class="relative grid size-40 select-none touch-none place-items-center rounded-full bg-danger text-white shadow-[0_12px_34px_rgba(225,54,44,.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-danger/35">
+                    <!--
+                        No JS timer here: the red ring is a CSS transition that takes exactly
+                        3 seconds to fill while the button is held (:active). When it finishes
+                        filling, a "transitionend" event fires — that's the only bit of JS below,
+                        it just opens the SOS dialog. Let go early and the ring resets itself.
+                    -->
+                    <button id="sosBtn" type="button" oncontextmenu="return false" aria-describedby="sosHint"
+                        class="group relative grid size-40 select-none touch-none place-items-center rounded-full bg-danger text-white shadow-[0_12px_34px_rgba(225,54,44,.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-danger/35">
 
                         <svg class="pointer-events-none absolute inset-0 size-full -rotate-90" viewBox="0 0 100 100"
                             aria-hidden="true">
@@ -243,7 +287,8 @@
                                 stroke-width="4" />
 
                             <circle id="sosRing" cx="50" cy="50" r="46" fill="none" stroke="#fff" stroke-width="4"
-                                stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" />
+                                stroke-linecap="round" stroke-dasharray="289"
+                                class="[stroke-dashoffset:289px] transition-[stroke-dashoffset] duration-200 ease-out group-active:duration-[3000ms] group-active:ease-linear group-active:[stroke-dashoffset:0px]" />
                         </svg>
 
                         <span class="pointer-events-none flex flex-col items-center gap-1.5">
@@ -260,17 +305,17 @@
                 </div>
 
                 <p id="sosHint" class="mt-6 text-[11px] font-bold uppercase tracking-[0.18em] text-danger">
-                    Press to trigger
+                    Press and hold to trigger
                 </p>
 
             </section>
 
-            <!-- QUICK CALLS -->
+            <!-- QUICK CALLS — each opens its own <dialog>, declared further down the page -->
             <div class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
 
                 <!-- POLICE -->
-                <button type="button" data-call="19" data-service="Police"
-                    class="flex items-center gap-3 rounded-2xl bg-brand-soft p-4 text-left ring-1 ring-brand-line transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" onclick="policeDialog.showModal()"
+                    class="flex items-center gap-3 rounded-2xl bg-brand-soft dark:bg-night-700 p-4 text-left ring-1 ring-brand-line dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
 
                     <span class="flex size-10 shrink-0 items-center justify-center bg-green-900 rounded-xl shadow-sm">
                         <img src="/assets/emergence-image/police-icon.png" alt="Police-icon"
@@ -278,21 +323,21 @@
                     </span>
 
                     <span class="min-w-0 flex-1">
-                        <span class="block text-sm font-bold">
+                        <span class="block text-sm font-bold dark:text-white">
                             Police
                         </span>
 
-                        <span class="block truncate text-[11px] text-muted">
+                        <span class="block truncate text-[11px] text-muted dark:text-mist-300">
                             National Emergency Line
                         </span>
                     </span>
 
                     <span class="shrink-0 text-right">
-                        <span class="block text-lg font-extrabold leading-none text-brand">
+                        <span class="block text-lg font-extrabold leading-none text-brand dark:text-accent-400">
                             19
                         </span>
 
-                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
                             Quick Dial
                         </span>
                     </span>
@@ -300,8 +345,8 @@
                 </button>
 
                 <!-- AMBULANCE -->
-                <button type="button" data-call="15" data-service="Ambulance"
-                    class="flex items-center gap-3 rounded-2xl bg-[#EAF0FA] p-4 text-left ring-1 ring-[#D3E0F2] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" onclick="ambulanceDialog.showModal()"
+                    class="flex items-center gap-3 rounded-2xl bg-[#EAF0FA] dark:bg-night-700 p-4 text-left ring-1 ring-[#D3E0F2] dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
 
                     <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-blue shadow-sm">
                         <img src="/assets/emergence-image/ambulance-icon.png" alt="Ambulance"
@@ -309,21 +354,21 @@
                     </span>
 
                     <span class="min-w-0 flex-1">
-                        <span class="block text-sm font-bold">
+                        <span class="block text-sm font-bold dark:text-white">
                             Ambulance
                         </span>
 
-                        <span class="block truncate text-[11px] text-muted">
+                        <span class="block truncate text-[11px] text-muted dark:text-mist-300">
                             Fire Dept &amp; Medical
                         </span>
                     </span>
 
                     <span class="shrink-0 text-right">
-                        <span class="block text-lg font-extrabold leading-none text-brand">
+                        <span class="block text-lg font-extrabold leading-none text-brand dark:text-accent-400">
                             15
                         </span>
 
-                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
                             Quick Dial
                         </span>
                     </span>
@@ -331,8 +376,8 @@
                 </button>
 
                 <!-- GENDARMERIE -->
-                <button type="button" data-call="177" data-service="Gendarmerie Royale"
-                    class="flex items-center gap-3 rounded-2xl bg-[#E7EEF7] p-4 text-left ring-1 ring-[#CFDDEE] transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" onclick="gendarmerieDialog.showModal()"
+                    class="flex items-center gap-3 rounded-2xl bg-[#E7EEF7] dark:bg-night-700 p-4 text-left ring-1 ring-[#CFDDEE] dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40">
 
                     <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-muted-900 shadow-sm">
                         <img src="/assets/emergence-image/gendarme-icon.png" alt="Gendarmerie"
@@ -340,21 +385,21 @@
                     </span>
 
                     <span class="min-w-0 flex-1">
-                        <span class="block text-sm font-bold">
+                        <span class="block text-sm font-bold dark:text-white">
                             Gendarmerie
                         </span>
 
-                        <span class="block truncate text-[11px] text-muted">
+                        <span class="block truncate text-[11px] text-muted dark:text-mist-300">
                             Rural Emergency Line
                         </span>
                     </span>
 
                     <span class="shrink-0 text-right">
-                        <span class="block text-lg font-extrabold leading-none text-brand">
+                        <span class="block text-lg font-extrabold leading-none text-brand dark:text-accent-400">
                             177
                         </span>
 
-                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand">
+                        <span class="mt-1 block text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
                             Quick Dial
                         </span>
                     </span>
@@ -368,11 +413,11 @@
         <div class="mt-4 grid gap-4 lg:mt-5 lg:grid-cols-3 lg:gap-5">
 
             <!-- MAP -->
-            <section class="overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 lg:col-span-2">
+            <section class="overflow-hidden rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-night-600 transition-colors lg:col-span-2">
 
                 <div class="flex flex-wrap items-center justify-between gap-3 p-4">
 
-                    <p class="flex items-center gap-2 text-sm font-bold">
+                    <p class="flex items-center gap-2 text-sm font-bold dark:text-white">
                         <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="size-4 object-contain" />
                         Real-time Emergency Map
                     </p>
@@ -397,13 +442,13 @@
                     </div>
                 </div>
 
-                <div class="relative aspect-[16/10] w-full bg-[#DFE5E0] lg:aspect-[16/7]">
+                <div class="relative aspect-[16/10] w-full bg-[#DFE5E0] dark:bg-night-700 lg:aspect-[16/7]">
 
                     <iframe id="mapFrame" title="Nearby emergency facilities" loading="lazy" class="size-full border-0">
                     </iframe>
 
                     <div
-                        class="pointer-events-none absolute bottom-3 left-3 right-3 rounded-xl bg-white/95 p-3 shadow-lg backdrop-blur sm:right-auto sm:w-64">
+                        class="pointer-events-none absolute bottom-3 left-3 right-3 rounded-xl bg-white/95 dark:bg-night-800/95 p-3 shadow-lg backdrop-blur sm:right-auto sm:w-64">
 
                         <p class="flex items-start gap-2">
 
@@ -412,18 +457,18 @@
 
                             <span class="min-w-0">
 
-                                <span id="placeName" class="block text-xs font-bold leading-snug">
+                                <span id="placeName" class="block text-xs font-bold leading-snug dark:text-white">
                                     Hôpital Militaire d'Instruction
                                 </span>
 
-                                <span id="placeMeta" class="mt-0.5 block text-[11px] text-muted">
+                                <span id="placeMeta" class="mt-0.5 block text-[11px] text-muted dark:text-mist-300">
                                     0.8 km · 4 mins away
                                 </span>
 
                             </span>
                         </p>
 
-                        <p id="placeStatus" class="mt-2 text-[10px] font-bold uppercase tracking-wider text-brand">
+                        <p id="placeStatus" class="mt-2 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
                             ER open · Occupancy low
                         </p>
 
@@ -434,8 +479,9 @@
             <!-- RIGHT COLUMN -->
             <div class="grid gap-4 lg:gap-5">
 
-                <!-- MEDICAL ID -->
-                <section class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm">
+                <!-- MEDICAL ID — plain <input> fields, always editable. No JS: the pencil icon is just a
+                     <label for="bloodType"> so clicking it focuses the first field for free. -->
+                <section class="rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm dark:shadow-none">
 
                     <div class="flex items-start justify-between gap-3">
 
@@ -443,118 +489,125 @@
                             Medical ID
                         </p>
 
-                        <button id="editMedical" type="button"
-                            class="grid size-8 place-items-center rounded-lg bg-white/15 transition hover:bg-white/25 focus-visible:ring-2 focus-visible:ring-white/60">
-
-                            <span class="sr-only">
-                                Edit medical ID
-                            </span>
-
-                            <img src="/assets/emergence-image/edit-Icon.png" alt="edit-Icon" class="size-4 object-contain" />
-
-                        </button>
+                        <label for="bloodType" title="Edit medical ID"
+                            class="grid size-8 cursor-text place-items-center rounded-lg bg-white/15 transition hover:bg-white/25">
+                            <span class="sr-only">Edit medical ID</span>
+                            <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-4 object-contain" />
+                        </label>
                     </div>
 
-                    <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
+                    <div class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
 
                         <div>
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                            <label for="bloodType" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Blood type
-                            </dt>
-
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-bold outline-none">
-                                A Positive
-                            </dd>
+                            </label>
+                            <input id="bloodType" type="text" value="A Positive"
+                                class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-bold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
                         <div>
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                            <label for="weight" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Weight
-                            </dt>
-
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-bold outline-none">
-                                78 kg
-                            </dd>
+                            </label>
+                            <input id="weight" type="text" value="78 kg"
+                                class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-bold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
                         <div class="col-span-2">
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                            <label for="allergies" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Allergies
-                            </dt>
-
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-semibold outline-none">
-                                Penicillin, Peanuts
-                            </dd>
+                            </label>
+                            <input id="allergies" type="text" value="Penicillin, Peanuts"
+                                class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-semibold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
                         <div class="col-span-2">
-                            <dt class="text-[10px] font-bold uppercase tracking-wider text-white/60">
+                            <label for="medications" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Medications
-                            </dt>
-
-                            <dd class="med-field mt-1 rounded px-1 py-0.5 text-sm font-semibold outline-none">
-                                None
-                            </dd>
+                            </label>
+                            <input id="medications" type="text" value="None"
+                                class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-semibold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
-                    </dl>
+                    </div>
                 </section>
 
-                <!-- EMERGENCY CONTACTS -->
-                <section class="rounded-2xl bg-white p-5 ring-1 ring-black/5">
+                <!-- EMERGENCY CONTACTS — static list; "Add a contact" is a native <details> disclosure -->
+                <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-night-600 transition-colors">
 
-                    <div class="flex items-center justify-between gap-3">
+                    <p class="text-sm font-bold dark:text-white">
+                        Emergency Contacts
+                    </p>
 
-                        <p class="text-sm font-bold">
-                            Emergency Contacts
-                        </p>
+                    <ul id="contactList" class="mt-4 divide-y divide-black/5 dark:divide-night-600">
 
-                        <button id="addContact" type="button"
-                            class="grid size-8 place-items-center rounded-lg transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
-
-                            <span class="sr-only">
-                                Add a contact
+                        <li class="flex items-center gap-3 py-3">
+                            <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-night-700 text-[11px] font-bold text-brand dark:text-accent-400">AM</span>
+                            <span class="min-w-0 flex-1">
+                                <span class="block truncate text-xs font-bold dark:text-white">Amina Mansouri</span>
+                                <span class="block truncate text-[11px] text-muted dark:text-mist-300">Mother · +212 6xx-xxxxxx</span>
                             </span>
+                            <span class="size-2 shrink-0 rounded-full bg-brand dark:bg-accent-400" title="Reachable"></span>
+                        </li>
 
-                            <img src="/assets/emergence-image/add-Icon.png" alt="add-Icon" class="size-5 object-contain" />
+                        <li class="flex items-center gap-3 py-3">
+                            <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-night-700 text-[11px] font-bold text-brand dark:text-accent-400">DE</span>
+                            <span class="min-w-0 flex-1">
+                                <span class="block truncate text-xs font-bold dark:text-white">Driss El Fassi</span>
+                                <span class="block truncate text-[11px] text-muted dark:text-mist-300">Brother · +212 7xx-xxxxxx</span>
+                            </span>
+                            <span class="size-2 shrink-0 rounded-full bg-black/15 dark:bg-white/15" title="Unreachable"></span>
+                        </li>
 
-                        </button>
+                        <li class="flex items-center gap-3 py-3">
+                            <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-night-700 text-[11px] font-bold text-brand dark:text-accent-400">ST</span>
+                            <span class="min-w-0 flex-1">
+                                <span class="block truncate text-xs font-bold dark:text-white">Dr. Sarah Tazi</span>
+                                <span class="block truncate text-[11px] text-muted dark:text-mist-300">Personal Physician · +212 5xx-xxxxxx</span>
+                            </span>
+                            <span class="size-2 shrink-0 rounded-full bg-brand dark:bg-accent-400" title="Reachable"></span>
+                        </li>
 
-                    </div>
-
-                    <ul id="contactList" class="mt-4 divide-y divide-black/5">
                     </ul>
 
-                    <!-- CONTACT FORM -->
-                    <div id="contactForm" class="mt-4 hidden rounded-xl bg-canvas p-3">
+                    <details class="group mt-4">
+                        <summary
+                            class="flex cursor-pointer list-none items-center justify-center gap-2 rounded-lg border border-dashed border-brand-line dark:border-night-600 py-2 text-xs font-semibold text-brand dark:text-accent-400 hover:bg-brand-soft dark:hover:bg-night-700 [&::-webkit-details-marker]:hidden">
+                            <img src="/assets/emergence-image/add-Icon.png" alt="" class="size-4 object-contain" />
+                            Add a contact
+                        </summary>
 
-                        <div class="grid gap-2">
+                        <form class="mt-3 rounded-xl bg-canvas dark:bg-night-700 p-3" onsubmit="return addContact(event)">
 
-                            <input id="cName" type="text" placeholder="Full name"
-                                class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                            <div class="grid gap-2">
 
-                            <input id="cRole" type="text" placeholder="Relationship (e.g. Sister)"
-                                class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                                <input id="cName" required type="text" placeholder="Full name"
+                                    class="rounded-lg border border-black/10 dark:border-night-600 bg-white dark:bg-night-800 px-3 py-2 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
 
-                            <input id="cPhone" type="tel" placeholder="+212 6xx-xxxxxx"
-                                class="rounded-lg border border-black/10 bg-white px-3 py-2 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                                <input id="cRole" type="text" placeholder="Relationship (e.g. Sister)"
+                                    class="rounded-lg border border-black/10 dark:border-night-600 bg-white dark:bg-night-800 px-3 py-2 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
 
-                        </div>
+                                <input id="cPhone" required type="tel" placeholder="+212 6xx-xxxxxx"
+                                    class="rounded-lg border border-black/10 dark:border-night-600 bg-white dark:bg-night-800 px-3 py-2 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
 
-                        <div class="mt-3 flex gap-2">
+                            </div>
 
-                            <button id="saveContact" type="button"
-                                class="flex-1 rounded-lg bg-brand py-2 text-sm font-semibold text-white hover:bg-brand-dark">
-                                Save contact
-                            </button>
+                            <div class="mt-3 flex gap-2">
 
-                            <button id="cancelContact" type="button"
-                                class="rounded-lg px-3 py-2 text-sm font-semibold text-muted hover:text-ink">
-                                Cancel
-                            </button>
+                                <button type="submit"
+                                    class="flex-1 rounded-lg bg-brand py-2 text-sm font-semibold text-white hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300">
+                                    Save contact
+                                </button>
 
-                        </div>
-                    </div>
+                                <button type="button" onclick="this.closest('details').removeAttribute('open')"
+                                    class="rounded-lg px-3 py-2 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white">
+                                    Cancel
+                                </button>
+
+                            </div>
+                        </form>
+                    </details>
                 </section>
 
             </div>
@@ -563,11 +616,11 @@
         <!-- EMERGENCY PROCEDURES -->
         <section class="mt-10 lg:mt-12">
 
-            <h2 class="text-base font-extrabold lg:text-center">
+            <h2 class="text-base font-extrabold dark:text-white lg:text-center">
                 Emergency Procedures
             </h2>
 
-            <p class="mt-1 text-xs text-muted lg:text-center">
+            <p class="mt-1 text-xs text-muted dark:text-mist-300 lg:text-center">
                 Follow these protocols while waiting for professional help.
             </p>
 
@@ -575,68 +628,68 @@
                 class="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0">
 
                 <article
-                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
 
-                    <span class="grid size-9 place-items-center rounded-xl bg-brand-soft">
+                    <span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-night-700">
                         <img src="/assets/emergence-image/aid-Icon.png" alt="aid-Icon" class="size-5 object-contain" />
                     </span>
 
-                    <h3 class="mt-3 text-sm font-bold">
+                    <h3 class="mt-3 text-sm font-bold dark:text-white">
                         First Aid
                     </h3>
 
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted dark:text-mist-300">
                         CPR instructions, wound care, and choking maneuvers.
                     </p>
 
                 </article>
 
                 <article
-                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
 
-                    <span class="grid size-9 place-items-center rounded-xl bg-[#E8EFFA]">
+                    <span class="grid size-9 place-items-center rounded-xl bg-[#E8EFFA] dark:bg-night-700">
                         <img src="/assets/emergence-image/safety-Icon.png" alt="safety-Icon" class="size-5 object-contain" />
                     </span>
 
-                    <h3 class="mt-3 text-sm font-bold">
+                    <h3 class="mt-3 text-sm font-bold dark:text-white">
                         Fire Safety
                     </h3>
 
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted dark:text-mist-300">
                         Evacuation routes, fire extinguisher use, and containment.
                     </p>
 
                 </article>
 
                 <article
-                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
 
-                    <span class="grid size-9 place-items-center rounded-xl bg-[#FDF0DF]">
+                    <span class="grid size-9 place-items-center rounded-xl bg-[#FDF0DF] dark:bg-night-700">
                         <img src="/assets/emergence-image/earthquake-Icon.png" alt="earthquake-Icon" class="size-5 object-contain" />
                     </span>
 
-                    <h3 class="mt-3 text-sm font-bold">
+                    <h3 class="mt-3 text-sm font-bold dark:text-white">
                         Earthquake
                     </h3>
 
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted dark:text-mist-300">
                         Drop, cover, and hold procedures for seismic events.
                     </p>
 
                 </article>
 
                 <article
-                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
+                    class="w-[180px] shrink-0 snap-start rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:w-auto">
 
-                    <span class="grid size-9 place-items-center rounded-xl bg-danger-soft">
+                    <span class="grid size-9 place-items-center rounded-xl bg-danger-soft dark:bg-night-700">
                         <img src="/assets/emergence-image/accedent-Icon.png" alt="accedent-Icon" class="size-5 object-contain" />
                     </span>
 
-                    <h3 class="mt-3 text-sm font-bold">
+                    <h3 class="mt-3 text-sm font-bold dark:text-white">
                         Road Accident
                     </h3>
 
-                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted">
+                    <p class="mt-1.5 text-[11px] leading-relaxed text-muted dark:text-mist-300">
                         Securing the scene and initial victim assessment.
                     </p>
 
@@ -648,11 +701,11 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-8 hidden border-t border-black/5 bg-white lg:block">
+    <footer class="mt-8 hidden border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:block">
 
         <div class="mx-auto max-w-[1280px] px-6 py-8">
 
-            <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted">
+            <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted dark:text-mist-300">
 
                 <p>
                     © 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.
@@ -660,15 +713,15 @@
 
                 <nav class="flex gap-7">
 
-                    <a href="#" class="hover:text-brand">
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">
                         Privacy Policy
                     </a>
 
-                    <a href="#" class="hover:text-brand">
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">
                         Terms of Service
                     </a>
 
-                    <a href="#" class="hover:text-brand">
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">
                         Help Center
                     </a>
 
@@ -679,33 +732,33 @@
     </footer>
 
     <!-- BOTTOM NAV -->
-    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
+    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
 
         <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
 
             <a href="/pages/dashboard/emergency.html" aria-current="page"
-                class="flex flex-col items-center gap-1 rounded-2xl bg-brand px-5 py-2 text-[11px] font-semibold text-white shadow-sm">
+                class="flex flex-col items-center gap-1 rounded-2xl bg-brand dark:bg-accent-400 px-5 py-2 text-[11px] font-semibold text-white dark:text-night-900 shadow-sm">
 
                 <img src="/assets/emergence-image/sos-logo.png" alt="sos-logo" class="size-5 object-contain" />
 
                 SOS
             </a>
 
-            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
 
                 <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="size-5 object-contain" />
 
                 Map
             </a>
 
-            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
 
                 <img src="/assets/emergence-image/aid-Icon.png" alt="aid-Icon" class="size-5 object-contain" />
 
                 First Aid
             </a>
 
-            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
 
                 <img src="/assets/emergence-image/history.png" alt="history-icon" class="size-5 object-contain" />
 
@@ -715,82 +768,117 @@
         </div>
     </nav>
 
-    <!-- MODAL -->
-    <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/45 p-4 backdrop-blur-sm">
+    <!-- ======================================================
+         DIALOGS — native <dialog>. Opened with `id.showModal()` (see the
+         onclick on each button above), closed natively by Esc, by a
+         <form method="dialog"> button, or by clicking the backdrop.
+    ======================================================= -->
 
-        <div role="dialog" aria-modal="true" aria-labelledby="modalTitle"
-            class="fade-in w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
-
-            <!-- DYNAMIC ICON -->
-            <span id="modalIconContainer" class="mx-auto grid size-12 place-items-center rounded-full bg-[#C82C23]">
-
-                <img id="modalIcon" src="/assets/emergence-image/sos-logo.png" alt="Emergency"
-                    class="size-6 object-contain" />
-
-            </span>
-
-            <h2 id="modalTitle" class="mt-4 text-base font-extrabold">
-                SOS Alert
-            </h2>
-
-            <p id="modalText" class="mt-2 text-sm leading-relaxed text-muted">
-            </p>
-
-            <div class="mt-6 flex gap-2">
-
-                <button id="modalCancel" type="button"
-                    class="flex-1 rounded-xl bg-canvas py-2.5 text-sm font-semibold hover:bg-brand-soft hover:text-brand">
-                    Cancel
+    <dialog id="policeDialog" aria-labelledby="policeDialogTitle"
+        class="m-auto w-[min(24rem,calc(100vw-2rem))] rounded-2xl bg-white dark:bg-night-800 p-6 text-center shadow-2xl backdrop:bg-ink/45 dark:backdrop:bg-black/65 backdrop:backdrop-blur-sm">
+        <span class="mx-auto grid size-12 place-items-center rounded-full bg-[#C82C23]">
+            <img src="/assets/emergence-image/police-icon.png" alt="" class="size-6 object-contain" />
+        </span>
+        <h2 id="policeDialogTitle" class="mt-4 text-base font-extrabold dark:text-white">Call Police</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted dark:text-mist-300">
+            You are about to call Police on 19. Only confirm if you need emergency assistance.
+        </p>
+        <div class="mt-6 flex gap-2">
+            <form method="dialog" class="flex-1">
+                <button
+                    class="w-full rounded-xl bg-canvas dark:bg-night-700 py-2.5 text-sm font-semibold text-ink dark:text-mist-100 hover:bg-brand-soft dark:hover:bg-night-600 hover:text-brand dark:hover:text-accent-400">
+                    Not now
                 </button>
-
-                <button id="modalConfirm" type="button"
-                    class="flex-1 rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">
-                    Confirm
-                </button>
-
-            </div>
+            </form>
+            <a href="tel:19"
+                class="grid flex-1 place-items-center rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">
+                Call 19
+            </a>
         </div>
-    </div>
+    </dialog>
+
+    <dialog id="ambulanceDialog" aria-labelledby="ambulanceDialogTitle"
+        class="m-auto w-[min(24rem,calc(100vw-2rem))] rounded-2xl bg-white dark:bg-night-800 p-6 text-center shadow-2xl backdrop:bg-ink/45 dark:backdrop:bg-black/65 backdrop:backdrop-blur-sm">
+        <span class="mx-auto grid size-12 place-items-center rounded-full bg-[#C82C23]">
+            <img src="/assets/emergence-image/ambulance-icon.png" alt="" class="size-6 object-contain" />
+        </span>
+        <h2 id="ambulanceDialogTitle" class="mt-4 text-base font-extrabold dark:text-white">Call Ambulance</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted dark:text-mist-300">
+            You are about to call Ambulance on 15. Only confirm if you need emergency assistance.
+        </p>
+        <div class="mt-6 flex gap-2">
+            <form method="dialog" class="flex-1">
+                <button
+                    class="w-full rounded-xl bg-canvas dark:bg-night-700 py-2.5 text-sm font-semibold text-ink dark:text-mist-100 hover:bg-brand-soft dark:hover:bg-night-600 hover:text-brand dark:hover:text-accent-400">
+                    Not now
+                </button>
+            </form>
+            <a href="tel:15"
+                class="grid flex-1 place-items-center rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">
+                Call 15
+            </a>
+        </div>
+    </dialog>
+
+    <dialog id="gendarmerieDialog" aria-labelledby="gendarmerieDialogTitle"
+        class="m-auto w-[min(24rem,calc(100vw-2rem))] rounded-2xl bg-white dark:bg-night-800 p-6 text-center shadow-2xl backdrop:bg-ink/45 dark:backdrop:bg-black/65 backdrop:backdrop-blur-sm">
+        <span class="mx-auto grid size-12 place-items-center rounded-full bg-[#C82C23]">
+            <img src="/assets/emergence-image/gendarme-icon.png" alt="" class="size-6 object-contain" />
+        </span>
+        <h2 id="gendarmerieDialogTitle" class="mt-4 text-base font-extrabold dark:text-white">Call Gendarmerie Royale</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted dark:text-mist-300">
+            You are about to call Gendarmerie Royale on 177. Only confirm if you need emergency assistance.
+        </p>
+        <div class="mt-6 flex gap-2">
+            <form method="dialog" class="flex-1">
+                <button
+                    class="w-full rounded-xl bg-canvas dark:bg-night-700 py-2.5 text-sm font-semibold text-ink dark:text-mist-100 hover:bg-brand-soft dark:hover:bg-night-600 hover:text-brand dark:hover:text-accent-400">
+                    Not now
+                </button>
+            </form>
+            <a href="tel:177"
+                class="grid flex-1 place-items-center rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">
+                Call 177
+            </a>
+        </div>
+    </dialog>
+
+    <dialog id="sosDialog" aria-labelledby="sosDialogTitle"
+        class="m-auto w-[min(24rem,calc(100vw-2rem))] rounded-2xl bg-white dark:bg-night-800 p-6 text-center shadow-2xl backdrop:bg-ink/45 dark:backdrop:bg-black/65 backdrop:backdrop-blur-sm">
+        <span class="mx-auto grid size-12 place-items-center rounded-full bg-[#C82C23]">
+            <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-6 object-contain" />
+        </span>
+        <h2 id="sosDialogTitle" class="mt-4 text-base font-extrabold dark:text-white">SOS Alert</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted dark:text-mist-300">
+            Your emergency alert has been activated. Your location will be shared with emergency services and your
+            primary contacts.
+        </p>
+        <form method="dialog" class="mt-6 flex gap-2">
+            <button value="cancel"
+                class="flex-1 rounded-xl bg-canvas dark:bg-night-700 py-2.5 text-sm font-semibold text-ink dark:text-mist-100 hover:bg-brand-soft dark:hover:bg-night-600 hover:text-brand dark:hover:text-accent-400">
+                Cancel alert
+            </button>
+            <button value="keep"
+                class="flex-1 rounded-xl bg-danger py-2.5 text-sm font-semibold text-white hover:bg-[#C82C23]">
+                Keep alert active
+            </button>
+        </form>
+    </dialog>
 
     <!-- TOAST -->
     <div id="toast"
-        class="pointer-events-none fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
+        class="pointer-events-none fixed bottom-24 left-1/2 z-[60] -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
     </div>
 
     <script>
-
-        /* ─────────────────────────────
-           HELPERS
-        ───────────────────────────── */
-
-        const $ = (s, r = document) => r.querySelector(s);
-        const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-
-        function toast(msg) {
-
-            const t = $("#toast");
-
-            t.textContent = msg;
-            t.style.opacity = "1";
-
-            clearTimeout(t._timer);
-
-            t._timer = setTimeout(() => {
-                t.style.opacity = "0";
-            }, 2400);
-        }
-
 
         /* ─────────────────────────────
            CLOCK
         ───────────────────────────── */
 
         function tickClock() {
-
-            $("#clock").textContent =
-                new Date().toLocaleTimeString("fr-FR", {
-                    hour12: false
-                });
+            document.getElementById("clock").textContent =
+                new Date().toLocaleTimeString("fr-FR", { hour12: false });
         }
 
         tickClock();
@@ -798,399 +886,63 @@
 
 
         /* ─────────────────────────────
-           GENERIC MODAL
+           TOAST — small floating message, disappears after 2.4s
         ───────────────────────────── */
 
-        const modal = $("#modal");
+        function toast(message) {
+            const el = document.getElementById("toast");
 
-        let onConfirm = null;
-        let onCancel = null;
+            el.textContent = message;
+            el.style.opacity = "1";
 
-
-        function openModal({
-            title,
-            text,
-            icon = "sos-logo.png",
-            confirm = "Confirm",
-            cancel = "Cancel",
-            action,
-            cancelAction
-        }) {
-
-            /* CHANGE ICON */
-            $("#modalIcon").src =
-                `/assets/emergence-image/${icon}`;
-
-            $("#modalIcon").alt = title;
-
-            /* CHANGE TITLE */
-            $("#modalTitle").textContent = title;
-
-            /* CHANGE TEXT */
-            $("#modalText").textContent = text;
-
-            /* CHANGE BUTTONS */
-            $("#modalConfirm").textContent = confirm;
-            $("#modalCancel").textContent = cancel;
-
-            /* SAVE ACTIONS */
-            onConfirm = action || null;
-            onCancel = cancelAction || null;
-
-            /* SHOW MODAL */
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-
-            $("#modalConfirm").focus();
+            clearTimeout(el._timer);
+            el._timer = setTimeout(() => { el.style.opacity = "0"; }, 2400);
         }
 
 
-        function closeModal(runCancel = false) {
+        /* ─────────────────────────────
+           DIALOGS
+           Opening happens inline in the HTML (e.g. onclick="policeDialog.showModal()").
+           Closing on Escape and via <form method="dialog"> buttons is built into
+           the browser — the two bits below just add "click outside to close"
+           and react to which SOS button the person picked.
+        ───────────────────────────── */
 
-            const fn = onCancel;
-
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-
-            onConfirm = null;
-            onCancel = null;
-
-            if (runCancel && fn) {
-                fn();
-            }
-        }
-
-
-        $("#modalCancel").addEventListener("click", () => {
-            closeModal(true);
+        document.querySelectorAll("dialog").forEach((dialog) => {
+            dialog.addEventListener("click", (event) => {
+                if (event.target === dialog) dialog.close();
+            });
         });
 
-
-        $("#modalConfirm").addEventListener("click", () => {
-
-            const fn = onConfirm;
-
-            closeModal();
-
-            if (fn) {
-                fn();
-            }
-        });
-
-
-        modal.addEventListener("click", e => {
-
-            if (e.target === modal) {
-                closeModal(true);
-            }
-        });
-
-
-        document.addEventListener("keydown", e => {
-
-            if (
-                e.key === "Escape" &&
-                !modal.classList.contains("hidden")
-            ) {
-                closeModal(true);
-            }
+        sosDialog.addEventListener("close", () => {
+            toast(
+                sosDialog.returnValue === "keep"
+                    ? "Alert stays active — responders can track your location"
+                    : "Alert cancelled"
+            );
         });
 
 
         /* ─────────────────────────────
            SOS BUTTON
+           The 3-second fill is pure CSS (see the "group-active" classes on
+           the ring in the HTML). This just listens for the ring finishing
+           its animation while the button is still pressed, and opens the
+           SOS dialog.
         ───────────────────────────── */
 
-        const HOLD_MS = 3000;
-        const RING_LEN = 2 * Math.PI * 46;
-
-        const sosBtn = $("#sosBtn");
-        const ring = $("#sosRing");
-        const hint = $("#sosHint");
-        const halo = $(".sos-halo");
-
-        let rafId = null;
-        let startedAt = 0;
-
-
-        ring.setAttribute(
-            "stroke-dasharray",
-            RING_LEN.toFixed(1)
-        );
-
-        ring.style.strokeDashoffset = RING_LEN;
-
-
-        function frame(now) {
-
-            const p =
-                Math.min(
-                    (now - startedAt) / HOLD_MS,
-                    1
-                );
-
-            ring.style.strokeDashoffset =
-                RING_LEN * (1 - p);
-
-            hint.textContent =
-                `Hold ${Math.ceil((1 - p) * 3)}s`;
-
-            if (p < 1) {
-
-                rafId =
-                    requestAnimationFrame(frame);
-
-            } else {
-
-                fireAlert();
+        sosRing.addEventListener("transitionend", (event) => {
+            if (event.propertyName === "stroke-dashoffset" && sosBtn.matches(":active")) {
+                sosDialog.showModal();
             }
-        }
-
-
-        function startHold(e) {
-
-            if (rafId) return;
-
-            e.preventDefault();
-
-            sosBtn.classList.add("is-holding");
-            halo.classList.add("is-holding");
-
-            navigator.vibrate?.(25);
-
-            startedAt = performance.now();
-
-            rafId =
-                requestAnimationFrame(frame);
-        }
-
-
-        function cancelHold() {
-
-            if (!rafId) return;
-
-            cancelAnimationFrame(rafId);
-
-            rafId = null;
-
-            ring.style.strokeDashoffset =
-                RING_LEN;
-
-            sosBtn.classList.remove("is-holding");
-            halo.classList.remove("is-holding");
-
-            hint.textContent =
-                "Press to trigger";
-        }
-
-
-        function resetRing() {
-
-            ring.style.strokeDashoffset =
-                RING_LEN;
-
-            hint.textContent =
-                "Press to trigger";
-        }
-
-
-        function fireAlert() {
-
-            cancelAnimationFrame(rafId);
-
-            rafId = null;
-
-            sosBtn.classList.remove("is-holding");
-            halo.classList.remove("is-holding");
-
-            ring.style.strokeDashoffset = 0;
-
-            hint.textContent =
-                "Alert active";
-
-            navigator.vibrate?.([
-                60,
-                40,
-                60
-            ]);
-
-
-            /* SOS MODAL */
-            openModal({
-
-                title: "SOS Alert",
-
-                text:
-                    "Your emergency alert has been activated. Your location will be shared with emergency services and your primary contacts.",
-
-                icon: "sos-logo.png",
-
-                confirm:
-                    "Keep alert active",
-
-                cancel:
-                    "Cancel alert",
-
-                action: () => {
-
-                    toast(
-                        "Alert stays active — responders can track your location"
-                    );
-                },
-
-                cancelAction: () => {
-
-                    resetRing();
-
-                    toast(
-                        "Alert cancelled"
-                    );
-                }
-            });
-        }
-
-
-        sosBtn.addEventListener(
-            "pointerdown",
-            startHold
-        );
-
-        sosBtn.addEventListener(
-            "pointerup",
-            cancelHold
-        );
-
-        sosBtn.addEventListener(
-            "pointerleave",
-            cancelHold
-        );
-
-        sosBtn.addEventListener(
-            "pointercancel",
-            cancelHold
-        );
-
-        sosBtn.addEventListener(
-            "contextmenu",
-            e => e.preventDefault()
-        );
-
-        sosBtn.addEventListener(
-            "keydown",
-            e => {
-
-                if (
-                    (e.key === " " ||
-                        e.key === "Enter") &&
-                    !e.repeat
-                ) {
-                    startHold(e);
-                }
-            }
-        );
-
-        sosBtn.addEventListener(
-            "keyup",
-            cancelHold
-        );
-
-        sosBtn.addEventListener(
-            "blur",
-            cancelHold
-        );
-
-
-        /* HEADER SOS BUTTON */
-
-        $$("[data-jump-sos]").forEach(b => {
-
-            b.addEventListener(
-                "click",
-                () => {
-
-                    $("#sosCard").scrollIntoView({
-                        block: "center"
-                    });
-
-                    sosBtn.focus();
-
-                    toast(
-                        "Press and hold the SOS button for 3 seconds"
-                    );
-                }
-            );
-
         });
 
 
         /* ─────────────────────────────
-           QUICK EMERGENCY CALLS
-        ───────────────────────────── */
-
-        $$("[data-call]").forEach(btn => {
-
-            btn.addEventListener(
-                "click",
-                () => {
-
-                    const num =
-                        btn.dataset.call;
-
-                    const service =
-                        btn.dataset.service;
-
-
-                    /* EACH SERVICE HAS ITS OWN ICON */
-
-                    const icons = {
-
-                        "Police":
-                            "police-icon.png",
-
-                        "Ambulance":
-                            "ambulance-icon.png",
-
-                        "Gendarmerie Royale":
-                            "gendarme-icon.png"
-                    };
-
-
-                    openModal({
-
-                        title:
-                            `Call ${service}`,
-
-                        text:
-                            `You are about to call ${service} on ${num}. Only confirm if you need emergency assistance.`,
-
-                        icon:
-                            icons[service],
-
-                        confirm:
-                            `Call ${num}`,
-
-                        cancel:
-                            "Not now",
-
-                        action: () => {
-
-                            window.location.href =
-                                `tel:${num}`;
-                        }
-                    });
-
-                }
-            );
-
-        });
-
-
-        /* ─────────────────────────────
-           MAP
+           MAP — swap the embedded map + info card per tab
         ───────────────────────────── */
 
         const PLACES = {
-
             hospitals: {
                 name: "Hôpital Militaire d'Instruction",
                 meta: "0.8 km · 4 mins away",
@@ -1199,7 +951,6 @@
                 lat: 34.0075,
                 lon: -6.8489
             },
-
             pharmacies: {
                 name: "Pharmacie de la Gare (24h)",
                 meta: "0.4 km · 2 mins away",
@@ -1208,7 +959,6 @@
                 lat: 34.0132,
                 lon: -6.8326
             },
-
             police: {
                 name: "Préfecture de Police de Rabat",
                 meta: "1.2 km · 6 mins away",
@@ -1219,212 +969,74 @@
             }
         };
 
+        function showLayer(key) {
+            const place = PLACES[key];
 
-        function paintTabs(active) {
+            document.getElementById("placeName").textContent = place.name;
+            document.getElementById("placeMeta").textContent = place.meta;
+            document.getElementById("placeStatus").textContent = place.status;
+            document.getElementById("placeIcon").src = `/assets/emergence-image/${place.icon}`;
 
-            $$(".map-tab").forEach(t => {
+            const bbox = [place.lon - .012, place.lat - .006, place.lon + .012, place.lat + .006].join("%2C");
+            document.getElementById("mapFrame").src =
+                `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${place.lat}%2C${place.lon}`;
 
-                const on =
-                    t.dataset.layer === active;
-
-                t.className =
-                    `map-tab shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition ${on
-                        ? "bg-brand-soft text-brand"
-                        : "text-muted hover:text-ink"
-                    }`;
-
-                t.setAttribute(
-                    "aria-pressed",
-                    on
-                );
+            document.querySelectorAll(".map-tab").forEach((tab) => {
+                const active = tab.dataset.layer === key;
+                tab.classList.toggle("bg-brand-soft", active);
+                tab.classList.toggle("text-brand", active);
+                tab.classList.toggle("dark:bg-night-700", active);
+                tab.classList.toggle("dark:text-accent-400", active);
+                tab.classList.toggle("text-muted", !active);
+                tab.classList.toggle("dark:text-mist-300", !active);
             });
         }
 
-
-        function showLayer(key) {
-
-            const p = PLACES[key];
-
-            $("#placeName").textContent =
-                p.name;
-
-            $("#placeMeta").textContent =
-                p.meta;
-
-            $("#placeStatus").textContent =
-                p.status;
-
-            $("#placeIcon").src =
-                `/assets/emergence-image/${p.icon}`;
-            const bbox = [
-                p.lon - .012,
-                p.lat - .006,
-                p.lon + .012,
-                p.lat + .006
-            ].join("%2C");
-            $("#mapFrame").src =
-                `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${p.lat}%2C${p.lon}`;
-            paintTabs(key);
-        }
-        $$(".map-tab").forEach(t => {
-            t.addEventListener(
-                "click",
-                () => showLayer(t.dataset.layer)
-            );
+        document.querySelectorAll(".map-tab").forEach((tab) => {
+            tab.addEventListener("click", () => showLayer(tab.dataset.layer));
         });
+
         showLayer("hospitals");
+
+
         /* ─────────────────────────────
-           MEDICAL ID
+           ADD CONTACT — appends one <li> to the list (name/phone required
+           is enforced natively by the "required" attribute on the inputs)
         ───────────────────────────── */
-        let editing = false;
-        $("#editMedical").addEventListener(
-            "click",
-            () => {
-                editing = !editing;
-                $$(".med-field").forEach(f => {
-                    f.contentEditable =
-                        editing;
-                    f.classList.toggle(
-                        "bg-white/15",
-                        editing
-                    );
-                    f.classList.toggle(
-                        "ring-1",
-                        editing
-                    );
-                    f.classList.toggle(
-                        "ring-white/30",
-                        editing
-                    );
-                });
-                if (editing) {
-                    $$(".med-field")[0].focus();
-                } else {
-                    toast(
-                        "Medical ID updated"
-                    );
-                }
-            }
-        );
-        /* ─────────────────────────────
-           EMERGENCY CONTACTS
-        ───────────────────────────── */
-        const CONTACTS = [
-            {
-                name: "Amina Mansouri",
-                role: "Mother",
-                phone: "+212 6xx-xxxxxx",
-                online: true
-            },
-            {
-                name: "Driss El Fassi",
-                role: "Brother",
-                phone: "+212 7xx-xxxxxx",
-                online: false
-            },
-            {
-                name: "Dr. Sarah Tazi",
-                role: "Personal Physician",
-                phone: "+212 5xx-xxxxxx",
-                online: true
-            }
-        ];
-        const initials = n =>
-            n.replace(/^Dr\.\s*/i, "")
+
+        function addContact(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("cName").value.trim();
+            const role = document.getElementById("cRole").value.trim() || "Contact";
+            const phone = document.getElementById("cPhone").value.trim();
+
+            const initials = name
+                .replace(/^Dr\.\s*/i, "")
                 .split(" ")
-                .map(w => w[0])
+                .map((word) => word[0])
                 .slice(0, 2)
                 .join("")
                 .toUpperCase();
-        function renderContacts() {
-            $("#contactList").innerHTML =
-                CONTACTS.map(c => `
-                    <li class="flex items-center gap-3 py-3">
-                        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft text-[11px] font-bold text-brand">
-                            ${initials(c.name)}
-                        </span>
-                        <span class="min-w-0 flex-1">
-                            <span class="block truncate text-xs font-bold">
-                                ${c.name}
-                            </span>
-                            <span class="block truncate text-[11px] text-muted">
-                                ${c.role} · ${c.phone}
-                            </span>
-                        </span>
-                        <span
-                            class="size-2 shrink-0 rounded-full ${c.online
-                        ? "bg-brand"
-                        : "bg-black/15"
-                    }"
-                            title="${c.online
-                        ? "Reachable"
-                        : "Unreachable"
-                    }">
-                        </span>
 
-                    </li>
-                `).join("");
+            document.getElementById("contactList").insertAdjacentHTML("beforeend", `
+                <li class="flex items-center gap-3 py-3">
+                    <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-night-700 text-[11px] font-bold text-brand dark:text-accent-400">${initials}</span>
+                    <span class="min-w-0 flex-1">
+                        <span class="block truncate text-xs font-bold dark:text-white">${name}</span>
+                        <span class="block truncate text-[11px] text-muted dark:text-mist-300">${role} · ${phone}</span>
+                    </span>
+                    <span class="size-2 shrink-0 rounded-full bg-brand dark:bg-accent-400" title="Reachable"></span>
+                </li>
+            `);
+
+            event.target.reset();
+            event.target.closest("details").removeAttribute("open");
+            toast("Contact added to your alert list");
+
+            return false;
         }
-        renderContacts();
-        const form =
-            $("#contactForm");
-        $("#addContact").addEventListener(
-            "click",
-            () => {
 
-                form.classList.toggle(
-                    "hidden"
-                );
-
-                if (!form.classList.contains("hidden")) {
-
-                    $("#cName").focus();
-                }
-            }
-        );
-        $("#cancelContact").addEventListener(
-            "click",
-            () => {
-                form.classList.add(
-                    "hidden"
-                );
-            }
-        );
-        $("#saveContact").addEventListener(
-            "click",
-            () => {
-                const name =
-                    $("#cName").value.trim();
-                const role =
-                    $("#cRole").value.trim();
-                const phone =
-                    $("#cPhone").value.trim();
-                if (!name || !phone) {
-                    toast(
-                        "Add a name and a phone number to save"
-                    );
-                    return;
-                }
-                CONTACTS.push({
-                    name,
-                    role:
-                        role || "Contact",
-                    phone,
-                    online: true
-                });
-                ["#cName", "#cRole", "#cPhone"]
-                    .forEach(
-                        s => ($(s).value = "")
-                    );
-                form.classList.add(
-                    "hidden"
-                );
-                renderContacts();
-                toast(
-                    "Contact added to your alert list"
-                );
-            }
-        );
     </script>
 </body>
 </html>
