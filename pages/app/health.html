@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find your Specialist — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        /* Dark mode (class strategy) — .dark on <html>, set by theme.js — same setup as the rest of the app */
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand: #0B6B45;
+            --color-brand-dark: #084F34;
+            --color-green-900: #006947;
+            --color-blue: #316BF3;
+            --color-blue-dark: #2554C7;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-line: #CFE3D8;
+            --color-lavender-50: #E7ECFB;
+            --color-ink: #0F1A15;
+            --color-muted: #6B7A73;
+            --color-muted-900: #3D4A42;
+            --color-canvas: #F6F7F5;
+
+            /* dark surfaces */
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-night-500: #2E3830;
+
+            /* dark text */
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+
+            /* dark accent (stands in for --color-brand on dark surfaces) */
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body {
+            @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 transition-colors duration-200;
+        }
+    </style>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: .001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER DESKTOP -->
+    <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-night-600 bg-white/90 dark:bg-night-800/90 backdrop-blur transition-colors lg:block">
+        <div class="mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6">
+
+            <span class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">
+                M3ak
+            </span>
+
+            <nav class="flex items-center gap-7 text-sm font-medium text-muted dark:text-mist-300">
+                <a href="/pages/dashboard/overview.html" class="hover:text-ink dark:hover:text-white">
+                    Dashboard
+                </a>
+
+                <a href="/pages/dashboard/services.html"
+                    class="relative font-semibold text-brand dark:text-accent-400 after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand dark:after:bg-accent-400">
+                    Services
+                </a>
+
+                <a href="#" class="hover:text-ink dark:hover:text-white">
+                    Requests
+                </a>
+
+                <a href="#" class="hover:text-ink dark:hover:text-white">
+                    Notifications
+                </a>
+            </nav>
+
+            <div class="ml-auto flex items-center gap-3">
+
+                <button type="button"
+                    class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Search</span>
+                    <img src="/assets/health-image/searche.png" alt="search-image" class="size-5 object-contain" />
+                </button>
+
+                <button type="button"
+                    class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Notifications</span>
+                    <img src="/assets/health-image/notification.png" alt="notification-image" class="size-5 object-contain" />
+                </button>
+
+                <button type="button"
+                    class="flex items-center gap-2 rounded-full bg-brand dark:bg-accent-400 px-4 py-2 text-sm font-semibold text-white dark:text-night-900 shadow-sm transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <img src="/assets/health-image/support.png" alt="support-image" class="size-4 object-contain" />
+                    Support
+                </button>
+
+                <button type="button"
+                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Your profile</span>
+                    SA
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+</body>
+</html>
