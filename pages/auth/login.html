@@ -157,7 +157,7 @@
     <header>
         <div class="flex items-center justify-between px-6 pt-6">
 
-            <a href="#" class="lg:hidden flex items-center gap-2 text-[#0B6B45] dark:text-accent-400 font-medium">
+            <a href="/index.html" class="lg:hidden flex items-center gap-2 text-[#0B6B45] dark:text-accent-400 font-medium">
 
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -202,7 +202,7 @@
                     <div class="fade items-center ">
                         <!-- CARD -->
                         <div class="glass shadow-card rounded-3xl w-full max-w-md p-8">
-                            <form class="space-y-6">
+                            <form id="login-form" class="space-y-6">
 
                                 <!-- EMAIL -->
 
@@ -220,7 +220,7 @@
                                             <img src="/assets/image-login/user-icon.png" alt="user-icon">
                                         </div>
 
-                                        <input type="text" placeholder="e.g. AB123456"
+                                        <input id="identifier" type="text" placeholder="e.g. AB123456"
                                             class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-4 focus:ring-4 focus:ring-green-100 outline-none">
 
                                     </div>
@@ -237,7 +237,7 @@
                                             Password
                                         </label>
 
-                                        <a href="#" class="text-sm text-blue-600 dark:text-accent-400">
+                                        <a href="/pages/auth/forgot-password.html" class="text-sm text-blue-600 dark:text-accent-400">
                                             Forgot?
                                         </a>
 
@@ -252,7 +252,7 @@
                                         <input id="password" type="password" placeholder="••••••••"
                                             class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-12 outline-none focus:ring-4 focus:ring-green-100">
 
-                                        <button type="button" onclick="togglePassword()"
+                                        <button type="button" data-toggle-password
                                             class="absolute right-4 top-1/2 -translate-y-1/2">
                                             <img src="/assets/image-login/show-icon.png" alt="show icon">
                                         </button>
@@ -284,7 +284,7 @@
                                 </div>
                                 <p class="text-center text-gray-600 dark:text-mist-300">
                                     Don't have an account?
-                                    <a href="#" class="text-blue-600 dark:text-accent-400 font-medium">
+                                    <a href="/pages/auth/signup.html" class="text-blue-600 dark:text-accent-400 font-medium">
                                         Create ID
                                     </a>
                                 </p>
@@ -303,7 +303,7 @@
             <div class="items-center gap-4 md:hidden">
                 <div class="flex items-center justify-center gap-6">
                     <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
+                    <a href="/pages/app/support.html" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
 
                     <select class="bg-transparent border-none outline-none cursor-pointer">
                         <option>Arabic</option>
@@ -325,7 +325,7 @@
 
                 <div class="flex items-center gap-8">
                     <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
+                    <a href="/pages/app/support.html" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
 
                     <div class="relative inline-block" id="languageDropdown">
                         <button id="selectedLanguage" class="flex items-center gap-2 bg-transparent cursor-pointer">

@@ -89,6 +89,11 @@
         var user = getUser();
         var state = user ? "user" : "guest";
 
+        if (document.body && document.body.hasAttribute("data-require-auth") && !user) {
+            window.location.replace("/pages/auth/login.html");
+            return;
+        }
+
         document.querySelectorAll("[data-auth]").forEach(function (el) {
             if (el.getAttribute("data-auth") === state) {
                 el.style.removeProperty("display");
@@ -140,6 +145,7 @@
             if (e.target.closest("[data-action='logout']")) {
                 e.preventDefault();
                 signOut();
+                window.location.href = "/pages/auth/login.html";
                 return;
             }
 

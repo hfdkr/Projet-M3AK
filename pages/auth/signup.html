@@ -168,6 +168,8 @@
             @apply font-jakarta text-[12px] leading-[16px] text-slate-400 dark:text-mist-300;
         }
     </style>
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/signup.js" defer></script>
 </head>
 
 <body>
@@ -226,7 +228,7 @@
 
             <!-- mobile-only top bar: back link + secured pill -->
             <div class="signup-topbar">
-                <a href="#" class="signup-back-link">
+                <a href="/pages/auth/login.html" class="signup-back-link">
                     <img src="/assets/image-signUp/back-icon.png" alt="icon back">
                     Back to Log in
                 </a>
@@ -317,7 +319,7 @@
                 </form>
 
                 <p class="signup-login-note">
-                    Already have an account? <a href="#" class="signup-login-link">Log in</a>
+                    Already have an account? <a href="/pages/auth/login.html" class="signup-login-link">Log in</a>
                 </p>
 
                 <div class="signup-footer">

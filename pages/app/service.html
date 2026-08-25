@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <script src="/pages/js/theme.js"></script>
-    <script src="/pages/js/theme.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -336,7 +335,7 @@
     </style>
 </head>
 
-<body>
+<body data-require-auth>
 
     <!-- ======================================================
          HEADER
@@ -350,8 +349,8 @@
 
             <nav class="hidden md:flex items-center gap-[36px]">
                 <a href="/pages/app/overview.html" class="navbar">Home</a>
-                <a href="/pages/app/services-hub.html" class="navbar-active">Services</a>
-                <a href="#" class="navbar">Payments</a>
+                <a href="/pages/app/service.html" class="navbar-active">Services</a>
+                <a href="/pages/app/payments.html" class="navbar">Payments</a>
                 <a href="/pages/app/support.html" class="navbar">Help</a>
             </nav>
 
@@ -386,9 +385,9 @@
                     </button>
 
                     <div class="user-menu hidden" data-menu>
-                        <a href="#">My profile</a>
-                        <a href="#">My documents</a>
-                        <a href="#">Settings</a>
+                        <a href="/pages/admin-pages/compte.html#personal-info">My profile</a>
+                        <a href="/pages/admin-pages/compte.html#digital-id">My documents</a>
+                        <a href="/pages/admin-pages/compte.html#security">Settings</a>
                         <button type="button" data-action="logout" class="text-red-600">Sign out</button>
                     </div>
                 </div>
@@ -399,13 +398,28 @@
     </header>
 
     <!-- ======================================================
+         BACK BAR
+    ======================================================= -->
+    <div class="bg-mint-50 dark:bg-night-900 border-b border-grey-200 dark:border-night-600 transition-colors">
+        <div class="md:max-w-[1200px] md:mx-auto px-[16px] md:px-[24px] py-[8px]">
+            <a href="/pages/app/overview.html"
+                class="inline-flex items-center gap-[6px] font-hanken font-semibold text-[13px] text-slate-500 dark:text-mist-300 hover:text-green-900 dark:hover:text-accent-400 transition-colors">
+                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Overview
+            </a>
+        </div>
+    </div>
+
+    <!-- ======================================================
          SERVICES SUB-NAV
     ======================================================= -->
     <nav class="services-subnav" aria-label="Services sections">
         <div class="services-subnav-inner no-scrollbar">
-            <a href="/pages/app/services-hub.html" class="subnav-pill">Overview</a>
+            <a href="/pages/app/overview.html" class="subnav-pill">Overview</a>
             <a href="/pages/app/service.html" class="subnav-pill-active">Directory</a>
-            <a href="/pages/app/housing.html" class="subnav-pill">Housing</a>
+            <a href="/pages/app/coming-soon.html" class="subnav-pill">Housing</a>
             <a href="/pages/app/support.html" class="subnav-pill">Support</a>
         </div>
     </nav>
@@ -453,7 +467,7 @@
         ======================================================= -->
         <section class="directory-grid" id="service-grid">
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/housing.html" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 3 3 10v11h6v-6h6v6h6V10z" />
@@ -463,7 +477,7 @@
                 <p class="directory-card-text">Building permits, social housing and property records.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/jobs.html" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -474,7 +488,7 @@
                 <p class="directory-card-text">Public sector openings, contests and ANAPEC offers.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/education.html" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8z" />
@@ -484,7 +498,7 @@
                 <p class="directory-card-text">School registration, scholarships and diploma requests.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/health.html" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z" />
@@ -494,7 +508,7 @@
                 <p class="directory-card-text">AMO coverage, appointments and medical records.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Registry" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -505,7 +519,7 @@
                 <p class="directory-card-text">Birth, marriage and residence certificates.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Interior" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -516,7 +530,7 @@
                 <p class="directory-card-text">National ID, passports and residence permits.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Finance" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -527,7 +541,7 @@
                 <p class="directory-card-text">Income tax, VAT declarations and payment receipts.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Justice" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -538,7 +552,7 @@
                 <p class="directory-card-text">Criminal records, court filings and legal aid.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Foreign+Affairs" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -549,7 +563,7 @@
                 <p class="directory-card-text">Visas, consular services and legalisation abroad.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Agriculture" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -560,7 +574,7 @@
                 <p class="directory-card-text">Farm subsidies, irrigation permits and land records.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Culture" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -571,7 +585,7 @@
                 <p class="directory-card-text">Heritage grants, libraries and artist registration.</p>
             </a>
 
-            <a href="#" class="directory-card">
+            <a href="/pages/app/coming-soon.html?feature=Tourism" class="directory-card">
                 <span class="directory-card-icon">
                     <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -604,7 +618,7 @@
                     citizen profile and accepted by all administrations.
                 </p>
 
-                <a href="#" class="wallet-button">Explore Wallet</a>
+                <a href="/pages/app/coming-soon.html?feature=Wallet" class="wallet-button">Explore Wallet</a>
             </div>
 
             <div class="wallet-visual">
@@ -628,7 +642,7 @@
             </div>
 
             <div class="footer-links">
-                <a href="/pages/app/services-hub.html">Services</a>
+                <a href="/pages/app/service.html">Services</a>
                 <a href="/pages/app/support.html">Help Center</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -647,14 +661,14 @@
             </svg>
             <span class="mobile-nav-label">Home</span>
         </a>
-        <a href="/pages/app/services-hub.html" class="mobile-nav-item mobile-nav-item-active">
+        <a href="/pages/app/service.html" class="mobile-nav-item mobile-nav-item-active">
             <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                 <path
                     d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3 4v2h10V7zm0 4v2h10v-2zm0 4v2h6v-2z" />
             </svg>
             <span class="mobile-nav-label">Services</span>
         </a>
-        <a href="#" class="mobile-nav-item">
+        <a href="/pages/app/payments.html" class="mobile-nav-item">
             <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M3 10h18M6 6h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />

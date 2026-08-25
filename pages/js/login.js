@@ -3,8 +3,8 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         /* Already signed in → go straight to the overview */
-        if (window.M3akAuth && window.M3akAuth.isLoggedIn()) {
-            window.location.replace("/pages/dashboard/overview.html");
+        if (window.M3ak && window.M3ak.getUser()) {
+            window.location.replace("/pages/app/overview.html");
             return;
         }
 
@@ -116,7 +116,12 @@
 
             /* Demo: no backend yet, open the session and redirect */
             window.setTimeout(function () {
-                window.M3akAuth.login(idValue);
+                var isEmail = idValue.indexOf("@") !== -1;
+                window.M3ak.signIn({
+                    name: isEmail ? idValue.split("@")[0] : "Citizen",
+                    email: isEmail ? idValue : ""
+                });
+                window.location.href = "/pages/app/overview.html";
             }, 500);
         });
     }
