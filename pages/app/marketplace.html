@@ -111,8 +111,8 @@
                 transition: opacity .15s ease;
             }
 
-            .nav-item:hover .nav-label,
-            .nav-item:focus-visible .nav-label {
+            #sidebar:hover .nav-label,
+            #sidebar:focus-within .nav-label {
                 opacity: 1;
             }
         }
@@ -187,7 +187,7 @@
     <div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
 
         <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
-        <aside
+        <aside id="sidebar"
             class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-white/10 py-8 pr-6 lg:block">
             <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300">Categories</p>
 
