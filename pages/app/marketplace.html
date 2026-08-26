@@ -27,6 +27,14 @@
             --color-muted:        #6B7A73;
             --color-canvas:       #F6F7F5;
             --color-night-900:    #0A0F0D;
+            --color-night-800:    #0F1512;
+            --color-night-700:    #151C18;
+            --color-night-600:    #232C27;
+            --color-mist-300:     #7C8981;
+            --color-mist-200:     #B4BEB8;
+            --color-mist-100:     #E7ECE9;
+            --color-accent-400:   #2ED573;
+            --color-accent-300:   #5BE0A0;
             --color-mint-50:      #F5FBF4;
             --color-white:        #FFFFFF;
             /* font */
@@ -94,22 +102,36 @@
                 transition-duration: .001ms !important;
             }
         }
+
+        /* Instagram-style icon rail: label hidden by default on desktop,
+           fades in on hover/focus of that row, fades out when the cursor leaves. */
+        @media (min-width: 1024px) {
+            .nav-item .nav-label {
+                opacity: 0;
+                transition: opacity .15s ease;
+            }
+
+            .nav-item:hover .nav-label,
+            .nav-item:focus-visible .nav-label {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-mint-50 dark:bg-night-900 pb-[76px] md:pb-0 transition-colors duration-200">
+<body class="bg-mint-50 dark:bg-night-900 pb-[76px] md:pb-0 transition-colors duration-200" data-require-auth>
 
     <!-- ══════════════ HEADER ══════════════ -->
     <header
         class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-night-900/95 backdrop-blur lg:block">
         <div class="mx-auto flex h-16 max-w-[1400px] items-center gap-10 px-6">
-            <a href="/index.html" class="text-xl font-extrabold tracking-tight text-brand">M3ak Morocco</a>
+            <a href="/index.html" class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
 
-            <nav class="flex items-center gap-7 text-sm font-medium text-muted">
-                <a href="/pages/dashboard/service.html" class="hover:text-ink">Services</a>
-                <a href="/pages/dashboard/marketplace.html"
-                    class="relative font-semibold text-brand after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">Marketplace</a>
-                <a href="#" class="hover:text-ink">Jobs</a>
+            <nav class="flex items-center gap-7 text-sm font-medium text-muted dark:text-mist-300">
+                <a href="/pages/app/service.html" class="hover:text-ink dark:hover:text-mist-100">Services</a>
+                <a href="/pages/app/marketplace.html"
+                    class="relative font-semibold text-brand dark:text-accent-400 after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand dark:after:bg-accent-400">Marketplace</a>
+                <a href="/pages/app/jobs.html" class="hover:text-ink dark:hover:text-mist-100">Jobs</a>
             </nav>
 
             <div class="ml-auto flex items-center gap-4">
@@ -118,7 +140,7 @@
                     <img src="/assets/marketplace-image/search.png" alt="Search"
                         class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2" />
                     <input id="searchDesktop" type="search" placeholder="Search Moroccan goods..."
-                        class="w-full rounded-full border border-black/10 bg-canvas py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                        class="w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
                 </label>
                 <button type="button"
                     class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
@@ -135,91 +157,104 @@
                     </span>
                 </button>
                 <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
                     <img src="/assets/marketplace-image/notification.png" alt="" class="size-5" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
                 </button>
 
                 <button type="button"
-                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft text-sm font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-accent-400/15 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Your profile</span>SA
                 </button>
             </div>
         </div>
     </header>
 
+    <!-- ══════════════ BACK BAR ══════════════ -->
+    <div class="border-b border-black/5 dark:border-white/10 bg-mint-50 dark:bg-night-900">
+        <div class="mx-auto max-w-[1400px] px-4 lg:px-6 py-2">
+            <a href="/pages/app/overview.html"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors">
+                <svg class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Overview
+            </a>
+        </div>
+    </div>
+
     <div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
 
         <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
         <aside
-            class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 py-8 pr-6 lg:block">
-            <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted">Categories</p>
+            class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-white/10 py-8 pr-6 lg:block">
+            <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300">Categories</p>
 
             <nav class="space-y-1 text-sm font-medium">
-                <a href="/pages/dashboard/service.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/service.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/service.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Services
+                    <span class="nav-label">Services</span>
                 </a>
 
-                <a href="/pages/dashboard/transport.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/transport.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/transport.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Transport
+                    <span class="nav-label">Transport</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/housing.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/house.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    Housing
+                    <span class="nav-label">Housing</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/jobs.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/job.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    Jobs
+                    <span class="nav-label">Jobs</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/education.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/education.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Education
+                    <span class="nav-label">Education</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/health.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/health.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Healthcare
+                    <span class="nav-label">Healthcare</span>
                 </a>
 
-                <a href="#"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/payments.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/payment.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Payments
+                    <span class="nav-label">Payments</span>
                 </a>
 
-                <a href="/pages/dashboard/marketplace.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-brand-soft px-3 py-2.5 font-semibold text-brand">
+                <a href="/pages/app/marketplace.html" aria-current="page"
+                    class="flex items-center gap-3 rounded-xl bg-brand-soft dark:bg-accent-400/15 px-3 py-2.5 font-semibold text-brand dark:text-accent-400">
                     <img src="/assets/marketplace-image/marketplace.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
                     Marketplace
                 </a>
 
-                <a href="/pages/dashboard/emergence.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted hover:bg-canvas hover:text-ink">
+                <a href="/pages/app/emergence.html"
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/emergence.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Emergency
+                    <span class="nav-label">Emergency</span>
                 </a>
             </nav>
 
-            <a href="/pages/dashboard/emergence.html"
+            <a href="/pages/app/emergence.html"
                 class="mt-6 flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
                 <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round">
@@ -229,15 +264,15 @@
                 Emergency Support
             </a>
 
-            <a href="#"
-                class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-ink">
+            <a href="/pages/admin-pages/compte.html#security"
+                class="nav-item mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                 <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <circle cx="12" cy="12" r="3" />
                     <path
                         d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" />
                 </svg>
-                Settings
-            </a>
+                    <span class="nav-label">Settings</span>
+                </a>
         </aside>
         <!-- ══════════════ MAIN ══════════════ -->
         <main class="min-w-0 flex-1 pb-28 pt-6 lg:pb-16 lg:pt-8">
@@ -250,15 +285,15 @@
                     <img src="/assets/marketplace-image/search.png" alt="Search"
                         class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2" />
                     <input id="searchMobile" type="search" placeholder="Search Moroccan goods..."
-                        class="w-full rounded-full border border-black/10 bg-white py-3 pl-11 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                        class="w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-3 pl-11 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
                 </label>
             </div>
 
             <!-- En-tête desktop -->
             <div class="hidden items-start justify-between gap-6 lg:flex">
                 <div class="max-w-xl">
-                    <h1 class="text-[26px] font-extrabold tracking-tight">Moroccan Marketplace</h1>
-                    <p class="mt-2 text-sm leading-relaxed text-muted">
+                    <h1 class="text-[26px] font-extrabold tracking-tight dark:text-white">Moroccan Marketplace</h1>
+                    <p class="mt-2 text-sm leading-relaxed text-muted dark:text-mist-300">
                         Discover authentic local products, hand-crafted goods, and premium professional services across
                         the Kingdom.
                     </p>
@@ -268,7 +303,7 @@
                     <!-- Filter -->
                     <div class="relative">
                         <button id="filterBtn" type="button" aria-expanded="false" aria-controls="filterPanel"
-                            class="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3.5 py-2 text-sm font-medium hover:border-brand-line focus-visible:ring-2 focus-visible:ring-brand/30">
+                            class="flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-sm font-medium hover:border-brand-line dark:hover:border-accent-400/40 focus-visible:ring-2 focus-visible:ring-brand/30">
                             <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round">
                                 <path d="M4 6h16M7 12h10M10 18h4" />
@@ -279,13 +314,13 @@
                         </button>
 
                         <div id="filterPanel"
-                            class="absolute right-0 top-11 z-30 hidden w-72 rounded-2xl border border-black/5 bg-white p-4 shadow-xl">
-                            <p class="text-xs font-bold uppercase tracking-wider text-muted">Max price</p>
+                            class="absolute right-0 top-11 z-30 hidden w-72 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-800 p-4 shadow-xl">
+                            <p class="text-xs font-bold uppercase tracking-wider text-muted dark:text-mist-300">Max price</p>
                             <input id="priceRange" type="range" min="100" max="4000" step="50" value="4000"
                                 class="mt-3 w-full accent-[#0B6B45]" />
                             <p class="mt-1 text-sm font-semibold">Up to <span id="priceValue">4,000</span> MAD</p>
 
-                            <p class="mt-5 text-xs font-bold uppercase tracking-wider text-muted">Minimum rating</p>
+                            <p class="mt-5 text-xs font-bold uppercase tracking-wider text-muted dark:text-mist-300">Minimum rating</p>
                             <div class="mt-2 flex gap-2" id="ratingGroup">
                                 <button type="button" data-rating="0"
                                     class="rating-chip rounded-full border border-black/10 px-3 py-1.5 text-xs font-medium">Any</button>
@@ -296,7 +331,7 @@
                             </div>
 
                             <button id="resetFilters" type="button"
-                                class="mt-5 w-full rounded-lg bg-canvas py-2 text-sm font-semibold hover:bg-brand-soft hover:text-brand">Reset
+                                class="mt-5 w-full rounded-lg bg-canvas dark:bg-night-700 py-2 text-sm font-semibold hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400">Reset
                                 filters</button>
                         </div>
                     </div>
@@ -304,7 +339,7 @@
                     <!-- Sort -->
                     <div class="relative">
                         <button id="sortBtn" type="button" aria-expanded="false" aria-controls="sortMenu"
-                            class="flex items-center gap-2 rounded-lg border border-black/10 bg-white px-3.5 py-2 text-sm font-medium hover:border-brand-line focus-visible:ring-2 focus-visible:ring-brand/30">
+                            class="flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-sm font-medium hover:border-brand-line dark:hover:border-accent-400/40 focus-visible:ring-2 focus-visible:ring-brand/30">
                             <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3" />
@@ -313,18 +348,18 @@
                         </button>
 
                         <div id="sortMenu"
-                            class="absolute right-0 top-11 z-30 hidden w-56 overflow-hidden rounded-2xl border border-black/5 bg-white py-1.5 shadow-xl">
+                            class="absolute right-0 top-11 z-30 hidden w-56 overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-800 py-1.5 shadow-xl">
                             <button type="button" data-sort="newest"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Newest
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Newest
                                 First</button>
                             <button type="button" data-sort="price-asc"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Price:
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Price:
                                 Low to High</button>
                             <button type="button" data-sort="price-desc"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Price:
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Price:
                                 High to Low</button>
                             <button type="button" data-sort="rating"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas">Top
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Top
                                 Rated</button>
                         </div>
                     </div>
@@ -351,7 +386,7 @@
             <!-- Aucun résultat -->
             <div id="empty" class="hidden py-20 text-center">
                 <p class="text-base font-semibold">No goods match this search</p>
-                <p class="mt-1 text-sm text-muted">Try another keyword, or clear the filters to see the full
+                <p class="mt-1 text-sm text-muted dark:text-mist-300">Try another keyword, or clear the filters to see the full
                     marketplace.</p>
                 <button id="emptyReset" type="button"
                     class="mt-5 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-dark">Show
@@ -361,50 +396,50 @@
             <!-- Load more -->
             <div id="moreWrap" class="mt-8 flex flex-col items-center gap-3">
                 <button id="loadMore" type="button"
-                    class="rounded-full bg-brand-soft px-7 py-3 text-sm font-semibold text-brand transition hover:bg-brand-line focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-7 py-3 text-sm font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-line dark:hover:bg-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
                     Discover More Goods
                 </button>
-                <p class="text-[11px] text-muted">Showing <span id="shownCount">8</span> of 2,466 local products</p>
+                <p class="text-[11px] text-muted dark:text-mist-300">Showing <span id="shownCount">8</span> of 2,466 local products</p>
             </div>
         </main>
     </div>
 
     <!-- ══════════════ FOOTER (desktop) ══════════════ -->
-    <footer class="mt-8 hidden border-t border-black/5 bg-white lg:block">
+    <footer class="mt-8 hidden border-t border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
         <div class="mx-auto max-w-[1400px] px-6 py-10">
             <div class="flex flex-wrap items-start justify-between gap-6">
                 <div>
-                    <p class="text-lg font-extrabold text-brand">M3ak Super App</p>
-                    <p class="mt-1 text-sm text-muted">Empowering citizens through the digital transformation of the
+                    <p class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Super App</p>
+                    <p class="mt-1 text-sm text-muted dark:text-mist-300">Empowering citizens through the digital transformation of the
                         Kingdom.</p>
                 </div>
-                <nav class="flex flex-wrap gap-7 text-sm text-muted">
-                    <a href="#" class="hover:text-brand">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand">Terms of Service</a>
-                    <a href="#" class="hover:text-brand">Contact Us</a>
-                    <a href="#" class="hover:text-brand">Help Center</a>
+                <nav class="flex flex-wrap gap-7 text-sm text-muted dark:text-mist-300">
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
+                    <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Contact Us</a>
+                    <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Help Center</a>
                 </nav>
             </div>
-            <p class="mt-8 border-t border-black/5 pt-6 text-center text-xs text-muted">© 2026 Kingdom of Morocco · M3ak
+            <p class="mt-8 border-t border-black/5 dark:border-white/10 pt-6 text-center text-xs text-muted dark:text-mist-300">© 2026 Kingdom of Morocco · M3ak
                 Super App. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- ══════════════ BOTTOM NAV (mobile) ══════════════ -->
-    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
+    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
         <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
-            <a href="/pages/dashboard/overview.html"
-                class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+            <a href="/pages/app/overview.html"
+                class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
                 <img src="/assets/marketplace-image/house.png" alt="" class="size-5" />
                 Home
             </a>
-            <a href="/pages/dashboard/marketplace.html" aria-current="page"
+            <a href="/pages/app/marketplace.html" aria-current="page"
                 class="flex flex-col items-center gap-1 rounded-full bg-brand px-5 py-2 text-[11px] font-semibold text-white shadow-sm">
                 <img src="/assets/marketplace-image/marketplace.png" alt="" class="size-5" />
                 Market
             </a>
-            <a href="#"
-                class="relative flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+            <a href="/pages/app/coming-soon.html?feature=Cart"
+                class="relative flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
                 <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 4h2l2.2 10.4a2 2 0 0 0 2 1.6h7.4a2 2 0 0 0 2-1.5L20 7H6" />
@@ -415,7 +450,7 @@
                     class="absolute right-2 top-0 hidden min-w-4 rounded-full bg-danger px-1 text-[9px] font-bold leading-4 text-white">0</span>
                 Cart
             </a>
-            <a href="#" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted">
+            <a href="/pages/admin-pages/compte.html#personal-info" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
                 <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                     stroke-linecap="round">
                     <circle cx="12" cy="8" r="3.5" />
@@ -428,7 +463,7 @@
 
     <!-- Toast -->
     <div id="toast"
-        class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
+        class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
     </div>
 </body>
 <script>
@@ -526,26 +561,26 @@
     function productCard(p) {
         const liked = wishlist.has(p.id);
         return `
-  <article class="card-in group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-lg">
+  <article class="card-in group flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-lg">
     <div class="ph relative aspect-[4/3] overflow-hidden" style="--ph:${p.tint}">
       <img src="${imgCandidates(p.img)[0]}" alt="${p.name}" loading="lazy"
            data-candidates='${JSON.stringify(imgCandidates(p.img))}' data-candidate="0"
            onerror="nextImgSource(this)"
            class="size-full object-cover transition duration-500 group-hover:scale-105" />
       <button type="button" data-wish="${p.id}" aria-pressed="${liked}"
-              class="absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/85 text-ink backdrop-blur transition hover:bg-white focus-visible:ring-2 focus-visible:ring-brand/50 ${liked ? "text-danger" : ""}">
+              class="absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/85 dark:bg-night-900/75 text-ink dark:text-mist-100 backdrop-blur transition hover:bg-white dark:hover:bg-night-900 focus-visible:ring-2 focus-visible:ring-brand/50 ${liked ? "text-danger" : ""}">
         <span class="sr-only">Save ${p.name}</span>${heartIcon}
       </button>
     </div>
 
     <div class="flex flex-1 flex-col gap-1.5 p-3">
       <div class="flex items-start justify-between gap-2">
-        <h3 class="text-[13px] font-semibold leading-snug">${p.name}</h3>
-        <p class="w-[68px] shrink-0 text-right text-[13px] font-extrabold leading-snug text-brand">${money(p.price)} MAD</p>
+        <h3 class="text-[13px] font-semibold leading-snug dark:text-mist-100">${p.name}</h3>
+        <p class="w-[68px] shrink-0 text-right text-[13px] font-extrabold leading-snug text-brand dark:text-accent-400">${money(p.price)} MAD</p>
       </div>
-      <p class="flex items-center gap-1 text-[11px] text-muted">${pinIcon}<span class="truncate">${p.city} · ${p.seller}</span></p>
-      <p class="mt-auto flex items-center gap-1 pt-1 text-[11px] font-semibold">${starIcon}${p.rating.toFixed(1)}
-        <span class="font-normal text-muted">(${p.reviews} reviews)</span>
+      <p class="flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">${pinIcon}<span class="truncate">${p.city} · ${p.seller}</span></p>
+      <p class="mt-auto flex items-center gap-1 pt-1 text-[11px] font-semibold dark:text-mist-100">${starIcon}${p.rating.toFixed(1)}
+        <span class="font-normal text-muted dark:text-mist-300">(${p.reviews} reviews)</span>
       </p>
     </div>
   </article>`;
@@ -553,23 +588,23 @@
 
     function featuredCard() {
         return `
-  <article class="card-in order-first col-span-2 overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 lg:order-none lg:flex">
+  <article class="card-in order-first col-span-2 overflow-hidden rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 lg:order-none lg:flex">
     <div class="ph relative aspect-[16/10] shrink-0 lg:aspect-auto lg:w-1/2" style="--ph:${FEATURED.tint}">
       <img src="${imgCandidates(FEATURED.img)[0]}" alt="${FEATURED.title}" loading="lazy"
            data-candidates='${JSON.stringify(imgCandidates(FEATURED.img))}' data-candidate="0"
            onerror="nextImgSource(this)" class="size-full object-cover" />
-      <span class="absolute left-3 top-3 rounded-md bg-brand-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand lg:hidden">Expert Service</span>
+      <span class="absolute left-3 top-3 rounded-md bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400 lg:hidden">Expert Service</span>
     </div>
 
     <div class="flex flex-col p-4 lg:w-1/2 lg:p-5">
-      <span class="mb-3 hidden w-fit rounded-md bg-brand-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand lg:inline-block">Expert Service</span>
-      <h3 class="text-lg font-extrabold leading-tight lg:text-[17px]">${FEATURED.title}</h3>
-      <p class="mt-2 text-[13px] leading-relaxed text-muted lg:text-xs">${FEATURED.desc}</p>
+      <span class="mb-3 hidden w-fit rounded-md bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400 lg:inline-block">Expert Service</span>
+      <h3 class="text-lg font-extrabold leading-tight dark:text-mist-100 lg:text-[17px]">${FEATURED.title}</h3>
+      <p class="mt-2 text-[13px] leading-relaxed text-muted dark:text-mist-300 lg:text-xs">${FEATURED.desc}</p>
 
       <div class="mt-5 flex items-end justify-between gap-3 lg:mt-auto lg:block lg:pt-5">
         <div>
-          <p class="text-[11px] text-muted">From</p>
-          <p class="text-xl font-extrabold text-brand lg:text-lg">${money(FEATURED.price)} MAD</p>
+          <p class="text-[11px] text-muted dark:text-mist-300">From</p>
+          <p class="text-xl font-extrabold text-brand dark:text-accent-400 lg:text-lg">${money(FEATURED.price)} MAD</p>
         </div>
         <button id="bookConsult" type="button"
                 class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 lg:mt-3 lg:w-full">
@@ -623,7 +658,7 @@
     function paintPills() {
         $$(".pill").forEach(b => {
             const on = b.dataset.category === state.category;
-            b.className = `pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${on ? "bg-brand text-white" : "bg-white text-muted ring-1 ring-black/5 hover:text-ink"}`;
+            b.className = `pill shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${on ? "bg-brand dark:bg-accent-400 text-white dark:text-night-900" : "bg-white dark:bg-night-800 text-muted dark:text-mist-300 ring-1 ring-black/5 dark:ring-white/10 hover:text-ink dark:hover:text-mist-100"}`;
             b.setAttribute("aria-pressed", on);
         });
     }
@@ -686,7 +721,7 @@
     function paintRatingChips() {
         $$(".rating-chip").forEach(c => {
             const on = +c.dataset.rating === state.minRating;
-            c.className = `rating-chip rounded-full border px-3 py-1.5 text-xs font-medium transition ${on ? "border-brand bg-brand-soft text-brand" : "border-black/10 text-muted hover:text-ink"}`;
+            c.className = `rating-chip rounded-full border px-3 py-1.5 text-xs font-medium transition ${on ? "border-brand dark:border-accent-400 bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400" : "border-black/10 dark:border-white/15 text-muted dark:text-mist-300 hover:text-ink dark:hover:text-mist-100"}`;
         });
     }
     $$(".rating-chip").forEach(c => c.addEventListener("click", () => {

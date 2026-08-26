@@ -110,6 +110,20 @@
             color: #7C8981;
         }
 
+        /* Instagram-style icon rail: label hidden by default on desktop,
+           fades in on hover/focus of that row, fades out when the cursor leaves. */
+        @media (min-width: 1024px) {
+            .nav-item .nav-label {
+                opacity: 0;
+                transition: opacity .15s ease;
+            }
+
+            .nav-item:hover .nav-label,
+            .nav-item:focus-visible .nav-label {
+                opacity: 1;
+            }
+        }
+
         /* Signature : trajet vivant sur la carte */
         .route-flow {
             stroke-dasharray: 6 8;
@@ -167,7 +181,7 @@
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100">
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
     <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
@@ -178,15 +192,15 @@
                 <img src="/assets/transport/menu.png" alt="menu-icon" class="size-6 object-contain" />
             </button>
 
-            <a href="/pages/dashboard/overview.html"
+            <a href="/pages/app/overview.html"
                 class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak
                 Morocco</a>
 
             <nav class="ml-6 hidden items-center gap-7 text-sm font-medium text-muted dark:text-mist-300 lg:flex">
-                <a href="/pages/dashboard/overview.html" class="hover:text-ink dark:hover:text-mist-100">Services</a>
-                <a href="/pages/dashboard/transport.html"
+                <a href="/pages/app/overview.html" class="hover:text-ink dark:hover:text-mist-100">Services</a>
+                <a href="/pages/app/transport.html"
                     class="relative font-semibold text-brand dark:text-accent-400 after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand">Transport</a>
-                <a href="/pages/dashboard/marketplace.html" class="hover:text-ink dark:hover:text-mist-100">Market</a>
+                <a href="/pages/app/marketplace.html" class="hover:text-ink dark:hover:text-mist-100">Market</a>
             </nav>
 
             <div class="ml-auto flex items-center gap-1.5">
@@ -213,11 +227,11 @@
                     <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
                 </button>
 
-                <button type="button"
+                <a href="/pages/app/support.html"
                     class="hidden size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:grid">
                     <span class="sr-only">Help</span>
                     <img src="/assets/transport/help.png" alt="" class="size-5 object-contain" />
-                </button>
+                </a>
 
                 <button type="button"
                     class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
@@ -226,6 +240,19 @@
             </div>
         </div>
     </header>
+
+    <!-- ══════════ BACK BAR ══════════ -->
+    <div class="border-b border-black/5 dark:border-white/10 bg-canvas dark:bg-night-900">
+        <div class="mx-auto max-w-[1400px] px-4 lg:px-6 py-2">
+            <a href="/pages/app/overview.html"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors">
+                <svg class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Overview
+            </a>
+        </div>
+    </div>
 
     <div class="flex">
 
@@ -240,54 +267,54 @@
             </div>
 
             <nav class="space-y-0.5">
-                <a href="/pages/dashboard/overview.html" class="nav-item">
+                <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/transport/services.png" alt="" class="nav-icon" />
-                    Services
+                    <span class="nav-label">Services</span>
                 </a>
-                <a href="/pages/dashboard/transport.html" aria-current="page"
+                <a href="/pages/app/transport.html" aria-current="page"
                     class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-800 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
                     <img src="/assets/transport/transport-active.png" alt="" class="nav-icon" />
                     Transport
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/pages/app/housing.html" class="nav-item">
                     <img src="/assets/transport/housing.png" alt="" class="nav-icon" />
-                    Housing
+                    <span class="nav-label">Housing</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/pages/app/jobs.html" class="nav-item">
                     <img src="/assets/transport/jobs.png" alt="" class="nav-icon" />
-                    Jobs
+                    <span class="nav-label">Jobs</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/pages/app/education.html" class="nav-item">
                     <img src="/assets/transport/education.png" alt="" class="nav-icon" />
-                    Education
+                    <span class="nav-label">Education</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/pages/app/health.html" class="nav-item">
                     <img src="/assets/transport/healthcare.png" alt="" class="nav-icon" />
-                    Healthcare
+                    <span class="nav-label">Healthcare</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/pages/app/payments.html" class="nav-item">
                     <img src="/assets/transport/payments.png" alt="" class="nav-icon" />
-                    Payments
+                    <span class="nav-label">Payments</span>
                 </a>
-                <a href="/pages/dashboard/marketplace.html" class="nav-item">
+                <a href="/pages/app/marketplace.html" class="nav-item">
                     <img src="/assets/transport/marketplace.png" alt="" class="nav-icon" />
-                    Marketplace
+                    <span class="nav-label">Marketplace</span>
                 </a>
             </nav>
 
             <div class="mt-auto space-y-1 pt-6">
-                <a href="/pages/dashboard/emergence.html"
+                <a href="/pages/app/emergence.html"
                     class="flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23]">
                     <img src="/assets/transport/emergency-white.png" alt="" class="size-4 object-contain" />
                     Emergency Support
                 </a>
-                <a href="#" class="nav-item">
+                <a href="/pages/admin-pages/compte.html#security" class="nav-item">
                     <img src="/assets/transport/settings.png" alt="" class="nav-icon" />
-                    Settings
+                    <span class="nav-label">Settings</span>
                 </a>
-                <a href="/pages/auth/login.html" class="nav-item text-danger">
+                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
                     <img src="/assets/transport/logout.png" alt="" class="nav-icon" />
-                    Logout
+                    <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
@@ -465,7 +492,7 @@
                 <img src="/assets/transport/nav-home.png" alt="" />
                 Home
             </a>
-            <a href="/pages/dashboard/transport.html" aria-current="page"
+            <a href="/pages/app/transport.html" aria-current="page"
                 class="tab-active flex flex-col items-center gap-1 px-3 py-1.5 text-[10px] font-semibold text-brand dark:text-accent-400">
                 <img src="/assets/transport/nav-transport-active.png" alt="" />
                 Transport
@@ -477,11 +504,11 @@
                 <img src="/assets/transport/ticket-white.png" alt="" class="size-6 object-contain" />
             </button>
 
-            <a href="/pages/dashboard/marketplace.html" class="tab">
+            <a href="/pages/app/marketplace.html" class="tab">
                 <img src="/assets/transport/nav-market.png" alt="" />
                 Market
             </a>
-            <a href="#" class="tab">
+            <a href="/pages/admin-pages/compte.html#personal-info" class="tab">
                 <img src="/assets/transport/nav-profile.png" alt="" />
                 Profile
             </a>

@@ -49,6 +49,7 @@ Projet-M3AK/
 │   ├── auth/
 │   │   ├── login.html
 │   │   ├── signup.html
+│   │   ├── forgot-password.html
 │   │   └── new-password.html
 │   │
 │   ├── app/
@@ -56,13 +57,22 @@ Projet-M3AK/
 │   │   ├── service.html
 │   │   ├── transport.html
 │   │   ├── marketplace.html
+│   │   ├── health.html
 │   │   ├── emergence.html
-│   │   └── dashboard.html        # Admin Dashboard
+│   │   ├── support.html          # Help Center (shared)
+│   │   └── coming-soon.html      # Placeholder for not-yet-built sections
+│   │
+│   ├── admin-pages/
+│   │   ├── dashboard.html        # Admin Dashboard
+│   │   └── compte.html           # Citizen Account / Settings page
 │   │
 │   └── js/
 │       ├── session.js
+│       ├── theme.js
 │       ├── onboarding.js
 │       ├── login.js
+│       ├── signup.js
+│       ├── forgot-password.js
 │       └── new-password.js
 │
 ├── index.html
@@ -99,10 +109,10 @@ Projet-M3AK/
 #### Authentication
 
 - [x] Landing Page
-- [x] Sign In Page (UI + validation)
-- [x] Sign Up Page (UI only — no JS wired yet)
-- [ ] Forgot Password Page
-- [x] New Password Page (UI only — `new-password.js` is empty)
+- [x] Sign In Page (UI + validation, wired to session)
+- [x] Sign Up Page (UI + validation, wired to session)
+- [x] Forgot Password Page
+- [x] New Password Page (live requirement checks + reset flow)
 
 #### Dashboard / App
 
@@ -110,16 +120,16 @@ Projet-M3AK/
 - [x] Services Page
 - [x] Transport Page
 - [x] Marketplace Page
+- [x] Health / Find a Specialist Page
 - [x] Emergency Hub Page
 - [x] Admin Dashboard
+- [x] Citizen Account / Settings Page (Personal Info, Digital ID, Security, Preferences)
+- [x] Help Center Page (shared across the app)
+- [x] Coming Soon placeholder (Housing, Jobs, Education, Payments, and other not-yet-built sections)
 - [ ] Housing Page
 - [ ] Jobs Page
 - [ ] Education Page
-- [ ] Healthcare Page
 - [ ] Payments Page
-- [ ] User Profile Page
-- [ ] Digital Identity Page
-- [ ] Settings Page
 
 ### 📱 Responsive Design
 
@@ -142,15 +152,25 @@ Projet-M3AK/
 
 ## 🐛 Known Issues
 
-Tracking honestly so nothing is hidden behind a green checklist:
+Tracking honestly so nothing is hidden behind a green checklist. The connectivity pass fixed the items below —
+remaining items are genuinely open:
 
-- **Internal navigation is broken.** Links across `pages/app/*.html` point to `/pages/dashboard/...`, but the real folder is `/pages/app/...`.
-- **Login can't complete.** `login.js` calls `window.M3akAuth`, but `session.js` exposes `window.M3ak`. Needs a consistent namespace.
-- **`new-password.js` is empty** and not loaded on `new-password.html` — no validation or submit logic yet.
-- **`onboarding.js`** redirects to `./pages/overview.htm` (wrong extension/path).
-- A few links use inconsistent filenames (`service.html`/`services.html`, `emergence.html`/`emergency.html`, `home.html`).
-- Absolute paths (`/pages/...`) will 404 once deployed on GitHub Pages (served under a subpath).
-- `signup.html` has no JS attached yet.
+**Fixed:**
+
+- ~~Internal navigation pointed at `/pages/dashboard/...` instead of `/pages/app/...`.~~
+- ~~`login.js` called `window.M3akAuth`, but `session.js` exposed `window.M3ak`.~~
+- ~~`new-password.js` was empty and not loaded on `new-password.html`.~~
+- ~~`onboarding.js` redirected to `./pages/overview.htm` (wrong extension/path).~~
+- ~~Inconsistent filenames (`service.html`/`services.html`, `emergence.html`/`emergency.html`).~~
+- ~~`signup.html` had no JS attached.~~
+- ~~No session guard — app pages were reachable without signing in, and no page cleared the session on logout.~~
+
+**Still open:**
+
+- Absolute paths (`/pages/...`) will 404 once deployed on GitHub Pages (served under a subpath) — needs a build
+  step or relative-path rewrite before that deployment target.
+- Housing, Jobs, Education, and Payments are represented by the shared Coming Soon placeholder, not real pages.
+- Auth is frontend-only (`localStorage`), by design for this stage — no real backend/API yet.
 
 ---
 
@@ -158,10 +178,11 @@ Tracking honestly so nothing is hidden behind a green checklist:
 
 - ✅ Project setup completed
 - ✅ Landing page completed
-- ✅ Auth pages (login, signup, new-password) — UI complete, JS partially wired (see Known Issues)
-- ✅ Dashboard Overview, Services, Transport, Marketplace, Emergency Hub, Admin Dashboard — UI complete
-- 🚧 Fixing internal navigation & auth JS (top priority)
-- 🚧 Remaining dashboard sections (Housing, Jobs, Education, Healthcare, Payments, Profile, Digital ID, Settings)
+- ✅ Auth pages (login, signup, forgot password, new password) — UI complete, fully wired to the shared session
+- ✅ Overview, Services, Transport, Marketplace, Health, Emergency Hub, Admin Dashboard, Account/Settings — UI
+  complete and cross-linked
+- ✅ Internal navigation, auth JS, and session guard fixed across the app
+- 🚧 Housing, Jobs, Education, Payments sections (currently placeholders)
 - 🚧 Tablet breakpoint and cross-browser testing pending
 
 ---

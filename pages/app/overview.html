@@ -17,6 +17,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+
     @theme {
     --color-brand:      #0B6B45;
     --color-brand-dark: #084F34;
@@ -26,6 +28,17 @@
     --color-ink:        #0F1A15;
     --color-muted:      #6B7A73;
     --color-canvas:     #F6F7F5;
+
+    --color-night-900: #0A0F0D;
+    --color-night-800: #0F1512;
+    --color-night-700: #151C18;
+    --color-night-600: #232C27;
+    --color-mist-300: #7C8981;
+    --color-mist-200: #B4BEB8;
+    --color-mist-100: #E7ECE9;
+    --color-accent-400: #2ED573;
+    --color-accent-300: #5BE0A0;
+
     --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   }
 </style>
@@ -107,28 +120,28 @@
   </style>
 </head>
 
-<body class="bg-canvas font-sans text-ink">
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200" data-require-auth>
 
   <!-- ══════════ TOP BAR (desktop) ══════════ -->
-  <header class="sticky top-0 z-40 hidden border-b border-black/5 bg-white lg:block">
+  <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
     <div class="flex h-16 items-center gap-6 px-6">
-      <a href="/pages/dashboard/overview.html"
-        class="w-56 shrink-0 text-2xl font-extrabold tracking-tight text-brand">M3ak Morocco</a>
+      <a href="/pages/app/overview.html"
+        class="w-56 shrink-0 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
 
       <label class="relative ml-6 block w-80">
         <span class="sr-only">Search services</span>
-        <svg class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted" viewBox="0 0 24 24"
+        <svg class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted dark:text-mist-300" viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3.2-3.2" />
         </svg>
         <input type="search" placeholder="Search services..."
-          class="w-full rounded-lg border border-black/10 bg-canvas py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+          class="w-full rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
       </label>
 
       <div class="ml-auto flex items-center gap-2">
         <button type="button"
-          class="relative grid size-9 place-items-center rounded-full text-muted hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
+          class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Notifications</span>
           <!-- dark light mode button -->
           <button type="button"
@@ -153,7 +166,7 @@
           <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
         </button>
         <button type="button"
-          class="grid size-9 place-items-center rounded-full text-muted hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
+          class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Help</span>
           <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linecap="round">
@@ -163,7 +176,7 @@
           </svg>
         </button>
         <button id="langBtn" type="button"
-          class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
+          class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Change language</span>
           <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <circle cx="12" cy="12" r="9" />
@@ -173,9 +186,9 @@
         </button>
 
         <button type="button"
-          class="ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40">
+          class="ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span
-            class="grid size-8 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand ring-1 ring-brand-line">A</span>
+            class="grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
           <span class="text-sm font-medium">Ahmed</span>
         </button>
       </div>
@@ -186,9 +199,9 @@
 
     <!-- ══════════ SIDEBAR ══════════ -->
     <aside
-      class="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-black/5 bg-brand-soft/40 px-3 py-5 lg:flex">
+      class="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-black/5 dark:border-white/10 bg-brand-soft/40 dark:bg-night-800 px-3 py-5 lg:flex">
       <div class="mb-5 flex items-center gap-3 px-2">
-        <span class="grid size-9 place-items-center rounded-xl bg-brand text-white">
+        <span class="grid size-9 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
           <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
             stroke-linecap="round">
             <circle cx="12" cy="12" r="8.5" />
@@ -196,14 +209,14 @@
           </svg>
         </span>
         <span>
-          <span class="block text-sm font-extrabold leading-tight text-brand">M3ak</span>
-          <span class="block text-[11px] text-muted">Citizen Portal</span>
+          <span class="block text-sm font-extrabold leading-tight text-brand dark:text-accent-400">M3ak</span>
+          <span class="block text-[11px] text-muted dark:text-mist-300">Citizen Portal</span>
         </span>
       </div>
 
       <nav class="space-y-0.5 text-sm font-medium">
-        <a href="/pages/dashboard/overview.html" aria-current="page"
-          class="nav-on flex items-center gap-3 rounded-xl bg-white px-3 py-2.5 font-semibold text-brand shadow-sm ring-1 ring-brand-line">
+        <a href="/pages/app/overview.html" aria-current="page"
+          class="nav-on flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <rect x="3" y="3" width="7" height="7" rx="1.6" />
             <rect x="14" y="3" width="7" height="7" rx="1.6" />
@@ -212,7 +225,7 @@
           </svg>
           Services
         </a>
-        <a href="/pages/dashboard/transport.html" class="nav-item">
+        <a href="/pages/app/transport.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <rect x="5" y="3" width="14" height="13" rx="2.5" />
@@ -220,88 +233,88 @@
             <circle cx="8.5" cy="13" r=".9" fill="currentColor" stroke="none" />
             <circle cx="15.5" cy="13" r=".9" fill="currentColor" stroke="none" />
           </svg>
-          Transport
-        </a>
-        <a href="#" class="nav-item">
+                    <span class="nav-label">Transport</span>
+                </a>
+        <a href="/pages/app/housing.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
             <path d="M9 21v-7h6v7" />
           </svg>
-          Housing
-        </a>
-        <a href="#" class="nav-item">
+                    <span class="nav-label">Housing</span>
+                </a>
+        <a href="/pages/app/jobs.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <rect x="3" y="7" width="18" height="13" rx="2" />
             <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
           </svg>
-          Jobs
-        </a>
-        <a href="#" class="nav-item">
+                    <span class="nav-label">Jobs</span>
+                </a>
+        <a href="/pages/app/education.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <path d="m2 8 10-4 10 4-10 4z" />
             <path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
           </svg>
-          Education
-        </a>
-        <a href="#" class="nav-item">
+                    <span class="nav-label">Education</span>
+                </a>
+        <a href="/pages/app/health.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <rect x="3" y="6" width="18" height="14" rx="2.5" />
             <path d="M12 10v6M9 13h6" />
           </svg>
-          Healthcare
-        </a>
-        <a href="#" class="nav-item">
+                    <span class="nav-label">Healthcare</span>
+                </a>
+        <a href="/pages/app/payments.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
             <path d="M2.5 10h19" />
           </svg>
-          Payments
-        </a>
-        <a href="/pages/dashboard/marketplace.html" class="nav-item">
+                    <span class="nav-label">Payments</span>
+                </a>
+        <a href="/pages/app/marketplace.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
             <path d="M3 9.5 4.5 4h15L21 9.5" />
             <path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" />
             <path d="M5 12v8h14v-8" />
           </svg>
-          Marketplace
-        </a>
-        <a href="/pages/dashboard/emergence.html" class="nav-item">
+                    <span class="nav-label">Marketplace</span>
+                </a>
+        <a href="/pages/app/emergence.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linecap="round">
             <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" />
           </svg>
-          Emergency
-        </a>
+                    <span class="nav-label">Emergency</span>
+                </a>
       </nav>
 
       <div class="mt-auto space-y-1 pt-6">
-        <a href="/pages/dashboard/emergence.html"
+        <a href="/pages/app/emergence.html"
           class="flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
           <span class="rounded bg-white/25 px-1.5 py-0.5 text-[10px] font-extrabold tracking-wider">SOS</span>
           Emergency Support
         </a>
-        <a href="#" class="nav-item">
+        <a href="/pages/admin-pages/compte.html#security" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <circle cx="12" cy="12" r="3" />
             <path
               d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" />
           </svg>
-          Settings
-        </a>
-        <a href="/pages/auth/login.html" class="nav-item">
+                    <span class="nav-label">Settings</span>
+                </a>
+        <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" />
             <path d="M10 16l-4-4 4-4M6 12h9" />
           </svg>
-          Logout
-        </a>
+                    <span class="nav-label">Logout</span>
+                </a>
       </div>
     </aside>
 
@@ -309,9 +322,9 @@
     <div class="min-w-0 flex-1">
 
       <!-- Header mobile -->
-      <div class="flex items-center justify-between border-b border-black/5 bg-white px-4 py-3.5 lg:hidden">
-        <span class="text-lg font-extrabold text-brand">M3ak Morocco</span>
-        <div class="flex items-center justify-between border-b border-black/5 bg-white px-4 py-3.5 gap-[9px] lg:hidden">
+      <div class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3.5 lg:hidden">
+        <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
+        <div class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3.5 gap-[9px] lg:hidden">
 
           <!-- dark light mode button -->
           <button type="button"
@@ -329,7 +342,7 @@
             </span>
           </button>
           <button type="button"
-            class="grid size-9 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand ring-1 ring-brand-line">
+            class="grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">
             <span class="sr-only">Your profile</span>A
           </button>
         </div>
@@ -341,11 +354,11 @@
         <div class="flex flex-wrap items-start justify-between gap-4">
           <div>
             <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Welcome back, Ahmed</h1>
-            <p class="mt-1.5 max-w-md text-sm text-muted">Here is an overview of your essential citizen services today.
+            <p class="mt-1.5 max-w-md text-sm text-muted dark:text-mist-300">Here is an overview of your essential citizen services today.
             </p>
           </div>
           <span
-            class="inline-flex items-center gap-2 rounded-full bg-brand-soft px-3.5 py-1.5 text-xs font-semibold text-brand">
+            class="inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-1.5 text-xs font-semibold text-brand dark:text-accent-400">
             <span class="size-1.5 rounded-full bg-brand"></span>Rabat · <span id="temp">24</span>°C
           </span>
         </div>
@@ -354,9 +367,9 @@
         <div class="mt-6 grid gap-5 lg:grid-cols-3">
 
           <!-- Transport live -->
-          <section class="fade-up rounded-2xl bg-white p-5 ring-1 ring-black/5 lg:col-span-2">
+          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
             <div class="flex items-center gap-3">
-              <span class="grid size-9 place-items-center rounded-xl bg-blue-50 text-blue-600">
+              <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
                 <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linejoin="round">
                   <rect x="5" y="3" width="14" height="13" rx="2.5" />
@@ -364,33 +377,37 @@
                 </svg>
               </span>
               <h2 class="text-base font-bold">Public Transport Live Status</h2>
+              <button id="openMap" type="button"
+                class="ml-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400">
+                View Map
+              </button>
               <span
-                class="ml-auto inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">
-                <span class="size-1.5 animate-pulse rounded-full bg-brand"></span>Live Now
+                class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
+                <span class="size-1.5 animate-pulse rounded-full bg-brand dark:bg-accent-400"></span>Live Now
               </span>
             </div>
 
             <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              <article class="rounded-xl bg-canvas p-3.5">
+              <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
                 <div class="flex items-baseline justify-between gap-2">
                   <p class="text-sm font-semibold">Tramway T1</p>
-                  <p class="text-sm font-bold text-brand"><span id="tramEta">2</span><span id="tramUnit"> min</span></p>
+                  <p class="text-sm font-bold text-brand dark:text-accent-400"><span id="tramEta">2</span><span id="tramUnit"> min</span></p>
                 </div>
-                <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10">
-                  <span id="tramBar" class="block h-full rounded-full bg-brand" style="width:0%"></span>
+                <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
+                  <span id="tramBar" class="block h-full rounded-full bg-brand dark:bg-accent-400" style="width:0%"></span>
                 </div>
-                <p class="mt-2 text-[11px] text-muted">Towards: Hassan II</p>
+                <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Hassan II</p>
               </article>
 
-              <article class="rounded-xl bg-canvas p-3.5">
+              <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
                 <div class="flex items-baseline justify-between gap-2">
                   <p class="text-sm font-semibold">Al Boraq 104</p>
                   <p class="text-sm font-bold">14:15</p>
                 </div>
-                <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10">
+                <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
                   <span id="boraqBar" class="block h-full rounded-full bg-blue-600" style="width:0%"></span>
                 </div>
-                <p class="mt-2 text-[11px] text-muted">Towards: Tangier Ville</p>
+                <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Tangier Ville</p>
               </article>
             </div>
 
@@ -399,10 +416,10 @@
             <div id="mapModal"
               class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink/50 p-0 backdrop-blur-sm sm:p-6">
               <div role="dialog" aria-modal="true" aria-labelledby="mapModalTitle"
-                class="flex h-full w-full flex-col overflow-hidden bg-white shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl">
+                class="flex h-full w-full flex-col overflow-hidden bg-white dark:bg-night-800 shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl">
 
-                <div class="flex items-center gap-3 border-b border-black/5 px-4 py-3">
-                  <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">
+                <div class="flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3">
+                  <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
                     <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" />
                       <circle cx="12" cy="10" r="2.4" />
@@ -410,10 +427,10 @@
                   </span>
                   <div class="min-w-0 flex-1">
                     <p id="mapModalTitle" class="text-sm font-bold">Live Network Map</p>
-                    <p id="mapStatus" class="truncate text-[11px] text-muted">Waiting for your location…</p>
+                    <p id="mapStatus" class="truncate text-[11px] text-muted dark:text-mist-300">Waiting for your location…</p>
                   </div>
                   <button id="closeMap" type="button"
-                    class="grid size-9 shrink-0 place-items-center rounded-full text-muted transition hover:bg-canvas hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Close map</span>
                     <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                       stroke-linecap="round">
@@ -422,11 +439,11 @@
                   </button>
                 </div>
 
-                <div id="liveMap" class="min-h-0 flex-1 bg-canvas"></div>
+                <div id="liveMap" class="min-h-0 flex-1 bg-canvas dark:bg-night-700"></div>
 
-                <div class="flex flex-wrap items-center gap-2 border-t border-black/5 px-4 py-3">
+                <div class="flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3">
                   <button id="locateMe" type="button"
-                    class="flex items-center gap-2 rounded-lg bg-brand px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40">
+                    class="flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
                       stroke-linecap="round">
                       <circle cx="12" cy="12" r="7" />
@@ -435,22 +452,22 @@
                     Locate me
                   </button>
                   <button id="followMe" type="button" aria-pressed="false"
-                    class="rounded-lg border border-black/10 px-3.5 py-2 text-xs font-semibold text-muted transition hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/30">
+                    class="rounded-lg border border-black/10 dark:border-white/15 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30">
                     Follow my position
                   </button>
-                  <a id="externalMap" href="#" target="_blank" rel="noopener"
-                    class="ml-auto text-xs font-semibold text-brand hover:underline">Open in Google Maps</a>
+                  <a id="externalMap" href="https://www.google.com/maps" target="_blank" rel="noopener"
+                    class="ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Open in Google Maps</a>
                 </div>
               </div>
             </div>
           </section>
 
           <!-- Appointments -->
-          <section class="fade-up rounded-2xl bg-white p-5 ring-1 ring-black/5">
+          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
             <div class="flex items-center justify-between">
               <h2 class="text-base font-bold">Appointments</h2>
               <button id="addAppt" type="button"
-                class="grid size-8 place-items-center rounded-full text-muted transition hover:bg-brand-soft hover:text-brand focus-visible:ring-2 focus-visible:ring-brand/40">
+                class="grid size-8 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-brand/40">
                 <span class="sr-only">Add an appointment</span>
                 <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linecap="round">
@@ -462,16 +479,16 @@
 
             <ul id="apptList" class="mt-4 space-y-3"></ul>
 
-            <a href="#" class="mt-5 block text-center text-sm font-semibold text-brand hover:underline">View All
+            <a href="/pages/app/coming-soon.html?feature=Full+Schedule" class="mt-5 block text-center text-sm font-semibold text-brand dark:text-accent-400 hover:underline">View All
               Schedule</a>
           </section>
 
           <!-- Recent payments -->
-          <section class="fade-up rounded-2xl bg-white p-5 ring-1 ring-black/5">
+          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
             <div class="flex items-center justify-between">
               <h2 class="text-base font-bold">Recent Payments</h2>
               <button id="allPayments" type="button"
-                class="grid size-8 place-items-center rounded-lg text-brand transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
+                class="grid size-8 place-items-center rounded-lg text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
                 <span class="sr-only">Open payment history</span>
                 <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linejoin="round">
@@ -480,16 +497,16 @@
                 </svg>
               </button>
             </div>
-            <ul id="payList" class="mt-4 divide-y divide-black/5"></ul>
+            <ul id="payList" class="mt-4 divide-y divide-black/5 dark:divide-white/10"></ul>
           </section>
 
           <!-- Quick services -->
-          <section class="fade-up rounded-2xl bg-white p-5 ring-1 ring-black/5 lg:col-span-2">
+          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
             <h2 class="text-base font-bold">Quick Citizen Services</h2>
             <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <button type="button" data-service="Civil Status"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas px-3 py-5 text-center transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
-                <svg class="size-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <svg class="size-6 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                   stroke-linejoin="round">
                   <path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" />
                   <path d="M14 3v4h4M8.5 13h7M8.5 17h4" />
@@ -497,8 +514,8 @@
                 <span class="text-xs font-semibold leading-tight">Civil Status</span>
               </button>
               <button type="button" data-service="Driving License"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas px-3 py-5 text-center transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
-                <svg class="size-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <svg class="size-6 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                   stroke-linejoin="round">
                   <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
                   <circle cx="8.5" cy="11" r="2" />
@@ -507,8 +524,8 @@
                 <span class="text-xs font-semibold leading-tight">Driving License</span>
               </button>
               <button type="button" data-service="Property Tax"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas px-3 py-5 text-center transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
-                <svg class="size-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <svg class="size-6 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                   stroke-linejoin="round">
                   <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
                   <path d="M9 21v-6h6v6" />
@@ -516,8 +533,8 @@
                 <span class="text-xs font-semibold leading-tight">Property Tax</span>
               </button>
               <button type="button" data-service="Social Security"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas px-3 py-5 text-center transition hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40">
-                <svg class="size-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <svg class="size-6 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                   stroke-linejoin="round">
                   <path d="M12 3l7.5 3v6c0 4.4-3 7.8-7.5 9-4.5-1.2-7.5-4.6-7.5-9V6z" />
                   <path d="m9 12 2.2 2.2L15.5 10" />
@@ -529,13 +546,13 @@
         </div>
 
         <!-- Footer desktop -->
-        <footer class="mt-10 hidden border-t border-black/5 pt-6 lg:block">
-          <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted">
+        <footer class="mt-10 hidden border-t border-black/5 dark:border-white/10 pt-6 lg:block">
+          <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted dark:text-mist-300">
             <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
             <nav class="flex gap-7">
-              <a href="#" class="hover:text-brand">Privacy Policy</a>
-              <a href="#" class="hover:text-brand">Terms of Service</a>
-              <a href="#" class="hover:text-brand">Help Center</a>
+              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
+              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
+              <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Help Center</a>
             </nav>
           </div>
         </footer>
@@ -544,7 +561,7 @@
   </div>
 
   <!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
-  <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 bg-white/95 backdrop-blur lg:hidden">
+  <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
     <div class="mx-auto flex max-w-md items-center justify-around px-2 py-2">
       <a href="/index.html" class="tab">
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -554,7 +571,7 @@
         </svg>
         Home
       </a>
-      <a href="/pages/dashboard/overview.html" aria-current="page"
+      <a href="/pages/app/overview.html" aria-current="page"
         class="flex flex-col items-center gap-1 rounded-full bg-brand px-5 py-2 text-[10px] font-semibold text-white shadow-sm">
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <rect x="3" y="3" width="7" height="7" rx="1.6" />
@@ -564,7 +581,7 @@
         </svg>
         Services
       </a>
-      <a href="/pages/dashboard/transport.html" class="tab">
+      <a href="/pages/app/transport.html" class="tab">
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
           stroke-linejoin="round">
           <rect x="5" y="3" width="14" height="13" rx="2.5" />
@@ -572,7 +589,7 @@
         </svg>
         Transport
       </a>
-      <a href="#" class="tab">
+      <a href="/pages/app/coming-soon.html?feature=Digital+ID" class="tab">
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
           stroke-linejoin="round">
           <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
@@ -581,7 +598,7 @@
         </svg>
         ID
       </a>
-      <a href="#" class="tab">
+      <a href="/pages/admin-pages/compte.html#personal-info" class="tab">
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
           stroke-linecap="round">
           <circle cx="12" cy="8" r="3.5" />
@@ -593,7 +610,7 @@
   </nav>
 
   <div id="toast"
-    class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
+    class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
   </div>
 
   <style>
@@ -612,6 +629,15 @@
       color: #0F1A15;
     }
 
+    .dark .nav-item {
+      color: #7C8981;
+    }
+
+    .dark .nav-item:hover {
+      background: #151C18;
+      color: #E7ECE9;
+    }
+
     .tab {
       display: flex;
       flex-direction: column;
@@ -621,6 +647,24 @@
       font-size: 10px;
       font-weight: 500;
       color: #6B7A73;
+    }
+
+    .dark .tab {
+      color: #7C8981;
+    }
+
+    /* Instagram-style icon rail: label hidden by default on desktop,
+       fades in on hover/focus of that row, fades out when the cursor leaves. */
+    @media (min-width: 1024px) {
+      .nav-item .nav-label {
+        opacity: 0;
+        transition: opacity .15s ease;
+      }
+
+      .nav-item:hover .nav-label,
+      .nav-item:focus-visible .nav-label {
+        opacity: 1;
+      }
     }
   </style>
 
@@ -651,23 +695,23 @@
     /* ── Rendu appointments ── */
     function statusChip(s) {
       const map = {
-        Confirmed: "bg-brand-soft text-brand",
-        Pending: "bg-red-50 text-danger",
-        Cancelled: "bg-black/5 text-muted"
+        Confirmed: "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400",
+        Pending: "bg-red-50 dark:bg-danger/15 text-danger",
+        Cancelled: "bg-black/5 dark:bg-white/10 text-muted dark:text-mist-300"
       };
       return `<span class="rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map.Cancelled}">${s}</span>`;
     }
 
     function renderAppointments() {
       $("#apptList").innerHTML = APPOINTMENTS.map(a => `
-    <li class="flex items-center gap-3 rounded-xl bg-canvas p-3">
-      <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white py-1.5 ring-1 ring-black/5">
+    <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
+      <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
         <span class="text-[9px] font-bold uppercase tracking-wider text-danger">${a.month}</span>
         <span class="text-lg font-extrabold leading-none">${a.day}</span>
       </div>
       <div class="min-w-0 flex-1">
         <p class="truncate text-sm font-semibold">${a.title}</p>
-        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted">
+        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
           <svg class="size-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
           <span class="truncate">${a.place}</span>
         </p>
@@ -680,12 +724,12 @@
     function renderPayments() {
       $("#payList").innerHTML = PAYMENTS.map(p => `
     <li class="flex items-center gap-3 py-3">
-      <span class="grid size-9 shrink-0 place-items-center rounded-full bg-canvas ${p.tone}">
+      <span class="grid size-9 shrink-0 place-items-center rounded-full bg-canvas dark:bg-night-700 ${p.tone}">
         <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">${p.icon}</svg>
       </span>
       <div class="min-w-0 flex-1">
         <p class="truncate text-sm font-semibold">${p.label}</p>
-        <p class="text-[11px] text-muted">${p.date}</p>
+        <p class="text-[11px] text-muted dark:text-mist-300">${p.date}</p>
       </div>
       <p class="shrink-0 text-sm font-bold">- ${p.amount.toFixed(2)} DH</p>
     </li>`).join("");
@@ -704,7 +748,27 @@
     }
 
     /* ── Interactions ── */
-    $("#openMap").addEventListener("click", () => toast("Opening the live network map"));
+    $("#openMap").addEventListener("click", () => {
+      $("#mapModal").classList.remove("hidden");
+      $("#mapModal").classList.add("flex");
+      $("#mapStatus").textContent = "Showing the live transit network";
+    });
+    $("#closeMap").addEventListener("click", () => {
+      $("#mapModal").classList.add("hidden");
+      $("#mapModal").classList.remove("flex");
+    });
+    $("#mapModal").addEventListener("click", (e) => {
+      if (e.target.id === "mapModal") $("#closeMap").click();
+    });
+    $("#locateMe").addEventListener("click", () => {
+      $("#mapStatus").textContent = "Locating your position…";
+      toast("Locating your position");
+    });
+    $("#followMe").addEventListener("click", () => {
+      const on = $("#followMe").getAttribute("aria-pressed") === "true";
+      $("#followMe").setAttribute("aria-pressed", String(!on));
+      toast(on ? "Stopped following your position" : "Following your position");
+    });
     $("#allPayments").addEventListener("click", () => toast("Opening your payment history"));
     $("#addAppt").addEventListener("click", () => {
       APPOINTMENTS.push({ month: "NOV", day: 3, title: "Passport Photo", place: "Annexe Administrative", status: "Pending" });

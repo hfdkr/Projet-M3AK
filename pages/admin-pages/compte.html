@@ -126,10 +126,192 @@
             @apply block w-full text-left px-[14px] py-[9px] font-hanken text-[13px]
                    text-slate-600 dark:text-mist-200 hover:bg-mint-50 dark:hover:bg-night-600 cursor-pointer;
         }
+
+        /* ==========================================================
+           4. SETTINGS LAYOUT
+        ========================================================== */
+        .settings-shell {
+            @apply mx-auto max-w-[1200px] px-[16px] md:px-[24px] pb-[100px] md:pb-[64px] pt-[20px] md:pt-[40px] md:flex md:gap-[40px];
+        }
+
+        .settings-mobile-head {
+            @apply md:hidden mb-[20px];
+        }
+
+        .settings-title {
+            @apply font-jakarta font-extrabold text-[20px] text-black-700 dark:text-mist-100 md:text-[22px];
+        }
+
+        .settings-subtitle {
+            @apply font-jakarta text-[12px] text-slate-500 dark:text-mist-300 mt-[2px];
+        }
+
+        .settings-sidebar {
+            @apply hidden md:flex md:flex-col md:w-[220px] md:shrink-0;
+        }
+
+        .settings-nav {
+            @apply mt-[20px] flex flex-col gap-[2px];
+        }
+
+        .settings-nav-item {
+            @apply flex items-center gap-[10px] rounded-[10px] px-[12px] py-[10px]
+                   font-hanken font-medium text-[13px] text-slate-600 dark:text-mist-200
+                   hover:bg-mint-100 dark:hover:bg-night-700 transition-colors cursor-pointer;
+        }
+
+        .settings-nav-item-active {
+            @apply bg-mint-100 dark:bg-night-700 text-green-900 dark:text-accent-400 font-semibold;
+        }
+
+        .settings-logout {
+            @apply mt-auto flex items-center gap-[10px] rounded-[10px] px-[12px] py-[10px]
+                   font-hanken font-semibold text-[13px] text-red-600 hover:bg-red-50 dark:hover:bg-night-700 transition-colors cursor-pointer;
+        }
+
+        .settings-main {
+            @apply flex-1 min-w-0 flex flex-col gap-[20px];
+        }
+
+        .card {
+            @apply bg-white dark:bg-night-700 rounded-[16px] border border-grey-200 dark:border-night-600
+                   p-[18px] md:p-[22px] transition-colors scroll-mt-[100px];
+        }
+
+        .card-head {
+            @apply flex items-center justify-between mb-[16px];
+        }
+
+        .card-title {
+            @apply font-jakarta font-bold text-[15px] text-black-700 dark:text-mist-100 flex items-center gap-[8px];
+        }
+
+        .card-link {
+            @apply font-hanken font-semibold text-[12px] text-green-900 dark:text-accent-400 hover:underline cursor-pointer bg-transparent;
+        }
+
+        .field-group {
+            @apply grid grid-cols-1 sm:grid-cols-2 gap-[14px];
+        }
+
+        .field-label {
+            @apply block font-hanken text-[10px] font-bold uppercase tracking-[0.6px] text-slate-400 dark:text-mist-300 mb-[6px];
+        }
+
+        .field-row {
+            @apply flex items-center justify-between gap-[8px] bg-mint-50 dark:bg-night-800 rounded-[10px] px-[12px] py-[10px];
+        }
+
+        .field-value {
+            @apply font-jakarta text-[13px] font-medium text-black-700 dark:text-mist-100 truncate bg-transparent outline-none w-full;
+        }
+
+        .field-edit {
+            @apply text-green-800 dark:text-accent-400 shrink-0 cursor-pointer;
+        }
+
+        .cin-card {
+            @apply relative overflow-hidden rounded-[20px] bg-gradient-to-br from-green-900 to-green-800 text-white p-[22px] md:p-[28px] scroll-mt-[100px];
+        }
+
+        .cin-eyebrow {
+            @apply font-hanken font-semibold text-[10px] uppercase tracking-[1px] text-white/70;
+        }
+
+        .cin-title {
+            @apply font-jakarta font-extrabold text-[20px] md:text-[24px] mt-[4px];
+        }
+
+        .cin-badge {
+            @apply inline-flex items-center gap-[5px] bg-white/20 rounded-full px-[10px] py-[4px] font-hanken font-semibold text-[10px];
+        }
+
+        .cin-meta-label {
+            @apply font-hanken text-[10px] uppercase tracking-[0.6px] text-white/60;
+        }
+
+        .cin-meta-value {
+            @apply font-jakarta font-bold text-[13px] mt-[2px];
+        }
+
+        .cin-btn-solid {
+            @apply bg-white text-green-900 font-hanken font-semibold text-[12px] rounded-[9px] px-[16px] py-[9px] hover:bg-mint-100 transition cursor-pointer;
+        }
+
+        .cin-btn-outline {
+            @apply border border-white/40 text-white font-hanken font-semibold text-[12px] rounded-[9px] px-[16px] py-[9px] hover:bg-white/10 transition cursor-pointer;
+        }
+
+        .security-row {
+            @apply flex items-center justify-between gap-[10px] py-[12px] border-b border-grey-200 dark:border-night-600 last:border-0 last:pb-0 first:pt-0;
+        }
+
+        .security-label {
+            @apply font-jakarta font-semibold text-[13px] text-black-700 dark:text-mist-100;
+        }
+
+        .security-meta {
+            @apply font-hanken text-[11px] text-slate-400 dark:text-mist-300 mt-[2px];
+        }
+
+        .toggle-switch {
+            @apply relative inline-flex h-[24px] w-[42px] shrink-0 items-center rounded-full bg-grey-200 dark:bg-night-600 transition-colors cursor-pointer;
+        }
+
+        .toggle-switch-on {
+            @apply bg-green-900 dark:bg-accent-400;
+        }
+
+        .toggle-switch-thumb {
+            @apply inline-block h-[18px] w-[18px] translate-x-[3px] transform rounded-full bg-white shadow transition-transform;
+        }
+
+        .toggle-switch-on .toggle-switch-thumb {
+            @apply translate-x-[21px];
+        }
+
+        .lang-select {
+            @apply w-full bg-mint-50 dark:bg-night-800 border border-grey-200 dark:border-night-600 rounded-[10px]
+                   px-[12px] py-[10px] font-jakarta text-[13px] text-black-700 dark:text-mist-100 outline-none
+                   focus:border-green-900 dark:focus:border-accent-400 transition;
+        }
+
+        .check-row {
+            @apply flex items-center justify-between gap-[10px] mt-[10px];
+        }
+
+        .check-label {
+            @apply font-jakarta text-[13px] text-black-700 dark:text-mist-100;
+        }
+
+        .check-box {
+            @apply size-[18px] rounded-[5px] border border-grey-200 dark:border-night-600 accent-green-900 dark:accent-accent-400 cursor-pointer;
+        }
+
+        /* ==========================================================
+           5. MOBILE BOTTOM NAV
+        ========================================================== */
+        .mobile-nav {
+            @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-night-800
+                   border-t border-grey-200 dark:border-night-600
+                   flex items-center justify-around py-[8px] transition-colors;
+        }
+
+        .mobile-nav-item {
+            @apply flex flex-col items-center gap-[4px] text-slate-400 dark:text-mist-300 w-[72px];
+        }
+
+        .mobile-nav-item-active {
+            @apply text-green-900 dark:text-accent-400;
+        }
+
+        .mobile-nav-label {
+            @apply font-hanken font-medium text-[10px];
+        }
     </style>
 </head>
 
-<body>
+<body data-require-auth>
 
     <!-- ======================================================
          HEADER
@@ -143,9 +325,9 @@
 
             <nav class="hidden md:flex items-center gap-[36px]">
                 <a href="/pages/app/overview.html" class="navbar">Dashboard</a>
-                <a href="/pages/app/services-hub.html" class="navbar">Services</a>
-                <a href="#" class="navbar">Health</a>
-                <a href="#" class="navbar">My Documents</a>
+                <a href="/pages/app/service.html" class="navbar">Services</a>
+                <a href="/pages/app/health.html" class="navbar">Health</a>
+                <a href="#digital-id" class="navbar">My Documents</a>
             </nav>
 
             <div class="flex items-center gap-[10px]">
@@ -181,15 +363,320 @@
                     </button>
 
                     <div class="user-menu hidden" data-menu>
-                        <a href="#">My profile</a>
-                        <a href="#">My documents</a>
-                        <a href="#">Settings</a>
+                        <a href="#personal-info">My profile</a>
+                        <a href="#digital-id">My documents</a>
+                        <a href="#security">Settings</a>
                         <button type="button" data-action="logout" class="text-red-600">Sign out</button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- ======================================================
+         BACK BAR
+    ======================================================= -->
+    <div class="bg-mint-50 dark:bg-night-900 border-b border-grey-200 dark:border-night-600 transition-colors">
+        <div class="md:max-w-[1200px] md:mx-auto px-[16px] md:px-[24px] py-[8px]">
+            <a href="/pages/app/overview.html"
+                class="inline-flex items-center gap-[6px] font-hanken font-semibold text-[13px] text-slate-500 dark:text-mist-300 hover:text-green-900 dark:hover:text-accent-400 transition-colors">
+                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Overview
+            </a>
+        </div>
+    </div>
+
+    <!-- ======================================================
+         SETTINGS
+    ======================================================= -->
+    <div class="settings-shell">
+
+        <!-- Mobile heading -->
+        <div class="settings-mobile-head">
+            <h1 class="settings-title">Settings</h1>
+            <p class="settings-subtitle">Manage your profile and preferences.</p>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="settings-sidebar">
+            <h1 class="settings-title">Settings</h1>
+            <p class="settings-subtitle">Manage your profile</p>
+
+            <nav class="settings-nav" data-settings-nav>
+                <a href="#personal-info" class="settings-nav-item settings-nav-item-active">
+                    <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+                    Personal Info
+                </a>
+                <a href="#security" class="settings-nav-item">
+                    <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg>
+                    Security
+                </a>
+                <a href="#digital-id" class="settings-nav-item">
+                    <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><circle cx="8.5" cy="11" r="2"/><path d="M5.5 16c.6-1.4 1.7-2 3-2s2.4.6 3 2M14.5 10h4M14.5 13.5h4"/></svg>
+                    Digital ID
+                </a>
+                <a href="#notifications" class="settings-nav-item">
+                    <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0"/></svg>
+                    Notifications
+                </a>
+                <a href="#language" class="settings-nav-item">
+                    <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+                    Language
+                </a>
+            </nav>
+
+            <a href="/pages/auth/login.html" class="settings-logout" data-action="logout">
+                <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 16l-4-4 4-4M6 12h9"/></svg>
+                Logout
+            </a>
+        </aside>
+
+        <!-- Main -->
+        <main class="settings-main">
+
+            <!-- Personal Information -->
+            <section id="personal-info" class="card">
+                <div class="card-head">
+                    <h2 class="card-title">
+                        <svg class="w-[16px] h-[16px] text-green-900 dark:text-accent-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+                        Personal Information
+                    </h2>
+                    <button type="button" class="card-link">Edit All</button>
+                </div>
+
+                <div class="field-group">
+                    <div>
+                        <label for="fullName" class="field-label">Full Name</label>
+                        <div class="field-row">
+                            <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" readonly>
+                            <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
+                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="field-label">Email Address</label>
+                        <div class="field-row">
+                            <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" readonly>
+                            <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
+                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="phone" class="field-label">Phone Number</label>
+                        <div class="field-row">
+                            <input id="phone" type="tel" class="field-value" value="+212 661-000000" readonly>
+                            <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
+                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="address" class="field-label">Mailing Address</label>
+                        <div class="field-row">
+                            <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Rabat" readonly>
+                            <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
+                                <svg class="w-[14px] h-[14px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Digital Identity CIN -->
+            <section id="digital-id" class="cin-card">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="cin-eyebrow">Kingdom of Morocco</p>
+                        <h2 class="cin-title">Digital Identity CIN</h2>
+                    </div>
+                    <span class="cin-badge">
+                        <span class="size-[6px] rounded-full bg-accent-400"></span>
+                        Active
+                    </span>
+                </div>
+
+                <div class="mt-[18px] flex flex-wrap items-end justify-between gap-4">
+                    <div class="flex gap-8">
+                        <div>
+                            <p class="cin-meta-label">CIN Number</p>
+                            <p class="cin-meta-value">AB123456</p>
+                        </div>
+                        <div>
+                            <p class="cin-meta-label">Expiry Date</p>
+                            <p class="cin-meta-value">12 / 2028</p>
+                        </div>
+                    </div>
+                    <span class="hidden sm:grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-white/15">
+                        <svg class="w-[24px] h-[24px]" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><circle cx="8.5" cy="11" r="2"/><path d="M5.5 16c.6-1.4 1.7-2 3-2s2.4.6 3 2M14.5 10h4M14.5 13.5h4"/></svg>
+                    </span>
+                </div>
+
+                <div class="mt-[18px] flex flex-wrap gap-[10px]">
+                    <button type="button" class="cin-btn-solid">View Details</button>
+                    <button type="button" class="cin-btn-outline">Renew Document</button>
+                </div>
+            </section>
+
+            <div class="grid gap-[20px] md:grid-cols-2">
+
+                <!-- Security -->
+                <section id="security" class="card">
+                    <div class="card-head">
+                        <h2 class="card-title">
+                            <svg class="w-[16px] h-[16px] text-green-900 dark:text-accent-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg>
+                            Security
+                        </h2>
+                    </div>
+
+                    <div class="security-row">
+                        <div>
+                            <p class="security-label">Password</p>
+                            <p class="security-meta">Last changed 3 months ago</p>
+                        </div>
+                        <button type="button" class="card-link">Update</button>
+                    </div>
+
+                    <div class="security-row">
+                        <div>
+                            <p class="security-label">Two-Factor Auth (2FA)</p>
+                            <p class="security-meta text-green-800 dark:text-accent-400">Enabled</p>
+                        </div>
+                        <button type="button" class="card-link">Manage</button>
+                    </div>
+
+                    <div class="security-row">
+                        <div>
+                            <p class="security-label">Biometric Login</p>
+                            <p class="security-meta">FaceID or Fingerprint</p>
+                        </div>
+                        <button type="button" class="toggle-switch toggle-switch-on" data-toggle-switch aria-pressed="true" aria-label="Toggle biometric login">
+                            <span class="toggle-switch-thumb"></span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Preferences -->
+                <section class="card">
+                    <div class="card-head">
+                        <h2 class="card-title">
+                            <svg class="w-[16px] h-[16px] text-green-900 dark:text-accent-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z"/></svg>
+                            Preferences
+                        </h2>
+                    </div>
+
+                    <div id="language">
+                        <label for="platformLanguage" class="field-label">Platform Language</label>
+                        <select id="platformLanguage" class="lang-select">
+                            <option>العربية (المغرب)</option>
+                            <option>Français</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+
+                    <div id="notifications" class="mt-[18px]">
+                        <p class="field-label">Notifications</p>
+                        <div class="check-row">
+                            <span class="check-label">Email Notifications</span>
+                            <input type="checkbox" class="check-box" checked>
+                        </div>
+                        <div class="check-row">
+                            <span class="check-label">SMS Alerts</span>
+                            <input type="checkbox" class="check-box" checked>
+                        </div>
+                        <div class="check-row">
+                            <span class="check-label">Push Notifications</span>
+                            <input type="checkbox" class="check-box">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================================================
+         MOBILE BOTTOM NAV
+    ======================================================= -->
+    <nav class="mobile-nav" aria-label="Primary">
+        <a href="/pages/app/overview.html" class="mobile-nav-item">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>
+            <span class="mobile-nav-label">Dashboard</span>
+        </a>
+        <a href="/pages/app/service.html" class="mobile-nav-item">
+            <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3 4v2h10V7zm0 4v2h10v-2zm0 4v2h6v-2z"/></svg>
+            <span class="mobile-nav-label">Services</span>
+        </a>
+        <a href="/pages/admin-pages/compte.html" class="mobile-nav-item mobile-nav-item-active">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z"/></svg>
+            <span class="mobile-nav-label">Settings</span>
+        </a>
+    </nav>
+
+    <!-- ======================================================
+         FOOTER
+    ======================================================= -->
+    <footer class="hidden md:block border-t border-grey-200 dark:border-night-600 bg-white dark:bg-night-800 px-[24px] py-[18px] transition-colors">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between font-hanken text-[12px] text-slate-400 dark:text-mist-300">
+            <p>© 2026 M3ak Public Service Platform, Kingdom of Morocco.</p>
+            <div class="flex items-center gap-[20px]">
+                <a href="#" class="hover:text-green-800 dark:hover:text-accent-400">Privacy Policy</a>
+                <a href="#" class="hover:text-green-800 dark:hover:text-accent-400">Terms of Service</a>
+                <a href="/pages/app/support.html" class="hover:text-green-800 dark:hover:text-accent-400">Help Center</a>
+                <a href="#" class="hover:text-green-800 dark:hover:text-accent-400">Accessibility</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ---------- Settings nav: highlight the section in view ---------- */
+        var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-settings-nav] a"));
+        var sections = navLinks
+            .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+            .filter(Boolean);
+
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.forEach(function (l) { l.classList.remove("settings-nav-item-active"); });
+                link.classList.add("settings-nav-item-active");
+            });
+        });
+
+        if (window.IntersectionObserver && sections.length) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) { return; }
+                    var link = navLinks.filter(function (a) { return a.getAttribute("href") === "#" + entry.target.id; })[0];
+                    if (!link) { return; }
+                    navLinks.forEach(function (l) { l.classList.remove("settings-nav-item-active"); });
+                    link.classList.add("settings-nav-item-active");
+                });
+            }, { rootMargin: "-40% 0px -50% 0px" });
+
+            sections.forEach(function (section) { observer.observe(section); });
+        }
+
+        /* ---------- Biometric toggle ---------- */
+        document.querySelectorAll("[data-toggle-switch]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var on = btn.classList.toggle("toggle-switch-on");
+                btn.setAttribute("aria-pressed", String(on));
+            });
+        });
+
+        /* ---------- Field edit: unlock a field for inline editing ---------- */
+        document.querySelectorAll("[data-edit-field]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var field = document.getElementById(btn.getAttribute("data-edit-field"));
+                if (!field) { return; }
+                field.readOnly = false;
+                field.focus();
+                field.addEventListener("blur", function () { field.readOnly = true; }, { once: true });
+            });
+        });
+    </script>
 
 </body>
 

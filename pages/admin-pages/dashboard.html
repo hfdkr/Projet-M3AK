@@ -513,7 +513,7 @@
     </style>
 </head>
 
-<body>
+<body data-require-auth>
 
     <div class="app">
 
@@ -571,9 +571,9 @@
                     </button>
 
                     <div class="user-menu hidden">
-                        <a href="#">My profile</a>
-                        <a href="#">Admin settings</a>
-                        <button type="button" class="text-brick-600">Sign out</button>
+                        <a href="/pages/app/coming-soon.html?feature=Admin+Accounts">My profile</a>
+                        <a href="/pages/app/coming-soon.html?feature=Admin+Settings">Admin settings</a>
+                        <button type="button" class="text-brick-600" data-action="logout">Sign out</button>
                     </div>
                 </div>
             </div>
@@ -596,66 +596,34 @@
                 </div>
 
                 <nav class="sidebar-nav">
-                    <a href="/pages/dashboard/service.html" class="nav-item nav-item-active">
+                    <a href="/pages/admin-pages/dashboard.html" class="nav-item nav-item-active">
                         <img src="/assets/dashboard/services.png" alt="" class="nav-icon">
-                        Services
+                        Dashboard
                     </a>
 
-                    <a href="/pages/dashboard/transport.html" class="nav-item">
-                        <img src="/assets/dashboard/transport.png" alt="" class="nav-icon">
-                        Transport
+                    <a href="/pages/app/coming-soon.html?feature=Admin+Accounts" class="nav-item">
+                        <img src="/assets/dashboard-assets/icon-admin.png" alt="" class="nav-icon">
+                        Accounts
                     </a>
 
-                    <a href="#" class="nav-item">
-                        <img src="/assets/dashboard/housing.png" alt="" class="nav-icon">
-                        Housing
+                    <a href="/pages/app/coming-soon.html?feature=Activity+Logs" class="nav-item">
+                        <img src="/assets/dashboard/kpi-time.png" alt="" class="nav-icon">
+                        Activity Logs
                     </a>
 
-                    <a href="#" class="nav-item">
-                        <img src="/assets/dashboard/jobs.png" alt="" class="nav-icon">
-                        Jobs
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <img src="/assets/dashboard/education.png" alt="" class="nav-icon">
-                        Education
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <img src="/assets/dashboard/healthcare.png" alt="" class="nav-icon">
-                        Healthcare
-                    </a>
-
-                    <a href="#" class="nav-item">
-                        <img src="/assets/dashboard/payments.png" alt="" class="nav-icon">
-                        Payments
-                    </a>
-
-                    <a href="/pages/dashboard/marketplace.html" class="nav-item">
-                        <img src="/assets/dashboard/marketplace.png" alt="" class="nav-icon">
-                        Marketplace
-                    </a>
-
-                    <a href="/pages/dashboard/emergence.html" class="nav-item">
-                        <img src="/assets/dashboard/emergency.png" alt="" class="nav-icon">
-                        Emergency
+                    <a href="/pages/app/coming-soon.html?feature=Reports" class="nav-item">
+                        <img src="/assets/dashboard/export.png" alt="" class="nav-icon">
+                        Reports
                     </a>
                 </nav>
 
                 <div class="sidebar-foot">
-                    <a href="/pages/dashboard/emergence.html" class="nav-emergency">
-                        <span class="rounded bg-white/25 px-[5px] py-[1px] text-[9px] font-extrabold tracking-[0.6px]">
-                            SOS
-                        </span>
-                        Emergency Support
-                    </a>
-
-                    <a href="#" class="nav-item mt-[12px]">
+                    <a href="/pages/app/coming-soon.html?feature=Admin+Settings" class="nav-item">
                         <img src="/assets/dashboard/settings.png" alt="" class="nav-icon">
                         Settings
                     </a>
 
-                    <a href="/pages/auth/login.html" class="nav-item">
+                    <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
                         <img src="/assets/dashboard/logout.png" alt="" class="nav-icon">
                         Logout
                     </a>
@@ -892,7 +860,7 @@
                                 <h2 class="panel-title">Recent Activity</h2>
                                 <p class="panel-subtitle">Real-time updates across the kingdom.</p>
                             </div>
-                            <a href="#" class="panel-link">View All Logs</a>
+                            <a href="/pages/app/coming-soon.html?feature=Activity+Logs" class="panel-link">View All Logs</a>
                         </div>
                         <div class="table-wrap">
                             <table>
@@ -987,8 +955,8 @@
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
                     <a href="#">Public Data</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Help Center</a>
+                    <a href="/pages/app/support.html">Contact Us</a>
+                    <a href="/pages/app/support.html">Help Center</a>
                 </div>
             </div>
         </footer>
@@ -997,21 +965,21 @@
         MOBILE BOTTOM NAV
     =================================================== -->
     <nav class="mobile-nav">
-        <a href="#" class="mobile-nav-item mobile-nav-item-active">
+        <a href="/pages/admin-pages/dashboard.html" class="mobile-nav-item mobile-nav-item-active">
             <img src="/assets/dashboard/nav-overview.png" alt="">
             <span class="mobile-nav-label">Overview</span>
         </a>
-        <a href="#" class="mobile-nav-item">
-            <img src="/assets/dashboard/nav-services.png" alt="">
-            <span class="mobile-nav-label">Services</span>
-        </a>
-        <a href="#" class="mobile-nav-item">
-            <img src="/assets/dashboard/nav-payments.png" alt="">
-            <span class="mobile-nav-label">Payments</span>
-        </a>
-        <a href="#" class="mobile-nav-item">
+        <a href="/pages/app/coming-soon.html?feature=Admin+Accounts" class="mobile-nav-item">
             <img src="/assets/dashboard/nav-citizens.png" alt="">
-            <span class="mobile-nav-label">Citizens</span>
+            <span class="mobile-nav-label">Accounts</span>
+        </a>
+        <a href="/pages/app/coming-soon.html?feature=Reports" class="mobile-nav-item">
+            <img src="/assets/dashboard/nav-services.png" alt="">
+            <span class="mobile-nav-label">Reports</span>
+        </a>
+        <a href="/pages/app/coming-soon.html?feature=Admin+Settings" class="mobile-nav-item">
+            <img src="/assets/dashboard/nav-payments.png" alt="">
+            <span class="mobile-nav-label">Settings</span>
         </a>
     </nav>
     <script>
