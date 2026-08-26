@@ -198,7 +198,7 @@
   <div class="flex">
 
     <!-- ══════════ SIDEBAR ══════════ -->
-    <aside
+    <aside id="sidebar"
       class="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-black/5 dark:border-white/10 bg-brand-soft/40 dark:bg-night-800 px-3 py-5 lg:flex">
       <div class="mb-5 flex items-center gap-3 px-2">
         <span class="grid size-9 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
@@ -223,8 +223,8 @@
             <rect x="3" y="14" width="7" height="7" rx="1.6" />
             <rect x="14" y="14" width="7" height="7" rx="1.6" />
           </svg>
-          Services
-        </a>
+                    <span class="nav-label">Services</span>
+                </a>
         <a href="/pages/app/transport.html" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
             stroke-linejoin="round">
@@ -295,9 +295,9 @@
 
       <div class="mt-auto space-y-1 pt-6">
         <a href="/pages/app/emergence.html"
-          class="flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-          <span class="rounded bg-white/25 px-1.5 py-0.5 text-[10px] font-extrabold tracking-wider">SOS</span>
-          Emergency Support
+            class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+            <svg class="size-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2.5 18a1.8 1.8 0 0 0 1.6 2.7h15.8a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z" /><path d="M12 9v4M12 17h.01" /></svg>
+            <span class="nav-label whitespace-nowrap">Emergency Support</span>
         </a>
         <a href="/pages/admin-pages/compte.html#security" class="nav-item">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -656,13 +656,13 @@
     /* Instagram-style icon rail: label hidden by default on desktop,
        fades in on hover/focus of that row, fades out when the cursor leaves. */
     @media (min-width: 1024px) {
-      .nav-item .nav-label {
+      .nav-label {
         opacity: 0;
         transition: opacity .15s ease;
       }
 
-      .nav-item:hover .nav-label,
-      .nav-item:focus-visible .nav-label {
+      #sidebar:hover .nav-label,
+      #sidebar:focus-within .nav-label {
         opacity: 1;
       }
     }

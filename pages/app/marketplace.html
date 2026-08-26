@@ -106,13 +106,13 @@
         /* Instagram-style icon rail: label hidden by default on desktop,
            fades in on hover/focus of that row, fades out when the cursor leaves. */
         @media (min-width: 1024px) {
-            .nav-item .nav-label {
+            .nav-label {
                 opacity: 0;
                 transition: opacity .15s ease;
             }
 
-            .nav-item:hover .nav-label,
-            .nav-item:focus-visible .nav-label {
+            #sidebar:hover .nav-label,
+            #sidebar:focus-within .nav-label {
                 opacity: 1;
             }
         }
@@ -187,7 +187,7 @@
     <div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
 
         <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
-        <aside
+        <aside id="sidebar"
             class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-white/10 py-8 pr-6 lg:block">
             <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300">Categories</p>
 
@@ -243,25 +243,14 @@
                     class="flex items-center gap-3 rounded-xl bg-brand-soft dark:bg-accent-400/15 px-3 py-2.5 font-semibold text-brand dark:text-accent-400">
                     <img src="/assets/marketplace-image/marketplace.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Marketplace
-                </a>
-
-                <a href="/pages/app/emergence.html"
-                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/emergence.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
-                    <span class="nav-label">Emergency</span>
+                    <span class="nav-label">Marketplace</span>
                 </a>
             </nav>
 
             <a href="/pages/app/emergence.html"
-                class="mt-6 flex items-center justify-center gap-2 rounded-xl bg-danger px-3 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-                <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round">
-                    <path d="M12 2v20M2 12h20" transform="rotate(45 12 12)" />
-                    <path d="M12 2v20M2 12h20" />
-                </svg>
-                Emergency Support
+                class="mt-6 flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+                <svg class="size-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2.5 18a1.8 1.8 0 0 0 1.6 2.7h15.8a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z" /><path d="M12 9v4M12 17h.01" /></svg>
+                <span class="nav-label whitespace-nowrap">Emergency Support</span>
             </a>
 
             <a href="/pages/admin-pages/compte.html#security"
@@ -303,7 +292,7 @@
                     <!-- Filter -->
                     <div class="relative">
                         <button id="filterBtn" type="button" aria-expanded="false" aria-controls="filterPanel"
-                            class="flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-sm font-medium hover:border-brand-line dark:hover:border-accent-400/40 focus-visible:ring-2 focus-visible:ring-brand/30">
+                            class="flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:hover:text-white dark:bg-night-800 dark:text-white/30 px-3.5 py-2 text-sm font-medium hover:border-brand-line dark:hover:border-accent-400/40 focus-visible:ring-2 focus-visible:ring-brand/30">
                             <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round">
                                 <path d="M4 6h16M7 12h10M10 18h4" />
@@ -318,7 +307,7 @@
                             <p class="text-xs font-bold uppercase tracking-wider text-muted dark:text-mist-300">Max price</p>
                             <input id="priceRange" type="range" min="100" max="4000" step="50" value="4000"
                                 class="mt-3 w-full accent-[#0B6B45]" />
-                            <p class="mt-1 text-sm font-semibold">Up to <span id="priceValue">4,000</span> MAD</p>
+                            <p class="mt-1 text-sm font-semibold dark:text-white ">Up to <span id="priceValue">4,000</span> MAD</p>
 
                             <p class="mt-5 text-xs font-bold uppercase tracking-wider text-muted dark:text-mist-300">Minimum rating</p>
                             <div class="mt-2 flex gap-2" id="ratingGroup">
@@ -331,7 +320,7 @@
                             </div>
 
                             <button id="resetFilters" type="button"
-                                class="mt-5 w-full rounded-lg bg-canvas dark:bg-night-700 py-2 text-sm font-semibold hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400">Reset
+                                class="mt-5 w-full rounded-lg bg-canvas dark:bg-night-700 dark:text-white  py-2 text-sm font-semibold hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400">Reset
                                 filters</button>
                         </div>
                     </div>
@@ -339,7 +328,7 @@
                     <!-- Sort -->
                     <div class="relative">
                         <button id="sortBtn" type="button" aria-expanded="false" aria-controls="sortMenu"
-                            class="flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-sm font-medium hover:border-brand-line dark:hover:border-accent-400/40 focus-visible:ring-2 focus-visible:ring-brand/30">
+                            class="flex items-center gap-2 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-sm font-medium hover:border-brand-line dark:hover:border-accent-400/40 dark:hover:text-white dark:text-white/30 focus-visible:ring-2 focus-visible:ring-brand/30">
                             <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3" />
@@ -350,16 +339,16 @@
                         <div id="sortMenu"
                             class="absolute right-0 top-11 z-30 hidden w-56 overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-800 py-1.5 shadow-xl">
                             <button type="button" data-sort="newest"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Newest
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700 dark:text-white/30 dark:hover:text-white/60">Newest
                                 First</button>
                             <button type="button" data-sort="price-asc"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Price:
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700 dark:text-white/30 dark:hover:text-white/60 ">Price:
                                 Low to High</button>
                             <button type="button" data-sort="price-desc"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Price:
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700 dark:text-white/30 dark:hover:text-white/60 ">Price:
                                 High to Low</button>
                             <button type="button" data-sort="rating"
-                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700">Top
+                                class="sort-opt flex w-full items-center px-4 py-2.5 text-left text-sm hover:bg-canvas dark:hover:bg-night-700 dark:text-white/30 dark:hover:text-white/60 ">Top
                                 Rated</button>
                         </div>
                     </div>
