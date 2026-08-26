@@ -102,6 +102,20 @@
                 transition-duration: .001ms !important;
             }
         }
+
+        /* Instagram-style icon rail: label hidden by default on desktop,
+           fades in on hover/focus of that row, fades out when the cursor leaves. */
+        @media (min-width: 1024px) {
+            .nav-item .nav-label {
+                opacity: 0;
+                transition: opacity .15s ease;
+            }
+
+            .nav-item:hover .nav-label,
+            .nav-item:focus-visible .nav-label {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -179,50 +193,50 @@
 
             <nav class="space-y-1 text-sm font-medium">
                 <a href="/pages/app/service.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/service.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Services
+                    <span class="nav-label">Services</span>
                 </a>
 
                 <a href="/pages/app/transport.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/transport.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Transport
+                    <span class="nav-label">Transport</span>
                 </a>
 
                 <a href="/pages/app/housing.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/house.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    Housing
+                    <span class="nav-label">Housing</span>
                 </a>
 
                 <a href="/pages/app/jobs.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/job.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    Jobs
+                    <span class="nav-label">Jobs</span>
                 </a>
 
                 <a href="/pages/app/education.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/education.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Education
+                    <span class="nav-label">Education</span>
                 </a>
 
                 <a href="/pages/app/health.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/health.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Healthcare
+                    <span class="nav-label">Healthcare</span>
                 </a>
 
                 <a href="/pages/app/payments.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/payment.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Payments
+                    <span class="nav-label">Payments</span>
                 </a>
 
                 <a href="/pages/app/marketplace.html" aria-current="page"
@@ -233,10 +247,10 @@
                 </a>
 
                 <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                    class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                     <img src="/assets/marketplace-image/emergence.png" alt=""
                         class="size-[18px] shrink-0 object-contain" />
-                    Emergency
+                    <span class="nav-label">Emergency</span>
                 </a>
             </nav>
 
@@ -251,14 +265,14 @@
             </a>
 
             <a href="/pages/admin-pages/compte.html#security"
-                class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
+                class="nav-item mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
                 <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <circle cx="12" cy="12" r="3" />
                     <path
                         d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" />
                 </svg>
-                Settings
-            </a>
+                    <span class="nav-label">Settings</span>
+                </a>
         </aside>
         <!-- ══════════════ MAIN ══════════════ -->
         <main class="min-w-0 flex-1 pb-28 pt-6 lg:pb-16 lg:pt-8">
