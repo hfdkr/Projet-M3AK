@@ -1,6 +1,28 @@
 ﻿# 🇲🇦 Projet-M3AK
 
-A modern digital identity platform for Morocco, currently under development. This project focuses on creating a secure, user-friendly, and responsive platform for managing digital identity and public services.
+A modern digital identity platform concept for Morocco, currently under development as a **frontend prototype**. This project focuses on the interface, navigation, and user experience for managing digital identity and public services — the screens a citizen would eventually use, built and connected end-to-end on the client side.
+
+---
+
+## ⚠️ Current Development Scope
+
+**Projet-M3AK is currently a frontend-only project.** Everything in this repository — the interfaces, responsive layouts, navigation, dark mode, client-side form validation, session handling, and interactive features (search, filters, the SOS flow, the wallet UI, etc.) — is implemented using HTML, Tailwind CSS, and vanilla JavaScript, running entirely in the browser.
+
+| Layer | Status |
+|---|---|
+| **Frontend** (UI, layout, navigation, dark mode, client-side validation, interactivity) | ✅ Implemented |
+| **Authentication** | ⚠️ Simulated client-side only, via `localStorage` (`session.js`) — not real authentication |
+| **Backend / server** | ❌ Not implemented |
+| **Database** | ❌ Not implemented |
+| **Real API** | ❌ Not implemented |
+
+Concretely, this means:
+
+- "Signing in" or "creating an account" just writes a name/email to `localStorage` and unlocks the app pages — there is no server verifying credentials, and no account data is persisted anywhere but the visitor's own browser.
+- Data shown across the app (transport times, marketplace listings, payment history, doctor listings, KPIs, etc.) is static/mock data defined in each page's own JavaScript, not fetched from any backend.
+- There is no database, no server-side session, and no real API — every "request" (booking, payment, ticket submission) is a UI-only simulation (usually confirmed with a toast message) with nothing sent over the network.
+
+None of this is hidden: the goal at this stage is a complete, well-connected frontend that a backend can be wired into later — not a finished product.
 
 ---
 
@@ -27,6 +49,10 @@ A modern digital identity platform for Morocco, currently under development. Thi
 - Tailwind CSS v4 *(via CDN — build step planned, see Roadmap)*
 - JavaScript (vanilla, no framework)
 - OpenStreetMap / Leaflet *(live maps & geolocation)*
+- `localStorage` *(client-side only, for simulating the signed-in session — see [Current Development Scope](#️-current-development-scope))*
+
+This is the complete stack. There is no backend framework, no database, and no server-side language involved at
+this stage — no Node.js/Express, no Python/Django/Flask, no PHP, no SQL/NoSQL database, no REST or GraphQL API.
 
 ---
 
