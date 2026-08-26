@@ -89,7 +89,7 @@
         /* Instagram-style icon rail: label hidden by default on desktop,
            fades in on hover/focus of that row, fades out when the cursor leaves. */
         @media (min-width: 1024px) {
-            .nav-item .nav-label {
+            .nav-label {
                 opacity: 0;
                 transition: opacity .15s ease;
             }
@@ -202,7 +202,7 @@
                 <a href="/pages/app/registry.html" aria-current="page"
                     class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
                     <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3 4v2h10V7zm0 4v2h10v-2zm0 4v2h6v-2z" /></svg>
-                    Registry
+                    <span class="nav-label">Registry</span>
                 </a>
                 <a href="/pages/app/marketplace.html" class="nav-item">
                     <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9.5 4.5 4h15L21 9.5" /><path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" /><path d="M5 12v8h14v-8" /></svg>
