@@ -49,7 +49,7 @@ None of this is hidden: the goal at this stage is a complete, well-connected fro
 - Tailwind CSS v4 *(via CDN — build step planned, see Roadmap)*
 - JavaScript (vanilla, no framework)
 - OpenStreetMap / Leaflet *(live maps & geolocation)*
-- `localStorage` *(client-side only, for simulating the signed-in session — see [Current Development Scope](#️-current-development-scope))*
+- `localStorage` *(client-side only, for simulating the signed-in session — see "Current Development Scope" above)*
 
 This is the complete stack. There is no backend framework, no database, and no server-side language involved at
 this stage — no Node.js/Express, no Python/Django/Flask, no PHP, no SQL/NoSQL database, no REST or GraphQL API.
@@ -126,12 +126,16 @@ Projet-M3AK/
 - Public service directory (12 ministry categories: Housing, Jobs, Education, Healthcare, Registry, Interior,
   Finance, Justice, Foreign Affairs, Agriculture, Culture, Tourism — first 7 are real pages, the rest fall
   back to the shared Coming Soon placeholder)
-- Marketplace with search, filters, sorting and wishlist
-- Payments hub with wallet balance, recent payments, and bill-payment categories
+- Marketplace with search, filters, sorting and wishlist *(product data is static/mock, no real checkout)*
+- Payments hub UI with wallet balance, recent payments, and bill-payment categories *(mock data, no real
+  transactions — nothing is actually charged or transferred)*
 - Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
-- Admin Dashboard: KPIs, engagement trends, service usage
-- Session handling shared across pages via `localStorage` (`session.js`), with a real auth guard
-  (`data-require-auth`) protecting every app/admin page
+  *(the SOS action is a UI simulation; no alert is actually sent to emergency services)*
+- Admin Dashboard: KPIs, engagement trends, service usage *(all figures are static/mock data for the UI, not
+  pulled from real usage)*
+- Simulated session handling shared across pages via `localStorage` (`session.js`), with a client-side auth
+  guard (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored — this
+  is a frontend UX gate, not real authentication or authorization
 - Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too)
 
 ---
