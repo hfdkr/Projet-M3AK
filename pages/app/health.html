@@ -269,7 +269,73 @@
         </div>
     </div>
 
-    <main class="mx-auto max-w-[1280px] px-4 pb-28 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
+    <div class="flex">
+
+        <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
+        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+            <div class="mb-5 px-2">
+                <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+                <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+            </div>
+
+            <nav class="space-y-0.5">
+                <a href="/pages/app/overview.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6" /><rect x="14" y="3" width="7" height="7" rx="1.6" /><rect x="3" y="14" width="7" height="7" rx="1.6" /><rect x="14" y="14" width="7" height="7" rx="1.6" /></svg>
+                    <span class="nav-label">Services</span>
+                </a>
+                <a href="/pages/app/transport.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="13" rx="2.5" /><path d="M5 9h14M8 20l-1.5 2M16 20l1.5 2" /></svg>
+                    <span class="nav-label">Transport</span>
+                </a>
+                <a href="/pages/app/housing.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" /><path d="M9 21v-7h6v7" /></svg>
+                    <span class="nav-label">Housing</span>
+                </a>
+                <a href="/pages/app/jobs.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" /></svg>
+                    <span class="nav-label">Jobs</span>
+                </a>
+                <a href="/pages/app/education.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m2 8 10-4 10 4-10 4z" /><path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" /></svg>
+                    <span class="nav-label">Education</span>
+                </a>
+                <a href="/pages/app/health.html" aria-current="page"
+                    class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="14" rx="2.5" /><path d="M12 10v6M9 13h6" /></svg>
+                    <span class="nav-label">Healthcare</span>
+                </a>
+                <a href="/pages/app/payments.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><path d="M2.5 10h19" /></svg>
+                    <span class="nav-label">Payments</span>
+                </a>
+                <a href="/pages/app/marketplace.html" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9.5 4.5 4h15L21 9.5" /><path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0" /><path d="M5 12v8h14v-8" /></svg>
+                    <span class="nav-label">Marketplace</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto space-y-1 pt-6">
+                <a href="/pages/app/emergence.html"
+                    class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+                    <svg class="size-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 2.5 18a1.8 1.8 0 0 0 1.6 2.7h15.8a1.8 1.8 0 0 0 1.6-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0z" /><path d="M12 9v4M12 17h.01" /></svg>
+                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+                </a>
+                <a href="/pages/admin-pages/compte.html#security" class="nav-item">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" /></svg>
+                    <span class="nav-label">Settings</span>
+                </a>
+                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" /><path d="M10 16l-4-4 4-4M6 12h9" /></svg>
+                    <span class="nav-label">Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ══════════ CONTENU ══════════ -->
+        <main class="min-w-0 flex-1 px-4 pb-28 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
 
         <!-- TITLE -->
         <div class="lg:flex lg:items-end lg:justify-between lg:gap-6">
@@ -528,6 +594,7 @@
         </section>
 
     </main>
+    </div>
 
     <!-- FOOTER -->
     <footer class="mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors">
@@ -592,6 +659,21 @@
 
         </div>
     </nav>
+
+    <script>
+        var sidebar = document.getElementById("sidebar"), scrim = document.getElementById("scrim");
+        function openDrawer(open) {
+            sidebar.classList.toggle("-translate-x-full", !open);
+            scrim.classList.toggle("hidden", !open);
+            document.body.classList.toggle("overflow-hidden", open);
+        }
+        document.getElementById("menuBtn").addEventListener("click", function () { openDrawer(true); });
+        scrim.addEventListener("click", function () { openDrawer(false); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
+        sidebar.addEventListener("click", function (e) {
+            if (window.matchMedia("(max-width: 1023px)").matches && e.target.closest("a")) openDrawer(false);
+        });
+    </script>
 
 </body>
 </html>
