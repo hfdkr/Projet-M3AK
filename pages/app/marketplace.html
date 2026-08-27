@@ -7,6 +7,7 @@
     <title>Marketplace — M3ak Morocco</title>
     <script src="/pages/js/session.js"></script>
     <script src="/pages/js/theme.js"></script>
+    <script src="/pages/js/sidebar.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
@@ -116,6 +117,35 @@
                 opacity: 1;
             }
         }
+
+        /* Collapsible desktop rail */
+        @media (min-width: 1024px) {
+            #sidebar {
+                transition: width .2s ease;
+            }
+
+            #sidebar.sidebar-collapsed {
+                width: 5rem !important;
+            }
+
+            #sidebar.sidebar-collapsed .sidebar-text,
+            #sidebar.sidebar-collapsed .nav-label {
+                display: none !important;
+            }
+
+            #sidebar.sidebar-collapsed .sidebar-head {
+                flex-direction: column;
+                gap: .5rem;
+            }
+
+            #sidebar.sidebar-collapsed a {
+                justify-content: center;
+            }
+
+            #sidebar.sidebar-collapsed .sidebar-toggle-icon {
+                transform: rotate(180deg);
+            }
+        }
     </style>
 </head>
 
@@ -189,7 +219,13 @@
         <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
         <aside id="sidebar"
             class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-white/10 py-8 pr-6 lg:block">
-            <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300">Categories</p>
+            <div class="mb-4 flex items-center justify-between px-3 sidebar-head">
+                <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300 sidebar-text">Categories</p>
+                <button type="button" data-sidebar-toggle aria-label="Toggle sidebar" aria-expanded="false"
+                    class="grid size-7 shrink-0 place-items-center rounded-lg text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700">
+                    <svg class="size-4 sidebar-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+                </button>
+            </div>
 
             <nav class="space-y-1 text-sm font-medium">
                 <a href="/pages/app/service.html"

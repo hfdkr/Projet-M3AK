@@ -7,6 +7,7 @@
   <title>Dashboard — M3ak Morocco</title>
   <script src="/pages/js/session.js"></script>
   <script src="/pages/js/theme.js"></script>
+  <script src="/pages/js/sidebar.js"></script>
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -200,18 +201,22 @@
     <!-- ══════════ SIDEBAR ══════════ -->
     <aside id="sidebar"
       class="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-black/5 dark:border-white/10 bg-brand-soft/40 dark:bg-night-800 px-3 py-5 lg:flex">
-      <div class="mb-5 flex items-center gap-3 px-2">
-        <span class="grid size-9 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
+      <div class="mb-5 flex items-center gap-3 px-2 sidebar-head">
+        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
           <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
             stroke-linecap="round">
             <circle cx="12" cy="12" r="8.5" />
             <path d="M12 8v8M8 12h8" />
           </svg>
         </span>
-        <span>
+        <span class="sidebar-text">
           <span class="block text-sm font-extrabold leading-tight text-brand dark:text-accent-400">M3ak</span>
           <span class="block text-[11px] text-muted dark:text-mist-300">Citizen Portal</span>
         </span>
+        <button type="button" data-sidebar-toggle aria-label="Toggle sidebar" aria-expanded="false"
+          class="ml-auto grid size-8 shrink-0 place-items-center rounded-lg text-muted dark:text-mist-300 hover:bg-white dark:hover:bg-night-700">
+          <svg class="size-4 sidebar-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+        </button>
       </div>
 
       <nav class="space-y-0.5 text-sm font-medium">
@@ -664,6 +669,35 @@
       #sidebar:hover .nav-label,
       #sidebar:focus-within .nav-label {
         opacity: 1;
+      }
+    }
+
+    /* Collapsible desktop rail */
+    @media (min-width: 1024px) {
+      #sidebar {
+        transition: width .2s ease;
+      }
+
+      #sidebar.sidebar-collapsed {
+        width: 5rem !important;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-text,
+      #sidebar.sidebar-collapsed .nav-label {
+        display: none !important;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-head {
+        flex-direction: column;
+        gap: .5rem;
+      }
+
+      #sidebar.sidebar-collapsed a {
+        justify-content: center;
+      }
+
+      #sidebar.sidebar-collapsed .sidebar-toggle-icon {
+        transform: rotate(180deg);
       }
     }
   </style>
