@@ -103,17 +103,51 @@
             }
         }
 
-        /* Instagram-style icon rail: label hidden by default on desktop,
-           fades in on hover/focus of that row, fades out when the cursor leaves. */
+        /* Icon rail: collapsed at rest, expands automatically on hover/focus */
         @media (min-width: 1024px) {
-            .nav-label {
+            #sidebar {
+                width: 5rem;
+                transition: width .2s ease;
+            }
+
+            #sidebar:hover,
+            #sidebar:focus-within {
+                width: 15rem;
+            }
+
+            #sidebar a svg,
+            #sidebar a img {
+                flex-shrink: 0;
+            }
+
+            #sidebar .sidebar-text,
+            #sidebar .nav-label {
+                display: inline-block;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
                 opacity: 0;
                 transition: opacity .15s ease;
             }
 
+            #sidebar:hover .sidebar-text,
             #sidebar:hover .nav-label,
+            #sidebar:focus-within .sidebar-text,
             #sidebar:focus-within .nav-label {
+                width: auto;
                 opacity: 1;
+            }
+
+            #sidebar .sidebar-head,
+            #sidebar a {
+                justify-content: center;
+            }
+
+            #sidebar:hover .sidebar-head,
+            #sidebar:hover a,
+            #sidebar:focus-within .sidebar-head,
+            #sidebar:focus-within a {
+                justify-content: flex-start;
             }
         }
     </style>
@@ -189,7 +223,9 @@
         <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
         <aside id="sidebar"
             class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-white/10 py-8 pr-6 lg:block">
-            <p class="mb-4 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300">Categories</p>
+            <div class="mb-4 px-3 sidebar-head">
+                <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300 sidebar-text">Categories</p>
+            </div>
 
             <nav class="space-y-1 text-sm font-medium">
                 <a href="/pages/app/service.html"

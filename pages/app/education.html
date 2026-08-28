@@ -86,17 +86,51 @@
             color: #7C8981;
         }
 
-        /* Instagram-style icon rail: label hidden by default on desktop,
-           fades in on hover/focus of that row, fades out when the cursor leaves. */
+        /* Icon rail: collapsed at rest, expands automatically on hover/focus */
         @media (min-width: 1024px) {
-            .nav-label {
+            #sidebar {
+                width: 5rem;
+                transition: width .2s ease;
+            }
+
+            #sidebar:hover,
+            #sidebar:focus-within {
+                width: 14rem;
+            }
+
+            #sidebar a svg,
+            #sidebar a img {
+                flex-shrink: 0;
+            }
+
+            #sidebar .sidebar-text,
+            #sidebar .nav-label {
+                display: inline-block;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
                 opacity: 0;
                 transition: opacity .15s ease;
             }
 
+            #sidebar:hover .sidebar-text,
             #sidebar:hover .nav-label,
+            #sidebar:focus-within .sidebar-text,
             #sidebar:focus-within .nav-label {
+                width: auto;
                 opacity: 1;
+            }
+
+            #sidebar .sidebar-head,
+            #sidebar a {
+                justify-content: center;
+            }
+
+            #sidebar:hover .sidebar-head,
+            #sidebar:hover a,
+            #sidebar:focus-within .sidebar-head,
+            #sidebar:focus-within a {
+                justify-content: flex-start;
             }
         }
 
@@ -121,7 +155,7 @@
                 class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
 
             <nav class="ml-6 hidden items-center gap-7 text-sm font-medium text-muted dark:text-mist-300 lg:flex">
-                <a href="/pages/app/overview.html" class="hover:text-ink dark:hover:text-mist-100">Services</a>
+                <a href="/pages/app/service.html" class="hover:text-ink dark:hover:text-mist-100">Services</a>
                 <a href="/pages/app/education.html"
                     class="relative font-semibold text-brand dark:text-accent-400 after:absolute after:-bottom-[22px] after:left-0 after:h-[2px] after:w-full after:bg-brand dark:after:bg-accent-400">Education</a>
                 <a href="/pages/app/marketplace.html" class="hover:text-ink dark:hover:text-mist-100">Market</a>
@@ -165,13 +199,15 @@
 
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2">
-                <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+            <div class="mb-5 px-2 sidebar-head">
+                <div class="sidebar-text">
+                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                </div>
             </div>
 
             <nav class="space-y-0.5">
-                <a href="/pages/app/overview.html" class="nav-item">
+                <a href="/pages/app/service.html" class="nav-item">
                     <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6" /><rect x="14" y="3" width="7" height="7" rx="1.6" /><rect x="3" y="14" width="7" height="7" rx="1.6" /><rect x="14" y="14" width="7" height="7" rx="1.6" /></svg>
                     <span class="nav-label">Services</span>
                 </a>

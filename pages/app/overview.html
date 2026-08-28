@@ -200,22 +200,22 @@
     <!-- ══════════ SIDEBAR ══════════ -->
     <aside id="sidebar"
       class="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-black/5 dark:border-white/10 bg-brand-soft/40 dark:bg-night-800 px-3 py-5 lg:flex">
-      <div class="mb-5 flex items-center gap-3 px-2">
-        <span class="grid size-9 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
+      <div class="mb-5 flex items-center gap-3 px-2 sidebar-head">
+        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
           <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
             stroke-linecap="round">
             <circle cx="12" cy="12" r="8.5" />
             <path d="M12 8v8M8 12h8" />
           </svg>
         </span>
-        <span>
+        <span class="sidebar-text">
           <span class="block text-sm font-extrabold leading-tight text-brand dark:text-accent-400">M3ak</span>
           <span class="block text-[11px] text-muted dark:text-mist-300">Citizen Portal</span>
         </span>
       </div>
 
       <nav class="space-y-0.5 text-sm font-medium">
-        <a href="/pages/app/overview.html" aria-current="page"
+        <a href="/pages/app/service.html" aria-current="page"
           class="nav-on flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
           <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <rect x="3" y="3" width="7" height="7" rx="1.6" />
@@ -571,7 +571,7 @@
         </svg>
         Home
       </a>
-      <a href="/pages/app/overview.html" aria-current="page"
+      <a href="/pages/app/service.html" aria-current="page"
         class="flex flex-col items-center gap-1 rounded-full bg-brand px-5 py-2 text-[10px] font-semibold text-white shadow-sm">
         <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <rect x="3" y="3" width="7" height="7" rx="1.6" />
@@ -664,6 +664,54 @@
       #sidebar:hover .nav-label,
       #sidebar:focus-within .nav-label {
         opacity: 1;
+      }
+    }
+
+    /* Icon rail: collapsed at rest, expands automatically on hover/focus */
+    @media (min-width: 1024px) {
+      #sidebar {
+        width: 5rem;
+        transition: width .2s ease;
+      }
+
+      #sidebar:hover,
+      #sidebar:focus-within {
+        width: 14rem;
+      }
+
+      #sidebar a svg,
+      #sidebar a img {
+        flex-shrink: 0;
+      }
+
+      #sidebar .sidebar-text,
+      #sidebar .nav-label {
+        display: inline-block;
+        width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity .15s ease;
+      }
+
+      #sidebar:hover .sidebar-text,
+      #sidebar:hover .nav-label,
+      #sidebar:focus-within .sidebar-text,
+      #sidebar:focus-within .nav-label {
+        width: auto;
+        opacity: 1;
+      }
+
+      #sidebar .sidebar-head,
+      #sidebar a {
+        justify-content: center;
+      }
+
+      #sidebar:hover .sidebar-head,
+      #sidebar:hover a,
+      #sidebar:focus-within .sidebar-head,
+      #sidebar:focus-within a {
+        justify-content: flex-start;
       }
     }
   </style>
