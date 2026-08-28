@@ -48,14 +48,6 @@
             @apply bg-white dark:bg-night-900 text-black dark:text-mist-100 transition-colors duration-200;
         }
 
-        .theme-toggle-btn {
-            @apply w-[36px] h-[36px] rounded-full bg-white dark:bg-night-700 border border-grey-200 dark:border-night-600
-                   flex items-center justify-center cursor-pointer shrink-0;
-        }
-
-        .theme-toggle-sun { @apply w-[16px] h-[16px] dark:hidden; }
-        .theme-toggle-moon { @apply hidden dark:block w-[16px] h-[16px]; }
-
         /* ---------- Signup: page shell ---------- */
         .signup-page{
             @apply min-h-screen md:grid md:grid-cols-2;
@@ -189,11 +181,20 @@
                 </div>
                 <span class="signup-brand-name">Maak Morocco</span>
             </div>
-
-            <button type="button" class="theme-toggle-btn absolute top-[32px] right-[48px]" data-theme-toggle
-                aria-label="Toggle dark mode" aria-pressed="false">
-                <img src="/assets/image-signUp/icon-sun.png" alt="" class="theme-toggle-sun object-contain">
-                <img src="/assets/image-signUp/icon-moon.png" alt="" class="theme-toggle-moon object-contain">
+             <!-- dark light mode button -->
+            <button type="button"
+                    class="absolute top-[32px] right-[48px] flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+                    data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <!-- Toggle Circle -->
+                    <span
+                        class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+                        <!-- Sun -->
+                        <img src="/assets/settings/sun.png" alt="Light mode"
+                            class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
+                        <!-- Moon -->
+                        <img src="/assets/settings/moon.png" alt="Dark mode"
+                            class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+                    </span>
             </button>
 
             <div class="signup-visual">
@@ -233,9 +234,19 @@
                     Back to Log in
                 </a>
                 <div class="flex items-center gap-[10px]">
-                    <button type="button" class="theme-toggle-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                        <img src="/assets/image-signUp/icon-sun.png" alt="" class="theme-toggle-sun object-contain">
-                        <img src="/assets/image-signUp/icon-moon.png" alt="" class="theme-toggle-moon object-contain">
+                    <button type="button"
+                        class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+                        data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                        <!-- Toggle Circle -->
+                        <span
+                            class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+                            <!-- Sun -->
+                            <img src="/assets/settings/sun.png" alt="Light mode"
+                                class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
+                            <!-- Moon -->
+                            <img src="/assets/settings/moon.png" alt="Dark mode"
+                                class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+                        </span>
                     </button>
                     <span class="signup-secured-pill">
                         <img src="/assets/image-signUp/Icon(1).png" alt="secure icon" class="">
