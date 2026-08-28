@@ -85,10 +85,10 @@
             @apply container mx-auto mt-0 md:order-2 md:mx-0;
         }
         .div-section{
-            @apply relative rounded-[24px] overflow-hidden;
+            @apply relative;
         }
         .div-left-icon{
-            @apply hidden md:flex absolute top-[7px] left-[15px] bg-white dark:bg-night-700 rounded-[16px] shadow-lg items-center justify-center p-[19px];
+            @apply flex absolute top-[7px] left-[15px] bg-white dark:bg-night-700 rounded-[16px] shadow-lg items-center justify-center p-[19px];
         }
         .div-badge{
             @apply absolute top-[67%] right-0 rounded-[16px] shadow-lg pl-[16px] py-[16px] flex items-center gap-[10px] md:top-auto md:bottom-[60px] md:right-[-10px] bg-white dark:bg-night-700;
@@ -312,7 +312,7 @@
                 <!-- Image + floating badge -->
                 <section class="section-1">
                     <div class="div-section">
-                        <img src="./assets/images/img-section.png" alt="digital identity card" class="w-full">
+                        <img src="./assets/images/img-section.png" alt="digital identity card" class="w-full rounded-[24px]">
 
                         <!-- Top Left Floating Icon -->
                         <div class="div-left-icon">

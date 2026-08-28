@@ -24,6 +24,10 @@ Concretely, this means:
 
 None of this is hidden: the goal at this stage is a complete, well-connected frontend that a backend can be wired into later — not a finished product.
 
+This is a deliberate, staged approach: the project is currently being built with HTML, Tailwind CSS, and vanilla
+JavaScript only. Backend integration (real auth, database, API) is planned for a later phase, once backend
+development is covered in the author's studies (2026/2027 academic year) — not something missing by oversight.
+
 ---
 
 ## 📸 Preview
@@ -195,6 +199,12 @@ Projet-M3AK/
 
 - [ ] Switch internal links to relative paths (required for GitHub Pages)
 - [ ] GitHub Pages
+
+### 🔧 Backend Development (Planned — 2026/2027)
+
+- [ ] Real authentication (replacing the `localStorage` session simulation)
+- [ ] Database
+- [ ] Real API wired into the existing frontend
 
 ---
 
