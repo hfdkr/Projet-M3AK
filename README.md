@@ -182,7 +182,7 @@ Projet-M3AK/
 ### 📱 Responsive Design
 
 - [x] Mobile
-- [ ] Tablet
+- [x] Tablet *(falls back to the desktop/laptop layout — no dedicated tablet-specific breakpoint yet)*
 - [x] Desktop
 
 ### 🧪 Testing
@@ -236,6 +236,8 @@ remaining items are genuinely open:
 - A number of `.png` icons referenced across `transport.html`, `health.html`, and admin `dashboard.html` don't
   exist in `assets/` — pre-existing gaps, not something introduced by recent work.
 - Auth is frontend-only (`localStorage`), by design for this stage — no real backend/API yet.
+- Tablet viewports render the same layout as desktop/laptop (the responsive design only really distinguishes
+  mobile vs. desktop) — no breakpoint tuned specifically for tablet-sized screens.
 
 ---
 
@@ -249,8 +251,10 @@ remaining items are genuinely open:
 - ✅ Internal navigation, auth JS, and session guard fixed across the app
 - ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
 - ✅ Instagram-style collapsible sidebar rolled out to all 11 app pages that have one
+- ✅ Mobile, tablet, and desktop breakpoints in place across the app — tablet viewports currently reuse the
+  desktop/laptop layout rather than a custom-tuned in-between design
 - 🚧 Justice, Foreign Affairs, Agriculture, Culture, Tourism ministry pages (currently placeholders)
-- 🚧 Tablet breakpoint and cross-browser testing pending
+- 🚧 Cross-browser testing pending
 
 ---
 
