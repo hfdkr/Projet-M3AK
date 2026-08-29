@@ -80,7 +80,7 @@ Projet-M3AK/
 │   │   ├── login.html
 │   │   ├── signup.html
 │   │   ├── forgot-password.html
-│   │   └── new-password.html
+│   │   └── reset-password.html
 │   │
 │   ├── app/
 │   │   ├── overview.html
@@ -110,7 +110,7 @@ Projet-M3AK/
 │       ├── login.js
 │       ├── signup.js
 │       ├── forgot-password.js
-│       └── new-password.js
+│       └── reset-password.js
 │
 ├── index.html
 ├── .gitignore
@@ -217,7 +217,7 @@ remaining items are genuinely open:
 
 - ~~Internal navigation pointed at `/pages/dashboard/...` instead of `/pages/app/...`.~~
 - ~~`login.js` called `window.M3akAuth`, but `session.js` exposed `window.M3ak`.~~
-- ~~`new-password.js` was empty and not loaded on `new-password.html`.~~
+- ~~`reset-password.js` (formerly `new-password.js`) was empty and not loaded on `reset-password.html`.~~
 - ~~`onboarding.js` redirected to `./pages/overview.htm` (wrong extension/path).~~
 - ~~Inconsistent filenames (`service.html`/`services.html`, `emergence.html`/`emergency.html`).~~
 - ~~`signup.html` had no JS attached.~~
@@ -232,7 +232,7 @@ remaining items are genuinely open:
   unrelated icon; both now use a consistent alert-triangle icon like every other page.~~
 - ~~`marketplace.html` had a redundant "Emergency" link in its nav list duplicating the "Emergency Support"
   button below it.~~
-- ~~`new-password.html` used a system-font fallback stack instead of the project's two fonts; `emergence.html`'s
+- ~~`reset-password.html` (formerly `new-password.html`) used a system-font fallback stack instead of the project's two fonts; `emergence.html`'s
   clock used `font-mono`. Project now uses only Plus Jakarta Sans / Hanken Grotesk throughout.~~
 - ~~`health.html` had no sidebar and no way to open one on mobile (no hamburger button) — now matches every
   other app page.~~
