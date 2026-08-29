@@ -25,7 +25,7 @@
 
             /* Demo: no backend/email yet — go straight to the reset step */
             window.setTimeout(function () {
-                window.location.href = "/pages/auth/new-password.html";
+                window.location.href = "/pages/auth/reset-password.html";
             }, 700);
         });
     });
