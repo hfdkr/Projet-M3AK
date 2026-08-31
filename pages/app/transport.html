@@ -713,6 +713,7 @@
         $("#menuBtn").addEventListener("click", () => openDrawer(true));
         scrim.addEventListener("click", () => openDrawer(false));
         document.addEventListener("keydown", e => { if (e.key === "Escape") openDrawer(false); });
+        sidebar.addEventListener("mouseleave", () => { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
         /* ── Init ── */
         paintModes(); paintChips(); renderRoutes(); renderAlerts();

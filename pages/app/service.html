@@ -491,6 +491,7 @@
         document.getElementById("menuBtn").addEventListener("click", function () { openDrawer(true); });
         scrim.addEventListener("click", function () { openDrawer(false); });
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
+        sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
         /* Directory search filter */
         var search = document.getElementById("service-search");
