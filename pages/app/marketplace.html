@@ -51,6 +51,18 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .dark .nav-icon:not(.nav-icon--active) {
+            filter: brightness(0) invert(1);
+            opacity: .9;
+        }
+
         /* Fallback visuel si les images locales ne sont pas encore présentes */
         .ph {
             background-color: #DFE5E0;
@@ -230,61 +242,56 @@
             <nav class="space-y-1 text-sm font-medium">
                 <a href="/pages/app/service.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/service.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon" />
                     <span class="nav-label">Services</span>
                 </a>
 
                 <a href="/pages/app/coming-soon.html?feature=Passport"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <svg class="size-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><circle cx="8.5" cy="11" r="2" /><path d="M5.5 16c.6-1.4 1.7-2 3-2s2.4.6 3 2M14.5 10h4M14.5 13.5h4" /></svg>
+                    <img src="/assets/icon-bar-left/passport.png" alt="" class="nav-icon" />
+
                     <span class="nav-label">Passport</span>
                 </a>
 
                 <a href="/pages/app/transport.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/transport.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon" />
                     <span class="nav-label">Transport</span>
                 </a>
 
                 <a href="/pages/app/housing.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/house.png" alt="" class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon" />
                     <span class="nav-label">Housing</span>
                 </a>
 
                 <a href="/pages/app/jobs.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/job.png" alt="" class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon" />
                     <span class="nav-label">Jobs</span>
                 </a>
 
                 <a href="/pages/app/education.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/education.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon" />
                     <span class="nav-label">Education</span>
                 </a>
 
                 <a href="/pages/app/health.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/health.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon" />
                     <span class="nav-label">Healthcare</span>
                 </a>
 
                 <a href="/pages/app/payments.html"
                     class="nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100">
-                    <img src="/assets/marketplace-image/payment.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon" />
                     <span class="nav-label">Payments</span>
                 </a>
 
                 <a href="/pages/app/marketplace.html" aria-current="page"
                     class="flex items-center gap-3 rounded-xl bg-brand-soft dark:bg-accent-400/15 px-3 py-2.5 font-semibold text-brand dark:text-accent-400">
-                    <img src="/assets/marketplace-image/marketplace.png" alt=""
-                        class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/icon-bar-left/marketplace-green.png" alt="" class="nav-icon nav-icon--active" />
                     <span class="nav-label">Marketplace</span>
                 </a>
             </nav>
