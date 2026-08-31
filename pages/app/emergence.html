@@ -222,8 +222,15 @@
             <p class="text-base font-extrabold tracking-tight text-brand dark:text-accent-400">
                 Emergency Services
             </p>
-
-            <img src="/assets/emergence-image/shield.png" alt="shield-icon" class="size-5 object-contain" />
+            <button type="button"
+                class="relative ml-auto flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+                data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+                    <img src="/assets/settings/sun.png" alt="Light mode" class="h-4 w-4 object-contain transition-all duration-300 dark:hidden">
+                    <img src="/assets/settings/moon.png" alt="Dark mode" class="absolute hidden h-4 w-4 object-contain transition-all duration-300 dark:block">
+                </span>
+            </button>
+        
         </div>
     </header>
 
