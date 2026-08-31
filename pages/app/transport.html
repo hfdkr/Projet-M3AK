@@ -79,6 +79,11 @@
             object-fit: contain;
         }
 
+        .dark .nav-icon:not(.nav-icon--active) {
+            filter: brightness(0) invert(1);
+            opacity: .9;
+        }
+
         .tab {
             display: flex;
             flex-direction: column;
@@ -304,36 +309,36 @@
 
             <nav class="space-y-0.5">
                 <a href="/pages/app/service.html" class="nav-item">
-                    <img src="/assets/transport/services.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon" />
                     <span class="nav-label">Services</span>
                 </a>
                 <a href="/pages/app/transport.html" aria-current="page"
                     class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-800 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
-                    <img src="/assets/transport/transport-active.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/transport-green.png" alt="" class="nav-icon nav-icon--active" />
                     <span class="nav-label">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/transport/housing.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon" />
                     <span class="nav-label">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/transport/jobs.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon" />
                     <span class="nav-label">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/transport/education.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon" />
                     <span class="nav-label">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/transport/healthcare.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon" />
                     <span class="nav-label">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/transport/payments.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon" />
                     <span class="nav-label">Payments</span>
                 </a>
                 <a href="/pages/app/marketplace.html" class="nav-item">
-                    <img src="/assets/transport/marketplace.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/marketplace.png" alt="" class="nav-icon" />
                     <span class="nav-label">Marketplace</span>
                 </a>
             </nav>
@@ -345,11 +350,11 @@
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/admin-pages/compte.html#security" class="nav-item">
-                    <img src="/assets/transport/settings.png" alt="" class="nav-icon" />
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" /></svg>
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/transport/logout.png" alt="" class="nav-icon" />
+                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" /><path d="M10 16l-4-4 4-4M6 12h9" /></svg>
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
