@@ -291,6 +291,27 @@
         /* ==========================================================
            5. MOBILE BOTTOM NAV
         ========================================================== */
+        .m-scrim {
+            @apply fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200 md:hidden;
+        }
+
+        .m-scrim.is-open { @apply opacity-100 pointer-events-auto; }
+
+        .m-drawer {
+            @apply fixed inset-y-0 left-0 z-50 w-[280px] max-w-[82vw] bg-white dark:bg-night-800
+                   border-r border-grey-200 dark:border-night-600 px-[16px] py-[18px] overflow-y-auto
+                   -translate-x-full transition-transform duration-300 md:hidden;
+        }
+
+        .m-drawer.is-open { @apply translate-x-0; }
+
+        .m-drawer-group { @apply mt-[6px] flex flex-col gap-[2px]; }
+
+        .m-drawer-label {
+            @apply px-[12px] pt-[16px] pb-[6px] font-hanken text-[11px] font-semibold
+                   uppercase tracking-[0.08em] text-slate-400 dark:text-mist-300;
+        }
+
         .mobile-nav {
             @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-night-800
                    border-t border-grey-200 dark:border-night-600
@@ -318,9 +339,16 @@
     ======================================================= -->
     <header>
         <div class="div-header">
-            <div class="brand">
-                <span class="brand-mark">M</span>
-                <span class="brand-name">M3ak</span>
+            <div class="flex items-center gap-[12px]">
+                <button type="button" id="menuBtn" class="icon-button md:hidden" aria-label="Open menu"
+                    aria-expanded="false" aria-controls="mobileDrawer">
+                    <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+                </button>
+                <div class="brand">
+                    <span class="brand-mark">M</span>
+                    <span class="brand-name">M3ak</span>
+                </div>
             </div>
 
             <nav class="hidden md:flex items-center gap-[36px]">
@@ -372,6 +400,36 @@
             </div>
         </div>
     </header>
+
+    <!-- ======================================================
+         MOBILE MENU (drawer)
+    ======================================================= -->
+    <div class="m-scrim" data-menu-scrim></div>
+    <aside class="m-drawer" id="mobileDrawer" aria-label="Menu">
+        <div class="flex items-center justify-between">
+            <span class="settings-title">Menu</span>
+            <button type="button" class="icon-button" data-menu-close aria-label="Close menu">
+                <svg class="w-[16px] h-[16px]" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+        </div>
+
+        <nav class="m-drawer-group" aria-label="Primary">
+            <a href="/pages/app/overview.html" class="settings-nav-item">Dashboard</a>
+            <a href="/pages/app/service.html" class="settings-nav-item">Services</a>
+            <a href="/pages/app/health.html" class="settings-nav-item">Health</a>
+            <a href="#digital-id" class="settings-nav-item">My Documents</a>
+        </nav>
+
+        <p class="m-drawer-label">Settings</p>
+        <nav class="m-drawer-group" aria-label="Settings sections">
+            <a href="#personal-info" class="settings-nav-item">Personal Info</a>
+            <a href="#security" class="settings-nav-item">Security</a>
+            <a href="#digital-id" class="settings-nav-item">Digital ID</a>
+            <a href="#notifications" class="settings-nav-item">Notifications</a>
+            <a href="#language" class="settings-nav-item">Language</a>
+        </nav>
+    </aside>
 
     <!-- ======================================================
          BACK BAR
@@ -631,6 +689,32 @@
     </footer>
 
     <script>
+        /* ---------- Mobile menu drawer ---------- */
+        (function () {
+            var drawer = document.getElementById("mobileDrawer");
+            var scrim = document.querySelector("[data-menu-scrim]");
+            var openBtn = document.getElementById("menuBtn");
+            var closeBtn = document.querySelector("[data-menu-close]");
+            if (!drawer || !scrim || !openBtn) { return; }
+
+            function setOpen(open) {
+                drawer.classList.toggle("is-open", open);
+                scrim.classList.toggle("is-open", open);
+                document.body.classList.toggle("overflow-hidden", open);
+                openBtn.setAttribute("aria-expanded", String(open));
+            }
+
+            openBtn.addEventListener("click", function () { setOpen(true); });
+            scrim.addEventListener("click", function () { setOpen(false); });
+            if (closeBtn) { closeBtn.addEventListener("click", function () { setOpen(false); }); }
+            drawer.querySelectorAll("a").forEach(function (a) {
+                a.addEventListener("click", function () { setOpen(false); });
+            });
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") { setOpen(false); }
+            });
+        })();
+
         /* ---------- Settings nav: highlight the section in view ---------- */
         var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-settings-nav] a"));
         var sections = navLinks
