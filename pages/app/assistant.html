@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Assistant — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/theme.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand: #0B6B45;
+            --color-brand-dark: #084F34;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-line: #CFE3D8;
+            --color-danger: #E1362C;
+            --color-ink: #0F1A15;
+            --color-muted: #6B7A73;
+            --color-canvas: #F6F7F5;
+
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* ── Sidebar nav ── */
+        .a-nav {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            border-radius: .625rem;
+            padding: .625rem .7rem;
+            font-size: .875rem;
+            font-weight: 500;
+            color: #6B7A73;
+            transition: background-color .15s, color .15s;
+        }
+
+        .a-nav:hover { background: #F1F4F2; color: #0F1A15; }
+        .a-nav svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+        .a-nav--active {
+            background: #E9F1FB;
+            color: #0B6B45;
+            font-weight: 600;
+        }
+
+        .dark .a-nav { color: #7C8981; }
+        .dark .a-nav:hover { background: #151C18; color: #E7ECE9; }
+        .dark .a-nav--active { background: rgba(46, 213, 115, .14); color: #2ED573; }
+
+        /* ── Chip (quick actions) ── */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, .12);
+            background: #fff;
+            padding: .45rem .85rem;
+            font-size: .8rem;
+            font-weight: 600;
+            color: #3D4A42;
+            white-space: nowrap;
+            transition: border-color .15s, background-color .15s, color .15s;
+        }
+
+        .chip:hover { border-color: #0B6B45; color: #0B6B45; }
+        .dark .chip { border-color: rgba(255, 255, 255, .14); background: #151C18; color: #B4BEB8; }
+        .dark .chip:hover { border-color: #2ED573; color: #2ED573; }
+
+        /* ── Voice equaliser ── */
+        .wave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            height: 26px;
+            color: #0B6B45;
+        }
+
+        .dark .wave { color: #2ED573; }
+
+        .wave span {
+            width: 3px;
+            height: 7px;
+            border-radius: 2px;
+            background: currentColor;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .wave span:nth-child(1) { animation-delay: 0s; }
+        .wave span:nth-child(2) { animation-delay: .12s; }
+        .wave span:nth-child(3) { animation-delay: .24s; }
+        .wave span:nth-child(4) { animation-delay: .36s; }
+        .wave span:nth-child(5) { animation-delay: .24s; }
+        .wave span:nth-child(6) { animation-delay: .12s; }
+        .wave span:nth-child(7) { animation-delay: 0s; }
+
+        @keyframes wave {
+            0%, 100% { height: 7px; }
+            50% { height: 24px; }
+        }
+
+        .is-idle .wave span { animation-play-state: paused; height: 7px; }
+
+        .mic-ring {
+            box-shadow: 0 0 0 0 rgba(11, 107, 69, .35);
+            animation: micPulse 2s ease-out infinite;
+        }
+
+        .dark .mic-ring { box-shadow: 0 0 0 0 rgba(46, 213, 115, .35); }
+        .is-idle .mic-ring { animation: none; }
+
+        @keyframes micPulse {
+            0% { box-shadow: 0 0 0 0 rgba(11, 107, 69, .35); }
+            70% { box-shadow: 0 0 0 22px rgba(11, 107, 69, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(11, 107, 69, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
+        }
+
+        /* Hamburger: mobile only */
+        #menuBtn { display: none; }
+        @media (max-width: 1023.98px) { #menuBtn { display: inline-flex; } }
+    </style>
+</head>
+
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+
+    <div class="lg:flex">
+
+        <!-- ═══════════ SIDEBAR / DRAWER ═══════════ -->
+        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 flex w-72 max-w-[82vw] -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-5 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:translate-x-0">
+
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak AI Assistant</p>
+                    <p class="text-[11px] text-muted dark:text-mist-300">Government Services</p>
+                </div>
+                <button id="drawerClose" type="button"
+                    class="grid size-8 place-items-center rounded-lg text-muted hover:bg-canvas dark:hover:bg-night-700 lg:hidden">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </button>
+            </div>
+
+            <a href="/pages/app/coming-soon.html?feature=Quick+Verify"
+                class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40">
+                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><path d="M12 3l7 3v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z" /></svg>
+                Quick Verify
+            </a>
+
+            <nav class="mt-5 space-y-1">
+                <a href="/pages/app/assistant.html" aria-current="page" class="a-nav a-nav--active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6" /><rect x="14" y="3" width="7" height="7" rx="1.6" /><rect x="3" y="14" width="7" height="7" rx="1.6" /><rect x="14" y="14" width="7" height="7" rx="1.6" /></svg>
+                    Dashboard
+                </a>
+                <a href="/pages/app/registry.html" class="a-nav">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><circle cx="8.5" cy="11" r="2" /><path d="M5.5 16c.6-1.4 1.7-2 3-2s2.4.6 3 2M14.5 10h4M14.5 13.5h4" /></svg>
+                    Digital Identity
+                </a>
+                <a href="/pages/app/coming-soon.html?feature=Documents" class="a-nav">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" /><path d="M14 2v5h5M9 13h6M9 17h4" /></svg>
+                    Documents
+                </a>
+                <a href="/pages/app/coming-soon.html?feature=Appointments" class="a-nav">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
+                    Appointments
+                </a>
+                <a href="/pages/app/support.html" class="a-nav">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9" /><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .9-1 1.6v.3" /><path d="M12 17.2v.01" /></svg>
+                    Help Center
+                </a>
+            </nav>
+
+            <div class="my-4 border-t border-black/5 dark:border-white/10"></div>
+
+            <nav class="space-y-1">
+                <a href="/pages/admin-pages/compte.html#security" class="a-nav">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" /></svg>
+                    Settings
+                </a>
+                <a href="/pages/auth/login.html" data-action="logout" class="a-nav text-danger hover:!text-danger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" /><path d="M10 16l-4-4 4-4M6 12h9" /></svg>
+                    Sign Out
+                </a>
+            </nav>
+
+            <div class="mt-auto rounded-xl border border-black/5 dark:border-white/10 bg-canvas dark:bg-night-700 px-3 py-2.5">
+                <p class="flex items-center gap-2 text-xs font-bold">
+                    <span class="size-2 rounded-full bg-accent-400"></span> AI Status
+                </p>
+                <p class="mt-0.5 pl-4 text-[11px] text-muted dark:text-mist-300">Ready to help</p>
+            </div>
+        </aside>
+
+        <!-- ═══════════ MAIN ═══════════ -->
+        <div class="min-w-0 flex-1">
+
+            <!-- Top bar -->
+            <header class="sticky top-0 z-30 border-b border-black/5 dark:border-white/10 bg-canvas/90 dark:bg-night-900/90 backdrop-blur">
+                <div class="flex h-14 items-center gap-3 px-4 lg:h-16 lg:px-8">
+                    <button id="menuBtn" type="button"
+                        class="grid size-9 place-items-center rounded-lg hover:bg-white dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                        <span class="sr-only">Open menu</span>
+                        <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+                    </button>
+
+                    <a href="/pages/app/overview.html" class="flex items-center gap-2 lg:hidden">
+                        <span class="grid size-7 place-items-center rounded-lg bg-brand text-white">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z" /></svg>
+                        </span>
+                        <span class="leading-none">
+                            <span class="block text-sm font-extrabold text-brand dark:text-accent-400">M3AK</span>
+                            <span class="block text-[10px] text-muted dark:text-mist-300">AI Assistant</span>
+                        </span>
+                    </a>
+
+                    <div class="ml-auto flex items-center gap-1.5">
+                        <button type="button"
+                            class="relative flex h-8 w-14 shrink-0 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+                            data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                            <span class="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+                                <img src="/assets/settings/sun.png" alt="Light mode" class="h-4 w-4 object-contain dark:hidden">
+                                <img src="/assets/settings/moon.png" alt="Dark mode" class="absolute hidden h-4 w-4 object-contain dark:block">
+                            </span>
+                        </button>
+
+                        <button type="button"
+                            class="relative grid size-9 place-items-center rounded-full hover:bg-white dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                            <span class="sr-only">Notifications</span>
+                            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
+                            <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-canvas dark:ring-night-900"></span>
+                        </button>
+
+                        <button type="button" id="historyBtn"
+                            class="hidden size-9 place-items-center rounded-full hover:bg-white dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 sm:grid">
+                            <span class="sr-only">Conversation history</span>
+                            <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5M12 8v4l3 2" /></svg>
+                        </button>
+
+                        <span data-user-initials
+                            class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="mx-auto max-w-[1180px] px-4 pb-28 pt-5 lg:px-8 lg:pb-12 lg:pt-7">
+
+                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">AI Voice Assistant</h1>
+                <p class="mt-1.5 text-sm text-muted dark:text-mist-300">
+                    Talk naturally with M3AK to manage your digital identity and services.
+                </p>
+
+                <!-- Quick actions -->
+                <div class="no-scrollbar mt-4 flex gap-2 overflow-x-auto">
+                    <button type="button" class="chip" data-say="Open my profile">
+                        <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.2" /><path d="M5 20a7 7 0 0 1 14 0" /></svg>
+                        Open my profile
+                    </button>
+                    <button type="button" class="chip" data-say="Digital Identity status">
+                        <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><circle cx="8.5" cy="11" r="2" /><path d="M14.5 10h4M14.5 13.5h4" /></svg>
+                        Digital Identity status
+                    </button>
+                    <button type="button" class="chip" data-say="Show recent transactions">
+                        <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><path d="M2.5 10h19" /></svg>
+                        Show recent transactions
+                    </button>
+                </div>
+
+                <!-- Voice + transcript -->
+                <div class="mt-5 grid gap-5 lg:grid-cols-[1fr_360px]">
+
+                    <!-- Mic panel -->
+                    <section id="micPanel"
+                        class="flex flex-col rounded-2xl bg-white dark:bg-night-800 p-6 ring-1 ring-black/5 dark:ring-white/10 lg:p-8">
+                        <div class="flex flex-1 flex-col items-center justify-center gap-5 py-6">
+                            <button type="button" id="micBtn"
+                                class="mic-ring grid size-24 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-dark text-white transition hover:scale-[1.03] focus-visible:ring-4 focus-visible:ring-brand/30 lg:size-28">
+                                <span class="sr-only">Start voice conversation</span>
+                                <svg id="micIcon" class="size-9 lg:size-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3" /><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6" /></svg>
+                            </button>
+
+                            <div class="flex flex-col items-center gap-1.5">
+                                <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                                <p id="micStatus" class="text-sm font-semibold text-brand dark:text-accent-400">Listening…</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center">
+                            <div>
+                                <p class="text-xl font-extrabold lg:text-2xl">128</p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Conversations</p>
+                            </div>
+                            <div class="border-x border-black/5 dark:border-white/10">
+                                <p class="text-xl font-extrabold lg:text-2xl">2.4h</p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Talk Time</p>
+                            </div>
+                            <div>
+                                <p class="text-xl font-extrabold text-brand dark:text-accent-400 lg:text-2xl">98%</p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Satisfaction</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Transcript panel -->
+                    <section class="flex max-h-[560px] flex-col rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
+                        <div class="flex items-center gap-2 border-b border-black/5 dark:border-white/10 px-4 py-3">
+                            <svg class="size-4 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2z" /></svg>
+                            <h2 class="text-sm font-bold">M3AK Live Transcript</h2>
+                        </div>
+
+                        <div id="transcript" class="flex-1 space-y-3 overflow-y-auto px-4 py-4"></div>
+
+                        <form id="chatForm" class="border-t border-black/5 dark:border-white/10 p-3">
+                            <div class="flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 pl-4 pr-1.5">
+                                <input id="chatInput" type="text" autocomplete="off" placeholder="Type or speak a message…"
+                                    class="min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300" />
+                                <button type="button" id="inlineMic"
+                                    class="grid size-8 shrink-0 place-items-center rounded-full text-muted transition hover:text-brand dark:hover:text-accent-400">
+                                    <span class="sr-only">Speak</span>
+                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3" /><path d="M6 11a6 6 0 0 0 12 0M12 17v4" /></svg>
+                                </button>
+                                <button type="submit"
+                                    class="grid size-8 shrink-0 place-items-center rounded-full bg-yellow-400 text-ink transition hover:bg-yellow-300 focus-visible:ring-2 focus-visible:ring-yellow-300">
+                                    <span class="sr-only">Send</span>
+                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- Languages + capabilities -->
+                <div class="mt-5 grid gap-5 lg:grid-cols-2">
+
+                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                        <h2 class="flex items-center gap-2 text-sm font-bold">
+                            <svg class="size-4 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z" /></svg>
+                            Spoken Languages
+                        </h2>
+                        <div id="langGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                            <button type="button" data-lang="English" class="lang rounded-xl border px-3 py-2.5 text-center">
+                                <span class="block text-sm font-bold">English</span>
+                                <span class="lang-state block text-[11px]">Active</span>
+                            </button>
+                            <button type="button" data-lang="العربية" class="lang rounded-xl border px-3 py-2.5 text-center">
+                                <span class="block text-sm font-bold">العربية</span>
+                                <span class="lang-state block text-[11px]">Available</span>
+                            </button>
+                            <button type="button" data-lang="Français" class="lang rounded-xl border px-3 py-2.5 text-center">
+                                <span class="block text-sm font-bold">Français</span>
+                                <span class="lang-state block text-[11px]">Available</span>
+                            </button>
+                            <button type="button" data-lang="Tamazight" class="lang rounded-xl border px-3 py-2.5 text-center">
+                                <span class="block text-sm font-bold">Tamazight</span>
+                                <span class="lang-state block text-[11px]">Available</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                        <h2 class="flex items-center gap-2 text-sm font-bold">
+                            <svg class="size-4 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>
+                            AI Capabilities
+                        </h2>
+                        <ul class="mt-3 space-y-3">
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 size-4 shrink-0 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></svg>
+                                <div>
+                                    <p class="text-sm font-semibold">Contextual Navigation</p>
+                                    <p class="text-xs text-muted dark:text-mist-300">Ask to open specific sections of your dashboard directly.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-2.5">
+                                <svg class="mt-0.5 size-4 shrink-0 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></svg>
+                                <div>
+                                    <p class="text-sm font-semibold">Document Querying</p>
+                                    <p class="text-xs text-muted dark:text-mist-300">Request summaries or specific data from uploaded documents.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- Recent voice sessions -->
+                <section class="mt-5 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                    <div class="flex items-center justify-between">
+                        <h2 class="flex items-center gap-2 text-sm font-bold">
+                            <svg class="size-4 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 6v12M20 10v4" /></svg>
+                            Recent Voice Sessions
+                        </h2>
+                        <button type="button" id="viewAllSessions" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">View All</button>
+                    </div>
+
+                    <ul id="sessionList" class="mt-3 divide-y divide-black/5 dark:divide-white/10"></ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- ═══════════ BOTTOM NAV (mobile) ═══════════ -->
+    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
+        <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2 text-[10px] font-medium text-muted dark:text-mist-300">
+            <a href="/pages/app/overview.html" class="flex flex-col items-center gap-1 px-3 py-1">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.6" /><rect x="14" y="3" width="7" height="7" rx="1.6" /><rect x="3" y="14" width="7" height="7" rx="1.6" /><rect x="14" y="14" width="7" height="7" rx="1.6" /></svg>
+                Dashboard
+            </a>
+            <a href="/pages/app/assistant.html" aria-current="page"
+                class="flex flex-col items-center gap-1 px-3 py-1 font-semibold text-brand dark:text-accent-400">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 6v12M20 10v4" /></svg>
+                Assistant
+            </a>
+            <a href="/pages/app/registry.html" class="flex flex-col items-center gap-1 px-3 py-1">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><circle cx="8.5" cy="11" r="2" /><path d="M14.5 10h4M14.5 13.5h4" /></svg>
+                Identity
+            </a>
+            <a href="/pages/admin-pages/compte.html#security" class="flex flex-col items-center gap-1 px-3 py-1">
+                <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.5 15H3a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.3 8.2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.9 4.5V4a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.2.9z" /></svg>
+                Settings
+            </a>
+        </div>
+    </nav>
+
+    <div id="toast"
+        class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+    </div>
+
+    <script>
+        var $ = function (s, r) { return (r || document).querySelector(s); };
+        var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+        function toast(msg) {
+            var t = $("#toast");
+            t.textContent = msg;
+            t.style.opacity = "1";
+            clearTimeout(t._t);
+            t._t = setTimeout(function () { t.style.opacity = "0"; }, 2400);
+        }
+
+        /* ── Mobile drawer ── */
+        var sidebar = $("#sidebar"), scrim = $("#scrim");
+        function openDrawer(open) {
+            sidebar.classList.toggle("-translate-x-full", !open);
+            scrim.classList.toggle("hidden", !open);
+            document.body.classList.toggle("overflow-hidden", open);
+        }
+        $("#menuBtn").addEventListener("click", function () { openDrawer(true); });
+        $("#drawerClose").addEventListener("click", function () { openDrawer(false); });
+        scrim.addEventListener("click", function () { openDrawer(false); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
+        $$("#sidebar a").forEach(function (a) {
+            a.addEventListener("click", function () {
+                if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false);
+            });
+        });
+
+        /* ── Transcript ── */
+        var transcript = $("#transcript");
+
+        function bubble(role, text) {
+            var wrap = document.createElement("div");
+            wrap.className = "flex items-end gap-2 " + (role === "user" ? "flex-row-reverse" : "");
+
+            var avatar = document.createElement("span");
+            avatar.className = "grid size-6 shrink-0 place-items-center rounded-full text-[10px] font-bold " +
+                (role === "user"
+                    ? "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400"
+                    : "bg-brand text-white");
+            avatar.textContent = role === "user" ? "" : "AI";
+            if (role === "user") {
+                avatar.innerHTML = '<svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>';
+            }
+
+            var b = document.createElement("div");
+            b.className = "max-w-[80%] rounded-2xl px-3 py-2 text-xs leading-relaxed " +
+                (role === "user"
+                    ? "bg-brand text-white rounded-br-sm"
+                    : "bg-canvas dark:bg-night-700 text-ink dark:text-mist-100 rounded-bl-sm");
+            b.textContent = text;
+
+            wrap.appendChild(avatar);
+            wrap.appendChild(b);
+            transcript.appendChild(wrap);
+            transcript.scrollTop = transcript.scrollHeight;
+        }
+
+        var REPLIES = {
+            "open my profile": "Opening your profile now — you can review your personal information and Digital ID there.",
+            "digital identity status": "Your digital identity is fully verified and active. Would you like me to open the detailed report?",
+            "show recent transactions": "Here are your last payments: Water & Electricity −342.50 DH, Maroc Telecom −199.00 DH. Want the full history?",
+            "check my digital identity status": "Your digital identity is fully verified and active. Would you like me to open the detailed report?"
+        };
+
+        function assistantReply(userText) {
+            var key = userText.trim().toLowerCase();
+            var text = REPLIES[key] || "Got it — I'm looking that up for you right now.";
+            setTimeout(function () { bubble("assistant", text); }, 550);
+        }
+
+        bubble("assistant", "Hello! I am ready to assist you. What can I help you with today?");
+        bubble("user", "I need to check my digital identity status.");
+        bubble("assistant", "Your digital identity is fully verified and active. Would you like me to open the detailed report?");
+
+        function send(text) {
+            if (!text.trim()) return;
+            bubble("user", text.trim());
+            assistantReply(text);
+        }
+
+        $("#chatForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var input = $("#chatInput");
+            send(input.value);
+            input.value = "";
+        });
+
+        $$(".chip").forEach(function (c) {
+            c.addEventListener("click", function () { send(c.dataset.say); });
+        });
+
+        /* ── Mic (simulated) ── */
+        var panel = $("#micPanel"), micStatus = $("#micStatus");
+        function setListening(on) {
+            panel.classList.toggle("is-idle", !on);
+            micStatus.textContent = on ? "Listening…" : "Tap the mic to talk";
+        }
+        $("#micBtn").addEventListener("click", function () {
+            var nowOn = panel.classList.contains("is-idle");
+            setListening(nowOn);
+            toast(nowOn ? "Listening — speak now" : "Voice input stopped");
+        });
+        $("#inlineMic").addEventListener("click", function () {
+            setListening(true);
+            toast("Listening — speak now");
+        });
+
+        /* ── Languages ── */
+        function paintLangs(active) {
+            $$(".lang").forEach(function (b) {
+                var on = b.dataset.lang === active;
+                b.className = "lang rounded-xl border px-3 py-2.5 text-center transition " + (on
+                    ? "border-brand dark:border-accent-400 bg-brand-soft dark:bg-accent-400/15"
+                    : "border-black/10 dark:border-white/15 hover:border-brand/60 dark:hover:border-accent-400/60");
+                var state = $(".lang-state", b);
+                state.textContent = on ? "Active" : "Available";
+                state.className = "lang-state block text-[11px] " + (on
+                    ? "font-semibold text-brand dark:text-accent-400"
+                    : "text-muted dark:text-mist-300");
+            });
+        }
+        $$(".lang").forEach(function (b) {
+            b.addEventListener("click", function () {
+                paintLangs(b.dataset.lang);
+                toast(b.dataset.lang + " selected for voice");
+            });
+        });
+        paintLangs("English");
+
+        /* ── Recent sessions ── */
+        var SESSIONS = [
+            { title: "Identity Verification Support", when: "Today, 10:42 AM", len: "1m 45s" },
+            { title: "Appointment Rescheduling", when: "Yesterday, 14:15 PM", len: "3m 12s" }
+        ];
+        $("#sessionList").innerHTML = SESSIONS.map(function (s) {
+            return '' +
+                '<li class="flex items-center gap-3 py-3">' +
+                '<button type="button" data-play="' + s.title + '" class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400 transition hover:bg-brand hover:text-white">' +
+                '<svg class="size-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>' +
+                '<div class="min-w-0 flex-1">' +
+                '<p class="truncate text-sm font-semibold">' + s.title + '</p>' +
+                '<p class="text-[11px] text-muted dark:text-mist-300">' + s.when + ' · ' + s.len + '</p>' +
+                '</div>' +
+                '<svg class="size-7 shrink-0 text-mist-300 dark:text-night-600" viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h2M8 7v10M13 4v16M18 9v6M23 6v12M28 10v4M33 7v10M37 12h1"/></svg>' +
+                '</li>';
+        }).join("");
+        $$("[data-play]").forEach(function (b) {
+            b.addEventListener("click", function () { toast("Playing “" + b.dataset.play + "”…"); });
+        });
+
+        $("#viewAllSessions").addEventListener("click", function () { toast("Opening your full voice history…"); });
+        $("#historyBtn").addEventListener("click", function () { toast("Opening your full voice history…"); });
+    </script>
+</body>
+
+</html>
