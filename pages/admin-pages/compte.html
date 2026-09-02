@@ -312,6 +312,13 @@
                    uppercase tracking-[0.08em] text-slate-400 dark:text-mist-300;
         }
 
+        /* Hamburger: mobile only. ID beats .icon-button's `display:flex`. */
+        #menuBtn { display: none; }
+
+        @media (max-width: 767.98px) {
+            #menuBtn { display: inline-flex; }
+        }
+
         .mobile-nav {
             @apply md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-night-800
                    border-t border-grey-200 dark:border-night-600
