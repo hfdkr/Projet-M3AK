@@ -1,0 +1,5 @@
+<!doctype html><meta charset="utf-8"><script>
+localStorage.setItem("m3ak.session", JSON.stringify({name:"Test User",email:"t@t.com",initials:"TU"}));
+localStorage.setItem("m3ak.theme", location.search.slice(1) === "dark" ? "dark" : "light");
+location.replace(decodeURIComponent(location.hash.slice(1)) || "/pages/app/jobs.html");
+</script>
