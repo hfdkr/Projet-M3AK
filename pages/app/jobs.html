@@ -45,6 +45,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         .nav-item {
             display: flex;
             align-items: center;
@@ -146,15 +149,35 @@
             }
         }
 
-        .filter-pill {
-            display: inline-flex;
-            align-items: center;
-            border-radius: 999px;
-            padding: .5rem 1rem;
-            font-size: .75rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: background-color .15s, color .15s;
+        .field {
+            border-radius: .625rem;
+            border: 1px solid rgba(0, 0, 0, .1);
+            background: #fff;
+            padding: .625rem .75rem;
+            font-size: .875rem;
+            color: #0F1A15;
+            outline: none;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        .field--search {
+            padding-left: 2.25rem;
+        }
+
+        .field:focus-visible {
+            border-color: #0B6B45;
+            box-shadow: 0 0 0 2px rgba(11, 107, 69, .2);
+        }
+
+        .dark .field {
+            border-color: rgba(255, 255, 255, .15);
+            background: #0F1512;
+            color: #E7ECE9;
+        }
+
+        .dark .field:focus-visible {
+            border-color: #2ED573;
+            box-shadow: 0 0 0 2px rgba(46, 213, 115, .25);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -236,7 +259,6 @@
                 </a>
                 <a href="/pages/app/coming-soon.html?feature=Passport" class="nav-item">
                     <img src="/assets/icon-bar-left/passport.png" alt="Passport" class="nav-icon" />
-
                     <span class="nav-label">Passport</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
@@ -287,97 +309,174 @@
             </div>
         </aside>
 
-        <!-- ══════════ CONTENU ══════════ -->
+        <!-- ══════════ CONTENT ══════════ -->
         <main class="min-w-0 flex-1 px-4 pb-28 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
 
-            <div>
-                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Jobs &amp; Careers</h1>
-                <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
-                    Explore public sector openings, ANAPEC offers, and career development programs.
-                </p>
-            </div>
+            <div class="mx-auto max-w-[1200px] lg:flex lg:items-start lg:gap-6">
 
-            <label class="relative mt-5 block max-w-xl">
-                <span class="sr-only">Search jobs</span>
-                <svg class="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted dark:text-mist-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.2-3.2" /></svg>
-                <input id="jobsSearch" type="search" placeholder="Search jobs, sectors, or employers..."
-                    class="w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
-            </label>
+                <!-- ─────────── Primary column ─────────── -->
+                <div class="min-w-0 flex-1 space-y-6">
 
-            <div class="no-scrollbar mt-4 flex gap-2 overflow-x-auto">
-                <button type="button" data-filter="all" class="job-filter filter-pill">All</button>
-                <button type="button" data-filter="Public Sector" class="job-filter filter-pill">Public Sector</button>
-                <button type="button" data-filter="Private Sector" class="job-filter filter-pill">Private Sector</button>
-                <button type="button" data-filter="Internships" class="job-filter filter-pill">Internships</button>
-                <button type="button" data-filter="Contests" class="job-filter filter-pill">Contests</button>
-            </div>
+                    <!-- Hero + search -->
+                    <section
+                        class="relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-white/10 bg-gradient-to-br from-brand-soft to-[#DCEAF6] dark:from-night-800 dark:to-night-700 p-5 lg:p-7">
+                        <span
+                            class="inline-flex items-center gap-1.5 rounded-full bg-white/70 dark:bg-white/10 px-2.5 py-1 text-[11px] font-bold text-brand dark:text-accent-400">
+                            <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" /></svg>
+                            M3ak Employment Portal
+                        </span>
 
-            <div id="jobsGrid" class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        <h1 class="mt-3 text-2xl font-extrabold tracking-tight lg:text-[32px] lg:leading-tight">
+                            Find Your Next Opportunity
+                        </h1>
+                        <p class="mt-2 max-w-md text-sm text-muted dark:text-mist-300">
+                            Access thousands of verified government and private sector jobs with your secure Digital ID.
+                        </p>
 
-                <a href="#" data-name="Public Sector Openings" data-cat="Public Sector" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V9l9-5 9 5v12" /><path d="M9 21v-6h6v6" /></svg>
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Public Sector Openings</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Browse vacancies across ministries and public institutions.</p>
-                </a>
+                        <form id="jobSearchForm" class="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
+                            <label class="relative block sm:min-w-[200px] sm:flex-1">
+                                <span class="sr-only">Job title or keyword</span>
+                                <svg class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted dark:text-mist-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.2-3.2" /></svg>
+                                <input id="qInput" type="search" placeholder="Job title or keyword"
+                                    class="field field--search w-full" />
+                            </label>
 
-                <a href="#" data-name="ANAPEC Offers" data-cat="Public Sector" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.2-3.2" /></svg>
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">ANAPEC Offers</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">National employment agency listings matched to your profile.</p>
-                </a>
+                            <select id="locationSelect" class="field sm:w-40" aria-label="Location">
+                                <option value="">Location</option>
+                                <option>Rabat</option>
+                                <option>Casablanca</option>
+                                <option>Tangier</option>
+                                <option>Marrakech</option>
+                                <option>Remote</option>
+                            </select>
 
-                <a href="#" data-name="Civil Service Contests" data-cat="Contests" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" /></svg>
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Civil Service Contests</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Registration and results for national recruitment exams.</p>
-                </a>
+                            <select id="categorySelect" class="field sm:w-44" aria-label="Category">
+                                <option value="">Category</option>
+                                <option>Tech &amp; IT</option>
+                                <option>Healthcare</option>
+                                <option>Engineering</option>
+                                <option>Admin</option>
+                                <option>Tourism</option>
+                            </select>
 
-                <a href="#" data-name="Internships" data-cat="Internships" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m2 8 10-4 10 4-10 4z" /><path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" /></svg>
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Internships</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Student and graduate internship programs across sectors.</p>
-                </a>
+                            <label class="flex items-center gap-2 px-1 text-sm font-medium text-muted dark:text-mist-300">
+                                <input id="remoteOnly" type="checkbox"
+                                    class="size-4 rounded border-black/25 dark:border-white/25 text-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                                Remote
+                            </label>
 
-                <a href="#" data-name="Private Sector Listings" data-cat="Private Sector" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" /></svg>
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Private Sector Listings</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Partner-verified openings from private employers nationwide.</p>
-                </a>
+                            <button type="submit"
+                                class="rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto">
+                                Search
+                            </button>
+                        </form>
+                    </section>
 
-                <a href="#" data-name="Career Counseling" data-cat="Public Sector" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z" /></svg>
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Career Counseling</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Free guidance sessions with certified career advisors.</p>
-                </a>
-            </div>
+                    <!-- Featured Government Jobs -->
+                    <section id="results">
+                        <div class="flex items-end justify-between gap-3">
+                            <div>
+                                <h2 class="text-lg font-extrabold">Featured Government Jobs</h2>
+                                <p class="text-xs font-semibold text-brand dark:text-accent-400">Priority public sector openings</p>
+                            </div>
+                            <button type="button" id="viewAllGov"
+                                class="shrink-0 text-xs font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400">
+                                View all →
+                            </button>
+                        </div>
 
-            <p id="jobsEmpty" class="hidden py-16 text-center text-sm text-muted dark:text-mist-300">
-                No job categories match your search.
-            </p>
+                        <div id="govJobs" class="mt-3 space-y-3"></div>
+                    </section>
 
-            <!-- CTA -->
-            <div class="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9">
-                <svg class="pointer-events-none absolute -right-8 -bottom-10 size-40 text-white/10" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="50" cy="50" r="46" /><circle cx="50" cy="50" r="30" /><circle cx="50" cy="50" r="14" /></svg>
-                <div class="relative max-w-sm">
-                    <p class="text-lg font-extrabold">Build Your Career</p>
-                    <p class="mt-1.5 text-sm text-white/80">Get matched with vetted opportunities across the Kingdom.</p>
+                    <!-- Browse by Sector -->
+                    <section>
+                        <h2 class="text-lg font-extrabold">Browse by Sector</h2>
+                        <div id="sectorGrid" class="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5"></div>
+                    </section>
+
+                    <!-- Private Sector -->
+                    <section id="privateSector">
+                        <h2 class="text-lg font-extrabold">Private Sector</h2>
+                        <p class="text-xs text-muted dark:text-mist-300">Verified corporate opportunities</p>
+                        <div id="privJobs" class="mt-3 grid gap-3 sm:grid-cols-2"></div>
+                    </section>
+
                 </div>
-                <button type="button" id="jobAlertBtn"
-                    class="relative mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft lg:mt-0 lg:shrink-0">
-                    Create Job Alert
-                </button>
+
+                <!-- ─────────── Right rail ─────────── -->
+                <aside class="mt-6 space-y-5 lg:mt-0 lg:w-80 lg:shrink-0">
+
+                    <!-- My Applications -->
+                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+                        <h2 class="flex items-center gap-1.5 text-sm font-bold">
+                            <svg class="size-4 text-brand dark:text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" /><path d="M14 2v5h5M9 13h6M9 17h4" /></svg>
+                            My Applications
+                        </h2>
+
+                        <ol class="mt-3 space-y-3.5">
+                            <li class="relative pl-4">
+                                <span class="absolute left-0 top-1.5 size-2 rounded-full bg-brand dark:bg-accent-400 ring-2 ring-brand-soft dark:ring-accent-400/25"></span>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="text-xs font-bold">Data Analyst</p>
+                                    <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Interviewing</span>
+                                </div>
+                                <p class="text-[11px] text-muted dark:text-mist-300">Ministry of Planning</p>
+                                <p class="mt-0.5 text-[11px] font-medium text-slate-500 dark:text-mist-300">Tech interview · Oct 3</p>
+                            </li>
+                            <li class="relative pl-4">
+                                <span class="absolute left-0 top-1.5 size-2 rounded-full bg-amber-500 ring-2 ring-amber-100 dark:ring-amber-500/25"></span>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="text-xs font-bold">HR Coordinator</p>
+                                    <span class="rounded-full bg-amber-100 dark:bg-amber-500/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-amber-700 dark:text-amber-400">Under review</span>
+                                </div>
+                                <p class="text-[11px] text-muted dark:text-mist-300">Global Corp LLC</p>
+                                <p class="mt-0.5 text-[11px] font-medium text-slate-500 dark:text-mist-300">Applied · Oct 3</p>
+                            </li>
+                        </ol>
+
+                        <button type="button" id="viewHistory"
+                            class="mt-4 w-full rounded-lg border border-black/10 dark:border-white/15 py-2 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700">
+                            View All History
+                        </button>
+                    </section>
+
+                    <!-- Career Resources -->
+                    <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white">
+                        <svg class="pointer-events-none absolute -right-6 -top-8 size-32 text-white/10" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="50" cy="50" r="46" /><circle cx="50" cy="50" r="28" /></svg>
+                        <h2 class="relative flex items-center gap-1.5 text-sm font-extrabold">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 2.5 5 5.5.8-4 3.9 1 5.5L12 21l-5-2.9 1-5.5-4-3.9 5.5-.8z" /></svg>
+                            Career Resources
+                        </h2>
+                        <p class="relative mt-1 text-xs text-white/75">Gov-sponsored tools to enhance your employability profile.</p>
+
+                        <div class="relative mt-4 space-y-2">
+                            <button type="button" data-resource="Resume Builder"
+                                class="flex w-full items-center justify-between rounded-xl bg-white/10 px-3 py-2.5 text-left text-xs font-semibold transition hover:bg-white/20">
+                                <span class="flex items-center gap-2">
+                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" /><path d="M14 2v5h5M9 13h6M9 17h4" /></svg>
+                                    Resume Builder
+                                </span>
+                                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                            </button>
+                            <button type="button" data-resource="Interview Prep AI"
+                                class="flex w-full items-center justify-between rounded-xl bg-white/10 px-3 py-2.5 text-left text-xs font-semibold transition hover:bg-white/20">
+                                <span class="flex items-center gap-2">
+                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2z" /><path d="M9 10h.01M13 10h.01" /></svg>
+                                    Interview Prep AI
+                                </span>
+                                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                            </button>
+                            <button type="button" data-resource="Skill Certifications"
+                                class="flex w-full items-center justify-between rounded-xl bg-white/10 px-3 py-2.5 text-left text-xs font-semibold transition hover:bg-white/20">
+                                <span class="flex items-center gap-2">
+                                    <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="5" /><path d="m9 13-1 8 4-2 4 2-1-8" /></svg>
+                                    Skill Certifications
+                                </span>
+                                <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                            </button>
+                        </div>
+                    </section>
+                </aside>
             </div>
         </main>
     </div>
@@ -418,7 +517,7 @@
             t._t = setTimeout(function () { t.style.opacity = "0"; }, 2400);
         }
 
-        /* Drawer mobile */
+        /* ── Mobile drawer ── */
         var sidebar = document.getElementById("sidebar"), scrim = document.getElementById("scrim");
         function openDrawer(open) {
             sidebar.classList.toggle("-translate-x-full", !open);
@@ -430,59 +529,182 @@
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
         sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
-        /* Directory cards: demo action */
-        document.querySelectorAll(".directory-card").forEach(function (card) {
-            card.addEventListener("click", function (e) {
-                e.preventDefault();
-                toast("Opening " + card.dataset.name + "…");
-            });
-        });
+        /* ── Data ── */
+        var GOV_JOBS = [
+            {
+                title: "Digital Transformation Lead", org: "Ministry of Finance", location: "Rabat", mode: "Hybrid",
+                salary: "18,000 – 22,000 MAD", type: "Full-time", closing: "Closing in 5 days",
+                category: "Tech & IT", remote: false,
+                icon: '<path d="M4 21V9l8-5 8 5v12" /><path d="M9 21v-6h6v6M9 10h.01M15 10h.01" />'
+            },
+            {
+                title: "Public Health Data Analyst", org: "Ministry of Health", location: "Casablanca", mode: "On-site",
+                salary: "14,000 – 17,000 MAD", type: "Contract", closing: "Closing in 12 days",
+                category: "Healthcare", remote: false,
+                icon: '<rect x="3" y="6" width="18" height="14" rx="2.5" /><path d="M12 10v6M9 13h6" />'
+            }
+        ];
 
-        /* Filter pills */
-        var state = { filter: "all", query: "" };
-        var cards = Array.prototype.slice.call(document.querySelectorAll(".directory-card"));
-        var pills = Array.prototype.slice.call(document.querySelectorAll(".job-filter"));
+        var PRIV_JOBS = [
+            {
+                title: "Senior Frontend Engineer", org: "TechNova Solutions", location: "Remote", type: "Full-time",
+                posted: "Posted 2h ago", isNew: true, category: "Tech & IT", remote: true
+            },
+            {
+                title: "Operations Manager", org: "Atlas Logistics Group", location: "Tangier", type: "Full-time",
+                posted: "Posted 5h ago", isNew: true, category: "Admin", remote: false
+            }
+        ];
 
-        function paintPills() {
-            pills.forEach(function (p) {
-                var on = p.dataset.filter === state.filter;
-                p.className = "job-filter filter-pill " + (on
-                    ? "bg-brand dark:bg-accent-400 text-white dark:text-night-900"
-                    : "bg-white dark:bg-night-800 text-muted dark:text-mist-300 ring-1 ring-black/5 dark:ring-white/10");
-            });
+        var SECTORS = [
+            { name: "Tech & IT", jobs: 245, icon: '<rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" />' },
+            { name: "Healthcare", jobs: 128, icon: '<path d="M12 21s-7-4.9-7-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 7 3.6C19 16.1 12 21 12 21z" />' },
+            { name: "Engineering", jobs: 312, icon: '<path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4l-2.6 2.6-1.4-1.4z" />' },
+            { name: "Admin", jobs: 190, icon: '<rect x="4" y="3" width="16" height="18" rx="2" /><path d="M8 7h8M8 11h8M8 15h5" />' },
+            { name: "Tourism", jobs: 85, icon: '<path d="M12 3v18M4 20h16M6 9c0-2 3-4 6-4M18 9c0-2-3-4-6-4" />' }
+        ];
+
+        var SVG = function (body, cls) {
+            return '<svg class="' + (cls || "size-4") + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">' + body + '</svg>';
+        };
+        var META_PIN = '<path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" />';
+        var META_PAY = '<rect x="2.5" y="6" width="19" height="12" rx="2.5" /><circle cx="12" cy="12" r="2.5" />';
+        var META_CLOCK = '<circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" />';
+
+        /* ── Render ── */
+        function govCard(j) {
+            var mode = j.mode ? ' <span class="opacity-70">(' + j.mode + ')</span>' : '';
+            return '' +
+                '<article data-job class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:shadow-md sm:flex sm:items-start sm:gap-4">' +
+                '<span class="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">' + SVG(j.icon, "size-5") + '</span>' +
+                '<div class="mt-3 min-w-0 flex-1 sm:mt-0">' +
+                '<div class="flex flex-wrap items-center gap-x-2 gap-y-1">' +
+                '<span class="rounded bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:text-mist-300">' + j.org + '</span>' +
+                '<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-600 dark:text-amber-400">' + SVG(META_CLOCK, "size-3") + j.closing + '</span>' +
+                '</div>' +
+                '<h3 class="mt-1.5 text-sm font-bold">' + j.title + '</h3>' +
+                '<div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted dark:text-mist-300">' +
+                '<span class="inline-flex items-center gap-1">' + SVG(META_PIN, "size-3") + j.location + mode + '</span>' +
+                '<span class="inline-flex items-center gap-1">' + SVG(META_PAY, "size-3") + j.salary + '</span>' +
+                '<span class="inline-flex items-center gap-1">' + SVG(META_CLOCK, "size-3") + j.type + '</span>' +
+                '</div></div>' +
+                '<button type="button" data-apply="' + j.title + '" class="mt-3 w-full rounded-lg bg-brand px-3.5 py-2 text-xs font-bold text-white transition hover:bg-brand-dark sm:mt-0 sm:w-auto sm:shrink-0 sm:self-center">Secure Apply</button>' +
+                '</article>';
         }
+
+        function privCard(j) {
+            var tag = j.isNew
+                ? '<span class="shrink-0 rounded bg-brand/10 dark:bg-accent-400/15 px-1.5 py-0.5 text-[10px] font-bold uppercase text-brand dark:text-accent-400">New</span>'
+                : '';
+            return '' +
+                '<article data-job class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:shadow-md">' +
+                '<div class="flex items-start justify-between gap-2"><h3 class="text-sm font-bold">' + j.title + '</h3>' + tag + '</div>' +
+                '<p class="mt-0.5 text-xs font-medium text-muted dark:text-mist-300">' + j.org + '</p>' +
+                '<div class="mt-2 flex flex-wrap gap-1.5">' +
+                '<span class="rounded-full bg-slate-100 dark:bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-mist-300">' + j.location + '</span>' +
+                '<span class="rounded-full bg-slate-100 dark:bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-mist-300">' + j.type + '</span>' +
+                '</div>' +
+                '<div class="mt-3 flex items-center justify-between">' +
+                '<span class="text-[11px] text-muted dark:text-mist-300">' + j.posted + '</span>' +
+                '<button type="button" data-apply="' + j.title + '" class="text-xs font-bold text-brand dark:text-accent-400 hover:underline">Apply Now</button>' +
+                '</div></article>';
+        }
+
+        function sectorTile(s) {
+            return '' +
+                '<button type="button" data-sector="' + s.name + '" class="flex flex-col items-center gap-2 rounded-2xl bg-white dark:bg-night-800 p-3 text-center ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">' +
+                '<span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">' + SVG(s.icon, "size-4") + '</span>' +
+                '<span class="text-xs font-bold leading-tight">' + s.name + '</span>' +
+                '<span class="text-[10px] text-muted dark:text-mist-300">' + s.jobs + ' jobs</span>' +
+                '</button>';
+        }
+
+        document.getElementById("sectorGrid").innerHTML = SECTORS.map(sectorTile).join("");
+
+        /* ── Filtering ── */
+        var state = { q: "", location: "", category: "", remote: false };
+
+        function matches(j) {
+            var q = state.q.trim().toLowerCase();
+            if (q) {
+                var hay = (j.title + " " + j.org + " " + j.category).toLowerCase();
+                if (hay.indexOf(q) === -1) return false;
+            }
+            if (state.category && j.category !== state.category) return false;
+            if (state.remote && !j.remote) return false;
+            if (state.location) {
+                if (state.location === "Remote") { if (!j.remote) return false; }
+                else if (j.location !== state.location) return false;
+            }
+            return true;
+        }
+
+        var EMPTY_ROW = '<p class="rounded-2xl border border-dashed border-black/10 dark:border-white/15 py-8 text-center text-xs text-muted dark:text-mist-300 sm:col-span-2">No roles match your filters here.</p>';
 
         function render() {
-            var q = state.query.trim().toLowerCase();
-            var visible = 0;
-            cards.forEach(function (card) {
-                var matchCat = state.filter === "all" || card.dataset.cat === state.filter;
-                var matchQuery = !q || card.dataset.name.toLowerCase().includes(q);
-                var show = matchCat && matchQuery;
-                card.classList.toggle("hidden", !show);
-                if (show) visible++;
-            });
-            document.getElementById("jobsEmpty").classList.toggle("hidden", visible !== 0);
+            var gov = GOV_JOBS.filter(matches);
+            var priv = PRIV_JOBS.filter(matches);
+
+            document.getElementById("govJobs").innerHTML = gov.length ? gov.map(govCard).join("") : EMPTY_ROW;
+            document.getElementById("privJobs").innerHTML = priv.length ? priv.map(privCard).join("") : EMPTY_ROW;
+
+            document.getElementById("noResults").classList.toggle("hidden", gov.length || priv.length);
+
+            bindCards();
         }
 
-        pills.forEach(function (p) {
-            p.addEventListener("click", function () {
-                state.filter = p.dataset.filter;
-                paintPills();
+        function bindCards() {
+            document.querySelectorAll("[data-apply]").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    toast("Secure apply started for " + btn.dataset.apply + " — verifying with your Digital ID…");
+                });
+            });
+        }
+
+        /* ── Events ── */
+        document.getElementById("jobSearchForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            state.q = document.getElementById("qInput").value;
+            state.location = document.getElementById("locationSelect").value;
+            state.category = document.getElementById("categorySelect").value;
+            state.remote = document.getElementById("remoteOnly").checked;
+            render();
+            var n = GOV_JOBS.filter(matches).length + PRIV_JOBS.filter(matches).length;
+            toast(n + (n === 1 ? " job matches" : " jobs match") + " your search");
+        });
+
+        ["locationSelect", "categorySelect", "remoteOnly"].forEach(function (id) {
+            document.getElementById(id).addEventListener("change", function () {
+                state.location = document.getElementById("locationSelect").value;
+                state.category = document.getElementById("categorySelect").value;
+                state.remote = document.getElementById("remoteOnly").checked;
                 render();
             });
         });
 
-        document.getElementById("jobsSearch").addEventListener("input", function (e) {
-            state.query = e.target.value;
+        document.getElementById("sectorGrid").addEventListener("click", function (e) {
+            var tile = e.target.closest("[data-sector]");
+            if (!tile) return;
+            state.category = tile.dataset.sector;
+            document.getElementById("categorySelect").value = tile.dataset.sector;
             render();
+            document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+            toast("Showing " + tile.dataset.sector + " roles");
         });
 
-        document.getElementById("jobAlertBtn").addEventListener("click", function () {
-            toast("Job alert created — we'll notify you about new matches");
+        document.getElementById("viewAllGov").addEventListener("click", function () {
+            toast("Opening the full government jobs board…");
+        });
+        document.getElementById("viewHistory").addEventListener("click", function () {
+            toast("Opening your full application history…");
+        });
+        document.querySelectorAll("[data-resource]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                toast("Opening " + btn.dataset.resource + "…");
+            });
         });
 
-        paintPills();
+        render();
     </script>
 </body>
 
