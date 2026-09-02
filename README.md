@@ -66,12 +66,19 @@ this stage — no Node.js/Express, no Python/Django/Flask, no PHP, no SQL/NoSQL 
 Projet-M3AK/
 │
 ├── assets/
+│   ├── icon-bar-left/          # Shared left-sidebar nav icons (+ "-green" active variants)
+│   ├── transport-icon/         # Transport page icons (modes, planner, quick places)
 │   ├── image-login/
 │   ├── image-signUp/
 │   ├── image-new-password/
 │   ├── images/
 │   ├── marketplace-image/
 │   ├── emergence-image/
+│   ├── health-image/
+│   ├── support-image/
+│   ├── suppor-assets/
+│   ├── coming-soon/
+│   ├── settings/
 │   ├── dashboard-assets/
 │   └── screenshots/
 │
@@ -110,7 +117,8 @@ Projet-M3AK/
 │       ├── login.js
 │       ├── signup.js
 │       ├── forgot-password.js
-│       └── reset-password.js
+│       ├── reset-password.js
+│       └── emergence.js
 │
 ├── index.html
 ├── .gitignore
@@ -125,6 +133,11 @@ Projet-M3AK/
 - Instagram-style collapsible sidebar on every app page (Overview, Marketplace, Transport, Housing, Jobs,
   Education, Payments, Registry, Interior, Finance, Health): icons only by default, hovering the sidebar
   reveals every label at once, active page always visible on its own icon color
+- Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`) instead of
+  per-page inline SVGs, with `-green` variants shown on the active page (Services, Transport, Marketplace)
+  and a dark-mode filter that keeps the plain icons legible; every sidebar also carries a Passport entry
+- Mobile menu drawer on the Account/Settings page (`compte.html`): hamburger button opens a slide-in
+  drawer with the primary nav and every settings section (scrim, close button, Esc / tap-outside to close)
 - Dashboard interface with live transport status
 - Digital identity management (UI) — CIN card, personal info, security, preferences in Account/Settings
 - Public service directory (12 ministry categories: Housing, Jobs, Education, Healthcare, Registry, Interior,
@@ -140,7 +153,8 @@ Projet-M3AK/
 - Simulated session handling shared across pages via `localStorage` (`session.js`), with a client-side auth
   guard (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored — this
   is a frontend UX gate, not real authentication or authorization
-- Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too)
+- Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too, descriptive
+  `alt` text on every `<img>` across the project)
 
 ---
 
@@ -236,6 +250,17 @@ remaining items are genuinely open:
   clock used `font-mono`. Project now uses only Plus Jakarta Sans / Hanken Grotesk throughout.~~
 - ~~`health.html` had no sidebar and no way to open one on mobile (no hamburger button) — now matches every
   other app page.~~
+- ~~Sidebar nav icons were re-declared as inline SVG on every page; they are now a single shared PNG set
+  (`assets/icon-bar-left/`) with `-green` active variants and a dark-mode filter, and a Passport entry was
+  added to every sidebar.~~
+- ~~`transport.html`'s sidebar used an invalid Tailwind class (`dark:bg-accent-400/15/50`), so in dark mode
+  it kept the pale light-mode background instead of `dark:bg-night-800` like every other page.~~
+- ~~`transport.html` pointed its ~24 icons at a non-existent `/assets/transport/` folder (all 404). They are
+  now wired to the exported `assets/transport-icon/` set; the mode buttons whiten the active icon via CSS
+  instead of loading missing `-white` files.~~
+- ~~`compte.html` (Account/Settings) had no mobile menu at all — the top nav was `hidden md:flex` with no
+  fallback. It now has a hamburger + slide-in drawer like the rest of the app.~~
+- ~~Many images across the project had empty `alt=""`; all now carry descriptive alt text.~~
 
 **Still open:**
 
@@ -243,8 +268,9 @@ remaining items are genuinely open:
   step or relative-path rewrite before that deployment target.
 - Justice, Foreign Affairs, Agriculture, Culture, and Tourism are represented by the shared Coming Soon
   placeholder, not real pages.
-- A number of `.png` icons referenced across `transport.html`, `health.html`, and admin `dashboard.html` don't
-  exist in `assets/` — pre-existing gaps, not something introduced by recent work.
+- `health.html` and admin `dashboard.html` still reference many `.png` icons from `assets/services-image/`
+  and `assets/dashboard/` folders that don't exist — pre-existing gaps (`transport.html`'s equivalent gap is
+  now fixed via `assets/transport-icon/`).
 - Auth is frontend-only (`localStorage`), by design for this stage — no real backend/API yet.
 - Tablet viewports render the same layout as desktop/laptop (the responsive design only really distinguishes
   mobile vs. desktop) — no breakpoint tuned specifically for tablet-sized screens.
@@ -261,6 +287,10 @@ remaining items are genuinely open:
 - ✅ Internal navigation, auth JS, and session guard fixed across the app
 - ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
 - ✅ Instagram-style collapsible sidebar rolled out to all 11 app pages that have one
+- ✅ Sidebar nav switched to a shared PNG icon set (`icon-bar-left/`) with active-state green variants and a
+  Passport entry on every page; `transport.html` wired to its own `transport-icon/` set
+- ✅ Accessibility pass — descriptive `alt` text added to every image across the project
+- ✅ Account/Settings page got the mobile hamburger + drawer it was missing
 - ✅ Mobile, tablet, and desktop breakpoints in place across the app — tablet viewports currently reuse the
   desktop/laptop layout rather than a custom-tuned in-between design
 - 🚧 Justice, Foreign Affairs, Agriculture, Culture, Tourism ministry pages (currently placeholders)
