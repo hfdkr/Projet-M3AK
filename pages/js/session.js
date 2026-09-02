@@ -52,6 +52,21 @@
         }
     }
 
+    /* Write a value into every matching element: form fields get .value,
+       everything else gets .textContent. Empty values are left untouched
+       so a page's own placeholder text stays visible. */
+    function fill(selector, value) {
+        if (!value) { return; }
+        document.querySelectorAll(selector).forEach(function (el) {
+            var tag = el.tagName;
+            if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") {
+                el.value = value;
+            } else {
+                el.textContent = value;
+            }
+        });
+    }
+
     function initialsFrom(name) {
         return String(name || "")
             .trim()
@@ -103,9 +118,8 @@
         });
 
         if (user) {
-            document.querySelectorAll("[data-user-name]").forEach(function (el) {
-                el.textContent = user.name;
-            });
+            fill("[data-user-name]", user.name);
+            fill("[data-user-email]", user.email);
             document.querySelectorAll("[data-user-initials]").forEach(function (el) {
                 el.textContent = user.initials;
             });
