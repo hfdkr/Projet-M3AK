@@ -114,12 +114,17 @@
             submit.textContent = "Signing in...";
             submit.classList.add("opacity-70");
 
-            /* Demo: no backend yet, open the session and redirect */
+            /* Demo: no backend yet, open the session and redirect.
+               Keep a name from a previous sign-up if we already have one. */
             window.setTimeout(function () {
                 var isEmail = idValue.indexOf("@") !== -1;
+                var existing = window.M3ak.getUser();
+                var keptName = existing && existing.name && existing.name !== "Citizen"
+                    ? existing.name
+                    : (isEmail ? idValue.split("@")[0] : "Citizen");
                 window.M3ak.signIn({
-                    name: isEmail ? idValue.split("@")[0] : "Citizen",
-                    email: isEmail ? idValue : ""
+                    name: keptName,
+                    email: isEmail ? idValue : (existing && existing.email) || ""
                 });
                 window.location.href = "/pages/app/overview.html";
             }, 500);
