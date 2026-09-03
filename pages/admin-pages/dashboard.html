@@ -349,19 +349,19 @@
         }
 
         .chart {
-            @apply flex items-end justify-between gap-[10px] h-[180px] md:h-[220px];
+            @apply flex flex-col h-[180px] md:h-[220px];
         }
 
-        .chart-day {
-            @apply flex-1 flex flex-col items-center gap-[10px] h-full;
-        }
-
-        .chart-bars {
-            @apply flex-1 flex items-end justify-center w-full;
+        .chart-bars-row {
+            @apply flex-1 flex items-end justify-between gap-[6px] md:gap-[10px];
         }
 
         .bar {
-            @apply w-full max-w-[20px] rounded-full bg-green-900 dark:bg-accent-400;
+            @apply flex-1 max-w-[8px] rounded-full bg-green-900 dark:bg-accent-400;
+        }
+
+        .chart-axis {
+            @apply flex justify-between border-t border-[#BCCAC0]/30 pt-[10px] mt-[10px];
         }
 
         .chart-label {
@@ -583,7 +583,8 @@
                     <span class="sidebar-brand-name">M3ak Morocco</span>
 
                     <button type="button" class="icon-button" id="sidebar-close" aria-label="Close menu">
-                        <img src="/assets/dashboard-assets/close.png" alt="Close" class="w-[19px] h-[19px] object-contain">
+                        <img src="/assets/dashboard-assets/close.png" alt="Close"
+                            class="w-[19px] h-[19px] object-contain">
                     </button>
                 </div>
 
@@ -748,52 +749,27 @@
                             </div>
 
                             <div class="chart">
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:26%;opacity:.32"></span>
-                                    </div>
+                                <div class="chart-bars-row">
+                                    <div class="bar bg-green-200" style="height:71.69px;"></div>
+                                    <div class="bar bg-green-400" style="height:107.55px;"></div>
+                                    <div class="bar bg-green-200" style="height:83.64px;"></div>
+                                    <div class="bar bg-green-400" style="height:167.3px;"></div>
+                                    <div class="bar bg-green-900" style="height:203.14px;"></div>
+                                    <div class="bar bg-green-100" style="height:131.44px;"></div>
+                                    <div class="bar bg-green-400" style="height:239px;"></div>
+                                    <div class="bar bg-green-900" style="height:179.25px;"></div>
+                                    <div class="bar bg-green-400" style="height:155.34px;"></div>
+                                    <div class="bar bg-green-200" style="height:95.59px;"></div>
+                                    <div class="bar bg-green-100" style="height:71.69px;"></div>
+                                    <div class="bar bg-green-400" style="height:119.5px;"></div>
+                                </div>
+                                <div class="chart-axis">
                                     <span class="chart-label">Mon</span>
-                                </div>
-
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:40%;opacity:.44"></span>
-                                    </div>
                                     <span class="chart-label">Tue</span>
-                                </div>
-
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:70%;opacity:.72"></span>
-                                    </div>
                                     <span class="chart-label">Wed</span>
-                                </div>
-
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:100%;opacity:1"></span>
-                                    </div>
                                     <span class="chart-label">Thu</span>
-                                </div>
-
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:78%;opacity:.8"></span>
-                                    </div>
                                     <span class="chart-label">Fri</span>
-                                </div>
-
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:46%;opacity:.5"></span>
-                                    </div>
                                     <span class="chart-label">Sat</span>
-                                </div>
-
-                                <div class="chart-day">
-                                    <div class="chart-bars">
-                                        <span class="bar" style="height:55%;opacity:.58"></span>
-                                    </div>
                                     <span class="chart-label">Sun</span>
                                 </div>
                             </div>
@@ -861,7 +837,8 @@
                                 <h2 class="panel-title">Recent Activity</h2>
                                 <p class="panel-subtitle">Real-time updates across the kingdom.</p>
                             </div>
-                            <a href="/pages/app/coming-soon.html?feature=Activity+Logs" class="panel-link">View All Logs</a>
+                            <a href="/pages/app/coming-soon.html?feature=Activity+Logs" class="panel-link">View All
+                                Logs</a>
                         </div>
                         <div class="table-wrap">
                             <table>
