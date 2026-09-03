@@ -349,27 +349,19 @@
         }
 
         .chart {
-            @apply flex items-end justify-between gap-[6px] h-[170px] md:h-[200px];
+            @apply flex items-end justify-between gap-[10px] h-[180px] md:h-[220px];
         }
 
         .chart-day {
-            @apply flex-1 flex flex-col items-center gap-[8px] h-full;
+            @apply flex-1 flex flex-col items-center gap-[10px] h-full;
         }
 
         .chart-bars {
-            @apply flex-1 flex items-end justify-center gap-[4px] w-full;
+            @apply flex-1 flex items-end justify-center w-full;
         }
 
         .bar {
-            @apply w-[6px] rounded-full md:w-[8px];
-        }
-
-        .bar-services {
-            @apply bg-green-200 dark:bg-night-600;
-        }
-
-        .bar-payments {
-            @apply bg-green-900 dark:bg-accent-400;
+            @apply w-full max-w-[20px] rounded-full bg-green-900 dark:bg-accent-400;
         }
 
         .chart-label {
@@ -628,10 +620,6 @@
                         <img src="/assets/icon-bar-left/marketplace.png" alt="Marketplace" class="nav-icon">
                         Marketplace
                     </a>
-                    <a href="/pages/app/emergence.html" class="nav-item">
-                        <img src="/assets/emergence-image/sos-logo.png" alt="Emergency" class="nav-icon">
-                        Emergency
-                    </a>
                 </nav>
 
                 <div class="sidebar-foot">
@@ -749,11 +737,11 @@
 
                                 <div class="chart-legend">
                                     <span class="legend-item">
-                                        <span class="legend-dot bg-green-200"></span>
+                                        <span class="legend-dot bg-green-900"></span>
                                         Services
                                     </span>
                                     <span class="legend-item">
-                                        <span class="legend-dot bg-green-900"></span>
+                                        <span class="legend-dot bg-blue-500"></span>
                                         Payments
                                     </span>
                                 </div>
@@ -762,56 +750,49 @@
                             <div class="chart">
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:26%"></span>
-                                        <span class="bar bar-payments" style="height:18%"></span>
+                                        <span class="bar" style="height:26%;opacity:.32"></span>
                                     </div>
                                     <span class="chart-label">Mon</span>
                                 </div>
 
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:44%"></span>
-                                        <span class="bar bar-payments" style="height:30%"></span>
+                                        <span class="bar" style="height:40%;opacity:.44"></span>
                                     </div>
                                     <span class="chart-label">Tue</span>
                                 </div>
 
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:66%"></span>
-                                        <span class="bar bar-payments" style="height:79%"></span>
+                                        <span class="bar" style="height:70%;opacity:.72"></span>
                                     </div>
                                     <span class="chart-label">Wed</span>
                                 </div>
 
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:52%"></span>
-                                        <span class="bar bar-payments" style="height:97%"></span>
+                                        <span class="bar" style="height:100%;opacity:1"></span>
                                     </div>
                                     <span class="chart-label">Thu</span>
                                 </div>
 
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:60%"></span>
-                                        <span class="bar bar-payments" style="height:72%"></span>
+                                        <span class="bar" style="height:78%;opacity:.8"></span>
                                     </div>
                                     <span class="chart-label">Fri</span>
                                 </div>
 
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:38%"></span>
-                                        <span class="bar bar-payments" style="height:22%"></span>
+                                        <span class="bar" style="height:46%;opacity:.5"></span>
                                     </div>
                                     <span class="chart-label">Sat</span>
                                 </div>
 
                                 <div class="chart-day">
                                     <div class="chart-bars">
-                                        <span class="bar bar-services" style="height:47%"></span>
-                                        <span class="bar bar-payments" style="height:34%"></span>
+                                        <span class="bar" style="height:55%;opacity:.58"></span>
                                     </div>
                                     <span class="chart-label">Sun</span>
                                 </div>
