@@ -178,9 +178,38 @@
     </style>
 </head>
 
-<body class="bg-mint-50 dark:bg-night-900 pb-[76px] md:pb-0 transition-colors duration-200" data-require-auth>
+<body class="bg-mint-50 dark:bg-night-900 transition-colors duration-200" data-require-auth>
 
-    <!-- ══════════════ HEADER ══════════════ -->
+    <!-- ══════════════ HEADER (mobile) ══════════════ -->
+    <header
+        class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-900/95 backdrop-blur lg:hidden">
+        <div class="flex h-16 items-center gap-3 px-4">
+            <button id="menuBtn" type="button"
+                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <span class="sr-only">Open menu</span>
+                <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain" />
+            </button>
+            <a href="/index.html" class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
+
+            <div class="ml-auto flex items-center gap-1.5">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                    </span>
+                </button>
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Cart</span>
+                    <img src="/assets/marketplace-image/marketplace-icon-6.png" alt="" class="size-5 object-contain" />
+                    <span id="cartBadgeMobile"
+                        class="absolute right-1 top-0.5 hidden min-w-4 rounded-full bg-danger px-1 text-[9px] font-bold leading-4 text-white">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════ HEADER (desktop) ══════════════ -->
     <header
         class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-night-900/95 backdrop-blur lg:block">
         <div class="mx-auto flex h-16 max-w-[1400px] items-center gap-10 px-6">
@@ -200,6 +229,13 @@
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
                         <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
                     </span>
+                </button>
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Cart</span>
+                    <img src="/assets/marketplace-image/marketplace-icon-6.png" alt="" class="size-5 object-contain" />
+                    <span id="cartBadge"
+                        class="absolute right-1 top-0.5 hidden min-w-4 rounded-full bg-danger px-1 text-[9px] font-bold leading-4 text-white">0</span>
                 </button>
                 <button type="button"
                     class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
@@ -229,9 +265,11 @@
 
     <div class="mx-auto flex max-w-[1400px] gap-8 px-4 lg:px-6">
 
-        <!-- ══════════════ SIDEBAR (desktop) ══════════════ -->
+        <!-- ══════════════ SIDEBAR / DRAWER ══════════════ -->
+        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
         <aside id="sidebar"
-            class="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 shrink-0 border-r border-black/5 dark:border-white/10 py-8 pr-6 lg:block">
+            class="fixed inset-y-0 left-0 z-50 w-64 -translate-x-full overflow-y-auto bg-mint-50 dark:bg-night-900 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-60 lg:translate-x-0 lg:shrink-0 lg:border-r lg:border-black/5 dark:lg:border-white/10 lg:px-0 lg:py-8 lg:pr-6">
             <div class="mb-4 px-3 sidebar-head">
                 <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300 sidebar-text">Categories</p>
             </div>
@@ -551,6 +589,17 @@
         t._timer = setTimeout(() => (t.style.opacity = "0"), 2200);
     }
 
+    /* ─────────────── Sidebar drawer (mobile) ─────────────── */
+    const sidebar = $("#sidebar"), scrim = $("#scrim"), menuBtn = $("#menuBtn");
+    function openDrawer(open) {
+        sidebar.classList.toggle("-translate-x-full", !open);
+        scrim.classList.toggle("hidden", !open);
+        document.body.classList.toggle("overflow-hidden", open);
+    }
+    if (menuBtn) menuBtn.addEventListener("click", () => openDrawer(true));
+    if (scrim) scrim.addEventListener("click", () => openDrawer(false));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") openDrawer(false); });
+
     const pinIcon = `<img src="/assets/marketplace-image/location.png" alt="Location" class="size-3 shrink-0" />`;
     const starIcon = `<img src="/assets/marketplace-image/star.png" alt="Star" class="size-3 shrink-0" />`;
     const heartIcon = `<img src="/assets/marketplace-image/marketplace-icon-8.png" alt="Marketplace icon 8" class="size-4 object-contain" />`;
@@ -762,9 +811,10 @@
         }
         if (e.target.closest("#bookConsult")) {
             cartCount++;
-            const badge = $("#cartBadge");
-            badge.textContent = cartCount;
-            badge.classList.remove("hidden");
+            $$("#cartBadge, #cartBadgeMobile").forEach(function (badge) {
+                badge.textContent = cartCount;
+                badge.classList.remove("hidden");
+            });
             toast("Consultation requested — an artisan replies within 24h");
         }
     });
