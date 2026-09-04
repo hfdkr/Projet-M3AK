@@ -11,8 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
     <title>Create Account — M3ak Morocco</title>
-
     <style type="text/tailwindcss">
         @custom-variant dark (&:where(.dark, .dark *));
 
@@ -47,6 +47,20 @@
         body {
             @apply bg-white dark:bg-night-900 text-black dark:text-mist-100 transition-colors duration-200;
         }
+
+        /* ---------- Shared helpers ---------- */
+        .icon-5 { @apply w-5 h-5 object-contain; }
+
+        /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
+        .theme-toggle        { @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                                      md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
+        .theme-toggle--panel { @apply absolute top-[32px] right-[48px]; }
+        .theme-toggle-thumb  { @apply grid place-items-center h-6 w-6 rounded-full
+                                      md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
+        .theme-toggle-sun    { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon   { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
+
+        .signup-topbar-actions { @apply flex items-center gap-[10px]; }
 
         /* ---------- Signup: page shell ---------- */
         .signup-page{
@@ -175,24 +189,17 @@
 
             <div class="signup-brand">
                 <div class="signup-brand-mark">
-                    <img src="/assets/image-signUp/signup-icon.png" alt="Signup icon" class="w-5 h-5 object-contain" />
+                    <img src="/assets/image-signUp/signup-icon.png" alt="Signup icon" class="icon-5" />
                 </div>
                 <span class="signup-brand-name">Maak Morocco</span>
             </div>
-             <!-- dark light mode button -->
-            <button type="button"
-                    class="absolute top-[32px] right-[48px] flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-                    data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <!-- Toggle Circle -->
-                    <span
-                        class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-                        <!-- Sun -->
-                        <img src="/assets/settings/sun.png" alt="Light mode"
-                            class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
-                        <!-- Moon -->
-                        <img src="/assets/settings/moon.png" alt="Dark mode"
-                            class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
-                    </span>
+
+            <button type="button" class="theme-toggle theme-toggle--panel" data-theme-toggle
+                aria-label="Toggle dark mode" aria-pressed="false">
+                <span class="theme-toggle-thumb">
+                    <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                    <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                </span>
             </button>
 
             <div class="signup-visual">
@@ -200,7 +207,7 @@
 
                 <div class="signup-status-badge">
                     <div class="signup-status-icon">
-                        <img src="/assets/image-signUp/signup-icon-2.png" alt="Signup icon 2" class="w-5 h-5 object-contain" />
+                        <img src="/assets/image-signUp/signup-icon-2.png" alt="Signup icon 2" class="icon-5" />
                     </div>
                     <div>
                         <p class="signup-status-label">Security Status</p>
@@ -229,23 +236,16 @@
                     <img src="/assets/image-signUp/back-icon.png" alt="icon back">
                     Back to Log in
                 </a>
-                <div class="flex items-center gap-[10px]">
-                    <button type="button"
-                        class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-                        data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                        <!-- Toggle Circle -->
-                        <span
-                            class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-                            <!-- Sun -->
-                            <img src="/assets/settings/sun.png" alt="Light mode"
-                                class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
-                            <!-- Moon -->
-                            <img src="/assets/settings/moon.png" alt="Dark mode"
-                                class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+                <div class="signup-topbar-actions">
+                    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                        aria-pressed="false">
+                        <span class="theme-toggle-thumb">
+                            <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                            <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
                         </span>
                     </button>
                     <span class="signup-secured-pill">
-                        <img src="/assets/image-signUp/Icon(1).png" alt="secure icon" class="">
+                        <img src="/assets/image-signUp/Icon(1).png" alt="secure icon">
                         Secured
                     </span>
                 </div>
@@ -270,9 +270,10 @@
                         <label for="fullName" class="signup-field-label">Full Name</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-3.png" alt="Signup icon 3" class="w-5 h-5 object-contain" />
+                                <img src="/assets/image-signUp/signup-icon-3.png" alt="Signup icon 3" class="icon-5" />
                             </span>
-                            <input class="signup-field-input" type="text" id="fullName" placeholder="Mohamed El Idrissi">
+                            <input class="signup-field-input" type="text" id="fullName"
+                                placeholder="Mohamed El Idrissi">
                         </div>
                     </div>
 
@@ -280,7 +281,7 @@
                         <label for="cni" class="signup-field-label">National ID (CNI)</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-4.png" alt="Signup icon 4" class="w-5 h-5 object-contain" />
+                                <img src="/assets/image-signUp/signup-icon-4.png" alt="Signup icon 4" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="text" id="cni" placeholder="E.G. AB123456">
                         </div>
@@ -290,7 +291,7 @@
                         <label for="email" class="signup-field-label">Email Address</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-5.png" alt="Signup icon 5" class="w-5 h-5 object-contain" />
+                                <img src="/assets/image-signUp/signup-icon-5.png" alt="Signup icon 5" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="email" id="email" placeholder="mohamed@example.ma">
                         </div>
@@ -300,7 +301,7 @@
                         <label for="phone" class="signup-field-label">Phone Number</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-6.png" alt="Signup icon 6" class="w-5 h-5 object-contain" />
+                                <img src="/assets/image-signUp/signup-icon-6.png" alt="Signup icon 6" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="tel" id="phone" placeholder="+212 600 000 000">
                         </div>
@@ -318,7 +319,7 @@
 
                 <div class="signup-footer">
                     <span class="signup-secure-pill">
-                        <img src="/assets/image-signUp/signup-icon-7.png" alt="Signup icon 7" class="w-5 h-5 object-contain" />
+                        <img src="/assets/image-signUp/signup-icon-7.png" alt="Signup icon 7" class="icon-5" />
                         Secure &amp; 256-bit AES Encrypted
                     </span>
                     <p class="signup-terms">

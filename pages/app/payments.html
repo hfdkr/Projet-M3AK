@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
     <title>Payments — M3ak Morocco</title>
     <script src="/pages/js/session.js"></script>
     <script src="/pages/js/theme.js"></script>
@@ -16,6 +17,18 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style type="text/tailwindcss">
+
+        /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
+        .theme-toggle{
+            @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                   md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300;
+        }
+        .theme-toggle-thumb{
+            @apply grid place-items-center h-6 w-6 rounded-full
+                   md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900;
+        }
+        .theme-toggle-sun{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
         @custom-variant dark (&:where(.dark, .dark *));
 
         @theme {
@@ -168,12 +181,10 @@
 
 
             <div class="ml-auto flex items-center gap-1.5">
-                <button type="button"
-                    class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-                    data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <span class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="h-4 w-4 object-contain transition-all duration-300 dark:hidden">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="absolute hidden h-4 w-4 object-contain transition-all duration-300 dark:block">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
                     </span>
                 </button>
 
@@ -251,7 +262,7 @@
             <div class="mt-auto space-y-1 pt-6">
                 <a href="/pages/app/emergence.html"
                     class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-                    <img src="/assets/images/payments-icon.png" alt="Payments icon" class="size-[18px] shrink-0 object-contain" />
+                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-[18px] shrink-0 object-contain" />
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
@@ -259,11 +270,11 @@
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/images/payments-icon-2.png" alt="Payments icon 2" class="size-[18px] object-contain" />
+                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/images/payments-icon-3.png" alt="Payments icon 3" class="size-[18px] object-contain" />
+                    <img src="/assets/marketplace-image/logout.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>

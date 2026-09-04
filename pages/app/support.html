@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
     <title>Support — M3ak Morocco</title>
     <script src="/pages/js/session.js"></script>
     <script src="/pages/js/theme.js"></script>
@@ -43,350 +44,403 @@
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { @apply scroll-smooth; }
+        body { @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 font-sans transition-colors duration-200; }
 
-        body {
-            @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 font-sans transition-colors duration-200;
-        }
+        /* ---------- Theme toggle — icon only on mobile, pill switch on tablet/desktop ---------- */
+        .theme-toggle       { @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                                     md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
+        .theme-toggle-thumb { @apply grid place-items-center h-6 w-6 rounded-full
+                                     md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
+        .theme-toggle-sun   { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon  { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
 
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-        }
+        /* ---------- App top bar ---------- */
+        .app-topbar         { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
+        .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 lg:hidden; }
+        .app-brand          { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .app-search         { @apply relative ml-auto hidden lg:block w-72; }
+        .app-search-icon    { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .app-search-input   { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .app-topbar-actions { @apply ml-auto flex items-center gap-1.5 lg:ml-3; }
+        .app-icon-btn       { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-notif-dot      { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .app-avatar         { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+
+        /* ---------- App shell / sidebar ---------- */
+        .app-body    { @apply flex; }
+        .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 lg:hidden; }
+        .app-scrim.is-open { @apply block lg:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
+                              border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5
+                              transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-60 lg:translate-x-0; }
+        .app-sidebar.is-open { @apply translate-x-0; }
+        .sidebar-head  { @apply mb-5 px-2; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
+        .sidebar-nav   { @apply space-y-0.5; }
+        .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
+        .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
+                                hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
+        .nav-item--active { @apply bg-white dark:bg-night-700 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
+        .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
+        .app-main      { @apply min-w-0 flex-1 pb-16; }
+
+        /* ---------- Support page ---------- */
+        .support-section     { @apply mx-auto max-w-[900px] px-4 lg:px-6; }
+        .support-hero        { @apply rounded-2xl bg-gradient-to-br from-brand-soft to-blue-soft dark:from-night-800 dark:to-night-700 p-4 lg:p-8; }
+        .support-hero-media  { @apply relative mx-auto max-w-[620px] overflow-hidden rounded-xl shadow-sm; }
+        .support-hero-img    { @apply aspect-[21/9] w-full object-cover; }
+        .support-hero-copy   { @apply relative mx-auto mt-6 flex max-w-[520px] flex-col items-center text-center pb-2 lg:pb-4; }
+        .support-hero-title  { @apply text-2xl font-extrabold tracking-tight lg:text-[32px]; }
+        .support-hero-text   { @apply mt-3 text-sm leading-relaxed text-muted dark:text-mist-300 lg:text-[15px]; }
+
+        .support-cards       { @apply grid gap-4 sm:grid-cols-3; }
+        .support-card        { @apply rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10; }
+        .support-card-head   { @apply flex items-center gap-2.5; }
+        .support-card-badge  { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15; }
+        .support-card-badge--blue { @apply bg-blue-soft dark:bg-blue/15; }
+        .support-card-badge--flat { @apply bg-canvas dark:bg-night-700; }
+        .support-card-icon   { @apply size-4.5 object-contain; }
+        .support-card-title  { @apply text-sm font-bold; }
+        .support-card-text   { @apply mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .support-btn         { @apply mt-4 w-full rounded-full bg-brand dark:bg-accent-400 py-2.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300; }
+        .support-btn--dark   { @apply block text-center bg-[#0F1A3D] dark:bg-blue text-white hover:bg-[#182552] dark:hover:bg-[#4A7FF5]; }
+        .support-btn--ghost  { @apply border border-black/10 dark:border-white/15 bg-transparent text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-700; }
+
+        .ticket-form   { @apply mt-4 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10; }
+        .ticket-input  { @apply rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 px-3.5 py-2.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400; }
+
+        .support-eyebrow  { @apply text-[11px] font-bold uppercase tracking-wider text-brand dark:text-accent-400; }
+        .support-h2       { @apply mt-1 text-lg font-extrabold; }
+        .support-link     { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+        .quick-grid       { @apply mt-4 grid grid-cols-2 gap-3 lg:grid-cols-3; }
+        .quick-help       { @apply rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
+        .quick-badge      { @apply grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15; }
+        .quick-title      { @apply mt-2.5 text-xs font-bold; }
+        .quick-text       { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block; }
+
+        .faq-wrap    { @apply mt-5 divide-y divide-black/5 dark:divide-white/10 rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
+        .faq-item    { @apply p-5; }
+        .faq-summary { @apply flex cursor-pointer list-none items-center justify-between text-sm font-semibold [&::-webkit-details-marker]:hidden; }
+        .faq-chevron { @apply size-4 shrink-0 object-contain transition group-open:rotate-180; }
+        .faq-answer  { @apply mt-3 text-sm leading-relaxed text-muted dark:text-mist-300; }
+
+        .still-help      { @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark dark:from-night-700 dark:to-night-800 p-7 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-10; }
+        .still-help-btn  { @apply mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft; }
+
+        .contact-label { @apply text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300; }
+
+        #toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body>
 
-    <!-- ══════════ HEADER (desktop) ══════════ -->
-    <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-night-900/95 backdrop-blur lg:block">
-        <div class="mx-auto flex h-16 max-w-[1200px] items-center gap-8 px-6">
-            <a href="/pages/app/overview.html" class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak</a>
+    <!-- ══════════ TOP BAR ══════════ -->
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
+                <span class="sr-only">Open menu</span>
+                <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
+            </button>
+            <a href="/pages/app/overview.html" class="app-brand">M3ak Morocco</a>
 
+            <label class="app-search">
+                <span class="sr-only">Search help articles</span>
+                <img src="/assets/images/search.png" alt="" class="app-search-icon">
+                <input type="search" placeholder="Search for help..." class="app-search-input">
+            </label>
 
-            <div class="ml-auto flex items-center gap-3">
-                <label class="relative block w-72">
-                    <span class="sr-only">Search help articles</span>
-                    <img src="/assets/support-image/search-help-articles.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
-                    <input type="search" placeholder="Search for help..."
-                        class="w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
-                </label>
-                <button type="button"
-                    class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-                    data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="h-4 w-4 object-contain transition-all duration-300 dark:hidden">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="absolute hidden h-4 w-4 object-contain transition-all duration-300 dark:block">
+            <div class="app-topbar-actions">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
                     </span>
                 </button>
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <img src="/assets/images/notification.png" alt="" class="size-5 object-contain">
+                    <span class="app-notif-dot"></span>
                 </button>
-                <button type="button"
-                    class="grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Your profile</span>A
-                </button>
+                <button type="button" class="app-avatar" data-user-initials>A</button>
             </div>
         </div>
     </header>
 
-    <!-- ══════════ HEADER (mobile) ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-900/95 px-4 py-3.5 backdrop-blur lg:hidden">
-        <a href="/pages/app/overview.html"
-            onclick="if (window.history.length > 1) { window.history.back(); return false; }"
-            class="inline-flex items-center gap-1.5 text-base font-bold text-brand dark:text-accent-400">
-            <img src="/assets/support-image/support-icon.png" alt="Support icon" class="size-5 object-contain" />
-            Support
-        </a>
-    </header>
+    <div class="app-body">
 
-    <main class="flex-1 pb-28 lg:pb-16">
+        <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
+        <div id="scrim" class="app-scrim"></div>
 
-        <!-- ══════════ HERO ══════════ -->
-        <section class="mx-auto max-w-[900px] px-4 pt-6 lg:px-6 lg:pt-10">
-            <div class="rounded-2xl bg-gradient-to-br from-brand-soft to-blue-soft dark:from-night-800 dark:to-night-700 p-4 lg:p-8">
-
-                <div class="relative mx-auto max-w-[620px] overflow-hidden rounded-xl shadow-sm">
-                    <img src="/assets/support-image/team-image.png" alt="M3ak premium support team assisting citizens"
-                        class="aspect-[21/9] w-full object-cover" />
-                </div>
-
-                <div class="relative mx-auto mt-6 flex max-w-[520px] flex-col items-center text-center pb-2 lg:pb-4">
-                    <h1 class="text-2xl font-extrabold tracking-tight lg:text-[32px]">How can we help you today?</h1>
-                    <p class="mt-3 text-sm leading-relaxed text-muted dark:text-mist-300 lg:text-[15px]">
-                        M3ak support is available for identity verification, account issues, and technical
-                        assistance. Your digital security is our top priority.
-                    </p>
-                </div>
+        <aside id="sidebar" class="app-sidebar">
+            <div class="sidebar-head">
+                <p class="sidebar-title">M3ak Morocco</p>
+                <p class="sidebar-sub">Citizen Services Portal</p>
             </div>
-        </section>
 
-        <!-- ══════════ SUPPORT OPTIONS ══════════ -->
-        <section class="mx-auto max-w-[900px] px-4 pt-6 lg:px-6">
-            <div class="grid gap-4 sm:grid-cols-3">
+            <nav class="sidebar-nav">
+                <a href="/pages/app/overview.html" class="nav-item">
+                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon">
+                    <span>My Space</span>
+                </a>
+                <a href="/pages/app/service.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon">
+                    <span>Services</span>
+                </a>
+                <a href="/pages/app/transport.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon">
+                    <span>Transport</span>
+                </a>
+                <a href="/pages/app/housing.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon">
+                    <span>Housing</span>
+                </a>
+                <a href="/pages/app/jobs.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon">
+                    <span>Jobs</span>
+                </a>
+                <a href="/pages/app/education.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon">
+                    <span>Education</span>
+                </a>
+                <a href="/pages/app/health.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon">
+                    <span>Healthcare</span>
+                </a>
+                <a href="/pages/app/payments.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon">
+                    <span>Payments</span>
+                </a>
+            </nav>
 
-                <!-- Live Chat -->
-                <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15">
-                            <img src="/assets/support-image/live-chat.png" alt="Live chat" class="size-4.5 object-contain" />
-                        </span>
-                        <p class="text-sm font-bold">Live Chat</p>
+            <div class="sidebar-foot">
+                <a href="/pages/app/emergence.html" class="nav-item nav-item--danger">
+                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="nav-icon">
+                    <span>Emergency Support</span>
+                </a>
+                <a href="/pages/app/support.html" class="nav-item">
+                    <img src="/assets/images/icon-chat.png" alt="" class="nav-icon">
+                    <span>Help Center</span>
+                </a>
+                <a href="/pages/app/overview.html#account" class="nav-item">
+                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="nav-icon">
+                    <span>Settings</span>
+                </a>
+                <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
+                    <img src="/assets/marketplace-image/logout.png" alt="" class="nav-icon">
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- ══════════ CONTENT ══════════ -->
+        <main class="app-main">
+
+            <!-- HERO -->
+            <section class="support-section pt-6 lg:pt-10">
+                <div class="support-hero">
+                    <div class="support-hero-media">
+                        <img src="/assets/support-image/team-image.png" alt="M3ak premium support team assisting citizens" class="support-hero-img">
                     </div>
-                    <p class="mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300">Chat instantly with a support specialist.</p>
-                    <button type="button" data-support-action="chat"
-                        class="mt-4 w-full rounded-full bg-brand dark:bg-accent-400 py-2.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">
-                        Start Live Chat
-                    </button>
+                    <div class="support-hero-copy">
+                        <h1 class="support-hero-title">How can we help you today?</h1>
+                        <p class="support-hero-text">
+                            M3ak support is available for identity verification, account issues, and technical
+                            assistance. Your digital security is our top priority.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUPPORT OPTIONS -->
+            <section class="support-section pt-6">
+                <div class="support-cards">
+                    <div class="support-card">
+                        <div class="support-card-head">
+                            <span class="support-card-badge">
+                                <img src="/assets/support-image/live-chat.png" alt="Live chat" class="support-card-icon">
+                            </span>
+                            <p class="support-card-title">Live Chat</p>
+                        </div>
+                        <p class="support-card-text">Chat instantly with a support specialist.</p>
+                        <button type="button" data-support-action="chat" class="support-btn">Start Live Chat</button>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-card-head">
+                            <span class="support-card-badge support-card-badge--blue">
+                                <img src="/assets/support-image/ai-assistant.png" alt="Ai assistant" class="support-card-icon">
+                            </span>
+                            <p class="support-card-title">AI Assistant</p>
+                        </div>
+                        <p class="support-card-text">Talk to the M3ak AI voice assistant for instant help.</p>
+                        <a href="/pages/app/assistant.html" class="support-btn support-btn--dark">Open AI Assistant</a>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-card-head">
+                            <span class="support-card-badge support-card-badge--flat">
+                                <img src="/assets/support-image/submit-ticket.png" alt="Submit ticket" class="support-card-icon">
+                            </span>
+                            <p class="support-card-title">Submit a Ticket</p>
+                        </div>
+                        <p class="support-card-text">Our team will respond to your query within 24 hours.</p>
+                        <button type="button" id="openTicketBtn" class="support-btn support-btn--ghost">Create Ticket</button>
+                    </div>
                 </div>
 
-                <!-- AI Assistant -->
-                <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-soft dark:bg-blue/15">
-                            <img src="/assets/support-image/ai-assistant.png" alt="Ai assistant" class="size-4.5 object-contain" />
-                        </span>
-                        <p class="text-sm font-bold">AI Assistant</p>
+                <form id="ticketForm" class="ticket-form hidden">
+                    <p class="support-card-title">Submit a Ticket</p>
+                    <div class="mt-3 grid gap-3">
+                        <input id="ticketSubject" required type="text" placeholder="Subject" class="ticket-input">
+                        <textarea id="ticketMessage" required rows="3" placeholder="Describe your issue..." class="ticket-input"></textarea>
                     </div>
-                    <p class="mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300">Talk to the M3ak AI voice assistant for instant help.</p>
-                    <a href="/pages/app/assistant.html"
-                        class="mt-4 block w-full rounded-full bg-[#0F1A3D] dark:bg-blue py-2.5 text-center text-xs font-semibold text-white transition hover:bg-[#182552] dark:hover:bg-[#4A7FF5]">
-                        Open AI Assistant
+                    <div class="mt-3 flex gap-2">
+                        <button type="submit" class="support-btn w-auto px-5">Submit Ticket</button>
+                        <button type="button" id="cancelTicketBtn" class="rounded-full px-5 py-2.5 text-xs font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-mist-100">Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- QUICK HELP -->
+            <section class="support-section pt-10">
+                <div class="flex items-end justify-between gap-4">
+                    <div>
+                        <p class="support-eyebrow">Your Service</p>
+                        <h2 class="support-h2">Quick Help</h2>
+                    </div>
+                    <a href="#faq" class="support-link">Browse all categories</a>
+                </div>
+
+                <div class="quick-grid">
+                    <a href="#faq" class="quick-help">
+                        <span class="quick-badge"><img src="/assets/support-image/identity-verification.png" alt="Identity verification" class="support-card-icon"></span>
+                        <p class="quick-title">Identity Verification</p>
+                        <p class="quick-text">Issues with scanning or verifying your identity</p>
+                    </a>
+                    <a href="#faq" class="quick-help">
+                        <span class="quick-badge"><img src="/assets/support-image/recover-account.png" alt="Recover account" class="support-card-icon"></span>
+                        <p class="quick-title">Recover Account</p>
+                        <p class="quick-text">Forgot your password or lost access to your account</p>
+                    </a>
+                    <a href="#faq" class="quick-help">
+                        <span class="quick-badge"><img src="/assets/support-image/report-problem.png" alt="Report problem" class="support-card-icon"></span>
+                        <p class="quick-title">Report a Problem</p>
+                        <p class="quick-text">Found a bug or having a technical glitch on M3ak</p>
+                    </a>
+                    <a href="#faq" class="quick-help">
+                        <span class="quick-badge"><img src="/assets/support-image/payment-issues.png" alt="Payment issues" class="support-card-icon"></span>
+                        <p class="quick-title">Payment Issues</p>
+                        <p class="quick-text">Manage your billing, invoices, and subscriptions</p>
+                    </a>
+                    <a href="#faq" class="quick-help">
+                        <span class="quick-badge"><img src="/assets/support-image/business-account.png" alt="Business account" class="support-card-icon"></span>
+                        <p class="quick-title">Business Account</p>
+                        <p class="quick-text">Enterprise solutions and team permissions</p>
+                    </a>
+                    <a href="#faq" class="quick-help">
+                        <span class="quick-badge"><img src="/assets/support-image/privacy-security.png" alt="Privacy security" class="support-card-icon"></span>
+                        <p class="quick-title">Privacy &amp; Security</p>
+                        <p class="quick-text">How we protect and use your personal data</p>
                     </a>
                 </div>
+            </section>
 
-                <!-- Submit a Ticket -->
-                <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-                    <div class="flex items-center gap-2.5">
-                        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-canvas dark:bg-night-700">
-                            <img src="/assets/support-image/submit-ticket.png" alt="Submit ticket" class="size-4.5 object-contain" />
-                        </span>
-                        <p class="text-sm font-bold">Submit a Ticket</p>
+            <!-- FAQ -->
+            <section id="faq" class="support-section pt-10 scroll-mt-20">
+                <h2 class="text-center text-lg font-extrabold">Frequently Asked Questions</h2>
+                <p class="mt-1 text-center text-xs text-muted dark:text-mist-300">Quick answers to common questions about the M3ak digital identity platform.</p>
+
+                <div class="faq-wrap">
+                    <details class="faq-item group">
+                        <summary class="faq-summary">
+                            How do I verify my Moroccan ID?
+                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron">
+                        </summary>
+                        <p class="faq-answer">
+                            Verification is simple. Navigate to "Identity" in your account settings, then follow the
+                            guided steps to scan your CNIE and confirm your biometric data.
+                        </p>
+                    </details>
+                    <details class="faq-item group">
+                        <summary class="faq-summary">
+                            What happens if I lose my phone?
+                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron">
+                        </summary>
+                        <p class="faq-answer">
+                            You can recover your account using your registered email address. From the log in page,
+                            select "Forgot?" and follow the reset steps to regain access.
+                        </p>
+                    </details>
+                    <details class="faq-item group">
+                        <summary class="faq-summary">
+                            Is my biometric data secure?
+                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron">
+                        </summary>
+                        <p class="faq-answer">
+                            Yes. All biometric data is encrypted end-to-end and stored under Kingdom of Morocco data
+                            protection standards. It is never shared with third parties.
+                        </p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- STILL NEED HELP -->
+            <section class="support-section pt-10">
+                <div class="still-help">
+                    <div class="relative max-w-sm">
+                        <p class="text-lg font-extrabold lg:text-xl">Still need help?</p>
+                        <p class="mt-1.5 text-sm text-white/80">Our premium support team is ready to assist you right now.</p>
+                        <button type="button" data-support-action="chat" class="still-help-btn">
+                            <img src="/assets/support-image/support-icon-2.png" alt="" class="size-4 object-contain">
+                            Chat with Support
+                        </button>
                     </div>
-                    <p class="mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300">Our team will respond to your query within 24 hours.</p>
-                    <button type="button" id="openTicketBtn"
-                        class="mt-4 w-full rounded-full border border-black/10 dark:border-white/15 py-2.5 text-xs font-semibold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700">
-                        Create Ticket
-                    </button>
+                    <img src="/assets/support-image/still-need-help.png" alt="Novo, the M3ak support guide"
+                        class="relative mt-6 w-full max-w-sm lg:mt-0 lg:w-80 lg:shrink-0">
                 </div>
-            </div>
+            </section>
 
-            <!-- Ticket form (collapsed by default) -->
-            <form id="ticketForm" class="mt-4 hidden rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-                <p class="text-sm font-bold">Submit a Ticket</p>
-                <div class="mt-3 grid gap-3">
-                    <input id="ticketSubject" required type="text" placeholder="Subject"
-                        class="rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 px-3.5 py-2.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400" />
-                    <textarea id="ticketMessage" required rows="3" placeholder="Describe your issue..."
-                        class="rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 px-3.5 py-2.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400"></textarea>
+            <!-- CONTACT / HOURS / LOCATION -->
+            <section class="support-section pt-10">
+                <div class="grid gap-6 sm:grid-cols-3">
+                    <div>
+                        <p class="contact-label">Contact Us</p>
+                        <p class="mt-2 flex items-center gap-2 text-sm font-semibold">
+                            <img src="/assets/support-image/phone.png" alt="" class="size-4 shrink-0 object-contain">
+                            +212 5 22 XX XX XX
+                        </p>
+                        <p class="mt-1.5 flex items-center gap-2 text-sm text-muted dark:text-mist-300">
+                            <img src="/assets/support-image/mail.png" alt="" class="size-4 shrink-0 object-contain">
+                            support@m3ak.ma
+                        </p>
+                    </div>
+                    <div>
+                        <p class="contact-label">Working Hours</p>
+                        <p class="mt-2 text-sm">Mon – Fri: 08:00 – 20:00</p>
+                        <p class="mt-1 text-sm text-muted dark:text-mist-300">Sat: 09:00 – 18:00</p>
+                        <p class="mt-1 text-sm text-muted dark:text-mist-300">Sun: Closed</p>
+                    </div>
+                    <div>
+                        <p class="contact-label">Location</p>
+                        <p class="mt-2 flex items-start gap-2 text-sm text-muted dark:text-mist-300">
+                            <img src="/assets/support-image/support-icon-3.png" alt="" class="mt-0.5 size-4 shrink-0 object-contain">
+                            Rabat, Kingdom of Morocco
+                        </p>
+                    </div>
                 </div>
-                <div class="mt-3 flex gap-2">
-                    <button type="submit" class="rounded-full bg-brand dark:bg-accent-400 px-5 py-2.5 text-xs font-semibold text-white dark:text-night-900 hover:bg-brand-dark dark:hover:bg-accent-300">
-                        Submit Ticket
-                    </button>
-                    <button type="button" id="cancelTicketBtn" class="rounded-full px-5 py-2.5 text-xs font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-mist-100">
-                        Cancel
-                    </button>
-                </div>
-            </form>
-        </section>
-
-        <!-- ══════════ QUICK HELP ══════════ -->
-        <section class="mx-auto max-w-[900px] px-4 pt-10 lg:px-6">
-            <div class="flex items-end justify-between gap-4">
-                <div>
-                    <p class="text-[11px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">Your Service</p>
-                    <h2 class="mt-1 text-lg font-extrabold">Quick Help</h2>
-                </div>
-                <a href="#faq" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Browse all categories</a>
-            </div>
-
-            <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-3">
-                <a href="#faq" class="quick-help rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15">
-                        <img src="/assets/support-image/identity-verification.png" alt="Identity verification" class="size-4.5 object-contain" />
-                    </span>
-                    <p class="mt-2.5 text-xs font-bold">Identity Verification</p>
-                    <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block">Issues with scanning or verifying your identity</p>
-                </a>
-                <a href="#faq" class="quick-help rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15">
-                        <img src="/assets/support-image/recover-account.png" alt="Recover account" class="size-4.5 object-contain" />
-                    </span>
-                    <p class="mt-2.5 text-xs font-bold">Recover Account</p>
-                    <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block">Forgot your password or lost access to your account</p>
-                </a>
-                <a href="#faq" class="quick-help rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15">
-                        <img src="/assets/support-image/report-problem.png" alt="Report problem" class="size-4.5 object-contain" />
-                    </span>
-                    <p class="mt-2.5 text-xs font-bold">Report a Problem</p>
-                    <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block">Found a bug or having a technical glitch on M3ak</p>
-                </a>
-                <a href="#faq" class="quick-help rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15">
-                        <img src="/assets/support-image/payment-issues.png" alt="Payment issues" class="size-4.5 object-contain" />
-                    </span>
-                    <p class="mt-2.5 text-xs font-bold">Payment Issues</p>
-                    <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block">Manage your billing, invoices, and subscriptions</p>
-                </a>
-                <a href="#faq" class="quick-help rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15">
-                        <img src="/assets/support-image/business-account.png" alt="Business account" class="size-4.5 object-contain" />
-                    </span>
-                    <p class="mt-2.5 text-xs font-bold">Business Account</p>
-                    <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block">Enterprise solutions and team permissions</p>
-                </a>
-                <a href="#faq" class="quick-help rounded-xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-9 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15">
-                        <img src="/assets/support-image/privacy-security.png" alt="Privacy security" class="size-4.5 object-contain" />
-                    </span>
-                    <p class="mt-2.5 text-xs font-bold">Privacy &amp; Security</p>
-                    <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300 hidden lg:block">How we protect and use your personal data</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- ══════════ FAQ ══════════ -->
-        <section id="faq" class="mx-auto max-w-[900px] px-4 pt-10 lg:px-6 scroll-mt-20">
-            <h2 class="text-center text-lg font-extrabold">Frequently Asked Questions</h2>
-            <p class="mt-1 text-center text-xs text-muted dark:text-mist-300">Quick answers to common questions about the M3ak digital identity platform.</p>
-
-            <div class="mt-5 divide-y divide-black/5 dark:divide-white/10 rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
-                <details class="group p-5">
-                    <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold [&::-webkit-details-marker]:hidden">
-                        How do I verify my Moroccan ID?
-                        <img src="/assets/support-image/drop-down.png" alt="Drop down" class="size-4 shrink-0 object-contain transition group-open:rotate-180" />
-                    </summary>
-                    <p class="mt-3 text-sm leading-relaxed text-muted dark:text-mist-300">
-                        Verification is simple. Navigate to "Identity" in your account settings, then follow the
-                        guided steps to scan your CNIE and confirm your biometric data.
-                    </p>
-                </details>
-
-                <details class="group p-5">
-                    <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold [&::-webkit-details-marker]:hidden">
-                        What happens if I lose my phone?
-                        <img src="/assets/support-image/drop-down.png" alt="Drop down" class="size-4 shrink-0 object-contain transition group-open:rotate-180" />
-                    </summary>
-                    <p class="mt-3 text-sm leading-relaxed text-muted dark:text-mist-300">
-                        You can recover your account using your registered email address. From the log in page,
-                        select "Forgot?" and follow the reset steps to regain access.
-                    </p>
-                </details>
-
-                <details class="group p-5">
-                    <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold [&::-webkit-details-marker]:hidden">
-                        Is my biometric data secure?
-                        <img src="/assets/support-image/drop-down.png" alt="Drop down" class="size-4 shrink-0 object-contain transition group-open:rotate-180" />
-                    </summary>
-                    <p class="mt-3 text-sm leading-relaxed text-muted dark:text-mist-300">
-                        Yes. All biometric data is encrypted end-to-end and stored under Kingdom of Morocco data
-                        protection standards. It is never shared with third parties.
-                    </p>
-                </details>
-            </div>
-        </section>
-
-        <!-- ══════════ STILL NEED HELP ══════════ -->
-        <section class="mx-auto max-w-[900px] px-4 pt-10 lg:px-6">
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark dark:from-night-700 dark:to-night-800 p-7 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-10">
-                <div class="relative max-w-sm">
-                    <p class="text-lg font-extrabold lg:text-xl">Still need help?</p>
-                    <p class="mt-1.5 text-sm text-white/80">
-                        Our premium support team is ready to assist you right now.
-                    </p>
-                    <button type="button" data-support-action="chat"
-                        class="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft">
-                        <img src="/assets/support-image/support-icon-2.png" alt="Support icon 2" class="size-4 object-contain" />
-                        Chat with Support
-                    </button>
-                </div>
-                <img src="/assets/support-image/still-need-help.png" alt="Novo, the M3ak support guide"
-                    class="relative mt-6 w-full max-w-sm lg:mt-0 lg:w-80 lg:shrink-0" />
-            </div>
-        </section>
-
-        <!-- ══════════ CONTACT / HOURS / LOCATION ══════════ -->
-        <section class="mx-auto max-w-[900px] px-4 pt-10 lg:px-6">
-            <div class="grid gap-6 sm:grid-cols-3">
-                <div>
-                    <p class="text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300">Contact Us</p>
-                    <p class="mt-2 flex items-center gap-2 text-sm font-semibold">
-                        <img src="/assets/support-image/phone.png" alt="Phone" class="size-4 shrink-0 object-contain" />
-                        +212 5 22 XX XX XX
-                    </p>
-                    <p class="mt-1.5 flex items-center gap-2 text-sm text-muted dark:text-mist-300">
-                        <img src="/assets/support-image/mail.png" alt="Mail" class="size-4 shrink-0 object-contain" />
-                        support@m3ak.ma
-                    </p>
-                </div>
-
-                <div>
-                    <p class="text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300">Working Hours</p>
-                    <p class="mt-2 text-sm">Mon – Fri: 08:00 – 20:00</p>
-                    <p class="mt-1 text-sm text-muted dark:text-mist-300">Sat: 09:00 – 18:00</p>
-                    <p class="mt-1 text-sm text-muted dark:text-mist-300">Sun: Closed</p>
-                </div>
-
-                <div>
-                    <p class="text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300">Location</p>
-                    <p class="mt-2 flex items-start gap-2 text-sm text-muted dark:text-mist-300">
-                        <img src="/assets/support-image/support-icon-3.png" alt="Support icon 3" class="mt-0.5 size-4 shrink-0 object-contain" />
-                        Rabat, Kingdom of Morocco
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ══════════ FOOTER ══════════ -->
-    <footer class="mt-10 border-t border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="mx-auto max-w-[900px] px-4 py-6 lg:px-6">
-            <div class="text-center">
-                <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                <nav class="mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-muted dark:text-mist-300">
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Security Disclosure</a>
-                </nav>
-                <p class="mt-3 text-[11px] text-muted dark:text-mist-300">© 2026 M3ak Morocco. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
-    <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
-        <div class="mx-auto flex max-w-md items-center justify-around px-4 py-2">
-            <a href="/pages/app/overview.html" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
-                <img src="/assets/support-image/support-icon-4.png" alt="Support icon 4" class="size-5 object-contain" />
-                Home
-            </a>
-            <a href="/pages/app/coming-soon.html?feature=Digital+ID" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
-                <img src="/assets/support-image/support-icon-5.png" alt="Support icon 5" class="size-5 object-contain" />
-                Identity
-            </a>
-            <a href="/pages/app/overview.html#account" class="flex flex-col items-center gap-1 px-4 py-1.5 text-[11px] font-medium text-muted dark:text-mist-300">
-                <img src="/assets/support-image/support-icon-6.png" alt="Support icon 6" class="size-5 object-contain" />
-                Security
-            </a>
-            <a href="/pages/app/support.html" aria-current="page"
-                class="flex flex-col items-center gap-1 rounded-full bg-brand dark:bg-accent-400 px-5 py-2 text-[11px] font-semibold text-white dark:text-night-900 shadow-sm">
-                <img src="/assets/support-image/support-icon-7.png" alt="Support icon 7" class="size-5 object-contain" />
-                Support
-            </a>
-        </div>
-    </nav>
-
-    <!-- Toast -->
-    <div id="toast"
-        class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+            </section>
+        </main>
     </div>
 
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <script src="/pages/js/shell.js"></script>
     <script>
         function toast(msg) {
             var t = document.getElementById("toast");
