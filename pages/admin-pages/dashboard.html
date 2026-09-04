@@ -87,7 +87,7 @@
            2. BASE / SHELL
         ========================================================== */
         body {
-            @apply bg-mint-50 dark:bg-night-900 font-jakarta pb-[68px] md:pb-0 transition-colors duration-200;
+            @apply bg-mint-50 dark:bg-night-900 font-jakarta transition-colors duration-200;
         }
 
         /* Topbar pleine largeur, puis sidebar + contenu en dessous */
@@ -492,29 +492,6 @@
             @apply hover:text-green-800 dark:hover:text-accent-400;
         }
 
-        /* ==========================================================
-           12. MOBILE BOTTOM NAV
-        ========================================================== */
-        .mobile-nav {
-            @apply md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-night-800 border-t border-grey-200 dark:border-night-600
-                   flex items-center justify-around py-[7px];
-        }
-
-        .mobile-nav-item {
-            @apply flex flex-col items-center gap-[3px] text-slate-400 dark:text-mist-300 w-[68px];
-        }
-
-        .mobile-nav-item img {
-            @apply w-[19px] h-[19px] object-contain;
-        }
-
-        .mobile-nav-item-active {
-            @apply text-green-900 dark:text-accent-400;
-        }
-
-        .mobile-nav-label {
-            @apply font-hanken font-medium text-[10px];
-        }
     </style>
 </head>
 
@@ -944,27 +921,6 @@
             </div>
         </footer>
     </div>
-    <!-- ==================================================
-        MOBILE BOTTOM NAV
-    =================================================== -->
-    <nav class="mobile-nav">
-        <a href="/pages/admin-pages/dashboard.html" class="mobile-nav-item mobile-nav-item-active">
-            <img src="/assets/dashboard-assets/icon-dashboard.png" alt="Overview">
-            <span class="mobile-nav-label">Overview</span>
-        </a>
-        <a href="/pages/app/coming-soon.html?feature=Admin+Services" class="mobile-nav-item">
-            <img src="/assets/icon-bar-left/services.png" alt="Services">
-            <span class="mobile-nav-label">Services</span>
-        </a>
-        <a href="/pages/app/coming-soon.html?feature=Admin+Payments" class="mobile-nav-item">
-            <img src="/assets/dashboard-assets/payment-icon.png" alt="Payments">
-            <span class="mobile-nav-label">Payments</span>
-        </a>
-        <a href="/pages/app/coming-soon.html?feature=Admin+Accounts" class="mobile-nav-item">
-            <img src="/assets/dashboard-assets/active-citizens.png" alt="Citizens">
-            <span class="mobile-nav-label">Citizens</span>
-        </a>
-    </nav>
     <script>
         /* ---------- Menu utilisateur ---------- */
         const userMenu = document.querySelector(".user-menu");
