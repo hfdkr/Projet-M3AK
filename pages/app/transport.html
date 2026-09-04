@@ -381,7 +381,7 @@
         </aside>
 
         <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 pb-24 lg:flex lg:h-[calc(100vh-4rem)] lg:gap-0 lg:pb-0">
+        <main class="min-w-0 flex-1 pb-6 lg:flex lg:h-[calc(100vh-4rem)] lg:gap-0 lg:pb-0">
 
             <!-- ── Carte + planificateur ── -->
             <section
@@ -516,39 +516,8 @@
         <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket" class="size-6 object-contain" />
     </button>
 
-    <!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
-    <nav
-        class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
-        <div class="relative mx-auto flex max-w-md items-center justify-between px-4 py-2">
-            <a href="/index.html" class="tab">
-                <img src="/assets/transport-icon/home.png" alt="Home" />
-                Home
-            </a>
-            <a href="/pages/app/transport.html" aria-current="page"
-                class="tab-active flex flex-col items-center gap-1 px-3 py-1.5 text-[10px] font-semibold text-brand dark:text-accent-400">
-                <img src="/assets/icon-bar-left/transport-green.png" alt="Transport" class="tab-nav-active" />
-                Transport
-            </a>
-
-            <button id="fabMobile" type="button"
-                class="-mt-8 grid size-14 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-lg ring-4 ring-white transition hover:bg-blue-700 focus-visible:ring-blue-300">
-                <span class="sr-only">Buy a ticket</span>
-                <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket" class="size-6 object-contain" />
-            </button>
-
-            <a href="/pages/app/overview.html" class="tab">
-                <img src="/assets/images/Icon-profile.png" alt="" class="size-5 object-contain" />
-                My Space
-            </a>
-            <a href="/pages/app/overview.html#personal-info" class="tab">
-                <img src="/assets/transport-icon/profile.png" alt="Profile" />
-                Profile
-            </a>
-        </div>
-    </nav>
-
     <div id="toast"
-        class="pointer-events-none fixed bottom-28 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
+        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
     </div>
 
     <script>
