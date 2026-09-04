@@ -56,11 +56,13 @@
         .back-link       { @apply lg:hidden flex items-center gap-2 font-medium text-brand dark:text-accent-400; }
         .back-icon       { @apply w-5 h-5 object-contain; }
 
-        /* ---------- Theme toggle ---------- */
-        .theme-toggle       { @apply relative ml-auto flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700; }
-        .theme-toggle-thumb { @apply flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900; }
-        .theme-toggle-sun   { @apply h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
-        .theme-toggle-moon  { @apply absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100; }
+        /* ---------- Theme toggle — icon only on mobile, pill switch on tablet/desktop ---------- */
+        .theme-toggle       { @apply relative ml-auto flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                                     md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
+        .theme-toggle-thumb { @apply grid place-items-center h-6 w-6 rounded-full
+                                     md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
+        .theme-toggle-sun   { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon  { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
 
         /* ---------- Intro (logo + title) ---------- */
         .auth-main     { @apply mt-[9px] md:mt-[93px]; }
