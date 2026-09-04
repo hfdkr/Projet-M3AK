@@ -142,6 +142,55 @@
                 transition-duration: .001ms !important;
             }
         }
+
+        /* ── Shared citizen sidebar (matches every other app page) ── */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            border-radius: .75rem;
+            padding: .625rem .75rem;
+            font-size: .875rem;
+            font-weight: 500;
+            color: #6B7A73;
+            transition: background-color .15s, color .15s;
+        }
+
+        .nav-item:hover { background: #fff; color: #0F1A15; }
+        .dark .nav-item { color: #7C8981; }
+        .dark .nav-item:hover { background: #151C18; color: #E7ECE9; }
+
+        .nav-icon { width: 18px; height: 18px; flex-shrink: 0; object-fit: contain; }
+        .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+
+        @media (min-width: 1024px) {
+            #sidebar { width: 5rem; transition: width .2s ease; }
+            #sidebar:hover, #sidebar:focus-within { width: 14rem; }
+            #sidebar a img { flex-shrink: 0; }
+
+            #sidebar .sidebar-text,
+            #sidebar .nav-label {
+                display: inline-block;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                opacity: 0;
+                transition: opacity .15s ease;
+            }
+
+            #sidebar:hover .sidebar-text,
+            #sidebar:hover .nav-label,
+            #sidebar:focus-within .sidebar-text,
+            #sidebar:focus-within .nav-label { width: auto; opacity: 1; }
+
+            #sidebar .sidebar-head,
+            #sidebar a { justify-content: center; }
+
+            #sidebar:hover .sidebar-head,
+            #sidebar:hover a,
+            #sidebar:focus-within .sidebar-head,
+            #sidebar:focus-within a { justify-content: flex-start; }
+        }
     </style>
 </head>
 
@@ -219,9 +268,16 @@
     <!-- HEADER MOBILE -->
     <header class="sticky top-0 z-40 border-b border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-800/95 px-4 py-3.5 backdrop-blur lg:hidden">
         <div class="flex items-center justify-between">
-            <p class="text-base font-extrabold tracking-tight text-brand dark:text-accent-400">
-                Emergency Services
-            </p>
+            <div class="flex items-center gap-2">
+                <button id="menuBtn" type="button"
+                    class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Open menu</span>
+                    <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain" />
+                </button>
+                <p class="text-base font-extrabold tracking-tight text-brand dark:text-accent-400">
+                    Emergency Services
+                </p>
+            </div>
             <button type="button"
                 class="relative ml-auto flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
                 data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
@@ -239,13 +295,83 @@
         <div class="mx-auto max-w-[1280px] px-4 lg:px-6 py-2">
             <a href="/pages/app/overview.html"
                 class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors">
-                <img src="/assets/emergence-image/emergence-icon.png" alt="Emergence icon" class="size-3.5 object-contain" />
-                Back to Overview
+                <img src="/assets/emergence-image/emergence-icon.png" alt="" class="size-3.5 object-contain" />
+                Back to My Space
             </a>
         </div>
     </div>
 
-    <main class="mx-auto max-w-[1280px] px-4 pb-28 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
+    <div class="lg:flex">
+
+        <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
+        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+            <div class="mb-5 px-2 sidebar-head">
+                <div class="sidebar-text">
+                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                </div>
+            </div>
+
+            <nav class="space-y-0.5" aria-label="Primary">
+                <a href="/pages/app/overview.html" class="nav-item">
+                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon" />
+                    <span class="nav-label">My Space</span>
+                </a>
+                <a href="/pages/app/service.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Services</span>
+                </a>
+                <a href="/pages/app/transport.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Transport</span>
+                </a>
+                <a href="/pages/app/health.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Healthcare</span>
+                </a>
+                <a href="/pages/app/housing.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Housing</span>
+                </a>
+                <a href="/pages/app/jobs.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Jobs</span>
+                </a>
+                <a href="/pages/app/education.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Education</span>
+                </a>
+                <a href="/pages/app/payments.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon" />
+                    <span class="nav-label">Payments</span>
+                </a>
+            </nav>
+
+            <div class="mt-auto space-y-1 pt-6">
+                <a href="/pages/app/emergence.html" aria-current="page"
+                    class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-[18px] shrink-0 object-contain" />
+                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+                </a>
+                <a href="/pages/app/support.html" class="nav-item">
+                    <img src="/assets/images/icon-chat.png" alt="" class="size-[18px] object-contain" />
+                    <span class="nav-label">Help Center</span>
+                </a>
+                <a href="/pages/app/overview.html#account" class="nav-item">
+                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-[18px] object-contain" />
+                    <span class="nav-label">Settings</span>
+                </a>
+                <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
+                    <img src="/assets/marketplace-image/logout.png" alt="" class="size-[18px] object-contain" />
+                    <span class="nav-label">Logout</span>
+                </a>
+            </div>
+        </aside>
+
+    <main class="min-w-0 flex-1 px-4 pb-28 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
 
         <!-- TITLE -->
         <div class="mb-6 hidden items-end justify-between gap-6 lg:flex">
@@ -705,6 +831,7 @@
         </section>
 
     </main>
+    </div>
 
     <!-- FOOTER -->
     <footer class="mt-8 hidden border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:block">
@@ -877,6 +1004,29 @@
     </div>
 
     <script>
+
+        /* ─────────────────────────────
+           SIDEBAR DRAWER (mobile)
+        ───────────────────────────── */
+        (function () {
+            var sidebar = document.getElementById("sidebar");
+            var scrim = document.getElementById("scrim");
+            var menuBtn = document.getElementById("menuBtn");
+            if (!sidebar || !scrim || !menuBtn) { return; }
+
+            function openDrawer(open) {
+                sidebar.classList.toggle("-translate-x-full", !open);
+                scrim.classList.toggle("hidden", !open);
+                document.body.classList.toggle("overflow-hidden", open);
+            }
+            menuBtn.addEventListener("click", function () { openDrawer(true); });
+            scrim.addEventListener("click", function () { openDrawer(false); });
+            sidebar.addEventListener("click", function (e) {
+                if (e.target.closest("a") && window.matchMedia("(max-width: 1023px)").matches) { openDrawer(false); }
+            });
+            document.addEventListener("keydown", function (e) { if (e.key === "Escape") { openDrawer(false); } });
+        })();
+
 
         /* ─────────────────────────────
            CLOCK
