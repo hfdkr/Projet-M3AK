@@ -11,121 +11,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <style>
-        * {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            background: #F7FFF8;
-        }
-
-        .glass {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, .82);
-        }
-
-        .shadow-card {
-            box-shadow:
-                0 10px 35px rgba(0, 0, 0, .08);
-        }
-
-        .input {
-            @apply w-full bg-[#F4F7F5] rounded-xl h-12 px-11 outline-none border border-transparent transition-all;
-        }
-
-        .input:focus {
-            border-color: #0B6B45;
-            box-shadow: 0 0 0 3px rgba(11, 107, 69, .15);
-        }
-
-        .social {
-            transition: .25s;
-        }
-
-        .social:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
-        }
-
-        .btn {
-            transition: .25s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .bg-gradient {
-            background:
-                radial-gradient(circle at top, #DBF7E6, transparent 45%),
-                radial-gradient(circle at bottom, #CEF8D7, transparent 45%),
-                #F7FFF8;
-        }
-
-        .fade {
-            animation: fade .7s;
-        }
-
-        @keyframes fade {
-
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
-
-        }
-
-        /* ---------- Dark mode overrides (raw hex classes above) ---------- */
-        .dark .bg-gradient {
-            background:
-                radial-gradient(circle at top, #10241C, transparent 45%),
-                radial-gradient(circle at bottom, #0D1F17, transparent 45%),
-                #0A0F0D;
-        }
-
-        .dark .glass {
-            background: rgba(21, 28, 24, .82);
-        }
-
-        .dark .shadow-card {
-            box-shadow: 0 10px 35px rgba(0, 0, 0, .4);
-        }
-
-        .dark .input {
-            background-color: #0F1512;
-            color: #E7ECE9;
-        }
-
-        .dark .input::placeholder {
-            color: #7C8981;
-        }
-
-        .dark .input:focus {
-            border-color: #2ED573;
-            box-shadow: 0 0 0 3px rgba(46, 213, 115, .15);
-        }
-
-        .dark .social {
-            background-color: #151C18 !important;
-            border-color: #232C27 !important;
-            color: #E7ECE9;
-        }
-    </style>
 
     <style type="text/tailwindcss">
         @custom-variant dark (&:where(.dark, .dark *));
 
         @theme {
+            --color-brand: #0B6B45;
+            --color-brand-dark: #095638;
+            --color-brand-deep: #127147;
+            --color-field: #F4F7F5;
+
             --color-night-900: #0A0F0D;
             --color-night-800: #0F1512;
             --color-night-700: #151C18;
@@ -135,155 +32,195 @@
             --color-mist-100: #E7ECE9;
             --color-accent-400: #2ED573;
             --color-accent-300: #5BE0A0;
+
+            --font-jakarta: "Plus Jakarta Sans", sans-serif;
+            --animate-fade: fade .7s ease;
         }
 
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: none; }
+        }
+
+        * { @apply font-jakarta; }
+
+        body {
+            @apply relative min-h-screen bg-[#F7FFF8] dark:bg-[#0A0F0D]
+                   bg-[radial-gradient(circle_at_top,#DBF7E6,transparent_45%),radial-gradient(circle_at_bottom,#CEF8D7,transparent_45%)]
+                   dark:bg-[radial-gradient(circle_at_top,#10241C,transparent_45%),radial-gradient(circle_at_bottom,#0D1F17,transparent_45%)];
+        }
+
+        /* ---------- Top bar ---------- */
+        .page-flourish   { @apply hidden md:block md:absolute md:top-[390px] md:right-6; }
+        .auth-topbar     { @apply flex items-center justify-between px-6 pt-6; }
+        .back-link       { @apply lg:hidden flex items-center gap-2 font-medium text-brand dark:text-accent-400; }
+        .back-icon       { @apply w-5 h-5 object-contain; }
+
+        /* ---------- Theme toggle ---------- */
+        .theme-toggle       { @apply relative ml-auto flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700; }
+        .theme-toggle-thumb { @apply flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900; }
+        .theme-toggle-sun   { @apply h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon  { @apply absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100; }
+
+        /* ---------- Intro (logo + title) ---------- */
+        .auth-main     { @apply mt-[9px] md:mt-[93px]; }
+        .auth-intro    { @apply flex flex-col items-center justify-center text-center; }
+        .auth-logo     { @apply w-[64px] py-[14px] bg-brand-deep flex items-center justify-center rounded-[16px]; }
+        .auth-title    { @apply mt-4 text-4xl font-bold text-brand dark:text-accent-400; }
+        .auth-subtitle { @apply mt-2 text-gray-500 dark:text-mist-300; }
+
+        /* ---------- Card ---------- */
+        .auth-section       { @apply flex-1 flex items-center justify-center mt-[30px] pb-[96px]; }
+        .auth-section-inner { @apply w-full max-w-7xl px-6; }
+        .auth-section-row   { @apply flex justify-center gap-16 items-center; }
+        .auth-card-wrap     { @apply animate-fade items-center; }
+        .auth-card          { @apply rounded-3xl w-full max-w-md p-8 backdrop-blur-[10px]
+                                     bg-white/80 dark:bg-night-700/80
+                                     shadow-[0_10px_35px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_35px_rgba(0,0,0,0.4)]; }
+        .auth-form          { @apply space-y-6; }
+
+        /* ---------- Fields ---------- */
+        .field-label  { @apply text-sm font-medium text-gray-700 dark:text-mist-200; }
+        .field-head   { @apply flex justify-between; }
+        .field-link   { @apply text-sm text-blue-600 dark:text-accent-400; }
+        .input-wrap   { @apply relative mt-2; }
+        .input-icon   { @apply absolute left-4 top-1/2 -translate-y-1/2; }
+        .input        { @apply w-full h-12 rounded-xl bg-field dark:bg-night-800 pl-12 pr-4 outline-none
+                               border border-transparent transition-all
+                               text-gray-800 dark:text-mist-100 placeholder:text-gray-400 dark:placeholder:text-mist-300
+                               focus:border-brand dark:focus:border-accent-400 focus:ring-4 focus:ring-green-100 dark:focus:ring-accent-400/15; }
+        .input--pw    { @apply pr-12; }
+        .input-toggle { @apply absolute right-4 top-1/2 -translate-y-1/2; }
+
+        /* ---------- Buttons ---------- */
+        .btn-primary  { @apply w-full h-12 rounded-xl bg-brand hover:bg-brand-dark text-white font-semibold transition duration-200 hover:-translate-y-0.5; }
+
+        .divider      { @apply flex items-center gap-3; }
+        .divider-line { @apply flex-1 h-px bg-gray-200 dark:bg-night-600; }
+        .divider-text { @apply text-xs text-gray-400 dark:text-mist-300; }
+
+        .social-grid  { @apply grid grid-cols-2 gap-4; }
+        .social       { @apply flex justify-center gap-[8px] items-center h-12 rounded-xl border
+                               border-gray-200 dark:border-night-600 bg-white dark:bg-night-700 text-gray-800 dark:text-mist-100
+                               transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)]; }
+        .social--pill { @apply rounded-full; }
+        .social-icon  { @apply w-[20px] h-[20px]; }
+
+        .auth-switch      { @apply text-center text-gray-600 dark:text-mist-300; }
+        .auth-switch-link { @apply text-blue-600 dark:text-accent-400 font-medium; }
+
+        /* ---------- Footer ---------- */
+        .auth-footer         { @apply border-t border-[#BEC9BF4D]/30 dark:border-night-600 md:border-hidden py-6; }
+        .auth-footer-inner   { @apply max-w-7xl mx-auto px-6 text-sm text-gray-500 dark:text-mist-300 md:flex md:justify-center; }
+        .footer-mobile       { @apply items-center gap-4 md:hidden; }
+        .footer-mobile-links { @apply flex items-center justify-center gap-6; }
+        .footer-link         { @apply hover:text-brand dark:hover:text-accent-400; }
+        .footer-lang-select  { @apply bg-transparent border-none outline-none cursor-pointer; }
+        .footer-copy         { @apply text-center; }
+        .footer-desktop      { @apply hidden md:flex items-center justify-between; }
+        .footer-desktop-links{ @apply flex items-center gap-8; }
+        .lang-dropdown       { @apply relative inline-block; }
+        .lang-btn            { @apply flex items-center gap-2 bg-transparent cursor-pointer; }
+        .lang-icon           { @apply w-4 h-4 object-contain; }
+        .lang-menu           { @apply hidden absolute right-0 mt-2 w-40 bg-white dark:bg-night-700 border dark:border-night-600 rounded-lg shadow-lg z-50; }
+        .language-option     { @apply px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer; }
     </style>
+
     <script src="/pages/js/session.js"></script>
-   <script src="/pages/js/login.js" defer></script>
+    <script src="/pages/js/login.js" defer></script>
 </head>
 
-<body class="bg-gradient relative min-h-screen">
-    <div class="hidden md:block md:absolute md:top-[390px] md:right-6">
+<body>
+    <div class="page-flourish">
         <img src="/assets/image-login/Visual Flourish.png" alt="Visual Flourish">
     </div>
+
     <!-- TOP -->
     <header>
-        <div class="flex items-center justify-between px-6 pt-6">
-
-            <a href="/index.html" class="lg:hidden flex items-center gap-2 text-[#0B6B45] dark:text-accent-400 font-medium">
-
-                <img src="/assets/image-login/login-icon.png" alt="Login icon" class="w-5 h-5 object-contain" />
-
+        <div class="auth-topbar">
+            <a href="/index.html" class="back-link">
+                <img src="/assets/image-login/login-icon.png" alt="Login icon" class="back-icon">
                 Back to Onboarding
-
             </a>
-            <button type="button"
-                class="relative ml-auto flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-                data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                <!-- Toggle Circle -->
-                <span
-                    class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-                    <!-- Sun -->
-                    <img src="/assets/settings/sun.png" alt="Light mode"
-                        class="h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
-                    <!-- Moon -->
-                    <img src="/assets/settings/moon.png" alt="Dark mode"
-                        class="absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+
+            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <span class="theme-toggle-thumb">
+                    <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                    <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
                 </span>
             </button>
         </div>
     </header>
+
     <!-- CONTENT -->
-    <main class="mt-[9px] md:mt-[93px]">
+    <main class="auth-main">
         <section>
-            
-            <div class="flex flex-col items-center justify-center text-center">
-                <div
-                    class="w-[64px] py-[14px] bg-[#127147] items-center text-center flex justify-center rounded-[16px]">
+            <div class="auth-intro">
+                <div class="auth-logo">
                     <img src="/assets/image-login/logo.png" alt="logo-page">
                 </div>
-
-                <h1 class="mt-4 text-4xl font-bold text-[#0B6B45] dark:text-accent-400">
-                    M3ak Morocco
-                </h1>
-
-                <p class="mt-2 text-gray-500 dark:text-mist-300">
-                    Access your unified citizen portal
-                </p>
+                <h1 class="auth-title">M3ak Morocco</h1>
+                <p class="auth-subtitle">Access your unified citizen portal</p>
             </div>
         </section>
-        <section class="flex-1 flex items-center justify-center mt-[30px] pb-[96px]">
-            <div class="w-full max-w-7xl px-6">
-                <div class="flex justify-center gap-16 items-center">
-                    <!-- LEFT -->
-                    <div class="fade items-center ">
-                        <!-- CARD -->
-                        <div class="glass shadow-card rounded-3xl w-full max-w-md p-8">
-                            <form id="login-form" class="space-y-6">
+
+        <section class="auth-section">
+            <div class="auth-section-inner">
+                <div class="auth-section-row">
+                    <div class="auth-card-wrap">
+                        <div class="auth-card">
+                            <form id="login-form" class="auth-form">
 
                                 <!-- EMAIL -->
-
                                 <div>
-
-                                    <label class="text-sm font-medium text-gray-700 dark:text-mist-200">
-
-                                        National ID or Email
-
-                                    </label>
-
-                                    <div class="relative mt-2">
-
-                                        <div class="absolute left-4 top-1/2 -translate-y-1/2">
+                                    <label class="field-label">National ID or Email</label>
+                                    <div class="input-wrap">
+                                        <div class="input-icon">
                                             <img src="/assets/image-login/user-icon.png" alt="user-icon">
                                         </div>
-
-                                        <input id="identifier" type="text" placeholder="e.g. AB123456"
-                                            class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-4 focus:ring-4 focus:ring-green-100 outline-none">
-
+                                        <input id="identifier" type="text" placeholder="e.g. AB123456" class="input">
                                     </div>
-
                                 </div>
 
                                 <!-- PASSWORD -->
-
                                 <div>
-
-                                    <div class="flex justify-between">
-
-                                        <label class="text-sm font-medium text-gray-700 dark:text-mist-200">
-                                            Password
-                                        </label>
-
-                                        <a href="/pages/auth/forgot-password.html" class="text-sm text-blue-600 dark:text-accent-400">
-                                            Forgot?
-                                        </a>
-
+                                    <div class="field-head">
+                                        <label class="field-label">Password</label>
+                                        <a href="/pages/auth/forgot-password.html" class="field-link">Forgot?</a>
                                     </div>
-
-                                    <div class="relative mt-2">
-
-                                        <div class="absolute left-4 top-1/2 -translate-y-1/2">
+                                    <div class="input-wrap">
+                                        <div class="input-icon">
                                             <img src="/assets/image-login/securety-icon.png" alt="secure icon">
                                         </div>
-
-                                        <input id="password" type="password" placeholder="••••••••"
-                                            class="w-full h-12 rounded-xl bg-[#F4F7F5] pl-12 pr-12 outline-none focus:ring-4 focus:ring-green-100">
-
-                                        <button type="button" data-toggle-password
-                                            class="absolute right-4 top-1/2 -translate-y-1/2">
+                                        <input id="password" type="password" placeholder="••••••••" class="input input--pw">
+                                        <button type="button" data-toggle-password class="input-toggle">
                                             <img src="/assets/image-login/show-icon.png" alt="show icon">
                                         </button>
                                     </div>
                                 </div>
-                                <button type="submit"
-                                    class="btn w-full h-12 rounded-xl bg-[#0B6B45] hover:bg-[#095638] text-white font-semibold">
-                                    Sign In
-                                </button>
-                                <div class="flex items-center gap-3">
-                                    <div class="flex-1 h-px bg-gray-200 dark:bg-night-600"></div>
-                                    <span class="text-xs text-gray-400 dark:text-mist-300">
-                                        OR CONTINUE WITH
-                                    </span>
-                                    <div class="flex-1 h-px bg-gray-200 dark:bg-night-600"></div>
+
+                                <button type="submit" class="btn-primary">Sign In</button>
+
+                                <div class="divider">
+                                    <div class="divider-line"></div>
+                                    <span class="divider-text">OR CONTINUE WITH</span>
+                                    <div class="divider-line"></div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <button
-                                        class="social flex justify-center gap-[8px] items-center border rounded-xl h-12 bg-white">
-                                        <img src="/assets/image-login/google.png" alt="google icon"
-                                            class="w-[20px] h-[20px]">
+
+                                <div class="social-grid">
+                                    <button class="social">
+                                        <img src="/assets/image-login/google.png" alt="google icon" class="social-icon">
                                         Google
                                     </button>
-                                    <button
-                                        class="social flex justify-center gap-[8px] items-center border rounded-full h-12 bg-white">
-                                        <img src="/assets/image-login/apple.png" alt="apple icon" class="w-[20px]">
+                                    <button class="social social--pill">
+                                        <img src="/assets/image-login/apple.png" alt="apple icon" class="social-icon">
                                         Apple
                                     </button>
                                 </div>
-                                <p class="text-center text-gray-600 dark:text-mist-300">
+
+                                <p class="auth-switch">
                                     Don't have an account?
-                                    <a href="/pages/auth/signup.html" class="text-blue-600 dark:text-accent-400 font-medium">
-                                        Create ID
-                                    </a>
+                                    <a href="/pages/auth/signup.html" class="auth-switch-link">Create ID</a>
                                 </p>
                             </form>
                         </div>
@@ -292,59 +229,43 @@
             </div>
         </section>
     </main>
+
     <!-- FOOTER -->
-    <footer class="border-t border-[#BEC9BF4D]/30 dark:border-night-600 md:border-hidden py-6">
-        <div class="max-w-7xl mx-auto px-6 text-sm text-gray-500 dark:text-mist-300 md:flex md:justify-center">
+    <footer class="auth-footer">
+        <div class="auth-footer-inner">
 
             <!-- Mobile -->
-            <div class="items-center gap-4 md:hidden">
-                <div class="flex items-center justify-center gap-6">
-                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="/pages/app/support.html" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
-
-                    <select class="bg-transparent border-none outline-none cursor-pointer">
+            <div class="footer-mobile">
+                <div class="footer-mobile-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="/pages/app/support.html" class="footer-link">Help Center</a>
+                    <select class="footer-lang-select">
                         <option>Arabic</option>
                         <option>Français</option>
                         <option>English</option>
                     </select>
                 </div>
-
-                <p class="text-center">
+                <p class="footer-copy">
                     © 2026 Kingdom of Morocco. Digital transformation for all citizens.
                 </p>
             </div>
 
             <!-- Desktop -->
-            <div class="hidden md:flex items-center justify-between">
-                <p>
-                    © 2026 Kingdom of Morocco.
-                </p>
+            <div class="footer-desktop">
+                <p>© 2026 Kingdom of Morocco.</p>
+                <div class="footer-desktop-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="/pages/app/support.html" class="footer-link">Help Center</a>
 
-                <div class="flex items-center gap-8">
-                    <a href="#" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="/pages/app/support.html" class="hover:text-[#0B6B45] dark:hover:text-accent-400">Help Center</a>
-
-                    <div class="relative inline-block" id="languageDropdown">
-                        <button id="selectedLanguage" class="flex items-center gap-2 bg-transparent cursor-pointer">
+                    <div class="lang-dropdown" id="languageDropdown">
+                        <button id="selectedLanguage" class="lang-btn">
                             English
-                            <img src="/assets/image-login/login-icon-2.png" alt="Login icon 2" class="w-4 h-4 object-contain" />
+                            <img src="/assets/image-login/login-icon-2.png" alt="Login icon 2" class="lang-icon">
                         </button>
-
-                        <div id="languageMenu"
-                            class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-night-700 border dark:border-night-600 rounded-lg shadow-lg z-50">
-
-                            <div class="language-option px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer">
-                                Arabic
-                            </div>
-
-                            <div class="language-option px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer">
-                                Français
-                            </div>
-
-                            <div class="language-option px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer">
-                                English
-                            </div>
-
+                        <div id="languageMenu" class="lang-menu">
+                            <div class="language-option">Arabic</div>
+                            <div class="language-option">Français</div>
+                            <div class="language-option">English</div>
                         </div>
                     </div>
                 </div>
