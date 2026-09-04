@@ -92,7 +92,14 @@
                                text-gray-800 dark:text-mist-100 placeholder:text-gray-400 dark:placeholder:text-mist-300
                                focus:border-brand dark:focus:border-accent-400 focus:ring-4 focus:ring-green-100 dark:focus:ring-accent-400/15; }
         .input--pw    { @apply pr-12; }
-        .input-toggle { @apply absolute right-4 top-1/2 -translate-y-1/2; }
+        .input-toggle { @apply absolute right-4 top-1/2 -translate-y-1/2 grid place-items-center h-5 w-5; }
+
+        /* Password visibility icon — eye when hidden, eye-off when shown; black in light, white in dark */
+        .pw-icon { @apply col-start-1 row-start-1 hidden h-5 w-5 object-contain; }
+        .input-wrap:has(input[type="password"]) .pw-icon--show-light { @apply block dark:hidden; }
+        .input-wrap:has(input[type="password"]) .pw-icon--show-dark  { @apply hidden dark:block; }
+        .input-wrap:has(input[type="text"]) .pw-icon--hide-light     { @apply block dark:hidden; }
+        .input-wrap:has(input[type="text"]) .pw-icon--hide-dark      { @apply hidden dark:block; }
 
         /* ---------- Buttons ---------- */
         .btn-primary  { @apply w-full h-12 rounded-xl bg-brand hover:bg-brand-dark text-white font-semibold transition duration-200 hover:-translate-y-0.5; }
@@ -195,8 +202,11 @@
                                             <img src="/assets/image-login/securety-icon.png" alt="secure icon">
                                         </div>
                                         <input id="password" type="password" placeholder="••••••••" class="input input--pw">
-                                        <button type="button" data-toggle-password class="input-toggle">
-                                            <img src="/assets/image-login/show-icon.png" alt="show icon">
+                                        <button type="button" data-toggle-password class="input-toggle" aria-label="Show password">
+                                            <img src="/assets/settings/show-black.png"   alt="" class="pw-icon pw-icon--show-light">
+                                            <img src="/assets/settings/show-white.png"   alt="" class="pw-icon pw-icon--show-dark">
+                                            <img src="/assets/settings/hidden-black.png" alt="" class="pw-icon pw-icon--hide-light">
+                                            <img src="/assets/settings/hidden-white.png" alt="" class="pw-icon pw-icon--hide-dark">
                                         </button>
                                     </div>
                                 </div>

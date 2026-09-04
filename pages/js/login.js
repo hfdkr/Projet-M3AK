@@ -57,7 +57,6 @@
         button.addEventListener("click", function () {
             var hidden = input.type === "password";
             input.type = hidden ? "text" : "password";
-            button.style.opacity = hidden ? "1" : ".55";
             button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
             input.focus();
         });
