@@ -256,7 +256,7 @@
 
       <label class="relative ml-6 block w-80">
         <span class="sr-only">Search services</span>
-        <img src="/assets/images/search-services.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
+        <img src="/assets/images/search.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
         <input type="search" placeholder="Search services..."
           class="w-full rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
       </label>
@@ -278,7 +278,7 @@
         <button type="button"
           class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Notifications</span>
-          <img src="/assets/images/overview-icon.png" alt="" class="size-5 object-contain" />
+          <img src="/assets/images/notification.png" alt="" class="size-5 object-contain" />
           <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800"></span>
         </button>
         <a href="/pages/app/support.html"
@@ -289,8 +289,7 @@
         <button id="langBtn" type="button"
           class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Change language</span>
-          <img src="/assets/images/change-language.png" alt="" class="size-5 object-contain" />
-          <span id="langLabel" class="text-xs font-semibold">EN</span>
+          <span id="langLabel" class="text-sm font-bold">EN</span>
         </button>
 
         <div class="relative" data-auth="user">
@@ -324,14 +323,11 @@
 
     <aside id="sidebar"
       class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-      <div class="mb-5 flex items-center gap-3 px-2 sidebar-head">
-        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
-          <img src="/assets/images/overview-icon-2.png" alt="" class="size-5 object-contain" />
-        </span>
-        <span class="sidebar-text">
-          <span class="block text-sm font-extrabold leading-tight text-brand dark:text-accent-400">M3ak</span>
-          <span class="block text-[11px] text-muted dark:text-mist-300">Citizen Portal</span>
-        </span>
+      <div class="mb-5 px-2 sidebar-head">
+        <div class="sidebar-text">
+          <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+          <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+        </div>
       </div>
 
       <nav class="space-y-0.5 text-sm font-medium" aria-label="Primary">
@@ -373,7 +369,7 @@
       <div class="mt-auto space-y-1 pt-6">
         <a href="/pages/app/emergence.html"
             class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-            <img src="/assets/images/overview-icon-4.png" alt="" class="size-[18px] shrink-0 object-contain" />
+            <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-[18px] shrink-0 object-contain" />
             <span class="nav-label whitespace-nowrap">Emergency Support</span>
         </a>
         <a href="/pages/app/support.html" class="nav-item">
@@ -381,11 +377,11 @@
           <span class="nav-label">Help Center</span>
         </a>
         <a href="/pages/app/overview.html#account" class="nav-item">
-          <img src="/assets/images/overview-icon-5.png" alt="" class="size-[18px] object-contain" />
+          <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-[18px] object-contain" />
           <span class="nav-label">Settings</span>
         </a>
         <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
-          <img src="/assets/images/overview-icon-6.png" alt="" class="size-[18px] object-contain" />
+          <img src="/assets/marketplace-image/logout.png" alt="" class="size-[18px] object-contain" />
           <span class="nav-label">Logout</span>
         </a>
       </div>
@@ -450,13 +446,61 @@
 
         <!-- ═══════ PANEL: OVERVIEW ═══════ -->
         <section id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" tabindex="0" class="mt-6">
-          <div class="grid gap-5 lg:grid-cols-3">
+
+          <!-- KPI row -->
+          <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                  <img src="/assets/dashboard-assets/icon-dashboard.png" alt="" class="size-4 object-contain" />
+                </span>
+                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">+2</span>
+              </div>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Active Requests</p>
+              <p class="mt-0.5 text-xl font-extrabold" id="kpiRequests">3</p>
+            </article>
+
+            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                  <img src="/assets/dashboard-assets/payment-icon.png" alt="" class="size-4 object-contain" />
+                </span>
+                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Paid</span>
+              </div>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Paid This Month</p>
+              <p class="mt-0.5 text-xl font-extrabold" id="kpiPaid">DH 691</p>
+            </article>
+
+            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <span class="grid size-9 place-items-center rounded-xl bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                  <img src="/assets/dashboard-assets/date.png" alt="" class="size-4 object-contain" />
+                </span>
+                <span class="rounded-full bg-amber-50 dark:bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">Soon</span>
+              </div>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Upcoming Appointments</p>
+              <p class="mt-0.5 text-xl font-extrabold" id="kpiAppts">2</p>
+            </article>
+
+            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                  <img src="/assets/images/id-image.png" alt="" class="size-4 object-contain" />
+                </span>
+                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Valid</span>
+              </div>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Documents</p>
+              <p class="mt-0.5 text-xl font-extrabold">4</p>
+            </article>
+          </div>
+
+          <div class="mt-5 grid gap-5 lg:grid-cols-3">
 
             <!-- Transport live -->
             <div class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
               <div class="flex items-center gap-3">
                 <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
-                  <img src="/assets/images/overview-icon-7.png" alt="" class="size-5 object-contain" />
+                  <img src="/assets/icon-bar-left/transport.png" alt="" class="size-5 object-contain" />
                 </span>
                 <h2 class="text-base font-bold">Public Transport Live Status</h2>
                 <button id="openMap" type="button"
@@ -501,7 +545,7 @@
 
                   <div class="flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3">
                     <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                      <img src="/assets/images/overview-icon-8.png" alt="" class="size-5 object-contain" />
+                      <img src="/assets/emergence-image/maps-icon.png" alt="" class="size-5 object-contain" />
                     </span>
                     <div class="min-w-0 flex-1">
                       <p id="mapModalTitle" class="text-sm font-bold">Live Network Map</p>
@@ -510,7 +554,7 @@
                     <button id="closeMap" type="button"
                       class="grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
                       <span class="sr-only">Close map</span>
-                      <img src="/assets/images/close-map.png" alt="" class="size-5 object-contain" />
+                      <span aria-hidden="true" class="text-xl leading-none">&times;</span>
                     </button>
                   </div>
 
@@ -519,7 +563,7 @@
                   <div class="flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3">
                     <button id="locateMe" type="button"
                       class="flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
-                      <img src="/assets/images/overview-icon-9.png" alt="" class="size-4 object-contain" />
+                      <img src="/assets/marketplace-image/location.png" alt="" class="size-4 object-contain" />
                       Locate me
                     </button>
                     <button id="followMe" type="button" aria-pressed="false"
@@ -543,6 +587,18 @@
               <div id="nextAppt" class="mt-4"></div>
             </section>
 
+            <!-- Activity this week -->
+            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h2 class="text-base font-bold">Your Activity</h2>
+                  <p class="mt-0.5 text-xs text-muted dark:text-mist-300">Interactions with public services · last 7 days</p>
+                </div>
+                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">24 total</span>
+              </div>
+              <div id="activityChart" class="mt-5 flex h-40 items-end justify-between gap-2 sm:gap-4"></div>
+            </section>
+
             <!-- Recent payments -->
             <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
               <div class="flex items-center justify-between">
@@ -553,28 +609,38 @@
               <ul id="payList" class="mt-4 divide-y divide-black/5 dark:divide-white/10"></ul>
             </section>
 
+            <!-- Requests snapshot -->
+            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold">Requests</h2>
+                <button type="button" data-goto-tab="tab-requests"
+                  class="rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">Open</button>
+              </div>
+              <div id="reqSummary" class="mt-4 space-y-2.5"></div>
+            </section>
+
             <!-- Quick services -->
             <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
               <h2 class="text-base font-bold">Quick Citizen Services</h2>
               <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <button type="button" data-service="Civil Status"
                   class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/images/overview-icon-10.png" alt="" class="size-6 object-contain" />
+                  <img src="/assets/images/icon-card.png" alt="" class="size-6 object-contain" />
                   <span class="text-xs font-semibold leading-tight">Civil Status</span>
                 </button>
                 <button type="button" data-service="Driving License"
                   class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/images/overview-icon-11.png" alt="" class="size-6 object-contain" />
+                  <img src="/assets/images/Vehicles.png" alt="" class="size-6 object-contain" />
                   <span class="text-xs font-semibold leading-tight">Driving License</span>
                 </button>
                 <button type="button" data-service="Property Tax"
                   class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/images/overview-icon-12.png" alt="" class="size-6 object-contain" />
+                  <img src="/assets/images/house-icon.png" alt="" class="size-6 object-contain" />
                   <span class="text-xs font-semibold leading-tight">Property Tax</span>
                 </button>
                 <button type="button" data-service="Social Security"
                   class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/images/overview-icon-13.png" alt="" class="size-6 object-contain" />
+                  <img src="/assets/images/icon-cash.png" alt="" class="size-6 object-contain" />
                   <span class="text-xs font-semibold leading-tight">Social Security</span>
                 </button>
               </div>
@@ -610,7 +676,7 @@
               <button id="addAppt" type="button"
                 class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-brand/40">
                 <span class="sr-only">Add an appointment</span>
-                <img src="/assets/images/add-appointment.png" alt="" class="size-5 object-contain" />
+                <img src="/assets/emergence-image/add-Icon.png" alt="" class="size-5 object-contain" />
               </button>
             </div>
             <ul id="apptList" class="mt-5 space-y-3"></ul>
@@ -623,7 +689,7 @@
           <section id="personal-info" class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
             <div class="mb-4 flex items-center justify-between">
               <h2 class="flex items-center gap-2 text-base font-bold">
-                <img src="/assets/images/compte-icon-12.png" alt="" class="size-4 object-contain" />
+                <img src="/assets/images/Icon-profile.png" alt="" class="size-4 object-contain" />
                 Personal Information
               </h2>
             </div>
@@ -634,7 +700,7 @@
                 <div class="field-row">
                   <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name readonly>
                   <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
-                    <img src="/assets/images/compte-icon-13.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
                 </div>
               </div>
@@ -643,7 +709,7 @@
                 <div class="field-row">
                   <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email readonly>
                   <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
-                    <img src="/assets/images/compte-icon-14.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
                 </div>
               </div>
@@ -652,7 +718,7 @@
                 <div class="field-row">
                   <input id="phone" type="tel" class="field-value" value="+212 661-000000" readonly>
                   <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
-                    <img src="/assets/images/compte-icon-15.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
                 </div>
               </div>
@@ -661,7 +727,7 @@
                 <div class="field-row">
                   <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Rabat" readonly>
                   <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
-                    <img src="/assets/images/compte-icon-16.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
                 </div>
               </div>
@@ -694,7 +760,7 @@
                 </div>
               </div>
               <span class="hidden sm:grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-white/15">
-                <img src="/assets/images/compte-icon-17.png" alt="" class="size-6 object-contain" />
+                <img src="/assets/images/id-image.png" alt="" class="size-6 object-contain" />
               </span>
             </div>
 
@@ -714,7 +780,7 @@
             <!-- Security -->
             <section id="security" class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
               <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
-                <img src="/assets/images/compte-icon-18.png" alt="" class="size-4 object-contain" />
+                <img src="/assets/images/security.png" alt="" class="size-4 object-contain" />
                 Security
               </h2>
 
@@ -750,7 +816,7 @@
             <!-- Preferences -->
             <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
               <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
-                <img src="/assets/images/compte-icon-19.png" alt="" class="size-4 object-contain" />
+                <img src="/assets/marketplace-image/setting.png" alt="" class="size-4 object-contain" />
                 Preferences
               </h2>
 
@@ -821,19 +887,19 @@
         My Space
       </a>
       <a href="/pages/app/service.html" class="tab">
-        <img src="/assets/images/overview-icon-15.png" alt="" class="size-5 object-contain" />
+        <img src="/assets/icon-bar-left/services.png" alt="" class="size-5 object-contain" />
         Services
       </a>
       <a href="/pages/app/transport.html" class="tab">
-        <img src="/assets/images/overview-icon-16.png" alt="" class="size-5 object-contain" />
+        <img src="/assets/icon-bar-left/transport.png" alt="" class="size-5 object-contain" />
         Transport
       </a>
       <a href="/pages/app/emergence.html" class="tab">
-        <img src="/assets/images/overview-icon-3.png" alt="" class="size-5 object-contain" />
+        <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-5 object-contain" />
         Emergency
       </a>
       <a href="/pages/app/overview.html#account" class="tab">
-        <img src="/assets/images/overview-icon-18.png" alt="" class="size-5 object-contain" />
+        <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-5 object-contain" />
         Account
       </a>
     </div>
@@ -863,6 +929,16 @@
       { ref: "REQ-40876", title: "Housing Subsidy Application", dept: "Housing", status: "Approved", date: "Oct 09, 2026" },
       { ref: "REQ-40712", title: "University Scholarship", dept: "Education", status: "Pending documents", date: "Sep 28, 2026" },
       { ref: "REQ-40588", title: "Business License", dept: "Finance", status: "Rejected", date: "Sep 15, 2026" }
+    ];
+
+    const ACTIVITY = [
+      { day: "Mon", value: 2 },
+      { day: "Tue", value: 4 },
+      { day: "Wed", value: 3 },
+      { day: "Thu", value: 6 },
+      { day: "Fri", value: 5 },
+      { day: "Sat", value: 1 },
+      { day: "Sun", value: 3 }
     ];
 
     /* ── Toast ── */
@@ -905,7 +981,7 @@
         <div class="min-w-0 flex-1">
           <p class="truncate text-sm font-semibold">${a.title}</p>
           <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-            <img src="/assets/images/overview-icon-19.png" alt="" class="size-3 shrink-0 object-contain" />
+            <img src="/assets/marketplace-image/location.png" alt="" class="size-3 shrink-0 object-contain" />
             <span class="truncate">${a.place}</span>
           </p>
         </div>
@@ -926,7 +1002,7 @@
       $("#payList").innerHTML = PAYMENTS.map(p => `
       <li class="flex items-center gap-3 py-3">
         <span class="grid size-9 shrink-0 place-items-center rounded-full bg-canvas dark:bg-night-700 text-brand dark:text-accent-400">
-          <img src="/assets/images/overview-icon-20.png" alt="" class="size-4 object-contain" />
+          <img src="/assets/images/cash.png" alt="" class="size-4 object-contain" />
         </span>
         <div class="min-w-0 flex-1">
           <p class="truncate text-sm font-semibold">${p.label}</p>
@@ -948,6 +1024,38 @@
           <p class="mt-1 text-[11px] text-muted dark:text-mist-300">${r.ref} · ${r.dept} · ${r.date}</p>
         </div>
       </li>`).join("");
+    }
+
+    /* ── Rendu requests snapshot (dashboard) ── */
+    function renderReqSummary() {
+      const rows = [
+        { label: "In review", status: "In review" },
+        { label: "Approved", status: "Approved" },
+        { label: "Action needed", status: "Pending documents" }
+      ];
+      $("#reqSummary").innerHTML = rows.map(row => {
+        const count = REQUESTS.filter(r => r.status === row.status).length;
+        return `
+        <div class="flex items-center justify-between rounded-xl bg-canvas dark:bg-night-700 px-3 py-2.5">
+          <span class="flex items-center gap-2 text-sm font-medium">${reqChip(row.status)}${row.label}</span>
+          <span class="text-sm font-bold">${count}</span>
+        </div>`;
+      }).join("");
+    }
+
+    /* ── Rendu activity chart (dashboard) — pure CSS bars, no library ── */
+    function renderActivity() {
+      const max = Math.max.apply(null, ACTIVITY.map(a => a.value)) || 1;
+      $("#activityChart").innerHTML = ACTIVITY.map(a => `
+        <div class="flex h-full flex-1 flex-col items-center justify-end gap-2">
+          <div class="w-2.5 rounded-full bg-brand dark:bg-accent-400 transition-[height] duration-700 ease-out" style="height:0%" data-h="${Math.round(a.value / max * 100)}"></div>
+          <span class="text-[10px] text-muted dark:text-mist-300">${a.day}</span>
+        </div>`).join("");
+      requestAnimationFrame(() => {
+        $("#activityChart").querySelectorAll("[data-h]").forEach(bar => {
+          bar.style.height = Math.max(6, +bar.dataset.h) + "%";
+        });
+      });
     }
 
     /* ── Statut transport en direct ── */
@@ -1098,6 +1206,8 @@
     renderAppointments();
     renderPayments();
     renderRequests();
+    renderReqSummary();
+    renderActivity();
     requestAnimationFrame(() => {
       $("#boraqBar").style.width = "38%";
       tick();
