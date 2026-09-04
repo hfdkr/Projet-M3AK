@@ -1,32 +1,11 @@
 ﻿# 🇲🇦 Projet-M3AK
 
-A modern digital identity platform concept for Morocco, currently under development as a **frontend prototype**. This project focuses on the interface, navigation, and user experience for managing digital identity and public services — the screens a citizen would eventually use, built and connected end-to-end on the client side.
+A modern digital identity platform concept for Morocco — the interface, navigation, and user experience for managing digital identity and public services, as a **frontend project** built with HTML, Tailwind CSS, and vanilla JavaScript.
 
----
+**🔗 Live demo:** [projet-m3-ak.vercel.app](https://projet-m3-ak.vercel.app/) — deployed on [Vercel](https://vercel.com/).
 
-## ⚠️ Current Development Scope
-
-**Projet-M3AK is currently a frontend-only project.** Everything in this repository — the interfaces, responsive layouts, navigation, dark mode, client-side form validation, session handling, and interactive features (search, filters, the SOS flow, the wallet UI, etc.) — is implemented using HTML, Tailwind CSS, and vanilla JavaScript, running entirely in the browser.
-
-| Layer | Status |
-|---|---|
-| **Frontend** (UI, layout, navigation, dark mode, client-side validation, interactivity) | ✅ Implemented |
-| **Authentication** | ⚠️ Simulated client-side only, via `localStorage` (`session.js`) — not real authentication |
-| **Backend / server** | ❌ Not implemented |
-| **Database** | ❌ Not implemented |
-| **Real API** | ❌ Not implemented |
-
-Concretely, this means:
-
-- "Signing in" or "creating an account" just writes a name/email to `localStorage` and unlocks the app pages — there is no server verifying credentials, and no account data is persisted anywhere but the visitor's own browser.
-- Data shown across the app (transport times, marketplace listings, payment history, doctor listings, KPIs, etc.) is static/mock data defined in each page's own JavaScript, not fetched from any backend.
-- There is no database, no server-side session, and no real API — every "request" (booking, payment, ticket submission) is a UI-only simulation (usually confirmed with a toast message) with nothing sent over the network.
-
-None of this is hidden: the goal at this stage is a complete, well-connected frontend that a backend can be wired into later — not a finished product.
-
-This is a deliberate, staged approach: the project is currently being built with HTML, Tailwind CSS, and vanilla
-JavaScript only. Backend integration (real auth, database, API) is planned for a later phase, once backend
-development is covered in the author's studies (2026/2027 academic year) — not something missing by oversight.
+Backend (real auth, database, API) is planned for a later phase, once that's covered in the author's studies
+(2026/2027 academic year) — this project is frontend-only for now, by design.
 
 ---
 
@@ -53,10 +32,9 @@ development is covered in the author's studies (2026/2027 academic year) — not
 - Tailwind CSS v4 *(via CDN — build step planned, see Roadmap)*
 - JavaScript (vanilla, no framework)
 - OpenStreetMap / Leaflet *(live maps & geolocation)*
-- `localStorage` *(client-side only, for simulating the signed-in session — see "Current Development Scope" above)*
+- Deployed on [Vercel](https://vercel.com/)
 
-This is the complete stack. There is no backend framework, no database, and no server-side language involved at
-this stage — no Node.js/Express, no Python/Django/Flask, no PHP, no SQL/NoSQL database, no REST or GraphQL API.
+This is the complete stack for now — frontend only. A backend is planned for later (see Roadmap).
 
 ---
 
@@ -151,18 +129,18 @@ Projet-M3AK/
 - Public service directory (12 ministry categories: Housing, Jobs, Education, Healthcare, Registry, Interior,
   Finance, Justice, Foreign Affairs, Agriculture, Culture, Tourism — first 7 are real pages, the rest fall
   back to the shared Coming Soon placeholder)
-- Marketplace with search, filters, sorting and wishlist *(product data is static/mock, no real checkout)*
-- Payments hub UI with wallet balance, recent payments, and bill-payment categories *(mock data, no real
-  transactions — nothing is actually charged or transferred)*
+- Marketplace with search, filters, sorting and wishlist
+- Payments hub UI with wallet balance, recent payments, and bill-payment categories
 - Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
-  *(the SOS action is a UI simulation; no alert is actually sent to emergency services)*
-- Admin Dashboard: KPIs, engagement trends, service usage *(all figures are static/mock data for the UI, not
-  pulled from real usage)*
-- Simulated session handling shared across pages via `localStorage` (`session.js`), with a client-side auth
-  guard (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored — this
-  is a frontend UX gate, not real authentication or authorization
+- Admin Dashboard: KPIs, engagement trends, service usage
+- Session handling shared across pages via `localStorage` (`session.js`), with an auth guard
+  (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored
 - Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too, descriptive
   `alt` text on every `<img>` across the project)
+
+> All data shown across the app (transport times, listings, payments, KPIs, etc.) is static/demo data, and
+> actions like booking or checkout are UI-only for now — see [Current Progress](#-current-progress) and the
+> Roadmap for what's planned once the backend lands.
 
 ---
 
@@ -219,12 +197,11 @@ Projet-M3AK/
 
 ### 🚀 Deployment
 
-- [ ] Switch internal links to relative paths (required for GitHub Pages)
-- [ ] GitHub Pages
+- [x] Deployed on [Vercel](https://projet-m3-ak.vercel.app/)
 
 ### 🔧 Backend Development (Planned — 2026/2027)
 
-- [ ] Real authentication (replacing the `localStorage` session simulation)
+- [ ] Real authentication
 - [ ] Database
 - [ ] Real API wired into the existing frontend
 
@@ -277,14 +254,11 @@ remaining items are genuinely open:
 
 **Still open:**
 
-- Absolute paths (`/pages/...`) will 404 once deployed on GitHub Pages (served under a subpath) — needs a build
-  step or relative-path rewrite before that deployment target.
 - Justice, Foreign Affairs, Agriculture, Culture, and Tourism are represented by the shared Coming Soon
   placeholder, not real pages.
 - `health.html` and admin `dashboard.html` still reference many `.png` icons from `assets/services-image/`
   and `assets/dashboard/` folders that don't exist — pre-existing gaps (`transport.html`'s equivalent gap is
   now fixed via `assets/transport-icon/`).
-- Auth is frontend-only (`localStorage`), by design for this stage — no real backend/API yet.
 - Tablet viewports render the same layout as desktop/laptop (the responsive design only really distinguishes
   mobile vs. desktop) — no breakpoint tuned specifically for tablet-sized screens.
 
@@ -306,6 +280,7 @@ remaining items are genuinely open:
 - ✅ Account/Settings page got the mobile hamburger + drawer it was missing
 - ✅ Mobile, tablet, and desktop breakpoints in place across the app — tablet viewports currently reuse the
   desktop/laptop layout rather than a custom-tuned in-between design
+- ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
 - 🚧 Justice, Foreign Affairs, Agriculture, Culture, Tourism ministry pages (currently placeholders)
 - 🚧 Cross-browser testing pending
 
