@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard — M3ak Morocco</title>
+  <title>My Space — M3ak Morocco</title>
   <script src="/pages/js/session.js"></script>
   <script src="/pages/js/theme.js"></script>
 
@@ -43,6 +43,64 @@
   }
 </style>
 
+  <style type="text/tailwindcss">
+    /* ── My Space: tabs ── */
+    .ms-tab {
+      @apply shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold text-muted dark:text-mist-300
+             transition hover:text-ink dark:hover:text-mist-100
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40;
+    }
+
+    .ms-tab[aria-selected="true"] {
+      @apply bg-brand text-white dark:bg-accent-400 dark:text-night-900;
+    }
+
+    /* ── My Space: settings-style fields (ported from the Account page) ── */
+    .field-label {
+      @apply block font-semibold text-[10px] uppercase tracking-[0.6px] text-muted dark:text-mist-300 mb-1.5;
+    }
+
+    .field-row {
+      @apply flex items-center justify-between gap-2 bg-canvas dark:bg-night-700 rounded-xl px-3 py-2.5
+             ring-1 ring-black/5 dark:ring-white/10;
+    }
+
+    .field-value {
+      @apply w-full truncate bg-transparent text-sm font-medium text-ink dark:text-mist-100 outline-none;
+    }
+
+    .field-edit {
+      @apply shrink-0 grid size-7 place-items-center rounded-lg text-brand dark:text-accent-400
+             hover:bg-brand-soft dark:hover:bg-accent-400/15 cursor-pointer
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40;
+    }
+
+    .settings-row {
+      @apply flex items-center justify-between gap-3 py-3.5 border-b border-black/5 dark:border-white/10
+             last:border-0 last:pb-0 first:pt-0;
+    }
+
+    .toggle-switch {
+      @apply relative inline-flex h-6 w-11 shrink-0 items-center rounded-full bg-black/15 dark:bg-white/15
+             transition-colors cursor-pointer
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40;
+    }
+
+    .toggle-switch-on { @apply bg-brand dark:bg-accent-400; }
+
+    .toggle-switch-thumb {
+      @apply inline-block size-[18px] translate-x-[3px] rounded-full bg-white shadow transition-transform;
+    }
+
+    .toggle-switch-on .toggle-switch-thumb { @apply translate-x-[23px]; }
+
+    .field-select {
+      @apply w-full bg-canvas dark:bg-night-700 ring-1 ring-black/5 dark:ring-white/10 rounded-xl
+             px-3 py-2.5 text-sm text-ink dark:text-mist-100 outline-none
+             focus-visible:ring-2 focus-visible:ring-brand/40;
+    }
+  </style>
+
   <style>
     body {
       -webkit-font-smoothing: antialiased;
@@ -55,37 +113,6 @@
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
-    }
-
-    /* Signature : ligne de réseau animée sur la carte transport */
-    .track-flow {
-      stroke-dasharray: 5 7;
-      animation: flow 2.4s linear infinite;
-    }
-
-    @keyframes flow {
-      to {
-        stroke-dashoffset: -24;
-      }
-    }
-
-    .pulse-dot {
-      animation: pulseDot 2.2s ease-in-out infinite;
-      transform-origin: center;
-    }
-
-    @keyframes pulseDot {
-
-      0%,
-      100% {
-        opacity: .35;
-        r: 9;
-      }
-
-      50% {
-        opacity: .05;
-        r: 15;
-      }
     }
 
     .fade-up {
@@ -108,389 +135,6 @@
       transition: width .8s cubic-bezier(.22, 1, .36, 1);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition-duration: .001ms !important;
-      }
-    }
-  </style>
-</head>
-
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200" data-require-auth>
-
-  <!-- ══════════ TOP BAR (desktop) ══════════ -->
-  <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
-    <div class="flex h-16 items-center gap-6 px-6">
-      <a href="/pages/app/overview.html"
-        class="w-56 shrink-0 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
-
-      <label class="relative ml-6 block w-80">
-        <span class="sr-only">Search services</span>
-        <img src="/assets/images/search-services.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
-        <input type="search" placeholder="Search services..."
-          class="w-full rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
-      </label>
-
-      <div class="ml-auto flex items-center gap-2">
-        <button type="button"
-          class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
-          <span class="sr-only">Notifications</span>
-          <!-- dark light mode button -->
-          <button type="button"
-            class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-            data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-            <!-- Toggle Circle -->
-            <span
-              class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-              <!-- Sun -->
-              <img src="/assets/settings/sun.png" alt="Light mode"
-                class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
-              <!-- Moon -->
-              <img src="/assets/settings/moon.png" alt="Dark mode"
-                class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
-            </span>
-          </button>
-          <img src="/assets/images/overview-icon.png" alt="Overview icon" class="size-5 object-contain" />
-          <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
-        </button>
-        <button type="button"
-          class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
-          <span class="sr-only">Help</span>
-          <img src="/assets/images/icon-chat.png" alt="Help" class="size-5 object-contain" />
-        </button>
-        <button id="langBtn" type="button"
-          class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
-          <span class="sr-only">Change language</span>
-          <img src="/assets/images/change-language.png" alt="Change language" class="size-5 object-contain" />
-          <span id="langLabel" class="text-xs font-semibold">EN</span>
-        </button>
-
-        <button type="button"
-          class="ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
-          <span data-user-initials
-            class="grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
-          <span class="text-sm font-medium" data-user-name>Ahmed</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <div class="flex">
-
-    <!-- ══════════ SIDEBAR ══════════ -->
-    <aside id="sidebar"
-      class="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-black/5 dark:border-white/10 bg-brand-soft/40 dark:bg-night-800 px-3 py-5 lg:flex">
-      <div class="mb-5 flex items-center gap-3 px-2 sidebar-head">
-        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
-          <img src="/assets/images/overview-icon-2.png" alt="Overview icon 2" class="size-5 object-contain" />
-        </span>
-        <span class="sidebar-text">
-          <span class="block text-sm font-extrabold leading-tight text-brand dark:text-accent-400">M3ak</span>
-          <span class="block text-[11px] text-muted dark:text-mist-300">Citizen Portal</span>
-        </span>
-      </div>
-
-      <nav class="space-y-0.5 text-sm font-medium">
-        <a href="/pages/app/service.html" aria-current="page"
-          class="nav-on flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
-          <img src="/assets/icon-bar-left/service-green.png" alt="Service" class="nav-icon nav-icon--active" />
-          <span class="nav-label">Services</span>
-        </a>
-        <a href="/pages/app/coming-soon.html?feature=Passport" class="nav-item">
-          <img src="/assets/icon-bar-left/passport.png" alt="Passport" class="nav-icon" />
-
-          <span class="nav-label">Passport</span>
-        </a>
-        <a href="/pages/app/transport.html" class="nav-item">
-          <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
-          <span class="nav-label">Transport</span>
-        </a>
-        <a href="/pages/app/housing.html" class="nav-item">
-          <img src="/assets/icon-bar-left/housing.png" alt="Housing" class="nav-icon" />
-          <span class="nav-label">Housing</span>
-        </a>
-        <a href="/pages/app/jobs.html" class="nav-item">
-          <img src="/assets/icon-bar-left/jobs.png" alt="Jobs" class="nav-icon" />
-          <span class="nav-label">Jobs</span>
-        </a>
-        <a href="/pages/app/education.html" class="nav-item">
-          <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon" />
-          <span class="nav-label">Education</span>
-        </a>
-        <a href="/pages/app/health.html" class="nav-item">
-          <img src="/assets/icon-bar-left/health.png" alt="Health" class="nav-icon" />
-          <span class="nav-label">Healthcare</span>
-        </a>
-        <a href="/pages/app/payments.html" class="nav-item">
-          <img src="/assets/icon-bar-left/payment.png" alt="Payment" class="nav-icon" />
-          <span class="nav-label">Payments</span>
-        </a>
-        <a href="/pages/app/marketplace.html" class="nav-item">
-          <img src="/assets/icon-bar-left/marketplace.png" alt="Marketplace" class="nav-icon" />
-          <span class="nav-label">Marketplace</span>
-        </a>
-        <a href="/pages/app/emergence.html" class="nav-item">
-          <img src="/assets/images/overview-icon-3.png" alt="Overview icon 3" class="size-[18px] object-contain" />
-          <span class="nav-label">Emergency</span>
-        </a>
-      </nav>
-
-      <div class="mt-auto space-y-1 pt-6">
-        <a href="/pages/app/emergence.html"
-            class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-            <img src="/assets/images/overview-icon-4.png" alt="Overview icon 4" class="size-[18px] shrink-0 object-contain" />
-            <span class="nav-label whitespace-nowrap">Emergency Support</span>
-        </a>
-        <a href="/pages/admin-pages/compte.html#security" class="nav-item">
-          <img src="/assets/images/overview-icon-5.png" alt="Overview icon 5" class="size-[18px] object-contain" />
-                    <span class="nav-label">Settings</span>
-                </a>
-        <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
-          <img src="/assets/images/overview-icon-6.png" alt="Overview icon 6" class="size-[18px] object-contain" />
-                    <span class="nav-label">Logout</span>
-                </a>
-      </div>
-    </aside>
-
-    <!-- ══════════ CONTENU ══════════ -->
-    <div class="min-w-0 flex-1">
-
-      <!-- Header mobile -->
-      <div class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3.5 lg:hidden">
-        <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
-        <div class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3.5 gap-[9px] lg:hidden">
-
-          <!-- dark light mode button -->
-          <button type="button"
-            class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
-            data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-            <!-- Toggle Circle -->
-            <span
-              class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
-              <!-- Sun -->
-              <img src="/assets/settings/sun.png" alt="Light mode"
-                class="theme-toggle-sun h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
-              <!-- Moon -->
-              <img src="/assets/settings/moon.png" alt="Dark mode"
-                class="theme-toggle-moon absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
-            </span>
-          </button>
-          <button type="button"
-            class="grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">
-            <span class="sr-only">Your profile</span>A
-          </button>
-        </div>
-      </div>
-
-      <main class="px-4 pb-28 pt-5 lg:px-8 lg:pb-10 lg:pt-8">
-
-        <!-- Salutation -->
-        <div class="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Welcome back, <span data-user-name>there</span></h1>
-            <p class="mt-1.5 max-w-md text-sm text-muted dark:text-mist-300">Here is an overview of your essential citizen services today.
-            </p>
-          </div>
-          <span
-            class="inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-1.5 text-xs font-semibold text-brand dark:text-accent-400">
-            <span class="size-1.5 rounded-full bg-brand"></span>Rabat · <span id="temp">24</span>°C
-          </span>
-        </div>
-
-        <!-- Grille -->
-        <div class="mt-6 grid gap-5 lg:grid-cols-3">
-
-          <!-- Transport live -->
-          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-            <div class="flex items-center gap-3">
-              <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
-                <img src="/assets/images/overview-icon-7.png" alt="Overview icon 7" class="size-5 object-contain" />
-              </span>
-              <h2 class="text-base font-bold">Public Transport Live Status</h2>
-              <button id="openMap" type="button"
-                class="ml-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400">
-                View Map
-              </button>
-              <span
-                class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
-                <span class="size-1.5 animate-pulse rounded-full bg-brand dark:bg-accent-400"></span>Live Now
-              </span>
-            </div>
-
-            <div class="mt-4 grid gap-3 sm:grid-cols-2">
-              <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
-                <div class="flex items-baseline justify-between gap-2">
-                  <p class="text-sm font-semibold">Tramway T1</p>
-                  <p class="text-sm font-bold text-brand dark:text-accent-400"><span id="tramEta">2</span><span id="tramUnit"> min</span></p>
-                </div>
-                <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-                  <span id="tramBar" class="block h-full rounded-full bg-brand dark:bg-accent-400" style="width:0%"></span>
-                </div>
-                <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Hassan II</p>
-              </article>
-
-              <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
-                <div class="flex items-baseline justify-between gap-2">
-                  <p class="text-sm font-semibold">Al Boraq 104</p>
-                  <p class="text-sm font-bold">14:15</p>
-                </div>
-                <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-                  <span id="boraqBar" class="block h-full rounded-full bg-blue-600" style="width:0%"></span>
-                </div>
-                <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Tangier Ville</p>
-              </article>
-            </div>
-
-            <!-- Carte réseau (élément signature) -->
-            <!-- ══════════ MODALE CARTE LIVE ══════════ -->
-            <div id="mapModal"
-              class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink/50 p-0 backdrop-blur-sm sm:p-6">
-              <div role="dialog" aria-modal="true" aria-labelledby="mapModalTitle"
-                class="flex h-full w-full flex-col overflow-hidden bg-white dark:bg-night-800 shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl">
-
-                <div class="flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3">
-                  <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                    <img src="/assets/images/overview-icon-8.png" alt="Overview icon 8" class="size-5 object-contain" />
-                  </span>
-                  <div class="min-w-0 flex-1">
-                    <p id="mapModalTitle" class="text-sm font-bold">Live Network Map</p>
-                    <p id="mapStatus" class="truncate text-[11px] text-muted dark:text-mist-300">Waiting for your location…</p>
-                  </div>
-                  <button id="closeMap" type="button"
-                    class="grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Close map</span>
-                    <img src="/assets/images/close-map.png" alt="Close map" class="size-5 object-contain" />
-                  </button>
-                </div>
-
-                <div id="liveMap" class="min-h-0 flex-1 bg-canvas dark:bg-night-700"></div>
-
-                <div class="flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3">
-                  <button id="locateMe" type="button"
-                    class="flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <img src="/assets/images/overview-icon-9.png" alt="Overview icon 9" class="size-4 object-contain" />
-                    Locate me
-                  </button>
-                  <button id="followMe" type="button" aria-pressed="false"
-                    class="rounded-lg border border-black/10 dark:border-white/15 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30">
-                    Follow my position
-                  </button>
-                  <a id="externalMap" href="https://www.google.com/maps" target="_blank" rel="noopener"
-                    class="ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Open in Google Maps</a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Appointments -->
-          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-            <div class="flex items-center justify-between">
-              <h2 class="text-base font-bold">Appointments</h2>
-              <button id="addAppt" type="button"
-                class="grid size-8 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-brand/40">
-                <span class="sr-only">Add an appointment</span>
-                <img src="/assets/images/add-appointment.png" alt="Add appointment" class="size-5 object-contain" />
-              </button>
-            </div>
-
-            <ul id="apptList" class="mt-4 space-y-3"></ul>
-
-            <a href="/pages/app/coming-soon.html?feature=Full+Schedule" class="mt-5 block text-center text-sm font-semibold text-brand dark:text-accent-400 hover:underline">View All
-              Schedule</a>
-          </section>
-
-          <!-- Recent payments -->
-          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-            <div class="flex items-center justify-between">
-              <h2 class="text-base font-bold">Recent Payments</h2>
-              <button id="allPayments" type="button"
-                class="grid size-8 place-items-center rounded-lg text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                <span class="sr-only">Open payment history</span>
-                <img src="/assets/images/open-payment-history.png" alt="Open payment history" class="size-5 object-contain" />
-              </button>
-            </div>
-            <ul id="payList" class="mt-4 divide-y divide-black/5 dark:divide-white/10"></ul>
-          </section>
-
-          <!-- Quick services -->
-          <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-            <h2 class="text-base font-bold">Quick Citizen Services</h2>
-            <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <button type="button" data-service="Civil Status"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                <img src="/assets/images/overview-icon-10.png" alt="Overview icon 10" class="size-6 object-contain" />
-                <span class="text-xs font-semibold leading-tight">Civil Status</span>
-              </button>
-              <button type="button" data-service="Driving License"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                <img src="/assets/images/overview-icon-11.png" alt="Overview icon 11" class="size-6 object-contain" />
-                <span class="text-xs font-semibold leading-tight">Driving License</span>
-              </button>
-              <button type="button" data-service="Property Tax"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                <img src="/assets/images/overview-icon-12.png" alt="Overview icon 12" class="size-6 object-contain" />
-                <span class="text-xs font-semibold leading-tight">Property Tax</span>
-              </button>
-              <button type="button" data-service="Social Security"
-                class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                <img src="/assets/images/overview-icon-13.png" alt="Overview icon 13" class="size-6 object-contain" />
-                <span class="text-xs font-semibold leading-tight">Social Security</span>
-              </button>
-            </div>
-          </section>
-        </div>
-
-        <!-- Footer desktop -->
-        <footer class="mt-10 hidden border-t border-black/5 dark:border-white/10 pt-6 lg:block">
-          <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted dark:text-mist-300">
-            <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
-            <nav class="flex gap-7">
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-              <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Help Center</a>
-            </nav>
-          </div>
-        </footer>
-      </main>
-    </div>
-  </div>
-
-  <!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
-  <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden">
-    <div class="mx-auto flex max-w-md items-center justify-around px-2 py-2">
-      <a href="/index.html" class="tab">
-        <img src="/assets/images/overview-icon-14.png" alt="Overview icon 14" class="size-5 object-contain" />
-        Home
-      </a>
-      <a href="/pages/app/service.html" aria-current="page"
-        class="flex flex-col items-center gap-1 rounded-full bg-brand px-5 py-2 text-[10px] font-semibold text-white shadow-sm">
-        <img src="/assets/images/overview-icon-15.png" alt="Overview icon 15" class="size-5 object-contain" />
-        Services
-      </a>
-      <a href="/pages/app/transport.html" class="tab">
-        <img src="/assets/images/overview-icon-16.png" alt="Overview icon 16" class="size-5 object-contain" />
-        Transport
-      </a>
-      <a href="/pages/app/coming-soon.html?feature=Digital+ID" class="tab">
-        <img src="/assets/images/overview-icon-17.png" alt="Overview icon 17" class="size-5 object-contain" />
-        ID
-      </a>
-      <a href="/pages/admin-pages/compte.html#personal-info" class="tab">
-        <img src="/assets/images/overview-icon-18.png" alt="Overview icon 18" class="size-5 object-contain" />
-        Account
-      </a>
-    </div>
-  </nav>
-
-  <div id="toast"
-    class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
-  </div>
-
-  <style>
     .nav-item {
       display: flex;
       align-items: center;
@@ -542,20 +186,6 @@
       color: #7C8981;
     }
 
-    /* Instagram-style icon rail: label hidden by default on desktop,
-       fades in on hover/focus of that row, fades out when the cursor leaves. */
-    @media (min-width: 1024px) {
-      .nav-label {
-        opacity: 0;
-        transition: opacity .15s ease;
-      }
-
-      #sidebar:hover .nav-label,
-      #sidebar:focus-within .nav-label {
-        opacity: 1;
-      }
-    }
-
     /* Icon rail: collapsed at rest, expands automatically on hover/focus */
     @media (min-width: 1024px) {
       #sidebar {
@@ -603,21 +233,636 @@
         justify-content: flex-start;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition-duration: .001ms !important;
+      }
+    }
   </style>
+</head>
+
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200" data-require-auth>
+
+  <!-- ══════════ TOP BAR (desktop) ══════════ -->
+  <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
+    <div class="flex h-16 items-center gap-6 px-6">
+      <a href="/pages/app/overview.html"
+        class="w-56 shrink-0 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
+
+      <label class="relative ml-6 block w-80">
+        <span class="sr-only">Search services</span>
+        <img src="/assets/images/search-services.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
+        <input type="search" placeholder="Search services..."
+          class="w-full rounded-lg border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-700 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
+      </label>
+
+      <div class="ml-auto flex items-center gap-2">
+        <!-- Dark / light mode -->
+        <button type="button"
+          class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+          data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+          <span
+            class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+            <img src="/assets/settings/sun.png" alt="Light mode"
+              class="h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
+            <img src="/assets/settings/moon.png" alt="Dark mode"
+              class="absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+          </span>
+        </button>
+
+        <button type="button"
+          class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+          <span class="sr-only">Notifications</span>
+          <img src="/assets/images/overview-icon.png" alt="" class="size-5 object-contain" />
+          <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800"></span>
+        </button>
+        <a href="/pages/app/support.html"
+          class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+          <span class="sr-only">Help Center</span>
+          <img src="/assets/images/icon-chat.png" alt="" class="size-5 object-contain" />
+        </a>
+        <button id="langBtn" type="button"
+          class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+          <span class="sr-only">Change language</span>
+          <img src="/assets/images/change-language.png" alt="" class="size-5 object-contain" />
+          <span id="langLabel" class="text-xs font-semibold">EN</span>
+        </button>
+
+        <div class="relative" data-auth="user">
+          <button type="button" data-menu-toggle aria-expanded="false" aria-haspopup="menu"
+            class="ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+            <span data-user-initials
+              class="grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
+            <span class="text-sm font-medium" data-user-name>Ahmed</span>
+          </button>
+
+          <div data-menu role="menu"
+            class="absolute right-0 z-50 mt-2 hidden w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg">
+            <a href="/pages/app/overview.html#personal-info" role="menuitem"
+              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Personal info</a>
+            <a href="/pages/app/overview.html#digital-id" role="menuitem"
+              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">My documents</a>
+            <a href="/pages/app/overview.html#account" role="menuitem"
+              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Account settings</a>
+            <button type="button" data-action="logout" role="menuitem"
+              class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex">
+
+    <!-- ══════════ SIDEBAR ══════════ -->
+    <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+
+    <aside id="sidebar"
+      class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+      <div class="mb-5 flex items-center gap-3 px-2 sidebar-head">
+        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400 text-white dark:text-night-900">
+          <img src="/assets/images/overview-icon-2.png" alt="" class="size-5 object-contain" />
+        </span>
+        <span class="sidebar-text">
+          <span class="block text-sm font-extrabold leading-tight text-brand dark:text-accent-400">M3ak</span>
+          <span class="block text-[11px] text-muted dark:text-mist-300">Citizen Portal</span>
+        </span>
+      </div>
+
+      <nav class="space-y-0.5 text-sm font-medium" aria-label="Primary">
+        <a href="/pages/app/overview.html" aria-current="page"
+          class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
+          <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon nav-icon--active" />
+          <span class="nav-label">My Space</span>
+        </a>
+        <a href="/pages/app/service.html" class="nav-item">
+          <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon" />
+          <span class="nav-label">Services</span>
+        </a>
+        <a href="/pages/app/transport.html" class="nav-item">
+          <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon" />
+          <span class="nav-label">Transport</span>
+        </a>
+        <a href="/pages/app/health.html" class="nav-item">
+          <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon" />
+          <span class="nav-label">Healthcare</span>
+        </a>
+        <a href="/pages/app/housing.html" class="nav-item">
+          <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon" />
+          <span class="nav-label">Housing</span>
+        </a>
+        <a href="/pages/app/jobs.html" class="nav-item">
+          <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon" />
+          <span class="nav-label">Jobs</span>
+        </a>
+        <a href="/pages/app/education.html" class="nav-item">
+          <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon" />
+          <span class="nav-label">Education</span>
+        </a>
+        <a href="/pages/app/payments.html" class="nav-item">
+          <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon" />
+          <span class="nav-label">Payments</span>
+        </a>
+      </nav>
+
+      <div class="mt-auto space-y-1 pt-6">
+        <a href="/pages/app/emergence.html"
+            class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
+            <img src="/assets/images/overview-icon-4.png" alt="" class="size-[18px] shrink-0 object-contain" />
+            <span class="nav-label whitespace-nowrap">Emergency Support</span>
+        </a>
+        <a href="/pages/app/support.html" class="nav-item">
+          <img src="/assets/images/icon-chat.png" alt="" class="size-[18px] object-contain" />
+          <span class="nav-label">Help Center</span>
+        </a>
+        <a href="/pages/app/overview.html#account" class="nav-item">
+          <img src="/assets/images/overview-icon-5.png" alt="" class="size-[18px] object-contain" />
+          <span class="nav-label">Settings</span>
+        </a>
+        <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
+          <img src="/assets/images/overview-icon-6.png" alt="" class="size-[18px] object-contain" />
+          <span class="nav-label">Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ══════════ CONTENU ══════════ -->
+    <div class="min-w-0 flex-1">
+
+      <!-- Header mobile -->
+      <div class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3 lg:hidden">
+        <button id="menuBtn" type="button"
+          class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+          <span class="sr-only">Open menu</span>
+          <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain" />
+        </button>
+        <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
+        <div class="flex items-center gap-2">
+          <button type="button"
+            class="relative flex h-8 w-14 cursor-pointer items-center rounded-full bg-slate-200 p-1 transition-colors duration-300 dark:bg-slate-700"
+            data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+            <span
+              class="theme-toggle-thumb flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-6 dark:bg-slate-900">
+              <img src="/assets/settings/sun.png" alt="Light mode"
+                class="h-4 w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0">
+              <img src="/assets/settings/moon.png" alt="Dark mode"
+                class="absolute h-4 w-4 scale-0 object-contain transition-all duration-300 dark:rotate-0 dark:scale-100">
+            </span>
+          </button>
+          <span data-user-initials
+            class="grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
+        </div>
+      </div>
+
+      <main class="px-4 pb-28 pt-5 lg:px-8 lg:pb-10 lg:pt-8">
+
+        <!-- Salutation -->
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">My Space</h1>
+            <p class="mt-1.5 max-w-md text-sm text-muted dark:text-mist-300">
+              Welcome back, <span data-user-name>there</span>. Your services, requests, appointments and account
+              in one place.
+            </p>
+          </div>
+          <span
+            class="inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-1.5 text-xs font-semibold text-brand dark:text-accent-400">
+            <span class="size-1.5 rounded-full bg-brand"></span>Rabat · <span id="temp">24</span>°C
+          </span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mt-6 overflow-x-auto no-scrollbar">
+          <div role="tablist" aria-label="My Space sections"
+            class="flex w-max gap-1.5 rounded-full bg-white dark:bg-night-800 p-1 ring-1 ring-black/5 dark:ring-white/10">
+            <button type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" class="ms-tab">Dashboard</button>
+            <button type="button" role="tab" id="tab-requests" aria-controls="panel-requests" aria-selected="false" tabindex="-1" class="ms-tab">My Requests</button>
+            <button type="button" role="tab" id="tab-appointments" aria-controls="panel-appointments" aria-selected="false" tabindex="-1" class="ms-tab">Appointments</button>
+            <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="false" tabindex="-1" class="ms-tab">Personal Info</button>
+            <button type="button" role="tab" id="tab-account" aria-controls="panel-account" aria-selected="false" tabindex="-1" class="ms-tab">Account</button>
+          </div>
+        </div>
+
+        <!-- ═══════ PANEL: OVERVIEW ═══════ -->
+        <section id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" tabindex="0" class="mt-6">
+          <div class="grid gap-5 lg:grid-cols-3">
+
+            <!-- Transport live -->
+            <div class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+              <div class="flex items-center gap-3">
+                <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                  <img src="/assets/images/overview-icon-7.png" alt="" class="size-5 object-contain" />
+                </span>
+                <h2 class="text-base font-bold">Public Transport Live Status</h2>
+                <button id="openMap" type="button"
+                  class="ml-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400">
+                  View Map
+                </button>
+                <span
+                  class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
+                  <span class="size-1.5 animate-pulse rounded-full bg-brand dark:bg-accent-400"></span>Live Now
+                </span>
+              </div>
+
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <p class="text-sm font-semibold">Tramway T1</p>
+                    <p class="text-sm font-bold text-brand dark:text-accent-400"><span id="tramEta">2</span><span id="tramUnit"> min</span></p>
+                  </div>
+                  <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
+                    <span id="tramBar" class="block h-full rounded-full bg-brand dark:bg-accent-400" style="width:0%"></span>
+                  </div>
+                  <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Hassan II</p>
+                </article>
+
+                <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <p class="text-sm font-semibold">Al Boraq 104</p>
+                    <p class="text-sm font-bold">14:15</p>
+                  </div>
+                  <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
+                    <span id="boraqBar" class="block h-full rounded-full bg-blue-600" style="width:0%"></span>
+                  </div>
+                  <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Tangier Ville</p>
+                </article>
+              </div>
+
+              <!-- ══════════ MODALE CARTE LIVE ══════════ -->
+              <div id="mapModal"
+                class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink/50 p-0 backdrop-blur-sm sm:p-6">
+                <div role="dialog" aria-modal="true" aria-labelledby="mapModalTitle"
+                  class="flex h-full w-full flex-col overflow-hidden bg-white dark:bg-night-800 shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl">
+
+                  <div class="flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3">
+                    <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                      <img src="/assets/images/overview-icon-8.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <div class="min-w-0 flex-1">
+                      <p id="mapModalTitle" class="text-sm font-bold">Live Network Map</p>
+                      <p id="mapStatus" class="truncate text-[11px] text-muted dark:text-mist-300">Waiting for your location…</p>
+                    </div>
+                    <button id="closeMap" type="button"
+                      class="grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+                      <span class="sr-only">Close map</span>
+                      <img src="/assets/images/close-map.png" alt="" class="size-5 object-contain" />
+                    </button>
+                  </div>
+
+                  <div id="liveMap" class="min-h-0 flex-1 bg-canvas dark:bg-night-700"></div>
+
+                  <div class="flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3">
+                    <button id="locateMe" type="button"
+                      class="flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
+                      <img src="/assets/images/overview-icon-9.png" alt="" class="size-4 object-contain" />
+                      Locate me
+                    </button>
+                    <button id="followMe" type="button" aria-pressed="false"
+                      class="rounded-lg border border-black/10 dark:border-white/15 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30">
+                      Follow my position
+                    </button>
+                    <a id="externalMap" href="https://www.google.com/maps" target="_blank" rel="noopener"
+                      class="ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Open in Google Maps</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next appointment -->
+            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold">Next Appointment</h2>
+                <button type="button" data-goto-tab="tab-appointments"
+                  class="rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">View all</button>
+              </div>
+              <div id="nextAppt" class="mt-4"></div>
+            </section>
+
+            <!-- Recent payments -->
+            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+              <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold">Recent Payments</h2>
+                <a href="/pages/app/payments.html"
+                  class="text-sm font-semibold text-brand dark:text-accent-400 hover:underline">Open wallet</a>
+              </div>
+              <ul id="payList" class="mt-4 divide-y divide-black/5 dark:divide-white/10"></ul>
+            </section>
+
+            <!-- Quick services -->
+            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+              <h2 class="text-base font-bold">Quick Citizen Services</h2>
+              <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <button type="button" data-service="Civil Status"
+                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                  <img src="/assets/images/overview-icon-10.png" alt="" class="size-6 object-contain" />
+                  <span class="text-xs font-semibold leading-tight">Civil Status</span>
+                </button>
+                <button type="button" data-service="Driving License"
+                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                  <img src="/assets/images/overview-icon-11.png" alt="" class="size-6 object-contain" />
+                  <span class="text-xs font-semibold leading-tight">Driving License</span>
+                </button>
+                <button type="button" data-service="Property Tax"
+                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                  <img src="/assets/images/overview-icon-12.png" alt="" class="size-6 object-contain" />
+                  <span class="text-xs font-semibold leading-tight">Property Tax</span>
+                </button>
+                <button type="button" data-service="Social Security"
+                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                  <img src="/assets/images/overview-icon-13.png" alt="" class="size-6 object-contain" />
+                  <span class="text-xs font-semibold leading-tight">Social Security</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- ═══════ PANEL: MY REQUESTS ═══════ -->
+        <section id="panel-requests" role="tabpanel" aria-labelledby="tab-requests" tabindex="0" class="mt-6" hidden>
+          <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-base font-bold">Service Requests</h2>
+                <p class="mt-1 text-xs text-muted dark:text-mist-300">Every administrative request you have opened across M3ak.</p>
+              </div>
+              <button id="newRequest" type="button"
+                class="shrink-0 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">
+                New request
+              </button>
+            </div>
+            <ul id="reqList" class="mt-5 space-y-3"></ul>
+          </div>
+        </section>
+
+        <!-- ═══════ PANEL: APPOINTMENTS ═══════ -->
+        <section id="panel-appointments" role="tabpanel" aria-labelledby="tab-appointments" tabindex="0" class="mt-6" hidden>
+          <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-base font-bold">Appointments</h2>
+                <p class="mt-1 text-xs text-muted dark:text-mist-300">Upcoming visits to public offices and clinics.</p>
+              </div>
+              <button id="addAppt" type="button"
+                class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <span class="sr-only">Add an appointment</span>
+                <img src="/assets/images/add-appointment.png" alt="" class="size-5 object-contain" />
+              </button>
+            </div>
+            <ul id="apptList" class="mt-5 space-y-3"></ul>
+          </div>
+        </section>
+
+        <!-- ═══════ PANEL: PERSONAL INFO ═══════ -->
+        <section id="panel-personal" role="tabpanel" aria-labelledby="tab-personal" tabindex="0" class="mt-6 flex flex-col gap-5" hidden>
+
+          <section id="personal-info" class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="flex items-center gap-2 text-base font-bold">
+                <img src="/assets/images/compte-icon-12.png" alt="" class="size-4 object-contain" />
+                Personal Information
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+              <div>
+                <label for="fullName" class="field-label">Full Name</label>
+                <div class="field-row">
+                  <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name readonly>
+                  <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
+                    <img src="/assets/images/compte-icon-13.png" alt="" class="size-3.5 object-contain" />
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label for="email" class="field-label">Email Address</label>
+                <div class="field-row">
+                  <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email readonly>
+                  <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
+                    <img src="/assets/images/compte-icon-14.png" alt="" class="size-3.5 object-contain" />
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label for="phone" class="field-label">Phone Number</label>
+                <div class="field-row">
+                  <input id="phone" type="tel" class="field-value" value="+212 661-000000" readonly>
+                  <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
+                    <img src="/assets/images/compte-icon-15.png" alt="" class="size-3.5 object-contain" />
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label for="address" class="field-label">Mailing Address</label>
+                <div class="field-row">
+                  <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Rabat" readonly>
+                  <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
+                    <img src="/assets/images/compte-icon-16.png" alt="" class="size-3.5 object-contain" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Digital Identity CIN -->
+          <section id="digital-id"
+            class="scroll-mt-24 relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-[10px] font-semibold uppercase tracking-[1px] text-white/70">Kingdom of Morocco</p>
+                <h2 class="mt-1 text-xl font-extrabold lg:text-2xl">Digital Identity CIN</h2>
+              </div>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
+                <span class="size-1.5 rounded-full bg-accent-400"></span>
+                Active
+              </span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
+              <div class="flex gap-8">
+                <div>
+                  <p class="text-[10px] uppercase tracking-[0.6px] text-white/60">CIN Number</p>
+                  <p class="mt-0.5 text-sm font-bold">AB123456</p>
+                </div>
+                <div>
+                  <p class="text-[10px] uppercase tracking-[0.6px] text-white/60">Expiry Date</p>
+                  <p class="mt-0.5 text-sm font-bold">12 / 2028</p>
+                </div>
+              </div>
+              <span class="hidden sm:grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-white/15">
+                <img src="/assets/images/compte-icon-17.png" alt="" class="size-6 object-contain" />
+              </span>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-2.5">
+              <button type="button" data-doc-action="View Details"
+                class="rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">View Details</button>
+              <button type="button" data-doc-action="Renew Document"
+                class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/10">Renew Document</button>
+            </div>
+          </section>
+        </section>
+
+        <!-- ═══════ PANEL: ACCOUNT ═══════ -->
+        <section id="panel-account" role="tabpanel" aria-labelledby="tab-account" tabindex="0" class="mt-6" hidden>
+          <div id="account" class="grid gap-5 lg:grid-cols-2">
+
+            <!-- Security -->
+            <section id="security" class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
+              <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
+                <img src="/assets/images/compte-icon-18.png" alt="" class="size-4 object-contain" />
+                Security
+              </h2>
+
+              <div class="settings-row">
+                <div>
+                  <p class="text-sm font-semibold">Password</p>
+                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Last changed 3 months ago</p>
+                </div>
+                <button type="button" data-account-action="Update password"
+                  class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Update</button>
+              </div>
+
+              <div class="settings-row">
+                <div>
+                  <p class="text-sm font-semibold">Two-Factor Auth (2FA)</p>
+                  <p class="mt-0.5 text-[11px] font-medium text-brand dark:text-accent-400">Enabled</p>
+                </div>
+                <button type="button" data-account-action="Manage 2FA"
+                  class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Manage</button>
+              </div>
+
+              <div class="settings-row">
+                <div>
+                  <p class="text-sm font-semibold">Biometric Login</p>
+                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">FaceID or Fingerprint</p>
+                </div>
+                <button type="button" class="toggle-switch toggle-switch-on" data-toggle-switch aria-pressed="true" aria-label="Toggle biometric login">
+                  <span class="toggle-switch-thumb"></span>
+                </button>
+              </div>
+            </section>
+
+            <!-- Preferences -->
+            <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
+              <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
+                <img src="/assets/images/compte-icon-19.png" alt="" class="size-4 object-contain" />
+                Preferences
+              </h2>
+
+              <div id="language">
+                <label for="platformLanguage" class="field-label">Platform Language</label>
+                <select id="platformLanguage" class="field-select">
+                  <option>العربية (المغرب)</option>
+                  <option>Français</option>
+                  <option selected>English</option>
+                </select>
+              </div>
+
+              <div id="notifications" class="mt-4">
+                <p class="field-label">Notifications</p>
+                <label class="mt-2 flex items-center justify-between gap-3">
+                  <span class="text-sm">Email Notifications</span>
+                  <input type="checkbox" class="size-[18px] rounded accent-brand dark:accent-accent-400" checked>
+                </label>
+                <label class="mt-2.5 flex items-center justify-between gap-3">
+                  <span class="text-sm">SMS Alerts</span>
+                  <input type="checkbox" class="size-[18px] rounded accent-brand dark:accent-accent-400" checked>
+                </label>
+                <label class="mt-2.5 flex items-center justify-between gap-3">
+                  <span class="text-sm">Push Notifications</span>
+                  <input type="checkbox" class="size-[18px] rounded accent-brand dark:accent-accent-400">
+                </label>
+              </div>
+            </section>
+
+            <!-- Sign out -->
+            <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p class="text-sm font-semibold">Sign out of this device</p>
+                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">You will need to sign in again to reach your space.</p>
+                </div>
+                <button type="button" data-action="logout"
+                  class="rounded-lg border border-danger/40 px-4 py-2 text-xs font-semibold text-danger transition hover:bg-danger/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/40">
+                  Sign out
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Footer desktop -->
+        <footer class="mt-10 hidden border-t border-black/5 dark:border-white/10 pt-6 lg:block">
+          <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted dark:text-mist-300">
+            <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
+            <nav class="flex flex-wrap gap-7">
+              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
+              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
+              <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Help Center</a>
+              <a href="/pages/admin-pages/dashboard.html" class="hover:text-brand dark:hover:text-accent-400">Admin dashboard (demo)</a>
+            </nav>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
+  <nav class="fixed inset-x-0 bottom-0 z-40 border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-night-800/95 backdrop-blur lg:hidden" aria-label="Primary">
+    <div class="mx-auto flex max-w-md items-center justify-around px-2 py-2">
+      <a href="/pages/app/overview.html" aria-current="page"
+        class="flex flex-col items-center gap-1 rounded-full bg-brand px-4 py-2 text-[10px] font-semibold text-white shadow-sm">
+        <img src="/assets/images/Icon-profile.png" alt="" class="size-5 object-contain" />
+        My Space
+      </a>
+      <a href="/pages/app/service.html" class="tab">
+        <img src="/assets/images/overview-icon-15.png" alt="" class="size-5 object-contain" />
+        Services
+      </a>
+      <a href="/pages/app/transport.html" class="tab">
+        <img src="/assets/images/overview-icon-16.png" alt="" class="size-5 object-contain" />
+        Transport
+      </a>
+      <a href="/pages/app/emergence.html" class="tab">
+        <img src="/assets/images/overview-icon-3.png" alt="" class="size-5 object-contain" />
+        Emergency
+      </a>
+      <a href="/pages/app/overview.html#account" class="tab">
+        <img src="/assets/images/overview-icon-18.png" alt="" class="size-5 object-contain" />
+        Account
+      </a>
+    </div>
+  </nav>
+
+  <div id="toast"
+    class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+  </div>
 
   <script>
     const $ = (s, r = document) => r.querySelector(s);
 
-    /* ── Données ── */
+    /* ── Données (mock, front-only) ── */
     const APPOINTMENTS = [
       { month: "OCT", day: 24, title: "CNIE Renewal", place: "Prefectural Office", status: "Confirmed" },
       { month: "OCT", day: 28, title: "Medical Checkup", place: "Ibn Sina Hospital", status: "Pending" }
     ];
 
     const PAYMENTS = [
-      { label: "Redal Water/Elec", date: "Oct 12, 2024", amount: 342.50, tone: "text-amber-500", icon: '<path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/>' },
-      { label: "Maroc Telecom", date: "Oct 05, 2024", amount: 199.00, tone: "text-blue-500", icon: '<path d="M2.5 9a14 14 0 0 1 19 0M6 12.5a9 9 0 0 1 12 0M9.5 16a4 4 0 0 1 5 0"/><circle cx="12" cy="19.5" r="1.2" fill="currentColor" stroke="none"/>' },
-      { label: "FRMF Tickets", date: "Sep 28, 2024", amount: 150.00, tone: "text-rose-500", icon: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>' }
+      { label: "Redal Water/Elec", date: "Oct 12, 2026", amount: 342.50 },
+      { label: "Maroc Telecom", date: "Oct 05, 2026", amount: 199.00 },
+      { label: "FRMF Tickets", date: "Sep 28, 2026", amount: 150.00 }
+    ];
+
+    const REQUESTS = [
+      { ref: "REQ-40921", title: "CNIE Renewal", dept: "Interior — Civil Registry", status: "In review", date: "Oct 18, 2026" },
+      { ref: "REQ-40876", title: "Housing Subsidy Application", dept: "Housing", status: "Approved", date: "Oct 09, 2026" },
+      { ref: "REQ-40712", title: "University Scholarship", dept: "Education", status: "Pending documents", date: "Sep 28, 2026" },
+      { ref: "REQ-40588", title: "Business License", dept: "Finance", status: "Rejected", date: "Sep 15, 2026" }
     ];
 
     /* ── Toast ── */
@@ -629,8 +874,8 @@
       t._t = setTimeout(() => (t.style.opacity = "0"), 2200);
     }
 
-    /* ── Rendu appointments ── */
-    function statusChip(s) {
+    /* ── Chips ── */
+    function apptChip(s) {
       const map = {
         Confirmed: "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400",
         Pending: "bg-red-50 dark:bg-danger/15 text-danger",
@@ -639,52 +884,151 @@
       return `<span class="rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map.Cancelled}">${s}</span>`;
     }
 
+    function reqChip(s) {
+      const map = {
+        "Approved": "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400",
+        "In review": "bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400",
+        "Pending documents": "bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400",
+        "Rejected": "bg-red-50 dark:bg-danger/15 text-danger"
+      };
+      return `<span class="shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map["In review"]}">${s}</span>`;
+    }
+
+    /* ── Rendu appointments ── */
+    function apptItem(a) {
+      return `
+      <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
+        <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+          <span class="text-[9px] font-bold uppercase tracking-wider text-danger">${a.month}</span>
+          <span class="text-lg font-extrabold leading-none">${a.day}</span>
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold">${a.title}</p>
+          <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
+            <img src="/assets/images/overview-icon-19.png" alt="" class="size-3 shrink-0 object-contain" />
+            <span class="truncate">${a.place}</span>
+          </p>
+        </div>
+        ${apptChip(a.status)}
+      </li>`;
+    }
+
     function renderAppointments() {
-      $("#apptList").innerHTML = APPOINTMENTS.map(a => `
-    <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-      <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
-        <span class="text-[9px] font-bold uppercase tracking-wider text-danger">${a.month}</span>
-        <span class="text-lg font-extrabold leading-none">${a.day}</span>
-      </div>
-      <div class="min-w-0 flex-1">
-        <p class="truncate text-sm font-semibold">${a.title}</p>
-        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-          <img src="/assets/images/overview-icon-19.png" alt="Overview icon 19" class="size-3 shrink-0 object-contain" />
-          <span class="truncate">${a.place}</span>
-        </p>
-      </div>
-      ${statusChip(a.status)}
-    </li>`).join("");
+      $("#apptList").innerHTML = APPOINTMENTS.map(apptItem).join("");
+      const next = APPOINTMENTS[0];
+      $("#nextAppt").innerHTML = next
+        ? `<ul class="space-y-3">${apptItem(next)}</ul>`
+        : `<p class="text-sm text-muted dark:text-mist-300">No upcoming appointment.</p>`;
     }
 
     /* ── Rendu paiements ── */
     function renderPayments() {
       $("#payList").innerHTML = PAYMENTS.map(p => `
-    <li class="flex items-center gap-3 py-3">
-      <span class="grid size-9 shrink-0 place-items-center rounded-full bg-canvas dark:bg-night-700 ${p.tone}">
-        <img src="/assets/images/overview-icon-20.png" alt="Overview icon 20" class="size-4 object-contain" />
-      </span>
-      <div class="min-w-0 flex-1">
-        <p class="truncate text-sm font-semibold">${p.label}</p>
-        <p class="text-[11px] text-muted dark:text-mist-300">${p.date}</p>
-      </div>
-      <p class="shrink-0 text-sm font-bold">- ${p.amount.toFixed(2)} DH</p>
-    </li>`).join("");
+      <li class="flex items-center gap-3 py-3">
+        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-canvas dark:bg-night-700 text-brand dark:text-accent-400">
+          <img src="/assets/images/overview-icon-20.png" alt="" class="size-4 object-contain" />
+        </span>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold">${p.label}</p>
+          <p class="text-[11px] text-muted dark:text-mist-300">${p.date}</p>
+        </div>
+        <p class="shrink-0 text-sm font-bold">- ${p.amount.toFixed(2)} DH</p>
+      </li>`).join("");
+    }
+
+    /* ── Rendu requests ── */
+    function renderRequests() {
+      $("#reqList").innerHTML = REQUESTS.map(r => `
+      <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3.5 ring-1 ring-black/5 dark:ring-white/10">
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center gap-2">
+            <p class="truncate text-sm font-semibold">${r.title}</p>
+            ${reqChip(r.status)}
+          </div>
+          <p class="mt-1 text-[11px] text-muted dark:text-mist-300">${r.ref} · ${r.dept} · ${r.date}</p>
+        </div>
+      </li>`).join("");
     }
 
     /* ── Statut transport en direct ── */
-    let tramSeconds = 150;                         // 2 min 30 s
-    const TRAM_WINDOW = 600;                       // fenêtre d'approche : 10 min
+    let tramSeconds = 150;
+    const TRAM_WINDOW = 600;
 
     function tick() {
-      tramSeconds = tramSeconds > 0 ? tramSeconds - 1 : 420;   // se réinitialise au passage suivant
+      tramSeconds = tramSeconds > 0 ? tramSeconds - 1 : 420;
       const arriving = tramSeconds <= 30;
       $("#tramEta").textContent = arriving ? "Arriving" : Math.ceil(tramSeconds / 60);
       $("#tramUnit").textContent = arriving ? "" : " min";
       $("#tramBar").style.width = Math.min(100, 100 - (tramSeconds / TRAM_WINDOW) * 100).toFixed(1) + "%";
     }
 
-    /* ── Interactions ── */
+    /* ── Tabs ── */
+    const tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    const panels = tabs.map(t => document.getElementById(t.getAttribute("aria-controls")));
+
+    function selectTab(tab, focus) {
+      if (!tab) return;
+      tabs.forEach((t, i) => {
+        const selected = t === tab;
+        t.setAttribute("aria-selected", String(selected));
+        t.tabIndex = selected ? 0 : -1;
+        panels[i].hidden = !selected;
+      });
+      if (focus) tab.focus();
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => selectTab(tab));
+      tab.addEventListener("keydown", e => {
+        const i = tabs.indexOf(tab);
+        let n = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") n = (i + 1) % tabs.length;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === "Home") n = 0;
+        else if (e.key === "End") n = tabs.length - 1;
+        if (n !== null) { e.preventDefault(); selectTab(tabs[n], true); }
+      });
+    });
+
+    document.querySelectorAll("[data-goto-tab]").forEach(btn => {
+      btn.addEventListener("click", () => selectTab(document.getElementById(btn.dataset.gotoTab)));
+    });
+
+    const HASH_TO_TAB = {
+      "#overview": "tab-dashboard",
+      "#dashboard": "tab-dashboard",
+      "#requests": "tab-requests",
+      "#appointments": "tab-appointments",
+      "#personal-info": "tab-personal",
+      "#digital-id": "tab-personal",
+      "#account": "tab-account",
+      "#security": "tab-account",
+      "#notifications": "tab-account",
+      "#language": "tab-account"
+    };
+
+    function applyHash() {
+      const id = HASH_TO_TAB[window.location.hash];
+      if (id) selectTab(document.getElementById(id));
+    }
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+
+    /* ── Mobile drawer ── */
+    const sidebar = $("#sidebar"), scrim = $("#scrim");
+    function openDrawer(open) {
+      sidebar.classList.toggle("-translate-x-full", !open);
+      scrim.classList.toggle("hidden", !open);
+      document.body.classList.toggle("overflow-hidden", open);
+    }
+    $("#menuBtn").addEventListener("click", () => openDrawer(true));
+    scrim.addEventListener("click", () => openDrawer(false));
+    sidebar.addEventListener("click", e => {
+      if (e.target.closest("a") && window.matchMedia("(max-width: 1023px)").matches) openDrawer(false);
+    });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") openDrawer(false); });
+
+    /* ── Map modal ── */
     $("#openMap").addEventListener("click", () => {
       $("#mapModal").classList.remove("hidden");
       $("#mapModal").classList.add("flex");
@@ -694,9 +1038,7 @@
       $("#mapModal").classList.add("hidden");
       $("#mapModal").classList.remove("flex");
     });
-    $("#mapModal").addEventListener("click", (e) => {
-      if (e.target.id === "mapModal") $("#closeMap").click();
-    });
+    $("#mapModal").addEventListener("click", e => { if (e.target.id === "mapModal") $("#closeMap").click(); });
     $("#locateMe").addEventListener("click", () => {
       $("#mapStatus").textContent = "Locating your position…";
       toast("Locating your position");
@@ -706,15 +1048,23 @@
       $("#followMe").setAttribute("aria-pressed", String(!on));
       toast(on ? "Stopped following your position" : "Following your position");
     });
-    $("#allPayments").addEventListener("click", () => toast("Opening your payment history"));
+
+    /* ── Interactions ── */
     $("#addAppt").addEventListener("click", () => {
       APPOINTMENTS.push({ month: "NOV", day: 3, title: "Passport Photo", place: "Annexe Administrative", status: "Pending" });
       renderAppointments();
       toast("Appointment added to your schedule");
     });
+    $("#newRequest").addEventListener("click", () => toast("Opening the new service request form"));
 
     document.querySelectorAll(".quick").forEach(b =>
       b.addEventListener("click", () => toast(`Opening ${b.dataset.service}`))
+    );
+    document.querySelectorAll("[data-doc-action]").forEach(b =>
+      b.addEventListener("click", () => toast(b.dataset.docAction + " — coming soon"))
+    );
+    document.querySelectorAll("[data-account-action]").forEach(b =>
+      b.addEventListener("click", () => toast(b.dataset.accountAction + " — coming soon"))
     );
 
     $("#langBtn").addEventListener("click", () => {
@@ -725,9 +1075,29 @@
       toast(`Interface language set to ${next}`);
     });
 
+    /* ── Biometric toggle ── */
+    document.querySelectorAll("[data-toggle-switch]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const on = btn.classList.toggle("toggle-switch-on");
+        btn.setAttribute("aria-pressed", String(on));
+      });
+    });
+
+    /* ── Field edit: unlock a field for inline editing ── */
+    document.querySelectorAll("[data-edit-field]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const field = document.getElementById(btn.getAttribute("data-edit-field"));
+        if (!field) return;
+        field.readOnly = false;
+        field.focus();
+        field.addEventListener("blur", () => { field.readOnly = true; }, { once: true });
+      });
+    });
+
     /* ── Init ── */
     renderAppointments();
     renderPayments();
+    renderRequests();
     requestAnimationFrame(() => {
       $("#boraqBar").style.width = "38%";
       tick();

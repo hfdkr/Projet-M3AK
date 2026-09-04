@@ -90,8 +90,8 @@ Projet-M3AK/
 │   │   └── reset-password.html
 │   │
 │   ├── app/
-│   │   ├── overview.html
-│   │   ├── service.html          # Services Directory (12 ministry categories)
+│   │   ├── overview.html         # "My Space" — merged personal portal (Overview / My Requests / Appointments / Personal Info / Account)
+│   │   ├── service.html          # Services Directory (12 ministry categories + Marketplace as a bonus module)
 │   │   ├── transport.html
 │   │   ├── marketplace.html
 │   │   ├── health.html
@@ -107,8 +107,8 @@ Projet-M3AK/
 │   │   └── coming-soon.html      # Placeholder for not-yet-built sections
 │   │
 │   ├── admin-pages/
-│   │   ├── dashboard.html        # Admin Dashboard
-│   │   └── compte.html           # Citizen Account / Settings page
+│   │   ├── dashboard.html        # Admin Dashboard — secondary/demo module (not in the citizen nav; reachable from the desktop footer + direct URL)
+│   │   └── compte.html           # Redirect stub → overview.html ("My Space"); the old Account/Settings page, now merged in as tabs
 │   │
 │   └── js/
 │       ├── session.js
@@ -130,16 +130,24 @@ Projet-M3AK/
 ## ✨ Features
 
 - Modern and responsive UI, light/dark mode on every page (`theme.js`, shared across tabs)
-- Instagram-style collapsible sidebar on every app page (Overview, Marketplace, Transport, Housing, Jobs,
-  Education, Payments, Registry, Interior, Finance, Health): icons only by default, hovering the sidebar
+- **Unified information architecture:** one main citizen journey — **My Space → Services → (Transport,
+  Healthcare, Housing, Jobs, Education, Payments) → Emergency → Support**. The same left sidebar
+  (My Space first, then the services, Emergency Support / Help Center / Settings / Logout in the foot)
+  is now present and consistent on every app page, including the Emergency Hub.
+- **My Space** (`overview.html`) — a single personal portal merging what used to be three overlapping
+  pages (Overview dashboard + Compte Info + user settings). Tabbed: Overview, My Requests, Appointments,
+  Personal Info (incl. Digital ID / CIN), Account (security + preferences). Deep links like
+  `overview.html#account` or `#personal-info` open the matching tab; the old `compte.html#…` links
+  still work via a redirect stub.
+- Instagram-style collapsible sidebar on every app page: icons only by default, hovering the sidebar
   reveals every label at once, active page always visible on its own icon color
-- Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`) instead of
-  per-page inline SVGs, with `-green` variants shown on the active page (Services, Transport, Marketplace)
-  and a dark-mode filter that keeps the plain icons legible; every sidebar also carries a Passport entry
-- Mobile menu drawer on the Account/Settings page (`compte.html`): hamburger button opens a slide-in
-  drawer with the primary nav and every settings section (scrim, close button, Esc / tap-outside to close)
-- Dashboard interface with live transport status
-- Digital identity management (UI) — CIN card, personal info, security, preferences in Account/Settings
+- Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`), with `-green`
+  variants shown on the active page and a dark-mode filter that keeps the plain icons legible
+- **Marketplace** and the **Admin Dashboard** are secondary modules, kept but out of the main journey:
+  Marketplace is reachable as a "Bonus" card in the Services directory (and keeps its own page), the
+  Admin Dashboard from a discreet "Admin dashboard (demo)" link in the desktop footer and by direct URL
+- Live transport status on the My Space overview tab
+- Digital identity management (UI) — CIN card, personal info, security, preferences in My Space → Personal Info / Account
 - Public service directory (12 ministry categories: Housing, Jobs, Education, Healthcare, Registry, Interior,
   Finance, Justice, Foreign Affairs, Agriculture, Culture, Tourism — first 7 are real pages, the rest fall
   back to the shared Coming Soon placeholder)
@@ -229,6 +237,11 @@ remaining items are genuinely open:
 
 **Fixed:**
 
+- ~~Three overlapping personal pages (Overview dashboard, `compte.html` "Compte Info", user settings) competed
+  for the same job. Merged into one tabbed **My Space** (`overview.html`); `compte.html` is now a redirect
+  stub. Marketplace and the Admin Dashboard were pulled out of the citizen sidebar/bottom-nav and kept as
+  secondary modules. The left sidebar (with My Space first) is now identical across every app page,
+  Emergency Hub included, and no link still points at the removed nav entries.~~
 - ~~Internal navigation pointed at `/pages/dashboard/...` instead of `/pages/app/...`.~~
 - ~~`login.js` called `window.M3akAuth`, but `session.js` exposed `window.M3ak`.~~
 - ~~`reset-password.js` (formerly `new-password.js`) was empty and not loaded on `reset-password.html`.~~
