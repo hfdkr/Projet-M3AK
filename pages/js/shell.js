@@ -18,7 +18,6 @@
         "finance.html": "service.html",
         "registry.html": "service.html",
         "interior.html": "service.html",
-        "marketplace.html": "service.html",
         "coming-soon.html": "service.html"
     };
 

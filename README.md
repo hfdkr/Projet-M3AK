@@ -22,7 +22,7 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
   <b>Overview Page</b>
 </p>
 
-> More screenshots (Marketplace, Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
+> More screenshots (Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
 
 ---
 
@@ -69,9 +69,8 @@ Projet-M3AK/
 │   │
 │   ├── app/
 │   │   ├── overview.html         # "My Space" — merged personal portal (Overview / My Requests / Appointments / Personal Info / Account)
-│   │   ├── service.html          # Services Directory (12 ministry categories + Marketplace as a bonus module)
+│   │   ├── service.html          # Services Directory (12 ministry categories)
 │   │   ├── transport.html
-│   │   ├── marketplace.html
 │   │   ├── health.html
 │   │   ├── emergence.html
 │   │   ├── housing.html
@@ -121,15 +120,13 @@ Projet-M3AK/
   reveals every label at once, active page always visible on its own icon color
 - Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`), with `-green`
   variants shown on the active page and a dark-mode filter that keeps the plain icons legible
-- **Marketplace** and the **Admin Dashboard** are secondary modules, kept but out of the main journey:
-  Marketplace is reachable as a "Bonus" card in the Services directory (and keeps its own page), the
-  Admin Dashboard from a discreet "Admin dashboard (demo)" link in the desktop footer and by direct URL
+- The **Admin Dashboard** is a secondary module, kept but out of the main citizen journey: reachable from a
+  discreet "Admin dashboard (demo)" link in the desktop footer and by direct URL
 - Live transport status on the My Space overview tab
 - Digital identity management (UI) — CIN card, personal info, security, preferences in My Space → Personal Info / Account
 - Public service directory (12 ministry categories: Housing, Jobs, Education, Healthcare, Registry, Interior,
   Finance, Justice, Foreign Affairs, Agriculture, Culture, Tourism — first 7 are real pages, the rest fall
   back to the shared Coming Soon placeholder)
-- Marketplace with search, filters, sorting and wishlist
 - Payments hub UI with wallet balance, recent payments, and bill-payment categories
 - Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
 - Admin Dashboard: KPIs, engagement trends, service usage
@@ -167,7 +164,6 @@ Projet-M3AK/
 - [x] Overview Page
 - [x] Services Page
 - [x] Transport Page
-- [x] Marketplace Page
 - [x] Health / Find a Specialist Page
 - [x] Emergency Hub Page
 - [x] Admin Dashboard
@@ -269,7 +265,7 @@ remaining items are genuinely open:
 - ✅ Project setup completed
 - ✅ Landing page completed
 - ✅ Auth pages (login, signup, forgot password, new password) — UI complete, fully wired to the shared session
-- ✅ Overview, Services, Transport, Marketplace, Health, Housing, Jobs, Education, Payments, Registry, Interior,
+- ✅ Overview, Services, Transport, Health, Housing, Jobs, Education, Payments, Registry, Interior,
   Finance, Emergency Hub, Admin Dashboard, Account/Settings, Help Center — UI complete and cross-linked
 - ✅ Internal navigation, auth JS, and session guard fixed across the app
 - ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
@@ -281,6 +277,7 @@ remaining items are genuinely open:
 - ✅ Mobile, tablet, and desktop breakpoints in place across the app — tablet viewports currently reuse the
   desktop/laptop layout rather than a custom-tuned in-between design
 - ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
+- 🗑️ Marketplace removed — it didn't fit as a real government/citizen service for this project's scope
 - 🚧 Justice, Foreign Affairs, Agriculture, Culture, Tourism ministry pages (currently placeholders)
 - 🚧 Cross-browser testing pending
 
