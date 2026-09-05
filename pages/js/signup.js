@@ -2,12 +2,8 @@
     "use strict";
 
     document.addEventListener("DOMContentLoaded", function () {
-        /* Already signed in → go straight to the overview */
-        if (window.M3ak && window.M3ak.getUser()) {
-            window.location.replace("/pages/app/overview.html");
-            return;
-        }
-
+        /* Always show the signup form and require the fields to be filled in —
+           no auto sign-in, even if a previous session is still stored. */
         setupForm();
     });
 

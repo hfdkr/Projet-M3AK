@@ -2,12 +2,8 @@
     "use strict";
 
     document.addEventListener("DOMContentLoaded", function () {
-        /* Already signed in → go straight to the overview */
-        if (window.M3ak && window.M3ak.getUser()) {
-            window.location.replace("/pages/app/overview.html");
-            return;
-        }
-
+        /* Always show the login form and require credentials — no auto sign-in,
+           even if a previous session is still stored. */
         setupLanguageDropdown();
         setupPasswordToggle();
         setupForm();
