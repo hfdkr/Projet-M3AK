@@ -67,6 +67,8 @@
         .app-icon-btn       { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-notif-dot      { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
         .app-avatar         { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .app-login-btn      { @apply ml-1 rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-sm font-semibold text-white dark:text-night-900
+                                     animate-bounce transition hover:bg-brand-dark dark:hover:bg-accent-300 hover:-translate-y-0.5 hover:shadow-lg hover:animate-none; }
 
         /* ---------- App shell / sidebar ---------- */
         .app-body    { @apply flex; }
@@ -142,7 +144,7 @@
     <!-- ══════════ TOP BAR ══════════ -->
     <header class="app-topbar">
         <div class="app-topbar-inner">
-            <button id="menuBtn" type="button" class="app-menu-btn">
+            <button id="menuBtn" type="button" class="app-menu-btn" data-auth="user">
                 <span class="sr-only">Open menu</span>
                 <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
             </button>
@@ -166,17 +168,18 @@
                     <img src="/assets/images/notification.png" alt="" class="size-5 object-contain">
                     <span class="app-notif-dot"></span>
                 </button>
-                <button type="button" class="app-avatar" data-user-initials>A</button>
+                <button type="button" class="app-avatar" data-auth="user" data-user-initials>A</button>
+                <a href="/pages/auth/login.html" class="app-login-btn" data-auth="guest">Log in</a>
             </div>
         </div>
     </header>
 
     <div class="app-body">
 
-        <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="app-scrim"></div>
+        <!-- ══════════ SIDEBAR / DRAWER (signed-in users only) ══════════ -->
+        <div id="scrim" class="app-scrim" data-auth="user"></div>
 
-        <aside id="sidebar" class="app-sidebar">
+        <aside id="sidebar" class="app-sidebar" data-auth="user">
             <div class="sidebar-head">
                 <p class="sidebar-title">M3ak Morocco</p>
                 <p class="sidebar-sub">Citizen Services Portal</p>

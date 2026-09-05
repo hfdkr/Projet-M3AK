@@ -265,7 +265,7 @@ remaining items are genuinely open:
 - ✅ Project setup completed
 - ✅ Landing page completed
 - ✅ Auth pages (login, signup, forgot password, new password) — UI complete, fully wired to the shared session
-- ✅ Overview, Services, Transport, Health, Housing, Jobs, Education, Payments, Registry, Interior,
+- ✅ Overview, Services, Transport, Marketplace, Health, Housing, Jobs, Education, Payments, Registry, Interior,
   Finance, Emergency Hub, Admin Dashboard, Account/Settings, Help Center — UI complete and cross-linked
 - ✅ Internal navigation, auth JS, and session guard fixed across the app
 - ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
@@ -277,7 +277,6 @@ remaining items are genuinely open:
 - ✅ Mobile, tablet, and desktop breakpoints in place across the app — tablet viewports currently reuse the
   desktop/laptop layout rather than a custom-tuned in-between design
 - ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
-- 🗑️ Marketplace removed — it didn't fit as a real government/citizen service for this project's scope
 - 🚧 Justice, Foreign Affairs, Agriculture, Culture, Tourism ministry pages (currently placeholders)
 - 🚧 Cross-browser testing pending
 

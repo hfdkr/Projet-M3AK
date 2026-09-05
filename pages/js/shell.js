@@ -38,6 +38,17 @@
         document.addEventListener("keydown", function (e) {
             if (e.key === "Escape") { setOpen(false); }
         });
+
+        /* Close the drawer as soon as a nav link is picked — matters for links
+           that stay on the same page (e.g. "#account") and don't trigger a
+           fresh page load to reset it. */
+        sidebar.querySelectorAll("a[href]").forEach(function (link) {
+            link.addEventListener("click", function () { setOpen(false); });
+        });
+
+        /* Pages restored from the back/forward cache keep their old DOM state,
+           so the drawer could still show as open — force it closed. */
+        window.addEventListener("pageshow", function () { setOpen(false); });
     }
 
     function markActive() {
