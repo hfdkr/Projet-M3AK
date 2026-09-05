@@ -22,7 +22,7 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
   <b>Overview Page</b>
 </p>
 
-> More screenshots (Marketplace, Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
+> More screenshots (Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
 
 ---
 
@@ -69,9 +69,8 @@ Projet-M3AK/
 │   │
 │   ├── app/
 │   │   ├── overview.html         # "My Space" — merged personal portal (Overview / My Requests / Appointments / Personal Info / Account)
-│   │   ├── service.html          # Services Directory (12 ministry categories + Marketplace as a bonus module)
+│   │   ├── service.html          # Services Directory (12 ministry categories)
 │   │   ├── transport.html
-│   │   ├── marketplace.html
 │   │   ├── health.html
 │   │   ├── emergence.html
 │   │   ├── housing.html
