@@ -121,7 +121,7 @@
                     name: keptName,
                     email: isEmail ? idValue : (existing && existing.email) || ""
                 });
-                window.location.href = "/pages/app/overview.html";
+                window.location.href = "/pages/app/service.html";
             }, 500);
         });
     }

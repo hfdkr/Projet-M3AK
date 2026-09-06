@@ -2,7 +2,7 @@
   "use strict";
 
   // Final page after onboarding
-  const FINAL_PAGE = "/pages/app/overview.html";
+  const FINAL_PAGE = "/pages/app/service.html";
 
   // Total onboarding steps
   const TOTAL_STEPS = 3;
