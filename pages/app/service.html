@@ -170,12 +170,6 @@
     <!-- ══════════ TOP BAR ══════════ -->
     <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
         <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
-                <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
-            </button>
-
             <a href="/pages/app/overview.html"
                 class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
 
@@ -219,84 +213,7 @@
         </div>
     </header>
 
-    <div class="flex">
-
-        <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
-
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2 sidebar-head">
-                <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
-                </div>
-            </div>
-
-            <nav class="space-y-0.5">
-                <a href="/pages/app/overview.html" class="nav-item">
-                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
-                </a>
-                <a href="/pages/app/service.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
-                    <img src="/assets/icon-bar-left/services.png" alt="Service" class="nav-icon" />
-                    <span class="nav-label">Services</span>
-                </a>
-                <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
-
-                    <span class="nav-label">Transport</span>
-                </a>
-                <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
-                </a>
-                <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/jobs.png" alt="Jobs" class="nav-icon" />
-                    <span class="nav-label">Jobs</span>
-                </a>
-                <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon" />
-                    <span class="nav-label">Education</span>
-                </a>
-                <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/health.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
-                </a>
-                <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
-                </a>
-                <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/icon-taxation.png" alt="Finance" class="nav-icon" />
-                    <span class="nav-label">Finance</span>
-                </a>
-            </nav>
-
-            <div class="mt-auto space-y-1 pt-6">
-                <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
-                </a>
-                <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/images/icon-chat.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Help Center</span>
-                </a>
-                <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Settings</span>
-                </a>
-                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/marketplace-image/logout.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Logout</span>
-                </a>
-            </div>
-        </aside>
-
-        <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
+    <main class="mx-auto max-w-[1200px] px-4 pb-16 pt-6 lg:px-6">
 
             <div>
                 <h1 class="text-2xl font-extrabold tracking-tight lg:text-[36px] lg:leading-[44px]">
@@ -467,8 +384,6 @@
                 </div>
             </footer>
         </main>
-    </div>
-
     <div id="toast"
         class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
     </div>
@@ -481,18 +396,6 @@
             clearTimeout(t._t);
             t._t = setTimeout(function () { t.style.opacity = "0"; }, 2400);
         }
-
-        /* Drawer mobile */
-        var sidebar = document.getElementById("sidebar"), scrim = document.getElementById("scrim");
-        function openDrawer(open) {
-            sidebar.classList.toggle("-translate-x-full", !open);
-            scrim.classList.toggle("hidden", !open);
-            document.body.classList.toggle("overflow-hidden", open);
-        }
-        document.getElementById("menuBtn").addEventListener("click", function () { openDrawer(true); });
-        scrim.addEventListener("click", function () { openDrawer(false); });
-        document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
-        sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
         /* Directory search filter */
         var search = document.getElementById("service-search");
