@@ -55,7 +55,7 @@
 
             window.setTimeout(function () {
                 window.M3ak.signIn({ name: fullName.value.trim(), email: email.value.trim() });
-                window.location.href = "/pages/app/overview.html";
+                window.location.href = "/pages/app/service.html";
             }, 500);
         });
     }
