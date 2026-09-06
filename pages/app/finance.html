@@ -94,19 +94,21 @@
 
         /* ---------- Finance & Treasury ---------- */
         .fin-wrap  { @apply mx-auto max-w-[1200px] space-y-4 lg:space-y-6; }
-        .badge     { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold; }
+        .badge     { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-normal; }
         .badge--due    { @apply bg-danger/10 text-danger; }
         .badge--date   { @apply bg-amber/10 text-amber dark:text-amber-400; }
         .badge--ok     { @apply bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
 
-        .fin-hero        { @apply rounded-2xl border-t-4 border-brand dark:border-accent-400 bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 p-5 lg:p-6; }
-        .fin-hero-top    { @apply flex flex-wrap items-center justify-between gap-2; }
+        .fin-hero        { @apply rounded-2xl border-t-4 border-brand dark:border-accent-400 bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 p-5 lg:p-6
+                                  lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-8; }
+        .fin-hero-main   { @apply min-w-0; }
+        .fin-hero-top    { @apply flex flex-wrap items-center justify-between gap-2 lg:justify-start lg:gap-3; }
         .fin-hero-label  { @apply text-xs font-semibold uppercase tracking-wide text-muted dark:text-mist-300; }
         .fin-hero-amount { @apply mt-3 text-[32px] font-extrabold leading-none tracking-tight lg:text-[40px]; }
         .fin-hero-cur    { @apply text-lg font-bold text-muted dark:text-mist-300; }
         .fin-hero-warn   { @apply ml-1 align-middle; }
         .fin-hero-meta   { @apply mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300; }
-        .fin-hero-actions{ @apply mt-4 flex items-center gap-2; }
+        .fin-hero-actions{ @apply mt-4 flex items-center gap-2 lg:mt-0 lg:shrink-0; }
         .fin-pay-all     { @apply inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand dark:bg-accent-400 px-5 py-3 text-sm font-bold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 lg:flex-none; }
         .fin-pay-all img { @apply size-4 object-contain; }
         .fin-icon-btn    { @apply grid size-11 shrink-0 place-items-center rounded-xl bg-canvas dark:bg-night-700 text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-night-600; }
@@ -263,20 +265,22 @@
 
                 <!-- Global balance -->
                 <section class="fin-hero">
-                    <div class="fin-hero-top">
-                        <span class="badge badge--ok">TGR &amp; DGI En Règle</span>
-                        <span class="fin-hero-label">Solde Global Échu</span>
+                    <div class="fin-hero-main">
+                        <div class="fin-hero-top">
+                            <span class="badge badge--ok">TGR &amp; DGI En Règle</span>
+                            <span class="fin-hero-label">Solde Global Échu</span>
+                        </div>
+
+                        <p class="fin-hero-amount">
+                            1 420<span class="fin-hero-cur">,00 DH</span>
+                            <span class="badge badge--due fin-hero-warn">2 échéances imminentes</span>
+                        </p>
+
+                        <p class="fin-hero-meta">
+                            Vignette 2026 (700 DH) • Facture Redal Rabat (342,50 DH) •
+                            Prélèvement sécurisé Bank Al-Maghrib
+                        </p>
                     </div>
-
-                    <p class="fin-hero-amount">
-                        1&nbsp;420<span class="fin-hero-cur">.00 DH</span>
-                        <span class="badge badge--due fin-hero-warn">2 échéances imminentes</span>
-                    </p>
-
-                    <p class="fin-hero-meta">
-                        Vignette 2026 (700 DH) • Facture Redal Rabat (342,50 DH) •
-                        Prélèvement sécurisé Bank Al-Maghrib
-                    </p>
 
                     <div class="fin-hero-actions">
                         <button type="button" class="fin-pay-all" data-pay="1 420 DH">
