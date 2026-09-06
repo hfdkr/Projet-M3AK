@@ -13,14 +13,6 @@
 (function () {
     "use strict";
 
-    /* sub-pages that live under a parent section in the sidebar */
-    var SECTION_OF = {
-        "finance.html": "service.html",
-        "registry.html": "service.html",
-        "interior.html": "service.html",
-        "coming-soon.html": "service.html"
-    };
-
     function wireDrawer() {
         var sidebar = document.getElementById("sidebar");
         var scrim = document.getElementById("scrim");
@@ -51,13 +43,14 @@
         window.addEventListener("pageshow", function () { setOpen(false); });
     }
 
+    /* Highlight the sidebar link for the current page. Pages that aren't in the
+       sidebar (finance, registry, interior…) simply get no highlight. */
     function markActive() {
-        var file = location.pathname.split("/").pop() || "overview.html";
-        var active = SECTION_OF[file] || file;
+        var current = location.pathname.split("/").pop() || "overview.html";
 
         document.querySelectorAll("#sidebar a[href]").forEach(function (link) {
             var target = link.getAttribute("href").split("#")[0].split("/").pop();
-            if (target && target === active) {
+            if (target && target === current) {
                 link.classList.add("nav-item--active");
                 link.setAttribute("aria-current", "page");
             }
