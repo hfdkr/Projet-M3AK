@@ -92,6 +92,25 @@
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
         .app-main      { @apply min-w-0 flex-1 px-4 pb-24 pt-5 lg:px-8 lg:pb-12 lg:pt-8; }
 
+        /* Desktop: the docked sidebar collapses to an icon rail at rest and
+           auto-opens (widens, labels appear) only while hovered / focused. */
+        @media (min-width: 1024px) {
+            #sidebar { width: 5rem; transition: width .2s ease; }
+            #sidebar:hover, #sidebar:focus-within { width: 15rem; }
+            #sidebar .nav-item > span,
+            #sidebar .sidebar-head {
+                width: 0; overflow: hidden; white-space: nowrap;
+                opacity: 0; transition: width .2s ease, opacity .15s ease;
+            }
+            #sidebar:hover .nav-item > span,
+            #sidebar:hover .sidebar-head,
+            #sidebar:focus-within .nav-item > span,
+            #sidebar:focus-within .sidebar-head { width: auto; opacity: 1; }
+            #sidebar .nav-item { justify-content: center; }
+            #sidebar:hover .nav-item,
+            #sidebar:focus-within .nav-item { justify-content: flex-start; }
+        }
+
         /* ---------- Finance & Treasury ---------- */
         .fin-wrap  { @apply mx-auto max-w-[1200px] space-y-4 lg:space-y-6; }
         .badge     { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-normal; }
