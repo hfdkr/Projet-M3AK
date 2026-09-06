@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
-    <title>Finance — M3ak Morocco</title>
+    <title>Finance &amp; Treasury — M3ak Morocco</title>
     <script src="/pages/js/session.js"></script>
     <script src="/pages/js/theme.js"></script>
 
@@ -17,18 +17,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style type="text/tailwindcss">
-
-        /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
-        .theme-toggle{
-            @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
-                   md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300;
-        }
-        .theme-toggle-thumb{
-            @apply grid place-items-center h-6 w-6 rounded-full
-                   md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900;
-        }
-        .theme-toggle-sun{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
-        .theme-toggle-moon{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
         @custom-variant dark (&:where(.dark, .dark *));
 
         @theme {
@@ -37,6 +25,7 @@
             --color-brand-soft: #E9F3EE;
             --color-brand-line: #CFE3D8;
             --color-danger: #E1362C;
+            --color-amber: #B45309;
             --color-ink: #0F1A15;
             --color-muted: #6B7A73;
             --color-canvas: #F6F7F5;
@@ -54,334 +43,377 @@
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
-        body {
-            -webkit-font-smoothing: antialiased;
-        }
+        body { @apply antialiased bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-            border-radius: .75rem;
-            padding: .625rem .75rem;
-            font-size: .875rem;
-            font-weight: 500;
-            color: #6B7A73;
-            transition: background-color .15s, color .15s;
-        }
+        /* ---------- Theme toggle — icon only on mobile, pill switch on tablet/desktop ---------- */
+        .theme-toggle       { @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                                     md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
+        .theme-toggle-thumb { @apply grid place-items-center h-6 w-6 rounded-full
+                                     md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
+        .theme-toggle-sun   { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon  { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
 
-        .nav-item:hover {
-            background: #fff;
-            color: #0F1A15;
-        }
+        /* ---------- App top bar ---------- */
+        .app-topbar         { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
+        .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 md:hidden; }
+        .app-brand-wrap     { @apply flex items-center gap-2.5; }
+        .app-brand-mark     { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
+        .app-brand-mark img { @apply size-5 object-contain; }
+        .app-brand-text     { @apply leading-tight; }
+        .app-brand-name     { @apply block text-base font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .app-brand-sub      { @apply block text-[10px] font-bold uppercase tracking-wide text-muted dark:text-mist-300; }
+        .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
+        .app-icon-btn       { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-notif-dot      { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .app-user           { @apply hidden text-right leading-tight sm:block; }
+        .app-user-name      { @apply block text-sm font-bold; }
+        .app-user-id        { @apply block text-[11px] text-muted dark:text-mist-300; }
+        .app-avatar         { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
 
-        .dark .nav-item {
-            color: #7C8981;
-        }
+        /* ---------- App shell / sidebar (drawer on mobile, fixed on tablet + desktop) ---------- */
+        .app-body    { @apply flex; }
+        .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 md:hidden; }
+        .app-scrim.is-open { @apply block md:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
+                              border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5
+                              transition-transform duration-300 md:sticky md:top-16 md:z-0 md:h-[calc(100vh-4rem)] md:w-56 md:translate-x-0 lg:w-60; }
+        .app-sidebar.is-open { @apply translate-x-0; }
+        .sidebar-head  { @apply mb-5 px-2; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
+        .sidebar-nav   { @apply space-y-0.5; }
+        .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
+        .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
+                                hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
+        .nav-item--active { @apply bg-white dark:bg-night-700 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
+        .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
+        .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+        .app-main      { @apply min-w-0 flex-1 px-4 pb-24 pt-5 lg:px-8 lg:pb-12 lg:pt-8; }
 
-        .dark .nav-item:hover {
-            background: #151C18;
-            color: #E7ECE9;
-        }
+        /* ---------- Finance & Treasury ---------- */
+        .fin-wrap  { @apply mx-auto max-w-[1200px] space-y-4 lg:space-y-6; }
+        .badge     { @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold; }
+        .badge--due    { @apply bg-danger/10 text-danger; }
+        .badge--date   { @apply bg-amber/10 text-amber dark:text-amber-400; }
+        .badge--ok     { @apply bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
 
-        .nav-icon {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            object-fit: contain;
-        }
+        .fin-hero        { @apply rounded-2xl border-t-4 border-brand dark:border-accent-400 bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 p-5 lg:p-6; }
+        .fin-hero-top    { @apply flex flex-wrap items-center justify-between gap-2; }
+        .fin-hero-label  { @apply text-xs font-semibold uppercase tracking-wide text-muted dark:text-mist-300; }
+        .fin-hero-amount { @apply mt-3 text-[32px] font-extrabold leading-none tracking-tight lg:text-[40px]; }
+        .fin-hero-cur    { @apply text-lg font-bold text-muted dark:text-mist-300; }
+        .fin-hero-warn   { @apply ml-1 align-middle; }
+        .fin-hero-meta   { @apply mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .fin-hero-actions{ @apply mt-4 flex items-center gap-2; }
+        .fin-pay-all     { @apply inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand dark:bg-accent-400 px-5 py-3 text-sm font-bold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 lg:flex-none; }
+        .fin-pay-all img { @apply size-4 object-contain; }
+        .fin-icon-btn    { @apply grid size-11 shrink-0 place-items-center rounded-xl bg-canvas dark:bg-night-700 text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-night-600; }
+        .fin-icon-btn img{ @apply size-4 object-contain; }
 
-        .dark .nav-icon:not(.nav-icon--active) {
-            filter: brightness(0) invert(1);
-            opacity: .9;
-        }
+        .fin-grid        { @apply grid gap-3 sm:grid-cols-2 xl:grid-cols-4; }
+        .fin-card        { @apply flex flex-col rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 p-4; }
+        .fin-card-top    { @apply flex items-start justify-between gap-2; }
+        .fin-card-icon   { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15; }
+        .fin-card-icon img { @apply size-4 object-contain; }
+        .fin-card-name   { @apply mt-3 text-[11px] font-bold uppercase tracking-wide text-muted dark:text-mist-300; }
+        .fin-card-amount { @apply mt-1 text-xl font-extrabold; }
+        .fin-card-amount--pos { @apply text-brand dark:text-accent-400; }
+        .fin-card-unit   { @apply text-xs font-semibold text-muted dark:text-mist-300; }
+        .fin-card-sub    { @apply mt-1 text-xs text-muted dark:text-mist-300; }
+        .fin-card-foot   { @apply mt-3 flex items-center justify-between border-t border-black/5 dark:border-white/10 pt-2.5 text-xs; }
+        .fin-card-ref    { @apply text-muted dark:text-mist-300; }
+        .fin-card-cta    { @apply inline-flex items-center gap-1 font-bold text-brand dark:text-accent-400 hover:underline; }
 
-        .tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .25rem;
-            padding: .375rem .75rem;
-            font-size: 10px;
-            font-weight: 500;
-            color: #6B7A73;
-        }
+        .fin-panel       { @apply overflow-hidden rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
+        .fin-panel-head  { @apply flex items-center justify-between gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3.5 lg:px-5; }
+        .fin-panel-title { @apply flex items-center gap-2 text-sm font-extrabold; }
+        .fin-panel-title img { @apply size-4 object-contain; }
+        .fin-panel-link  { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+        .fin-row         { @apply flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3.5 last:border-0 lg:px-5; }
+        .fin-row-icon    { @apply hidden size-9 shrink-0 place-items-center rounded-xl bg-canvas dark:bg-night-700 sm:grid; }
+        .fin-row-icon img{ @apply size-4 object-contain; }
+        .fin-row-main    { @apply min-w-0 flex-1; }
+        .fin-row-title   { @apply truncate text-sm font-semibold; }
+        .fin-row-meta    { @apply mt-0.5 truncate text-[11px] text-muted dark:text-mist-300; }
+        .fin-row-amount  { @apply shrink-0 text-sm font-extrabold; }
+        .fin-row-amount--pos { @apply text-brand dark:text-accent-400; }
+        .fin-row-dl      { @apply grid size-7 shrink-0 place-items-center rounded-lg text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700; }
+        .fin-row-dl img  { @apply size-3.5 object-contain; }
 
-        .dark .tab {
-            color: #7C8981;
-        }
+        .fin-emergency   { @apply flex w-full items-center justify-center gap-2 rounded-2xl bg-danger px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#C82C23]; }
+        .fin-emergency img { @apply size-4 object-contain; }
+        .fin-legal       { @apply flex flex-col gap-1 pt-1 text-center text-[11px] text-muted dark:text-mist-300 lg:flex-row lg:items-center lg:justify-between lg:text-left; }
 
-        /* Icon rail: collapsed at rest, expands automatically on hover/focus */
-        @media (min-width: 1024px) {
-            #sidebar {
-                width: 5rem;
-                transition: width .2s ease;
-            }
-
-            #sidebar:hover,
-            #sidebar:focus-within {
-                width: 14rem;
-            }
-
-            #sidebar a svg,
-            #sidebar a img {
-                flex-shrink: 0;
-            }
-
-            #sidebar .sidebar-text,
-            #sidebar .nav-label {
-                display: inline-block;
-                width: 0;
-                overflow: hidden;
-                white-space: nowrap;
-                opacity: 0;
-                transition: opacity .15s ease;
-            }
-
-            #sidebar:hover .sidebar-text,
-            #sidebar:hover .nav-label,
-            #sidebar:focus-within .sidebar-text,
-            #sidebar:focus-within .nav-label {
-                width: auto;
-                opacity: 1;
-            }
-
-            #sidebar .sidebar-head,
-            #sidebar a {
-                justify-content: center;
-            }
-
-            #sidebar:hover .sidebar-head,
-            #sidebar:hover a,
-            #sidebar:focus-within .sidebar-head,
-            #sidebar:focus-within a {
-                justify-content: flex-start;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { transition-duration: .001ms !important; }
-        }
+        #toast { @apply pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+<body data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
-                <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
+                <span class="sr-only">Ouvrir le menu</span>
+                <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
             </button>
 
-            <a href="/pages/app/overview.html"
-                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
+            <a href="/pages/app/overview.html" class="app-brand-wrap">
+                <span class="app-brand-mark"><img src="/assets/images/img-mobile-1.png" alt=""></span>
+                <span class="app-brand-text">
+                    <span class="app-brand-name">M3ak Morocco</span>
+                    <span class="app-brand-sub">Finances Publiques</span>
+                </span>
+            </a>
 
-
-            <div class="ml-auto flex items-center gap-1.5">
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+            <div class="app-topbar-actions">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Basculer le mode sombre" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/settings/sun.png" alt="Mode clair" class="theme-toggle-sun">
+                        <img src="/assets/settings/moon.png" alt="Mode sombre" class="theme-toggle-moon">
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <img src="/assets/images/notification.png" alt="" class="size-5 object-contain">
+                    <span class="app-notif-dot"></span>
                 </button>
 
-                <a href="/pages/app/support.html"
-                    class="hidden size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:grid">
-                    <span class="sr-only">Help</span>
-                    <img src="/assets/images/icon-chat.png" alt="Help" class="size-5 object-contain" />
-                </a>
-
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Your profile</span>A
-                </button>
+                <span class="app-user">
+                    <span class="app-user-name" data-user-name>Ahmed B.</span>
+                    <span class="app-user-id">CNIE : A749102</span>
+                </span>
+                <button type="button" class="app-avatar"><span data-user-initials>AB</span></button>
             </div>
         </div>
     </header>
 
-    <!-- ══════════ BACK BAR ══════════ -->
-    <div class="border-b border-black/5 dark:border-white/10 bg-canvas dark:bg-night-900">
-        <div class="mx-auto max-w-[1400px] px-4 lg:px-6 py-2">
-            <a href="/pages/app/service.html"
-                class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors">
-                <img src="/assets/images/finance-icon.png" alt="Finance icon" class="size-3.5 object-contain" />
-                Back to Services Directory
-            </a>
-        </div>
-    </div>
-
-    <div class="flex">
+    <div class="app-body">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2 sidebar-head">
-                <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
-                </div>
+        <aside id="sidebar" class="app-sidebar">
+            <div class="sidebar-head">
+                <p class="sidebar-title">M3ak Morocco</p>
+                <p class="sidebar-sub">Citizen Services Portal</p>
             </div>
 
-            <nav class="space-y-0.5">
+            <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
-                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
+                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon">
+                    <span>My Space</span>
                 </a>
-                <a href="/pages/app/service.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
-                    <img src="/assets/icon-bar-left/service-green.png" alt="Service" class="nav-icon nav-icon--active" />
-                    <span class="nav-label">Services</span>
+                <a href="/pages/app/service.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon">
+                    <span>Services</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
-                    <span class="nav-label">Transport</span>
+                    <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon">
+                    <span>Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
+                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon">
+                    <span>Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/jobs.png" alt="Jobs" class="nav-icon" />
-                    <span class="nav-label">Jobs</span>
+                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon">
+                    <span>Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon" />
-                    <span class="nav-label">Education</span>
+                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon">
+                    <span>Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/health.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
+                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon">
+                    <span>Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
+                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon">
+                    <span>Payments</span>
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
-                <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+            <div class="sidebar-foot">
+                <a href="/pages/app/emergence.html" class="nav-item nav-item--danger">
+                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="nav-icon">
+                    <span>Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/images/icon-chat.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Help Center</span>
+                    <img src="/assets/images/icon-chat.png" alt="" class="nav-icon">
+                    <span>Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Settings</span>
+                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="nav-icon">
+                    <span>Settings</span>
                 </a>
-                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/marketplace-image/logout.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Logout</span>
+                <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
+                    <img src="/assets/marketplace-image/logout.png" alt="" class="nav-icon">
+                    <span>Logout</span>
                 </a>
             </div>
         </aside>
 
-        <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
+        <!-- ══════════ CONTENT ══════════ -->
+        <main class="app-main">
+            <div class="fin-wrap">
 
-            <div>
-                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Finance</h1>
-                <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
-                    Income tax, VAT declarations, and payment receipts from the Ministry of Finance.
-                </p>
-            </div>
+                <!-- Global balance -->
+                <section class="fin-hero">
+                    <div class="fin-hero-top">
+                        <span class="badge badge--ok">TGR &amp; DGI En Règle</span>
+                        <span class="fin-hero-label">Solde Global Échu</span>
+                    </div>
 
-            <label class="relative mt-5 block max-w-xl">
-                <span class="sr-only">Search finance services</span>
-                <img src="/assets/images/search.png" alt="" class="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 object-contain" />
-                <input id="financeSearch" type="search" placeholder="Search finance services..."
-                    class="w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
-            </label>
+                    <p class="fin-hero-amount">
+                        1&nbsp;420<span class="fin-hero-cur">.00 DH</span>
+                        <span class="badge badge--due fin-hero-warn">2 échéances imminentes</span>
+                    </p>
 
-            <div id="financeGrid" class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <p class="fin-hero-meta">
+                        Vignette 2026 (700 DH) • Facture Redal Rabat (342,50 DH) •
+                        Prélèvement sécurisé Bank Al-Maghrib
+                    </p>
 
-                <a href="#" data-name="Income Tax Declaration" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/finance-icon-5.png" alt="Finance icon 5" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Income Tax Declaration</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">File your annual IR declaration (Impôt sur le Revenu).</p>
-                </a>
+                    <div class="fin-hero-actions">
+                        <button type="button" class="fin-pay-all" data-pay="1 420 DH">
+                            <img src="/assets/images/Icon-payment.png" alt="">
+                            Régler Tout (1 420 DH)
+                        </button>
+                        <button type="button" class="fin-icon-btn" data-open="history" aria-label="Historique des paiements">
+                            <img src="/assets/dashboard-assets/date.png" alt="">
+                        </button>
+                    </div>
+                </section>
 
-                <a href="#" data-name="VAT Registration" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/finance-icon-6.png" alt="Finance icon 6" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">VAT Registration</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Register for VAT (TVA) and file periodic declarations.</p>
-                </a>
+                <!-- Payment / benefit cards -->
+                <section class="fin-grid">
 
-                <a href="#" data-name="Payment Receipts" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/finance-icon-7.png" alt="Finance icon 7" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Payment Receipts</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Download official receipts for all your past tax payments.</p>
-                </a>
+                    <article class="fin-card">
+                        <div class="fin-card-top">
+                            <span class="fin-card-icon"><img src="/assets/icon-bar-left/transport.png" alt=""></span>
+                            <span class="badge badge--due">À Payer</span>
+                        </div>
+                        <p class="fin-card-name">DGI • Vignette 2026</p>
+                        <p class="fin-card-amount">700,00 <span class="fin-card-unit">DH</span></p>
+                        <p class="fin-card-sub">Peugeot 208 (29-A-8829)</p>
+                        <div class="fin-card-foot">
+                            <span class="fin-card-ref">Échéance : 31 Jan</span>
+                            <button type="button" class="fin-card-cta" data-pay="700 DH — Vignette 2026">Payer →</button>
+                        </div>
+                    </article>
 
-                <a href="#" data-name="Customs Declarations" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/finance-icon-8.png" alt="Finance icon 8" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Customs Declarations</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Import/export declarations and customs duty payments.</p>
-                </a>
+                    <article class="fin-card">
+                        <div class="fin-card-top">
+                            <span class="fin-card-icon"><img src="/assets/images/Icon-payment.png" alt=""></span>
+                            <span class="badge badge--date">28 Oct</span>
+                        </div>
+                        <p class="fin-card-name">Redal &amp; IAM Fibre</p>
+                        <p class="fin-card-amount">541,50 <span class="fin-card-unit">DH</span></p>
+                        <p class="fin-card-sub">Redal : 342,50 • IAM : 199</p>
+                        <div class="fin-card-foot">
+                            <span class="fin-card-ref">Police : 9812-004</span>
+                            <button type="button" class="fin-card-cta" data-pay="541,50 DH — Redal &amp; IAM">Régler →</button>
+                        </div>
+                    </article>
 
-                <a href="#" data-name="Business Tax ID" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/finance-icon-9.png" alt="Finance icon 9" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Business Tax ID</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Register a business identifiant fiscal (IF) and patente.</p>
-                </a>
+                    <article class="fin-card">
+                        <div class="fin-card-top">
+                            <span class="fin-card-icon"><img src="/assets/images/Icon-profile.png" alt=""></span>
+                            <span class="badge badge--ok">Versement Actif</span>
+                        </div>
+                        <p class="fin-card-name">Allocations ASD &amp; AMO</p>
+                        <p class="fin-card-amount fin-card-amount--pos">+500,00 <span class="fin-card-unit">DH/m</span></p>
+                        <p class="fin-card-sub">2 enfants • AMO Tadamon</p>
+                        <div class="fin-card-foot">
+                            <span class="fin-card-ref">Prochain : 15 Nov</span>
+                            <span class="fin-card-ref">RSU : 092-281</span>
+                        </div>
+                    </article>
 
-                <a href="#" data-name="Public Procurement Portal" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/finance-icon-10.png" alt="Finance icon 10" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Public Procurement</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Browse and bid on public tenders through the national portal.</p>
-                </a>
-            </div>
+                    <article class="fin-card">
+                        <div class="fin-card-top">
+                            <span class="fin-card-icon"><img src="/assets/images/security.png" alt=""></span>
+                            <span class="badge badge--ok">100% Soldé</span>
+                        </div>
+                        <p class="fin-card-name">Trésorerie Générale (TGR)</p>
+                        <p class="fin-card-amount">0,00 <span class="fin-card-unit">DH Dû</span></p>
+                        <p class="fin-card-sub">Taxe d'Habitation (TH) acquittée</p>
+                        <div class="fin-card-foot">
+                            <span class="fin-card-ref">Exercice 2025/26</span>
+                            <button type="button" class="fin-card-cta" data-download="Quittance Taxe d'Habitation">Quittance ↓</button>
+                        </div>
+                    </article>
+                </section>
 
-            <p id="financeEmpty" class="hidden py-16 text-center text-sm text-muted dark:text-mist-300">
-                No finance services match your search.
-            </p>
+                <!-- Certified operations -->
+                <section class="fin-panel">
+                    <div class="fin-panel-head">
+                        <p class="fin-panel-title">
+                            <img src="/assets/images/icon-taxation.png" alt="">
+                            Dernières Opérations Certifiées TGR
+                        </p>
+                        <button type="button" class="fin-panel-link" data-open="history">Voir l'historique →</button>
+                    </div>
 
-            <!-- CTA -->
-            <div class="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9">
-                <img src="/assets/images/finance-icon-11.png" alt="" class="absolute -right-8 -bottom-10 size-40 object-contain" />
-                <div class="relative max-w-sm">
-                    <p class="text-lg font-extrabold">Tax Season Is Coming</p>
-                    <p class="mt-1.5 text-sm text-white/80">File early and avoid penalties — declarations are due by March 2026.</p>
-                </div>
-                <button type="button" id="startDeclarationBtn"
-                    class="relative mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft lg:mt-0 lg:shrink-0">
-                    Start My Declaration
+                    <div class="fin-row">
+                        <span class="fin-row-icon"><img src="/assets/images/icon-taxation.png" alt=""></span>
+                        <div class="fin-row-main">
+                            <p class="fin-row-title">Direction Générale des Impôts • Taxe Professionnelle</p>
+                            <p class="fin-row-meta">15 Oct 2026 • Réf : 2026-TX-984128 • Tamponné TGR</p>
+                        </div>
+                        <span class="fin-row-amount">2 450,00 DH</span>
+                        <button type="button" class="fin-row-dl" data-download="Reçu Taxe Professionnelle" aria-label="Télécharger le reçu">
+                            <img src="/assets/dashboard-assets/download-icon.png" alt="">
+                        </button>
+                    </div>
+
+                    <div class="fin-row">
+                        <span class="fin-row-icon"><img src="/assets/images/Icon-payment.png" alt=""></span>
+                        <div class="fin-row-main">
+                            <p class="fin-row-title">Redal Rabat-Salé • Eau &amp; Électricité</p>
+                            <p class="fin-row-meta">28 Sept 2026 • Réf : RDL-7729-1102 • Quittancé</p>
+                        </div>
+                        <span class="fin-row-amount">312,00 DH</span>
+                        <button type="button" class="fin-row-dl" data-download="Quittance Redal" aria-label="Télécharger la quittance">
+                            <img src="/assets/dashboard-assets/download-icon.png" alt="">
+                        </button>
+                    </div>
+
+                    <div class="fin-row">
+                        <span class="fin-row-icon"><img src="/assets/images/Icon-profile.png" alt=""></span>
+                        <div class="fin-row-main">
+                            <p class="fin-row-title">Aide Sociale Directe (ASD) • Versement Mensuel</p>
+                            <p class="fin-row-meta">15 Sept 2026 • Réf : ASD-SEP-2026 • Crédité</p>
+                        </div>
+                        <span class="fin-row-amount fin-row-amount--pos">+500,00 DH</span>
+                        <button type="button" class="fin-row-dl" data-download="Avis de crédit ASD" aria-label="Télécharger l'avis">
+                            <img src="/assets/dashboard-assets/download-icon.png" alt="">
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Emergency -->
+                <button type="button" class="fin-emergency" onclick="location.href='/pages/app/emergence.html'">
+                    <img src="/assets/emergence-image/sos-logo.png" alt="">
+                    Support d'Urgence / Emergency Support
                 </button>
+
+                <!-- Legal -->
+                <p class="fin-legal">
+                    <span>✓ Conforme Loi 43-20 • Signature électronique qualifiée de l'État marocain</span>
+                    <span>Royaume du Maroc • Trésorerie Générale du Royaume • DGI</span>
+                </p>
             </div>
         </main>
     </div>
 
-    <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
-    </div>
+    <div id="toast"></div>
 
+    <script src="/pages/js/shell.js"></script>
     <script>
         function toast(msg) {
             var t = document.getElementById("toast");
@@ -391,39 +423,22 @@
             t._t = setTimeout(function () { t.style.opacity = "0"; }, 2400);
         }
 
-        var sidebar = document.getElementById("sidebar"), scrim = document.getElementById("scrim");
-        function openDrawer(open) {
-            sidebar.classList.toggle("-translate-x-full", !open);
-            scrim.classList.toggle("hidden", !open);
-            document.body.classList.toggle("overflow-hidden", open);
-        }
-        document.getElementById("menuBtn").addEventListener("click", function () { openDrawer(true); });
-        scrim.addEventListener("click", function () { openDrawer(false); });
-        document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
-        sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
-
-        document.querySelectorAll(".directory-card").forEach(function (card) {
-            card.addEventListener("click", function (e) {
-                e.preventDefault();
-                toast("Opening " + card.dataset.name + "…");
+        document.querySelectorAll("[data-pay]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                toast("Paiement sécurisé de " + btn.dataset.pay + " — redirection Bank Al-Maghrib…");
             });
         });
 
-        var search = document.getElementById("financeSearch");
-        var cards = Array.prototype.slice.call(document.querySelectorAll(".directory-card"));
-        search.addEventListener("input", function () {
-            var q = search.value.trim().toLowerCase();
-            var visible = 0;
-            cards.forEach(function (card) {
-                var match = card.dataset.name.toLowerCase().includes(q);
-                card.classList.toggle("hidden", !match);
-                if (match) visible++;
+        document.querySelectorAll("[data-download]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                toast("Téléchargement : " + btn.dataset.download + " (PDF certifié)");
             });
-            document.getElementById("financeEmpty").classList.toggle("hidden", visible !== 0);
         });
 
-        document.getElementById("startDeclarationBtn").addEventListener("click", function () {
-            toast("Starting your income tax declaration…");
+        document.querySelectorAll("[data-open='history']").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                toast("Ouverture de l'historique complet des opérations TGR…");
+            });
         });
     </script>
 </body>
