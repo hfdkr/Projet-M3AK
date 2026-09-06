@@ -56,7 +56,7 @@
         /* ---------- App top bar ---------- */
         .app-topbar         { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
         .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
-        .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 md:hidden; }
+        .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .app-brand-wrap     { @apply flex items-center gap-2.5; }
         .app-brand-mark     { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
         .app-brand-mark img { @apply size-5 object-contain; }
@@ -71,13 +71,13 @@
         .app-user-id        { @apply block text-[11px] text-muted dark:text-mist-300; }
         .app-avatar         { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
 
-        /* ---------- App shell / sidebar (drawer on mobile, fixed on tablet + desktop) ---------- */
+        /* ---------- App shell / sidebar (drawer on mobile + tablet, docked on desktop) ---------- */
         .app-body    { @apply flex; }
-        .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 md:hidden; }
-        .app-scrim.is-open { @apply block md:hidden; }
+        .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 lg:hidden; }
+        .app-scrim.is-open { @apply block lg:hidden; }
         .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
                               border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5
-                              transition-transform duration-300 md:sticky md:top-16 md:z-0 md:h-[calc(100vh-4rem)] md:w-56 md:translate-x-0 lg:w-60; }
+                              transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-60 lg:translate-x-0; }
         .app-sidebar.is-open { @apply translate-x-0; }
         .sidebar-head  { @apply mb-5 px-2; }
         .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
@@ -236,6 +236,10 @@
                 <a href="/pages/app/payments.html" class="nav-item">
                     <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon">
                     <span>Payments</span>
+                </a>
+                <a href="/pages/app/finance.html" class="nav-item">
+                    <img src="/assets/images/icon-taxation.png" alt="" class="nav-icon">
+                    <span>Finance</span>
                 </a>
             </nav>
 
