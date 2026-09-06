@@ -27,11 +27,22 @@
             return getComputedStyle(sidebar).position !== "sticky";
         }
 
+        /* Legacy pages toggle `-translate-x-full` / `hidden` directly on the
+           markup; the .app-* pages use `.is-open`. Drive both so one code path
+           fits every page. */
+        var openedAt = 0;
         function setOpen(open) {
+            if (open) { openedAt = Date.now(); }
             sidebar.classList.toggle("is-open", open);
+            sidebar.classList.toggle("-translate-x-full", !open);
             scrim.classList.toggle("is-open", open);
+            scrim.classList.toggle("hidden", !open);
             document.body.classList.toggle("overflow-hidden", open && isDrawer());
         }
+
+        /* Ignore pointer-out events fired while the drawer is still sliding in
+           (the sidebar moving under a resting cursor briefly triggers them). */
+        function settled() { return Date.now() - openedAt > 350; }
 
         if (menuBtn) { menuBtn.addEventListener("click", function () { setOpen(true); }); }
         scrim.addEventListener("click", function () { setOpen(false); });
@@ -40,14 +51,21 @@
             if (e.key === "Escape") { setOpen(false); }
         });
 
-        /* Pointer leaves the open drawer (mobile + tablet) → close it. */
+        /* Pointer moves clear of the open drawer → close it (mobile + tablet).
+           Uses the cursor position rather than mouseenter/leave, which the
+           sidebar can miss when it slides in under a resting cursor. */
+        function isOpen() { return sidebar.classList.contains("is-open"); }
+        document.addEventListener("mousemove", function (e) {
+            if (!isOpen() || !isDrawer() || !settled()) { return; }
+            if (e.clientX > sidebar.getBoundingClientRect().right + 24) { setOpen(false); }
+        });
         sidebar.addEventListener("mouseleave", function () {
-            if (isDrawer()) { setOpen(false); }
+            if (isDrawer() && settled()) { setOpen(false); }
         });
 
         /* Tap/click anywhere outside the drawer closes it too. */
         document.addEventListener("click", function (e) {
-            if (!isDrawer()) { return; }
+            if (!isDrawer() || !settled()) { return; }
             if (sidebar.contains(e.target) || (menuBtn && menuBtn.contains(e.target))) { return; }
             setOpen(false);
         });
