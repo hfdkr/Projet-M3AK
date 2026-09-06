@@ -16,206 +16,129 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style type="text/tailwindcss">
-
-        /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
-        .theme-toggle{
-            @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
-                   md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300;
-        }
-        .theme-toggle-thumb{
-            @apply grid place-items-center h-6 w-6 rounded-full
-                   md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900;
-        }
-        .theme-toggle-sun{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
-        .theme-toggle-moon{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
-        /* Dark mode (class strategy) — .dark on <html>, set by theme.js — same setup as the rest of the app */
         @custom-variant dark (&:where(.dark, .dark *));
 
         @theme {
             --color-brand: #0B6B45;
             --color-brand-dark: #084F34;
-            --color-green-900: #006947;
-            --color-blue: #316BF3;
-            --color-blue-dark: #2554C7;
             --color-brand-soft: #E9F3EE;
             --color-brand-line: #CFE3D8;
+            --color-blue: #316BF3;
+            --color-blue-dark: #2554C7;
             --color-lavender-50: #E7ECFB;
+            --color-danger: #E1362C;
             --color-ink: #0F1A15;
             --color-muted: #6B7A73;
-            --color-muted-900: #3D4A42;
             --color-canvas: #F6F7F5;
 
-            /* dark surfaces */
             --color-night-900: #0A0F0D;
             --color-night-800: #0F1512;
             --color-night-700: #151C18;
             --color-night-600: #232C27;
             --color-night-500: #2E3830;
-
-            /* dark text */
             --color-mist-300: #7C8981;
             --color-mist-200: #B4BEB8;
             --color-mist-100: #E7ECE9;
-
-            /* dark accent (stands in for --color-brand on dark surfaces) */
             --color-accent-400: #2ED573;
             --color-accent-300: #5BE0A0;
 
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
-        body {
-            @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 transition-colors duration-200;
-        }
-    </style>
+        html { @apply scroll-smooth; }
+        body { @apply antialiased bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 transition-colors duration-200; }
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
 
-        body {
-            -webkit-font-smoothing: antialiased;
-        }
+        /* ---------- Theme toggle — icon only on mobile, pill switch on tablet/desktop ---------- */
+        .theme-toggle       { @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                                     md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
+        .theme-toggle-thumb { @apply grid place-items-center h-6 w-6 rounded-full
+                                     md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
+        .theme-toggle-sun   { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon  { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
+        /* ---------- App top bar ---------- */
+        .app-topbar         { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-night-800/90 backdrop-blur; }
+        .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
+        .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
+        .app-brand          { @apply flex items-center gap-2.5; }
+        .app-brand-mark     { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
+        .app-brand-mark img { @apply size-5 object-contain; }
+        .app-brand-name     { @apply text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .app-brand-flag     { @apply hidden rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold text-brand dark:text-accent-400 sm:inline-block; }
+        .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
+        .app-icon-btn       { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-icon-btn--lg   { @apply hidden lg:grid; }
+        .app-support-btn    { @apply flex items-center gap-2 rounded-full bg-brand dark:bg-accent-400 px-4 py-2 text-sm font-semibold text-white dark:text-night-900 shadow-sm transition hover:bg-brand-dark dark:hover:bg-accent-300; }
+        .app-support-btn img{ @apply size-4 object-contain; }
+        .app-avatar         { @apply grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600; }
 
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* ---------- App shell / sidebar (drawer on mobile + tablet, docked on desktop) ---------- */
+        .app-body    { @apply flex; }
+        .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 lg:hidden; }
+        .app-scrim.is-open { @apply block lg:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
+                              border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5
+                              transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-60 lg:translate-x-0; }
+        .app-sidebar.is-open { @apply translate-x-0; }
+        .sidebar-head  { @apply mb-5 px-2; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
+        .sidebar-nav   { @apply space-y-0.5; }
+        .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
+        .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
+                                hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
+        .nav-item--active { @apply bg-white dark:bg-night-700 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
+        .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
+        .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+        .app-main      { @apply min-w-0 flex-1 px-4 pb-24 pt-5 lg:px-6 lg:pb-16 lg:pt-7; }
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: .75rem;
-            border-radius: .75rem;
-            padding: .625rem .75rem;
-            font-size: .875rem;
-            font-weight: 500;
-            color: #6B7A73;
-            transition: background-color .15s, color .15s;
-        }
-
-        .nav-item:hover {
-            background: #fff;
-            color: #0F1A15;
-        }
-
-        .dark .nav-item {
-            color: #7C8981;
-        }
-
-        .dark .nav-item:hover {
-            background: #151C18;
-            color: #E7ECE9;
-        }
-
-        .nav-icon {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            object-fit: contain;
-        }
-
-        .dark .nav-icon:not(.nav-icon--active) {
-            filter: brightness(0) invert(1);
-            opacity: .9;
-        }
-
-        .tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .25rem;
-            padding: .375rem .75rem;
-            font-size: 10px;
-            font-weight: 500;
-            color: #6B7A73;
-        }
-
-        .dark .tab {
-            color: #7C8981;
-        }
-
-        /* Icon rail: collapsed at rest, expands automatically on hover/focus */
+        /* Desktop: the docked sidebar collapses to an icon rail at rest and
+           auto-opens (widens, labels appear) only while hovered / focused. */
         @media (min-width: 1024px) {
-            #sidebar {
-                width: 5rem;
-                transition: width .2s ease;
+            #sidebar { width: 5rem; transition: width .2s ease; }
+            #sidebar:hover, #sidebar:focus-within { width: 15rem; }
+            #sidebar .nav-item > span,
+            #sidebar .sidebar-head {
+                width: 0; overflow: hidden; white-space: nowrap;
+                opacity: 0; transition: width .2s ease, opacity .15s ease;
             }
-
-            #sidebar:hover,
-            #sidebar:focus-within {
-                width: 14rem;
-            }
-
-            #sidebar a svg,
-            #sidebar a img {
-                flex-shrink: 0;
-            }
-
-            #sidebar .sidebar-text,
-            #sidebar .nav-label {
-                display: inline-block;
-                width: 0;
-                overflow: hidden;
-                white-space: nowrap;
-                opacity: 0;
-                transition: opacity .15s ease;
-            }
-
-            #sidebar:hover .sidebar-text,
-            #sidebar:hover .nav-label,
-            #sidebar:focus-within .sidebar-text,
-            #sidebar:focus-within .nav-label {
-                width: auto;
-                opacity: 1;
-            }
-
-            #sidebar .sidebar-head,
-            #sidebar a {
-                justify-content: center;
-            }
-
+            #sidebar:hover .nav-item > span,
             #sidebar:hover .sidebar-head,
-            #sidebar:hover a,
-            #sidebar:focus-within .sidebar-head,
-            #sidebar:focus-within a {
-                justify-content: flex-start;
-            }
+            #sidebar:focus-within .nav-item > span,
+            #sidebar:focus-within .sidebar-head { width: auto; opacity: 1; }
+            #sidebar .nav-item { justify-content: center; }
+            #sidebar:hover .nav-item,
+            #sidebar:focus-within .nav-item { justify-content: flex-start; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                transition-duration: .001ms !important;
-            }
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: .001ms !important; }
         }
     </style>
 </head>
 
 <body data-require-auth>
 
-    <!-- HEADER DESKTOP -->
-    <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-night-600 bg-white/90 dark:bg-night-800/90 backdrop-blur transition-colors lg:block">
-        <div class="mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6">
+    <!-- ══════════ TOP BAR ══════════ -->
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
+                <span class="sr-only">Open menu</span>
+                <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
+            </button>
 
-            <span class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">
-                M3ak
-            </span>
+            <a href="/pages/app/overview.html" class="app-brand">
+                <span class="app-brand-mark"><img src="/assets/images/img-mobile-1.png" alt=""></span>
+                <span class="app-brand-name">M3ak Morocco</span>
+                <span class="app-brand-flag">Royaume du Maroc</span>
+            </a>
 
-
-            <div class="ml-auto flex items-center gap-3">
-
-                <!-- dark / light mode toggle -->
+            <div class="app-topbar-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
@@ -223,459 +146,367 @@
                     </span>
                 </button>
 
-                <button type="button"
-                    class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn app-icon-btn--lg">
                     <span class="sr-only">Search</span>
-                    <img src="/assets/health-image/searche.png" alt="Searche" class="size-5 object-contain dark:hidden" />
-                    <img src="/assets/health-image/searche-dark.png" alt="Searche" class="hidden size-5 object-contain dark:block" />
+                    <img src="/assets/health-image/searche.png" alt="" class="size-5 object-contain dark:hidden">
+                    <img src="/assets/health-image/searche-dark.png" alt="" class="hidden size-5 object-contain dark:block">
                 </button>
 
-                <button type="button"
-                    class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/health-image/notification.png" alt="Notification" class="size-5 object-contain dark:hidden" />
-                    <img src="/assets/health-image/notification-dark.png" alt="Notification" class="hidden size-5 object-contain dark:block" />
+                    <img src="/assets/health-image/notification.png" alt="" class="size-5 object-contain dark:hidden">
+                    <img src="/assets/health-image/notification-dark.png" alt="" class="hidden size-5 object-contain dark:block">
                 </button>
 
-                <a href="/pages/app/support.html"
-                    class="flex items-center gap-2 rounded-full bg-brand dark:bg-accent-400 px-4 py-2 text-sm font-semibold text-white dark:text-night-900 shadow-sm transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <img src="/assets/health-image/support.png" alt="Support" class="size-4 object-contain" />
+                <a href="/pages/app/support.html" class="app-support-btn">
+                    <img src="/assets/health-image/support.png" alt="">
                     Support
                 </a>
 
-                <button type="button"
-                    class="grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Your profile</span>
-                    SA
-                </button>
-
-            </div>
-        </div>
-    </header>
-
-    <!-- HEADER MOBILE -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-800/95 px-4 py-3.5 backdrop-blur lg:hidden">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <button id="menuBtn" type="button"
-                    class="grid size-8 place-items-center rounded-lg -ml-1 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Open menu</span>
-                    <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-5 object-contain" />
-                </button>
-                <p class="flex items-center gap-2 text-base font-extrabold tracking-tight text-brand dark:text-accent-400">
-                    <img src="/assets/services-image/shield-icon.png" alt="Shield" class="size-5 object-contain dark:hidden" />
-                    <img src="/assets/services-image/shield-icon-dark.png" alt="Shield" class="hidden size-5 object-contain dark:block" />
-                    M3ak Morocco
-                </p>
-            </div>
-
-            <div class="flex items-center gap-2">
-                <!-- dark / light mode toggle -->
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <span class="theme-toggle-thumb">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                    </span>
-                </button>
-
-                <button type="button" class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/emergence-image/notification.png" alt="Notification" class="size-5 object-contain dark:hidden" />
-                    <img src="/assets/emergence-image/notification-dark.png" alt="Notification" class="hidden size-5 object-contain dark:block" />
+                <button type="button" class="app-avatar">
+                    <span class="sr-only">Your profile</span><span data-user-initials>SA</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- BACK BAR -->
-    <div class="border-b border-black/5 dark:border-night-600 bg-canvas dark:bg-night-900">
-        <div class="mx-auto max-w-[1280px] px-4 lg:px-6 py-2">
-            <a href="/pages/app/overview.html"
-                class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors">
-                <img src="/assets/images/health-icon.png" alt="Health icon" class="size-3.5 object-contain" />
-                Back to My Space
-            </a>
-        </div>
-    </div>
-
-    <div class="flex">
+    <div class="app-body">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2 sidebar-head">
-                <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
-                </div>
+        <aside id="sidebar" class="app-sidebar">
+            <div class="sidebar-head">
+                <p class="sidebar-title">M3ak Morocco</p>
+                <p class="sidebar-sub">Citizen Services Portal</p>
             </div>
 
-            <nav class="space-y-0.5">
+            <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
-                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
+                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon">
+                    <span>My Space</span>
                 </a>
                 <a href="/pages/app/service.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/services.png" alt="Services" class="nav-icon" />
-                    <span class="nav-label">Services</span>
+                    <img src="/assets/icon-bar-left/services.png" alt="" class="nav-icon">
+                    <span>Services</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
-                    <span class="nav-label">Transport</span>
+                    <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon">
+                    <span>Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
+                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon">
+                    <span>Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/jobs.png" alt="Jobs" class="nav-icon" />
-                    <span class="nav-label">Jobs</span>
+                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon">
+                    <span>Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon" />
-                    <span class="nav-label">Education</span>
+                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon">
+                    <span>Education</span>
                 </a>
-                <a href="/pages/app/health.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-white dark:bg-night-700 px-3 py-2.5 text-sm font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25">
-                    <img src="/assets/icon-bar-left/health.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
+                <a href="/pages/app/health.html" class="nav-item nav-item--active" aria-current="page">
+                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon nav-icon--active">
+                    <span>Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
+                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon">
+                    <span>Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/icon-taxation.png" alt="Finance" class="nav-icon" />
-                    <span class="nav-label">Finance</span>
+                    <img src="/assets/images/icon-taxation.png" alt="" class="nav-icon">
+                    <span>Finance</span>
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
-                <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl bg-danger px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40">
-                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="size-[18px] shrink-0 object-contain" />
-                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+            <div class="sidebar-foot">
+                <a href="/pages/app/emergence.html" class="nav-item nav-item--danger">
+                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="nav-icon">
+                    <span>Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/images/icon-chat.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Help Center</span>
+                    <img src="/assets/images/icon-chat.png" alt="" class="nav-icon">
+                    <span>Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Settings</span>
+                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="nav-icon">
+                    <span>Settings</span>
                 </a>
-                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/marketplace-image/logout.png" alt="" class="size-[18px] object-contain" />
-                    <span class="nav-label">Logout</span>
+                <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
+                    <img src="/assets/marketplace-image/logout.png" alt="" class="nav-icon">
+                    <span>Logout</span>
                 </a>
             </div>
         </aside>
 
-        <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-5 lg:px-6 lg:pb-16 lg:pt-7">
+        <!-- ══════════ CONTENT ══════════ -->
+        <main class="app-main">
 
-        <!-- TITLE -->
-        <div class="lg:flex lg:items-end lg:justify-between lg:gap-6">
-            <div>
-                <h1 class="text-xl font-extrabold tracking-tight dark:text-white lg:text-2xl">
-                    Find your Specialist
-                </h1>
-                <p class="mt-1 text-sm text-muted dark:text-mist-300">
-                    Access quality healthcare services across Morocco instantly.
-                </p>
-            </div>
-
-            <!-- desktop-only badge -->
-            <p class="mt-3 hidden items-center gap-1.5 text-xs font-semibold text-brand dark:text-accent-400 lg:mt-0 lg:flex">
-                <img src="/assets/services-image/check-icon.png" alt="Check" class="size-4 object-contain dark:hidden" />
-                <img src="/assets/services-image/check-icon-dark.png" alt="Check" class="hidden size-4 object-contain dark:block" />
-                Official Public Service Provider
-            </p>
-        </div>
-
-        <!-- mobile-only search bar -->
-        <div class="relative mt-4 lg:hidden">
-            <img src="/assets/health-image/searche.png" alt="Searche"
-                class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60 dark:hidden" />
-            <img src="/assets/health-image/searche-dark.png" alt="Searche"
-                class="pointer-events-none absolute left-4 top-1/2 hidden size-4 -translate-y-1/2 object-contain opacity-60 dark:block" />
-            <input type="search" placeholder="Search doctors, specialties, or clinics..."
-                class="w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 pl-10 pr-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
-        </div>
-
-        <!-- mobile-only badge -->
-        <p class="mt-3 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-brand dark:text-accent-400 lg:hidden">
-            <img src="/assets/services-image/check-icon.png" alt="Check" class="size-3.5 object-contain dark:hidden" />
-            <img src="/assets/services-image/check-icon-dark.png" alt="Check" class="hidden size-3.5 object-contain dark:block" />
-            Official Public Service Provider
-        </p>
-
-        <!-- FILTER PILLS — pure CSS toggle via radio + peer, no JS -->
-        <div class="no-scrollbar mt-5 flex gap-2 overflow-x-auto pb-1">
-
-            <input type="radio" name="specialty" id="filter-all" class="peer/all sr-only" checked>
-            <label for="filter-all"
-                class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/all:bg-brand peer-checked/all:text-white peer-checked/all:ring-0 dark:peer-checked/all:bg-accent-400 dark:peer-checked/all:text-night-900">
-                <img src="/assets/services-image/all-doctors-icon.png" alt="All doctors" class="size-3.5 object-contain dark:hidden" />
-                <img src="/assets/services-image/all-doctors-icon-dark.png" alt="All doctors" class="hidden size-3.5 object-contain dark:block" />
-                All Doctors
-            </label>
-
-            <input type="radio" name="specialty" id="filter-cardiology" class="peer/cardio sr-only">
-            <label for="filter-cardiology"
-                class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/cardio:bg-brand peer-checked/cardio:text-white peer-checked/cardio:ring-0 dark:peer-checked/cardio:bg-accent-400 dark:peer-checked/cardio:text-night-900">
-                <img src="/assets/services-image/cardiology-icon.png" alt="Cardiology" class="size-3.5 object-contain dark:hidden" />
-                <img src="/assets/services-image/cardiology-icon-dark.png" alt="Cardiology" class="hidden size-3.5 object-contain dark:block" />
-                Cardiology
-            </label>
-
-            <input type="radio" name="specialty" id="filter-psychiatry" class="peer/psych sr-only">
-            <label for="filter-psychiatry"
-                class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/psych:bg-brand peer-checked/psych:text-white peer-checked/psych:ring-0 dark:peer-checked/psych:bg-accent-400 dark:peer-checked/psych:text-night-900">
-                <img src="/assets/services-image/psychiatry-icon.png" alt="Psychiatry" class="size-3.5 object-contain dark:hidden" />
-                <img src="/assets/services-image/psychiatry-icon-dark.png" alt="Psychiatry" class="hidden size-3.5 object-contain dark:block" />
-                Psychiatry
-            </label>
-
-            <input type="radio" name="specialty" id="filter-pediatrics" class="peer/ped sr-only">
-            <label for="filter-pediatrics"
-                class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/ped:bg-brand peer-checked/ped:text-white peer-checked/ped:ring-0 dark:peer-checked/ped:bg-accent-400 dark:peer-checked/ped:text-night-900">
-                <img src="/assets/services-image/pediatrics-icon.png" alt="Pediatrics" class="size-3.5 object-contain dark:hidden" />
-                <img src="/assets/services-image/pediatrics-icon-dark.png" alt="Pediatrics" class="hidden size-3.5 object-contain dark:block" />
-                Pediatrics
-            </label>
-
-            <input type="radio" name="specialty" id="filter-ophthalmology" class="peer/eye sr-only">
-            <label for="filter-ophthalmology"
-                class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/eye:bg-brand peer-checked/eye:text-white peer-checked/eye:ring-0 dark:peer-checked/eye:bg-accent-400 dark:peer-checked/eye:text-night-900">
-                <img src="/assets/services-image/ophthalmology-icon.png" alt="Ophthalmology" class="size-3.5 object-contain dark:hidden" />
-                <img src="/assets/services-image/ophthalmology-icon-dark.png" alt="Ophthalmology" class="hidden size-3.5 object-contain dark:block" />
-                Ophthalmology
-            </label>
-
-        </div>
-
-        <!-- TELE-CONSULT + HOME VISIT — icons sit on fixed-color gradient cards, no light/dark swap needed -->
-        <div class="mt-5 grid gap-4 sm:grid-cols-2">
-
-            <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue to-blue-dark p-5 text-white shadow-sm">
-                <img src="/assets/services-image/video-icon.png" alt="Video"
-                    class="pointer-events-none absolute -bottom-4 -right-4 size-28 object-contain opacity-15" />
-
-                <span class="grid size-9 place-items-center rounded-xl bg-white/15">
-                    <img src="/assets/services-image/video-icon.png" alt="Video" class="size-5 object-contain" />
-                </span>
-
-                <h2 class="relative mt-4 text-base font-extrabold">Tele-Consult</h2>
-                <p class="relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85">
-                    Connect with top-rated doctors via secure instant video calls from anywhere.
-                </p>
-
-                <button type="button"
-                    class="relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold text-blue-dark shadow-sm transition hover:bg-white/90">
-                    Start Consultation
-                </button>
-            </section>
-
-            <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm">
-                <img src="/assets/services-image/home-icon.png" alt="Home"
-                    class="pointer-events-none absolute -bottom-4 -right-4 size-28 object-contain opacity-15" />
-
-                <span class="grid size-9 place-items-center rounded-xl bg-white/15">
-                    <img src="/assets/services-image/home-icon.png" alt="Home" class="size-5 object-contain" />
-                </span>
-
-                <h2 class="relative mt-4 text-base font-extrabold">Home Visit</h2>
-                <p class="relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85">
-                    Professional medical care at your doorstep. Skilled doctors available for house calls.
-                </p>
-
-                <button type="button"
-                    class="relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold text-brand-dark shadow-sm transition hover:bg-white/90">
-                    Request Visit
-                </button>
-            </section>
-
-        </div>
-
-        <!-- NEARBY DOCTORS -->
-        <div class="mt-8 flex items-center justify-between">
-            <h2 class="text-base font-extrabold dark:text-white">Nearby Doctors</h2>
-            <a href="/pages/app/coming-soon.html?feature=Doctor+Directory" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">See all</a>
-        </div>
-
-        <div class="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-4">
-
-            <!-- DOCTOR CARD (repeat) — horizontal on mobile, vertical on desktop -->
-            <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                    <img src="/assets/health-image/star.png" alt="Star" class="size-2.5 object-contain" />
-                    4.9
-                </span>
-                <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                    <img src="/assets/health-image/sofia-amrani.png" alt="Dr. Sofia Amrani" class="size-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1 lg:p-4">
-                    <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Cardiologist</p>
-                    <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Sofia Amrani</h3>
-                    <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                        <img src="/assets/health-image/localisation.png" alt="Localisation" class="size-3 shrink-0 object-contain dark:hidden" />
-                        <img src="/assets/health-image/localisation-dark.png" alt="Localisation" class="hidden size-3 shrink-0 object-contain dark:block" />
-                        <span class="truncate">Casablanca, Gauthier (1.2 km)</span>
-                    </p>
-                    <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                        <p class="text-sm font-extrabold text-brand dark:text-accent-400">200 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                        <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
-                    </div>
-                </div>
-            </article>
-
-            <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                    <img src="/assets/health-image/star.png" alt="Star" class="size-2.5 object-contain" />
-                    4.8
-                </span>
-                <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                    <img src="/assets/health-image/yasmine-idrissi.png" alt="Dr. Yasmine Idrissi" class="size-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1 lg:p-4">
-                    <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Dermatologist</p>
-                    <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Yasmine Idrissi</h3>
-                    <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                        <img src="/assets/health-image/localisation.png" alt="Localisation" class="size-3 shrink-0 object-contain dark:hidden" />
-                        <img src="/assets/health-image/localisation-dark.png" alt="Localisation" class="hidden size-3 shrink-0 object-contain dark:block" />
-                        <span class="truncate">Tangier, City Center (0.8 km)</span>
-                    </p>
-                    <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                        <p class="text-sm font-extrabold text-brand dark:text-accent-400">450 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                        <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
-                    </div>
-                </div>
-            </article>
-
-            <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                    <img src="/assets/health-image/star.png" alt="Star" class="size-2.5 object-contain" />
-                    4.9
-                </span>
-                <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                    <img src="/assets/health-image/jack-wmor.png" alt="Dr. Jack Wmor" class="size-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1 lg:p-4">
-                    <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Pediatrician</p>
-                    <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Jack Wmor</h3>
-                    <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                        <img src="/assets/health-image/localisation.png" alt="Localisation" class="size-3 shrink-0 object-contain dark:hidden" />
-                        <img src="/assets/health-image/localisation-dark.png" alt="Localisation" class="hidden size-3 shrink-0 object-contain dark:block" />
-                        <span class="truncate">Tangier, City Center (2.5 km)</span>
-                    </p>
-                    <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                        <p class="text-sm font-extrabold text-brand dark:text-accent-400">400 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                        <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
-                    </div>
-                </div>
-            </article>
-
-            <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                    <img src="/assets/health-image/star.png" alt="Star" class="size-2.5 object-contain" />
-                    4.9
-                </span>
-                <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                    <img src="/assets/health-image/nina-olivia.png" alt="Dr. Nina Olivia" class="size-full object-cover" />
-                </div>
-                <div class="min-w-0 flex-1 lg:p-4">
-                    <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Ophthalmologist</p>
-                    <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Nina Olivia</h3>
-                    <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                        <img src="/assets/health-image/localisation.png" alt="Localisation" class="size-3 shrink-0 object-contain dark:hidden" />
-                        <img src="/assets/health-image/localisation-dark.png" alt="Localisation" class="hidden size-3 shrink-0 object-contain dark:block" />
-                        <span class="truncate">Tangier, City Center (3.0 km)</span>
-                    </p>
-                    <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                        <p class="text-sm font-extrabold text-brand dark:text-accent-400">480 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                        <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
-                    </div>
-                </div>
-            </article>
-
-        </div>
-
-        <!-- VERIFIED PROFESSIONALS -->
-        <section class="mt-6 flex flex-col gap-4 rounded-2xl bg-lavender-50 dark:bg-night-700 p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div class="flex items-start gap-3">
-                <span class="grid size-10 shrink-0 place-items-center rounded-full bg-white dark:bg-night-800 shadow-sm">
-                    <img src="/assets/services-image/shield-icon.png" alt="Shield" class="size-5 object-contain dark:hidden" />
-                    <img src="/assets/services-image/shield-icon-dark.png" alt="Shield" class="hidden size-5 object-contain dark:block" />
-                </span>
+            <!-- TITLE -->
+            <div class="lg:flex lg:items-end lg:justify-between lg:gap-6">
                 <div>
-                    <p class="text-sm font-bold dark:text-white">Verified Professionals</p>
-                    <p class="mt-0.5 text-xs text-muted dark:text-mist-300">
-                        All practitioners on M3ak are licensed and verified by the Ministry of Health.
+                    <h1 class="text-xl font-extrabold tracking-tight dark:text-white lg:text-2xl">
+                        Find your Specialist
+                    </h1>
+                    <p class="mt-1 text-sm text-muted dark:text-mist-300">
+                        Access quality healthcare services across Morocco instantly.
                     </p>
                 </div>
+
+                <p class="mt-3 hidden items-center gap-1.5 text-xs font-semibold text-brand dark:text-accent-400 lg:mt-0 lg:flex">
+                    <img src="/assets/services-image/check-icon.png" alt="" class="size-4 object-contain dark:hidden" />
+                    <img src="/assets/services-image/check-icon-dark.png" alt="" class="hidden size-4 object-contain dark:block" />
+                    Official Public Service Provider
+                </p>
             </div>
 
-            <div class="flex flex-wrap gap-2">
-                <span class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600">
-                    <img src="/assets/services-image/check-icon.png" alt="Check" class="size-3.5 object-contain dark:hidden" />
-                    <img src="/assets/services-image/check-icon-dark.png" alt="Check" class="hidden size-3.5 object-contain dark:block" />
-                    Data Privacy Guaranteed
-                </span>
-                <span class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600">
-                    <img src="/assets/services-image/check-icon.png" alt="Check" class="size-3.5 object-contain dark:hidden" />
-                    <img src="/assets/services-image/check-icon-dark.png" alt="Check" class="hidden size-3.5 object-contain dark:block" />
-                    Secure Payment
-                </span>
+            <!-- mobile-only search bar -->
+            <div class="relative mt-4 lg:hidden">
+                <img src="/assets/health-image/searche.png" alt=""
+                    class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60 dark:hidden" />
+                <img src="/assets/health-image/searche-dark.png" alt=""
+                    class="pointer-events-none absolute left-4 top-1/2 hidden size-4 -translate-y-1/2 object-contain opacity-60 dark:block" />
+                <input type="search" placeholder="Search doctors, specialties, or clinics..."
+                    class="w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 pl-10 pr-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
             </div>
-        </section>
 
-    </main>
+            <!-- FILTER PILLS — pure CSS toggle via radio + peer, no JS -->
+            <div class="no-scrollbar mt-5 flex gap-2 overflow-x-auto pb-1">
+
+                <input type="radio" name="specialty" id="filter-all" class="peer/all sr-only" checked>
+                <label for="filter-all"
+                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/all:bg-brand peer-checked/all:text-white peer-checked/all:ring-0 dark:peer-checked/all:bg-accent-400 dark:peer-checked/all:text-night-900">
+                    <img src="/assets/services-image/all-doctors-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                    <img src="/assets/services-image/all-doctors-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                    All Doctors
+                </label>
+
+                <input type="radio" name="specialty" id="filter-cardiology" class="peer/cardio sr-only">
+                <label for="filter-cardiology"
+                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/cardio:bg-brand peer-checked/cardio:text-white peer-checked/cardio:ring-0 dark:peer-checked/cardio:bg-accent-400 dark:peer-checked/cardio:text-night-900">
+                    <img src="/assets/services-image/cardiology-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                    <img src="/assets/services-image/cardiology-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                    Cardiology
+                </label>
+
+                <input type="radio" name="specialty" id="filter-psychiatry" class="peer/psych sr-only">
+                <label for="filter-psychiatry"
+                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/psych:bg-brand peer-checked/psych:text-white peer-checked/psych:ring-0 dark:peer-checked/psych:bg-accent-400 dark:peer-checked/psych:text-night-900">
+                    <img src="/assets/services-image/psychiatry-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                    <img src="/assets/services-image/psychiatry-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                    Psychiatry
+                </label>
+
+                <input type="radio" name="specialty" id="filter-pediatrics" class="peer/ped sr-only">
+                <label for="filter-pediatrics"
+                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/ped:bg-brand peer-checked/ped:text-white peer-checked/ped:ring-0 dark:peer-checked/ped:bg-accent-400 dark:peer-checked/ped:text-night-900">
+                    <img src="/assets/services-image/pediatrics-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                    <img src="/assets/services-image/pediatrics-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                    Pediatrics
+                </label>
+
+                <input type="radio" name="specialty" id="filter-ophthalmology" class="peer/eye sr-only">
+                <label for="filter-ophthalmology"
+                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/eye:bg-brand peer-checked/eye:text-white peer-checked/eye:ring-0 dark:peer-checked/eye:bg-accent-400 dark:peer-checked/eye:text-night-900">
+                    <img src="/assets/services-image/ophthalmology-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                    <img src="/assets/services-image/ophthalmology-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                    Ophthalmology
+                </label>
+
+            </div>
+
+            <!-- TELE-CONSULT + HOME VISIT -->
+            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+
+                <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue to-blue-dark p-5 text-white shadow-sm">
+                    <img src="/assets/services-image/video-icon.png" alt=""
+                        class="pointer-events-none absolute -bottom-4 -right-4 size-28 object-contain opacity-15" />
+                    <span class="grid size-9 place-items-center rounded-xl bg-white/15">
+                        <img src="/assets/services-image/video-icon.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <h2 class="relative mt-4 text-base font-extrabold">Tele-Consult</h2>
+                    <p class="relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85">
+                        Connect with top-rated doctors via secure instant video calls from anywhere.
+                    </p>
+                    <button type="button" class="relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold text-blue-dark shadow-sm transition hover:bg-white/90">
+                        Start Consultation
+                    </button>
+                </section>
+
+                <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm">
+                    <img src="/assets/services-image/home-icon.png" alt=""
+                        class="pointer-events-none absolute -bottom-4 -right-4 size-28 object-contain opacity-15" />
+                    <span class="grid size-9 place-items-center rounded-xl bg-white/15">
+                        <img src="/assets/services-image/home-icon.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <h2 class="relative mt-4 text-base font-extrabold">Home Visit</h2>
+                    <p class="relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85">
+                        Professional medical care at your doorstep. Skilled doctors available for house calls.
+                    </p>
+                    <button type="button" class="relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold text-brand-dark shadow-sm transition hover:bg-white/90">
+                        Request Visit
+                    </button>
+                </section>
+
+            </div>
+
+            <!-- NEARBY DOCTORS -->
+            <div class="mt-8 flex items-center justify-between">
+                <h2 class="text-base font-extrabold dark:text-white">Nearby Doctors</h2>
+                <a href="/pages/app/coming-soon.html?feature=Doctor+Directory" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">See all</a>
+            </div>
+
+            <div class="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-4">
+
+                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
+                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
+                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                        4.9
+                    </span>
+                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
+                        <img src="/assets/health-image/sofia-amrani.png" alt="Dr. Sofia Amrani" class="size-full object-cover" />
+                    </div>
+                    <div class="min-w-0 flex-1 lg:p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Cardiologist</p>
+                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Sofia Amrani</h3>
+                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
+                            <img src="/assets/health-image/localisation.png" alt="" class="size-3 shrink-0 object-contain dark:hidden" />
+                            <img src="/assets/health-image/localisation-dark.png" alt="" class="hidden size-3 shrink-0 object-contain dark:block" />
+                            <span class="truncate">Casablanca, Gauthier (1.2 km)</span>
+                        </p>
+                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
+                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">200 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
+                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
+                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
+                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                        4.8
+                    </span>
+                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
+                        <img src="/assets/health-image/yasmine-idrissi.png" alt="Dr. Yasmine Idrissi" class="size-full object-cover" />
+                    </div>
+                    <div class="min-w-0 flex-1 lg:p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Dermatologist</p>
+                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Yasmine Idrissi</h3>
+                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
+                            <img src="/assets/health-image/localisation.png" alt="" class="size-3 shrink-0 object-contain dark:hidden" />
+                            <img src="/assets/health-image/localisation-dark.png" alt="" class="hidden size-3 shrink-0 object-contain dark:block" />
+                            <span class="truncate">Tangier, City Center (0.8 km)</span>
+                        </p>
+                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
+                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">450 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
+                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
+                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
+                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                        4.9
+                    </span>
+                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
+                        <img src="/assets/health-image/jack-wmor.png" alt="Dr. Jack Wmor" class="size-full object-cover" />
+                    </div>
+                    <div class="min-w-0 flex-1 lg:p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Pediatrician</p>
+                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Jack Wmor</h3>
+                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
+                            <img src="/assets/health-image/localisation.png" alt="" class="size-3 shrink-0 object-contain dark:hidden" />
+                            <img src="/assets/health-image/localisation-dark.png" alt="" class="hidden size-3 shrink-0 object-contain dark:block" />
+                            <span class="truncate">Tangier, City Center (2.5 km)</span>
+                        </p>
+                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
+                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">400 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
+                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
+                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
+                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                        4.9
+                    </span>
+                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
+                        <img src="/assets/health-image/nina-olivia.png" alt="Dr. Nina Olivia" class="size-full object-cover" />
+                    </div>
+                    <div class="min-w-0 flex-1 lg:p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Ophthalmologist</p>
+                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Nina Olivia</h3>
+                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
+                            <img src="/assets/health-image/localisation.png" alt="" class="size-3 shrink-0 object-contain dark:hidden" />
+                            <img src="/assets/health-image/localisation-dark.png" alt="" class="hidden size-3 shrink-0 object-contain dark:block" />
+                            <span class="truncate">Tangier, City Center (3.0 km)</span>
+                        </p>
+                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
+                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">480 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
+                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- VERIFIED PROFESSIONALS -->
+            <section class="mt-6 flex flex-col gap-4 rounded-2xl bg-lavender-50 dark:bg-night-700 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex items-start gap-3">
+                    <span class="grid size-10 shrink-0 place-items-center rounded-full bg-white dark:bg-night-800 shadow-sm">
+                        <img src="/assets/services-image/shield-icon.png" alt="" class="size-5 object-contain dark:hidden" />
+                        <img src="/assets/services-image/shield-icon-dark.png" alt="" class="hidden size-5 object-contain dark:block" />
+                    </span>
+                    <div>
+                        <p class="text-sm font-bold dark:text-white">Verified Professionals</p>
+                        <p class="mt-0.5 text-xs text-muted dark:text-mist-300">
+                            All practitioners on M3ak are licensed and verified by the Ministry of Health.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600">
+                        <img src="/assets/services-image/check-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                        <img src="/assets/services-image/check-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                        Data Privacy Guaranteed
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600">
+                        <img src="/assets/services-image/check-icon.png" alt="" class="size-3.5 object-contain dark:hidden" />
+                        <img src="/assets/services-image/check-icon-dark.png" alt="" class="hidden size-3.5 object-contain dark:block" />
+                        Secure Payment
+                    </span>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="mt-8 border-t border-black/5 dark:border-night-600 pt-6">
+                <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                    <div>
+                        <p class="text-sm font-extrabold text-brand dark:text-accent-400">M3ak</p>
+                        <p class="mt-1 max-w-xs text-xs text-muted dark:text-mist-300">
+                            Connecting citizens with essential public and healthcare services.
+                        </p>
+                    </div>
+                    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted dark:text-mist-300">
+                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
+                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
+                        <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Contact Support</a>
+                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
+                    </nav>
+                    <p class="text-xs text-muted dark:text-mist-300">
+                        © 2026 M3ak Public Services. All rights reserved.
+                    </p>
+                </div>
+            </footer>
+
+        </main>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors">
-        <div class="mx-auto max-w-[1280px] px-4 py-8 lg:px-6">
-            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-
-                <div>
-                    <p class="text-sm font-extrabold text-brand dark:text-accent-400">M3ak</p>
-                    <p class="mt-1 max-w-xs text-xs text-muted dark:text-mist-300">
-                        Connecting citizens with essential public and healthcare services.
-                    </p>
-                </div>
-
-                <nav class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted dark:text-mist-300">
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-                    <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Contact Support</a>
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
-                </nav>
-
-                <p class="text-xs text-muted dark:text-mist-300">
-                    © 2026 M3ak Public Services. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        var sidebar = document.getElementById("sidebar"), scrim = document.getElementById("scrim");
-        function openDrawer(open) {
-            sidebar.classList.toggle("-translate-x-full", !open);
-            scrim.classList.toggle("hidden", !open);
-            document.body.classList.toggle("overflow-hidden", open);
-        }
-        document.getElementById("menuBtn").addEventListener("click", function () { openDrawer(true); });
-        scrim.addEventListener("click", function () { openDrawer(false); });
-        document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
-        sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
-        sidebar.addEventListener("click", function (e) {
-            if (window.matchMedia("(max-width: 1023px)").matches && e.target.closest("a")) openDrawer(false);
-        });
-    </script>
-
+    <script src="/pages/js/shell.js"></script>
 </body>
+
 </html>
