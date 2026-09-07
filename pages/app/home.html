@@ -125,6 +125,14 @@
     <!-- ══════════ TOP BAR ══════════ -->
     <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white/90 backdrop-blur dark:bg-night-800/90">
         <div class="mx-auto flex h-16 max-w-[1200px] items-center gap-4 px-4 lg:px-6">
+            <!-- Mobile menu toggle -->
+            <button id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav"
+                class="grid size-9 place-items-center rounded-full hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40 dark:hover:bg-night-700 lg:hidden">
+                <span class="sr-only">Open menu</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-5" data-icon="open"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden size-5" data-icon="close"><path d="M6 6l12 12M18 6 6 18" /></svg>
+            </button>
+
             <a href="/pages/app/home.html"
                 class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-2xl">M3ak Morocco</a>
 
@@ -176,14 +184,6 @@
                         <button type="button" data-action="logout" class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign out</button>
                     </div>
                 </div>
-
-                <!-- Mobile menu toggle -->
-                <button id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav"
-                    class="ml-1 grid size-9 place-items-center rounded-full hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40 dark:hover:bg-night-700 lg:hidden">
-                    <span class="sr-only">Open menu</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-5" data-icon="open"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden size-5" data-icon="close"><path d="M6 6l12 12M18 6 6 18" /></svg>
-                </button>
             </div>
         </div>
 
