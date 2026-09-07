@@ -176,8 +176,31 @@
                         <button type="button" data-action="logout" class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign out</button>
                     </div>
                 </div>
+
+                <!-- Mobile menu toggle -->
+                <button id="navToggle" type="button" aria-expanded="false" aria-controls="mobileNav"
+                    class="ml-1 grid size-9 place-items-center rounded-full hover:bg-canvas focus-visible:ring-2 focus-visible:ring-brand/40 dark:hover:bg-night-700 lg:hidden">
+                    <span class="sr-only">Open menu</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-5" data-icon="open"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden size-5" data-icon="close"><path d="M6 6l12 12M18 6 6 18" /></svg>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile navbar -->
+        <nav id="mobileNav" hidden aria-label="Primary mobile"
+            class="border-t border-black/5 bg-white px-4 pb-4 pt-2 dark:border-white/10 dark:bg-night-800 lg:hidden">
+            <a href="/pages/app/overview.html" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-brand dark:text-mist-300 dark:hover:bg-night-700 dark:hover:text-accent-400">About</a>
+            <a href="#super-app" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-brand dark:text-mist-300 dark:hover:bg-night-700 dark:hover:text-accent-400">Features</a>
+            <a href="#services" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-brand dark:text-mist-300 dark:hover:bg-night-700 dark:hover:text-accent-400">Services</a>
+            <a href="/pages/app/support.html" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-canvas hover:text-brand dark:text-mist-300 dark:hover:bg-night-700 dark:hover:text-accent-400">Help</a>
+            <label class="relative mt-2 block md:hidden">
+                <span class="sr-only">Search a service</span>
+                <img src="/assets/images/search.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60" />
+                <input type="search" placeholder="Search services..."
+                    class="w-full rounded-full border border-black/10 bg-canvas py-2 pl-9 pr-3 text-sm outline-none placeholder:text-muted focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25 dark:border-white/15 dark:bg-night-900 dark:placeholder:text-mist-300" />
+            </label>
+        </nav>
     </header>
 
     <main>
@@ -510,6 +533,35 @@
             </div>
         </footer>
     </main>
+
+    <script>
+        (function () {
+            var btn = document.getElementById("navToggle");
+            var nav = document.getElementById("mobileNav");
+            if (!btn || !nav) { return; }
+
+            function setOpen(open) {
+                nav.hidden = !open;
+                btn.setAttribute("aria-expanded", open ? "true" : "false");
+                btn.querySelector('[data-icon="open"]').classList.toggle("hidden", open);
+                btn.querySelector('[data-icon="close"]').classList.toggle("hidden", !open);
+            }
+
+            btn.addEventListener("click", function () { setOpen(nav.hidden); });
+
+            nav.querySelectorAll("a[href]").forEach(function (link) {
+                link.addEventListener("click", function () { setOpen(false); });
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") { setOpen(false); }
+            });
+
+            window.addEventListener("resize", function () {
+                if (window.innerWidth >= 1024 && !nav.hidden) { setOpen(false); }
+            });
+        })();
+    </script>
 
 </body>
 
