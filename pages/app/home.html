@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
+    <title>Home — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/theme.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+
+        /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
+        .theme-toggle{
+            @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                   md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300;
+        }
+        .theme-toggle-thumb{
+            @apply grid place-items-center h-6 w-6 rounded-full
+                   md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900;
+        }
+        .theme-toggle-sun{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand: #0B6B45;
+            --color-brand-dark: #084F34;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-line: #CFE3D8;
+            --color-danger: #E1362C;
+            --color-ink: #0F1A15;
+            --color-muted: #6B7A73;
+            --color-canvas: #F6F7F5;
+            --color-royal: #316BF3;
+
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top navigation links */
+        .top-link {
+            @apply text-sm font-medium text-muted transition hover:text-brand dark:text-mist-300 dark:hover:text-accent-400;
+        }
+
+        /* Section heading blocks */
+        .section-title {
+            @apply text-2xl font-extrabold tracking-tight lg:text-[32px] lg:leading-[38px];
+        }
+        .section-lead {
+            @apply mt-2 max-w-2xl text-sm leading-relaxed text-muted dark:text-mist-300 lg:text-[15px];
+        }
+        .link-more {
+            @apply inline-flex items-center gap-1 text-sm font-semibold text-brand transition hover:gap-1.5 dark:text-accent-400;
+        }
+
+        /* Metric / stat cell */
+        .stat-value {
+            @apply text-2xl font-extrabold text-ink dark:text-mist-100 lg:text-[32px];
+        }
+        .stat-label {
+            @apply mt-1 text-[11px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300;
+        }
+
+        /* Service directory card */
+        .service-card {
+            @apply flex flex-col items-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-night-800 dark:ring-white/10;
+        }
+        .service-card__icon {
+            @apply grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15;
+        }
+        .service-card__icon img {
+            @apply size-5 object-contain;
+        }
+        .service-card__label {
+            @apply mt-3 text-sm font-bold;
+        }
+
+        /* Testimonial card */
+        .review-card {
+            @apply flex flex-col rounded-2xl bg-white p-5 ring-1 ring-black/5 dark:bg-night-800 dark:ring-white/10;
+        }
+        .review-stars {
+            @apply flex gap-0.5 text-[#F5A623];
+        }
+        .review-quote {
+            @apply mt-3 flex-1 text-sm leading-relaxed text-ink/80 dark:text-mist-200;
+        }
+        .review-name {
+            @apply text-sm font-bold;
+        }
+        .review-role {
+            @apply text-xs text-muted dark:text-mist-300;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition-duration: .001ms !important; }
+        }
+    </style>
+</head>
+
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100">
+
+    <!-- ══════════ TOP BAR ══════════ -->
+    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white/90 backdrop-blur dark:bg-night-800/90">
+        <div class="mx-auto flex h-16 max-w-[1200px] items-center gap-4 px-4 lg:px-6">
+            <a href="/pages/app/home.html"
+                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-2xl">M3ak Morocco</a>
+
+            <nav class="ml-6 hidden items-center gap-6 lg:flex" aria-label="Primary">
+                <a href="/pages/app/overview.html" class="top-link">About</a>
+                <a href="#super-app" class="top-link">Features</a>
+                <a href="#services" class="top-link">Services</a>
+                <a href="/pages/app/support.html" class="top-link">Help</a>
+            </nav>
+
+            <div class="ml-auto flex items-center gap-1.5">
+                <label class="relative hidden md:block">
+                    <span class="sr-only">Search a service</span>
+                    <img src="/assets/images/search.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60" />
+                    <input type="search" placeholder="Search services..."
+                        class="w-40 rounded-full border border-black/10 bg-canvas py-2 pl-9 pr-3 text-sm outline-none transition placeholder:text-muted focus-visible:w-56 focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25 dark:border-white/15 dark:bg-night-900 dark:placeholder:text-mist-300 lg:w-56 lg:focus-visible:w-64" />
+                </label>
+
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                    </span>
+                </button>
+
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Notifications</span>
+                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                </button>
+
+                <!-- Visitor -->
+                <a href="/pages/auth/login.html" data-auth="guest"
+                    class="ml-1 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark">Log in</a>
+
+                <!-- Signed in -->
+                <div class="relative ml-1" data-auth="user">
+                    <button type="button" data-menu-toggle
+                        class="grid size-9 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand ring-1 ring-brand-line focus-visible:ring-2 focus-visible:ring-brand/40 dark:bg-accent-400/15 dark:text-accent-400 dark:ring-accent-400/25">
+                        <span class="sr-only">Your profile</span>
+                        <span data-user-initials></span>
+                    </button>
+
+                    <div data-menu class="absolute right-0 z-50 mt-2 hidden w-48 rounded-xl border border-black/5 bg-white py-1.5 shadow-lg dark:border-white/10 dark:bg-night-700">
+                        <a href="/pages/app/overview.html#personal-info" class="block px-3.5 py-2 text-sm text-ink hover:bg-canvas dark:text-mist-100 dark:hover:bg-night-600">My profile</a>
+                        <a href="/pages/app/overview.html#digital-id" class="block px-3.5 py-2 text-sm text-ink hover:bg-canvas dark:text-mist-100 dark:hover:bg-night-600">My documents</a>
+                        <a href="/pages/app/overview.html#account" class="block px-3.5 py-2 text-sm text-ink hover:bg-canvas dark:text-mist-100 dark:hover:bg-night-600">Settings</a>
+                        <button type="button" data-action="logout" class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ══════════ HERO ══════════ -->
+        <section class="mx-auto max-w-[1200px] px-4 pb-12 pt-10 lg:px-6 lg:pb-20 lg:pt-16">
+            <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+
+                <div class="order-2 lg:order-1">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-brand-soft px-3 py-1 text-[12px] font-semibold text-brand dark:bg-accent-400/15 dark:text-accent-400">
+                        <span class="size-1.5 rounded-full bg-brand dark:bg-accent-400"></span>
+                        New: Digital ID Integration
+                    </span>
+
+                    <h1 class="mt-5 text-[34px] font-extrabold leading-[1.1] tracking-tight lg:text-[56px]">
+                        Your Gateway to
+                        <span class="block text-brand dark:text-accent-400">Digital Morocco.</span>
+                    </h1>
+
+                    <p class="mt-4 max-w-md text-sm leading-relaxed text-muted dark:text-mist-300 lg:text-[15px]">
+                        Access government services, manage payments, and stay connected with your
+                        community through a seamless, premium citizen experience built for the future.
+                    </p>
+
+                    <div class="mt-7 flex flex-wrap items-center gap-4">
+                        <a href="/pages/app/overview.html"
+                            class="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="size-4"><path d="M8 5v14l11-7z" /></svg>
+                            How it works
+                        </a>
+                        <a href="#services" class="link-more">
+                            View all services
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                        </a>
+                    </div>
+
+                    <p class="mt-6 text-xs text-muted dark:text-mist-300">Trusted by millions of citizens nationwide.</p>
+                </div>
+
+                <div class="relative order-1 lg:order-2">
+                    <img src="/assets/images/image_maroc.png" alt="Digital Morocco"
+                        class="w-full rounded-3xl shadow-xl ring-1 ring-black/5 dark:ring-white/10" />
+
+                    <div class="absolute -right-2 top-6 flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-lg ring-1 ring-black/5 dark:bg-night-700/95 dark:ring-white/10 lg:-right-6">
+                        <span class="grid size-9 place-items-center rounded-full bg-royal text-white">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="size-4"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" fill="none" /></svg>
+                        </span>
+                        <span class="leading-tight">
+                            <span class="block text-[11px] text-muted dark:text-mist-300">Last Transaction</span>
+                            <span class="block text-sm font-bold text-brand dark:text-accent-400">+1,240 MAD</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ STATS ══════════ -->
+        <section class="border-y border-black/5 bg-white dark:border-white/10 dark:bg-night-800">
+            <div class="mx-auto grid max-w-[1200px] grid-cols-2 gap-6 px-4 py-8 text-center lg:grid-cols-4 lg:px-6 lg:py-10">
+                <div>
+                    <p class="stat-value">5M+</p>
+                    <p class="stat-label">Active Users</p>
+                </div>
+                <div>
+                    <p class="stat-value">150+</p>
+                    <p class="stat-label">Public Services</p>
+                </div>
+                <div>
+                    <p class="stat-value">99.9%</p>
+                    <p class="stat-label">Uptime Reliability</p>
+                </div>
+                <div>
+                    <p class="stat-value">24/7</p>
+                    <p class="stat-label">Expert Support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ SUPER APP ══════════ -->
+        <section id="super-app" class="mx-auto max-w-[1200px] px-4 py-14 lg:px-6 lg:py-20">
+            <div class="text-center">
+                <h2 class="section-title">Everything you need in one Super App</h2>
+                <p class="section-lead mx-auto text-center">
+                    We've unified the citizen experience, bringing fragmented services into a single,
+                    high-performance ecosystem.
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-4 lg:grid-cols-3">
+
+                <article class="relative overflow-hidden rounded-2xl bg-white p-6 ring-1 ring-black/5 dark:bg-night-800 dark:ring-white/10 lg:col-span-2">
+                    <span class="grid size-11 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15">
+                        <img src="/assets/images/secure-icon.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <h3 class="mt-4 text-lg font-bold">Secure Digital Identity</h3>
+                    <p class="mt-2 max-w-md text-sm leading-relaxed text-muted dark:text-mist-300">
+                        The Morocco ID standard ensures your data is protected with state-of-the-art
+                        encryption and biometric verification.
+                    </p>
+                    <a href="/pages/app/overview.html#digital-id" class="link-more mt-4">
+                        Learn about security
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    </a>
+                    <svg viewBox="0 0 100 100" class="pointer-events-none absolute -bottom-6 right-2 size-40 text-brand/10 dark:text-accent-400/10" fill="none" stroke="currentColor" stroke-width="4">
+                        <path d="M50 12a38 38 0 0 0-38 38M50 24a26 26 0 0 0-26 26M50 36a14 14 0 0 0-14 14M50 48a2 2 0 0 0-2 2M62 88a60 60 0 0 0 6-30M76 82a70 70 0 0 0 4-24" stroke-linecap="round" />
+                    </svg>
+                </article>
+
+                <article class="rounded-2xl bg-royal p-6 text-white lg:col-span-1">
+                    <span class="grid size-11 place-items-center rounded-xl bg-white/15">
+                        <img src="/assets/images/Icon-payment.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <h3 class="mt-4 text-lg font-bold">Instant Payments</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/80">
+                        Pay utility bills, taxes, and school fees in under 10 seconds with M3ak Pay.
+                    </p>
+                </article>
+
+                <article class="rounded-2xl bg-brand p-6 text-white lg:col-span-1">
+                    <span class="grid size-11 place-items-center rounded-xl bg-white/15">
+                        <img src="/assets/images/transport.png" alt="" class="size-5 object-contain" />
+                    </span>
+                    <h3 class="mt-4 text-lg font-bold">Smart Transport</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/80">
+                        Real-time tracking for ONCF, CTM, and urban buses in every major city.
+                    </p>
+                </article>
+
+                <article class="flex flex-col justify-between rounded-2xl bg-night-800 p-6 text-mist-100 ring-1 ring-white/10 dark:bg-night-700 lg:col-span-2">
+                    <div>
+                        <span class="grid size-11 place-items-center rounded-xl bg-accent-400/15">
+                            <img src="/assets/images/health-icon.png" alt="" class="size-5 object-contain" />
+                        </span>
+                        <h3 class="mt-4 text-lg font-bold">Integrated Health</h3>
+                        <p class="mt-2 max-w-md text-sm leading-relaxed text-mist-300">
+                            Sync your medical history with AMO/CNOPS and book appointments with national
+                            health providers instantly.
+                        </p>
+                    </div>
+                    <a href="/pages/app/health.html"
+                        class="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20">
+                        Explore Health Portal
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ══════════ EXPLORE PUBLIC SERVICES ══════════ -->
+        <section id="services" class="mx-auto max-w-[1200px] px-4 py-14 lg:px-6 lg:py-20">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <h2 class="section-title">Explore Public Services</h2>
+                    <p class="section-lead">
+                        Direct access to more than 180 administrative procedures and citizen utilities.
+                    </p>
+                </div>
+                <a href="/pages/app/overview.html" class="link-more">
+                    View All Services
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </a>
+            </div>
+
+            <div class="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+                <a href="/pages/app/housing.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/house-icon.png" alt="" /></span>
+                    <span class="service-card__label">Housing</span>
+                </a>
+                <a href="/pages/app/jobs.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/job-icon.png" alt="" /></span>
+                    <span class="service-card__label">Jobs</span>
+                </a>
+                <a href="/pages/app/education.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/education-icon.png" alt="" /></span>
+                    <span class="service-card__label">Education</span>
+                </a>
+                <a href="/pages/app/health.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/health-icon.png" alt="" /></span>
+                    <span class="service-card__label">Health</span>
+                </a>
+                <a href="/pages/app/registry.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/icon-card.png" alt="" /></span>
+                    <span class="service-card__label">Registry</span>
+                </a>
+                <a href="/pages/app/transport.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/Vehicles.png" alt="" /></span>
+                    <span class="service-card__label">Vehicles</span>
+                </a>
+                <a href="/pages/app/interior.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/security-icon.png" alt="" /></span>
+                    <span class="service-card__label">Security</span>
+                </a>
+                <a href="/pages/app/coming-soon.html?feature=Justice" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/justice-icon.png" alt="" /></span>
+                    <span class="service-card__label">Justice</span>
+                </a>
+                <a href="/pages/app/coming-soon.html?feature=Foreign+Affairs" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
+                    <span class="service-card__label">Foreign Affairs</span>
+                </a>
+                <a href="/pages/app/coming-soon.html?feature=Agriculture" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/icon-agriculture.png" alt="" /></span>
+                    <span class="service-card__label">Agriculture</span>
+                </a>
+                <a href="/pages/app/coming-soon.html?feature=Culture" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/icon-culture.png" alt="" /></span>
+                    <span class="service-card__label">Culture</span>
+                </a>
+                <a href="/pages/app/finance.html" class="service-card">
+                    <span class="service-card__icon"><img src="/assets/images/icon-taxation.png" alt="" /></span>
+                    <span class="service-card__label">Taxation</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ══════════ TESTIMONIALS ══════════ -->
+        <section class="border-t border-black/5 bg-white dark:border-white/10 dark:bg-night-800">
+            <div class="mx-auto max-w-[1200px] px-4 py-14 lg:px-6 lg:py-20">
+                <div class="flex flex-wrap items-end justify-between gap-4">
+                    <h2 class="section-title">What Citizens are saying</h2>
+                    <a href="#" class="link-more">
+                        View All Reviews
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    </a>
+                </div>
+
+                <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <article class="review-card">
+                        <div class="review-stars" aria-label="5 out of 5 stars">
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                        </div>
+                        <p class="review-quote">
+                            "Finally an app that works as best as we do. Paying bills and renewing my
+                            passport was never this easy."
+                        </p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <span class="grid size-9 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand dark:bg-accent-400/15 dark:text-accent-400">AR</span>
+                            <span class="leading-tight">
+                                <span class="review-name block">Ahmed R.</span>
+                                <span class="review-role block">Casablanca Resident</span>
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-stars" aria-label="5 out of 5 stars">
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                        </div>
+                        <p class="review-quote">
+                            "The digital ID feature is a game changer for university students.
+                            Everything is in my pocket now."
+                        </p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <span class="grid size-9 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand dark:bg-accent-400/15 dark:text-accent-400">SB</span>
+                            <span class="leading-tight">
+                                <span class="review-name block">Sara B.</span>
+                                <span class="review-role block">Student, Rabat</span>
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-stars" aria-label="5 out of 5 stars">
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                        </div>
+                        <p class="review-quote">
+                            "The digital ID feature is a game changer for university students.
+                            Everything is in my pocket now."
+                        </p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <span class="grid size-9 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand dark:bg-accent-400/15 dark:text-accent-400">NB</span>
+                            <span class="leading-tight">
+                                <span class="review-name block">Nora B.</span>
+                                <span class="review-role block">Student, Rabat</span>
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-stars" aria-label="5 out of 5 stars">
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="size-4"><path d="M10 1l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9 4.8 17l1-5.8L1.5 7.2l5.9-.9z"/></svg>
+                        </div>
+                        <p class="review-quote">
+                            "The digital ID feature is a game changer for university students.
+                            Everything is in my pocket now."
+                        </p>
+                        <div class="mt-4 flex items-center gap-3">
+                            <span class="grid size-9 place-items-center rounded-full bg-brand-soft text-xs font-bold text-brand dark:bg-accent-400/15 dark:text-accent-400">HK</span>
+                            <span class="leading-tight">
+                                <span class="review-name block">Hafid K.</span>
+                                <span class="review-role block">Student, Rabat</span>
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ FOOTER ══════════ -->
+        <footer class="bg-brand-dark text-white/80">
+            <div class="mx-auto flex max-w-[1200px] flex-col gap-4 px-4 py-8 text-xs lg:flex-row lg:items-center lg:justify-between lg:px-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-sm font-extrabold text-white">M3ak Morocco</span>
+                    <span class="hidden lg:inline">·</span>
+                    <span>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</span>
+                </div>
+                <nav class="flex flex-wrap gap-5">
+                    <a href="#" class="transition hover:text-white">Privacy Policy</a>
+                    <a href="#" class="transition hover:text-white">Terms of Service</a>
+                    <a href="#" class="transition hover:text-white">Public Data</a>
+                    <a href="/pages/app/support.html" class="transition hover:text-white">Contact Us</a>
+                    <a href="/pages/app/support.html" class="transition hover:text-white">Help Center</a>
+                </nav>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>
