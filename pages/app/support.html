@@ -85,10 +85,11 @@
         .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
         .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
                                 hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
-        .nav-item--active { @apply bg-white dark:bg-night-700 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
         .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+        .nav-item--active .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
         .nav-item--danger .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
         .app-main      { @apply min-w-0 flex-1 pb-16; }
 
@@ -246,7 +247,7 @@
                     <span>Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/images/icon-chat.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon">
                     <span>Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">

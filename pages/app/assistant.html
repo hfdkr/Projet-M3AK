@@ -78,14 +78,15 @@
         .a-nav svg { width: 18px; height: 18px; flex-shrink: 0; }
 
         .a-nav--active {
-            background: #E9F1FB;
-            color: #0B6B45;
+            background: #0B6B45;
+            color: #fff;
             font-weight: 600;
         }
+        .a-nav--active img { filter: brightness(0) invert(1); }
 
         .dark .a-nav { color: #7C8981; }
         .dark .a-nav:hover { background: #151C18; color: #E7ECE9; }
-        .dark .a-nav--active { background: rgba(46, 213, 115, .14); color: #2ED573; }
+        .dark .a-nav--active { background: #0B6B45; color: #fff; }
 
         /* ── Chip (quick actions) ── */
         .chip {
@@ -212,7 +213,7 @@
                     Appointments
                 </a>
                 <a href="/pages/app/support.html" class="a-nav">
-                    <img src="/assets/images/assistant-icon-6.png" alt="Assistant icon 6" class="w-5 h-5 object-contain" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="w-5 h-5 object-contain" />
                     Help Center
                 </a>
             </nav>
