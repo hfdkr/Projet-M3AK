@@ -53,7 +53,7 @@
         /* ---------- Top bar ---------- */
         .page-flourish   { @apply hidden md:block md:absolute md:top-[390px] md:right-6; }
         .auth-topbar     { @apply flex items-center justify-between px-6 pt-6; }
-        .back-link       { @apply lg:hidden flex items-center gap-2 font-medium text-brand dark:text-accent-400; }
+        .back-link       { @apply flex items-center gap-2 font-medium text-brand dark:text-accent-400; }
         .back-icon       { @apply w-5 h-5 object-contain; }
 
         /* ---------- Theme toggle — icon only on mobile, pill switch on tablet/desktop ---------- */
@@ -108,11 +108,10 @@
         .divider-line { @apply flex-1 h-px bg-gray-200 dark:bg-night-600; }
         .divider-text { @apply text-xs text-gray-400 dark:text-mist-300; }
 
-        .social-grid  { @apply grid grid-cols-2 gap-4; }
-        .social       { @apply flex justify-center gap-[8px] items-center h-12 rounded-xl border
+        .social-grid  { @apply flex justify-center gap-4; }
+        .social       { @apply flex justify-center gap-[8px] items-center h-12 w-full rounded-xl border
                                border-gray-200 dark:border-night-600 bg-white dark:bg-night-700 text-gray-800 dark:text-mist-100
                                transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)]; }
-        .social--pill { @apply rounded-full; }
         .social-icon  { @apply w-[20px] h-[20px]; }
 
         .auth-switch      { @apply text-center text-gray-600 dark:text-mist-300; }
@@ -140,15 +139,12 @@
 </head>
 
 <body>
-    <div class="page-flourish">
-        <img src="/assets/image-login/Visual Flourish.png" alt="Visual Flourish">
-    </div>
 
     <!-- TOP -->
     <header>
         <div class="auth-topbar">
             <a href="/index.html" class="back-link">
-                <img src="/assets/image-login/login-icon.png" alt="Login icon" class="back-icon">
+                <img src="/assets/login-sign/image-login/" alt="Login icon" class="back-icon">
                 Back to Onboarding
             </a>
 
@@ -166,7 +162,7 @@
         <section>
             <div class="auth-intro">
                 <div class="auth-logo">
-                    <img src="/assets/image-login/logo.png" alt="logo-page">
+                    <img src="/assets/login-sign/image-login/logo.png" alt="logo-page">
                 </div>
                 <h1 class="auth-title">M3ak Morocco</h1>
                 <p class="auth-subtitle">Access your unified citizen portal</p>
@@ -185,7 +181,7 @@
                                     <label class="field-label">National ID or Email</label>
                                     <div class="input-wrap">
                                         <div class="input-icon">
-                                            <img src="/assets/image-login/user-icon.png" alt="user-icon">
+                                            <img src="/assets/login-sign/image-login/user-icon.png" alt="user-icon">
                                         </div>
                                         <input id="identifier" type="text" placeholder="e.g. AB123456" class="input">
                                     </div>
@@ -199,7 +195,7 @@
                                     </div>
                                     <div class="input-wrap">
                                         <div class="input-icon">
-                                            <img src="/assets/image-login/securety-icon.png" alt="secure icon">
+                                            <img src="/assets/login-sign/image-login/securety-icon.png" alt="secure icon">
                                         </div>
                                         <input id="password" type="password" placeholder="••••••••" class="input input--pw">
                                         <button type="button" data-toggle-password class="input-toggle" aria-label="Show password">
@@ -221,12 +217,8 @@
 
                                 <div class="social-grid">
                                     <button class="social">
-                                        <img src="/assets/image-login/google.png" alt="google icon" class="social-icon">
+                                        <img src="/assets/login-sign/image-login/google.png" alt="google icon" class="social-icon">
                                         Google
-                                    </button>
-                                    <button class="social social--pill">
-                                        <img src="/assets/image-login/apple.png" alt="apple icon" class="social-icon">
-                                        Apple
                                     </button>
                                 </div>
 

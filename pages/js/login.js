@@ -32,9 +32,7 @@
                 option.addEventListener("click", function () {
                     selected.innerHTML =
                         option.textContent.trim() +
-                        '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">' +
-                        '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>' +
-                        "</svg>";
+                        '<img src="/assets/login-sign/image-login/chevron-down.png" alt="" class="w-4 h-4 object-contain" />';
                     menu.classList.add("hidden");
                 });
             }
@@ -121,7 +119,7 @@
                     name: keptName,
                     email: isEmail ? idValue : (existing && existing.email) || ""
                 });
-                window.location.href = "/pages/app/service.html";
+                window.location.href = "/pages/app/home.html";
             }, 500);
         });
     }
