@@ -40,7 +40,6 @@
             --color-mist-100: #E7ECE9;
             --color-accent-400: #2ED573;
             --color-accent-300: #5BE0A0;
-
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
@@ -83,14 +82,15 @@
         .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
         .sidebar-nav   { @apply space-y-0.5; }
         .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
-        .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
+        .nav-item      { @apply flex items-center gap-3 rounded-[999px] px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
                                 hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
         .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
-        .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
+        .nav-item--danger { @apply bg-danger/40 font-semibold text-danger dark:text-white hover:bg-danger/55 hover:text-danger dark:hover:text-white; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
         .nav-item--active .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
-        .nav-item--danger .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
+        .nav-item--danger .nav-icon { opacity: 1; }
+        .dark .nav-item--danger .nav-icon { filter: brightness(0) invert(1); }
         .app-main      { @apply min-w-0 flex-1 pb-16; }
 
         /* ---------- Support page ---------- */
@@ -157,6 +157,38 @@
         .footer-map img   { @apply aspect-[4/3] w-full object-cover; }
 
         #toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
+
+        /* Desktop: the docked sidebar collapses to an icon rail at rest and
+           auto-opens (widens, labels appear) only while hovered / focused. */
+        @media (min-width: 1024px) {
+
+            /* Collapsed rail: every service card becomes a centered circle */
+            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar:not(:hover):not(:focus-within) a {
+                width: 2.75rem;
+                height: 2.75rem;
+                padding: 0;
+                gap: 0;
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+                border-radius: 9999px;
+            }
+            #sidebar { width: 5rem; transition: width .2s ease; }
+            #sidebar:hover, #sidebar:focus-within { width: 15rem; }
+            #sidebar .nav-item > span,
+            #sidebar .sidebar-head {
+                width: 0; overflow: hidden; white-space: nowrap;
+                opacity: 0; transition: width .2s ease, opacity .15s ease;
+            }
+            #sidebar:hover .nav-item > span,
+            #sidebar:hover .sidebar-head,
+            #sidebar:focus-within .nav-item > span,
+            #sidebar:focus-within .sidebar-head { width: auto; opacity: 1; }
+            #sidebar .nav-item { justify-content: center; }
+            #sidebar:hover .nav-item,
+            #sidebar:focus-within .nav-item { justify-content: flex-start; }
+        }
     </style>
 </head>
 
@@ -169,7 +201,7 @@
                 <span class="sr-only">Open menu</span>
                 <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
             </button>
-            <a href="/pages/app/service.html" class="app-brand">M3ak Morocco</a>
+            <a href="/pages/app/coming-soon.html?feature=Services" class="app-brand">M3ak Morocco</a>
 
             <label class="app-search">
                 <span class="sr-only">Search help articles</span>

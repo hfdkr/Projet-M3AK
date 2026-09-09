@@ -96,6 +96,19 @@
         /* Desktop: the docked sidebar collapses to an icon rail at rest and
            auto-opens (widens, labels appear) only while hovered / focused. */
         @media (min-width: 1024px) {
+
+            /* Collapsed rail: every service card becomes a centered circle */
+            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar:not(:hover):not(:focus-within) a {
+                width: 2.75rem;
+                height: 2.75rem;
+                padding: 0;
+                gap: 0;
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+                border-radius: 9999px;
+            }
             #sidebar { width: 5rem; transition: width .2s ease; }
             #sidebar:hover, #sidebar:focus-within { width: 15rem; }
             #sidebar .nav-item > span,
@@ -182,7 +195,7 @@
                 <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
             </button>
 
-            <a href="/pages/app/service.html" class="app-brand-wrap">
+            <a href="/pages/app/coming-soon.html?feature=Services" class="app-brand-wrap">
                 <span class="app-brand-mark"><img src="/assets/images/img-mobile-1.png" alt=""></span>
                 <span class="app-brand-text">
                     <span class="app-brand-name">M3ak Morocco</span>

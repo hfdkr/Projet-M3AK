@@ -177,6 +177,19 @@
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
 
         @media (min-width: 1024px) {
+
+            /* Collapsed rail: every service card becomes a centered circle */
+            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar:not(:hover):not(:focus-within) a {
+                width: 2.75rem;
+                height: 2.75rem;
+                padding: 0;
+                gap: 0;
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+                border-radius: 9999px;
+            }
             #sidebar { width: 5rem; transition: width .2s ease; }
             #sidebar:hover, #sidebar:focus-within { width: 14rem; }
             #sidebar a img { flex-shrink: 0; }
