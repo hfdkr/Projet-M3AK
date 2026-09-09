@@ -90,10 +90,11 @@
         .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
         .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
                                 hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
-        .nav-item--active { @apply bg-white dark:bg-night-700 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
         .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+        .nav-item--active .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
         .app-main      { @apply min-w-0 flex-1 px-4 pb-24 pt-5 lg:px-6 lg:pb-16 lg:pt-7; }
 
         /* Desktop: the docked sidebar collapses to an icon rail at rest and
@@ -183,7 +184,7 @@
 
             <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
-                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon">
                     <span>My Space</span>
                 </a>
 <a href="/pages/app/transport.html" class="nav-item">
@@ -191,11 +192,11 @@
                     <span>Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Housing.png" alt="" class="nav-icon">
                     <span>Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Jobs.png" alt="" class="nav-icon">
                     <span>Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
@@ -203,34 +204,34 @@
                     <span>Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item nav-item--active" aria-current="page">
-                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/healthcare.png" alt="" class="nav-icon">
                     <span>Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Payment.png" alt="" class="nav-icon">
                     <span>Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/icon-taxation.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Finance.png" alt="" class="nav-icon">
                     <span>Finance</span>
                 </a>
             </nav>
 
             <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html" class="nav-item nav-item--danger">
-                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Emergency.png" alt="" class="nav-icon">
                     <span>Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/images/icon-chat.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon">
                     <span>Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon">
                     <span>Settings</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
-                    <img src="/assets/marketplace-image/logout.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon">
                     <span>Logout</span>
                 </a>
             </div>

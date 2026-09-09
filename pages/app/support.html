@@ -85,10 +85,12 @@
         .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
         .nav-item      { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
                                 hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
-        .nav-item--active { @apply bg-white dark:bg-night-700 font-semibold text-brand dark:text-accent-400 shadow-sm ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
         .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+        .nav-item--active .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
+        .nav-item--danger .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
         .app-main      { @apply min-w-0 flex-1 pb-16; }
 
         /* ---------- Support page ---------- */
@@ -135,6 +137,24 @@
         .still-help-btn  { @apply mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft; }
 
         .contact-label { @apply text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300; }
+
+        /* ---------- Site footer ---------- */
+        .site-footer      { @apply mt-16 border-t border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .footer-bar       { @apply mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-4 py-6 lg:flex-row lg:justify-between lg:px-6; }
+        .footer-brand     { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .footer-bar-nav   { @apply flex flex-wrap items-center justify-center gap-x-8 gap-y-2; }
+        .footer-bar-link  { @apply text-sm font-medium text-muted dark:text-mist-300 transition-colors hover:text-ink dark:hover:text-mist-100; }
+        .footer-bar-link--active { @apply font-semibold text-brand dark:text-accent-400; }
+        .footer-copy      { @apply text-sm text-blue dark:text-mist-300; }
+
+        .footer-grid      { @apply mx-auto grid max-w-[1200px] gap-10 px-4 py-12 lg:grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,1.1fr)] lg:gap-8 lg:px-6; }
+        .footer-col-title { @apply text-[13px] font-extrabold uppercase tracking-[0.14em] text-ink dark:text-mist-100; }
+        .footer-col-list  { @apply mt-5 space-y-4 text-[15px] text-ink/80 dark:text-mist-300; }
+        .footer-contact   { @apply flex items-center gap-3; }
+        .footer-contact-icon { @apply size-5 shrink-0 object-contain; }
+        .footer-note      { @apply mt-5 text-sm font-bold text-brand dark:text-accent-400; }
+        .footer-map       { @apply w-full max-w-[380px] justify-self-center overflow-hidden rounded-2xl bg-canvas dark:bg-night-700 ring-1 ring-black/5 dark:ring-white/10 lg:justify-self-end; }
+        .footer-map img   { @apply aspect-[4/3] w-full object-cover; }
 
         #toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
     </style>
@@ -188,19 +208,19 @@
 
             <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
-                    <img src="/assets/images/Icon-profile.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon">
                     <span>My Space</span>
                 </a>
-<a href="/pages/app/transport.html" class="nav-item">
+                <a href="/pages/app/transport.html" class="nav-item">
                     <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon">
                     <span>Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/housing.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Housing.png" alt="" class="nav-icon">
                     <span>Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/jobs.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Jobs.png" alt="" class="nav-icon">
                     <span>Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
@@ -208,34 +228,34 @@
                     <span>Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/health.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/healthcare.png" alt="" class="nav-icon">
                     <span>Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/payment.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Payment.png" alt="" class="nav-icon">
                     <span>Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/icon-taxation.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Finance.png" alt="" class="nav-icon">
                     <span>Finance</span>
                 </a>
             </nav>
 
             <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html" class="nav-item nav-item--danger">
-                    <img src="/assets/emergence-image/sos-logo.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Emergency.png" alt="" class="nav-icon">
                     <span>Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/images/icon-chat.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon">
                     <span>Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/emergence-image/setting-icon.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon">
                     <span>Settings</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
-                    <img src="/assets/marketplace-image/logout.png" alt="" class="nav-icon">
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon">
                     <span>Logout</span>
                 </a>
             </div>
@@ -438,6 +458,61 @@
                     </div>
                 </div>
             </section>
+
+            <!-- ══════════ FOOTER ══════════ -->
+            <footer class="site-footer">
+                <div class="footer-bar">
+                    <span class="footer-brand">M3ak</span>
+                    <nav class="footer-bar-nav">
+                        <a href="#" class="footer-bar-link">Privacy Policy</a>
+                        <a href="#" class="footer-bar-link">Terms of Service</a>
+                        <a href="#" class="footer-bar-link">Security Disclosure</a>
+                        <a href="/pages/app/support.html" class="footer-bar-link footer-bar-link--active">Help Center</a>
+                    </nav>
+                    <p class="footer-copy">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                </div>
+
+                <div class="border-t border-black/5 dark:border-white/10">
+                    <div class="footer-grid">
+                        <div>
+                            <p class="footer-col-title">Contact Us</p>
+                            <ul class="footer-col-list">
+                                <li class="footer-contact">
+                                    <img src="/assets/support-image/mail.png" alt="" class="footer-contact-icon">
+                                    <a href="mailto:support@m3ak.id" class="hover:text-brand dark:hover:text-accent-400">support@m3ak.id</a>
+                                </li>
+                                <li class="footer-contact">
+                                    <img src="/assets/support-image/phone.png" alt="" class="footer-contact-icon">
+                                    <a href="tel:+212500000000" class="hover:text-brand dark:hover:text-accent-400">+212 500000000</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <p class="footer-col-title">Working Hours</p>
+                            <ul class="footer-col-list">
+                                <li>Monday - Friday: 8am - 8pm</li>
+                                <li>Saturday: 10am - 4pm</li>
+                                <li>Sunday: Closed</li>
+                            </ul>
+                            <p class="footer-note">All times in GMT+1</p>
+                        </div>
+
+                        <div>
+                            <p class="footer-col-title">Global HQ</p>
+                            <ul class="footer-col-list">
+                                <li>Vala Bleu</li>
+                                <li>Agadir</li>
+                                <li>Morocco</li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-map">
+                            <img src="/assets/images/image_maroc.png" alt="Map of the M3ak global headquarters">
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </main>
     </div>
 
