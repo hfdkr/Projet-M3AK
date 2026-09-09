@@ -74,7 +74,7 @@
         .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 lg:hidden; }
         .app-scrim.is-open { @apply block lg:hidden; }
         .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
-                              border-r border-black/5 dark:border-night-600 bg-brand-soft dark:bg-night-800 px-3 py-5
+                              border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5
                               transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-60 lg:translate-x-0; }
         .app-sidebar.is-open { @apply translate-x-0; }
         .sidebar-head  { @apply mb-5 px-2; }
@@ -83,7 +83,7 @@
         .sidebar-nav   { @apply space-y-0.5; }
         .sidebar-foot  { @apply mt-auto space-y-0.5 pt-6; }
         .nav-item      { @apply flex items-center gap-3 rounded-[999px] px-3 py-2.5 text-sm font-medium text-muted dark:text-mist-300
-                                hover:bg-white dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
+                                hover:bg-[#F1F4F2] dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
         .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
         .nav-item--danger { @apply bg-danger/40 font-semibold text-danger dark:text-white hover:bg-danger/55 hover:text-danger dark:hover:text-white; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
