@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
-    <title>Housing — M3ak Morocco</title>
+    <title>Housing &amp; Property Services — M3ak Morocco</title>
     <script src="/pages/js/session.js"></script>
     <script src="/pages/js/theme.js"></script>
 
@@ -36,6 +36,10 @@
             --color-brand-dark: #084F34;
             --color-brand-soft: #E9F3EE;
             --color-brand-line: #CFE3D8;
+            --color-blue: #316BF3;
+            --color-blue-dark: #2554C7;
+            --color-amber: #B45309;
+            --color-violet: #7C3AED;
             --color-danger: #E1362C;
             --color-ink: #0F1A15;
             --color-muted: #6B7A73;
@@ -54,10 +58,12 @@
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
-        body {
-            -webkit-font-smoothing: antialiased;
-        }
+        body { -webkit-font-smoothing: antialiased; }
 
+        .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+
+        /* ---------- Shared citizen sidebar ---------- */
         .nav-item {
             display: flex;
             align-items: center;
@@ -69,47 +75,32 @@
             color: #6B7A73;
             transition: background-color .15s, color .15s;
         }
+        .nav-item:hover { background: #fff; color: #0F1A15; }
+        .dark .nav-item { color: #7C8981; }
+        .dark .nav-item:hover { background: #151C18; color: #E7ECE9; }
 
-        .nav-item:hover {
-            background: #fff;
-            color: #0F1A15;
-        }
+        .nav-icon { width: 18px; height: 18px; flex-shrink: 0; object-fit: contain; }
+        .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
 
-        .dark .nav-item {
-            color: #7C8981;
-        }
+        /* ---------- Housing page components ---------- */
+        .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
 
-        .dark .nav-item:hover {
-            background: #151C18;
-            color: #E7ECE9;
-        }
+        .filter-chip   { @apply inline-flex shrink-0 items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30; }
+        .filter-chip[aria-selected="true"] { @apply border-transparent bg-ink text-white dark:bg-accent-400 dark:text-night-900; }
 
-        .nav-icon {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            object-fit: contain;
-        }
+        .feature-card  { @apply relative overflow-hidden rounded-2xl p-6 text-white lg:p-7; }
+        .feature-badge { @apply inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider; }
+        .feature-watermark { @apply pointer-events-none absolute -bottom-10 -right-8 h-44 w-44 text-white/10; }
 
-        .dark .nav-icon:not(.nav-icon--active) {
-            filter: brightness(0) invert(1);
-            opacity: .9;
-        }
+        .svc-card   { @apply flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-lg; }
+        .svc-media  { @apply relative flex aspect-[16/10] items-center justify-center; }
+        .svc-rating { @apply absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-bold text-white backdrop-blur; }
+        .svc-cat    { @apply text-[10px] font-extrabold uppercase tracking-wider; }
+        .svc-meta   { @apply mt-1.5 flex items-center gap-1.5 text-[11px] leading-tight text-muted dark:text-mist-300; }
+        .svc-foot   { @apply mt-auto flex items-center justify-between gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3; }
+        .svc-btn    { @apply shrink-0 rounded-full bg-brand px-3.5 py-2 text-[11px] font-bold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300; }
 
-        .tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .25rem;
-            padding: .375rem .75rem;
-            font-size: 10px;
-            font-weight: 500;
-            color: #6B7A73;
-        }
-
-        .dark .tab {
-            color: #7C8981;
-        }
+        .compliance-pill { @apply inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-white/10; }
 
         /* Icon rail: collapsed at rest, expands automatically on hover/focus */
         @media (min-width: 1024px) {
@@ -126,19 +117,10 @@
                 justify-content: center;
                 border-radius: 9999px;
             }
-            #sidebar {
-                width: 5rem;
-                transition: width .2s ease;
-            }
+            #sidebar { width: 5rem; transition: width .2s ease; }
+            #sidebar:hover, #sidebar:focus-within { width: 14rem; }
 
-            #sidebar:hover,
-            #sidebar:focus-within {
-                width: 14rem;
-            }
-
-            #sidebar a img {
-                flex-shrink: 0;
-            }
+            #sidebar a img { flex-shrink: 0; }
 
             #sidebar .sidebar-text,
             #sidebar .nav-label {
@@ -149,26 +131,18 @@
                 opacity: 0;
                 transition: opacity .15s ease;
             }
-
             #sidebar:hover .sidebar-text,
             #sidebar:hover .nav-label,
             #sidebar:focus-within .sidebar-text,
-            #sidebar:focus-within .nav-label {
-                width: auto;
-                opacity: 1;
-            }
+            #sidebar:focus-within .nav-label { width: auto; opacity: 1; }
 
             #sidebar .sidebar-head,
-            #sidebar a {
-                justify-content: center;
-            }
+            #sidebar a { justify-content: center; }
 
             #sidebar:hover .sidebar-head,
             #sidebar:hover a,
             #sidebar:focus-within .sidebar-head,
-            #sidebar:focus-within a {
-                justify-content: flex-start;
-            }
+            #sidebar:focus-within a { justify-content: flex-start; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -181,16 +155,20 @@
 
     <!-- ══════════ TOP BAR ══════════ -->
     <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
+        <div class="flex h-16 items-center gap-3 px-4 lg:px-6">
             <button id="menuBtn" type="button"
                 class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
                 <span class="sr-only">Open menu</span>
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services"
-                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
-
+            <a href="/pages/app/coming-soon.html?feature=Services" class="flex items-center gap-2.5">
+                <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand text-sm font-extrabold text-white">M</span>
+                <span class="leading-tight">
+                    <span class="block text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</span>
+                    <span class="block text-[10px] font-bold uppercase tracking-[0.14em] text-muted dark:text-mist-300">Citizen Services</span>
+                </span>
+            </a>
 
             <div class="ml-auto flex items-center gap-1.5">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
@@ -203,20 +181,13 @@
                 <button type="button"
                     class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
+                    <img src="/assets/images/notification.png" alt="" class="size-5 object-contain" />
                     <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
                 </button>
 
-                <a href="/pages/app/support.html"
-                    class="hidden size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:grid">
-                    <span class="sr-only">Help</span>
-                    <img src="/assets/images/icon-chat.png" alt="Help" class="size-5 object-contain" />
-                </a>
-
                 <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
-                    <span class="sr-only">Your profile</span>A
-                </button>
+                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40"
+                    data-user-initials>A</button>
             </div>
         </div>
     </header>
@@ -240,7 +211,7 @@
                     <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
                     <span class="nav-label">My Space</span>
                 </a>
-<a href="/pages/app/transport.html" class="nav-item">
+                <a href="/pages/app/transport.html" class="nav-item">
                     <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
                     <span class="nav-label">Transport</span>
                 </a>
@@ -292,111 +263,274 @@
             </div>
         </aside>
 
-        <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
+        <!-- ══════════ CONTENT ══════════ -->
+        <main class="min-w-0 flex-1 px-4 pb-16 pt-6 lg:px-8 lg:pt-8">
+            <div class="mx-auto max-w-[1200px] space-y-8">
 
-            <div>
-                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Housing Services</h1>
-                <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
-                    Find social housing programs, building permits, and property services across the Kingdom.
-                </p>
-            </div>
-
-            <label class="relative mt-5 block max-w-xl">
-                <span class="sr-only">Search housing services</span>
-                <img src="/assets/images/search-housing-services.png" alt="" class="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 object-contain" />
-                <input id="housingSearch" type="search" placeholder="Search housing services..."
-                    class="w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
-            </label>
-
-            <div id="housingGrid" class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-
-                <a href="#" data-name="Social Housing Programs" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-4.png" alt="Housing icon 4" class="size-5 object-contain" />
+                <!-- Page header -->
+                <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                        <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">Housing &amp; Property Services</h1>
+                        <p class="mt-2 max-w-xl text-sm leading-relaxed text-muted dark:text-mist-300">
+                            Access government housing assistance programs, property deeds, and urban planning
+                            services across Morocco.
+                        </p>
+                    </div>
+                    <span class="verified-badge shrink-0">
+                        <svg viewBox="0 0 24 24" fill="none" class="size-4 shrink-0" aria-hidden="true">
+                            <path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                            <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Official Public Service Provider &bull; Al Omrane &amp; ANCFCC Verified
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">Social Housing Programs</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Apply for subsidized housing under national assistance programs.</p>
-                </a>
-
-                <a href="#" data-name="Building Permits" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-5.png" alt="Housing icon 5" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Building Permits</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Request, track, and renew construction and renovation permits.</p>
-                </a>
-
-                <a href="#" data-name="Property Records" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-6.png" alt="Housing icon 6" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Property Records</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Access land titles, deeds, and property registration documents.</p>
-                </a>
-
-                <a href="#" data-name="Rental Assistance" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-7.png" alt="Housing icon 7" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Rental Assistance</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Support and subsidies for tenants renting across the Kingdom.</p>
-                </a>
-
-                <a href="#" data-name="Urban Planning" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-8.png" alt="Housing icon 8" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Urban Planning</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">View zoning maps, land-use rules, and development plans.</p>
-                </a>
-
-                <a href="#" data-name="Property Tax" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-9.png" alt="Housing icon 9" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Property Tax</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Pay and manage your annual property tax (taxe d'habitation).</p>
-                </a>
-
-                <a href="#" data-name="Home Renovation Grants" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-10.png" alt="Housing icon 10" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Renovation Grants</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Funding for eligible energy-efficiency and safety upgrades.</p>
-                </a>
-
-                <a href="#" data-name="Real Estate Registry" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/housing-icon-11.png" alt="Housing icon 11" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Real Estate Registry</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Search the national registry for parcels and ownership history.</p>
-                </a>
-            </div>
-
-            <p id="housingEmpty" class="hidden py-16 text-center text-sm text-muted dark:text-mist-300">
-                No housing services match your search.
-            </p>
-
-            <!-- CTA -->
-            <div class="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9">
-                <img src="/assets/images/housing-icon-12.png" alt="" class="absolute -right-8 -bottom-10 size-40 object-contain" />
-                <div class="relative max-w-sm">
-                    <p class="text-lg font-extrabold">Own Your Home Faster</p>
-                    <p class="mt-1.5 text-sm text-white/80">Pre-qualify for the Sakan national housing assistance program in minutes.</p>
                 </div>
-                <button type="button" id="checkEligibilityBtn"
-                    class="relative mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft lg:mt-0 lg:shrink-0">
-                    Check Eligibility
-                </button>
+
+                <!-- Filter tabs -->
+                <div class="-mx-4 overflow-x-auto px-4 no-scrollbar lg:mx-0 lg:px-0">
+                    <div id="filterTabs" class="flex w-max gap-2 lg:w-full lg:flex-wrap">
+                        <button type="button" class="filter-chip" data-filter="all" aria-selected="true">
+                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true">
+                                <path d="M4 11.5 12 4l8 7.5M6 10v9h12v-9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            All Services
+                        </button>
+                        <button type="button" class="filter-chip" data-filter="aid" aria-selected="false">
+                            <span class="size-1.5 rounded-full bg-brand dark:bg-accent-400"></span>
+                            Daam Sakane (Direct Housing Aid)
+                        </button>
+                        <button type="button" class="filter-chip" data-filter="deeds" aria-selected="false">ANCFCC Land &amp; Title Deeds</button>
+                        <button type="button" class="filter-chip" data-filter="leases" aria-selected="false">Certified Rental Leases</button>
+                        <button type="button" class="filter-chip" data-filter="permits" aria-selected="false">Construction Permits &amp; Rokhas</button>
+                    </div>
+                </div>
+
+                <!-- Feature cards -->
+                <div class="grid gap-4 lg:grid-cols-2">
+                    <article class="feature-card bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]">
+                        <svg viewBox="0 0 24 24" fill="none" class="feature-watermark" aria-hidden="true">
+                            <path d="M3 11.5 12 3l9 8.5M5 10v11h14V10" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                            <path d="M10 21v-6h4v6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="relative">
+                            <span class="feature-badge">
+                                <svg viewBox="0 0 24 24" fill="none" class="size-3" aria-hidden="true">
+                                    <path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
+                                Direct State Aid
+                            </span>
+                            <h2 class="mt-4 text-xl font-extrabold">Daam Sakane <span class="font-bold text-white/80">(دعم السكن)</span></h2>
+                            <p class="mt-2 max-w-md text-sm leading-relaxed text-white/85">
+                                Check your eligibility for up to 100,000&nbsp;DH direct financial aid for principal
+                                residence purchase across all Moroccan regions.
+                            </p>
+                            <button type="button" data-action="Daam Sakane subsidy application"
+                                class="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-[#1E3A8A] transition hover:bg-white/90">
+                                Apply for Subsidy
+                                <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="feature-card bg-gradient-to-br from-brand to-[#043528]">
+                        <svg viewBox="0 0 24 24" fill="none" class="feature-watermark" aria-hidden="true">
+                            <path d="M3 11.5 12 3l9 8.5M5 10v11h14V10" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                            <path d="M10 21v-6h4v6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                        </svg>
+                        <div class="relative">
+                            <span class="feature-badge">
+                                <svg viewBox="0 0 24 24" fill="none" class="size-3" aria-hidden="true">
+                                    <path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
+                                Conservation Foncière
+                            </span>
+                            <h2 class="mt-4 text-xl font-extrabold">Muhafadati <span class="font-bold text-white/80">(محافظتي)</span> &mdash; ANCFCC</h2>
+                            <p class="mt-2 max-w-md text-sm leading-relaxed text-white/85">
+                                Protect your real estate with instant SMS/Email notifications on any title deed
+                                transaction, mortgage filing, or cadastral modification.
+                            </p>
+                            <button type="button" data-action="Muhafadati title deed monitoring"
+                                class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#04331F] px-4 py-2.5 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-[#052a1a]">
+                                Manage Title Deeds
+                                <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Essential services -->
+                <section>
+                    <div class="flex items-end justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-extrabold tracking-tight">Essential Property &amp; Housing Services</h2>
+                            <p class="mt-1 text-xs text-muted dark:text-mist-300">Official procedures approved by Moroccan Ministries and Municipalities</p>
+                        </div>
+                        <a href="/pages/app/coming-soon.html?feature=All+Housing+Services"
+                            class="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400 hover:underline">
+                            See all (18)
+                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+
+                    <div id="servicesGrid" class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+                        <!-- Card 1 -->
+                        <article class="svc-card" data-cat="aid" data-name="Principal Residence Subsidy">
+                            <div class="svc-media bg-gradient-to-br from-brand-soft to-brand-line dark:from-night-700 dark:to-night-600 text-brand dark:text-accent-400">
+                                <svg viewBox="0 0 24 24" fill="none" class="size-12 opacity-60" aria-hidden="true">
+                                    <path d="M3 11.5 12 3l9 8.5M5 10v11h14V10" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                    <path d="M10 21v-6h4v6" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="svc-rating">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="size-3 text-amber-400" aria-hidden="true"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19l1-5.8-4.3-4.1 5.9-.9L12 3Z"/></svg>
+                                    4.9 Verified
+                                </span>
+                            </div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <p class="svc-cat text-brand dark:text-accent-400">Direct State Aid</p>
+                                <h3 class="mt-1 text-sm font-bold leading-snug">Principal Residence Subsidy</h3>
+                                <p class="svc-meta">
+                                    <svg viewBox="0 0 24 24" fill="none" class="size-3.5 shrink-0" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+                                    National Coverage &bull; Al Omrane
+                                </p>
+                                <div class="svc-foot -mx-4 mt-4">
+                                    <div>
+                                        <p class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">Aid Amount</p>
+                                        <p class="text-sm font-extrabold">70k&ndash;100k <span class="text-[10px] font-semibold text-muted dark:text-mist-300">DH</span></p>
+                                    </div>
+                                    <button type="button" class="svc-btn" data-action="Daam Sakane aid simulation">Simulate Aid</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 2 -->
+                        <article class="svc-card" data-cat="deeds" data-name="Electronic Ownership Certificate">
+                            <div class="svc-media bg-gradient-to-br from-blue/15 to-blue/5 dark:from-blue/25 dark:to-night-600 text-blue">
+                                <svg viewBox="0 0 24 24" fill="none" class="size-12 opacity-60" aria-hidden="true">
+                                    <path d="M7 3h7l5 5v13H7z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                    <path d="M14 3v5h5M9.5 13h6M9.5 16.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                </svg>
+                                <span class="svc-rating">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="size-3 text-amber-400" aria-hidden="true"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19l1-5.8-4.3-4.1 5.9-.9L12 3Z"/></svg>
+                                    4.9 ANCFCC
+                                </span>
+                            </div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <p class="svc-cat text-blue">Cadastre &amp; Title</p>
+                                <h3 class="mt-1 text-sm font-bold leading-snug">Electronic Ownership Certificate</h3>
+                                <p class="svc-meta">
+                                    <svg viewBox="0 0 24 24" fill="none" class="size-3.5 shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" stroke="currentColor" stroke-width="1.6"/></svg>
+                                    Online Issuance &bull; Legal Value
+                                </p>
+                                <div class="svc-foot -mx-4 mt-4">
+                                    <div>
+                                        <p class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">Official fee</p>
+                                        <p class="text-sm font-extrabold">100 <span class="text-[10px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
+                                    </div>
+                                    <button type="button" class="svc-btn" data-action="Ownership certificate PDF request">Request PDF</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 3 -->
+                        <article class="svc-card" data-cat="permits" data-name="Building &amp; Renovation Permit">
+                            <div class="svc-media bg-gradient-to-br from-amber/15 to-amber/5 dark:from-amber/25 dark:to-night-600 text-amber">
+                                <svg viewBox="0 0 24 24" fill="none" class="size-12 opacity-60" aria-hidden="true">
+                                    <path d="M4 21h16M6 21V8l6-4 6 4v13" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                    <path d="M10 21v-5h4v5M9 10h.01M15 10h.01" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                </svg>
+                                <span class="svc-rating">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="size-3 text-amber-400" aria-hidden="true"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19l1-5.8-4.3-4.1 5.9-.9L12 3Z"/></svg>
+                                    4.8 Rokhas
+                                </span>
+                            </div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <p class="svc-cat text-amber">Urban Planning</p>
+                                <h3 class="mt-1 text-sm font-bold leading-snug">Building &amp; Renovation Permit</h3>
+                                <p class="svc-meta">
+                                    <svg viewBox="0 0 24 24" fill="none" class="size-3.5 shrink-0" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M4 21h16M9 21v-5h6v5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                                    Commune &amp; Agence Urbaine
+                                </p>
+                                <div class="svc-foot -mx-4 mt-4">
+                                    <div>
+                                        <p class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">Processing</p>
+                                        <p class="text-sm font-extrabold">~15 <span class="text-[10px] font-semibold text-muted dark:text-mist-300">Days</span></p>
+                                    </div>
+                                    <button type="button" class="svc-btn" data-action="Rokhas permit dossier tracking">Track Dossier</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Card 4 -->
+                        <article class="svc-card" data-cat="leases" data-name="Certified Lease Agreement">
+                            <div class="svc-media bg-gradient-to-br from-violet/15 to-violet/5 dark:from-violet/25 dark:to-night-600 text-violet">
+                                <svg viewBox="0 0 24 24" fill="none" class="size-12 opacity-60" aria-hidden="true">
+                                    <path d="M6 3h9l4 4v14H6z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+                                    <path d="M15 3v4h4M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="svc-rating">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="size-3 text-amber-400" aria-hidden="true"><path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19l1-5.8-4.3-4.1 5.9-.9L12 3Z"/></svg>
+                                    4.9 Legal
+                                </span>
+                            </div>
+                            <div class="flex flex-1 flex-col p-4">
+                                <p class="svc-cat text-violet">Rental Registry</p>
+                                <h3 class="mt-1 text-sm font-bold leading-snug">Certified Lease Agreement</h3>
+                                <p class="svc-meta">
+                                    <svg viewBox="0 0 24 24" fill="none" class="size-3.5 shrink-0" aria-hidden="true"><path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                                    Tax &amp; Legal Protection
+                                </p>
+                                <div class="svc-foot -mx-4 mt-4">
+                                    <div>
+                                        <p class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">Legal Stamp</p>
+                                        <p class="text-sm font-extrabold">Digital <span class="text-[10px] font-semibold text-muted dark:text-mist-300">e-Signature</span></p>
+                                    </div>
+                                    <button type="button" class="svc-btn" data-action="Certified lease registration">Register Lease</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <p id="servicesEmpty" class="hidden py-14 text-center text-sm text-muted dark:text-mist-300">
+                        No services match this filter.
+                    </p>
+                </section>
+
+                <!-- Partners / compliance -->
+                <section class="rounded-2xl bg-brand-soft dark:bg-accent-400/10 p-5 ring-1 ring-brand-line dark:ring-accent-400/20 lg:flex lg:items-center lg:justify-between lg:gap-6">
+                    <div class="flex items-start gap-3">
+                        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand text-white">
+                            <svg viewBox="0 0 24 24" fill="none" class="size-5" aria-hidden="true"><path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+                        </span>
+                        <div>
+                            <p class="text-sm font-bold">Verified Institutional Partners</p>
+                            <p class="mt-1 max-w-lg text-xs leading-relaxed text-muted dark:text-mist-300">
+                                Coordinated with Al Omrane, ANCFCC (Conservation Foncière), and the Ministry of
+                                National Territorial Planning &amp; Housing.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 lg:mt-0 lg:shrink-0 lg:justify-end">
+                        <span class="compliance-pill">
+                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5 text-brand dark:text-accent-400" aria-hidden="true"><path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Data Privacy (Loi 09-08)
+                        </span>
+                        <span class="compliance-pill">
+                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5 text-brand dark:text-accent-400" aria-hidden="true"><path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Legal Value (Loi 43-20)
+                        </span>
+                        <span class="compliance-pill">
+                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5 text-brand dark:text-accent-400" aria-hidden="true"><path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Secure CMI Payment
+                        </span>
+                    </div>
+                </section>
+
             </div>
         </main>
     </div>
 
     <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300">
     </div>
 
     <script>
@@ -408,7 +542,7 @@
             t._t = setTimeout(function () { t.style.opacity = "0"; }, 2400);
         }
 
-        /* Drawer mobile */
+        /* Drawer (mobile / tablet) */
         var sidebar = document.getElementById("sidebar"), scrim = document.getElementById("scrim");
         function openDrawer(open) {
             sidebar.classList.toggle("-translate-x-full", !open);
@@ -418,31 +552,39 @@
         document.getElementById("menuBtn").addEventListener("click", function () { openDrawer(true); });
         scrim.addEventListener("click", function () { openDrawer(false); });
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
-        sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
+        sidebar.addEventListener("mouseleave", function () {
+            if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false);
+        });
 
-        /* Directory cards: demo action + search filter */
-        document.querySelectorAll(".directory-card").forEach(function (card) {
+        /* Any element with data-action fires a demo toast */
+        document.querySelectorAll("[data-action]").forEach(function (el) {
+            el.addEventListener("click", function () { toast("Opening " + el.dataset.action + "…"); });
+        });
+
+        /* Service cards open on click */
+        document.querySelectorAll(".svc-card").forEach(function (card) {
             card.addEventListener("click", function (e) {
-                e.preventDefault();
+                if (e.target.closest("[data-action]")) return;
                 toast("Opening " + card.dataset.name + "…");
             });
         });
 
-        var search = document.getElementById("housingSearch");
-        var cards = Array.prototype.slice.call(document.querySelectorAll(".directory-card"));
-        search.addEventListener("input", function () {
-            var q = search.value.trim().toLowerCase();
-            var visible = 0;
-            cards.forEach(function (card) {
-                var match = card.dataset.name.toLowerCase().includes(q);
-                card.classList.toggle("hidden", !match);
-                if (match) visible++;
+        /* Filter tabs */
+        var tabs = Array.prototype.slice.call(document.querySelectorAll("#filterTabs .filter-chip"));
+        var cards = Array.prototype.slice.call(document.querySelectorAll("#servicesGrid .svc-card"));
+        var empty = document.getElementById("servicesEmpty");
+        tabs.forEach(function (tab) {
+            tab.addEventListener("click", function () {
+                tabs.forEach(function (t) { t.setAttribute("aria-selected", t === tab ? "true" : "false"); });
+                var f = tab.dataset.filter;
+                var visible = 0;
+                cards.forEach(function (card) {
+                    var show = f === "all" || card.dataset.cat === f;
+                    card.classList.toggle("hidden", !show);
+                    if (show) visible++;
+                });
+                empty.classList.toggle("hidden", visible !== 0);
             });
-            document.getElementById("housingEmpty").classList.toggle("hidden", visible !== 0);
-        });
-
-        document.getElementById("checkEligibilityBtn").addEventListener("click", function () {
-            toast("Checking your eligibility for the Sakan program…");
         });
     </script>
 </body>
