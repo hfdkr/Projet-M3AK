@@ -233,9 +233,9 @@
 
             <div class="mt-auto rounded-xl border border-black/5 dark:border-white/10 bg-canvas dark:bg-night-700 px-3 py-2.5">
                 <p class="flex items-center gap-2 text-xs font-bold">
-                    <span class="size-2 rounded-full bg-accent-400"></span> AI Status
+                    <span class="size-2 rounded-full bg-danger"></span> AI Status
                 </p>
-                <p class="mt-0.5 pl-4 text-[11px] text-muted dark:text-mist-300">Ready to help</p>
+                <p class="mt-0.5 pl-4 text-[11px] text-muted dark:text-mist-300">Currently unavailable</p>
             </div>
         </aside>
 
@@ -316,7 +316,7 @@
 
                     <!-- Mic panel -->
                     <section id="micPanel"
-                        class="flex flex-col rounded-2xl bg-white dark:bg-night-800 p-6 ring-1 ring-black/5 dark:ring-white/10 lg:p-8">
+                        class="is-idle flex flex-col rounded-2xl bg-white dark:bg-night-800 p-6 ring-1 ring-black/5 dark:ring-white/10 lg:p-8">
                         <div class="flex flex-1 flex-col items-center justify-center gap-5 py-6">
                             <button type="button" id="micBtn"
                                 class="mic-ring grid size-24 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-dark text-white transition hover:scale-[1.03] focus-visible:ring-4 focus-visible:ring-brand/30 lg:size-28">
@@ -326,7 +326,7 @@
 
                             <div class="flex flex-col items-center gap-1.5">
                                 <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                                <p id="micStatus" class="text-sm font-semibold text-brand dark:text-accent-400">Listening…</p>
+                                <p id="micStatus" class="text-sm font-semibold text-brand dark:text-accent-400">Voice assistant unavailable</p>
                             </div>
                         </div>
 
@@ -447,7 +447,7 @@
     </div>
 
     <div id="toast"
-        class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+        class="pointer-events-none fixed bottom-24 left-1/2 z-50 max-w-[92vw] -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
     </div>
 
     <script>
@@ -509,27 +509,18 @@
             transcript.scrollTop = transcript.scrollHeight;
         }
 
-        var REPLIES = {
-            "open my profile": "Opening your profile now — you can review your personal information and Digital ID there.",
-            "digital identity status": "Your digital identity is fully verified and active. Would you like me to open the detailed report?",
-            "show recent transactions": "Here are your last payments: Water & Electricity −342.50 DH, Maroc Telecom −199.00 DH. Want the full history?",
-            "check my digital identity status": "Your digital identity is fully verified and active. Would you like me to open the detailed report?"
-        };
+        var UNAVAILABLE = "AI assistance is currently unavailable. Please use the options below to view your details.";
 
-        function assistantReply(userText) {
-            var key = userText.trim().toLowerCase();
-            var text = REPLIES[key] || "Got it — I'm looking that up for you right now.";
-            setTimeout(function () { bubble("assistant", text); }, 550);
+        function assistantReply() {
+            setTimeout(function () { bubble("assistant", UNAVAILABLE); }, 400);
         }
 
-        bubble("assistant", "Hello! I am ready to assist you. What can I help you with today?");
-        bubble("user", "I need to check my digital identity status.");
-        bubble("assistant", "Your digital identity is fully verified and active. Would you like me to open the detailed report?");
+        bubble("assistant", UNAVAILABLE);
 
         function send(text) {
             if (!text.trim()) return;
             bubble("user", text.trim());
-            assistantReply(text);
+            assistantReply();
         }
 
         $("#chatForm").addEventListener("submit", function (e) {
@@ -543,21 +534,16 @@
             c.addEventListener("click", function () { send(c.dataset.say); });
         });
 
-        /* ── Mic (simulated) ── */
+        /* ── Mic (voice assistant is offline) ── */
         var panel = $("#micPanel"), micStatus = $("#micStatus");
-        function setListening(on) {
-            panel.classList.toggle("is-idle", !on);
-            micStatus.textContent = on ? "Listening…" : "Tap the mic to talk";
+        panel.classList.add("is-idle");
+        micStatus.textContent = "Voice assistant unavailable";
+
+        function micUnavailable() {
+            toast("AI voice assistance is currently unavailable");
         }
-        $("#micBtn").addEventListener("click", function () {
-            var nowOn = panel.classList.contains("is-idle");
-            setListening(nowOn);
-            toast(nowOn ? "Listening — speak now" : "Voice input stopped");
-        });
-        $("#inlineMic").addEventListener("click", function () {
-            setListening(true);
-            toast("Listening — speak now");
-        });
+        $("#micBtn").addEventListener("click", micUnavailable);
+        $("#inlineMic").addEventListener("click", micUnavailable);
 
         /* ── Languages ── */
         function paintLangs(active) {
