@@ -148,11 +148,17 @@
         .login-wrapper{
             @apply my-[12px] md:my-0;
         }
+        .login-wrapper-2{
+            @apply hidden md:flex md:my-[12px] md:py-[30px];
+        }
         .login-text{
             @apply font-hanken font-medium text-[13px] text-green-900 dark:text-mist-200 md:text-[15px] whitespace-nowrap;
         }
         .login-link{
             @apply text-blue-600 dark:text-accent-400
+        }
+        .login-link-2{
+            @apply md:text-blue-600 md:dark:text-accent-400
         }
         .stats-row{
             @apply hidden md:flex items-center gap-[56px] mt-[48px];
@@ -281,7 +287,8 @@
 
 
             <div class="flex items-center gap-[10px]">
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                    aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
                         <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
@@ -307,7 +314,8 @@
                 <!-- Image + floating badge -->
                 <section class="section-1">
                     <div class="div-section">
-                        <img src="./assets/images/img-section.png" alt="digital identity card" class="w-full rounded-[24px]">
+                        <img src="./assets/images/img-section.png" alt="digital identity card"
+                            class="w-full rounded-[24px]">
 
                         <!-- Top Left Floating Icon -->
                         <div class="div-left-icon">
@@ -372,9 +380,9 @@
                             <div class="login-wrapper">
                                 <span class="login-text">Already
                                     have an accout?
-                                    <a href="/pages/auth/login.html" class="login-link">Login in</a>
+                                    <a href="/pages/auth/login.html" class="login-link-2">Login in</a>
                                 </span>
-                            </div>
+                            </div>                  
                         </div>
 
                         <!-- Stats row (desktop/tablet only) -->
@@ -388,6 +396,12 @@
                                 <p class="stat-label">Encryption Standard</p>
                             </div>
                         </div>
+                        <div class="login-wrapper-2">
+                                <span class="login-text">
+                                    Having trouble?
+                                    <a href="/pages/app/support.html" class="login-link">Chat with Support</a>
+                                </span>
+                            </div>
                     </div>
                 </section>
             </div>
@@ -503,7 +517,7 @@
                     <p class="step3-brand">M3ak</p>
                     <p class="step3-copyright">© 2026 M3ak Morocco. All rights reserved.</p>
                     <div class="step3-links">
-                        <a href="/pages/app/overview.html">About</a>
+                        <a href="#">About</a>
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>
                         <a href="#">Legal Notice</a>
@@ -533,8 +547,10 @@
                 © 2026 M3ak Digital Identity. All rights reserved. Kingdom of Morocco.
             </p>
             <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
                 <a href="#" class="footer-link">Privacy Policy</a>
                 <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Legal Notice</a>
             </div>
         </div>
     </footer>
