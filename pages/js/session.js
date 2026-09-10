@@ -100,8 +100,19 @@
        (hidden md:flex, md:block...) qu'une classe .hidden ne
        peut pas neutraliser au-delà du breakpoint.
     ------------------------------------------------------ */
+    /* A page opened with ?as=guest is rendered as if nobody were signed in
+       (used by the onboarding funnel, which links to shared pages like
+       support.html but must never expose the signed-in app shell). */
+    function isForcedGuest() {
+        try {
+            return new URLSearchParams(window.location.search).get("as") === "guest";
+        } catch (e) {
+            return false;
+        }
+    }
+
     function apply() {
-        var user = getUser();
+        var user = isForcedGuest() ? null : getUser();
         var state = user ? "user" : "guest";
 
         if (document.body && document.body.hasAttribute("data-require-auth") && !user) {
