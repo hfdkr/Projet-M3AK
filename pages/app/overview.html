@@ -731,7 +731,7 @@
               <div>
                 <label for="phone" class="field-label">Phone Number</label>
                 <div class="field-row">
-                  <input id="phone" type="tel" class="field-value" value="+212 661-000000" readonly>
+                  <input id="phone" type="tel" class="field-value" value="+212 661-000000" data-profile-phone readonly>
                   <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
                     <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
@@ -740,12 +740,37 @@
               <div>
                 <label for="address" class="field-label">Mailing Address</label>
                 <div class="field-row">
-                  <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir" readonly>
+                  <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir" data-profile-address readonly>
                   <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
                     <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
                 </div>
               </div>
+              <div>
+                <label for="city" class="field-label">City</label>
+                <div class="field-row">
+                  <input id="city" type="text" class="field-value" value="Agadir" data-profile-city readonly>
+                  <button type="button" class="field-edit" data-edit-field="city" aria-label="Edit city">
+                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label for="country" class="field-label">Country of Residence</label>
+                <div class="field-row">
+                  <input id="country" type="text" class="field-value" value="Morocco" data-profile-country readonly>
+                  <button type="button" class="field-edit" data-edit-field="country" aria-label="Edit country">
+                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 flex items-center justify-end gap-2 border-t border-black/5 dark:border-white/10 pt-4">
+              <button type="button" id="savePersonalInfo"
+                class="rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300">
+                Save Changes
+              </button>
             </div>
           </section>
 
@@ -1189,6 +1214,26 @@
         field.addEventListener("blur", () => { field.readOnly = true; }, { once: true });
       });
     });
+
+    const savePersonalInfoBtn = document.getElementById("savePersonalInfo");
+    if (savePersonalInfoBtn) {
+      savePersonalInfoBtn.addEventListener("click", () => {
+        window.M3ak.updateProfile({
+          personal: {
+            phone: document.getElementById("phone").value.trim(),
+            address: document.getElementById("address").value.trim()
+          },
+          location: {
+            city: document.getElementById("city").value.trim(),
+            country: document.getElementById("country").value.trim()
+          }
+        });
+        ["phone", "address", "city", "country"].forEach(id => {
+          document.getElementById(id).readOnly = true;
+        });
+        toast("Personal information saved");
+      });
+    }
 
     /* ── Init ── */
     renderAppointments();

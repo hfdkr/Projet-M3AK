@@ -115,11 +115,12 @@
                 var keptName = existing && existing.name && existing.name !== "Citizen"
                     ? existing.name
                     : (isEmail ? idValue.split("@")[0] : "Citizen");
-                window.M3ak.signIn({
+                var signedIn = window.M3ak.signIn({
                     name: keptName,
                     email: isEmail ? idValue : (existing && existing.email) || ""
                 });
-                window.location.href = "/pages/app/home.html";
+                var hasLocation = signedIn.profile && signedIn.profile.location && signedIn.profile.location.city;
+                window.location.href = hasLocation ? "/pages/app/home.html" : "/pages/auth/onboarding.html";
             }, 500);
         });
     }
