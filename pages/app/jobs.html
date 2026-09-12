@@ -360,6 +360,7 @@
 
                             <select id="locationSelect" class="field sm:w-40" aria-label="Location">
                                 <option value="">Location</option>
+                                <option>Agadir</option>
                                 <option>Rabat</option>
                                 <option>Casablanca</option>
                                 <option>Tangier</option>
@@ -697,6 +698,15 @@
                 toast("Opening " + btn.dataset.resource + "…");
             });
         });
+
+        /* Pre-fill the location filter from the user's saved city, if it
+           matches one of the options — the user can still change it. */
+        var savedCity = (window.M3ak.getProfile().location || {}).city;
+        var locationSelect = document.getElementById("locationSelect");
+        if (savedCity && Array.prototype.some.call(locationSelect.options, function (o) { return o.value === savedCity; })) {
+            locationSelect.value = savedCity;
+            state.location = savedCity;
+        }
 
         render();
     </script>
