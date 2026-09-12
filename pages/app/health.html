@@ -71,8 +71,6 @@
         .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
         .app-icon-btn       { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-icon-btn--lg   { @apply hidden lg:grid; }
-        .app-support-btn    { @apply flex items-center gap-2 rounded-full bg-brand dark:bg-accent-400 px-4 py-2 text-sm font-semibold text-white dark:text-night-900 shadow-sm transition hover:bg-brand-dark dark:hover:bg-accent-300; }
-        .app-support-btn img{ @apply size-4 object-contain; }
         .app-avatar         { @apply grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600; }
 
         /* ---------- App shell / sidebar (drawer on mobile + tablet, docked on desktop) ---------- */
@@ -171,11 +169,6 @@
                     <img src="/assets/health-image/notification.png" alt="" class="size-5 object-contain dark:hidden">
                     <img src="/assets/health-image/notification-dark.png" alt="" class="hidden size-5 object-contain dark:block">
                 </button>
-
-                <a href="/pages/app/support.html" class="app-support-btn">
-                    <img src="/assets/health-image/support.png" alt="">
-                    Support
-                </a>
 
                 <button type="button" class="app-avatar">
                     <span class="sr-only">Your profile</span><span data-user-initials>SA</span>
