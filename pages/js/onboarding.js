@@ -1,96 +1,132 @@
 (function () {
-  "use strict";
+    "use strict";
 
-  // Final page after onboarding
-  const FINAL_PAGE = "/pages/app/service.html";
+    var TOTAL_STEPS = 3;
+    var step = 1;
 
-  // Total onboarding steps
-  const TOTAL_STEPS = 3;
-  let currentStep = 1;
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("onboardingForm");
+        if (!form) { return; }
 
-  // Initialize onboarding when page loads
-  document.addEventListener("DOMContentLoaded", () => {
-    cloneHeroActions();
-    showStep(currentStep);
-    setupSkipButton();
-    setupIndicators();
-    setupGetStartedButtons();
-    setupResponsiveReset();
-  });
+        var backBtn = document.getElementById("obBack");
+        var nextBtn = document.getElementById("obNext");
+        var skipBtn = document.getElementById("obSkip");
+        var errorEl = document.getElementById("obError");
 
-  // Reset to first step on desktop screens
-  function setupResponsiveReset() {
-    const desktopQuery = window.matchMedia("(min-width: 768px)");
+        /* Prefill from any partial profile already saved (e.g. user came back
+           after skipping, or edited elsewhere and re-entered onboarding). */
+        prefill();
+        render();
 
-    const handleChange = (e) => {
-      if (e.matches) showStep(1);
-    };
-
-    desktopQuery.addEventListener("change", handleChange);
-    handleChange(desktopQuery);
-  }
-
-  // Duplicate hero action buttons for each slide
-  function cloneHeroActions() {
-    const source = document.getElementById("hero-actions-source");
-    if (!source) return;
-
-    document.querySelectorAll(".hero-actions-slot").forEach((slot) => {
-      const clone = source.cloneNode(true);
-      clone.removeAttribute("id");
-      slot.replaceWith(clone);
-    });
-  }
-
-  // Handle Skip button navigation
-  function setupSkipButton() {
-    const skipBtn = document.getElementById("skip-btn");
-    if (!skipBtn) return;
-
-    skipBtn.addEventListener("click", () => {
-      const next = currentStep < TOTAL_STEPS ? currentStep + 1 : 1;
-      showStep(next);
-    });
-  }
-
-  // Enable step indicator navigation
-  function setupIndicators() {
-    document
-      .querySelectorAll(
-        ".carousel-indicators .indicator, .carousel-indicators .indicator-active"
-      )
-      .forEach((dot) => {
-        dot.addEventListener("click", () => {
-          const target = parseInt(dot.getAttribute("data-goto"), 10);
-          if (target) showStep(target);
+        backBtn.addEventListener("click", function () {
+            hideError();
+            step = Math.max(1, step - 1);
+            render();
         });
-      });
-  }
 
-  // Placeholder for Get Started button
-  function setupGetStartedButtons() {}
+        nextBtn.addEventListener("click", function () {
+            if (!validateStep(step)) { return; }
+            hideError();
 
-  // Display the selected onboarding step
-  function showStep(step) {
-    if (step < 1 || step > TOTAL_STEPS) return;
-    currentStep = step;
+            if (step < TOTAL_STEPS) {
+                step += 1;
+                render();
+                return;
+            }
 
-    // Toggle visible section
-    document.querySelectorAll(".onboarding-step").forEach((section) => {
-      const sectionStep = parseInt(section.getAttribute("data-step"), 10);
-      section.classList.toggle("hidden", sectionStep !== step);
+            save();
+            window.location.href = "/pages/app/home.html";
+        });
+
+        skipBtn.addEventListener("click", function () {
+            save();
+            window.location.href = "/pages/app/home.html";
+        });
+
+        function render() {
+            document.querySelectorAll(".ob-step").forEach(function (el) {
+                el.classList.toggle("is-active", Number(el.dataset.step) === step);
+            });
+            document.querySelectorAll(".ob-dot").forEach(function (dot) {
+                var n = Number(dot.dataset.dot);
+                dot.classList.toggle("is-active", n === step);
+                dot.classList.toggle("is-done", n < step);
+            });
+            backBtn.classList.toggle("invisible", step === 1);
+            nextBtn.textContent = step === TOTAL_STEPS ? "Finish Setup" : "Next";
+        }
+
+        function validateStep(n) {
+            var stepEl = document.querySelector('.ob-step[data-step="' + n + '"]');
+            var required = stepEl.querySelectorAll("[required]");
+            for (var i = 0; i < required.length; i++) {
+                if (!required[i].value.trim()) {
+                    showError("Please fill in " + (required[i].previousElementSibling ? required[i].previousElementSibling.textContent : "this field") + ".");
+                    required[i].focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function showError(message) {
+            errorEl.textContent = message;
+            errorEl.classList.remove("hidden");
+        }
+
+        function hideError() {
+            errorEl.classList.add("hidden");
+        }
+
+        function val(id) {
+            var el = document.getElementById(id);
+            return el ? el.value.trim() : "";
+        }
+
+        function prefill() {
+            var profile = window.M3ak.getProfile();
+            var personal = profile.personal || {};
+            var location = profile.location || {};
+            var medical = profile.medical || {};
+            var contact = profile.emergencyContact || {};
+
+            if (personal.dob) document.getElementById("dob").value = personal.dob;
+            if (personal.gender) document.getElementById("gender").value = personal.gender;
+            if (personal.motherTongue) document.getElementById("motherTongue").value = personal.motherTongue;
+            if (location.country) document.getElementById("country").value = location.country;
+            if (location.city) document.getElementById("city").value = location.city;
+            if (medical.weight) document.getElementById("weight").value = medical.weight;
+            if (medical.bloodType) document.getElementById("bloodType").value = medical.bloodType;
+            if (medical.allergies) document.getElementById("allergies").value = medical.allergies;
+            if (medical.medications) document.getElementById("medications").value = medical.medications;
+            if (contact.name) document.getElementById("emergencyName").value = contact.name;
+            if (contact.relation) document.getElementById("emergencyRelation").value = contact.relation;
+            if (contact.phone) document.getElementById("emergencyPhone").value = contact.phone;
+        }
+
+        function save() {
+            window.M3ak.updateProfile({
+                personal: {
+                    dob: val("dob"),
+                    gender: val("gender"),
+                    motherTongue: val("motherTongue")
+                },
+                location: {
+                    country: val("country"),
+                    city: val("city")
+                },
+                medical: {
+                    weight: val("weight"),
+                    bloodType: val("bloodType"),
+                    allergies: val("allergies"),
+                    medications: val("medications")
+                },
+                emergencyContact: {
+                    name: val("emergencyName"),
+                    relation: val("emergencyRelation"),
+                    phone: val("emergencyPhone")
+                }
+            });
+        }
     });
-
-    // Update active indicator
-    document.querySelectorAll(".carousel-indicators").forEach((row) => {
-      row.querySelectorAll(".indicator, .indicator-active").forEach((dot) => {
-        const dotStep = parseInt(dot.getAttribute("data-goto"), 10);
-
-        dot.classList.remove("indicator", "indicator-active");
-        dot.classList.add(
-          dotStep === step ? "indicator-active" : "indicator"
-        );
-      });
-    });
-  }
 })();

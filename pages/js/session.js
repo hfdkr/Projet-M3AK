@@ -11,16 +11,42 @@
      data-menu-toggle       -> ouvre le menu profil
      data-menu              -> le menu profil
 
+     data-profile-city / -country / -dob / -gender / -mothertongue /
+     data-profile-phone / -address / -bloodtype / -weight / -allergies /
+     data-profile-medications / -emergency-name / -emergency-relation /
+     -emergency-phone       -> remplis depuis le profil centralisé
+
    API :
      M3ak.signIn({ name, email })   depuis la page de login
      M3ak.signOut()
      M3ak.getUser()                 -> objet ou null
+     M3ak.getProfile()              -> objet profil (jamais null, {} si vide)
+     M3ak.updateProfile(patch)      -> fusionne (deep, par clé) et persiste
 ========================================================== */
 (function () {
     "use strict";
 
     var STORAGE_KEY = "m3ak.session";
     var BLOCKER_ID = "m3ak-auth-blocker";
+
+    /* Every page that shows profile data reads it through this one table —
+       add a row here instead of writing bespoke read logic per page. */
+    var PROFILE_FIELDS = {
+        "data-profile-city": ["location", "city"],
+        "data-profile-country": ["location", "country"],
+        "data-profile-dob": ["personal", "dob"],
+        "data-profile-gender": ["personal", "gender"],
+        "data-profile-mothertongue": ["personal", "motherTongue"],
+        "data-profile-phone": ["personal", "phone"],
+        "data-profile-address": ["personal", "address"],
+        "data-profile-bloodtype": ["medical", "bloodType"],
+        "data-profile-weight": ["medical", "weight"],
+        "data-profile-allergies": ["medical", "allergies"],
+        "data-profile-medications": ["medical", "medications"],
+        "data-profile-emergency-name": ["emergencyContact", "name"],
+        "data-profile-emergency-relation": ["emergencyContact", "relation"],
+        "data-profile-emergency-phone": ["emergencyContact", "phone"]
+    };
 
     /* ------------------------------------------------------
        1. Anti-flash : on masque les zones à bascule le temps
@@ -76,11 +102,36 @@
             .join("") || "M3";
     }
 
+    /* One-level-per-key deep merge: nested objects (location, medical, ...)
+       are merged key-by-key rather than replaced wholesale, so patching
+       {location:{city:"Agadir"}} never wipes an already-saved country. */
+    function mergeDeep(base, patch) {
+        var result = {}, key;
+        base = base || {};
+        patch = patch || {};
+        for (key in base) {
+            if (Object.prototype.hasOwnProperty.call(base, key)) result[key] = base[key];
+        }
+        for (key in patch) {
+            if (!Object.prototype.hasOwnProperty.call(patch, key)) continue;
+            var val = patch[key];
+            if (val && typeof val === "object" && !Array.isArray(val) &&
+                base[key] && typeof base[key] === "object") {
+                result[key] = mergeDeep(base[key], val);
+            } else {
+                result[key] = val;
+            }
+        }
+        return result;
+    }
+
     function signIn(user) {
+        var existing = getUser();
         var data = {
             name: (user && user.name) || "Citizen",
             email: (user && user.email) || "",
-            initials: (user && user.initials) || initialsFrom(user && user.name)
+            initials: (user && user.initials) || initialsFrom(user && user.name),
+            profile: (existing && existing.profile) || {}
         };
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
         apply();
@@ -90,6 +141,20 @@
     function signOut() {
         try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
         apply();
+    }
+
+    function getProfile() {
+        var user = getUser();
+        return (user && user.profile) || {};
+    }
+
+    function updateProfile(patch) {
+        var user = getUser();
+        if (!user) { return null; }
+        user.profile = mergeDeep(user.profile, patch);
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(user)); } catch (e) {}
+        apply();
+        return user.profile;
     }
 
     /* ------------------------------------------------------
@@ -111,13 +176,32 @@
         }
     }
 
+    function applyProfileFields(profile) {
+        var attr, path, section, value;
+        for (attr in PROFILE_FIELDS) {
+            if (!Object.prototype.hasOwnProperty.call(PROFILE_FIELDS, attr)) continue;
+            path = PROFILE_FIELDS[attr];
+            section = profile[path[0]] || {};
+            value = section[path[1]];
+            fill("[" + attr + "]", value);
+        }
+    }
+
     function apply() {
         var user = isForcedGuest() ? null : getUser();
         var state = user ? "user" : "guest";
 
-        if (document.body && document.body.hasAttribute("data-require-auth") && !user) {
-            window.location.replace("/pages/auth/login.html");
-            return;
+        if (document.body && document.body.hasAttribute("data-require-auth")) {
+            if (!user) {
+                window.location.replace("/pages/auth/login.html");
+                return;
+            }
+            var country = user.profile && user.profile.location && user.profile.location.country;
+            var onOnboarding = window.location.pathname.indexOf("/pages/auth/onboarding.html") !== -1;
+            if (country && String(country).trim().toLowerCase() !== "morocco" && !onOnboarding) {
+                window.location.replace("/pages/auth/region-restricted.html");
+                return;
+            }
         }
 
         document.querySelectorAll("[data-auth]").forEach(function (el) {
@@ -134,6 +218,7 @@
             document.querySelectorAll("[data-user-initials]").forEach(function (el) {
                 el.textContent = user.initials;
             });
+            applyProfileFields(user.profile || {});
         }
 
         closeMenus();
@@ -201,5 +286,11 @@
         start();
     }
 
-    window.M3ak = { signIn: signIn, signOut: signOut, getUser: getUser };
+    window.M3ak = {
+        signIn: signIn,
+        signOut: signOut,
+        getUser: getUser,
+        getProfile: getProfile,
+        updateProfile: updateProfile
+    };
 })();

@@ -96,6 +96,8 @@
             opacity: .9;
         }
 
+        .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+
         .tab {
             display: flex;
             flex-direction: column;
@@ -207,11 +209,6 @@
                     <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
                 </button>
 
-                <a href="/pages/app/support.html"
-                    class="hidden size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:grid">
-                    <span class="sr-only">Help</span>
-                    <img src="/assets/images/icon-chat.png" alt="Help" class="size-5 object-contain" />
-                </a>
 
                 <button type="button"
                     class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
@@ -299,86 +296,362 @@
         <!-- ══════════ CONTENU ══════════ -->
         <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
 
-            <div>
-                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Education Services</h1>
-                <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
-                    Manage school registration, scholarships, and academic records in one place.
-                </p>
-            </div>
-
-            <label class="relative mt-5 block max-w-xl">
-                <span class="sr-only">Search education services</span>
-                <img src="/assets/images/search-education-services.png" alt="" class="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 object-contain" />
-                <input id="eduSearch" type="search" placeholder="Search education services..."
-                    class="w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
-            </label>
-
-            <div id="eduGrid" class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-
-                <a href="#" data-name="School Registration" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/education-icon.png" alt="Education icon 4" class="size-5 object-contain" />
+            <!-- LETTERHEAD -->
+            <div class="flex flex-wrap items-start justify-between gap-4 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+                <div class="flex items-start gap-3">
+                    <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M3 22h18M4 22V11l8-6 8 6v11M9 22v-7h6v7M4 11h16" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">School Registration</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Enroll or transfer students across public and private schools.</p>
-                </a>
-
-                <a href="#" data-name="Scholarships & Grants" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/education-icon.png" alt="Education icon 5" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Scholarships &amp; Grants</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Apply for national and regional merit-based funding.</p>
-                </a>
-
-                <a href="#" data-name="Diploma Requests" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/education-icon.png" alt="Education icon 6" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Diploma Requests</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Order official copies and equivalency certificates.</p>
-                </a>
-
-                <a href="#" data-name="Higher Education Portal" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/education-icon.png" alt="Education icon 7" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Higher Education Portal</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">University applications and national exam scheduling.</p>
-                </a>
-
-                <a href="#" data-name="Vocational Training" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/education-icon.png" alt="Education icon 8" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Vocational Training</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">OFPPT programs and professional certification courses.</p>
-                </a>
-
-                <a href="#" data-name="Study Abroad Programs" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <img src="/assets/images/education-icon.png" alt="Education icon 9" class="size-5 object-contain" />
-                    </span>
-                    <h2 class="mt-3 text-sm font-bold">Study Abroad Programs</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Exchange programs and international scholarship partners.</p>
-                </a>
-            </div>
-
-            <p id="eduEmpty" class="hidden py-16 text-center text-sm text-muted dark:text-mist-300">
-                No education services match your search.
-            </p>
-
-            <!-- CTA -->
-            <div class="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9">
-                <img src="/assets/images/education-icon.png" alt="" class="absolute -right-8 -bottom-10 size-40 object-contain" />
-                <div class="relative max-w-sm">
-                    <p class="text-lg font-extrabold">Invest in Your Future</p>
-                    <p class="mt-1.5 text-sm text-white/80">Explore scholarship opportunities for the 2026 academic year.</p>
+                    <div>
+                        <p class="text-sm font-extrabold">Kingdom of Morocco</p>
+                        <p class="text-xs text-muted dark:text-mist-300">Ministry of National Education, Preschool and Sports · MESRSI</p>
+                    </div>
                 </div>
-                <button type="button" id="scholarshipBtn"
-                    class="relative mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft lg:mt-0 lg:shrink-0">
-                    Browse Scholarships
-                </button>
+                <div class="text-right">
+                    <span class="verified-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="M9 12l2 2 4-4" /></svg>
+                        Unified Massar &amp; Minhaty National Portal
+                    </span>
+                    <p class="mt-1.5 text-[11px] text-muted dark:text-mist-300">Legal Ref: Dahir n° 1-20-80 (Law 43-20)</p>
+                </div>
+            </div>
+
+            <span class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                Citizen Space · National &amp; Higher Education
+            </span>
+
+            <!-- TITLE -->
+            <div class="mt-3 flex flex-wrap items-start justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Education &amp; Higher Learning Services</h1>
+                    <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
+                        Unified portal for national school registration, Massar student tracking, university pre-registration, scholarships (Minhaty), and Barid Al-Maghrib certified degree credentials.
+                    </p>
+                </div>
+                <div class="flex shrink-0 flex-wrap gap-2">
+                    <button type="button" data-demo-action="Preparing your Baccalaureate certificate…"
+                        class="flex items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" /></svg>
+                        Baccalaureate Certificate
+                    </button>
+                    <button type="button" data-demo-action="Starting a new dossier…"
+                        class="flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="M12 5v14M5 12h14" /></svg>
+                        New Dossier
+                    </button>
+                </div>
+            </div>
+
+            <!-- HERO CARDS -->
+            <div class="mt-5 grid gap-4 lg:grid-cols-2">
+
+                <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:p-7">
+                    <div class="flex items-start justify-between gap-3">
+                        <p class="text-[11px] font-semibold uppercase tracking-[1px] text-white/70">Session 2026/2027 · Open</p>
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
+                            <span class="size-1.5 rounded-full bg-accent-400"></span>RSU Connected
+                        </span>
+                    </div>
+                    <h2 class="mt-3 text-lg font-extrabold">Minhaty (منحتي) National Scholarship</h2>
+                    <p class="mt-2 text-sm text-white/80">
+                        Direct application &amp; automated eligibility tracking for higher education grants up to 6,334 MAD/year, indexed with the Moroccan Social Register (RSU).
+                    </p>
+                    <div class="mt-5">
+                        <p class="text-[10px] font-semibold uppercase tracking-wider text-white/60">Filing deadline</p>
+                        <p class="text-xl font-extrabold">31 July 2027</p>
+                    </div>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <button type="button" data-demo-action="Opening eligibility criteria…"
+                            class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10">Eligibility Criteria</button>
+                        <button type="button" data-demo-action="Opening the Minhaty application…"
+                            class="flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">
+                            Check Eligibility &amp; Apply
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A] p-6 text-white lg:p-7">
+                    <div class="flex items-start justify-between gap-3">
+                        <p class="text-[11px] font-semibold uppercase tracking-[1px] text-white/70">School Year 2026–2027</p>
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
+                            <span class="size-1.5 rounded-full bg-accent-400"></span>Massar Code Synced
+                        </span>
+                    </div>
+                    <h2 class="mt-3 text-lg font-extrabold">Massar &amp; Tawjihi Student Portal</h2>
+                    <p class="mt-2 text-sm text-white/80">
+                        Official school transcripts, continuous assessments, national baccalaureate tracking, and automated university guidance matching.
+                    </p>
+                    <div class="mt-5">
+                        <p class="text-[10px] font-semibold uppercase tracking-wider text-white/60">Pre-Bac applications</p>
+                        <p class="text-xl font-extrabold">4 Wishes Submitted</p>
+                    </div>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <button type="button" data-demo-action="Opening transcripts & grades…"
+                            class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10">Transcripts &amp; Grades</button>
+                        <button type="button" data-demo-action="Opening the student dossier…"
+                            class="flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-[#1E3A8A] transition hover:bg-blue-50">
+                            Access Student Dossier
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- STUDENT PROFILE + CALENDAR -->
+            <div class="mt-4 grid gap-4 lg:grid-cols-3 lg:gap-5">
+
+                <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+                    <div class="flex flex-wrap items-start justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[11px] font-bold text-brand dark:text-accent-400">YA</span>
+                            <div>
+                                <p class="flex items-center gap-2 text-sm font-bold">
+                                    Yassine Alaoui
+                                    <span class="rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Active</span>
+                                </p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Massar Code: R130094821 · Lycée Ibn Zohr, Agadir</p>
+                            </div>
+                        </div>
+                        <span class="verified-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="M9 12l2 2 4-4" /></svg>
+                            CNIE Verified (BE492019)
+                        </span>
+                    </div>
+
+                    <div class="mt-5 grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center">
+                        <div>
+                            <p class="text-xl font-extrabold lg:text-2xl">2nd Year</p>
+                            <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Study Cycle · Baccalaureate, Science Mathematics A</p>
+                        </div>
+                        <div class="border-x border-black/5 dark:border-white/10">
+                            <p class="text-xl font-extrabold text-brand dark:text-accent-400 lg:text-2xl">17.84/20</p>
+                            <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Overall Average (S1) · Mention: Very Good</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold lg:text-2xl">Validated</p>
+                            <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Minhaty Scholarship · Paid: 1,900 MAD (1st Installment)</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 border-t border-black/5 dark:border-white/10 pt-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <p class="text-xs font-bold">Tawjihi 2027 Admission Progress</p>
+                            <p class="text-[11px] font-semibold text-brand dark:text-accent-400">Step 3 of 4 · Main List Confirmation</p>
+                        </div>
+                        <div class="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
+                            <span class="block h-full w-3/4 rounded-full bg-brand dark:bg-accent-400"></span>
+                        </div>
+                        <div class="mt-2 flex justify-between text-[10px] font-semibold text-muted dark:text-mist-300">
+                            <span>Application Filed</span>
+                            <span>Dossier Review</span>
+                            <span class="text-ink dark:text-white">Place Confirmation</span>
+                            <span>Administrative Registration</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+                    <div class="flex items-center justify-between gap-2">
+                        <p class="flex items-center gap-2 text-sm font-bold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+                            Academic Calendar
+                        </p>
+                        <span class="rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-bold text-muted dark:text-mist-300">Official</span>
+                    </div>
+
+                    <ul class="mt-4 space-y-2.5">
+                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
+                            <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-danger">Jun</span>
+                                <span class="text-lg font-extrabold leading-none">04</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="truncate text-sm font-semibold">National Baccalaureate Exams</p>
+                                <p class="mt-0.5 truncate text-[11px] text-muted dark:text-mist-300">All tracks, standard session</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
+                            <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Jul</span>
+                                <span class="text-lg font-extrabold leading-none">12</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="truncate text-sm font-semibold">ENSA / ENSAM / ENCG Entrance Exams</p>
+                                <p class="mt-0.5 truncate text-[11px] text-muted dark:text-mist-300">Unified pre-selection platform</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
+                            <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Aug</span>
+                                <span class="text-lg font-extrabold leading-none">28</span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="truncate text-sm font-semibold">OFPPT &amp; Métiers Registration Closes</p>
+                                <p class="mt-0.5 truncate text-[11px] text-muted dark:text-mist-300">Qualifying vocational programs</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button type="button" data-demo-action="Syncing your government calendar…"
+                        class="mt-4 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-2 text-xs font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700">
+                        Sync Government Calendar
+                    </button>
+                </section>
+            </div>
+
+            <!-- KEY ADMINISTRATIVE SERVICES -->
+            <section class="mt-10">
+                <div class="flex flex-wrap items-end justify-between gap-3">
+                    <div>
+                        <h2 class="text-base font-extrabold">Key Administrative Education Services</h2>
+                        <p class="mt-1 text-xs text-muted dark:text-mist-300">Official government portals interconnected via the national digital identity framework.</p>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                        CNIE Authentication Required
+                    </span>
+                </div>
+
+                <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" /><circle cx="10" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                        </span>
+                        <h3 class="mt-3 text-sm font-bold">School Enrollment (Massar)</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Register new students in primary/secondary public institutions and transfer academic dossiers between regional delegations.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                            Primary &amp; Middle School Portal
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                        </span>
+                    </a>
+
+                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M12 2l2.4 1.6 2.85-.3 1.2 2.6 2.6 1.2-.3 2.85L22.35 12l-1.6 2.4.3 2.85-2.6 1.2-1.2 2.6-2.85-.3L12 22l-2.4-1.6-2.85.3-1.2-2.6-2.6-1.2.3-2.85L1.65 12l1.6-2.4-.3-2.85 2.6-1.2 1.2-2.6 2.85.3Z" /><path d="M9 12l2 2 4-4" /></svg>
+                        </span>
+                        <h3 class="mt-3 text-sm font-bold">Equivalence &amp; Degrees</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Digital degree verification, apostille authentication, and equivalence for foreign credentials with official Barid Al-Maghrib QR codes.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                            Secure Electronic Stamp
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                        </span>
+                    </a>
+
+                    <a href="#" data-demo-action="Opening University Pre-registration…" class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M4 22h16M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M2 6l10-4 10 4" /></svg>
+                        </span>
+                        <h3 class="mt-3 text-sm font-bold">University Pre-registration</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Unified applications for Moroccan public universities, engineering faculties (ENSA, ENSAM), medical faculties (FMP/FMD), and business schools (ENCG).</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                            Cursus Sup Maroc
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                        </span>
+                    </a>
+
+                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
+                        <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L2 19l3 3 7.1-7.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2-2 2.5-2.5Z" /></svg>
+                        </span>
+                        <h3 class="mt-3 text-sm font-bold">Vocational Training (OFPPT)</h3>
+                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Registration for specialized technician (TS) degrees, Cités des Métiers et des Compétences (CMC), and recognized vocational qualifications.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                            OFPPT Tskwine 2027
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+                        </span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ACTIVE REQUESTS TABLE -->
+            <section class="mt-10">
+                <div class="flex flex-wrap items-end justify-between gap-3">
+                    <div>
+                        <h2 class="text-base font-extrabold">Active Requests &amp; Digital Academic Records</h2>
+                        <p class="mt-1 text-xs text-muted dark:text-mist-300">Directly connected to the National Education Information System (Système d'Information Massar).</p>
+                    </div>
+                    <span class="rounded-md bg-canvas dark:bg-night-700 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300">Showing: All Procedures (3)</span>
+                </div>
+
+                <div class="mt-4 overflow-x-auto rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
+                    <table class="w-full min-w-[720px] text-left text-sm">
+                        <thead>
+                            <tr class="text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300">
+                                <th class="px-4 py-3">Dossier / Reference</th>
+                                <th class="px-4 py-3">Beneficiary</th>
+                                <th class="px-4 py-3">Service Type</th>
+                                <th class="px-4 py-3">Filing Date</th>
+                                <th class="px-4 py-3">Status</th>
+                                <th class="px-4 py-3 text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-black/5 dark:divide-night-600">
+                            <tr>
+                                <td class="flex items-center gap-2 px-4 py-3.5 font-semibold">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted dark:text-mist-300"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6" /></svg>
+                                    MHT-2027-89412
+                                </td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Yassine Alaoui (Son)</td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Minhaty National Scholarship – 1st Cycle</td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">14 Jan 2027</td>
+                                <td class="px-4 py-3.5">
+                                    <span class="rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Validated + Bank Transfer</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <a href="#" data-demo-action="Opening dossier MHT-2027-89412…" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Consult</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="flex items-center gap-2 px-4 py-3.5 font-semibold">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted dark:text-mist-300"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6" /></svg>
+                                    EQV-2026-55021
+                                </td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Meryem Alaoui (Holder)</td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Specialized Master Equivalence (MESRSI)</td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">03 Dec 2026</td>
+                                <td class="px-4 py-3.5">
+                                    <span class="rounded-md bg-blue-50 dark:bg-blue-500/15 px-2 py-0.5 text-[10px] font-bold text-blue-600 dark:text-blue-400">Digital Certificate Ready</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <a href="#" data-demo-action="Downloading QR certificate for EQV-2026-55021…" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Download QR</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="flex items-center gap-2 px-4 py-3.5 font-semibold">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted dark:text-mist-300"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6" /></svg>
+                                    TWJ-2027-01039
+                                </td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Yassine Alaoui (Son)</td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">ENSA Rabat / Tangier Entrance Application</td>
+                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">18 Feb 2027</td>
+                                <td class="px-4 py-3.5">
+                                    <span class="rounded-md bg-amber-50 dark:bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">Awaiting S2 Bac Grades</span>
+                                </td>
+                                <td class="px-4 py-3.5 text-right">
+                                    <a href="#" data-demo-action="Editing wishes for TWJ-2027-01039…" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Edit Wishes</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- LEGAL DISCLAIMER -->
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-canvas dark:bg-night-700 p-4">
+                <p class="flex items-start gap-2.5 max-w-xl text-xs text-muted dark:text-mist-300">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 size-4 shrink-0"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></svg>
+                    Portal operated under the joint oversight of the Moroccan State. Compliant with Law n° 09-08 on the protection of personal data (CNDP) and Law n° 43-20 on trusted electronic transaction services.
+                </p>
+                <div class="flex items-center gap-3">
+                    <span class="text-[11px] font-semibold text-muted dark:text-mist-300">CNDP Ref: A-S-102/2023</span>
+                    <button type="button" data-demo-action="Connecting you to dedicated assistance…"
+                        class="flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
+                        Dedicated Assistance 0800
+                    </button>
+                </div>
             </div>
         </main>
     </div>
@@ -408,29 +681,12 @@
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
         sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
-        /* Directory cards: demo action + search filter */
-        document.querySelectorAll(".directory-card").forEach(function (card) {
-            card.addEventListener("click", function (e) {
-                e.preventDefault();
-                toast("Opening " + card.dataset.name + "…");
+        /* Demo actions: any element with data-demo-action shows a toast instead of navigating */
+        document.querySelectorAll("[data-demo-action]").forEach(function (el) {
+            el.addEventListener("click", function (e) {
+                if (el.tagName === "A" || el.tagName === "BUTTON") e.preventDefault();
+                toast(el.dataset.demoAction);
             });
-        });
-
-        var search = document.getElementById("eduSearch");
-        var cards = Array.prototype.slice.call(document.querySelectorAll(".directory-card"));
-        search.addEventListener("input", function () {
-            var q = search.value.trim().toLowerCase();
-            var visible = 0;
-            cards.forEach(function (card) {
-                var match = card.dataset.name.toLowerCase().includes(q);
-                card.classList.toggle("hidden", !match);
-                if (match) visible++;
-            });
-            document.getElementById("eduEmpty").classList.toggle("hidden", visible !== 0);
-        });
-
-        document.getElementById("scholarshipBtn").addEventListener("click", function () {
-            toast("Loading available scholarships for 2026…");
         });
     </script>
 </body>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="/pages/js/theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
+    <title>Complete Your Profile — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+    <script src="/pages/js/onboarding.js" defer></script>
+
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand: #0B6B45;
+            --color-brand-dark: #084F34;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-line: #CFE3D8;
+            --color-danger: #E1362C;
+            --color-ink: #0F1A15;
+            --color-muted: #6B7A73;
+            --color-canvas: #F6F7F5;
+
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-night-700: #151C18;
+            --color-night-600: #232C27;
+            --color-mist-300: #7C8981;
+            --color-mist-200: #B4BEB8;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+            --color-accent-300: #5BE0A0;
+
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body { @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 font-sans transition-colors duration-200; }
+
+        .theme-toggle{ @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+                              md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
+        .theme-toggle-thumb{ @apply grid place-items-center h-6 w-6 rounded-full
+                                    md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
+        .theme-toggle-sun{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
+        .theme-toggle-moon{ @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100; }
+
+        .ob-field-label { @apply block text-sm font-semibold mb-1.5; }
+        .ob-field-input { @apply w-full rounded-xl border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2.5 text-sm outline-none
+                                 placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400
+                                 focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .ob-step { @apply hidden; }
+        .ob-step.is-active { @apply block; }
+        .ob-dot { @apply size-2 rounded-full bg-black/15 dark:bg-white/15; }
+        .ob-dot.is-active { @apply bg-brand dark:bg-accent-400; }
+        .ob-dot.is-done { @apply bg-brand-line dark:bg-accent-400/40; }
+    </style>
+</head>
+
+<body data-require-auth>
+
+    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
+        <div class="mx-auto flex h-16 max-w-[640px] items-center justify-between px-4">
+            <p class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</p>
+            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <span class="theme-toggle-thumb">
+                    <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                    <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-[640px] px-4 py-8 lg:py-12">
+
+        <div class="text-center">
+            <h1 class="text-2xl font-extrabold tracking-tight">Complete Your Profile</h1>
+            <p class="mt-1.5 text-sm text-muted dark:text-mist-300">
+                Welcome, <span data-user-name>there</span> — this only takes a minute, and you won't be asked again.
+            </p>
+        </div>
+
+        <div class="mt-6 flex items-center justify-center gap-2" aria-hidden="true">
+            <span class="ob-dot" data-dot="1"></span>
+            <span class="ob-dot" data-dot="2"></span>
+            <span class="ob-dot" data-dot="3"></span>
+        </div>
+
+        <form id="onboardingForm" class="mt-6 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-7" novalidate>
+
+            <!-- STEP 1 — Personal Information -->
+            <fieldset class="ob-step is-active" data-step="1">
+                <legend class="mb-4 text-base font-bold">Personal Information</legend>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                        <label for="dob" class="ob-field-label">Date of Birth</label>
+                        <input id="dob" type="date" class="ob-field-input">
+                    </div>
+                    <div>
+                        <label for="gender" class="ob-field-label">Gender</label>
+                        <select id="gender" class="ob-field-input">
+                            <option value="">Select…</option>
+                            <option>Female</option>
+                            <option>Male</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="weight" class="ob-field-label">Weight</label>
+                        <input id="weight" type="text" placeholder="e.g. 70 kg" class="ob-field-input">
+                    </div>
+                    <div>
+                        <label for="motherTongue" class="ob-field-label">Mother Tongue</label>
+                        <select id="motherTongue" class="ob-field-input">
+                            <option value="">Select…</option>
+                            <option>Arabic</option>
+                            <option>Amazigh (Tamazight)</option>
+                            <option>French</option>
+                            <option>English</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- STEP 2 — Location -->
+            <fieldset class="ob-step" data-step="2">
+                <legend class="mb-4 text-base font-bold">Location</legend>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                        <label for="country" class="ob-field-label">Country of Residence</label>
+                        <select id="country" class="ob-field-input" required>
+                            <option value="Morocco" selected>Morocco</option>
+                            <option>France</option>
+                            <option>Spain</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="city" class="ob-field-label">City</label>
+                        <input id="city" type="text" list="cityOptions" placeholder="e.g. Agadir" class="ob-field-input" required>
+                        <datalist id="cityOptions">
+                            <option value="Agadir">
+                            <option value="Casablanca">
+                            <option value="Rabat">
+                            <option value="Marrakech">
+                            <option value="Tangier">
+                            <option value="Fès">
+                            <option value="Salé">
+                            <option value="Meknès">
+                            <option value="Kenitra">
+                            <option value="Oujda">
+                        </datalist>
+                    </div>
+                </div>
+
+                <p class="mt-4 rounded-xl bg-brand-soft dark:bg-accent-400/15 p-3 text-xs text-brand dark:text-accent-400">
+                    Your city personalizes services across M3ak — including the Emergency page's map of nearby hospitals, pharmacies and police stations.
+                </p>
+            </fieldset>
+
+            <!-- STEP 3 — Medical ID + Emergency Contact -->
+            <fieldset class="ob-step" data-step="3">
+                <legend class="mb-4 text-base font-bold">Medical ID &amp; Emergency Contact</legend>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div>
+                        <label for="bloodType" class="ob-field-label">Blood Type</label>
+                        <select id="bloodType" class="ob-field-input">
+                            <option value="">Select…</option>
+                            <option>A+</option><option>A-</option>
+                            <option>B+</option><option>B-</option>
+                            <option>AB+</option><option>AB-</option>
+                            <option>O+</option><option>O-</option>
+                            <option>Unknown</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="allergies" class="ob-field-label">Allergies</label>
+                        <input id="allergies" type="text" placeholder="e.g. Penicillin (leave blank if none)" class="ob-field-input">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="medications" class="ob-field-label">Current Medications</label>
+                        <input id="medications" type="text" placeholder="e.g. None" class="ob-field-input">
+                    </div>
+                </div>
+
+                <div class="mt-5 grid gap-4 border-t border-black/5 dark:border-white/10 pt-5 sm:grid-cols-3">
+                    <div>
+                        <label for="emergencyName" class="ob-field-label">Emergency Contact Name</label>
+                        <input id="emergencyName" type="text" placeholder="Full name" class="ob-field-input" required>
+                    </div>
+                    <div>
+                        <label for="emergencyRelation" class="ob-field-label">Relationship</label>
+                        <input id="emergencyRelation" type="text" placeholder="e.g. Mother" class="ob-field-input">
+                    </div>
+                    <div>
+                        <label for="emergencyPhone" class="ob-field-label">Contact Phone</label>
+                        <input id="emergencyPhone" type="tel" placeholder="+212 6xx-xxxxxx" class="ob-field-input" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <p id="obError" class="mt-4 hidden text-xs font-semibold text-danger"></p>
+
+            <div class="mt-6 flex items-center justify-between">
+                <button type="button" id="obBack" class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white">
+                    Back
+                </button>
+                <div class="flex gap-2">
+                    <button type="button" id="obSkip" class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white">
+                        Skip for now
+                    </button>
+                    <button type="button" id="obNext" class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="/pages/js/theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
+    <title>Region Not Supported — M3ak Morocco</title>
+    <script src="/pages/js/session.js"></script>
+
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+        @theme {
+            --color-brand: #0B6B45;
+            --color-brand-dark: #084F34;
+            --color-brand-soft: #E9F3EE;
+            --color-brand-line: #CFE3D8;
+            --color-danger: #E1362C;
+            --color-ink: #0F1A15;
+            --color-muted: #6B7A73;
+            --color-canvas: #F6F7F5;
+
+            --color-night-900: #0A0F0D;
+            --color-night-800: #0F1512;
+            --color-mist-300: #7C8981;
+            --color-mist-100: #E7ECE9;
+            --color-accent-400: #2ED573;
+
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+        }
+
+        body { @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 font-sans transition-colors duration-200; }
+    </style>
+</head>
+
+<body class="grid min-h-screen place-items-center px-4">
+
+    <div class="w-full max-w-md rounded-2xl bg-white dark:bg-night-800 p-8 text-center ring-1 ring-black/5 dark:ring-white/10">
+
+        <span class="mx-auto grid size-14 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-7"><circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" /></svg>
+        </span>
+
+        <h1 class="mt-5 text-xl font-extrabold tracking-tight">M3ak is available in Morocco only</h1>
+        <p class="mt-2.5 text-sm leading-relaxed text-muted dark:text-mist-300">
+            Based on the country you selected in your profile, M3ak Morocco's citizen services aren't available to you yet.
+            Your account hasn't been deleted — you can update your country of residence if this was a mistake, or sign out.
+        </p>
+
+        <div class="mt-6 flex flex-col gap-2">
+            <a href="/pages/auth/onboarding.html"
+                class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300">
+                Update my country
+            </a>
+            <a href="/pages/auth/login.html" data-action="logout"
+                class="rounded-full px-5 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white">
+                Sign out
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

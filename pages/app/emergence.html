@@ -15,6 +15,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <style type="text/tailwindcss">
 
         /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
@@ -322,27 +327,27 @@
                     <span class="nav-label">My Space</span>
                 </a>
 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/transport.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
                     <span class="nav-label">Transport</span>
                 </a>
-                <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/healthcare.png" alt="" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
-                </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/Housing.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/Housing.png" alt="Housing" class="nav-icon" />
                     <span class="nav-label">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/Jobs.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/Jobs.png" alt="Jobs" class="nav-icon" />
                     <span class="nav-label">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/education.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon" />
                     <span class="nav-label">Education</span>
                 </a>
+                <a href="/pages/app/health.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/healthcare.png" alt="Healthcare" class="nav-icon" />
+                    <span class="nav-label">Healthcare</span>
+                </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/Payment.png" alt="" class="nav-icon" />
+                    <img src="/assets/icon-bar-left/Payment.png" alt="Payments" class="nav-icon" />
                     <span class="nav-label">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
@@ -369,7 +374,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
-                <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
+                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
                     <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Logout</span>
                 </a>
@@ -397,7 +402,7 @@
                 </p>
 
                 <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted dark:text-mist-300">
-                    Agadir, Morocco
+                    <span data-profile-city>Agadir</span>, Morocco
                 </p>
             </div>
 
@@ -556,7 +561,8 @@
 
                     <p class="flex items-center gap-2 text-sm font-bold dark:text-white">
                         <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="size-4 object-contain" />
-                        Real-time Emergency Map
+                        Real-time Emergency Map ·
+                        <span data-profile-city>Agadir</span>
                     </p>
 
                     <div class="no-scrollbar flex gap-2 overflow-x-auto" id="mapTabs">
@@ -581,35 +587,20 @@
 
                 <div class="relative aspect-[16/10] w-full bg-[#DFE5E0] dark:bg-night-700 lg:aspect-[16/7]">
 
-                    <iframe id="mapFrame" title="Nearby emergency facilities" loading="lazy" class="size-full border-0">
-                    </iframe>
+                    <div id="leafletMap" class="size-full"></div>
 
-                    <div
-                        class="pointer-events-none absolute bottom-3 left-3 right-3 rounded-xl bg-white/95 dark:bg-night-800/95 p-3 shadow-lg backdrop-blur sm:right-auto sm:w-64">
-
-                        <p class="flex items-start gap-2">
-
-                            <img id="placeIcon" src="/assets/emergence-image/hopitale-Icon.png" alt="hopitale-Icon"
-                                class="mt-0.5 size-4 shrink-0 object-contain" />
-
-                            <span class="min-w-0">
-
-                                <span id="placeName" class="block text-xs font-bold leading-snug dark:text-white">
-                                    Hôpital Militaire d'Instruction
-                                </span>
-
-                                <span id="placeMeta" class="mt-0.5 block text-[11px] text-muted dark:text-mist-300">
-                                    0.8 km · 4 mins away
-                                </span>
-
-                            </span>
-                        </p>
-
-                        <p id="placeStatus" class="mt-2 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
-                            ER open · Occupancy low
-                        </p>
-
+                    <div id="mapLoading"
+                        class="absolute inset-0 z-[500] grid place-items-center bg-white/80 dark:bg-night-800/80 backdrop-blur-sm">
+                        <span class="flex items-center gap-2 text-xs font-semibold text-muted dark:text-mist-300">
+                            <svg viewBox="0 0 24 24" fill="none" class="size-4 shrink-0 animate-spin"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3" stroke-opacity=".25" /><path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
+                            Loading nearby facilities…
+                        </span>
                     </div>
+                </div>
+
+                <div class="border-t border-black/5 dark:border-night-600 p-4">
+                    <p id="placesStatus" class="mb-3 text-[11px] font-semibold text-muted dark:text-mist-300"></p>
+                    <div id="placesList" class="grid gap-2.5 sm:grid-cols-2"></div>
                 </div>
             </section>
 
@@ -639,7 +630,7 @@
                             <label for="bloodType" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Blood type
                             </label>
-                            <input id="bloodType" type="text" value="A Positive"
+                            <input id="bloodType" type="text" value="A Positive" data-profile-bloodtype
                                 class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-bold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
@@ -647,7 +638,7 @@
                             <label for="weight" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Weight
                             </label>
-                            <input id="weight" type="text" value="78 kg"
+                            <input id="weight" type="text" value="78 kg" data-profile-weight
                                 class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-bold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
@@ -655,7 +646,7 @@
                             <label for="allergies" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Allergies
                             </label>
-                            <input id="allergies" type="text" value="Penicillin, Peanuts"
+                            <input id="allergies" type="text" value="Penicillin, Peanuts" data-profile-allergies
                                 class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-semibold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
@@ -663,7 +654,7 @@
                             <label for="medications" class="text-[10px] font-bold uppercase tracking-wider text-white/60">
                                 Medications
                             </label>
-                            <input id="medications" type="text" value="None"
+                            <input id="medications" type="text" value="None" data-profile-medications
                                 class="mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-semibold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30" />
                         </div>
 
@@ -1048,65 +1039,204 @@
 
 
         /* ─────────────────────────────
-           SOS BUTTON
-           The 3-second fill is pure CSS (see the "group-active" classes on
-           the ring in the HTML). This just listens for the ring finishing
-           its animation while the button is still pressed, and opens the
-           SOS dialog.
+           SOS BUTTON — press and hold for 3 seconds to open the SOS dialog.
+           The halo pulse (.sos-halo, pure CSS) is just visual feedback while
+           held; this timer is what actually triggers the alert.
         ───────────────────────────── */
 
-        sosRing.addEventListener("transitionend", (event) => {
-            if (event.propertyName === "stroke-dashoffset" && sosBtn.matches(":active")) {
-                sosDialog.showModal();
-            }
-        });
+        (function () {
+            let sosTimer = null;
+            function startSosHold() { sosTimer = setTimeout(() => sosDialog.showModal(), 3000); }
+            function cancelSosHold() { clearTimeout(sosTimer); }
+
+            sosBtn.addEventListener("pointerdown", startSosHold);
+            sosBtn.addEventListener("pointerup", cancelSosHold);
+            sosBtn.addEventListener("pointerleave", cancelSosHold);
+            sosBtn.addEventListener("pointercancel", cancelSosHold);
+        })();
 
 
         /* ─────────────────────────────
-           MAP — swap the embedded map + info card per tab
+           MAP — live multi-result hospitals/pharmacies/police for the
+           user's saved city, via Leaflet (rendering) + Overpass (data).
+           No backend: Overpass is a free, keyless, CORS-enabled public API,
+           queried directly from the browser.
         ───────────────────────────── */
 
-        const PLACES = {
-            hospitals: {
-                name: "Hôpital Militaire d'Instruction",
-                meta: "0.8 km · 4 mins away",
-                status: "ER open · Occupancy low",
-                icon: "hopitale-Icon.png",
-                lat: 34.0075,
-                lon: -6.8489
-            },
-            pharmacies: {
-                name: "Pharmacie de la Gare (24h)",
-                meta: "0.4 km · 2 mins away",
-                status: "Open now · Night duty",
-                icon: "pharmacy.jpg",
-                lat: 34.0132,
-                lon: -6.8326
-            },
-            police: {
-                name: "Préfecture de Police de Rabat",
-                meta: "1.2 km · 6 mins away",
-                status: "Open 24/7 · Patrol nearby",
-                icon: "police-icon.png",
-                lat: 34.0209,
-                lon: -6.8416
+        const OVERPASS_ENDPOINT = "https://overpass-api.de/api/interpreter";
+        const OVERPASS_TIMEOUT_MS = 12000;
+        const SEARCH_RADIUS_M = 6000;
+
+        /* Known city centers. Extend this as more cities get real support —
+           an unknown city just falls through to the empty state below. */
+        const CITIES = {
+            agadir: { label: "Agadir", lat: 30.4278, lon: -9.5981, zoom: 13 }
+        };
+
+        const AMENITY_BY_LAYER = { hospitals: "hospital", pharmacies: "pharmacy", police: "police" };
+
+        /* Small curated dataset, used only if Overpass is unreachable — never
+           mixed with another city's live results, and never shown as if it
+           were live data (the status line says "offline data" when active). */
+        const FALLBACK = {
+            agadir: {
+                hospitals: [
+                    { id: "fallback-h1", name: "Hôpital Hassan II d'Agadir", type: "Public", lat: 30.4180, lon: -9.5695, address: "Agadir" },
+                    { id: "fallback-h2", name: "Hôpital Militaire Moulay El Hassan", type: "Public", lat: 30.4025, lon: -9.5731, address: "Agadir" },
+                    { id: "fallback-h3", name: "Clinique Yasmine", type: "Private", lat: 30.4144, lon: -9.5852, address: "Agadir" }
+                ],
+                pharmacies: [
+                    { id: "fallback-p1", name: "Pharmacie de Garde Talborjt", lat: 30.4202, lon: -9.5982, address: "Talborjt, Agadir" },
+                    { id: "fallback-p2", name: "Pharmacie Founty", lat: 30.3987, lon: -9.5654, address: "Founty, Agadir" },
+                    { id: "fallback-p3", name: "Pharmacie Al Massira", lat: 30.4231, lon: -9.5761, address: "Al Massira, Agadir" }
+                ],
+                police: [
+                    { id: "fallback-pol1", name: "Préfecture de Police d'Agadir", lat: 30.4130, lon: -9.5985, address: "Agadir" },
+                    { id: "fallback-pol2", name: "Commissariat Central Agadir", lat: 30.4198, lon: -9.5931, address: "Agadir" }
+                ]
             }
         };
 
-        function showLayer(key) {
-            const place = PLACES[key];
+        const LAYER_LABEL = { hospitals: "hospitals", pharmacies: "pharmacies", police: "police stations" };
 
-            document.getElementById("placeName").textContent = place.name;
-            document.getElementById("placeMeta").textContent = place.meta;
-            document.getElementById("placeStatus").textContent = place.status;
-            document.getElementById("placeIcon").src = `/assets/emergence-image/${place.icon}`;
+        let map = null;
+        let markerLayer = null;
+        let currentLayer = "hospitals";
+        let requestToken = 0;
 
-            const bbox = [place.lon - .012, place.lat - .006, place.lon + .012, place.lat + .006].join("%2C");
-            document.getElementById("mapFrame").src =
-                `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${place.lat}%2C${place.lon}`;
+        function getCityKey() {
+            const saved = (window.M3ak.getProfile().location || {}).city || "Agadir";
+            const key = saved.trim().toLowerCase();
+            return CITIES[key] ? key : null;
+        }
+
+        function haversineKm(lat1, lon1, lat2, lon2) {
+            const R = 6371, toRad = (d) => (d * Math.PI) / 180;
+            const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        }
+
+        function tagAddress(tags) {
+            if (!tags) return "";
+            const parts = [tags["addr:housenumber"], tags["addr:street"] || tags["addr:place"], tags["addr:city"]].filter(Boolean);
+            return parts.join(" ");
+        }
+
+        function publicPrivateLabel(tags) {
+            if (!tags) return "";
+            if (tags.operator && /minist|public|chu|chr|hôpital public/i.test(tags.operator)) return "Public";
+            if (tags.amenity === "hospital" && tags.operator_type) {
+                return /private|priv/i.test(tags.operator_type) ? "Private" : "Public";
+            }
+            return "";
+        }
+
+        function normalizeOverpassElement(el) {
+            const tags = el.tags || {};
+            const lat = el.lat ?? (el.center && el.center.lat);
+            const lon = el.lon ?? (el.center && el.center.lon);
+            if (lat == null || lon == null || !tags.name) return null;
+            return {
+                id: `${el.type}/${el.id}`,
+                name: tags.name,
+                type: publicPrivateLabel(tags),
+                lat, lon,
+                address: tagAddress(tags),
+                phone: tags.phone || tags["contact:phone"] || "",
+                hours: tags.opening_hours || ""
+            };
+        }
+
+        async function fetchOverpassLayer(layer, center) {
+            const amenity = AMENITY_BY_LAYER[layer];
+            const query = `[out:json][timeout:15];(node["amenity"="${amenity}"](around:${SEARCH_RADIUS_M},${center.lat},${center.lon});way["amenity"="${amenity}"](around:${SEARCH_RADIUS_M},${center.lat},${center.lon});relation["amenity"="${amenity}"](around:${SEARCH_RADIUS_M},${center.lat},${center.lon}););out center tags;`;
+
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), OVERPASS_TIMEOUT_MS);
+
+            try {
+                const res = await fetch(OVERPASS_ENDPOINT, {
+                    method: "POST",
+                    body: "data=" + encodeURIComponent(query),
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    signal: controller.signal
+                });
+                if (!res.ok) throw new Error("Overpass responded " + res.status);
+                const json = await res.json();
+
+                const seen = new Set();
+                const results = [];
+                (json.elements || []).forEach((el) => {
+                    const place = normalizeOverpassElement(el);
+                    if (!place || seen.has(place.id)) return;
+                    seen.add(place.id);
+                    results.push(place);
+                });
+                return results;
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
+        function placeCardHTML(place, center) {
+            const dist = haversineKm(center.lat, center.lon, place.lat, place.lon).toFixed(1);
+            const dir = `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lon}`;
+            return `
+      <article class="rounded-xl bg-canvas dark:bg-night-700 p-3">
+        <div class="flex items-start justify-between gap-2">
+          <p class="text-xs font-bold dark:text-white">${place.name}</p>
+          ${place.type ? `<span class="shrink-0 rounded-md bg-brand-soft dark:bg-accent-400/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-brand dark:text-accent-400">${place.type}</span>` : ""}
+        </div>
+        ${place.address ? `<p class="mt-1 text-[11px] text-muted dark:text-mist-300">${place.address}</p>` : ""}
+        <p class="mt-1 text-[11px] text-muted dark:text-mist-300">${dist} km away${place.phone ? ` · ${place.phone}` : ""}</p>
+        ${place.hours ? `<p class="mt-0.5 text-[10px] text-muted dark:text-mist-300">${place.hours}</p>` : ""}
+        <a href="${dir}" target="_blank" rel="noopener"
+           class="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-brand dark:text-accent-400 hover:underline">
+          Directions
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+        </a>
+      </article>`;
+        }
+
+        function renderPlaces(layer, places, center, offline) {
+            const statusEl = document.getElementById("placesStatus");
+            const listEl = document.getElementById("placesList");
+
+            if (!places.length) {
+                statusEl.textContent = `No ${LAYER_LABEL[layer]} found near ${center.label}.`;
+                listEl.innerHTML = "";
+            } else {
+                statusEl.textContent = `${places.length} ${LAYER_LABEL[layer]} found near ${center.label}${offline ? " · offline data" : ""}`;
+                listEl.innerHTML = places.map((p) => placeCardHTML(p, center)).join("");
+            }
+
+            markerLayer.clearLayers();
+            const bounds = [];
+            places.forEach((p) => {
+                const marker = L.marker([p.lat, p.lon]).addTo(markerLayer);
+                marker.bindPopup(
+                    `<strong>${p.name}</strong>` +
+                    (p.type ? `<br>${p.type}` : "") +
+                    (p.address ? `<br>${p.address}` : "") +
+                    (p.phone ? `<br>${p.phone}` : "")
+                );
+                bounds.push([p.lat, p.lon]);
+            });
+
+            if (bounds.length) {
+                map.fitBounds(bounds, { padding: [24, 24], maxZoom: 15 });
+            } else {
+                map.setView([center.lat, center.lon], center.zoom);
+            }
+        }
+
+        async function loadLayer(layer) {
+            currentLayer = layer;
+            const token = ++requestToken;
 
             document.querySelectorAll(".map-tab").forEach((tab) => {
-                const active = tab.dataset.layer === key;
+                const active = tab.dataset.layer === layer;
                 tab.classList.toggle("bg-brand-soft", active);
                 tab.classList.toggle("text-brand", active);
                 tab.classList.toggle("dark:bg-night-700", active);
@@ -1114,13 +1244,84 @@
                 tab.classList.toggle("text-muted", !active);
                 tab.classList.toggle("dark:text-mist-300", !active);
             });
+
+            const cityKey = getCityKey();
+            const loadingEl = document.getElementById("mapLoading");
+            const statusEl = document.getElementById("placesStatus");
+
+            if (!cityKey) {
+                loadingEl.classList.add("hidden");
+                statusEl.textContent = "Set your city in My Space to see nearby emergency facilities.";
+                document.getElementById("placesList").innerHTML = "";
+                markerLayer.clearLayers();
+                return;
+            }
+
+            const center = CITIES[cityKey];
+            loadingEl.classList.remove("hidden");
+
+            try {
+                const results = await fetchOverpassLayer(layer, center);
+                if (token !== requestToken) return;
+                renderPlaces(layer, results, center, false);
+            } catch (err) {
+                if (token !== requestToken) return;
+                const fallback = (FALLBACK[cityKey] && FALLBACK[cityKey][layer]) || [];
+                renderPlaces(layer, fallback, center, true);
+            } finally {
+                if (token === requestToken) loadingEl.classList.add("hidden");
+            }
         }
 
-        document.querySelectorAll(".map-tab").forEach((tab) => {
-            tab.addEventListener("click", () => showLayer(tab.dataset.layer));
+        function initMap() {
+            /* Leaflet's default marker icons are relative-pathed; loading via
+               CDN <script>/<link> tags (no bundler) breaks them unless the
+               URLs are pointed at the CDN explicitly. */
+            delete L.Icon.Default.prototype._getIconUrl;
+            L.Icon.Default.mergeOptions({
+                iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+                iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+                shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
+            });
+
+            map = L.map("leafletMap", { zoomControl: true, attributionControl: true });
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "&copy; OpenStreetMap contributors",
+                maxZoom: 19
+            }).addTo(map);
+            markerLayer = L.layerGroup().addTo(map);
+
+            const cityKey = getCityKey() || "agadir";
+            map.setView([CITIES[cityKey].lat, CITIES[cityKey].lon], CITIES[cityKey].zoom);
+
+            document.querySelectorAll(".map-tab").forEach((tab) => {
+                tab.addEventListener("click", () => loadLayer(tab.dataset.layer));
+            });
+
+            loadLayer("hospitals");
+        }
+
+        initMap();
+
+        /* Re-center and reload if the saved city changes in another tab
+           (My Space updates the profile via localStorage). */
+        window.addEventListener("storage", (e) => {
+            if (e.key === "m3ak.session" && map) {
+                const cityKey = getCityKey();
+                if (cityKey) map.setView([CITIES[cityKey].lat, CITIES[cityKey].lon], CITIES[cityKey].zoom);
+                loadLayer(currentLayer);
+            }
         });
 
-        showLayer("hospitals");
+        /* ─────────────────────────────
+           MEDICAL ID — persist edits to the central profile on blur
+        ───────────────────────────── */
+
+        ["bloodType", "weight", "allergies", "medications"].forEach((id) => {
+            document.getElementById(id).addEventListener("blur", (e) => {
+                window.M3ak.updateProfile({ medical: { [id]: e.target.value.trim() } });
+            });
+        });
 
 
         /* ─────────────────────────────
