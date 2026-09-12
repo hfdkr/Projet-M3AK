@@ -1048,18 +1048,21 @@
 
 
         /* ─────────────────────────────
-           SOS BUTTON
-           The 3-second fill is pure CSS (see the "group-active" classes on
-           the ring in the HTML). This just listens for the ring finishing
-           its animation while the button is still pressed, and opens the
-           SOS dialog.
+           SOS BUTTON — press and hold for 3 seconds to open the SOS dialog.
+           The halo pulse (.sos-halo, pure CSS) is just visual feedback while
+           held; this timer is what actually triggers the alert.
         ───────────────────────────── */
 
-        sosRing.addEventListener("transitionend", (event) => {
-            if (event.propertyName === "stroke-dashoffset" && sosBtn.matches(":active")) {
-                sosDialog.showModal();
-            }
-        });
+        (function () {
+            let sosTimer = null;
+            function startSosHold() { sosTimer = setTimeout(() => sosDialog.showModal(), 3000); }
+            function cancelSosHold() { clearTimeout(sosTimer); }
+
+            sosBtn.addEventListener("pointerdown", startSosHold);
+            sosBtn.addEventListener("pointerup", cancelSosHold);
+            sosBtn.addEventListener("pointerleave", cancelSosHold);
+            sosBtn.addEventListener("pointercancel", cancelSosHold);
+        })();
 
 
         /* ─────────────────────────────
