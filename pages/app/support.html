@@ -75,7 +75,7 @@
         .app-scrim.is-open { @apply block lg:hidden; }
         .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
                               border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5
-                              transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-60 lg:translate-x-0; }
+                              transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .app-sidebar.is-open { @apply translate-x-0; }
         .sidebar-head  { @apply mb-5 px-2; }
         .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
@@ -189,7 +189,7 @@
                 border-radius: 9999px;
             }
             #sidebar { width: 5rem; transition: width .2s ease; }
-            #sidebar:hover, #sidebar:focus-within { width: 15rem; }
+            #sidebar:hover, #sidebar:focus-within { width: 14rem; }
             #sidebar .nav-item > span,
             #sidebar .sidebar-head {
                 width: 0; overflow: hidden; white-space: nowrap;
@@ -293,7 +293,7 @@
                     <img src="/assets/icon-bar-left/Emergency.png" alt="" class="nav-icon">
                     <span>Emergency Support</span>
                 </a>
-                <a href="/pages/app/support.html" class="nav-item">
+                <a href="/pages/app/support.html" class="nav-item nav-item--active" aria-current="page">
                     <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon">
                     <span>Help Center</span>
                 </a>
