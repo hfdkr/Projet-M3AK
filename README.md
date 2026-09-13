@@ -91,6 +91,7 @@ Projet-M3AK/
 │       ├── session.js
 │       ├── theme.js
 │       ├── onboarding.js
+│       ├── landing-carousel.js   # index.html's mobile Skip/dots + auto-advancing slides
 │       ├── login.js
 │       ├── signup.js
 │       ├── forgot-password.js
@@ -247,6 +248,11 @@ remaining items are genuinely open:
 - ~~`compte.html` (Account/Settings) had no mobile menu at all — the top nav was `hidden md:flex` with no
   fallback. It now has a hamburger + slide-in drawer like the rest of the app.~~
 - ~~Many images across the project had empty `alt=""`; all now carry descriptive alt text.~~
+- ~~`index.html`'s mobile intro carousel (Skip button + 3-dot indicators) loaded `onboarding.js`, a script
+  written for the unrelated profile-setup form on `pages/auth/onboarding.html` — it bailed out immediately
+  since none of its expected elements exist on the landing page, so Skip and the dots did nothing. Now uses
+  its own `landing-carousel.js`, which wires up the dots, Skip, and auto-advances to the next slide every
+  5 seconds on mobile.~~
 
 **Still open:**
 
