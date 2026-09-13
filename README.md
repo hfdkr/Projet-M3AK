@@ -212,70 +212,19 @@ Projet-M3AK/
 - [ ] Real API wired into the existing frontend
 
 ---
-
 ## 🐛 Known Issues
 
-Tracking honestly so nothing is hidden behind a green checklist. The connectivity pass fixed the items below —
-remaining items are genuinely open:
-
-**Fixed:**
-
-- ~~Three overlapping personal pages (Overview dashboard, `compte.html` "Compte Info", user settings) competed
-  for the same job. Merged into one tabbed **My Space** (`overview.html`); `compte.html` is now a redirect
-  stub. Marketplace and the Admin Dashboard were pulled out of the citizen sidebar/bottom-nav and kept as
-  secondary modules. The left sidebar (with My Space first) is now identical across every app page,
-  Emergency Hub included, and no link still points at the removed nav entries.~~
-- ~~Internal navigation pointed at `/pages/dashboard/...` instead of `/pages/app/...`.~~
-- ~~`login.js` called `window.M3akAuth`, but `session.js` exposed `window.M3ak`.~~
-- ~~`reset-password.js` (formerly `new-password.js`) was empty and not loaded on `reset-password.html`.~~
-- ~~`onboarding.js` redirected to `./pages/overview.htm` (wrong extension/path).~~
-- ~~Inconsistent filenames (`service.html`/`services.html`, `emergence.html`/`emergency.html`).~~
-- ~~`signup.html` had no JS attached.~~
-- ~~No session guard — app pages were reachable without signing in, and no page cleared the session on logout.~~
-- ~~`overview.html` and `marketplace.html` used `dark:` classes everywhere but never defined the dark color
-  tokens or `@custom-variant dark` — dark mode toggled but barely changed anything visually.~~
-- ~~`overview.html`'s inline script referenced a `#openMap` button that didn't exist, throwing on load and
-  silently breaking Appointments/Payments rendering.~~
-- ~~`marketplace.html`'s entire sidebar had unclosed `<a>` tags (missing `>` after `class="..."`), which
-  likely broke the icon `<img>` elements inside them.~~
-- ~~`transport.html`'s Emergency Support button referenced a missing icon asset; `marketplace.html`'s used an
-  unrelated icon; both now use a consistent alert-triangle icon like every other page.~~
-- ~~`marketplace.html` had a redundant "Emergency" link in its nav list duplicating the "Emergency Support"
-  button below it.~~
-- ~~`reset-password.html` (formerly `new-password.html`) used a system-font fallback stack instead of the project's two fonts; `emergence.html`'s
-  clock used `font-mono`. Project now uses only Plus Jakarta Sans / Hanken Grotesk throughout.~~
-- ~~`health.html` had no sidebar and no way to open one on mobile (no hamburger button) — now matches every
-  other app page.~~
-- ~~Sidebar nav icons were re-declared as inline SVG on every page; they are now a single shared PNG set
-  (`assets/icon-bar-left/`) with `-green` active variants and a dark-mode filter, and a Passport entry was
-  added to every sidebar.~~
-- ~~`transport.html`'s sidebar used an invalid Tailwind class (`dark:bg-accent-400/15/50`), so in dark mode
-  it kept the pale light-mode background instead of `dark:bg-night-800` like every other page.~~
-- ~~`transport.html` pointed its ~24 icons at a non-existent `/assets/transport/` folder (all 404). They are
-  now wired to the exported `assets/transport-icon/` set; the mode buttons whiten the active icon via CSS
-  instead of loading missing `-white` files.~~
-- ~~`compte.html` (Account/Settings) had no mobile menu at all — the top nav was `hidden md:flex` with no
-  fallback. It now has a hamburger + slide-in drawer like the rest of the app.~~
-- ~~Many images across the project had empty `alt=""`; all now carry descriptive alt text.~~
-- ~~`index.html`'s mobile intro carousel (Skip button + 3-dot indicators) loaded `onboarding.js`, a script
-  written for the unrelated profile-setup form on `pages/auth/onboarding.html` — it bailed out immediately
-  since none of its expected elements exist on the landing page, so Skip and the dots did nothing. Now uses
-  its own `landing-carousel.js`, which wires up the dots, Skip, and auto-advances to the next slide every
-  5 seconds on mobile.~~
-- ~~`js/` lived inside `pages/js/`, mixing shared scripts in with page markup. Moved to a top-level `js/`
-  folder and every `<script src>` in the project repointed at `/js/...`.~~
+The project is functional, but a few items are still in progress:
 
 **Still open:**
 
-- Justice, Foreign Affairs, Agriculture, and Culture are represented by the shared Coming Soon placeholder,
-  not real pages.
-- `health.html` and My Space's Dashboard tab still reference `.png` icons from `assets/services-image/` and
-  `assets/dashboard-assets/` — neither folder exists yet (pre-existing gaps; `transport.html`'s equivalent
-  gap is already fixed via `assets/transport-icon/`).
-- The standalone Admin Dashboard page (`pages/admin-pages/dashboard.html`) has been removed; the "Admin
-  dashboard (demo)" link in the desktop footer currently points at Coming Soon instead.
-- Tablet viewports render the same layout as desktop/laptop (the responsive design only really distinguishes
-  mobile vs. desktop) — no breakpoint tuned specifically for tablet-sized screens.
+* Justice, Foreign Affairs, Agriculture, and Culture are currently represented by the shared **Coming Soon** page.
+* `health.html` and the My Space Dashboard still reference some missing `.png` assets in `assets/services-image/` and `assets/dashboard-assets/`.
+* The standalone Admin Dashboard has been removed and its demo link currently points to **Coming Soon**.
+* Tablet layouts currently reuse the desktop/laptop layout; tablet-specific optimization is still pending.
+* Cross-browser testing and final performance optimization are still pending.
+
+Previously identified navigation, authentication-flow, responsive, dark-mode, asset-path, and accessibility issues have been reviewed and fixed during the development process.
 
 ---
 
