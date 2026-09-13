@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="/pages/js/theme.js"></script>
+    <script src="/js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +75,7 @@
             @apply flex items-center gap-[8px] absolute top-[32px] left-[48px];
         }
         .signup-brand-mark{
-            @apply rounded-[8px] flex items-center justify-center shrink-0;
+            @apply rounded-[8px] flex items-center justify-center shrink-0 bg-green dark:bg-accent-400 p-[6px];
         }
         .signup-brand-name{
             @apply font-jakarta font-semibold text-[24px] leading-[32px] tracking-[-0.6px] text-green-800 dark:text-accent-400;
@@ -174,8 +174,8 @@
             @apply font-jakarta text-[12px] leading-[16px] text-slate-400 dark:text-mist-300;
         }
     </style>
-    <script src="/pages/js/session.js"></script>
-    <script src="/pages/js/signup.js" defer></script>
+    <script src="/js/session.js"></script>
+    <script src="/js/signup.js" defer></script>
 </head>
 
 <body>
@@ -189,9 +189,9 @@
 
             <div class="signup-brand">
                 <div class="signup-brand-mark">
-                    <img src="/assets/image-signUp/signup-icon.png" alt="Signup icon" class="icon-5" />
+                    <img src="/assets/login-sign/image-sign-up/logo.png" alt="M3ak logo" class="icon-5" />
                 </div>
-                <span class="signup-brand-name">Maak Morocco</span>
+                <span class="signup-brand-name">M3ak Morocco</span>
             </div>
 
             <button type="button" class="theme-toggle theme-toggle--panel" data-theme-toggle
@@ -203,11 +203,11 @@
             </button>
 
             <div class="signup-visual">
-                <img class="signup-visual-img" src="/assets/image-signUp/image 8.png" alt="Digital ID preview">
+                <img class="signup-visual-img" src="/assets/login-sign/image-sign-up/digitale-identity.png" alt="Digital ID preview">
 
                 <div class="signup-status-badge">
                     <div class="signup-status-icon">
-                        <img src="/assets/image-signUp/signup-icon-2.png" alt="Signup icon 2" class="icon-5" />
+                        <img src="/assets/login-sign/image-sign-up/secure-status.png" alt="" class="icon-5" />
                     </div>
                     <div>
                         <p class="signup-status-label">Security Status</p>
@@ -233,7 +233,7 @@
             <!-- mobile-only top bar: back link + secured pill -->
             <div class="signup-topbar">
                 <a href="/pages/auth/login.html" class="signup-back-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 shrink-0"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+                    <img src="/assets/login-sign/image-sign-up/icon-back-green.png" alt="" class="w-4 h-4 object-contain" />
                     Back to Log in
                 </a>
                 <div class="signup-topbar-actions">
@@ -245,7 +245,7 @@
                         </span>
                     </button>
                     <span class="signup-secured-pill">
-                        <img src="/assets/image-signUp/Icon(1).png" alt="secure icon">
+                        <img src="/assets/login-sign/image-sign-up/sigr-icon.png" alt="" class="w-4 h-4 object-contain">
                         Secured
                     </span>
                 </div>
@@ -255,7 +255,7 @@
 
                 <div class="signup-brand-mobile">
                     <div class="signup-brand-mark">
-                        <img src="/assets/image-signUp/img-mobile-1.png" alt="Logo Page">
+                        <img src="/assets/login-sign/image-sign-up/logo.png" alt="M3ak logo" class="icon-5" />
                     </div>
                     <span class="signup-brand-name">M3ak Morocco</span>
                 </div>
@@ -270,7 +270,7 @@
                         <label for="fullName" class="signup-field-label">Full Name</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-3.png" alt="Signup icon 3" class="icon-5" />
+                                <img src="/assets/login-sign/image-sign-up/icon-user-name.png" alt="" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="text" id="fullName"
                                 placeholder="Mohamed El Idrissi">
@@ -281,7 +281,7 @@
                         <label for="cni" class="signup-field-label">National ID (CNI)</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-4.png" alt="Signup icon 4" class="icon-5" />
+                                <img src="/assets/login-sign/image-sign-up/icon-cni.png" alt="" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="text" id="cni" placeholder="E.G. AB123456">
                         </div>
@@ -291,7 +291,7 @@
                         <label for="email" class="signup-field-label">Email Address</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-5.png" alt="Signup icon 5" class="icon-5" />
+                                <img src="/assets/login-sign/image-sign-up/Icon-email.png" alt="" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="email" id="email" placeholder="mohamed@example.ma">
                         </div>
@@ -301,7 +301,7 @@
                         <label for="phone" class="signup-field-label">Phone Number</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
-                                <img src="/assets/image-signUp/signup-icon-6.png" alt="Signup icon 6" class="icon-5" />
+                                <img src="/assets/login-sign/image-sign-up/Icon-mobile.png" alt="" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="tel" id="phone" placeholder="+212 600 000 000">
                         </div>
@@ -309,7 +309,8 @@
 
                     <button type="submit" class="signup-btn-primary">
                         Create Account
-                        <img src="/assets/image-signUp/icon-right.png" alt="icon right">
+                        <img src="/assets/login-sign/image-sign-up/icon-right.png" alt="" class="w-4 h-4 object-contain dark:hidden">
+                        <img src="/assets/login-sign/image-sign-up/icon-right-dark.png" alt="" class="hidden w-4 h-4 object-contain dark:block">
                     </button>
                 </form>
 
@@ -319,7 +320,7 @@
 
                 <div class="signup-footer">
                     <span class="signup-secure-pill">
-                        <img src="/assets/image-signUp/signup-icon-7.png" alt="Signup icon 7" class="icon-5" />
+                        <img src="/assets/login-sign/image-sign-up/sigr-icon.png" alt="" class="w-4 h-4 object-contain" />
                         Secure &amp; 256-bit AES Encrypted
                     </span>
                     <p class="signup-terms">
