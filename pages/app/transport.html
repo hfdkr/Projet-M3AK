@@ -16,6 +16,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="/js/theme.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <style type="text/tailwindcss">
 
         /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
@@ -398,21 +403,6 @@
             <section
                 class="relative overflow-hidden bg-gradient-to-b from-brand via-brand to-mint pb-8 lg:m-4 lg:flex-1 lg:rounded-2xl lg:bg-[#052A20] lg:bg-none lg:pb-0">
 
-                <!-- Carte (desktop) — illustration animée, reste en SVG -->
-                <img src="/assets/transport-icon/map-live-transit-routes.png" alt="Map live transit routes" class="absolute inset-0 hidden size-full lg:block object-contain" />
-
-                <!-- Marqueurs (desktop) -->
-                <div class="pointer-events-none absolute inset-0 hidden lg:block">
-                    <span
-                        class="absolute left-[16%] top-[62%] grid size-8 -translate-x-1/2 -translate-y-full place-items-center rounded-full bg-white dark:bg-night-800 shadow-lg">
-                        <img src="/assets/transport-icon/bus.png" alt="Bus location on map" class="size-4 object-contain" />
-                    </span>
-                    <span
-                        class="absolute left-[48%] top-[57%] grid size-8 -translate-x-1/2 -translate-y-full place-items-center rounded-full bg-white dark:bg-night-800 shadow-lg">
-                        <img src="/assets/transport-icon/destination-locale.png" alt="Destination location on map" class="size-4 object-contain" />
-                    </span>
-                </div>
-
                 <!-- Planificateur -->
                 <div class="relative z-10 px-4 pt-4 lg:absolute lg:left-6 lg:top-6 lg:w-[19rem] lg:px-0 lg:pt-0">
                     <div
@@ -479,6 +469,11 @@
                             <img src="/assets/transport-icon/marina-mall.png" alt="Marina Mall" class="size-3.5 object-contain" />Marina Mall
                         </button>
                     </div>
+                </div>
+
+                <!-- Carte réelle : OpenStreetMap via Leaflet, position actuelle + lignes de transport -->
+                <div class="relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none">
+                    <div id="transitMap" class="size-full"></div>
                 </div>
 
                 <!-- Alerte d'arrivée (desktop : flottante en bas de carte) -->
@@ -560,6 +555,28 @@
 
         const ALERT = { line: "Line 12 - Arrival Soon", detail: "Arriving in 4 min at Gare Routière Agadir" };
 
+        /* Known stops, shared by the route cards above and the live map below. */
+        const STOPS = {
+            "Talborjt": [30.4202, -9.5982],
+            "Marina d'Agadir": [30.4180, -9.6110],
+            "Founty": [30.3987, -9.5654],
+            "Bensergao": [30.4460, -9.5760],
+            "Dcheira": [30.3850, -9.5350],
+            "Al Houda": [30.4100, -9.5550],
+            "Gare Routière Agadir": [30.4231, -9.5761]
+        };
+
+        /* Demo transit lines drawn on the map — same city/stops as ROUTES above.
+           No live transit API/backend yet, so this is static/demo data like the
+           rest of the app (see README). */
+        const TRANSIT_LINES = [
+            { mode: "Bus", name: "Bus 12 — ALSA City Bus", color: "#316BF3", stops: ["Talborjt", "Founty", "Marina d'Agadir"] },
+            { mode: "Bus", name: "Bus 4 — ALSA City Bus", color: "#0B6B45", stops: ["Bensergao", "Al Houda", "Dcheira"] },
+            { mode: "Tram", name: "Tram T1", color: "#9333EA", stops: ["Gare Routière Agadir", "Talborjt", "Marina d'Agadir"] }
+        ];
+
+        const CITIES = { agadir: { label: "Agadir", lat: 30.4278, lon: -9.5981, zoom: 13 } };
+
         let mode = "Bus";
 
         /* ── Toast ── */
@@ -581,7 +598,11 @@
                 b.setAttribute("aria-pressed", on);
             });
         }
-        $$(".mode").forEach(b => b.addEventListener("click", () => { mode = b.dataset.mode; paintModes(); }));
+        $$(".mode").forEach(b => b.addEventListener("click", () => {
+            mode = b.dataset.mode;
+            paintModes();
+            renderTransitLines(mode);
+        }));
 
         /* ── Chips ── */
         function paintChips() {
@@ -674,7 +695,95 @@
         function renderAlerts() {
             $("#alertDesktop").innerHTML = alertCard();
             $("#alertMobile").innerHTML = alertCard();
-            $$("[data-track]").forEach(b => b.addEventListener("click", () => toast("Tracking Line L12 in real time")));
+            $$("[data-track]").forEach(b => b.addEventListener("click", () => {
+                toast("Tracking Line L12 in real time");
+                if (map) map.flyTo(STOPS["Gare Routière Agadir"], 15);
+            }));
+        }
+
+        /* ─────────────────────────────
+           LIVE MAP — real OpenStreetMap tiles via Leaflet, the visitor's
+           actual GPS position (browser geolocation, with a graceful fallback
+           to the city center if it's denied/unavailable), and the demo bus +
+           tram lines defined in TRANSIT_LINES above.
+        ───────────────────────────── */
+        let map = null;
+        let linesLayer = null;
+        let userMarker = null;
+
+        function getCityKey() {
+            try {
+                const saved = ((window.M3ak && window.M3ak.getProfile().location) || {}).city || "Agadir";
+                const key = saved.trim().toLowerCase();
+                return CITIES[key] ? key : "agadir";
+            } catch (e) {
+                return "agadir";
+            }
+        }
+
+        function renderTransitLines(forMode) {
+            linesLayer.clearLayers();
+            const matching = TRANSIT_LINES.filter(l => l.mode === forMode);
+            const lines = matching.length ? matching : TRANSIT_LINES;
+
+            lines.forEach(line => {
+                const latlngs = line.stops.map(s => STOPS[s]);
+                L.polyline(latlngs, { color: line.color, weight: 5, opacity: 0.85, lineJoin: "round" })
+                    .addTo(linesLayer)
+                    .bindPopup(`<strong>${line.name}</strong><br>${line.stops.join(" → ")}`);
+
+                line.stops.forEach(name => {
+                    L.circleMarker(STOPS[name], { radius: 6, color: "#fff", weight: 2, fillColor: line.color, fillOpacity: 1 })
+                        .addTo(linesLayer)
+                        .bindPopup(`<strong>${name}</strong><br>${line.name}`);
+                });
+            });
+        }
+
+        function locateUser(city) {
+            if (!navigator.geolocation) {
+                toast("Geolocation isn't supported on this device");
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const here = [pos.coords.latitude, pos.coords.longitude];
+                    if (userMarker) map.removeLayer(userMarker);
+                    userMarker = L.circleMarker(here, { radius: 9, color: "#fff", weight: 3, fillColor: "#316BF3", fillOpacity: 1 })
+                        .addTo(map)
+                        .bindPopup("You are here")
+                        .openPopup();
+                    map.setView(here, 15);
+                },
+                () => toast(`Location unavailable — showing ${city.label}`),
+                { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+            );
+        }
+
+        function initMap() {
+            /* Leaflet's default marker icons are relative-pathed; loading via
+               CDN <script>/<link> tags (no bundler) breaks them unless the
+               URLs are pointed at the CDN explicitly. */
+            delete L.Icon.Default.prototype._getIconUrl;
+            L.Icon.Default.mergeOptions({
+                iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+                iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+                shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
+            });
+
+            map = L.map("transitMap", { zoomControl: true, attributionControl: true });
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "&copy; OpenStreetMap contributors",
+                maxZoom: 19
+            }).addTo(map);
+
+            linesLayer = L.layerGroup().addTo(map);
+            renderTransitLines(mode);
+
+            const city = CITIES[getCityKey()];
+            map.setView([city.lat, city.lon], city.zoom);
+
+            locateUser(city);
         }
 
         /* ── Ticket + pass ── */
@@ -695,7 +804,7 @@
         sidebar.addEventListener("mouseleave", () => { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
         /* ── Init ── */
-        paintModes(); paintChips(); renderRoutes(); renderAlerts();
+        paintModes(); paintChips(); renderRoutes(); renderAlerts(); initMap();
     </script>
 </body>
 
