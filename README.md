@@ -83,20 +83,21 @@ Projet-M3AK/
 │   │   ├── support.html          # Help Center (shared)
 │   │   └── coming-soon.html      # Placeholder for not-yet-built sections
 │   │
-│   ├── admin-pages/
-│   │   ├── dashboard.html        # Admin Dashboard — secondary/demo module (not in the citizen nav; reachable from the desktop footer + direct URL)
-│   │   └── compte.html           # Redirect stub → overview.html ("My Space"); the old Account/Settings page, now merged in as tabs
-│   │
-│   └── js/
-│       ├── session.js
-│       ├── theme.js
-│       ├── onboarding.js
-│       ├── landing-carousel.js   # index.html's mobile Skip/dots + auto-advancing slides
-│       ├── login.js
-│       ├── signup.js
-│       ├── forgot-password.js
-│       ├── reset-password.js
-│       └── emergence.js
+│   └── admin-pages/
+│       ├── dashboard.html        # Admin Dashboard — secondary/demo module (not in the citizen nav; reachable from the desktop footer + direct URL)
+│       └── compte.html           # Redirect stub → overview.html ("My Space"); the old Account/Settings page, now merged in as tabs
+│
+├── js/
+│   ├── session.js
+│   ├── theme.js
+│   ├── shell.js
+│   ├── onboarding.js
+│   ├── landing-carousel.js       # index.html's mobile Skip/dots + auto-advancing slides
+│   ├── login.js
+│   ├── signup.js
+│   ├── forgot-password.js
+│   ├── reset-password.js
+│   └── emergence.js
 │
 ├── index.html
 ├── .gitignore
