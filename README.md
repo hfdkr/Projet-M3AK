@@ -46,18 +46,17 @@ Projet-M3AK/
 ├── assets/
 │   ├── icon-bar-left/          # Shared left-sidebar nav icons (+ "-green" active variants)
 │   ├── transport-icon/         # Transport page icons (modes, planner, quick places)
-│   ├── image-login/
-│   ├── image-signUp/
-│   ├── image-new-password/
+│   ├── housing-icons/          # Housing page icons
+│   ├── login-sign/
+│   │   ├── image-login/
+│   │   ├── image-signUp/
+│   │   └── image-new-password/
 │   ├── images/
-│   ├── marketplace-image/
 │   ├── emergence-image/
 │   ├── health-image/
 │   ├── support-image/
-│   ├── suppor-assets/
 │   ├── coming-soon/
 │   ├── settings/
-│   ├── dashboard-assets/
 │   └── screenshots/
 │
 ├── pages/
@@ -65,11 +64,13 @@ Projet-M3AK/
 │   │   ├── login.html
 │   │   ├── signup.html
 │   │   ├── forgot-password.html
-│   │   └── reset-password.html
+│   │   ├── reset-password.html
+│   │   ├── onboarding.html        # Post-signup profile setup (personal / location / medical / emergency contact)
+│   │   └── region-restricted.html # Shown after sign-in when the saved profile country isn't Morocco
 │   │
 │   ├── app/
-│   │   ├── overview.html         # "My Space" — merged personal portal (Overview / My Requests / Appointments / Personal Info / Account)
-│   │   ├── service.html          # Services Directory (12 ministry categories)
+│   │   ├── home.html             # Services Directory (12 ministry categories) — the signed-in landing page
+│   │   ├── overview.html         # "My Space" — merged personal portal (Dashboard / My Requests / Appointments / Personal Info / Account)
 │   │   ├── transport.html
 │   │   ├── health.html
 │   │   ├── emergence.html
@@ -81,10 +82,10 @@ Projet-M3AK/
 │   │   ├── interior.html         # Passport, CNIE, residence permits
 │   │   ├── finance.html          # Income tax, VAT, customs
 │   │   ├── support.html          # Help Center (shared)
+│   │   ├── assistant.html        # AI Assistant (linked from every app page's sidebar)
 │   │   └── coming-soon.html      # Placeholder for not-yet-built sections
 │   │
 │   └── admin-pages/
-│       ├── dashboard.html        # Admin Dashboard — secondary/demo module (not in the citizen nav; reachable from the desktop footer + direct URL)
 │       └── compte.html           # Redirect stub → overview.html ("My Space"); the old Account/Settings page, now merged in as tabs
 │
 ├── js/
@@ -110,28 +111,28 @@ Projet-M3AK/
 
 - Modern and responsive UI, light/dark mode on every page (`theme.js`, shared across tabs)
 - **Unified information architecture:** one main citizen journey — **My Space → Services → (Transport,
-  Healthcare, Housing, Jobs, Education, Payments) → Emergency → Support**. The same left sidebar
+  Health, Housing, Jobs, Education, Payments) → Emergency → Support**. The same left sidebar
   (My Space first, then the services, Emergency Support / Help Center / Settings / Logout in the foot)
   is now present and consistent on every app page, including the Emergency Hub.
 - **My Space** (`overview.html`) — a single personal portal merging what used to be three overlapping
-  pages (Overview dashboard + Compte Info + user settings). Tabbed: Overview, My Requests, Appointments,
+  pages (Overview dashboard + Compte Info + user settings). Tabbed: Dashboard, My Requests, Appointments,
   Personal Info (incl. Digital ID / CIN), Account (security + preferences). Deep links like
   `overview.html#account` or `#personal-info` open the matching tab; the old `compte.html#…` links
-  still work via a redirect stub.
+  still work via a redirect stub. The Dashboard tab holds a KPI snapshot (requests, payments,
+  appointments) and a lightweight activity chart (pure CSS, no charting library).
 - Instagram-style collapsible sidebar on every app page: icons only by default, hovering the sidebar
   reveals every label at once, active page always visible on its own icon color
 - Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`), with `-green`
   variants shown on the active page and a dark-mode filter that keeps the plain icons legible
-- The **Admin Dashboard** is a secondary module, kept but out of the main citizen journey: reachable from a
-  discreet "Admin dashboard (demo)" link in the desktop footer and by direct URL
-- Live transport status on the My Space overview tab
+- **AI Assistant** page (`assistant.html`), linked from every app page's sidebar and from the Help Center
+- Live transport status on the My Space Dashboard tab
 - Digital identity management (UI) — CIN card, personal info, security, preferences in My Space → Personal Info / Account
-- Public service directory (12 ministry categories: Housing, Jobs, Education, Healthcare, Registry, Interior,
-  Finance, Justice, Foreign Affairs, Agriculture, Culture, Tourism — first 7 are real pages, the rest fall
-  back to the shared Coming Soon placeholder)
+- Services Directory (`home.html`, the signed-in landing page) — 12 ministry categories: Housing, Jobs,
+  Education, Health, Registry, Transport, Interior, Finance, Justice, Foreign Affairs, Agriculture, Culture.
+  8 are real pages; Justice, Foreign Affairs, Agriculture, and Culture fall back to the shared Coming Soon
+  placeholder.
 - Payments hub UI with wallet balance, recent payments, and bill-payment categories
 - Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
-- Admin Dashboard: KPIs, engagement trends, service usage
 - Session handling shared across pages via `localStorage` (`session.js`), with an auth guard
   (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored
 - Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too, descriptive
@@ -145,32 +146,33 @@ Projet-M3AK/
 
 ## 📋 Roadmap
 
-### ✅ Project Setup
+### ✅ Current / Completed
+
+**Setup**
 
 - [x] Project Planning
 - [x] UI/UX Design
 - [x] Project Structure
 
-### 🚧 Frontend Development
-
-#### Authentication
+**Authentication**
 
 - [x] Landing Page
 - [x] Sign In Page (UI + validation, wired to session)
 - [x] Sign Up Page (UI + validation, wired to session)
 - [x] Forgot Password Page
-- [x] New Password Page (live requirement checks + reset flow)
+- [x] Reset Password Page (live requirement checks + reset flow)
+- [x] Onboarding (post-signup profile setup)
+- [x] Region-restricted screen for non-Morocco profiles
 
-#### Dashboard / App
+**App**
 
-- [x] Overview Page
-- [x] Services Page
+- [x] Services Directory / signed-in landing page (`home.html`)
+- [x] My Space (`overview.html` — Dashboard, My Requests, Appointments, Personal Info, Account tabs)
 - [x] Transport Page
 - [x] Health / Find a Specialist Page
 - [x] Emergency Hub Page
-- [x] Admin Dashboard
-- [x] Citizen Account / Settings Page (Personal Info, Digital ID, Security, Preferences)
 - [x] Help Center Page (shared across the app)
+- [x] AI Assistant Page
 - [x] Coming Soon placeholder (for sections without a dedicated page yet)
 - [x] Housing Page
 - [x] Jobs Page
@@ -179,25 +181,31 @@ Projet-M3AK/
 - [x] Civil Registry Page (birth/marriage/residence certificates, CNIE renewal)
 - [x] Interior Page (passports, residence permits, CNIE)
 - [x] Finance Page (income tax, VAT, customs)
-- [ ] Justice, Foreign Affairs, Agriculture, Culture, Tourism pages (still on Coming Soon)
 
-### 📱 Responsive Design
+**Responsive Design**
 
-- [x] Mobile
-- [x] Tablet *(falls back to the desktop/laptop layout — no dedicated tablet-specific breakpoint yet)*
-- [x] Desktop
+- [x] Mobile layout
+- [x] Desktop / laptop layout
 
-### 🧪 Testing
-
-- [ ] Cross-browser Testing
-- [ ] Automated broken-link check (GitHub Actions)
-- [ ] Performance Optimization
-
-### 🚀 Deployment
+**Deployment**
 
 - [x] Deployed on [Vercel](https://projet-m3-ak.vercel.app/)
 
-### 🔧 Backend Development (Planned — 2026/2027)
+### 🔜 Next Steps (Frontend)
+
+- [ ] Justice, Foreign Affairs, Agriculture, Culture pages (still on the shared Coming Soon placeholder)
+- [ ] Tablet-specific layout — tablet viewports currently reuse the desktop/laptop layout as a functional
+      fallback; no breakpoint tuned specifically for tablet-sized screens yet
+- [ ] Rebuild a standalone Admin Dashboard page — the previous one was removed; its footer link now points
+      to Coming Soon, and the KPI snapshot it used to show now lives inside My Space's own Dashboard tab
+- [ ] Missing icon assets referenced by `health.html` (`assets/services-image/`) and by the My Space
+      Dashboard tab (`assets/dashboard-assets/`) — folders don't exist yet
+- [ ] Cross-browser testing
+- [ ] Automated broken-link check (GitHub Actions)
+- [ ] Performance optimization
+- [ ] Tailwind build step (replace the CDN build, see Tech Stack)
+
+### 🔧 Future Backend Phase (Planned — 2026/2027 academic year)
 
 - [ ] Real authentication
 - [ ] Database
@@ -254,14 +262,18 @@ remaining items are genuinely open:
   since none of its expected elements exist on the landing page, so Skip and the dots did nothing. Now uses
   its own `landing-carousel.js`, which wires up the dots, Skip, and auto-advances to the next slide every
   5 seconds on mobile.~~
+- ~~`js/` lived inside `pages/js/`, mixing shared scripts in with page markup. Moved to a top-level `js/`
+  folder and every `<script src>` in the project repointed at `/js/...`.~~
 
 **Still open:**
 
-- Justice, Foreign Affairs, Agriculture, Culture, and Tourism are represented by the shared Coming Soon
-  placeholder, not real pages.
-- `health.html` and admin `dashboard.html` still reference many `.png` icons from `assets/services-image/`
-  and `assets/dashboard/` folders that don't exist — pre-existing gaps (`transport.html`'s equivalent gap is
-  now fixed via `assets/transport-icon/`).
+- Justice, Foreign Affairs, Agriculture, and Culture are represented by the shared Coming Soon placeholder,
+  not real pages.
+- `health.html` and My Space's Dashboard tab still reference `.png` icons from `assets/services-image/` and
+  `assets/dashboard-assets/` — neither folder exists yet (pre-existing gaps; `transport.html`'s equivalent
+  gap is already fixed via `assets/transport-icon/`).
+- The standalone Admin Dashboard page (`pages/admin-pages/dashboard.html`) has been removed; the "Admin
+  dashboard (demo)" link in the desktop footer currently points at Coming Soon instead.
 - Tablet viewports render the same layout as desktop/laptop (the responsive design only really distinguishes
   mobile vs. desktop) — no breakpoint tuned specifically for tablet-sized screens.
 
@@ -271,20 +283,24 @@ remaining items are genuinely open:
 
 - ✅ Project setup completed
 - ✅ Landing page completed
-- ✅ Auth pages (login, signup, forgot password, new password) — UI complete, fully wired to the shared session
-- ✅ Overview, Services, Transport, Marketplace, Health, Housing, Jobs, Education, Payments, Registry, Interior,
-  Finance, Emergency Hub, Admin Dashboard, Account/Settings, Help Center — UI complete and cross-linked
+- ✅ Auth pages (login, signup, forgot password, reset password, onboarding, region-restricted) — UI
+  complete, fully wired to the shared session
+- ✅ Home/Services Directory, My Space, Transport, Health, Housing, Jobs, Education, Payments, Registry,
+  Interior, Finance, Emergency Hub, Help Center, AI Assistant — UI complete and cross-linked
 - ✅ Internal navigation, auth JS, and session guard fixed across the app
 - ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
-- ✅ Instagram-style collapsible sidebar rolled out to all 11 app pages that have one
+- ✅ Instagram-style collapsible sidebar rolled out to all 13 app pages that have one
 - ✅ Sidebar nav switched to a shared PNG icon set (`icon-bar-left/`) with active-state green variants and a
   Passport entry on every page; `transport.html` wired to its own `transport-icon/` set
 - ✅ Accessibility pass — descriptive `alt` text added to every image across the project
-- ✅ Account/Settings page got the mobile hamburger + drawer it was missing
-- ✅ Mobile, tablet, and desktop breakpoints in place across the app — tablet viewports currently reuse the
-  desktop/laptop layout rather than a custom-tuned in-between design
+- ✅ Account/Settings page (now the Account tab in My Space) got the mobile hamburger + drawer it was missing
+- ✅ Mobile and desktop breakpoints in place across the app; tablet viewports currently reuse the
+  desktop/laptop layout rather than a custom-tuned in-between design (see Roadmap)
 - ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
-- 🚧 Justice, Foreign Affairs, Agriculture, Culture, Tourism ministry pages (currently placeholders)
+- 🚧 Justice, Foreign Affairs, Agriculture, Culture ministry pages (currently placeholders)
+- 🚧 Standalone Admin Dashboard page removed — footer link now points to Coming Soon; a Dashboard tab with
+  the same KPI snapshot lives inside My Space
+- 🚧 Tablet-specific layout pending
 - 🚧 Cross-browser testing pending
 
 ---
