@@ -2,13 +2,13 @@
     "use strict";
 
     var TOTAL_STEPS = 3;
-    var SWIPE_THRESHOLD = 40;
+    var AUTO_ADVANCE_MS = 5000;
     var step = 1;
+    var autoAdvanceTimer = null;
 
     document.addEventListener("DOMContentLoaded", function () {
         var steps = document.querySelectorAll(".onboarding-step[data-step]");
         var skipBtn = document.getElementById("skip-btn");
-        var main = document.querySelector("main");
         if (!steps.length) { return; }
 
         fillActionSlots();
@@ -16,24 +16,31 @@
         document.querySelectorAll(".carousel-indicators [data-goto]").forEach(function (dot) {
             dot.addEventListener("click", function () {
                 goToStep(Number(dot.dataset.goto));
+                restartAutoAdvance();
             });
         });
 
         if (skipBtn) {
             skipBtn.addEventListener("click", function () {
                 goToStep(TOTAL_STEPS);
+                restartAutoAdvance();
             });
         }
 
-        if (main) {
-            enableSwipe(main);
-        }
-
         render();
+        restartAutoAdvance();
 
         function goToStep(n) {
             step = Math.min(TOTAL_STEPS, Math.max(1, n));
             render();
+        }
+
+        function restartAutoAdvance() {
+            if (window.innerWidth >= 768) { return; }
+            clearInterval(autoAdvanceTimer);
+            autoAdvanceTimer = setInterval(function () {
+                goToStep(step === TOTAL_STEPS ? 1 : step + 1);
+            }, AUTO_ADVANCE_MS);
         }
 
         function render() {
@@ -57,38 +64,6 @@
                 clone.removeAttribute("id");
                 slot.appendChild(clone);
             });
-        }
-
-        function enableSwipe(target) {
-            var startX = 0;
-            var startY = 0;
-            var tracking = false;
-
-            target.addEventListener("touchstart", function (e) {
-                if (window.innerWidth >= 768) { return; }
-                var touch = e.touches[0];
-                startX = touch.clientX;
-                startY = touch.clientY;
-                tracking = true;
-            }, { passive: true });
-
-            target.addEventListener("touchend", function (e) {
-                if (!tracking) { return; }
-                tracking = false;
-                var touch = e.changedTouches[0];
-                var deltaX = touch.clientX - startX;
-                var deltaY = touch.clientY - startY;
-
-                if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) {
-                    return;
-                }
-
-                if (deltaX < 0) {
-                    goToStep(step + 1);
-                } else {
-                    goToStep(step - 1);
-                }
-            }, { passive: true });
         }
     });
 })();
