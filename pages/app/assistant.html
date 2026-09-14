@@ -61,32 +61,105 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* ── Sidebar nav ── */
-        .a-nav {
+        /* ── Shared left sidebar (same as every other app page) ── */
+        .nav-item {
             display: flex;
             align-items: center;
             gap: .75rem;
-            border-radius: .625rem;
-            padding: .625rem .7rem;
+            border-radius: .75rem;
+            padding: .625rem .75rem;
             font-size: .875rem;
             font-weight: 500;
             color: #6B7A73;
             transition: background-color .15s, color .15s;
         }
 
-        .a-nav:hover { background: #F1F4F2; color: #0F1A15; }
-        .a-nav svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-        .a-nav--active {
-            background: #0B6B45;
-            color: #fff;
-            font-weight: 600;
+        .nav-item:hover {
+            background: #F1F4F2;
+            color: #0F1A15;
         }
-        .a-nav--active img { filter: brightness(0) invert(1); }
 
-        .dark .a-nav { color: #7C8981; }
-        .dark .a-nav:hover { background: #151C18; color: #E7ECE9; }
-        .dark .a-nav--active { background: #0B6B45; color: #fff; }
+        .dark .nav-item {
+            color: #7C8981;
+        }
+
+        .dark .nav-item:hover {
+            background: #151C18;
+            color: #E7ECE9;
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .dark .nav-icon:not(.nav-icon--active) {
+            filter: brightness(0) invert(1);
+            opacity: .9;
+        }
+
+        /* Icon rail: collapsed at rest, expands automatically on hover/focus */
+        @media (min-width: 1024px) {
+
+            /* Collapsed rail: every service card becomes a centered circle */
+            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar:not(:hover):not(:focus-within) a {
+                width: 2.75rem;
+                height: 2.75rem;
+                padding: 0;
+                gap: 0;
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+                border-radius: 9999px;
+            }
+            #sidebar {
+                width: 5rem;
+                transition: width .2s ease;
+            }
+
+            #sidebar:hover,
+            #sidebar:focus-within {
+                width: 14rem;
+            }
+
+            #sidebar a svg,
+            #sidebar a img {
+                flex-shrink: 0;
+            }
+
+            #sidebar .sidebar-text,
+            #sidebar .nav-label {
+                display: inline-block;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                opacity: 0;
+                transition: opacity .15s ease;
+            }
+
+            #sidebar:hover .sidebar-text,
+            #sidebar:hover .nav-label,
+            #sidebar:focus-within .sidebar-text,
+            #sidebar:focus-within .nav-label {
+                width: auto;
+                opacity: 1;
+            }
+
+            #sidebar .sidebar-head,
+            #sidebar a {
+                justify-content: center;
+            }
+
+            #sidebar:hover .sidebar-head,
+            #sidebar:hover a,
+            #sidebar:focus-within .sidebar-head,
+            #sidebar:focus-within a {
+                justify-content: flex-start;
+            }
+        }
 
         /* ── Chip (quick actions) ── */
         .chip {
@@ -169,113 +242,118 @@
 
 <body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
 
-    <div class="lg:flex">
+    <!-- ══════════ TOP BAR ══════════ -->
+    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
+        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
+            <button id="menuBtn" type="button"
+                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
+                <span class="sr-only">Open menu</span>
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
+            </button>
 
-        <!-- ═══════════ SIDEBAR / DRAWER ═══════════ -->
+            <a href="/pages/app/coming-soon.html?feature=Services"
+                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
+
+            <div class="ml-auto flex items-center gap-1.5">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                    </span>
+                </button>
+
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Notifications</span>
+                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                </button>
+
+                <button type="button"
+                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <span class="sr-only">Your profile</span>A
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+
+        <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
         <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
 
         <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-72 max-w-[82vw] -translate-x-full flex-col overflow-y-auto border-r border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-5 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:translate-x-0">
-
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak AI Assistant</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Government Services</p>
+            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+            <div class="mb-5 px-2 sidebar-head">
+                <div class="sidebar-text">
+                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
                 </div>
-                <button id="drawerClose" type="button"
-                    class="grid size-8 place-items-center rounded-lg text-muted hover:bg-canvas dark:hover:bg-night-700 lg:hidden">
-                    <span class="sr-only">Close menu</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-5"><path d="M6 6l12 12M18 6 6 18" /></svg>
-                </button>
             </div>
 
-            <a href="/pages/app/coming-soon.html?feature=Quick+Verify"
-                class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40">
-                Quick Verify
-            </a>
-
-            <nav class="mt-5 space-y-1">
-                <a href="/pages/app/assistant.html" aria-current="page" class="a-nav a-nav--active">
-                    Dashboard
+            <nav class="space-y-0.5">
+                <a href="/pages/app/overview.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
+                    <span class="nav-label">My Space</span>
                 </a>
-                <a href="/pages/app/registry.html" class="a-nav">
-                    Digital Identity
+                <a href="/pages/app/transport.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
+                    <span class="nav-label">Transport</span>
                 </a>
-                <a href="/pages/app/coming-soon.html?feature=Documents" class="a-nav">
-                    Documents
+                <a href="/pages/app/housing.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/Housing.png" alt="Housing" class="nav-icon" />
+                    <span class="nav-label">Housing</span>
                 </a>
-                <a href="/pages/app/coming-soon.html?feature=Appointments" class="a-nav">
-                    Appointments
+                <a href="/pages/app/jobs.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/Jobs.png" alt="Jobs" class="nav-icon" />
+                    <span class="nav-label">Jobs</span>
                 </a>
-                <a href="/pages/app/support.html" class="a-nav">
-                    Help Center
+                <a href="/pages/app/education.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon" />
+                    <span class="nav-label">Education</span>
+                </a>
+                <a href="/pages/app/health.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/healthcare.png" alt="Health" class="nav-icon" />
+                    <span class="nav-label">Healthcare</span>
+                </a>
+                <a href="/pages/app/payments.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/Payment.png" alt="Payment" class="nav-icon" />
+                    <span class="nav-label">Payments</span>
+                </a>
+                <a href="/pages/app/finance.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/Finance.png" alt="Finance" class="nav-icon" />
+                    <span class="nav-label">Finance</span>
                 </a>
             </nav>
 
-            <div class="my-4 border-t border-black/5 dark:border-white/10"></div>
-
-            <nav class="space-y-1">
-                <a href="/pages/app/overview.html#account" class="a-nav">
-                    Settings
+            <div class="mt-auto space-y-1 pt-6">
+                <a href="/pages/app/emergence.html"
+                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+                    <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
-                <a href="/pages/auth/login.html" data-action="logout" class="a-nav text-danger hover:!text-danger">
-                    Sign Out
+                <a href="/pages/app/support.html" class="nav-item">
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+                    <span class="nav-label">Help Center</span>
                 </a>
-            </nav>
-
-            <div class="mt-auto rounded-xl border border-black/5 dark:border-white/10 bg-canvas dark:bg-night-700 px-3 py-2.5">
-                <p class="flex items-center gap-2 text-xs font-bold">
-                    <span class="size-2 rounded-full bg-danger"></span> AI Status
-                </p>
-                <p class="mt-0.5 pl-4 text-[11px] text-muted dark:text-mist-300">Currently unavailable</p>
+                <a href="/pages/app/overview.html#account" class="nav-item">
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+                    <span class="nav-label">Settings</span>
+                </a>
+                <a href="/pages/app/assistant.html" aria-current="page"
+                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <span class="nav-label">AI Assistant</span>
+                </a>
+                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+                    <span class="nav-label">Logout</span>
+                </a>
             </div>
         </aside>
 
         <!-- ═══════════ MAIN ═══════════ -->
         <div class="min-w-0 flex-1">
-
-            <!-- Top bar -->
-            <header class="sticky top-0 z-30 border-b border-black/5 dark:border-white/10 bg-canvas/90 dark:bg-night-900/90 backdrop-blur">
-                <div class="flex h-14 items-center gap-3 px-4 lg:h-16 lg:px-8">
-                    <button id="menuBtn" type="button"
-                        class="grid size-9 place-items-center rounded-lg hover:bg-white dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
-                        <span class="sr-only">Open menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-6"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    </button>
-
-                    <a href="/pages/app/coming-soon.html?feature=Services" class="flex items-center gap-2 lg:hidden">
-                        <span class="leading-none">
-                            <span class="block text-sm font-extrabold text-brand dark:text-accent-400">M3AK</span>
-                            <span class="block text-[10px] text-muted dark:text-mist-300">AI Assistant</span>
-                        </span>
-                    </a>
-
-                    <div class="ml-auto flex items-center gap-1.5">
-                        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                            <span class="theme-toggle-thumb">
-                                <svg class="theme-toggle-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
-                                <svg class="theme-toggle-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
-                            </span>
-                        </button>
-
-                        <button type="button"
-                            class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-white dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
-                            <span class="sr-only">Notifications</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
-                            <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-canvas dark:ring-night-900"></span>
-                        </button>
-
-                        <button type="button" id="historyBtn"
-                            class="hidden size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-white dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 sm:grid">
-                            <span class="sr-only">Conversation history</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5M12 7v5l3 2" /></svg>
-                        </button>
-
-                        <span data-user-initials
-                            class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
-                    </div>
-                </div>
-            </header>
 
             <main class="mx-auto max-w-[1180px] px-4 pb-6 pt-5 lg:px-8 lg:pb-12 lg:pt-7">
 
@@ -446,9 +524,9 @@
             document.body.classList.toggle("overflow-hidden", open);
         }
         $("#menuBtn").addEventListener("click", function () { openDrawer(true); });
-        $("#drawerClose").addEventListener("click", function () { openDrawer(false); });
         scrim.addEventListener("click", function () { openDrawer(false); });
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
+        sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
         $$("#sidebar a").forEach(function (a) {
             a.addEventListener("click", function () {
                 if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false);
@@ -563,7 +641,6 @@
         });
 
         $("#viewAllSessions").addEventListener("click", function () { toast("Opening your full voice history…"); });
-        $("#historyBtn").addEventListener("click", function () { toast("Opening your full voice history…"); });
     </script>
 </body>
 
