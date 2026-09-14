@@ -12,6 +12,7 @@
         var nextBtn = document.getElementById("obNext");
         var skipBtn = document.getElementById("obSkip");
         var errorEl = document.getElementById("obError");
+        var lastStepFields = document.querySelectorAll('.ob-step[data-step="' + TOTAL_STEPS + '"] input, .ob-step[data-step="' + TOTAL_STEPS + '"] select');
 
         /* Prefill from any partial profile already saved (e.g. user came back
            after skipping, or edited elsewhere and re-entered onboarding). */
@@ -25,6 +26,7 @@
         });
 
         nextBtn.addEventListener("click", function () {
+            if (nextBtn.disabled) { return; }
             if (!validateStep(step)) { return; }
             hideError();
 
@@ -38,10 +40,44 @@
             window.location.href = "/pages/app/home.html";
         });
 
+        /* Skip moves forward one step at a time, same as Next but without
+           requiring that step's fields — it never jumps straight out of
+           onboarding. On the last step it's gated exactly like Next (see
+           updateFinalStepGate): an untouched final step blocks both. */
         skipBtn.addEventListener("click", function () {
+            if (skipBtn.disabled) { return; }
+            hideError();
             save();
+
+            if (step < TOTAL_STEPS) {
+                step += 1;
+                render();
+                return;
+            }
+
             window.location.href = "/pages/app/home.html";
         });
+
+        lastStepFields.forEach(function (field) {
+            field.addEventListener("input", updateFinalStepGate);
+            field.addEventListener("change", updateFinalStepGate);
+        });
+
+        function lastStepHasAnyValue() {
+            for (var i = 0; i < lastStepFields.length; i++) {
+                if (lastStepFields[i].value && lastStepFields[i].value.trim()) { return true; }
+            }
+            return false;
+        }
+
+        /* On the final step, an entirely empty step blocks both Skip and
+           Next — only Back stays available — so onboarding can't be
+           finished without at least starting the last step. */
+        function updateFinalStepGate() {
+            var locked = step === TOTAL_STEPS && !lastStepHasAnyValue();
+            nextBtn.disabled = locked;
+            skipBtn.disabled = locked;
+        }
 
         function render() {
             document.querySelectorAll(".ob-step").forEach(function (el) {
@@ -54,6 +90,7 @@
             });
             backBtn.classList.toggle("invisible", step === 1);
             nextBtn.textContent = step === TOTAL_STEPS ? "Finish Setup" : "Next";
+            updateFinalStepGate();
         }
 
         function validateStep(n) {
