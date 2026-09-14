@@ -742,11 +742,13 @@
             }
             if (state.category && j.category !== state.category) return false;
             if (state.location) {
-                if (state.location === "Télétravail") { if (!j.remote) return false; }
-                else if (j.location.indexOf(state.location.split(" - ")[0]) === -1 &&
-                    j.location.indexOf(state.location) === -1) {
-                    /* Region select doesn't map 1:1 to city text on every card —
-                       fall back to matching on the leading city name only. */
+                if (state.location === "Télétravail") {
+                    if (!j.remote) return false;
+                } else {
+                    /* Region select doesn't map 1:1 to the city text on every
+                       card — match on the region's leading city name only. */
+                    var city = state.location.split(" - ")[0].trim();
+                    if (j.location.indexOf(city) === -1) return false;
                 }
             }
             return true;
