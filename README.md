@@ -49,8 +49,7 @@ Projet-M3AK/
 │   ├── housing-icons/          # Housing page icons
 │   ├── login-sign/
 │   │   ├── image-login/
-│   │   ├── image-signUp/
-│   │   └── image-new-password/
+│   │   └── image-sign-up/
 │   ├── images/
 │   ├── emergence-image/
 │   ├── health-image/

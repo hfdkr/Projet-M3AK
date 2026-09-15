@@ -62,7 +62,7 @@
                     icon.classList.toggle("border-gray-300", !passed);
                     icon.classList.toggle("dark:border-night-600", !passed);
                     icon.innerHTML = passed
-                        ? '<img src="/assets/login-sign/image-new-password/check-icon.png" alt="" class="w-2.5 h-2.5 object-contain" />'
+                        ? '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 object-contain"><path d="M20 6 9 17l-5-5" /></svg>'
                         : "";
                 }
                 if (text) {
