@@ -32,7 +32,7 @@
                 option.addEventListener("click", function () {
                     selected.innerHTML =
                         option.textContent.trim() +
-                        '<img src="/assets/login-sign/image-login/chevron-down.png" alt="" class="w-4 h-4 object-contain" />';
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-icon"><path d="m6 9 6 6 6-6" /></svg>';
                     menu.classList.add("hidden");
                 });
             }
