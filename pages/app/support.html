@@ -630,6 +630,19 @@
             t._timer = setTimeout(function () { t.style.opacity = "0"; }, 2400);
         }
 
+        /* This page's own footer "Help Center" link points back at itself
+           without "?as=guest" — a guest viewing this page (forced into guest
+           mode by that query param) who clicks it would lose the override
+           and fall back to whatever real session/sidebar their browser
+           actually has. Keep the guest preview intact across that click. */
+        (function () {
+            try {
+                if (new URLSearchParams(window.location.search).get("as") !== "guest") { return; }
+                var selfLink = document.querySelector('a.footer-bar-link--active[href="/pages/app/support.html"]');
+                if (selfLink) { selfLink.href = "/pages/app/support.html?as=guest"; }
+            } catch (e) {}
+        })();
+
         document.querySelectorAll("[data-support-action]").forEach(function (btn) {
             btn.addEventListener("click", function () {
                 var action = btn.getAttribute("data-support-action");
