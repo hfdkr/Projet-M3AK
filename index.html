@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
     <title>M3ak Morocco</title>
     <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
@@ -48,6 +48,7 @@
 
             /* fonts */
             --font-jakarta:"Plus Jakarta Sans", sans-serif;
+            --font-hanken:"Hanken Grotesk", sans-serif;
         }
         body{
             @apply bg-mint-50 dark:bg-night-900 font-jakarta transition-colors duration-200;
@@ -62,13 +63,13 @@
             @apply flex items-center gap-[8px];
         }
         h1{
-            @apply font-jakarta font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600 dark:text-accent-400;
+            @apply font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600 dark:text-accent-400;
         }
         .navbar{
-            @apply font-jakarta font-semibold text-[15px] text-black-700 dark:text-mist-200 hover:text-green-600 dark:hover:text-accent-400;
+            @apply font-hanken font-semibold text-[15px] text-black-700 dark:text-mist-200 hover:text-green-600 dark:hover:text-accent-400;
         }
         .button-header{
-            @apply md:hidden cursor-pointer font-jakarta font-semibold text-[14px] text-green-700 dark:text-mist-200 bg-white dark:bg-night-700 py-[8px] px-[16px] rounded-[999px];
+            @apply md:hidden cursor-pointer font-hanken font-semibold text-[14px] text-green-700 dark:text-mist-200 bg-white dark:bg-night-700 py-[8px] px-[16px] rounded-[999px];
         }
         /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
         .theme-toggle{
