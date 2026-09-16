@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="/assets/images/img-mobile-1.png">
     <title>Create Account — M3ak Morocco</title>
@@ -41,11 +41,10 @@
             --color-accent-300: #5BE0A0;
 
             --font-jakarta: "Plus Jakarta Sans", sans-serif;
-            --font-hanken:  "Hanken Grotesk", sans-serif;
         }
 
         body {
-            @apply bg-white dark:bg-night-900 text-black dark:text-mist-100 transition-colors duration-200;
+            @apply bg-white dark:bg-night-900 text-black dark:text-mist-100 font-jakarta transition-colors duration-200;
         }
 
         /* ---------- Shared helpers ---------- */
@@ -96,7 +95,7 @@
             @apply font-jakarta text-[11px] leading-[14px] text-slate-500 dark:text-mist-300;
         }
         .signup-status-value{
-            @apply font-hanken font-bold text-[13px] leading-[18px] text-green-900 dark:text-accent-400;
+            @apply font-jakarta font-bold text-[13px] leading-[18px] text-green-900 dark:text-accent-400;
         }
         .signup-heading{
             @apply text-center mt-[28px] max-w-[360px];
@@ -162,13 +161,13 @@
             @apply text-center font-jakarta text-[13px] text-slate-500 dark:text-mist-300;
         }
         .signup-login-link{
-            @apply font-hanken font-semibold text-green-800 dark:text-accent-400 hover:text-green-900 dark:hover:text-accent-300 cursor-pointer;
+            @apply font-jakarta font-semibold text-green-800 dark:text-accent-400 hover:text-green-900 dark:hover:text-accent-300 cursor-pointer;
         }
         .signup-footer{
             @apply mt-[24px] pt-[20px] border-t border-grey-200 dark:border-night-600 text-center;
         }
         .signup-secure-pill{
-            @apply inline-flex items-center gap-[6px] bg-mint-50 dark:bg-night-700 text-green-800 dark:text-accent-400 font-hanken font-semibold text-[12px] rounded-full px-[12px] py-[6px] mb-[10px];
+            @apply inline-flex items-center gap-[6px] bg-mint-50 dark:bg-night-700 text-green-800 dark:text-accent-400 font-jakarta font-semibold text-[12px] rounded-full px-[12px] py-[6px] mb-[10px];
         }
         .signup-terms{
             @apply font-jakarta text-[12px] leading-[16px] text-slate-400 dark:text-mist-300;
