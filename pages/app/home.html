@@ -93,16 +93,16 @@
 
         /* Service directory card */
         .service-card {
-            @apply flex flex-col items-start rounded-2xl bg-white p-4 ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md dark:bg-night-800 dark:ring-white/10;
+            @apply flex flex-col justify-between gap-10 rounded-2xl bg-[#1A1D1B] p-5 transition hover:-translate-y-0.5 hover:shadow-md;
         }
         .service-card__icon {
-            @apply grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15;
+            @apply grid size-9 place-items-center;
         }
         .service-card__icon img {
-            @apply size-5 object-contain;
+            @apply size-6 object-contain;
         }
         .service-card__label {
-            @apply mt-3 text-sm font-bold;
+            @apply text-sm font-bold text-white;
         }
 
         /* Testimonial card */
@@ -398,58 +398,34 @@
                 </div>
                 <a href="/pages/app/overview.html" class="link-more">
                     View All Services
-                    <img src="/assets/images/icon-right.png" alt="" class="size-4 object-contain" />
+                    <svg viewBox="0 0 24 24" fill="currentColor" class="size-4 object-contain"><rect x="3" y="3" width="8" height="8" rx="1.5" /><rect x="13" y="3" width="8" height="8" rx="1.5" /><rect x="3" y="13" width="8" height="8" rx="1.5" /><rect x="13" y="13" width="8" height="8" rx="1.5" /></svg>
                 </a>
             </div>
 
-            <div class="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+            <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 <a href="/pages/app/housing.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
+                    <span class="service-card__icon"><img src="/assets/home/Icon-housing.png" alt="" /></span>
                     <span class="service-card__label">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
+                    <span class="service-card__icon"><img src="/assets/home/Icon-jobs.png" alt="" /></span>
                     <span class="service-card__label">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/education-icon.png" alt="" /></span>
+                    <span class="service-card__icon"><img src="/assets/home/Icon-education.png" alt="" /></span>
                     <span class="service-card__label">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/health-icon.png" alt="" /></span>
+                    <span class="service-card__icon"><img src="/assets/home/Icon-health.png" alt="" /></span>
                     <span class="service-card__label">Health</span>
                 </a>
-                <a href="/pages/app/registry.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-card.png" alt="" /></span>
-                    <span class="service-card__label">Registry</span>
-                </a>
                 <a href="/pages/app/transport.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
-                    <span class="service-card__label">Vehicles</span>
-                </a>
-                <a href="/pages/app/interior.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/security-icon.png" alt="" /></span>
-                    <span class="service-card__label">Security</span>
-                </a>
-                <a href="/pages/app/coming-soon.html?feature=Justice" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
-                    <span class="service-card__label">Justice</span>
-                </a>
-                <a href="/pages/app/coming-soon.html?feature=Foreign+Affairs" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
-                    <span class="service-card__label">Foreign Affairs</span>
-                </a>
-                <a href="/pages/app/coming-soon.html?feature=Agriculture" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
-                    <span class="service-card__label">Agriculture</span>
-                </a>
-                <a href="/pages/app/coming-soon.html?feature=Culture" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
-                    <span class="service-card__label">Culture</span>
+                    <span class="service-card__icon"><img src="/assets/home/icon-transport.png" alt="" /></span>
+                    <span class="service-card__label">Transport</span>
                 </a>
                 <a href="/pages/app/finance.html" class="service-card">
-                    <span class="service-card__icon"><img src="/assets/images/icon-foreign-affairs.png" alt="" /></span>
-                    <span class="service-card__label">Taxation</span>
+                    <span class="service-card__icon"><img src="/assets/home/Icon-finance.png" alt="" /></span>
+                    <span class="service-card__label">Finance</span>
                 </a>
             </div>
         </section>
