@@ -88,6 +88,11 @@
              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40;
     }
 
+    /* Edit-field pencil icon — dark glyph in light mode, light glyph in dark mode */
+    .field-edit-icon { @apply col-start-1 row-start-1 size-3.5 object-contain; }
+    .field-edit-icon--light { @apply block dark:hidden; }
+    .field-edit-icon--dark  { @apply hidden dark:block; }
+
     .settings-row {
       @apply flex items-center justify-between gap-3 py-3.5 border-b border-black/5 dark:border-white/10
              last:border-0 last:pb-0 first:pt-0;
@@ -779,7 +784,8 @@
                   <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name
                     readonly>
                   <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
-                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -789,7 +795,8 @@
                   <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email
                     readonly>
                   <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
-                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -798,7 +805,8 @@
                 <div class="field-row">
                   <input id="phone" type="tel" class="field-value" value="+212 661-000000" data-profile-phone readonly>
                   <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
-                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -808,7 +816,8 @@
                   <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir"
                     data-profile-address readonly>
                   <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
-                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -817,7 +826,8 @@
                 <div class="field-row">
                   <input id="city" type="text" class="field-value" value="Agadir" data-profile-city readonly>
                   <button type="button" class="field-edit" data-edit-field="city" aria-label="Edit city">
-                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -826,7 +836,8 @@
                 <div class="field-row">
                   <input id="country" type="text" class="field-value" value="Morocco" data-profile-country readonly>
                   <button type="button" class="field-edit" data-edit-field="country" aria-label="Edit country">
-                    <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
+                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -867,7 +878,8 @@
                 </div>
               </div>
               <span class="hidden sm:grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-white/15">
-                <img src="/assets/images/id-image.png" alt="" class="size-6 object-contain" />
+                <img src="/assets/my-space/digitale-id.png" alt="Digital ID" class="size-6 object-contain"
+                  style="filter:brightness(0) invert(1)" />
               </span>
             </div>
 
