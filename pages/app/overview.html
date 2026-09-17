@@ -289,8 +289,13 @@
     class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
     <div class="flex h-16 items-center gap-6 px-6">
       <a href="/pages/app/coming-soon.html?feature=Services"
-        class="w-56 shrink-0 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
+        class="flex w-56 shrink-0 items-center gap-3 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">
+        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand">
+          <img src="/assets/images/img-mobile-1.png" alt="M3ak Morocco logo" class="size-full object-contain">
+        </span>
 
+        M3ak Morocco
+      </a>
       <div class="ml-auto flex items-center gap-2">
         <!-- Dark / light mode -->
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
@@ -349,7 +354,8 @@
       class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
       <div class="mb-5 px-2 sidebar-head">
         <div class="sidebar-text">
-          <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+          <p class="text-base font-extrabold text-brand dark:text-accent-400">
+            M3ak Morocco</p>
           <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
         </div>
       </div>
@@ -428,12 +434,15 @@
       <!-- Header mobile -->
       <div
         class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3 lg:hidden">
-        <button id="menuBtn" type="button"
-          class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
-          <span class="sr-only">Open menu</span>
-          <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain" />
-        </button>
-        <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
+        <div class="flex items-center justify-between gap-3">
+          <button id="menuBtn" type="button"
+            class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+            <span class="sr-only">Open menu</span>
+            <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain" />
+          </button>
+          <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
+
+        </div>
         <div class="flex items-center gap-2">
           <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
             aria-pressed="false">
@@ -784,8 +793,10 @@
                   <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name
                     readonly>
                   <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
-                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
-                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
+                    <img src="/assets/my-space/icon-change-light.png" alt=""
+                      class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt=""
+                      class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -795,8 +806,10 @@
                   <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email
                     readonly>
                   <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
-                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
-                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
+                    <img src="/assets/my-space/icon-change-light.png" alt=""
+                      class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt=""
+                      class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -805,8 +818,10 @@
                 <div class="field-row">
                   <input id="phone" type="tel" class="field-value" value="+212 661-000000" data-profile-phone readonly>
                   <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
-                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
-                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
+                    <img src="/assets/my-space/icon-change-light.png" alt=""
+                      class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt=""
+                      class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -816,8 +831,10 @@
                   <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir"
                     data-profile-address readonly>
                   <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
-                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
-                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
+                    <img src="/assets/my-space/icon-change-light.png" alt=""
+                      class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt=""
+                      class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -826,8 +843,10 @@
                 <div class="field-row">
                   <input id="city" type="text" class="field-value" value="Agadir" data-profile-city readonly>
                   <button type="button" class="field-edit" data-edit-field="city" aria-label="Edit city">
-                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
-                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
+                    <img src="/assets/my-space/icon-change-light.png" alt=""
+                      class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt=""
+                      class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>
@@ -836,8 +855,10 @@
                 <div class="field-row">
                   <input id="country" type="text" class="field-value" value="Morocco" data-profile-country readonly>
                   <button type="button" class="field-edit" data-edit-field="country" aria-label="Edit country">
-                    <img src="/assets/my-space/icon-change-light.png" alt="" class="field-edit-icon field-edit-icon--light" />
-                    <img src="/assets/my-space/icon-change-dark.png" alt="" class="field-edit-icon field-edit-icon--dark" />
+                    <img src="/assets/my-space/icon-change-light.png" alt=""
+                      class="field-edit-icon field-edit-icon--light" />
+                    <img src="/assets/my-space/icon-change-dark.png" alt=""
+                      class="field-edit-icon field-edit-icon--dark" />
                   </button>
                 </div>
               </div>

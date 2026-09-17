@@ -64,9 +64,9 @@
         .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
         .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .app-brand          { @apply flex items-center gap-2.5; }
-        .app-brand-mark     { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
-        .app-brand-mark img { @apply size-5 object-contain; }
-        .app-brand-name     { @apply text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .app-brand-mark     { @apply hidden sm:grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
+        .app-brand-mark img { @apply  size-5 object-contain; }
+        .app-brand-name     { @apply  text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .app-brand-flag     { @apply hidden rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold text-brand dark:text-accent-400 sm:inline-block; }
         .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
         .app-icon-btn       { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
@@ -270,9 +270,9 @@
 
             <!-- mobile-only search bar -->
             <div class="relative mt-4 lg:hidden">
-                <img src="/assets/health-image/searche.png" alt=""
+                <img src="/assets/health-image/icon-search.png" alt="icon-search"
                     class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60 dark:hidden" />
-                <img src="/assets/health-image/searche-dark.png" alt=""
+                <img src="/assets/health-image/icon-search.png" alt="icon-search"
                     class="pointer-events-none absolute left-4 top-1/2 hidden size-4 -translate-y-1/2 object-contain opacity-60 dark:block" />
                 <input type="search" placeholder="Search doctors, specialties, or clinics..."
                     class="w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 pl-10 pr-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
