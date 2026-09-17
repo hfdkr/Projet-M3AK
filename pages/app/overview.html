@@ -19,7 +19,7 @@
 
   <style type="text/tailwindcss">
 
-        /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
+    /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
         .theme-toggle{
             @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
                    md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300;
@@ -202,18 +202,22 @@
     /* Icon rail: collapsed at rest, expands automatically on hover/focus */
     @media (min-width: 1024px) {
 
-            /* Collapsed rail: every service card becomes a centered circle */
-            #sidebar a { transition: width .2s ease, padding .2s ease; }
-            #sidebar:not(:hover):not(:focus-within) a {
-                width: 2.75rem;
-                height: 2.75rem;
-                padding: 0;
-                gap: 0;
-                margin-left: auto;
-                margin-right: auto;
-                justify-content: center;
-                border-radius: 9999px;
-            }
+      /* Collapsed rail: every service card becomes a centered circle */
+      #sidebar a {
+        transition: width .2s ease, padding .2s ease;
+      }
+
+      #sidebar:not(:hover):not(:focus-within) a {
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0;
+        gap: 0;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+        border-radius: 9999px;
+      }
+
       #sidebar {
         width: 5rem;
         transition: width .2s ease;
@@ -272,10 +276,12 @@
   </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200" data-require-auth>
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200"
+  data-require-auth>
 
   <!-- ══════════ TOP BAR (desktop) ══════════ -->
-  <header class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
+  <header
+    class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
     <div class="flex h-16 items-center gap-6 px-6">
       <a href="/pages/app/coming-soon.html?feature=Services"
         class="w-56 shrink-0 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
@@ -283,17 +289,18 @@
       <div class="ml-auto flex items-center gap-2">
         <!-- Dark / light mode -->
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <span class="theme-toggle-thumb">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                    </span>
-                </button>
+          <span class="theme-toggle-thumb">
+            <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+            <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+          </span>
+        </button>
 
         <button type="button"
           class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Notifications</span>
           <img src="/assets/images/notification.png" alt="" class="size-5 object-contain" />
-          <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800"></span>
+          <span
+            class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800"></span>
         </button>
         <button id="langBtn" type="button"
           class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
@@ -306,19 +313,22 @@
             class="ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
             <span data-user-initials
               class="grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
-            
           </button>
 
           <div data-menu role="menu"
             class="absolute right-0 z-50 mt-2 hidden w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg">
             <a href="/pages/app/overview.html#personal-info" role="menuitem"
-              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Personal info</a>
+              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Personal
+              info</a>
             <a href="/pages/app/overview.html#digital-id" role="menuitem"
-              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">My documents</a>
+              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">My
+              documents</a>
             <a href="/pages/app/overview.html#account" role="menuitem"
-              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Account settings</a>
+              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Account
+              settings</a>
             <button type="button" data-action="logout" role="menuitem"
-              class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign out</button>
+              class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign
+              out</button>
           </div>
         </div>
       </div>
@@ -342,10 +352,11 @@
       <nav class="space-y-0.5 text-sm font-medium" aria-label="Primary">
         <a href="/pages/app/overview.html" aria-current="page"
           class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
-          <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" style="filter:brightness(0) invert(1)" />
+          <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon"
+            style="filter:brightness(0) invert(1)" />
           <span class="nav-label">My Space</span>
         </a>
-<a href="/pages/app/transport.html" class="nav-item">
+        <a href="/pages/app/transport.html" class="nav-item">
           <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
           <span class="nav-label">Transport</span>
         </a>
@@ -370,16 +381,18 @@
           <span class="nav-label">Payments</span>
         </a>
         <a href="/pages/app/finance.html" class="nav-item">
-            <img src="/assets/icon-bar-left/Finance.png" alt="Finance" class="nav-icon" />
-            <span class="nav-label">Finance</span>
+          <img src="/assets/icon-bar-left/Finance.png" alt="Finance" class="nav-icon" />
+          <span class="nav-label">Finance</span>
         </a>
       </nav>
 
       <div class="mt-auto space-y-1 pt-6">
         <a href="/pages/app/emergence.html"
-            class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-            <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
-            <span class="nav-label whitespace-nowrap">Emergency Support</span>
+          class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+          <span class="size-[18px] shrink-0 bg-[#DC2626]"
+            style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
+            aria-hidden="true"></span>
+          <span class="nav-label whitespace-nowrap">Emergency Support</span>
         </a>
         <a href="/pages/app/support.html" class="nav-item">
           <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
@@ -390,7 +403,11 @@
           <span class="nav-label">Settings</span>
         </a>
         <a href="/pages/app/assistant.html" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="size-[18px] shrink-0">
+            <rect x="9" y="2" width="6" height="12" rx="3" />
+            <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+          </svg>
           <span class="nav-label">AI Assistant</span>
         </a>
         <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
@@ -404,7 +421,8 @@
     <div class="min-w-0 flex-1">
 
       <!-- Header mobile -->
-      <div class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3 lg:hidden">
+      <div
+        class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3 lg:hidden">
         <button id="menuBtn" type="button"
           class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
           <span class="sr-only">Open menu</span>
@@ -412,12 +430,13 @@
         </button>
         <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
         <div class="flex items-center gap-2">
-          <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <span class="theme-toggle-thumb">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                    </span>
-                </button>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+            aria-pressed="false">
+            <span class="theme-toggle-thumb">
+              <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+              <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+            </span>
+          </button>
           <span data-user-initials
             class="grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
         </div>
@@ -444,11 +463,16 @@
         <div class="mt-6 overflow-x-auto no-scrollbar">
           <div role="tablist" aria-label="My Space sections"
             class="flex w-max gap-1.5 rounded-full bg-white dark:bg-night-800 p-1 ring-1 ring-black/5 dark:ring-white/10">
-            <button type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" class="ms-tab">Dashboard</button>
-            <button type="button" role="tab" id="tab-requests" aria-controls="panel-requests" aria-selected="false" tabindex="-1" class="ms-tab">My Requests</button>
-            <button type="button" role="tab" id="tab-appointments" aria-controls="panel-appointments" aria-selected="false" tabindex="-1" class="ms-tab">Appointments</button>
-            <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="false" tabindex="-1" class="ms-tab">Personal Info</button>
-            <button type="button" role="tab" id="tab-account" aria-controls="panel-account" aria-selected="false" tabindex="-1" class="ms-tab">Account</button>
+            <button type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true"
+              class="ms-tab">Dashboard</button>
+            <button type="button" role="tab" id="tab-requests" aria-controls="panel-requests" aria-selected="false"
+              tabindex="-1" class="ms-tab">My Requests</button>
+            <button type="button" role="tab" id="tab-appointments" aria-controls="panel-appointments"
+              aria-selected="false" tabindex="-1" class="ms-tab">Appointments</button>
+            <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="false"
+              tabindex="-1" class="ms-tab">Personal Info</button>
+            <button type="button" role="tab" id="tab-account" aria-controls="panel-account" aria-selected="false"
+              tabindex="-1" class="ms-tab">Account</button>
           </div>
         </div>
 
@@ -459,45 +483,65 @@
           <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
             <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
               <div class="flex items-center justify-between">
-                <span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                  <img src="/assets/dashboard-assets/icon-dashboard.png" alt="" class="size-4 object-contain" />
+                <span
+                  class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                  <img src="/assets/my-space/Icon-citizens.png" alt="icon-citizen" class="size-4 object-contain" />
                 </span>
-                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">+2</span>
+                  <span
+                    class="rounded-full flex items-center gap-1 bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">
+                    +12.5%
+                    <img src="/assets/my-space/Icon-card-citizens.png" class="w-[11.7px] h-[7px]" alt="citizen">
+
+                  </span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Active Requests</p>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Active
+                Requests</p>
               <p class="mt-0.5 text-xl font-extrabold" id="kpiRequests">3</p>
             </article>
 
             <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
               <div class="flex items-center justify-between">
-                <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                <span
+                  class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
                   <img src="/assets/dashboard-assets/payment-icon.png" alt="" class="size-4 object-contain" />
                 </span>
-                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Paid</span>
+                <span
+                    class="rounded-full flex items-center gap-1 bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">
+                    +8.1%
+                    <img src="/assets/my-space/Icon-card-citizens.png" class="w-[11.7px] h-[7px]" alt="citizen">
+
+                  </span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Paid This Month</p>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Paid
+                This Month</p>
               <p class="mt-0.5 text-xl font-extrabold" id="kpiPaid">DH 691</p>
             </article>
 
             <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
               <div class="flex items-center justify-between">
-                <span class="grid size-9 place-items-center rounded-xl bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                <span
+                  class="grid size-9 place-items-center rounded-xl bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">
                   <img src="/assets/dashboard-assets/date.png" alt="" class="size-4 object-contain" />
                 </span>
-                <span class="rounded-full bg-amber-50 dark:bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">Soon</span>
+                <span
+                  class="rounded-full bg-amber-50 dark:bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">Soon</span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Upcoming Appointments</p>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">
+                Upcoming Appointments</p>
               <p class="mt-0.5 text-xl font-extrabold" id="kpiAppts">2</p>
             </article>
 
             <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
               <div class="flex items-center justify-between">
-                <span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                <span
+                  class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
                   <img src="/assets/images/id-image.png" alt="" class="size-4 object-contain" />
                 </span>
-                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Valid</span>
+                <span
+                  class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Valid</span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Documents</p>
+              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">
+                Documents</p>
               <p class="mt-0.5 text-xl font-extrabold">4</p>
             </article>
           </div>
@@ -505,9 +549,11 @@
           <div class="mt-5 grid gap-5 lg:grid-cols-3">
 
             <!-- Transport live -->
-            <div class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+            <div
+              class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
               <div class="flex items-center gap-3">
-                <span class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
+                <span
+                  class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
                   <img src="/assets/icon-bar-left/transport.png" alt="" class="size-5 object-contain" />
                 </span>
                 <h2 class="text-base font-bold">Public Transport Live Status</h2>
@@ -525,10 +571,12 @@
                 <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
                   <div class="flex items-baseline justify-between gap-2">
                     <p class="text-sm font-semibold">Tramway T1</p>
-                    <p class="text-sm font-bold text-brand dark:text-accent-400"><span id="tramEta">2</span><span id="tramUnit"> min</span></p>
+                    <p class="text-sm font-bold text-brand dark:text-accent-400"><span id="tramEta">2</span><span
+                        id="tramUnit"> min</span></p>
                   </div>
                   <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-                    <span id="tramBar" class="block h-full rounded-full bg-brand dark:bg-accent-400" style="width:0%"></span>
+                    <span id="tramBar" class="block h-full rounded-full bg-brand dark:bg-accent-400"
+                      style="width:0%"></span>
                   </div>
                   <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Hassan II</p>
                 </article>
@@ -552,12 +600,14 @@
                   class="flex h-full w-full flex-col overflow-hidden bg-white dark:bg-night-800 shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl">
 
                   <div class="flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3">
-                    <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <span
+                      class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
                       <img src="/assets/emergence-image/maps-icon.png" alt="" class="size-5 object-contain" />
                     </span>
                     <div class="min-w-0 flex-1">
                       <p id="mapModalTitle" class="text-sm font-bold">Live Network Map</p>
-                      <p id="mapStatus" class="truncate text-[11px] text-muted dark:text-mist-300">Waiting for your location…</p>
+                      <p id="mapStatus" class="truncate text-[11px] text-muted dark:text-mist-300">Waiting for your
+                        location…</p>
                     </div>
                     <button id="closeMap" type="button"
                       class="grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
@@ -571,7 +621,11 @@
                   <div class="flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3">
                     <button id="locateMe" type="button"
                       class="flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="size-4 shrink-0">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
                       Locate me
                     </button>
                     <button id="followMe" type="button" aria-pressed="false"
@@ -579,7 +633,8 @@
                       Follow my position
                     </button>
                     <a id="externalMap" href="https://www.google.com/maps" target="_blank" rel="noopener"
-                      class="ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Open in Google Maps</a>
+                      class="ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Open in
+                      Google Maps</a>
                   </div>
                 </div>
               </div>
@@ -590,19 +645,24 @@
               <div class="flex items-center justify-between">
                 <h2 class="text-base font-bold">Next Appointment</h2>
                 <button type="button" data-goto-tab="tab-appointments"
-                  class="rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">View all</button>
+                  class="rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">View
+                  all</button>
               </div>
               <div id="nextAppt" class="mt-4"></div>
             </section>
 
             <!-- Activity this week -->
-            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+            <section
+              class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
               <div class="flex items-center justify-between">
                 <div>
                   <h2 class="text-base font-bold">Your Activity</h2>
-                  <p class="mt-0.5 text-xs text-muted dark:text-mist-300">Interactions with public services · last 7 days</p>
+                  <p class="mt-0.5 text-xs text-muted dark:text-mist-300">Interactions with public services · last 7
+                    days</p>
                 </div>
-                <span class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">24 total</span>
+                <span
+                  class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">24
+                  total</span>
               </div>
               <div id="activityChart" class="mt-5 flex h-40 items-end justify-between gap-2 sm:gap-4"></div>
             </section>
@@ -628,7 +688,8 @@
             </section>
 
             <!-- Quick services -->
-            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+            <section
+              class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
               <h2 class="text-base font-bold">Quick Citizen Services</h2>
               <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <button type="button" data-service="Civil Status"
@@ -662,7 +723,8 @@
             <div class="flex items-center justify-between">
               <div>
                 <h2 class="text-base font-bold">Service Requests</h2>
-                <p class="mt-1 text-xs text-muted dark:text-mist-300">Every administrative request you have opened across M3ak.</p>
+                <p class="mt-1 text-xs text-muted dark:text-mist-300">Every administrative request you have opened
+                  across M3ak.</p>
               </div>
               <button id="newRequest" type="button"
                 class="shrink-0 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">
@@ -674,7 +736,8 @@
         </section>
 
         <!-- ═══════ PANEL: APPOINTMENTS ═══════ -->
-        <section id="panel-appointments" role="tabpanel" aria-labelledby="tab-appointments" tabindex="0" class="mt-6" hidden>
+        <section id="panel-appointments" role="tabpanel" aria-labelledby="tab-appointments" tabindex="0" class="mt-6"
+          hidden>
           <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
             <div class="flex items-center justify-between">
               <div>
@@ -692,9 +755,11 @@
         </section>
 
         <!-- ═══════ PANEL: PERSONAL INFO ═══════ -->
-        <section id="panel-personal" role="tabpanel" aria-labelledby="tab-personal" tabindex="0" class="mt-6 flex flex-col gap-5" hidden>
+        <section id="panel-personal" role="tabpanel" aria-labelledby="tab-personal" tabindex="0"
+          class="mt-6 flex flex-col gap-5" hidden>
 
-          <section id="personal-info" class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
+          <section id="personal-info"
+            class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
             <div class="mb-4 flex items-center justify-between">
               <h2 class="flex items-center gap-2 text-base font-bold">
                 <img src="/assets/images/Icon-profile.png" alt="" class="size-4 object-contain" />
@@ -706,7 +771,8 @@
               <div>
                 <label for="fullName" class="field-label">Full Name</label>
                 <div class="field-row">
-                  <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name readonly>
+                  <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name
+                    readonly>
                   <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
                     <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
@@ -715,7 +781,8 @@
               <div>
                 <label for="email" class="field-label">Email Address</label>
                 <div class="field-row">
-                  <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email readonly>
+                  <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email
+                    readonly>
                   <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
                     <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
@@ -733,7 +800,8 @@
               <div>
                 <label for="address" class="field-label">Mailing Address</label>
                 <div class="field-row">
-                  <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir" data-profile-address readonly>
+                  <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir"
+                    data-profile-address readonly>
                   <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
                     <img src="/assets/emergence-image/edit-Icon.png" alt="" class="size-3.5 object-contain" />
                   </button>
@@ -775,7 +843,8 @@
                 <p class="text-[10px] font-semibold uppercase tracking-[1px] text-white/70">Kingdom of Morocco</p>
                 <h2 class="mt-1 text-xl font-extrabold lg:text-2xl">Digital Identity CIN</h2>
               </div>
-              <span class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
                 <span class="size-1.5 rounded-full bg-accent-400"></span>
                 Active
               </span>
@@ -799,9 +868,11 @@
 
             <div class="mt-4 flex flex-wrap gap-2.5">
               <button type="button" data-doc-action="View Details"
-                class="rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">View Details</button>
+                class="rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">View
+                Details</button>
               <button type="button" data-doc-action="Renew Document"
-                class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/10">Renew Document</button>
+                class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/10">Renew
+                Document</button>
             </div>
           </section>
         </section>
@@ -811,7 +882,8 @@
           <div id="account" class="grid gap-5 lg:grid-cols-2">
 
             <!-- Security -->
-            <section id="security" class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
+            <section id="security"
+              class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
               <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
                 <img src="/assets/images/security.png" alt="" class="size-4 object-contain" />
                 Security
@@ -840,7 +912,8 @@
                   <p class="text-sm font-semibold">Biometric Login</p>
                   <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">FaceID or Fingerprint</p>
                 </div>
-                <button type="button" class="toggle-switch toggle-switch-on" data-toggle-switch aria-pressed="true" aria-label="Toggle biometric login">
+                <button type="button" class="toggle-switch toggle-switch-on" data-toggle-switch aria-pressed="true"
+                  aria-label="Toggle biometric login">
                   <span class="toggle-switch-thumb"></span>
                 </button>
               </div>
@@ -849,7 +922,12 @@
             <!-- Preferences -->
             <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
               <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" class="size-4 shrink-0">
+                  <circle cx="12" cy="12" r="3" />
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
+                </svg>
                 Preferences
               </h2>
 
@@ -880,11 +958,13 @@
             </section>
 
             <!-- Sign out -->
-            <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+            <section
+              class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <p class="text-sm font-semibold">Sign out of this device</p>
-                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">You will need to sign in again to reach your space.</p>
+                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">You will need to sign in again to reach
+                    your space.</p>
                 </div>
                 <button type="button" data-action="logout"
                   class="rounded-lg border border-danger/40 px-4 py-2 text-xs font-semibold text-danger transition hover:bg-danger/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/40">
@@ -903,7 +983,8 @@
               <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
               <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
               <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Help Center</a>
-              <a href="/pages/app/coming-soon.html?feature=Admin+Dashboard" class="hover:text-brand dark:hover:text-accent-400">Admin dashboard (demo)</a>
+              <a href="/pages/app/coming-soon.html?feature=Admin+Dashboard"
+                class="hover:text-brand dark:hover:text-accent-400">Admin dashboard (demo)</a>
             </nav>
           </div>
         </footer>
