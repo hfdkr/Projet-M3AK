@@ -64,8 +64,8 @@
         .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
         .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .app-brand          { @apply flex items-center gap-2.5; }
-        .app-brand-mark     { @apply hidden sm:grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
-        .app-brand-mark img { @apply  size-5 object-contain; }
+        .app-brand-mark     { @apply hidden sm:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .app-brand-mark img { @apply size-full object-contain; }
         .app-brand-name     { @apply  text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .app-brand-flag     { @apply hidden rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold text-brand dark:text-accent-400 sm:inline-block; }
         .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
@@ -134,6 +134,75 @@
             html { scroll-behavior: auto; }
             *, *::before, *::after { transition-duration: .001ms !important; }
         }
+
+        /* ---------- Page title ---------- */
+        .page-title-row { @apply lg:flex lg:items-end lg:justify-between lg:gap-6; }
+        .page-title      { @apply text-xl font-extrabold tracking-tight dark:text-white lg:text-2xl; }
+        .page-subtitle   { @apply mt-1 text-sm text-muted dark:text-mist-300; }
+        .official-badge  { @apply mt-3 hidden items-center gap-1.5 text-xs font-semibold text-brand dark:text-accent-400 lg:mt-0 lg:flex; }
+
+        /* ---------- Mobile search ---------- */
+        .mobile-search    { @apply relative mt-4 lg:hidden; }
+        .mobile-search-icon { @apply pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60; }
+        .mobile-search-input { @apply w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 pl-10 pr-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25; }
+
+        /* ---------- Specialty filters ---------- */
+        .filter-row      { @apply mt-5 flex gap-2 overflow-x-auto pb-1; }
+        .specialty-filter{ @apply inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition; }
+
+        /* ---------- Tele-consult / Home visit ---------- */
+        .service-grid-2    { @apply mt-5 grid gap-4 sm:grid-cols-2; }
+        .service-hero      { @apply relative overflow-hidden rounded-2xl p-5 text-white shadow-sm; }
+        .service-hero-badge{ @apply grid size-9 place-items-center rounded-xl bg-white/15; }
+        .service-hero-badge img { @apply size-5 object-contain; }
+        .service-hero-title{ @apply relative mt-4 text-base font-extrabold; }
+        .service-hero-text { @apply relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85; }
+        .service-hero-btn  { @apply relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold shadow-sm transition hover:bg-white/90; }
+        .service-hero-watermark-tc { @apply pointer-events-none absolute -top-1 right-2 size-28 object-contain; }
+        .service-hero-watermark-hv { @apply pointer-events-none absolute top-1 right-6 size-28 max-w-[80px] object-contain opacity-15; }
+
+        /* ---------- Nearby doctors ---------- */
+        .section-row     { @apply mt-8 flex items-center justify-between; }
+        .section-heading { @apply text-base font-extrabold dark:text-white; }
+        .see-all-link    { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+        .doctor-grid     { @apply mt-4 grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-4; }
+        .doctor-card     { @apply relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0; }
+        .doctor-rating   { @apply absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5; }
+        .doctor-rating-icon { @apply size-2.5 object-contain; }
+        .doctor-photo-wrap  { @apply size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none; }
+        .doctor-photo    { @apply size-full object-cover; }
+        .doctor-body     { @apply min-w-0 flex-1 lg:p-4; }
+        .doctor-specialty{ @apply text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400; }
+        .doctor-name     { @apply mt-0.5 truncate text-sm font-bold dark:text-white; }
+        .doctor-location { @apply mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300; }
+        .doctor-location-icon { @apply size-3 shrink-0 object-contain; }
+        .doctor-foot     { @apply mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3; }
+        .doctor-price    { @apply text-sm font-extrabold text-brand dark:text-accent-400; }
+        .doctor-price-unit { @apply text-[11px] font-semibold text-muted dark:text-mist-300; }
+        .doctor-book-btn { @apply rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300; }
+
+        /* ---------- Verified professionals ---------- */
+        .verified-section { @apply mt-6 flex flex-col gap-4 rounded-2xl bg-lavender-50 dark:bg-night-700 p-5 sm:flex-row sm:items-center sm:justify-between; }
+        .verified-info     { @apply flex items-start gap-3; }
+        .verified-icon-wrap{ @apply grid size-10 shrink-0 place-items-center rounded-full bg-white dark:bg-night-800 shadow-sm; }
+        .verified-icon     { @apply size-5 object-contain; }
+        .verified-title    { @apply text-sm font-bold dark:text-white; }
+        .verified-desc     { @apply mt-0.5 text-xs text-muted dark:text-mist-300; }
+        .verified-badges   { @apply flex flex-wrap gap-2; }
+        .verified-chip     { @apply inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600; }
+        .verified-chip-icon{ @apply size-3.5 object-contain; }
+
+        /* ---------- Footer ---------- */
+        .health-footer   { @apply mt-8 border-t border-black/5 dark:border-night-600 pt-6; }
+        .footer-mobile    { @apply flex flex-col items-center gap-4 text-center lg:hidden; }
+        .footer-desktop   { @apply hidden lg:flex lg:items-center lg:justify-between lg:gap-6; }
+        .footer-brand-lg  { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
+        .footer-brand-sm  { @apply text-sm font-extrabold text-brand dark:text-accent-400; }
+        .footer-desc      { @apply mt-1 max-w-xs text-xs text-muted dark:text-mist-300; }
+        .footer-nav       { @apply flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300; }
+        .footer-nav-desktop { @apply flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted dark:text-mist-300; }
+        .footer-link      { @apply hover:text-brand dark:hover:text-accent-400; }
+        .footer-copyright { @apply text-xs text-muted dark:text-mist-300; }
     </style>
 </head>
 
@@ -148,7 +217,10 @@
             </button>
 
             <a href="/pages/app/coming-soon.html?feature=Services" class="app-brand">
-                <span class="app-brand-mark"><img src="/assets/images/img-mobile-1.png" alt=""></span>
+                <span class="app-brand-mark">
+                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="dark:hidden">
+                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden dark:block">
+                </span>
                 <span class="app-brand-name">M3ak Morocco</span>
                 <span class="app-brand-flag">Royaume du Maroc</span>
             </a>
@@ -252,38 +324,37 @@
         <main class="app-main">
 
             <!-- TITLE -->
-            <div class="lg:flex lg:items-end lg:justify-between lg:gap-6">
+            <div class="page-title-row">
                 <div>
-                    <h1 class="text-xl font-extrabold tracking-tight dark:text-white lg:text-2xl">
+                    <h1 class="page-title">
                         Find your Specialist
                     </h1>
-                    <p class="mt-1 text-sm text-muted dark:text-mist-300">
+                    <p class="page-subtitle">
                         Access quality healthcare services across Morocco instantly.
                     </p>
                 </div>
 
-                <p class="mt-3 hidden items-center gap-1.5 text-xs font-semibold text-brand dark:text-accent-400 lg:mt-0 lg:flex">
+                <p class="official-badge">
                     <img src="/assets/health-image/icon-Official.png" alt="" class="size-4 object-contain" />
                     Official Public Service Provider
                 </p>
             </div>
 
             <!-- mobile-only search bar -->
-            <div class="relative mt-4 lg:hidden">
+            <div class="mobile-search">
                 <img src="/assets/health-image/icon-search.png" alt="icon-search"
-                    class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60 dark:hidden" />
+                    class="mobile-search-icon dark:hidden" />
                 <img src="/assets/health-image/icon-search.png" alt="icon-search"
-                    class="pointer-events-none absolute left-4 top-1/2 hidden size-4 -translate-y-1/2 object-contain opacity-60 dark:block" />
-                <input type="search" placeholder="Search doctors, specialties, or clinics..."
-                    class="w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 pl-10 pr-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25" />
+                    class="mobile-search-icon hidden dark:block" />
+                <input type="search" placeholder="Search doctors, specialties, or clinics..." class="mobile-search-input" />
             </div>
 
             <!-- FILTER PILLS — pure CSS toggle via radio + peer, no JS -->
-            <div class="no-scrollbar mt-5 flex gap-2 overflow-x-auto pb-1">
+            <div class="no-scrollbar filter-row">
 
                 <input type="radio" name="specialty" id="filter-all" class="peer/all sr-only" checked>
                 <label for="filter-all"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/all:bg-brand peer-checked/all:text-white peer-checked/all:ring-0 dark:peer-checked/all:bg-accent-400 dark:peer-checked/all:text-night-900">
+                    class="specialty-filter peer-checked/all:bg-brand peer-checked/all:text-white peer-checked/all:ring-0 dark:peer-checked/all:bg-accent-400 dark:peer-checked/all:text-night-900">
                     <img src="/assets/health-image/Icon-docotr.png" alt="doctor-icon" class="size-3.5 object-contain dark:hidden" />
                     <img src="/assets/health-image/Icon-docotr.png" alt="" class="hidden size-3.5 object-contain dark:block" />
                     All Doctors
@@ -291,28 +362,28 @@
 
                 <input type="radio" name="specialty" id="filter-cardiology" class="peer/cardio sr-only">
                 <label for="filter-cardiology"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/cardio:bg-brand peer-checked/cardio:text-white peer-checked/cardio:ring-0 dark:peer-checked/cardio:bg-accent-400 dark:peer-checked/cardio:text-night-900">
+                    class="specialty-filter peer-checked/cardio:bg-brand peer-checked/cardio:text-white peer-checked/cardio:ring-0 dark:peer-checked/cardio:bg-accent-400 dark:peer-checked/cardio:text-night-900">
                     <img src="/assets/health-image/icon-cardiology.png" alt="" class="specialty-icon" />
                     Cardiology
                 </label>
 
                 <input type="radio" name="specialty" id="filter-psychiatry" class="peer/psych sr-only">
                 <label for="filter-psychiatry"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/psych:bg-brand peer-checked/psych:text-white peer-checked/psych:ring-0 dark:peer-checked/psych:bg-accent-400 dark:peer-checked/psych:text-night-900">
+                    class="specialty-filter peer-checked/psych:bg-brand peer-checked/psych:text-white peer-checked/psych:ring-0 dark:peer-checked/psych:bg-accent-400 dark:peer-checked/psych:text-night-900">
                     <img src="/assets/health-image/icon-psychiatry.png" alt="" class="specialty-icon" />
                     Psychiatry
                 </label>
 
                 <input type="radio" name="specialty" id="filter-pediatrics" class="peer/ped sr-only">
                 <label for="filter-pediatrics"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/ped:bg-brand peer-checked/ped:text-white peer-checked/ped:ring-0 dark:peer-checked/ped:bg-accent-400 dark:peer-checked/ped:text-night-900">
+                    class="specialty-filter peer-checked/ped:bg-brand peer-checked/ped:text-white peer-checked/ped:ring-0 dark:peer-checked/ped:bg-accent-400 dark:peer-checked/ped:text-night-900">
                     <img src="/assets/health-image/icon-pediatrics.png" alt="" class="specialty-icon" />
                     Pediatrics
                 </label>
 
                 <input type="radio" name="specialty" id="filter-ophthalmology" class="peer/eye sr-only">
                 <label for="filter-ophthalmology"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold text-ink dark:text-mist-100 ring-1 ring-black/10 dark:ring-night-600 transition peer-checked/eye:bg-brand peer-checked/eye:text-white peer-checked/eye:ring-0 dark:peer-checked/eye:bg-accent-400 dark:peer-checked/eye:text-night-900">
+                    class="specialty-filter peer-checked/eye:bg-brand peer-checked/eye:text-white peer-checked/eye:ring-0 dark:peer-checked/eye:bg-accent-400 dark:peer-checked/eye:text-night-900">
                     <img src="/assets/health-image/icon-Ophthalmology.png" alt="" class="specialty-icon" />
                     Ophthalmology
                 </label>
@@ -320,34 +391,32 @@
             </div>
 
             <!-- TELE-CONSULT + HOME VISIT -->
-            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <div class="service-grid-2">
 
-                <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue to-blue-dark p-5 text-white shadow-sm">
-                    <img src="/assets/health-image/icon-card-1.png" alt=""
-                        class="pointer-events-none absolute -top-1 right-2 size-28 object-contain" />
-                    <span class="grid size-9 place-items-center rounded-xl bg-white/15">
-                        <img src="/assets/health-image/card-tele-consult.png" alt="" class="size-5 object-contain" />
+                <section class="service-hero bg-gradient-to-br from-blue to-blue-dark">
+                    <img src="/assets/health-image/icon-card-1.png" alt="" class="service-hero-watermark-tc" />
+                    <span class="service-hero-badge">
+                        <img src="/assets/health-image/card-tele-consult.png" alt="">
                     </span>
-                    <h2 class="relative mt-4 text-base font-extrabold">Tele-Consult</h2>
-                    <p class="relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85">
+                    <h2 class="service-hero-title">Tele-Consult</h2>
+                    <p class="service-hero-text">
                         Connect with top-rated doctors via secure instant video calls from anywhere.
                     </p>
-                    <button type="button" class="relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold text-blue-dark shadow-sm transition hover:bg-white/90">
+                    <button type="button" class="service-hero-btn text-blue-dark">
                         Start Consultation
                     </button>
                 </section>
 
-                <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm">
-                    <img src="/assets/health-image/Icon-card-home.png" alt=""
-                        class="pointer-events-none absolute top-1 right-6 size-28 object-contain opacity-15 max-w-[80px]" />
-                    <span class="grid size-9 place-items-center rounded-xl bg-white/15">
-                        <img src="/assets/health-image/Icon-home.png" alt="" class="size-5 object-contain" />
+                <section class="service-hero bg-gradient-to-br from-brand to-brand-dark">
+                    <img src="/assets/health-image/Icon-card-home.png" alt="" class="service-hero-watermark-hv" />
+                    <span class="service-hero-badge">
+                        <img src="/assets/health-image/Icon-home.png" alt="">
                     </span>
-                    <h2 class="relative mt-4 text-base font-extrabold">Home Visit</h2>
-                    <p class="relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85">
+                    <h2 class="service-hero-title">Home Visit</h2>
+                    <p class="service-hero-text">
                         Professional medical care at your doorstep. Skilled doctors available for house calls.
                     </p>
-                    <button type="button" class="relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold text-brand-dark shadow-sm transition hover:bg-white/90">
+                    <button type="button" class="service-hero-btn text-brand-dark">
                         Request Visit
                     </button>
                 </section>
@@ -355,97 +424,97 @@
             </div>
 
             <!-- NEARBY DOCTORS -->
-            <div class="mt-8 flex items-center justify-between">
-                <h2 class="text-base font-extrabold dark:text-white">Nearby Doctors</h2>
-                <a href="/pages/app/coming-soon.html?feature=Doctor+Directory" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">See all</a>
+            <div class="section-row">
+                <h2 class="section-heading">Nearby Doctors</h2>
+                <a href="/pages/app/coming-soon.html?feature=Doctor+Directory" class="see-all-link">See all</a>
             </div>
 
-            <div class="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-4">
+            <div class="doctor-grid">
 
-                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                <article class="doctor-card">
+                    <span class="doctor-rating">
+                        <img src="/assets/health-image/star.png" alt="" class="doctor-rating-icon" />
                         4.9
                     </span>
-                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                        <img src="/assets/health-image/sofia-amrani.png" alt="Dr. Sofia Amrani" class="size-full object-cover" />
+                    <div class="doctor-photo-wrap">
+                        <img src="/assets/health-image/sofia-amrani.png" alt="Dr. Sofia Amrani" class="doctor-photo" />
                     </div>
-                    <div class="min-w-0 flex-1 lg:p-4">
-                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Cardiologist</p>
-                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Sofia Amrani</h3>
-                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 shrink-0 object-contain"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    <div class="doctor-body">
+                        <p class="doctor-specialty">Cardiologist</p>
+                        <h3 class="doctor-name">Dr. Sofia Amrani</h3>
+                        <p class="doctor-location">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                             <span class="truncate">Agadir, Talborjt (1.2 km)</span>
                         </p>
-                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">200 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        <div class="doctor-foot">
+                            <p class="doctor-price">200 <span class="doctor-price-unit">MAD</span></p>
+                            <button type="button" class="doctor-book-btn">Book</button>
                         </div>
                     </div>
                 </article>
 
-                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                <article class="doctor-card">
+                    <span class="doctor-rating">
+                        <img src="/assets/health-image/star.png" alt="" class="doctor-rating-icon" />
                         4.8
                     </span>
-                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                        <img src="/assets/health-image/yasmine-idrissi.png" alt="Dr. Yasmine Idrissi" class="size-full object-cover" />
+                    <div class="doctor-photo-wrap">
+                        <img src="/assets/health-image/yasmine-idrissi.png" alt="Dr. Yasmine Idrissi" class="doctor-photo" />
                     </div>
-                    <div class="min-w-0 flex-1 lg:p-4">
-                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Dermatologist</p>
-                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Yasmine Idrissi</h3>
-                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 shrink-0 object-contain"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    <div class="doctor-body">
+                        <p class="doctor-specialty">Dermatologist</p>
+                        <h3 class="doctor-name">Dr. Yasmine Idrissi</h3>
+                        <p class="doctor-location">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                             <span class="truncate">Agadir, Founty (0.8 km)</span>
                         </p>
-                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">450 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        <div class="doctor-foot">
+                            <p class="doctor-price">450 <span class="doctor-price-unit">MAD</span></p>
+                            <button type="button" class="doctor-book-btn">Book</button>
                         </div>
                     </div>
                 </article>
 
-                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                <article class="doctor-card">
+                    <span class="doctor-rating">
+                        <img src="/assets/health-image/star.png" alt="" class="doctor-rating-icon" />
                         4.9
                     </span>
-                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                        <img src="/assets/health-image/jack-wmor.png" alt="Dr. Jack Wmor" class="size-full object-cover" />
+                    <div class="doctor-photo-wrap">
+                        <img src="/assets/health-image/jack-wmor.png" alt="Dr. Jack Wmor" class="doctor-photo" />
                     </div>
-                    <div class="min-w-0 flex-1 lg:p-4">
-                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Pediatrician</p>
-                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Jack Wmor</h3>
-                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 shrink-0 object-contain"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    <div class="doctor-body">
+                        <p class="doctor-specialty">Pediatrician</p>
+                        <h3 class="doctor-name">Dr. Jack Wmor</h3>
+                        <p class="doctor-location">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                             <span class="truncate">Agadir, Nouveau Talborjt (2.5 km)</span>
                         </p>
-                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">400 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        <div class="doctor-foot">
+                            <p class="doctor-price">400 <span class="doctor-price-unit">MAD</span></p>
+                            <button type="button" class="doctor-book-btn">Book</button>
                         </div>
                     </div>
                 </article>
 
-                <article class="relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0">
-                    <span class="absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5">
-                        <img src="/assets/health-image/star.png" alt="" class="size-2.5 object-contain" />
+                <article class="doctor-card">
+                    <span class="doctor-rating">
+                        <img src="/assets/health-image/star.png" alt="" class="doctor-rating-icon" />
                         4.9
                     </span>
-                    <div class="size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none">
-                        <img src="/assets/health-image/nina-olivia.png" alt="Dr. Nina Olivia" class="size-full object-cover" />
+                    <div class="doctor-photo-wrap">
+                        <img src="/assets/health-image/nina-olivia.png" alt="Dr. Nina Olivia" class="doctor-photo" />
                     </div>
-                    <div class="min-w-0 flex-1 lg:p-4">
-                        <p class="text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">Ophthalmologist</p>
-                        <h3 class="mt-0.5 truncate text-sm font-bold dark:text-white">Dr. Nina Olivia</h3>
-                        <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 shrink-0 object-contain"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    <div class="doctor-body">
+                        <p class="doctor-specialty">Ophthalmologist</p>
+                        <h3 class="doctor-name">Dr. Nina Olivia</h3>
+                        <p class="doctor-location">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                             <span class="truncate">Agadir, Charaf (3.0 km)</span>
                         </p>
-                        <div class="mt-2 flex items-center justify-between border-t border-black/5 dark:border-night-600 pt-2 lg:mt-3 lg:pt-3">
-                            <p class="text-sm font-extrabold text-brand dark:text-accent-400">480 <span class="text-[11px] font-semibold text-muted dark:text-mist-300">MAD</span></p>
-                            <button type="button" class="rounded-full bg-brand dark:bg-accent-400 px-4 py-1.5 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300">Book</button>
+                        <div class="doctor-foot">
+                            <p class="doctor-price">480 <span class="doctor-price-unit">MAD</span></p>
+                            <button type="button" class="doctor-book-btn">Book</button>
                         </div>
                     </div>
                 </article>
@@ -453,61 +522,61 @@
             </div>
 
             <!-- VERIFIED PROFESSIONALS -->
-            <section class="mt-6 flex flex-col gap-4 rounded-2xl bg-lavender-50 dark:bg-night-700 p-5 sm:flex-row sm:items-center sm:justify-between">
-                <div class="flex items-start gap-3">
-                    <span class="grid size-10 shrink-0 place-items-center rounded-full bg-white dark:bg-night-800 shadow-sm">
-                        <img src="/assets/health-image/icon-verified.png" alt="" class="size-5 object-contain" />
+            <section class="verified-section">
+                <div class="verified-info">
+                    <span class="verified-icon-wrap">
+                        <img src="/assets/health-image/icon-verified.png" alt="" class="verified-icon" />
                     </span>
                     <div>
-                        <p class="text-sm font-bold dark:text-white">Verified Professionals</p>
-                        <p class="mt-0.5 text-xs text-muted dark:text-mist-300">
+                        <p class="verified-title">Verified Professionals</p>
+                        <p class="verified-desc">
                             All practitioners on M3ak are licensed and verified by the Ministry of Health.
                         </p>
                     </div>
                 </div>
 
-                <div class="flex flex-wrap gap-2">
-                    <span class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600">
-                        <img src="/assets/health-image/icon-done.png" alt="" class="size-3.5 object-contain" />
+                <div class="verified-badges">
+                    <span class="verified-chip">
+                        <img src="/assets/health-image/icon-done.png" alt="" class="verified-chip-icon" />
                         Data Privacy Guaranteed
                     </span>
-                    <span class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-night-600">
-                        <img src="/assets/health-image/icon-done.png" alt="" class="size-3.5 object-contain" />
+                    <span class="verified-chip">
+                        <img src="/assets/health-image/icon-done.png" alt="" class="verified-chip-icon" />
                         Secure Payment
                     </span>
                 </div>
             </section>
 
             <!-- FOOTER -->
-            <footer class="mt-8 border-t border-black/5 dark:border-night-600 pt-6">
+            <footer class="health-footer">
                 <!-- Mobile: centered brand + links + copyright -->
-                <div class="flex flex-col items-center gap-4 text-center lg:hidden">
-                    <p class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <nav class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300">
-                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
+                <div class="footer-mobile">
+                    <p class="footer-brand-lg">M3ak Morocco</p>
+                    <nav class="footer-nav">
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="#" class="footer-link">Legal Notice</a>
                     </nav>
-                    <p class="text-xs text-muted dark:text-mist-300">
+                    <p class="footer-copyright">
                         © 2026 M3ak Morocco. All rights reserved.
                     </p>
                 </div>
 
                 <!-- Desktop: brand + description, links, copyright in one row -->
-                <div class="hidden lg:flex lg:items-center lg:justify-between lg:gap-6">
+                <div class="footer-desktop">
                     <div>
-                        <p class="text-sm font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                        <p class="mt-1 max-w-xs text-xs text-muted dark:text-mist-300">
+                        <p class="footer-brand-sm">M3ak Morocco</p>
+                        <p class="footer-desc">
                             Connecting citizens with essential public and healthcare services.
                         </p>
                     </div>
-                    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted dark:text-mist-300">
-                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-                        <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Contact Support</a>
-                        <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
+                    <nav class="footer-nav-desktop">
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <a href="/pages/app/support.html" class="footer-link">Contact Support</a>
+                        <a href="#" class="footer-link">Legal Notice</a>
                     </nav>
-                    <p class="text-xs text-muted dark:text-mist-300">
+                    <p class="footer-copyright">
                         © 2026 M3ak Morocco. All rights reserved.
                     </p>
                 </div>

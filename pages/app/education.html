@@ -102,6 +102,134 @@
 
         .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
 
+        /* ---------- App top bar ---------- */
+        .app-topbar       { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-brand-mark   { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-avatar       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-sidebar      { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .app-scrim        { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+
+        /* ---------- Cards & badges ---------- */
+        .card             { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
+        .icon-badge       { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .info-pill-blue   { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400; }
+        .status-pill      { @apply rounded-md px-2 py-0.5 text-[10px] font-bold; }
+        .table-action-link{ @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+
+        /* ---------- Service links grid ---------- */
+        .service-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
+        .service-link  { @apply mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400; }
+
+        /* ---------- Hero gradient cards ---------- */
+        .hero-card        { @apply relative overflow-hidden rounded-2xl p-6 text-white lg:p-7; }
+        .hero-badge        { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold; }
+        .hero-btn-outline  { @apply rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10; }
+        .hero-btn-solid    { @apply flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold transition; }
+
+        /* ---------- Academic calendar list ---------- */
+        .calendar-item { @apply flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3; }
+        .calendar-date  { @apply grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10; }
+        .calendar-badge      { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-bold text-muted dark:text-mist-300; }
+        .calendar-card-title { @apply flex items-center gap-2 text-sm font-bold; }
+        .calendar-month      { @apply text-[9px] font-bold uppercase tracking-wider; }
+        .calendar-day        { @apply text-lg font-extrabold leading-none; }
+        .calendar-event-title { @apply truncate text-sm font-semibold; }
+        .calendar-event-sub   { @apply mt-0.5 truncate text-[11px] text-muted dark:text-mist-300; }
+        .btn-sync        { @apply mt-4 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-2 text-xs font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700; }
+        .section-title    { @apply text-base font-extrabold; }
+        .section-subtitle { @apply mt-1 text-xs text-muted dark:text-mist-300; }
+        .table-showing-badge { @apply rounded-md bg-canvas dark:bg-night-700 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300; }
+        .table-header-row { @apply text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300; }
+        .table-th       { @apply px-4 py-3; }
+        .table-th-right { @apply px-4 py-3 text-right; }
+        .table-cell        { @apply px-4 py-3.5 text-muted dark:text-mist-300; }
+        .table-cell-ref     { @apply flex items-center gap-2 px-4 py-3.5 font-semibold; }
+        .table-cell-status  { @apply px-4 py-3.5; }
+        .table-cell-action  { @apply px-4 py-3.5 text-right; }
+        .table-doc-icon { @apply size-4 shrink-0 text-muted dark:text-mist-300; }
+        .disclaimer      { @apply mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-canvas dark:bg-night-700 p-4; }
+        .disclaimer-text { @apply flex items-start gap-2.5 max-w-xl text-xs text-muted dark:text-mist-300; }
+        .disclaimer-ref  { @apply text-[11px] font-semibold text-muted dark:text-mist-300; }
+        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
+        .footer-mobile   { @apply mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden; }
+        .footer-brand    { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
+        .footer-nav      { @apply flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300; }
+        .footer-link     { @apply hover:text-brand dark:hover:text-accent-400; }
+        .footer-copyright{ @apply text-xs text-muted dark:text-mist-300; }
+        .page-body   { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
+        .footer-wrap  { @apply mx-auto max-w-[1280px] px-6 py-8; }
+        .footer-inner { @apply flex flex-col items-center gap-4 text-center; }
+        .calendar-card-head { @apply flex items-center justify-between gap-2; }
+        .hero-card-head     { @apply flex items-start justify-between gap-3; }
+        .logo-img    { @apply size-full object-contain; }
+        .data-table  { @apply w-full min-w-[720px] text-left text-sm; }
+        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        .letterhead-card { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 flex flex-wrap items-start justify-between gap-4 p-4; }
+        .title-row    { @apply flex flex-wrap items-start justify-between gap-3; }
+        .progress-head{ @apply flex flex-wrap items-center justify-between gap-2; }
+        .section-head { @apply flex flex-wrap items-end justify-between gap-3; }
+        .title-block  { @apply mt-3 flex flex-wrap items-start justify-between gap-4; }
+        .data-table-body { @apply divide-y divide-black/5 dark:divide-night-600; }
+        .info-row       { @apply flex items-center gap-3; }
+        .letterhead-row { @apply flex items-start gap-3; }
+        .title-actions  { @apply flex shrink-0 flex-wrap gap-2; }
+        .app-main       { @apply min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
+        .service-desc   { @apply mt-1 text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .service-title  { @apply mt-3 text-sm font-bold; }
+        .profile-calendar-grid { @apply mt-4 grid gap-4 lg:grid-cols-3 lg:gap-5; }
+        .service-grid   { @apply mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4; }
+        .hero-actions   { @apply mt-5 flex flex-wrap gap-2; }
+        .hero-grid      { @apply mt-5 grid gap-4 lg:grid-cols-2; }
+        .sidebar-foot   { @apply mt-auto space-y-1 pt-6; }
+        .hero-dot       { @apply size-1.5 rounded-full bg-accent-400; }
+        .menu-icon      { @apply size-6 lg:hidden object-contain; }
+
+        /* ---------- Header brand / notifications ---------- */
+        .brand-link { @apply w-52 text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-2xl; }
+        .notif-dot  { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+
+        /* ---------- Sidebar head / danger link ---------- */
+        .sidebar-title    { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub      { @apply text-[11px] text-muted dark:text-mist-300; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-item-icon-sm { @apply size-[18px] object-contain; }
+        .nav-item-icon-svg{ @apply size-[18px] shrink-0; }
+
+        /* ---------- Letterhead / page title ---------- */
+        .letterhead-title { @apply text-sm font-extrabold; }
+        .letterhead-sub    { @apply text-xs text-muted dark:text-mist-300; }
+        .letterhead-legal  { @apply mt-1.5 text-[11px] text-muted dark:text-mist-300; }
+        .page-title    { @apply text-2xl font-extrabold tracking-tight lg:text-[26px]; }
+        .page-subtitle { @apply mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300; }
+        .btn-outline { @apply flex items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700; }
+        .btn-primary { @apply flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark; }
+
+        /* ---------- Hero card text ---------- */
+        .hero-label   { @apply text-[11px] font-semibold uppercase tracking-[1px] text-white/70; }
+        .hero-heading { @apply mt-3 text-lg font-extrabold; }
+        .hero-text    { @apply mt-2 text-sm text-white/80; }
+        .hero-stat-label { @apply text-[10px] font-semibold uppercase tracking-wider text-white/60; }
+        .hero-stat-value { @apply text-xl font-extrabold; }
+
+        /* ---------- Student profile card ---------- */
+        .profile-avatar     { @apply grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[11px] font-bold text-brand dark:text-accent-400; }
+        .profile-name       { @apply flex items-center gap-2 text-sm font-bold; }
+        .profile-status     { @apply rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400; }
+        .profile-meta       { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
+        .stat-row     { @apply mt-5 grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center; }
+        .stat-value   { @apply text-base font-extrabold lg:text-2xl; }
+        .stat-label   { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
+        .progress-block { @apply mt-5 border-t border-black/5 dark:border-white/10 pt-5; }
+        .progress-title  { @apply text-xs font-bold; }
+        .progress-status { @apply text-[11px] font-semibold text-brand dark:text-accent-400; }
+        .progress-track { @apply mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10; }
+        .progress-fill  { @apply block h-full w-3/4 rounded-full bg-brand dark:bg-accent-400; }
+        .progress-steps { @apply mt-2 flex flex-wrap justify-between gap-x-3 gap-y-1 text-[10px] font-semibold text-muted dark:text-mist-300; }
+
         .tab {
             display: flex;
             flex-direction: column;
@@ -183,26 +311,25 @@
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+<body class="page-body" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 ">
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 lg:hidden object-contain" />
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
             </button>
-            <span
-                class="hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand text-sm font-extrabold text-white"><img
-                    src="/assets/images/img-mobile-1.png" alt="logo"></span>
+            <span class="app-brand-mark">
+                <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img dark:hidden">
+                <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden logo-img dark:block">
+            </span>
 
-            <a href="/pages/app/coming-soon.html?feature=Services"
-                class="w-52 text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-2xl">M3ak
+            <a href="/pages/app/coming-soon.html?feature=Services" class="brand-link">M3ak
                 Morocco</a>
 
 
-            <div class="ml-auto flex items-center gap-1.5">
+            <div class="header-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
                     aria-pressed="false">
                     <span class="theme-toggle-thumb">
@@ -211,17 +338,14 @@
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
                     <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span
-                        class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <span class="notif-dot"></span>
                 </button>
 
 
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-avatar">
                     <span class="sr-only">Your profile</span>A
                 </button>
             </div>
@@ -231,14 +355,13 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim hidden"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+        <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="mb-5 px-2 sidebar-head">
                 <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                    <p class="sidebar-title">M3ak Morocco</p>
+                    <p class="sidebar-sub">Citizen Services Portal</p>
                 </div>
             </div>
 
@@ -259,8 +382,7 @@
                     <img src="/assets/icon-bar-left/Jobs.png" alt="Jobs" class="nav-icon" />
                     <span class="nav-label">Jobs</span>
                 </a>
-                <a href="/pages/app/education.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+                <a href="/pages/app/education.html" aria-current="page" class="nav-item--active">
                     <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon"
                         style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Education</span>
@@ -279,54 +401,48 @@
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
-                <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+            <div class="sidebar-foot">
+                <a href="/pages/app/emergence.html" class="nav-item--danger">
                     <span class="size-[18px] shrink-0 bg-[#DC2626]"
                         style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="size-[18px] shrink-0">
+                        stroke-linejoin="round" class="nav-item-icon-svg">
                         <rect x="9" y="2" width="6" height="12" rx="3" />
                         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
                     </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
+        <main class="app-main">
 
             <!-- LETTERHEAD -->
-            <div
-                class="flex flex-wrap items-start justify-between gap-4 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-                <div class="flex items-start gap-3">
-                    <span
-                        class="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="size-5">
-                            <path d="M3 22h18M4 22V11l8-6 8 6v11M9 22v-7h6v7M4 11h16" />
-                        </svg>
+            <div class="letterhead-card">
+                <div class="letterhead-row">
+                    <span class="icon-badge">
+                       <img src="/assets/education/icon-royale.svg" alt="icon-royale">
                     </span>
                     <div>
-                        <p class="text-sm font-extrabold">Kingdom of Morocco</p>
-                        <p class="text-xs text-muted dark:text-mist-300">Ministry of National Education, Preschool and
+                        <p class="letterhead-title">Kingdom of Morocco</p>
+                        <p class="letterhead-sub">Ministry of National Education, Preschool and
                             Sports · MESRSI</p>
                     </div>
                 </div>
@@ -339,37 +455,35 @@
                         </svg>
                         Unified Massar &amp; Minhaty National Portal
                     </span>
-                    <p class="mt-1.5 text-[11px] text-muted dark:text-mist-300">Legal Ref: Dahir n° 1-20-80 (Law 43-20)
+                    <p class="letterhead-legal">Legal Ref: Dahir n° 1-20-80 (Law 43-20)
                     </p>
                 </div>
             </div>
 
-            <span
-                class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+            <span class="info-pill-blue mt-4">
                 Citizen Space · National &amp; Higher Education
             </span>
 
             <!-- TITLE -->
-            <div class="mt-3 flex flex-wrap items-start justify-between gap-4">
+            <div class="title-block">
                 <div>
-                    <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Education &amp; Higher Learning
+                    <h1 class="page-title">Education &amp; Higher Learning
                         Services</h1>
-                    <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
+                    <p class="page-subtitle">
                         Unified portal for national school registration, Massar student tracking, university
                         pre-registration, scholarships (Minhaty), and Barid Al-Maghrib certified degree credentials.
                     </p>
                 </div>
-                <div class="flex shrink-0 flex-wrap gap-2">
+                <div class="title-actions">
                     <button type="button" data-demo-action="Preparing your Baccalaureate certificate…"
-                        class="flex items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700">
+                        class="btn-outline">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="size-4">
                             <path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" />
                         </svg>
                         Baccalaureate Certificate
                     </button>
-                    <button type="button" data-demo-action="Starting a new dossier…"
-                        class="flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark">
+                    <button type="button" data-demo-action="Starting a new dossier…" class="btn-primary">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="size-4">
                             <path d="M12 5v14M5 12h14" />
@@ -380,33 +494,31 @@
             </div>
 
             <!-- HERO CARDS -->
-            <div class="mt-5 grid gap-4 lg:grid-cols-2">
+            <div class="hero-grid">
 
-                <section
-                    class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:p-7">
-                    <div class="flex items-start justify-between gap-3">
-                        <p class="text-[11px] font-semibold uppercase tracking-[1px] text-white/70">Session 2026/2027 ·
+                <section class="hero-card bg-gradient-to-br from-brand to-brand-dark">
+                    <div class="hero-card-head">
+                        <p class="hero-label">Session 2026/2027 ·
                             Open</p>
-                        <span
-                            class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
-                            <span class="size-1.5 rounded-full bg-accent-400"></span>RSU Connected
+                        <span class="hero-badge">
+                            <span class="hero-dot"></span>RSU Connected
                         </span>
                     </div>
-                    <h2 class="mt-3 text-lg font-extrabold">Minhaty (منحتي) National Scholarship</h2>
-                    <p class="mt-2 text-sm text-white/80">
+                    <h2 class="hero-heading">Minhaty (منحتي) National Scholarship</h2>
+                    <p class="hero-text">
                         Direct application &amp; automated eligibility tracking for higher education grants up to 6,334
                         MAD/year, indexed with the Moroccan Social Register (RSU).
                     </p>
                     <div class="mt-5">
-                        <p class="text-[10px] font-semibold uppercase tracking-wider text-white/60">Filing deadline</p>
-                        <p class="text-xl font-extrabold">31 July 2027</p>
+                        <p class="hero-stat-label">Filing deadline</p>
+                        <p class="hero-stat-value">31 July 2027</p>
                     </div>
-                    <div class="mt-5 flex flex-wrap gap-2">
+                    <div class="hero-actions">
                         <button type="button" data-demo-action="Opening eligibility criteria…"
-                            class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10">Eligibility
+                            class="hero-btn-outline">Eligibility
                             Criteria</button>
                         <button type="button" data-demo-action="Opening the Minhaty application…"
-                            class="flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">
+                            class="hero-btn-solid text-brand hover:bg-brand-soft">
                             Check Eligibility &amp; Apply
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -416,32 +528,30 @@
                     </div>
                 </section>
 
-                <section
-                    class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A] p-6 text-white lg:p-7">
-                    <div class="flex items-start justify-between gap-3">
-                        <p class="text-[11px] font-semibold uppercase tracking-[1px] text-white/70">School Year
+                <section class="hero-card bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]">
+                    <div class="hero-card-head">
+                        <p class="hero-label">School Year
                             2026–2027</p>
-                        <span
-                            class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
-                            <span class="size-1.5 rounded-full bg-accent-400"></span>Massar Code Synced
+                        <span class="hero-badge">
+                            <span class="hero-dot"></span>Massar Code Synced
                         </span>
                     </div>
-                    <h2 class="mt-3 text-lg font-extrabold">Massar &amp; Tawjihi Student Portal</h2>
-                    <p class="mt-2 text-sm text-white/80">
+                    <h2 class="hero-heading">Massar &amp; Tawjihi Student Portal</h2>
+                    <p class="hero-text">
                         Official school transcripts, continuous assessments, national baccalaureate tracking, and
                         automated university guidance matching.
                     </p>
                     <div class="mt-5">
-                        <p class="text-[10px] font-semibold uppercase tracking-wider text-white/60">Pre-Bac applications
+                        <p class="hero-stat-label">Pre-Bac applications
                         </p>
-                        <p class="text-xl font-extrabold">4 Wishes Submitted</p>
+                        <p class="hero-stat-value">4 Wishes Submitted</p>
                     </div>
-                    <div class="mt-5 flex flex-wrap gap-2">
+                    <div class="hero-actions">
                         <button type="button" data-demo-action="Opening transcripts & grades…"
-                            class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10">Transcripts
+                            class="hero-btn-outline">Transcripts
                             &amp; Grades</button>
                         <button type="button" data-demo-action="Opening the student dossier…"
-                            class="flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-[#1E3A8A] transition hover:bg-blue-50">
+                            class="hero-btn-solid text-[#1E3A8A] hover:bg-blue-50">
                             Access Student Dossier
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -453,21 +563,18 @@
             </div>
 
             <!-- STUDENT PROFILE + CALENDAR -->
-            <div class="mt-4 grid gap-4 lg:grid-cols-3 lg:gap-5">
+            <div class="profile-calendar-grid">
 
-                <section
-                    class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-                    <div class="flex flex-wrap items-start justify-between gap-3">
-                        <div class="flex items-center gap-3">
-                            <span
-                                class="grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[11px] font-bold text-brand dark:text-accent-400">YA</span>
+                <section class="card p-5 lg:col-span-2">
+                    <div class="title-row">
+                        <div class="info-row">
+                            <span class="profile-avatar">YA</span>
                             <div>
-                                <p class="flex items-center gap-2 text-sm font-bold">
+                                <p class="profile-name">
                                     Yassine Alaoui
-                                    <span
-                                        class="rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Active</span>
+                                    <span class="profile-status">Active</span>
                                 </p>
-                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Massar Code: R130094821 ·
+                                <p class="profile-meta">Massar Code: R130094821 ·
                                     Lycée Ibn Zohr, Agadir</p>
                             </div>
                         </div>
@@ -481,36 +588,34 @@
                         </span>
                     </div>
 
-                    <div
-                        class="mt-5 grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center">
+                    <div class="stat-row">
                         <div class="min-w-0">
-                            <p class="text-base font-extrabold lg:text-2xl">2nd Year</p>
-                            <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Study Cycle · Baccalaureate,
+                            <p class="stat-value">2nd Year</p>
+                            <p class="stat-label">Study Cycle · Baccalaureate,
                                 Science Mathematics A</p>
                         </div>
                         <div class="min-w-0 border-x border-black/5 dark:border-white/10">
-                            <p class="text-base font-extrabold text-brand dark:text-accent-400 lg:text-2xl">17.84/20</p>
-                            <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Overall Average (S1) · Mention:
+                            <p class="stat-value text-brand dark:text-accent-400">17.84/20</p>
+                            <p class="stat-label">Overall Average (S1) · Mention:
                                 Very Good</p>
                         </div>
                         <div class="min-w-0">
-                            <p class="text-base font-extrabold lg:text-2xl">Validated</p>
-                            <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Minhaty Scholarship · Paid:
+                            <p class="stat-value">Validated</p>
+                            <p class="stat-label">Minhaty Scholarship · Paid:
                                 1,900 MAD (1st Installment)</p>
                         </div>
                     </div>
 
-                    <div class="mt-5 border-t border-black/5 dark:border-white/10 pt-5">
-                        <div class="flex flex-wrap items-center justify-between gap-2">
-                            <p class="text-xs font-bold">Tawjihi 2027 Admission Progress</p>
-                            <p class="text-[11px] font-semibold text-brand dark:text-accent-400">Step 3 of 4 · Main List
+                    <div class="progress-block">
+                        <div class="progress-head">
+                            <p class="progress-title">Tawjihi 2027 Admission Progress</p>
+                            <p class="progress-status">Step 3 of 4 · Main List
                                 Confirmation</p>
                         </div>
-                        <div class="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-                            <span class="block h-full w-3/4 rounded-full bg-brand dark:bg-accent-400"></span>
+                        <div class="progress-track">
+                            <span class="progress-fill"></span>
                         </div>
-                        <div
-                            class="mt-2 flex flex-wrap justify-between gap-x-3 gap-y-1 text-[10px] font-semibold text-muted dark:text-mist-300">
+                        <div class="progress-steps">
                             <span>Application Filed</span>
                             <span>Dossier Review</span>
                             <span class="text-ink dark:text-white">Place Confirmation</span>
@@ -519,9 +624,9 @@
                     </div>
                 </section>
 
-                <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-                    <div class="flex items-center justify-between gap-2">
-                        <p class="flex items-center gap-2 text-sm font-bold">
+                <section class="card p-5">
+                    <div class="calendar-card-head">
+                        <p class="calendar-card-title">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-4">
                                 <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -529,53 +634,46 @@
                             </svg>
                             Academic Calendar
                         </p>
-                        <span
-                            class="rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-bold text-muted dark:text-mist-300">Official</span>
+                        <span class="calendar-badge">Official</span>
                     </div>
 
                     <ul class="mt-4 space-y-2.5">
-                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-                            <div
-                                class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
-                                <span class="text-[9px] font-bold uppercase tracking-wider text-danger">Jun</span>
-                                <span class="text-lg font-extrabold leading-none">04</span>
+                        <li class="calendar-item">
+                            <div class="calendar-date">
+                                <span class="calendar-month text-danger">Jun</span>
+                                <span class="calendar-day">04</span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <p class="truncate text-sm font-semibold">National Baccalaureate Exams</p>
-                                <p class="mt-0.5 truncate text-[11px] text-muted dark:text-mist-300">All tracks,
+                                <p class="calendar-event-title">National Baccalaureate Exams</p>
+                                <p class="calendar-event-sub">All tracks,
                                     standard session</p>
                             </div>
                         </li>
-                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-                            <div
-                                class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
-                                <span
-                                    class="text-[9px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Jul</span>
-                                <span class="text-lg font-extrabold leading-none">12</span>
+                        <li class="calendar-item">
+                            <div class="calendar-date">
+                                <span class="calendar-month text-blue-600 dark:text-blue-400">Jul</span>
+                                <span class="calendar-day">12</span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <p class="truncate text-sm font-semibold">ENSA / ENSAM / ENCG Entrance Exams</p>
-                                <p class="mt-0.5 truncate text-[11px] text-muted dark:text-mist-300">Unified
+                                <p class="calendar-event-title">ENSA / ENSAM / ENCG Entrance Exams</p>
+                                <p class="calendar-event-sub">Unified
                                     pre-selection platform</p>
                             </div>
                         </li>
-                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-                            <div
-                                class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
-                                <span
-                                    class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Aug</span>
-                                <span class="text-lg font-extrabold leading-none">28</span>
+                        <li class="calendar-item">
+                            <div class="calendar-date">
+                                <span class="calendar-month text-amber-600 dark:text-amber-400">Aug</span>
+                                <span class="calendar-day">28</span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <p class="truncate text-sm font-semibold">OFPPT &amp; Métiers Registration Closes</p>
-                                <p class="mt-0.5 truncate text-[11px] text-muted dark:text-mist-300">Qualifying
+                                <p class="calendar-event-title">OFPPT &amp; Métiers Registration Closes</p>
+                                <p class="calendar-event-sub">Qualifying
                                     vocational programs</p>
                             </div>
                         </li>
                     </ul>
 
-                    <button type="button" data-demo-action="Syncing your government calendar…"
-                        class="mt-4 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-2 text-xs font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700">
+                    <button type="button" data-demo-action="Syncing your government calendar…" class="btn-sync">
                         Sync Government Calendar
                     </button>
                 </section>
@@ -583,14 +681,13 @@
 
             <!-- KEY ADMINISTRATIVE SERVICES -->
             <section class="mt-10">
-                <div class="flex flex-wrap items-end justify-between gap-3">
+                <div class="section-head">
                     <div>
-                        <h2 class="text-base font-extrabold">Key Administrative Education Services</h2>
-                        <p class="mt-1 text-xs text-muted dark:text-mist-300">Official government portals interconnected
+                        <h2 class="section-title">Key Administrative Education Services</h2>
+                        <p class="section-subtitle">Official government portals interconnected
                             via the national digital identity framework.</p>
                     </div>
-                    <span
-                        class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                    <span class="info-pill-blue">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0">
                             <rect x="5" y="11" width="14" height="10" rx="2" />
@@ -600,12 +697,10 @@
                     </span>
                 </div>
 
-                <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="service-grid">
 
-                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
@@ -613,12 +708,11 @@
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
                             </svg>
                         </span>
-                        <h3 class="mt-3 text-sm font-bold">School Enrollment (Massar)</h3>
-                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Register new students in
+                        <h3 class="service-title">School Enrollment (Massar)</h3>
+                        <p class="service-desc">Register new students in
                             primary/secondary public institutions and transfer academic dossiers between regional
                             delegations.</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             Primary &amp; Middle School Portal
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -627,10 +721,8 @@
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Equivalence & Degrees…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path
@@ -638,12 +730,11 @@
                                 <path d="M9 12l2 2 4-4" />
                             </svg>
                         </span>
-                        <h3 class="mt-3 text-sm font-bold">Equivalence &amp; Degrees</h3>
-                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Digital degree
+                        <h3 class="service-title">Equivalence &amp; Degrees</h3>
+                        <p class="service-desc">Digital degree
                             verification, apostille authentication, and equivalence for foreign credentials with
                             official Barid Al-Maghrib QR codes.</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             Secure Electronic Stamp
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -652,21 +743,18 @@
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening University Pre-registration…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening University Pre-registration…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path d="M4 22h16M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M2 6l10-4 10 4" />
                             </svg>
                         </span>
-                        <h3 class="mt-3 text-sm font-bold">University Pre-registration</h3>
-                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Unified applications for
+                        <h3 class="service-title">University Pre-registration</h3>
+                        <p class="service-desc">Unified applications for
                             Moroccan public universities, engineering faculties (ENSA, ENSAM), medical faculties
                             (FMP/FMD), and business schools (ENCG).</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             Cursus Sup Maroc
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -675,22 +763,19 @@
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path
                                     d="M14.7 6.3a4 4 0 0 0-5.6 5.6L2 19l3 3 7.1-7.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2-2 2.5-2.5Z" />
                             </svg>
                         </span>
-                        <h3 class="mt-3 text-sm font-bold">Vocational Training (OFPPT)</h3>
-                        <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Registration for
+                        <h3 class="service-title">Vocational Training (OFPPT)</h3>
+                        <p class="service-desc">Registration for
                             specialized technician (TS) degrees, Cités des Métiers et des Compétences (CMC), and
                             recognized vocational qualifications.</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             OFPPT Tskwine 2027
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -703,102 +788,97 @@
 
             <!-- ACTIVE REQUESTS TABLE -->
             <section class="mt-10">
-                <div class="flex flex-wrap items-end justify-between gap-3">
+                <div class="section-head">
                     <div>
-                        <h2 class="text-base font-extrabold">Active Requests &amp; Digital Academic Records</h2>
-                        <p class="mt-1 text-xs text-muted dark:text-mist-300">Directly connected to the National
+                        <h2 class="section-title">Active Requests &amp; Digital Academic Records</h2>
+                        <p class="section-subtitle">Directly connected to the National
                             Education Information System (Système d'Information Massar).</p>
                     </div>
-                    <span
-                        class="rounded-md bg-canvas dark:bg-night-700 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300">Showing:
+                    <span class="table-showing-badge">Showing:
                         All Procedures (3)</span>
                 </div>
 
-                <div
-                    class="mt-4 overflow-x-auto rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
-                    <table class="w-full min-w-[720px] text-left text-sm">
+                <div class="card mt-4 overflow-x-auto">
+                    <table class="data-table">
                         <thead>
-                            <tr class="text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300">
-                                <th class="px-4 py-3">Dossier / Reference</th>
-                                <th class="px-4 py-3">Beneficiary</th>
-                                <th class="px-4 py-3">Service Type</th>
-                                <th class="px-4 py-3">Filing Date</th>
-                                <th class="px-4 py-3">Status</th>
-                                <th class="px-4 py-3 text-right">Action</th>
+                            <tr class="table-header-row">
+                                <th class="table-th">Dossier / Reference</th>
+                                <th class="table-th">Beneficiary</th>
+                                <th class="table-th">Service Type</th>
+                                <th class="table-th">Filing Date</th>
+                                <th class="table-th">Status</th>
+                                <th class="table-th-right">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-black/5 dark:divide-night-600">
+                        <tbody class="data-table-body">
                             <tr>
-                                <td class="flex items-center gap-2 px-4 py-3.5 font-semibold">
+                                <td class="table-cell-ref">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="size-4 shrink-0 text-muted dark:text-mist-300">
+                                        stroke-linecap="round" stroke-linejoin="round" class="table-doc-icon">
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
                                         <path d="M14 2v6h6" />
                                     </svg>
                                     MHT-2027-89412
                                 </td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Yassine Alaoui (Son)</td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Minhaty National Scholarship – 1st
+                                <td class="table-cell">Yassine Alaoui (Son)</td>
+                                <td class="table-cell">Minhaty National Scholarship – 1st
                                     Cycle</td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">14 Jan 2027</td>
-                                <td class="px-4 py-3.5">
+                                <td class="table-cell">14 Jan 2027</td>
+                                <td class="table-cell-status">
                                     <span
-                                        class="rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Validated
+                                        class="status-pill bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">Validated
                                         + Bank Transfer</span>
                                 </td>
-                                <td class="px-4 py-3.5 text-right">
+                                <td class="table-cell-action">
                                     <a href="#" data-demo-action="Opening dossier MHT-2027-89412…"
-                                        class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Consult</a>
+                                        class="table-action-link">Consult</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="flex items-center gap-2 px-4 py-3.5 font-semibold">
+                                <td class="table-cell-ref">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="size-4 shrink-0 text-muted dark:text-mist-300">
+                                        stroke-linecap="round" stroke-linejoin="round" class="table-doc-icon">
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
                                         <path d="M14 2v6h6" />
                                     </svg>
                                     EQV-2026-55021
                                 </td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Meryem Alaoui (Holder)</td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Specialized Master Equivalence
+                                <td class="table-cell">Meryem Alaoui (Holder)</td>
+                                <td class="table-cell">Specialized Master Equivalence
                                     (MESRSI)</td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">03 Dec 2026</td>
-                                <td class="px-4 py-3.5">
+                                <td class="table-cell">03 Dec 2026</td>
+                                <td class="table-cell-status">
                                     <span
-                                        class="rounded-md bg-blue-50 dark:bg-blue-500/15 px-2 py-0.5 text-[10px] font-bold text-blue-600 dark:text-blue-400">Digital
+                                        class="status-pill bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">Digital
                                         Certificate Ready</span>
                                 </td>
-                                <td class="px-4 py-3.5 text-right">
+                                <td class="table-cell-action">
                                     <a href="#" data-demo-action="Downloading QR certificate for EQV-2026-55021…"
-                                        class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Download
+                                        class="table-action-link">Download
                                         QR</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="flex items-center gap-2 px-4 py-3.5 font-semibold">
+                                <td class="table-cell-ref">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="size-4 shrink-0 text-muted dark:text-mist-300">
+                                        stroke-linecap="round" stroke-linejoin="round" class="table-doc-icon">
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
                                         <path d="M14 2v6h6" />
                                     </svg>
                                     TWJ-2027-01039
                                 </td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">Yassine Alaoui (Son)</td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">ENSA Rabat / Tangier Entrance
+                                <td class="table-cell">Yassine Alaoui (Son)</td>
+                                <td class="table-cell">ENSA Rabat / Tangier Entrance
                                     Application</td>
-                                <td class="px-4 py-3.5 text-muted dark:text-mist-300">18 Feb 2027</td>
-                                <td class="px-4 py-3.5">
+                                <td class="table-cell">18 Feb 2027</td>
+                                <td class="table-cell-status">
                                     <span
-                                        class="rounded-md bg-amber-50 dark:bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">Awaiting
+                                        class="status-pill bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">Awaiting
                                         S2 Bac Grades</span>
                                 </td>
-                                <td class="px-4 py-3.5 text-right">
+                                <td class="table-cell-action">
                                     <a href="#" data-demo-action="Editing wishes for TWJ-2027-01039…"
-                                        class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Edit
+                                        class="table-action-link">Edit
                                         Wishes</a>
                                 </td>
                             </tr>
@@ -808,9 +888,8 @@
             </section>
 
             <!-- LEGAL DISCLAIMER -->
-            <div
-                class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-canvas dark:bg-night-700 p-4">
-                <p class="flex items-start gap-2.5 max-w-xl text-xs text-muted dark:text-mist-300">
+            <div class="disclaimer">
+                <p class="disclaimer-text">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="mt-0.5 size-4 shrink-0">
                         <circle cx="12" cy="12" r="10" />
@@ -819,10 +898,9 @@
                     Portal operated under the joint oversight of the Moroccan State. Compliant with Law n° 09-08 on the
                     protection of personal data (CNDP) and Law n° 43-20 on trusted electronic transaction services.
                 </p>
-                <div class="flex items-center gap-3">
-                    <span class="text-[11px] font-semibold text-muted dark:text-mist-300">CNDP Ref: A-S-102/2023</span>
-                    <button type="button" data-demo-action="Connecting you to dedicated assistance…"
-                        class="flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark">
+                <div class="info-row">
+                    <span class="disclaimer-ref">CNDP Ref: A-S-102/2023</span>
+                    <button type="button" data-demo-action="Connecting you to dedicated assistance…" class="btn-primary">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
                             <path
@@ -835,21 +913,19 @@
         </main>
     </div>
 
-    <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+    <div id="toast" class="toast">
     </div>
     <!-- FOOTER mobile -->
-    <footer
-        class="mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden">
-        <div class="mx-auto max-w-[1280px] px-6 py-8">
-            <div class="flex flex-col items-center gap-4 text-center">
-                <p class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                <nav class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300">
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
+    <footer class="footer-mobile">
+        <div class="footer-wrap">
+            <div class="footer-inner">
+                <p class="footer-brand">M3ak Morocco</p>
+                <nav class="footer-nav">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Legal Notice</a>
                 </nav>
-                <p class="text-xs text-muted dark:text-mist-300">© 2026 M3ak Morocco. All rights reserved.</p>
+                <p class="footer-copyright">© 2026 M3ak Morocco. All rights reserved.</p>
             </div>
         </div>
     </footer>

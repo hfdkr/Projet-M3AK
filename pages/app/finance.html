@@ -58,8 +58,8 @@
         .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
         .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .app-brand-wrap     { @apply flex items-center gap-2.5; }
-        .app-brand-mark     { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand dark:bg-accent-400/15; }
-        .app-brand-mark img { @apply size-5 object-contain; }
+        .app-brand-mark     { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .app-brand-mark img { @apply size-full object-contain; }
         .app-brand-text     { @apply leading-tight; }
         .app-brand-name     { @apply block text-base font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .app-brand-sub      { @apply block text-[10px] font-bold uppercase tracking-wide text-muted dark:text-mist-300; }
@@ -88,6 +88,7 @@
                                 hover:bg-[#F1F4F2] dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
         .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
         .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
+        .nav-item--emergency { @apply rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 font-semibold text-[#DC2626] shadow-sm hover:bg-[#DC2626]/20 hover:text-[#DC2626] focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
         .nav-item--active .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
@@ -196,7 +197,10 @@
             </button>
 
             <a href="/pages/app/coming-soon.html?feature=Services" class="app-brand-wrap">
-                <span class="app-brand-mark"><img src="/assets/images/img-mobile-1.png" alt=""></span>
+                <span class="app-brand-mark">
+                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="dark:hidden">
+                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden dark:block">
+                </span>
                 <span class="app-brand-text">
                     <span class="app-brand-name">M3ak Morocco</span>
                     <span class="app-brand-sub">Finances Publiques</span>
@@ -273,7 +277,7 @@
             </nav>
 
             <div class="sidebar-foot">
-                <a href="/pages/app/emergence.html" class="nav-item rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 font-semibold text-[#DC2626] shadow-sm hover:bg-[#DC2626]/20 hover:text-[#DC2626] focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+                <a href="/pages/app/emergence.html" class="nav-item nav-item--emergency">
                     <i class="size-[18px] shrink-0 bg-[#DC2626]" style="display:inline-block;-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></i>
                     <span>Emergency Support</span>
                 </a>
@@ -286,7 +290,7 @@
                     <span>Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span>AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
@@ -394,7 +398,7 @@
                 <section class="fin-panel">
                     <div class="fin-panel-head">
                         <p class="fin-panel-title">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l3 3v17H6z" /><path d="M9 8h6M9 12h6M9 16h4" /></svg>
+                            <img src="" alt="">
                             Dernières Opérations Certifiées TGR
                         </p>
                         <button type="button" class="fin-panel-link" data-open="history">Voir l'historique →</button>

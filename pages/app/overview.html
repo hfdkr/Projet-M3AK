@@ -117,6 +117,172 @@
              px-3 py-2.5 text-sm text-ink dark:text-mist-100 outline-none
              focus-visible:ring-2 focus-visible:ring-brand/40;
     }
+
+    /* Page-specific extracted classes */
+    .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200; }
+    .icon-img-xs { @apply size-4 object-contain; }
+    .icon-img-sm { @apply size-5 object-contain; }
+    .icon-svg-xs { @apply size-4 shrink-0; }
+
+    .desktop-topbar { @apply sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block; }
+    .desktop-topbar-inner { @apply flex h-16 items-center gap-6 px-6; }
+    .brand-link { @apply flex w-56 shrink-0 items-center gap-3 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
+    .app-brand-mark { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+    .logo-img-light { @apply size-full object-contain dark:hidden; }
+    .logo-img-dark { @apply hidden size-full object-contain dark:block; }
+    .header-actions { @apply ml-auto flex items-center gap-2; }
+    .icon-btn { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800; }
+    .lang-btn { @apply flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .avatar-menu-btn { @apply ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .avatar-initials { @apply grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+    .avatar-initials-lg { @apply grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+    .user-dropdown { @apply absolute right-0 z-50 mt-2 w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg; }
+    .dropdown-link { @apply block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600; }
+    .dropdown-link-danger { @apply block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600; }
+
+    .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+    .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+    .sidebar-top { @apply mb-5 px-2; }
+    .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+    .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
+    .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+    .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+    .nav-icon-mask { @apply size-[18px] shrink-0 bg-[#DC2626]; }
+    .nav-icon-sm { @apply size-[18px] object-contain; }
+    .nav-icon-svg { @apply size-[18px] shrink-0; }
+    .sidebar-foot { @apply mt-auto space-y-1 pt-6; }
+    .content-col { @apply min-w-0 flex-1; }
+
+    .mobile-topbar { @apply flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3 lg:hidden; }
+    .mobile-topbar-left { @apply flex items-center justify-between gap-3; }
+    .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .menu-icon { @apply size-6 object-contain; }
+    .mobile-brand-text { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
+    .mobile-topbar-right { @apply flex items-center gap-2; }
+
+    .app-main { @apply px-4 pb-6 pt-5 lg:px-8 lg:pb-10 lg:pt-8; }
+    .page-header-row { @apply flex flex-wrap items-start justify-between gap-4; }
+    .page-title { @apply text-2xl font-extrabold tracking-tight lg:text-[28px]; }
+    .page-subtitle { @apply mt-1.5 max-w-md text-sm text-muted dark:text-mist-300; }
+    .weather-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-1.5 text-xs font-semibold text-brand dark:text-accent-400; }
+    .weather-dot { @apply size-1.5 rounded-full bg-brand; }
+
+    .tabs-scroll { @apply mt-6 overflow-x-auto; }
+    .tabs-row { @apply flex w-max gap-1.5 rounded-full bg-white dark:bg-night-800 p-1 ring-1 ring-black/5 dark:ring-white/10; }
+
+    .kpi-grid { @apply grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4; }
+    .kpi-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10; }
+    .kpi-top-row { @apply flex items-center justify-between; }
+    .kpi-icon--brand { @apply grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+    .kpi-icon--blue { @apply grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400; }
+    .kpi-icon--amber { @apply grid size-9 place-items-center rounded-xl bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400; }
+    .kpi-delta--up { @apply rounded-full flex items-center gap-1 bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400; }
+    .kpi-delta--down { @apply rounded-full flex items-center gap-1 bg-[#BA1A1A]/30 dark:bg-[#9C3C3B]/10 px-2 py-0.5 text-[10px] font-bold text-[#BA1A1A]; }
+    .kpi-delta-icon { @apply w-[11.7px] h-[7px]; }
+    .kpi-label { @apply mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300; }
+    .kpi-value { @apply mt-0.5 text-xl font-extrabold; }
+
+    .dashboard-grid { @apply mt-5 grid gap-5 lg:grid-cols-3; }
+    .panel-card { @apply rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10; }
+    .panel-card--wide { @apply rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2; }
+    .panel-card-head { @apply flex items-center gap-3; }
+    .panel-title { @apply text-base font-bold; }
+    .panel-head-row { @apply flex items-center justify-between; }
+    .panel-link-btn { @apply rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .panel-link { @apply text-sm font-semibold text-brand dark:text-accent-400 hover:underline; }
+    .panel-sub { @apply mt-0.5 text-xs text-muted dark:text-mist-300; }
+    .total-badge { @apply rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400; }
+    .activity-chart { @apply mt-5 flex h-40 items-end justify-between gap-2 sm:gap-4; }
+    .divided-list { @apply mt-4 divide-y divide-black/5 dark:divide-white/10; }
+    .summary-list { @apply mt-4 space-y-2.5; }
+
+    .view-map-btn { @apply ml-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400; }
+    .live-badge { @apply inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400; }
+    .live-dot { @apply size-1.5 animate-pulse rounded-full bg-brand dark:bg-accent-400; }
+    .transport-grid { @apply mt-4 grid gap-3 sm:grid-cols-2; }
+    .transit-card { @apply rounded-xl bg-canvas dark:bg-night-700 p-3.5; }
+    .transit-row { @apply flex items-baseline justify-between gap-2; }
+    .transit-title { @apply text-sm font-semibold; }
+    .transit-eta { @apply text-sm font-bold text-brand dark:text-accent-400; }
+    .transit-time { @apply text-sm font-bold; }
+    .progress-track { @apply mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10; }
+    .progress-fill--brand { @apply block h-full rounded-full bg-brand dark:bg-accent-400; }
+    .progress-fill--blue { @apply block h-full rounded-full bg-blue-600; }
+    .transit-sub { @apply mt-2 text-[11px] text-muted dark:text-mist-300; }
+
+    .map-modal { @apply fixed inset-0 z-[60] items-center justify-center bg-ink/50 p-0 backdrop-blur-sm sm:p-6; }
+    .map-modal-panel { @apply flex h-full w-full flex-col overflow-hidden bg-white dark:bg-night-800 shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl; }
+    .map-modal-head { @apply flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3; }
+    .map-modal-icon-badge { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+    .map-modal-title-wrap { @apply min-w-0 flex-1; }
+    .map-modal-status { @apply truncate text-[11px] text-muted dark:text-mist-300; }
+    .map-modal-close { @apply grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .close-glyph { @apply text-xl leading-none; }
+    .live-map-canvas { @apply min-h-0 flex-1 bg-canvas dark:bg-night-700; }
+    .map-modal-foot { @apply flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3; }
+    .locate-btn { @apply flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .locate-icon { @apply size-4 shrink-0; }
+    .follow-btn { @apply rounded-lg border border-black/10 dark:border-white/15 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30; }
+    .map-external-link { @apply ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+
+    .quick-btn { @apply flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .quick-icon { @apply size-6 object-contain; }
+    .quick-label { @apply text-xs font-semibold leading-tight; }
+    .quick-grid { @apply mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4; }
+
+    .panel-sub-lg { @apply mt-1 text-xs text-muted dark:text-mist-300; }
+    .new-request-btn { @apply shrink-0 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .items-list { @apply mt-5 space-y-3; }
+    .add-appt-btn { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-brand/40; }
+
+    .panel-stack { @apply mt-6 flex flex-col gap-5; }
+    .info-card { @apply scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6; }
+    .info-card-head { @apply mb-4 flex items-center justify-between; }
+    .info-card-title { @apply flex items-center gap-2 text-base font-bold; }
+    .section-title-icon { @apply mb-3 flex items-center gap-2 text-base font-bold; }
+    .fields-grid { @apply grid grid-cols-1 gap-3.5 sm:grid-cols-2; }
+    .form-actions-row { @apply mt-4 flex items-center justify-end gap-2 border-t border-black/5 dark:border-white/10 pt-4; }
+    .save-btn { @apply rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300; }
+
+    .cin-card { @apply scroll-mt-24 relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:p-7; }
+    .cin-top-row { @apply flex items-start justify-between gap-4; }
+    .cin-kicker { @apply text-[10px] font-semibold uppercase tracking-[1px] text-white/70; }
+    .cin-title { @apply mt-1 text-xl font-extrabold lg:text-2xl; }
+    .cin-active-badge { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold; }
+    .cin-active-dot { @apply size-1.5 rounded-full bg-accent-400; }
+    .cin-details-row { @apply mt-4 flex flex-wrap items-end justify-between gap-4; }
+    .cin-fields { @apply flex gap-8; }
+    .cin-field-label { @apply text-[10px] uppercase tracking-[0.6px] text-white/60; }
+    .cin-field-value { @apply mt-0.5 text-sm font-bold; }
+    .cin-icon-badge { @apply hidden sm:grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-white/15; }
+    .cin-icon-img { @apply size-6 object-contain; }
+    .cin-actions { @apply mt-4 flex flex-wrap gap-2.5; }
+    .cin-btn--light { @apply rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft; }
+    .cin-btn--outline { @apply rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/10; }
+
+    .account-grid { @apply grid gap-5 lg:grid-cols-2; }
+    .settings-label { @apply text-sm font-semibold; }
+    .settings-sub { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
+    .settings-sub--active { @apply mt-0.5 text-[11px] font-medium text-brand dark:text-accent-400; }
+    .settings-link-btn { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+    .notif-row { @apply mt-2 flex items-center justify-between gap-3; }
+    .notif-row--spaced { @apply mt-2.5 flex items-center justify-between gap-3; }
+    .notif-checkbox { @apply size-[18px] rounded accent-brand dark:accent-accent-400; }
+    .signout-row { @apply flex flex-wrap items-center justify-between gap-3; }
+    .signout-btn { @apply rounded-lg border border-danger/40 px-4 py-2 text-xs font-semibold text-danger transition hover:bg-danger/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/40; }
+
+    .footer-mobile { @apply mt-10 border-t border-black/5 dark:border-white/10 pt-6 lg:hidden; }
+    .footer-mobile-inner { @apply flex flex-col items-center gap-4 text-center; }
+    .footer-brand { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
+    .footer-nav { @apply flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300; }
+    .footer-link { @apply hover:text-brand dark:hover:text-accent-400; }
+    .footer-copyright { @apply text-xs text-muted dark:text-mist-300; }
+    .footer-desktop { @apply mt-10 hidden border-t border-black/5 dark:border-white/10 pt-6 lg:block; }
+    .footer-desktop-inner { @apply flex flex-wrap items-center justify-between gap-4 text-xs text-muted dark:text-mist-300; }
+    .footer-nav-desktop { @apply flex flex-wrap gap-7; }
+
+    .toast { @apply pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
   </style>
 
   <style>
@@ -281,22 +447,21 @@
   </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100 transition-colors duration-200"
+<body class="page-body"
   data-require-auth>
 
   <!-- ══════════ TOP BAR (desktop) ══════════ -->
-  <header
-    class="sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block">
-    <div class="flex h-16 items-center gap-6 px-6">
-      <a href="/pages/app/coming-soon.html?feature=Services"
-        class="flex w-56 shrink-0 items-center gap-3 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400">
-        <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand">
-          <img src="/assets/images/img-mobile-1.png" alt="M3ak Morocco logo" class="size-full object-contain">
+  <header class="desktop-topbar">
+    <div class="desktop-topbar-inner">
+      <a href="/pages/app/coming-soon.html?feature=Services" class="brand-link">
+        <span class="app-brand-mark">
+          <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+          <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
         </span>
 
         M3ak Morocco
       </a>
-      <div class="ml-auto flex items-center gap-2">
+      <div class="header-actions">
         <!-- Dark / light mode -->
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
           <span class="theme-toggle-thumb">
@@ -305,39 +470,29 @@
           </span>
         </button>
 
-        <button type="button"
-          class="relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+        <button type="button" class="icon-btn">
           <span class="sr-only">Notifications</span>
-          <img src="/assets/images/notification.png" alt="" class="size-5 object-contain" />
-          <span
-            class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800"></span>
+          <img src="/assets/images/notification.png" alt="" class="icon-img-sm" />
+          <span class="notif-dot"></span>
         </button>
-        <button id="langBtn" type="button"
-          class="flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+        <button id="langBtn" type="button" class="lang-btn">
           <span class="sr-only">Change language</span>
           <span id="langLabel" class="text-sm font-bold">EN</span>
         </button>
 
         <div class="relative" data-auth="user">
-          <button type="button" data-menu-toggle aria-expanded="false" aria-haspopup="menu"
-            class="ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
-            <span data-user-initials
-              class="grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
+          <button type="button" data-menu-toggle aria-expanded="false" aria-haspopup="menu" class="avatar-menu-btn">
+            <span data-user-initials class="avatar-initials">A</span>
           </button>
 
-          <div data-menu role="menu"
-            class="absolute right-0 z-50 mt-2 hidden w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg">
-            <a href="/pages/app/overview.html#personal-info" role="menuitem"
-              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Personal
+          <div data-menu role="menu" class="user-dropdown hidden">
+            <a href="/pages/app/overview.html#personal-info" role="menuitem" class="dropdown-link">Personal
               info</a>
-            <a href="/pages/app/overview.html#digital-id" role="menuitem"
-              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">My
+            <a href="/pages/app/overview.html#digital-id" role="menuitem" class="dropdown-link">My
               documents</a>
-            <a href="/pages/app/overview.html#account" role="menuitem"
-              class="block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600">Account
+            <a href="/pages/app/overview.html#account" role="menuitem" class="dropdown-link">Account
               settings</a>
-            <button type="button" data-action="logout" role="menuitem"
-              class="block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600">Sign
+            <button type="button" data-action="logout" role="menuitem" class="dropdown-link-danger">Sign
               out</button>
           </div>
         </div>
@@ -348,21 +503,20 @@
   <div class="flex">
 
     <!-- ══════════ SIDEBAR ══════════ -->
-    <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+    <div id="scrim" class="app-scrim hidden"></div>
 
-    <aside id="sidebar"
-      class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-      <div class="mb-5 px-2 sidebar-head">
+    <aside id="sidebar" class="app-sidebar -translate-x-full">
+      <div class="sidebar-top sidebar-head">
         <div class="sidebar-text">
-          <p class="text-base font-extrabold text-brand dark:text-accent-400">
+          <p class="sidebar-title">
             M3ak Morocco</p>
-          <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+          <p class="sidebar-sub">Citizen Services Portal</p>
         </div>
       </div>
 
       <nav class="space-y-0.5 text-sm font-medium" aria-label="Primary">
         <a href="/pages/app/overview.html" aria-current="page"
-          class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+          class="nav-item--active">
           <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon"
             style="filter:brightness(0) invert(1)" />
           <span class="nav-label">My Space</span>
@@ -397,53 +551,51 @@
         </a>
       </nav>
 
-      <div class="mt-auto space-y-1 pt-6">
+      <div class="sidebar-foot">
         <a href="/pages/app/emergence.html"
-          class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-          <span class="size-[18px] shrink-0 bg-[#DC2626]"
+          class="nav-item--danger">
+          <span class="nav-icon-mask"
             style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
             aria-hidden="true"></span>
           <span class="nav-label whitespace-nowrap">Emergency Support</span>
         </a>
         <a href="/pages/app/support.html" class="nav-item">
-          <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+          <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon-sm" />
           <span class="nav-label">Help Center</span>
         </a>
         <a href="/pages/app/overview.html#account" class="nav-item">
-          <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+          <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon-sm" />
           <span class="nav-label">Settings</span>
         </a>
         <a href="/pages/app/assistant.html" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="size-[18px] shrink-0">
+            stroke-linejoin="round" class="nav-icon-svg">
             <rect x="9" y="2" width="6" height="12" rx="3" />
             <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
           </svg>
           <span class="nav-label">AI Assistant</span>
         </a>
         <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-          <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+          <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon-sm" />
           <span class="nav-label">Logout</span>
         </a>
       </div>
     </aside>
 
     <!-- ══════════ CONTENU ══════════ -->
-    <div class="min-w-0 flex-1">
+    <div class="content-col">
 
       <!-- Header mobile -->
-      <div
-        class="flex items-center justify-between border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 px-4 py-3 lg:hidden">
-        <div class="flex items-center justify-between gap-3">
-          <button id="menuBtn" type="button"
-            class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+      <div class="mobile-topbar">
+        <div class="mobile-topbar-left">
+          <button id="menuBtn" type="button" class="app-menu-btn">
             <span class="sr-only">Open menu</span>
-            <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain" />
+            <img src="/assets/images/menu-icon.png" alt="" class="menu-icon" />
           </button>
-          <span class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</span>
+          <span class="mobile-brand-text">M3ak Morocco</span>
 
         </div>
-        <div class="flex items-center gap-2">
+        <div class="mobile-topbar-right">
           <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
             aria-pressed="false">
             <span class="theme-toggle-thumb">
@@ -451,32 +603,29 @@
               <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
             </span>
           </button>
-          <span data-user-initials
-            class="grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25">A</span>
+          <span data-user-initials class="avatar-initials-lg">A</span>
         </div>
       </div>
 
-      <main class="px-4 pb-6 pt-5 lg:px-8 lg:pb-10 lg:pt-8">
+      <main class="app-main">
 
         <!-- Salutation -->
-        <div class="flex flex-wrap items-start justify-between gap-4">
+        <div class="page-header-row">
           <div>
-            <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">My Space</h1>
-            <p class="mt-1.5 max-w-md text-sm text-muted dark:text-mist-300">
+            <h1 class="page-title">My Space</h1>
+            <p class="page-subtitle">
               Welcome back, <span data-user-name>there</span>. Your services, requests, appointments and account
               in one place.
             </p>
           </div>
-          <span
-            class="inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-1.5 text-xs font-semibold text-brand dark:text-accent-400">
-            <span class="size-1.5 rounded-full bg-brand"></span>Agadir · <span id="temp">24</span>°C
+          <span class="weather-badge">
+            <span class="weather-dot"></span>Agadir · <span id="temp">24</span>°C
           </span>
         </div>
 
         <!-- Tabs -->
-        <div class="mt-6 overflow-x-auto no-scrollbar">
-          <div role="tablist" aria-label="My Space sections"
-            class="flex w-max gap-1.5 rounded-full bg-white dark:bg-night-800 p-1 ring-1 ring-black/5 dark:ring-white/10">
+        <div class="no-scrollbar tabs-scroll">
+          <div role="tablist" aria-label="My Space sections" class="tabs-row">
             <button type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true"
               class="ms-tab">Dashboard</button>
             <button type="button" role="tab" id="tab-requests" aria-controls="panel-requests" aria-selected="false"
@@ -494,165 +643,147 @@
         <section id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" tabindex="0" class="mt-6">
 
           <!-- KPI row -->
-          <div class="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <span
-                  class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                  <img src="/assets/my-space/Icon-citizens.png" alt="icon-citizen" class="size-4 object-contain" />
+          <div class="kpi-grid">
+            <article class="fade-up kpi-card">
+              <div class="kpi-top-row">
+                <span class="kpi-icon--brand">
+                  <img src="/assets/my-space/Icon-citizens.png" alt="icon-citizen" class="icon-img-xs" />
                 </span>
-                <span
-                  class="rounded-full flex items-center gap-1 bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">
+                <span class="kpi-delta--up">
                   +12.5%
-                  <img src="/assets/my-space/Icon-card-citizens.png" class="w-[11.7px] h-[7px]" alt="citizen">
+                  <img src="/assets/my-space/Icon-card-citizens.png" class="kpi-delta-icon" alt="citizen">
 
                 </span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Active
+              <p class="kpi-label">Active
                 Requests</p>
-              <p class="mt-0.5 text-xl font-extrabold" id="kpiRequests">3</p>
+              <p class="kpi-value" id="kpiRequests">3</p>
             </article>
 
-            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <span
-                  class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
-                  <img src="/assets/my-space/Icon-payment.png" alt="Icon-paymen" class="size-4 object-contain" />
+            <article class="fade-up kpi-card">
+              <div class="kpi-top-row">
+                <span class="kpi-icon--blue">
+                  <img src="/assets/my-space/Icon-payment.png" alt="Icon-paymen" class="icon-img-xs" />
                 </span>
-                <span
-                  class="rounded-full flex items-center gap-1 bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">
+                <span class="kpi-delta--up">
                   +8.1%
-                  <img src="/assets/my-space/Icon-card-citizens.png" class="w-[11.7px] h-[7px]" alt="citizen">
+                  <img src="/assets/my-space/Icon-card-citizens.png" class="kpi-delta-icon" alt="citizen">
                 </span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">Paid
+              <p class="kpi-label">Paid
                 This Month</p>
-              <p class="mt-0.5 text-xl font-extrabold" id="kpiPaid">DH 691</p>
+              <p class="kpi-value" id="kpiPaid">DH 691</p>
             </article>
 
-            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <span
-                  class="grid size-9 place-items-center rounded-xl bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">
-                  <img src="/assets/my-space/icon-rate.png" alt="" class="size-4 object-contain" />
+            <article class="fade-up kpi-card">
+              <div class="kpi-top-row">
+                <span class="kpi-icon--amber">
+                  <img src="/assets/my-space/icon-rate.png" alt="" class="icon-img-xs" />
                 </span>
-                <span
-                  class="rounded-full flex items-center gap-1 bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">
+                <span class="kpi-delta--up">
                   94%
-                  <img src="/assets/my-space/Icon-card-citizens.png" class="w-[11.7px] h-[7px]" alt="citizen">
+                  <img src="/assets/my-space/Icon-card-citizens.png" class="kpi-delta-icon" alt="citizen">
                 </span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">
+              <p class="kpi-label">
                 Upcoming Appointments</p>
-              <p class="mt-0.5 text-xl font-extrabold" id="kpiAppts">2</p>
+              <p class="kpi-value" id="kpiAppts">2</p>
             </article>
 
-            <article class="fade-up rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <span
-                  class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                  <img src="/assets/my-space/Icon-time.png" alt="time-icon" class="size-4 object-contain" />
+            <article class="fade-up kpi-card">
+              <div class="kpi-top-row">
+                <span class="kpi-icon--brand">
+                  <img src="/assets/my-space/Icon-time.png" alt="time-icon" class="icon-img-xs" />
                 </span>
-                <span
-                  class="rounded-full flex items-center gap-1 bg-[#BA1A1A]/30 dark:bg-[#9C3C3B]/10 px-2 py-0.5 text-[10px] font-bold text-[#BA1A1A]">
+                <span class="kpi-delta--down">
                   -2.4%
-                  <img src="/assets/my-space/Icon-card-time.png" class="w-[11.7px] h-[7px]" alt="citizen">
+                  <img src="/assets/my-space/Icon-card-time.png" class="kpi-delta-icon" alt="citizen">
                 </span>
               </div>
-              <p class="mt-3 text-[10px] font-semibold uppercase tracking-[0.6px] text-muted dark:text-mist-300">
+              <p class="kpi-label">
                 Documents</p>
-              <p class="mt-0.5 text-xl font-extrabold">4</p>
+              <p class="kpi-value">4</p>
             </article>
           </div>
 
-          <div class="mt-5 grid gap-5 lg:grid-cols-3">
+          <div class="dashboard-grid">
 
             <!-- Transport live -->
-            <div
-              class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-              <div class="flex items-center gap-3">
-                <span
-                  class="grid size-9 place-items-center rounded-xl bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">
-                  <img src="/assets/icon-bar-left/transport.png" alt="" class="size-5 object-contain" />
+            <div class="fade-up panel-card--wide">
+              <div class="panel-card-head">
+                <span class="kpi-icon--blue">
+                  <img src="/assets/icon-bar-left/transport.png" alt="" class="icon-img-sm" />
                 </span>
-                <h2 class="text-base font-bold">Public Transport Live Status</h2>
-                <button id="openMap" type="button"
-                  class="ml-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400">
+                <h2 class="panel-title">Public Transport Live Status</h2>
+                <button id="openMap" type="button" class="view-map-btn">
                   View Map
                 </button>
-                <span
-                  class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">
-                  <span class="size-1.5 animate-pulse rounded-full bg-brand dark:bg-accent-400"></span>Live Now
+                <span class="live-badge">
+                  <span class="live-dot"></span>Live Now
                 </span>
               </div>
 
-              <div class="mt-4 grid gap-3 sm:grid-cols-2">
-                <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <p class="text-sm font-semibold">Tramway T1</p>
-                    <p class="text-sm font-bold text-brand dark:text-accent-400"><span id="tramEta">2</span><span
+              <div class="transport-grid">
+                <article class="transit-card">
+                  <div class="transit-row">
+                    <p class="transit-title">Tramway T1</p>
+                    <p class="transit-eta"><span id="tramEta">2</span><span
                         id="tramUnit"> min</span></p>
                   </div>
-                  <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-                    <span id="tramBar" class="block h-full rounded-full bg-brand dark:bg-accent-400"
+                  <div class="bar progress-track">
+                    <span id="tramBar" class="progress-fill--brand"
                       style="width:0%"></span>
                   </div>
-                  <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Hassan II</p>
+                  <p class="transit-sub">Towards: Hassan II</p>
                 </article>
 
-                <article class="rounded-xl bg-canvas dark:bg-night-700 p-3.5">
-                  <div class="flex items-baseline justify-between gap-2">
-                    <p class="text-sm font-semibold">Al Boraq 104</p>
-                    <p class="text-sm font-bold">14:15</p>
+                <article class="transit-card">
+                  <div class="transit-row">
+                    <p class="transit-title">Al Boraq 104</p>
+                    <p class="transit-time">14:15</p>
                   </div>
-                  <div class="bar mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-                    <span id="boraqBar" class="block h-full rounded-full bg-blue-600" style="width:0%"></span>
+                  <div class="bar progress-track">
+                    <span id="boraqBar" class="progress-fill--blue" style="width:0%"></span>
                   </div>
-                  <p class="mt-2 text-[11px] text-muted dark:text-mist-300">Towards: Tangier Ville</p>
+                  <p class="transit-sub">Towards: Tangier Ville</p>
                 </article>
               </div>
 
               <!-- ══════════ MODALE CARTE LIVE ══════════ -->
-              <div id="mapModal"
-                class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink/50 p-0 backdrop-blur-sm sm:p-6">
-                <div role="dialog" aria-modal="true" aria-labelledby="mapModalTitle"
-                  class="flex h-full w-full flex-col overflow-hidden bg-white dark:bg-night-800 shadow-2xl sm:h-[80vh] sm:max-w-4xl sm:rounded-2xl">
+              <div id="mapModal" class="map-modal hidden">
+                <div role="dialog" aria-modal="true" aria-labelledby="mapModalTitle" class="map-modal-panel">
 
-                  <div class="flex items-center gap-3 border-b border-black/5 dark:border-white/10 px-4 py-3">
-                    <span
-                      class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                      <img src="/assets/emergence-image/maps-icon.png" alt="" class="size-5 object-contain" />
+                  <div class="map-modal-head">
+                    <span class="map-modal-icon-badge">
+                      <img src="/assets/emergence-image/maps-icon.png" alt="" class="icon-img-sm" />
                     </span>
-                    <div class="min-w-0 flex-1">
-                      <p id="mapModalTitle" class="text-sm font-bold">Live Network Map</p>
-                      <p id="mapStatus" class="truncate text-[11px] text-muted dark:text-mist-300">Waiting for your
+                    <div class="map-modal-title-wrap">
+                      <p id="mapModalTitle" class="panel-title">Live Network Map</p>
+                      <p id="mapStatus" class="map-modal-status">Waiting for your
                         location…</p>
                     </div>
-                    <button id="closeMap" type="button"
-                      class="grid size-9 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40">
+                    <button id="closeMap" type="button" class="map-modal-close">
                       <span class="sr-only">Close map</span>
-                      <span aria-hidden="true" class="text-xl leading-none">&times;</span>
+                      <span aria-hidden="true" class="close-glyph">&times;</span>
                     </button>
                   </div>
 
-                  <div id="liveMap" class="min-h-0 flex-1 bg-canvas dark:bg-night-700"></div>
+                  <div id="liveMap" class="live-map-canvas"></div>
 
-                  <div class="flex flex-wrap items-center gap-2 border-t border-black/5 dark:border-white/10 px-4 py-3">
-                    <button id="locateMe" type="button"
-                      class="flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40">
+                  <div class="map-modal-foot">
+                    <button id="locateMe" type="button" class="locate-btn">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="size-4 shrink-0">
+                        stroke-linejoin="round" class="locate-icon">
                         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
                       Locate me
                     </button>
-                    <button id="followMe" type="button" aria-pressed="false"
-                      class="rounded-lg border border-black/10 dark:border-white/15 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30">
+                    <button id="followMe" type="button" aria-pressed="false" class="follow-btn">
                       Follow my position
                     </button>
                     <a id="externalMap" href="https://www.google.com/maps" target="_blank" rel="noopener"
-                      class="ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Open in
+                      class="map-external-link">Open in
                       Google Maps</a>
                   </div>
                 </div>
@@ -660,76 +791,66 @@
             </div>
 
             <!-- Next appointment -->
-            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold">Next Appointment</h2>
-                <button type="button" data-goto-tab="tab-appointments"
-                  class="rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">View
+            <section class="fade-up panel-card">
+              <div class="panel-head-row">
+                <h2 class="panel-title">Next Appointment</h2>
+                <button type="button" data-goto-tab="tab-appointments" class="panel-link-btn">View
                   all</button>
               </div>
               <div id="nextAppt" class="mt-4"></div>
             </section>
 
             <!-- Activity this week -->
-            <section
-              class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-              <div class="flex items-center justify-between">
+            <section class="fade-up panel-card--wide">
+              <div class="panel-head-row">
                 <div>
-                  <h2 class="text-base font-bold">Your Activity</h2>
-                  <p class="mt-0.5 text-xs text-muted dark:text-mist-300">Interactions with public services · last 7
+                  <h2 class="panel-title">Your Activity</h2>
+                  <p class="panel-sub">Interactions with public services · last 7
                     days</p>
                 </div>
-                <span
-                  class="rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400">24
+                <span class="total-badge">24
                   total</span>
               </div>
-              <div id="activityChart" class="mt-5 flex h-40 items-end justify-between gap-2 sm:gap-4"></div>
+              <div id="activityChart" class="activity-chart"></div>
             </section>
 
             <!-- Recent payments -->
-            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold">Recent Payments</h2>
-                <a href="/pages/app/payments.html"
-                  class="text-sm font-semibold text-brand dark:text-accent-400 hover:underline">Open wallet</a>
+            <section class="fade-up panel-card">
+              <div class="panel-head-row">
+                <h2 class="panel-title">Recent Payments</h2>
+                <a href="/pages/app/payments.html" class="panel-link">Open wallet</a>
               </div>
-              <ul id="payList" class="mt-4 divide-y divide-black/5 dark:divide-white/10"></ul>
+              <ul id="payList" class="divided-list"></ul>
             </section>
 
             <!-- Requests snapshot -->
-            <section class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-              <div class="flex items-center justify-between">
-                <h2 class="text-base font-bold">Requests</h2>
-                <button type="button" data-goto-tab="tab-requests"
-                  class="rounded text-sm font-semibold text-brand dark:text-accent-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">Open</button>
+            <section class="fade-up panel-card">
+              <div class="panel-head-row">
+                <h2 class="panel-title">Requests</h2>
+                <button type="button" data-goto-tab="tab-requests" class="panel-link-btn">Open</button>
               </div>
-              <div id="reqSummary" class="mt-4 space-y-2.5"></div>
+              <div id="reqSummary" class="summary-list"></div>
             </section>
 
             <!-- Quick services -->
-            <section
-              class="fade-up rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-              <h2 class="text-base font-bold">Quick Citizen Services</h2>
-              <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                <button type="button" data-service="Civil Status"
-                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/my-space/icon-civil.png" alt="Civil-icon" class="size-6 object-contain" />
-                  <span class="text-xs font-semibold leading-tight">Civil Status</span>
+            <section class="fade-up panel-card--wide">
+              <h2 class="panel-title">Quick Citizen Services</h2>
+              <div class="quick-grid">
+                <button type="button" data-service="Civil Status" class="quick group quick-btn">
+                  <img src="/assets/my-space/icon-civil.png" alt="Civil-icon" class="quick-icon" />
+                  <span class="quick-label">Civil Status</span>
                 </button>
-                <button type="button" data-service="Driving License"
-                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/my-space/icon-driving.png" alt="icon-driving" class="size-6 object-contain" />
-                  <span class="text-xs font-semibold leading-tight">Driving License</span>
+                <button type="button" data-service="Driving License" class="quick group quick-btn">
+                  <img src="/assets/my-space/icon-driving.png" alt="icon-driving" class="quick-icon" />
+                  <span class="quick-label">Driving License</span>
                 </button>
-                <button type="button" data-service="Property Tax"
-                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/my-space/icon-tax.png" alt="tax-icon" class="size-6 object-contain" />
-                  <span class="text-xs font-semibold leading-tight">Property Tax</span>
+                <button type="button" data-service="Property Tax" class="quick group quick-btn">
+                  <img src="/assets/my-space/icon-tax.png" alt="tax-icon" class="quick-icon" />
+                  <span class="quick-label">Property Tax</span>
                 </button>
-                <button type="button" data-service="Social Security"
-                  class="quick group flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
-                  <img src="/assets/my-space/icon-social-sec.png" alt="security-icon" class="size-6 object-contain" />
-                  <span class="text-xs font-semibold leading-tight">Social Security</span>
+                <button type="button" data-service="Social Security" class="quick group quick-btn">
+                  <img src="/assets/my-space/icon-social-sec.png" alt="security-icon" class="quick-icon" />
+                  <span class="quick-label">Social Security</span>
                 </button>
               </div>
             </section>
@@ -738,55 +859,52 @@
 
         <!-- ═══════ PANEL: MY REQUESTS ═══════ -->
         <section id="panel-requests" role="tabpanel" aria-labelledby="tab-requests" tabindex="0" class="mt-6" hidden>
-          <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-            <div class="flex items-center justify-between">
+          <div class="panel-card">
+            <div class="panel-head-row">
               <div>
-                <h2 class="text-base font-bold">Service Requests</h2>
-                <p class="mt-1 text-xs text-muted dark:text-mist-300">Every administrative request you have opened
+                <h2 class="panel-title">Service Requests</h2>
+                <p class="panel-sub-lg">Every administrative request you have opened
                   across M3ak.</p>
               </div>
-              <button id="newRequest" type="button"
-                class="shrink-0 rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40">
+              <button id="newRequest" type="button" class="new-request-btn">
                 New request
               </button>
             </div>
-            <ul id="reqList" class="mt-5 space-y-3"></ul>
+            <ul id="reqList" class="items-list"></ul>
           </div>
         </section>
 
         <!-- ═══════ PANEL: APPOINTMENTS ═══════ -->
         <section id="panel-appointments" role="tabpanel" aria-labelledby="tab-appointments" tabindex="0" class="mt-6"
           hidden>
-          <div class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
-            <div class="flex items-center justify-between">
+          <div class="panel-card">
+            <div class="panel-head-row">
               <div>
-                <h2 class="text-base font-bold">Appointments</h2>
-                <p class="mt-1 text-xs text-muted dark:text-mist-300">Upcoming visits to public offices and clinics.</p>
+                <h2 class="panel-title">Appointments</h2>
+                <p class="panel-sub-lg">Upcoming visits to public offices and clinics.</p>
               </div>
-              <button id="addAppt" type="button"
-                class="grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 hover:text-brand dark:hover:text-accent-400 focus-visible:ring-2 focus-visible:ring-brand/40">
+              <button id="addAppt" type="button" class="add-appt-btn">
                 <span class="sr-only">Add an appointment</span>
-                <img src="/assets/emergence-image/add-Icon.png" alt="" class="size-5 object-contain" />
+                <img src="/assets/emergence-image/add-Icon.png" alt="" class="icon-img-sm" />
               </button>
             </div>
-            <ul id="apptList" class="mt-5 space-y-3"></ul>
+            <ul id="apptList" class="items-list"></ul>
           </div>
         </section>
 
         <!-- ═══════ PANEL: PERSONAL INFO ═══════ -->
         <section id="panel-personal" role="tabpanel" aria-labelledby="tab-personal" tabindex="0"
-          class="mt-6 flex flex-col gap-5" hidden>
+          class="panel-stack" hidden>
 
-          <section id="personal-info"
-            class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
-            <div class="mb-4 flex items-center justify-between">
-              <h2 class="flex items-center gap-2 text-base font-bold">
-                <img src="/assets/images/Icon-profile.png" alt="" class="size-4 object-contain" />
+          <section id="personal-info" class="info-card">
+            <div class="info-card-head">
+              <h2 class="info-card-title">
+                <img src="/assets/images/Icon-profile.png" alt="" class="icon-img-xs" />
                 Personal Information
               </h2>
             </div>
 
-            <div class="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+            <div class="fields-grid">
               <div>
                 <label for="fullName" class="field-label">Full Name</label>
                 <div class="field-row">
@@ -864,52 +982,47 @@
               </div>
             </div>
 
-            <div class="mt-4 flex items-center justify-end gap-2 border-t border-black/5 dark:border-white/10 pt-4">
-              <button type="button" id="savePersonalInfo"
-                class="rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300">
+            <div class="form-actions-row">
+              <button type="button" id="savePersonalInfo" class="save-btn">
                 Save Changes
               </button>
             </div>
           </section>
 
           <!-- Digital Identity CIN -->
-          <section id="digital-id"
-            class="scroll-mt-24 relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:p-7">
-            <div class="flex items-start justify-between gap-4">
+          <section id="digital-id" class="cin-card">
+            <div class="cin-top-row">
               <div>
-                <p class="text-[10px] font-semibold uppercase tracking-[1px] text-white/70">Kingdom of Morocco</p>
-                <h2 class="mt-1 text-xl font-extrabold lg:text-2xl">Digital Identity CIN</h2>
+                <p class="cin-kicker">Kingdom of Morocco</p>
+                <h2 class="cin-title">Digital Identity CIN</h2>
               </div>
-              <span
-                class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
-                <span class="size-1.5 rounded-full bg-accent-400"></span>
+              <span class="cin-active-badge">
+                <span class="cin-active-dot"></span>
                 Active
               </span>
             </div>
 
-            <div class="mt-4 flex flex-wrap items-end justify-between gap-4">
-              <div class="flex gap-8">
+            <div class="cin-details-row">
+              <div class="cin-fields">
                 <div>
-                  <p class="text-[10px] uppercase tracking-[0.6px] text-white/60">CIN Number</p>
-                  <p class="mt-0.5 text-sm font-bold">AB123456</p>
+                  <p class="cin-field-label">CIN Number</p>
+                  <p class="cin-field-value">AB123456</p>
                 </div>
                 <div>
-                  <p class="text-[10px] uppercase tracking-[0.6px] text-white/60">Expiry Date</p>
-                  <p class="mt-0.5 text-sm font-bold">12 / 2028</p>
+                  <p class="cin-field-label">Expiry Date</p>
+                  <p class="cin-field-value">12 / 2028</p>
                 </div>
               </div>
-              <span class="hidden sm:grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-white/15">
-                <img src="/assets/my-space/digitale-id.png" alt="Digital ID" class="size-6 object-contain"
+              <span class="cin-icon-badge">
+                <img src="/assets/my-space/digitale-id.png" alt="Digital ID" class="cin-icon-img"
                   style="filter:brightness(0) invert(1)" />
               </span>
             </div>
 
-            <div class="mt-4 flex flex-wrap gap-2.5">
-              <button type="button" data-doc-action="View Details"
-                class="rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">View
+            <div class="cin-actions">
+              <button type="button" data-doc-action="View Details" class="cin-btn--light">View
                 Details</button>
-              <button type="button" data-doc-action="Renew Document"
-                class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/10">Renew
+              <button type="button" data-doc-action="Renew Document" class="cin-btn--outline">Renew
                 Document</button>
             </div>
           </section>
@@ -917,38 +1030,35 @@
 
         <!-- ═══════ PANEL: ACCOUNT ═══════ -->
         <section id="panel-account" role="tabpanel" aria-labelledby="tab-account" tabindex="0" class="mt-6" hidden>
-          <div id="account" class="grid gap-5 lg:grid-cols-2">
+          <div id="account" class="account-grid">
 
             <!-- Security -->
-            <section id="security"
-              class="scroll-mt-24 rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
-              <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
-                <img src="/assets/images/security.png" alt="" class="size-4 object-contain" />
+            <section id="security" class="info-card">
+              <h2 class="section-title-icon">
+                <img src="/assets/images/security.png" alt="" class="icon-img-xs" />
                 Security
               </h2>
 
               <div class="settings-row">
                 <div>
-                  <p class="text-sm font-semibold">Password</p>
-                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Last changed 3 months ago</p>
+                  <p class="settings-label">Password</p>
+                  <p class="settings-sub">Last changed 3 months ago</p>
                 </div>
-                <button type="button" data-account-action="Update password"
-                  class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Update</button>
+                <button type="button" data-account-action="Update password" class="settings-link-btn">Update</button>
               </div>
 
               <div class="settings-row">
                 <div>
-                  <p class="text-sm font-semibold">Two-Factor Auth (2FA)</p>
-                  <p class="mt-0.5 text-[11px] font-medium text-brand dark:text-accent-400">Enabled</p>
+                  <p class="settings-label">Two-Factor Auth (2FA)</p>
+                  <p class="settings-sub--active">Enabled</p>
                 </div>
-                <button type="button" data-account-action="Manage 2FA"
-                  class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Manage</button>
+                <button type="button" data-account-action="Manage 2FA" class="settings-link-btn">Manage</button>
               </div>
 
               <div class="settings-row">
                 <div>
-                  <p class="text-sm font-semibold">Biometric Login</p>
-                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">FaceID or Fingerprint</p>
+                  <p class="settings-label">Biometric Login</p>
+                  <p class="settings-sub">FaceID or Fingerprint</p>
                 </div>
                 <button type="button" class="toggle-switch toggle-switch-on" data-toggle-switch aria-pressed="true"
                   aria-label="Toggle biometric login">
@@ -958,10 +1068,10 @@
             </section>
 
             <!-- Preferences -->
-            <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:p-6">
-              <h2 class="mb-3 flex items-center gap-2 text-base font-bold">
+            <section class="info-card">
+              <h2 class="section-title-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" class="size-4 shrink-0">
+                  stroke-linejoin="round" class="icon-svg-xs">
                   <circle cx="12" cy="12" r="3" />
                   <path
                     d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
@@ -980,32 +1090,30 @@
 
               <div id="notifications" class="mt-4">
                 <p class="field-label">Notifications</p>
-                <label class="mt-2 flex items-center justify-between gap-3">
+                <label class="notif-row">
                   <span class="text-sm">Email Notifications</span>
-                  <input type="checkbox" class="size-[18px] rounded accent-brand dark:accent-accent-400" checked>
+                  <input type="checkbox" class="notif-checkbox" checked>
                 </label>
-                <label class="mt-2.5 flex items-center justify-between gap-3">
+                <label class="notif-row--spaced">
                   <span class="text-sm">SMS Alerts</span>
-                  <input type="checkbox" class="size-[18px] rounded accent-brand dark:accent-accent-400" checked>
+                  <input type="checkbox" class="notif-checkbox" checked>
                 </label>
-                <label class="mt-2.5 flex items-center justify-between gap-3">
+                <label class="notif-row--spaced">
                   <span class="text-sm">Push Notifications</span>
-                  <input type="checkbox" class="size-[18px] rounded accent-brand dark:accent-accent-400">
+                  <input type="checkbox" class="notif-checkbox">
                 </label>
               </div>
             </section>
 
             <!-- Sign out -->
-            <section
-              class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
-              <div class="flex flex-wrap items-center justify-between gap-3">
+            <section class="info-card lg:col-span-2">
+              <div class="signout-row">
                 <div>
-                  <p class="text-sm font-semibold">Sign out of this device</p>
-                  <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">You will need to sign in again to reach
+                  <p class="settings-label">Sign out of this device</p>
+                  <p class="settings-sub">You will need to sign in again to reach
                     your space.</p>
                 </div>
-                <button type="button" data-action="logout"
-                  class="rounded-lg border border-danger/40 px-4 py-2 text-xs font-semibold text-danger transition hover:bg-danger/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger/40">
+                <button type="button" data-action="logout" class="signout-btn">
                   Sign out
                 </button>
               </div>
@@ -1014,28 +1122,28 @@
         </section>
 
         <!-- Footer mobile -->
-        <footer class="mt-10 border-t border-black/5 dark:border-white/10 pt-6 lg:hidden">
-          <div class="flex flex-col items-center gap-4 text-center">
-            <p class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-            <nav class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300">
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
+        <footer class="footer-mobile">
+          <div class="footer-mobile-inner">
+            <p class="footer-brand">M3ak Morocco</p>
+            <nav class="footer-nav">
+              <a href="#" class="footer-link">Privacy Policy</a>
+              <a href="#" class="footer-link">Terms of Service</a>
+              <a href="#" class="footer-link">Legal Notice</a>
             </nav>
-            <p class="text-xs text-muted dark:text-mist-300">© 2026 M3ak Morocco. All rights reserved.</p>
+            <p class="footer-copyright">© 2026 M3ak Morocco. All rights reserved.</p>
           </div>
         </footer>
 
         <!-- Footer desktop -->
-        <footer class="mt-10 hidden border-t border-black/5 dark:border-white/10 pt-6 lg:block">
-          <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted dark:text-mist-300">
+        <footer class="footer-desktop">
+          <div class="footer-desktop-inner">
             <p>© 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.</p>
-            <nav class="flex flex-wrap gap-7">
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
-              <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
-              <a href="/pages/app/support.html" class="hover:text-brand dark:hover:text-accent-400">Help Center</a>
+            <nav class="footer-nav-desktop">
+              <a href="#" class="footer-link">Privacy Policy</a>
+              <a href="#" class="footer-link">Terms of Service</a>
+              <a href="/pages/app/support.html" class="footer-link">Help Center</a>
               <a href="/pages/app/coming-soon.html?feature=Admin+Dashboard"
-                class="hover:text-brand dark:hover:text-accent-400">Admin dashboard (demo)</a>
+                class="footer-link">Admin dashboard (demo)</a>
             </nav>
           </div>
         </footer>
@@ -1043,8 +1151,7 @@
     </div>
   </div>
 
-  <div id="toast"
-    class="pointer-events-none fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+  <div id="toast" class="toast">
   </div>
 
   <script>

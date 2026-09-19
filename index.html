@@ -62,6 +62,9 @@
         .div-nav{
             @apply flex items-center gap-[8px];
         }
+        .div-logo{
+            @apply bg-green-50 dark:bg-green-900 p-[5px] rounded-[10px]
+        }
         h1{
             @apply font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600 dark:text-accent-400;
         }
@@ -279,7 +282,12 @@
     <header>
         <div class="div-header">
             <div class="div-nav">
-                <img src="/assets/images/img-mobile-1.png" alt="logo-page">
+                <div class="div-logo">
+                    <img src="/assets/settings/logo-light.svg" alt="logo-page"
+                        class="size-7 object-contain dark:hidden">
+                    <img src="/assets/settings/logo-dark.svg" alt="logo-page"
+                        class="hidden size-7 object-contain dark:block">
+                </div>
                 <h1>
                     M3ak
                 </h1>
@@ -382,7 +390,7 @@
                                     have an accout?
                                     <a href="/pages/auth/login.html" class="login-link-2">Log in</a>
                                 </span>
-                            </div>                  
+                            </div>
                         </div>
 
                         <!-- Stats row (desktop/tablet only) -->
@@ -397,11 +405,11 @@
                             </div>
                         </div>
                         <div class="login-wrapper-2">
-                                <span class="login-text">
-                                    Having trouble?
-                                    <a href="/pages/app/support.html?as=guest" class="login-link">Chat with Support</a>
-                                </span>
-                            </div>
+                            <span class="login-text">
+                                Having trouble?
+                                <a href="/pages/app/support.html?as=guest" class="login-link">Chat with Support</a>
+                            </span>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -541,7 +549,7 @@
     <footer>
         <div class="div-footer">
             <div class="footer-logo">
-                <img src="./assets/images/img-mobile-1.png" alt="logo-page">
+                <img src="./assets/settings/logo-dark.svg" alt="logo-page" class="size-6 object-contain">
                 <span class="footer-brand">M3ak</span>
             </div>
             <p class="footer-copyright">

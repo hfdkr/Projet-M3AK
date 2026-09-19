@@ -156,7 +156,10 @@
         @media (min-width: 1024px) {
 
             /* Collapsed rail: every service card becomes a centered circle */
-            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar a {
+                transition: width .2s ease, padding .2s ease;
+            }
+
             #sidebar:not(:hover):not(:focus-within) a {
                 width: 2.75rem;
                 height: 2.75rem;
@@ -167,6 +170,7 @@
                 justify-content: center;
                 border-radius: 9999px;
             }
+
             #sidebar {
                 width: 5rem;
                 transition: width .2s ease;
@@ -266,42 +270,108 @@
                 transition-duration: .001ms !important;
             }
         }
+
+        /* Page-specific extracted classes */
+        .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
+        .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
+        .icon-img-md { @apply size-6 object-contain; }
+        .icon-img-sm { @apply size-5 object-contain; }
+        .icon-img-xs { @apply size-4 object-contain; }
+        .site-brand { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white; }
+        .avatar-btn { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+
+        .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .sidebar-top { @apply mb-5 px-2; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-icon-mask { @apply size-[18px] shrink-0 bg-[#DC2626]; }
+        .nav-icon-sm { @apply size-[18px] object-contain; }
+        .nav-icon-svg { @apply size-[18px] shrink-0; }
+        .sidebar-foot { @apply mt-auto space-y-1 pt-6; }
+
+        .app-main { @apply min-w-0 flex-1 pb-6 lg:flex lg:h-[calc(100vh-4rem)] lg:gap-0 lg:pb-0; }
+        .map-section { @apply relative overflow-hidden bg-gradient-to-b from-brand via-brand to-mint pb-8 lg:m-4 lg:flex-1 lg:rounded-2xl lg:bg-[#052A20] lg:bg-none lg:pb-0; }
+        .planner-wrap { @apply relative z-10 px-4 pt-4 lg:absolute lg:left-6 lg:top-6 lg:w-[19rem] lg:px-0 lg:pt-0; }
+        .planner-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 shadow-xl lg:bg-white/95 dark:lg:bg-night-800/95 lg:backdrop-blur; }
+        .planner-head { @apply flex items-center justify-between; }
+        .planner-title { @apply text-lg font-extrabold lg:text-base; }
+        .swap-btn { @apply grid size-8 place-items-center rounded-full bg-canvas dark:bg-night-900 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .field-wrap { @apply relative mt-3 block; }
+        .field-wrap--tight { @apply relative mt-2.5 block; }
+        .field-icon { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .planner-input { @apply w-full rounded-xl border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-3 pl-10 pr-3 text-sm font-medium outline-none focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .planner-input--placeholder { @apply w-full rounded-xl border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-3 pl-10 pr-3 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .modes-grid { @apply mt-3 grid grid-cols-4 gap-2; }
+        .find-routes-btn { @apply mt-3.5 w-full rounded-xl bg-brand py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .chips-row { @apply mt-3 flex gap-2 overflow-x-auto lg:mt-3; }
+        .chip-icon { @apply size-3.5 object-contain; }
+
+        .map-frame { @apply relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none; }
+        .alert-desktop { @apply absolute bottom-6 left-1/2 z-10 hidden w-[26rem] max-w-[calc(100%-3rem)] -translate-x-1/2 lg:block; }
+
+        .tracking-panel { @apply relative -mt-5 rounded-t-3xl bg-canvas dark:bg-night-900 px-4 pt-4 lg:mt-0 lg:w-[22rem] lg:shrink-0 lg:overflow-y-auto lg:rounded-none lg:border-l lg:border-black/5 lg:bg-canvas lg:px-5 lg:py-6; }
+        .drag-handle { @apply mx-auto mb-4 block h-1.5 w-12 rounded-full bg-black/15 dark:bg-white/20 lg:hidden; }
+        .tracking-title { @apply text-lg font-extrabold text-brand dark:text-accent-400 lg:text-base lg:text-ink; }
+        .tracking-sub { @apply mt-1 text-xs text-muted dark:text-mist-300; }
+        .routes-list { @apply mt-4 space-y-3; }
+
+        .pass-card { @apply relative mt-4 overflow-hidden rounded-2xl bg-brand p-5 text-white; }
+        .pass-watermark { @apply pointer-events-none absolute -right-8 -top-10 size-40 object-contain text-white/15; }
+        .pass-title { @apply text-base font-extrabold; }
+        .pass-sub { @apply mt-1 text-xs text-white/75; }
+        .pass-row { @apply mt-5 flex items-end justify-between gap-3; }
+        .pass-price { @apply text-3xl font-extrabold leading-none; }
+        .pass-unit { @apply text-sm font-semibold; }
+        .pass-buy-btn { @apply rounded-full bg-white dark:bg-night-800 px-5 py-2.5 text-sm font-bold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-white/60; }
+        .alert-mobile { @apply mt-4 lg:hidden; }
+
+        .fab-desktop { @apply fixed bottom-6 right-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid; }
+        .fab-desktop-icon { @apply size-3 object-contain transition-all group-hover:size-5; }
+        .fab-mobile { @apply fixed bottom-6 right-6 z-30 grid size-14 place-items-center rounded-full bg-blue-600 text-white shadow-xl ring-4 ring-white dark:ring-night-900 transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:hidden; }
+        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8; }
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+<body class="page-body" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="icon-img-md" />
             </button>
-            
-            <a href="/pages/app/coming-soon.html?feature=Services" class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
+
+            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak
+                Morocco</a>
 
 
-            <div class="ml-auto flex items-center gap-1.5">
+            <div class="header-actions">
                 <!-- dark light mode button -->
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                    aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
                         <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/transport-icon/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
+                    <img src="/assets/transport-icon/notification.png" alt="Notifications" class="icon-img-sm" />
+                    <span class="notif-dot"></span>
                 </button>
 
 
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="avatar-btn">
                     <span class="sr-only">Your profile</span>A
                 </button>
             </div>
@@ -310,15 +380,14 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim hidden"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2 sidebar-head">
-                
+        <aside id="sidebar" class="app-sidebar -translate-x-full">
+            <div class="sidebar-top sidebar-head">
+
                 <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                    <p class="sidebar-title">M3ak Morocco</p>
+                    <p class="sidebar-sub">Citizen Services Portal</p>
                 </div>
             </div>
 
@@ -327,9 +396,10 @@
                     <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
                     <span class="nav-label">My Space</span>
                 </a>
-<a href="/pages/app/transport.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
-                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" style="filter:brightness(0) invert(1)" />
+                <a href="/pages/app/transport.html" aria-current="page"
+                    class="nav-item--active">
+                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon"
+                        style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
@@ -358,172 +428,169 @@
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
+            <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-                    <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                    class="nav-item--danger">
+                    <span class="nav-icon-mask"
+                        style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
+                        aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="nav-icon-svg">
+                        <rect x="9" y="2" width="6" height="12" rx="3" />
+                        <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+                    </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 pb-6 lg:flex lg:h-[calc(100vh-4rem)] lg:gap-0 lg:pb-0">
+        <main class="app-main">
 
             <!-- ── Carte + planificateur ── -->
-            <section
-                class="relative overflow-hidden bg-gradient-to-b from-brand via-brand to-mint pb-8 lg:m-4 lg:flex-1 lg:rounded-2xl lg:bg-[#052A20] lg:bg-none lg:pb-0">
+            <section class="map-section">
 
                 <!-- Planificateur -->
-                <div class="relative z-10 px-4 pt-4 lg:absolute lg:left-6 lg:top-6 lg:w-[19rem] lg:px-0 lg:pt-0">
-                    <div
-                        class="rounded-2xl bg-white dark:bg-night-800 p-4 shadow-xl lg:bg-white/95 dark:lg:bg-night-800/95 lg:backdrop-blur">
-                        <div class="flex items-center justify-between">
-                            <h1 class="text-lg font-extrabold lg:text-base">Where to?</h1>
-                            <button id="swapBtn" type="button"
-                                class="grid size-8 place-items-center rounded-full bg-canvas dark:bg-night-900 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <div class="planner-wrap">
+                    <div class="planner-card">
+                        <div class="planner-head">
+                            <h1 class="planner-title">Where to?</h1>
+                            <button id="swapBtn" type="button" class="swap-btn">
                                 <span class="sr-only">Swap start and destination</span>
-                                <img src="/assets/transport-icon/icon-change.png" alt="Swap start and destination" class="size-4 object-contain" />
+                                <img src="/assets/transport-icon/icon-change.png" alt="Swap start and destination"
+                                    class="icon-img-xs" />
                             </button>
                         </div>
 
-                        <label class="relative mt-3 block">
+                        <label class="field-wrap">
                             <span class="sr-only">Starting point</span>
                             <img src="/assets/transport-icon/current-location.png" alt="Current location"
-                                class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
-                            <input id="fromInput" type="text" value="Current Location"
-                                class="w-full rounded-xl border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-3 pl-10 pr-3 text-sm font-medium outline-none focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                                class="field-icon" />
+                            <input id="fromInput" type="text" value="Current Location" class="planner-input" />
                         </label>
 
-                        <label class="relative mt-2.5 block">
+                        <label class="field-wrap--tight">
                             <span class="sr-only">Destination</span>
                             <img src="/assets/transport-icon/destination-locale.png" alt="Destination"
-                                class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
+                                class="field-icon" />
                             <input id="toInput" type="text" placeholder="Enter Destination"
-                                class="w-full rounded-xl border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-3 pl-10 pr-3 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/25" />
+                                class="planner-input--placeholder" />
                         </label>
 
-                        <div id="modes" class="mt-3 grid grid-cols-4 gap-2">
+                        <div id="modes" class="modes-grid">
                             <button type="button" data-mode="Bus" data-icon="bus" class="mode">
-                                <img src="/assets/transport-icon/bus.png" alt="Bus" class="size-5 object-contain" />
+                                <img src="/assets/transport-icon/bus.png" alt="Bus" class="icon-img-sm" />
                                 Bus
                             </button>
                             <button type="button" data-mode="Tram" data-icon="tram" class="mode">
-                                <img src="/assets/transport-icon/tram.png" alt="Tram" class="size-5 object-contain" />
+                                <img src="/assets/transport-icon/tram.png" alt="Tram" class="icon-img-sm" />
                                 Tram
                             </button>
                             <button type="button" data-mode="Train" data-icon="train" class="mode">
-                                <img src="/assets/transport-icon/train.png" alt="Train" class="size-5 object-contain" />
+                                <img src="/assets/transport-icon/train.png" alt="Train" class="icon-img-sm" />
                                 Train
                             </button>
                             <button type="button" data-mode="Taxi" data-icon="taxi" class="mode">
-                                <img src="/assets/transport-icon/taxi.png" alt="Taxi" class="size-5 object-contain" />
+                                <img src="/assets/transport-icon/taxi.png" alt="Taxi" class="icon-img-sm" />
                                 Taxi
                             </button>
                         </div>
 
-                        <button id="findRoutes" type="button"
-                            class="mt-3.5 w-full rounded-xl bg-brand py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40">
+                        <button id="findRoutes" type="button" class="find-routes-btn">
                             Find Routes
                         </button>
                     </div>
 
                     <!-- Raccourcis -->
-                    <div class="no-scrollbar mt-3 flex gap-2 overflow-x-auto lg:mt-3">
+                    <div class="no-scrollbar chips-row">
                         <button type="button" data-place="Home" class="chip">
-                            <img src="/assets/transport-icon/home.png" alt="Home" class="size-3.5 object-contain" />Home
+                            <img src="/assets/transport-icon/home.png" alt="Home" class="chip-icon" />Home
                         </button>
                         <button type="button" data-place="Office" class="chip">
-                            <img src="/assets/transport-icon/office.png" alt="Office" class="size-3.5 object-contain" />Office
+                            <img src="/assets/transport-icon/office.png" alt="Office"
+                                class="chip-icon" />Office
                         </button>
                         <button type="button" data-place="Marina Mall" class="chip">
-                            <img src="/assets/transport-icon/marina-mall.png" alt="Marina Mall" class="size-3.5 object-contain" />Marina Mall
+                            <img src="/assets/transport-icon/marina-mall.png" alt="Marina Mall"
+                                class="chip-icon" />Marina Mall
                         </button>
                     </div>
                 </div>
 
                 <!-- Carte réelle : OpenStreetMap via Leaflet, position actuelle + lignes de transport -->
-                <div class="relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none">
+                <div class="map-frame">
                     <div id="transitMap" class="size-full"></div>
                 </div>
 
                 <!-- Alerte d'arrivée (desktop : flottante en bas de carte) -->
-                <div id="alertDesktop"
-                    class="absolute bottom-6 left-1/2 z-10 hidden w-[26rem] max-w-[calc(100%-3rem)] -translate-x-1/2 lg:block">
+                <div id="alertDesktop" class="alert-desktop">
                 </div>
             </section>
 
             <!-- ── Live tracking ── -->
-            <section
-                class="relative -mt-5 rounded-t-3xl bg-canvas dark:bg-night-900 px-4 pt-4 lg:mt-0 lg:w-[22rem] lg:shrink-0 lg:overflow-y-auto lg:rounded-none lg:border-l lg:border-black/5 lg:bg-canvas lg:px-5 lg:py-6">
-                <span class="mx-auto mb-4 block h-1.5 w-12 rounded-full bg-black/15 dark:bg-white/20 lg:hidden"></span>
+            <section class="tracking-panel">
+                <span class="drag-handle"></span>
 
-                <h2 class="text-lg font-extrabold text-brand dark:text-accent-400 lg:text-base lg:text-ink">Live
+                <h2 class="tracking-title">Live
                     Tracking</h2>
-                <p class="mt-1 text-xs text-muted dark:text-mist-300">Active routes in your area</p>
+                <p class="tracking-sub">Active routes in your area</p>
 
-                <div id="routes" class="mt-4 space-y-3"></div>
+                <div id="routes" class="routes-list"></div>
 
                 <!-- Fast Pass -->
-                <div class="relative mt-4 overflow-hidden rounded-2xl bg-brand p-5 text-white">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="pointer-events-none absolute -right-8 -top-10 size-40 object-contain text-white/15"><path d="M3 10a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 1 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a2 2 0 1 0 0-4z" /><path d="M10 6v2M10 12v2M10 18v-2" stroke-linecap="round" /></svg>
-                    <p class="text-base font-extrabold">Fast Pass</p>
-                    <p class="mt-1 text-xs text-white/75">Unlimited travel for 24 hours</p>
-                    <div class="mt-5 flex items-end justify-between gap-3">
-                        <p class="text-3xl font-extrabold leading-none">30 <span
-                                class="text-sm font-semibold">MAD</span>
+                <div class="pass-card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="pass-watermark">
+                        <path
+                            d="M3 10a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 1 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a2 2 0 1 0 0-4z" />
+                        <path d="M10 6v2M10 12v2M10 18v-2" stroke-linecap="round" />
+                    </svg>
+                    <p class="pass-title">Fast Pass</p>
+                    <p class="pass-sub">Unlimited travel for 24 hours</p>
+                    <div class="pass-row">
+                        <p class="pass-price">30 <span class="pass-unit">MAD</span>
                         </p>
-                        <button id="buyPass" type="button"
-                            class="rounded-full bg-white dark:bg-night-800 px-5 py-2.5 text-sm font-bold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-white/60">
+                        <button id="buyPass" type="button" class="pass-buy-btn">
                             Buy Now
                         </button>
                     </div>
                 </div>
 
                 <!-- Alerte (mobile : dans la feuille) -->
-                <div id="alertMobile" class="mt-4 lg:hidden"></div>
+                <div id="alertMobile" class="alert-mobile"></div>
             </section>
         </main>
     </div>
 
     <!-- FAB support (desktop) -->
-    <button id="fabDesktop" type="button"
-  class="group fixed bottom-6 right-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid">
-  
-  <span class="sr-only">Buy a ticket</span>
+    <button id="fabDesktop" type="button" class="group fab-desktop">
 
-  <img
-    src="/assets/transport-icon/ticket.png"
-    alt="Buy a ticket"
-    class="size-3 object-contain transition-all group-hover:size-5"
-  />
-</button>
-
-    <!-- FAB support (mobile) -->
-    <button id="fabMobile" type="button"
-        class="fixed bottom-6 right-6 z-30 grid size-14 place-items-center rounded-full bg-blue-600 text-white shadow-xl ring-4 ring-white dark:ring-night-900 transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:hidden">
         <span class="sr-only">Buy a ticket</span>
-        <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket" class="size-6 object-contain" />
+
+        <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket" class="fab-desktop-icon" />
     </button>
 
-    <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8">
+    <!-- FAB support (mobile) -->
+    <button id="fabMobile" type="button" class="fab-mobile">
+        <span class="sr-only">Buy a ticket</span>
+        <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket" class="icon-img-md" />
+    </button>
+
+    <div id="toast" class="toast">
     </div>
 
     <script>
