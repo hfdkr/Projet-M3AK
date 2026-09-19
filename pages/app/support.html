@@ -172,6 +172,26 @@
 
         #toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
 
+        /* Page-specific extracted classes */
+        .menu-icon { @apply size-6 object-contain; }
+        .icon-img-sm { @apply size-5 object-contain; }
+        .nav-item--emergency { @apply rounded-[999px] border border-[#DC2626]/30 bg-[#DC2626]/10 font-semibold text-[#DC2626] shadow-sm hover:bg-[#DC2626]/20 hover:text-[#DC2626] focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-icon-mask { @apply size-[18px] shrink-0 bg-[#DC2626]; }
+        .nav-icon-svg { @apply size-[18px] shrink-0; }
+        .ticket-fields { @apply mt-3 grid gap-3; }
+        .ticket-actions { @apply mt-3 flex gap-2; }
+        .ticket-cancel-btn { @apply rounded-full px-5 py-2.5 text-xs font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-mist-100; }
+        .section-head-row { @apply flex items-end justify-between gap-4; }
+        .faq-title { @apply text-center text-lg font-extrabold; }
+        .faq-subtitle { @apply mt-1 text-center text-xs text-muted dark:text-mist-300; }
+        .still-help-copy { @apply relative max-w-sm; }
+        .still-help-title { @apply text-lg font-extrabold lg:text-xl; }
+        .still-help-text { @apply mt-1.5 text-sm text-white/80; }
+        .still-help-icon { @apply size-4 object-contain; }
+        .still-help-image { @apply relative mt-6 w-full max-w-sm lg:mt-0 lg:w-80 lg:shrink-0; }
+        .contact-grid { @apply grid gap-6 sm:grid-cols-3; }
+        .footer-contact-link { @apply hover:text-brand dark:hover:text-accent-400; }
+
         /* Desktop: the docked sidebar collapses to an icon rail at rest and
            auto-opens (widens, labels appear) only while hovered / focused. */
         @media (min-width: 1024px) {
@@ -213,7 +233,7 @@
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn" data-auth="user">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="" class="size-6 object-contain">
+                <img src="/assets/images/menu-icon.png" alt="" class="menu-icon">
             </button>
             <a href="/pages/app/coming-soon.html?feature=Services" class="app-brand">M3ak Morocco</a>
 
@@ -233,7 +253,7 @@
                 </button>
                 <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="" class="size-5 object-contain">
+                    <img src="/assets/images/notification.png" alt="" class="icon-img-sm">
                     <span class="app-notif-dot"></span>
                 </button>
                 <button type="button" class="app-avatar" data-auth="user" data-user-initials>A</button>
@@ -289,8 +309,8 @@
             </nav>
 
             <div class="sidebar-foot">
-                <a href="/pages/app/emergence.html" class="nav-item rounded-[999px] border border-[#DC2626]/30 bg-[#DC2626]/10 font-semibold text-[#DC2626] shadow-sm hover:bg-[#DC2626]/20 hover:text-[#DC2626] focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-                    <i class="size-[18px] shrink-0 bg-[#DC2626]" style="display:inline-block;-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></i>
+                <a href="/pages/app/emergence.html" class="nav-item nav-item--emergency">
+                    <i class="nav-icon-mask" style="display:inline-block;-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></i>
                     <span>Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item nav-item--active" aria-current="page">
@@ -302,7 +322,7 @@
                     <span>Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span>AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
@@ -376,22 +396,21 @@
 
                 <form id="ticketForm" class="ticket-form hidden">
                     <p class="support-card-title">Submit a Ticket</p>
-                    <div class="mt-3 grid gap-3">
+                    <div class="ticket-fields">
                         <input id="ticketSubject" required type="text" placeholder="Subject" class="ticket-input">
                         <textarea id="ticketMessage" required rows="3" placeholder="Describe your issue..."
                             class="ticket-input"></textarea>
                     </div>
-                    <div class="mt-3 flex gap-2">
+                    <div class="ticket-actions">
                         <button type="submit" class="support-btn w-auto px-5">Submit Ticket</button>
-                        <button type="button" id="cancelTicketBtn"
-                            class="rounded-full px-5 py-2.5 text-xs font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-mist-100">Cancel</button>
+                        <button type="button" id="cancelTicketBtn" class="ticket-cancel-btn">Cancel</button>
                     </div>
                 </form>
             </section>
 
             <!-- QUICK HELP -->
             <section class="support-section pt-10">
-                <div class="flex items-end justify-between gap-4">
+                <div class="section-head-row">
                     <div>
                         <p class="support-eyebrow">Your Service</p>
                         <h2 class="support-h2">Quick Help</h2>
@@ -441,8 +460,8 @@
 
             <!-- FAQ -->
             <section id="faq" class="support-section pt-10 scroll-mt-20">
-                <h2 class="text-center text-lg font-extrabold">Frequently Asked Questions</h2>
-                <p class="mt-1 text-center text-xs text-muted dark:text-mist-300">Quick answers to common questions
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <p class="faq-subtitle">Quick answers to common questions
                     about the M3ak digital identity platform.</p>
 
                 <div class="faq-wrap">
@@ -482,23 +501,23 @@
             <!-- STILL NEED HELP -->
             <section class="support-section pt-10">
                 <div class="still-help">
-                    <div class="relative max-w-sm">
-                        <p class="text-lg font-extrabold lg:text-xl">Still need help?</p>
-                        <p class="mt-1.5 text-sm text-white/80">Our premium support team is ready to assist you right
+                    <div class="still-help-copy">
+                        <p class="still-help-title">Still need help?</p>
+                        <p class="still-help-text">Our premium support team is ready to assist you right
                             now.</p>
                         <button type="button" data-support-action="chat" class="still-help-btn">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 object-contain"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="still-help-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
                             Chat with Support
                         </button>
                     </div>
                     <img src="/assets/support-image/still-need-help.png" alt="Novo, the M3ak support guide"
-                        class="relative mt-6 w-full max-w-sm lg:mt-0 lg:w-80 lg:shrink-0">
+                        class="still-help-image">
                 </div>
             </section>
 
             <!-- CONTACT / HOURS / LOCATION -->
             <section class="support-section pt-10">
-                <div class="grid gap-6 sm:grid-cols-3">
+                <div class="contact-grid">
                 </div>
             </section>
 
@@ -526,12 +545,12 @@
                                 <li class="footer-contact">
                                     <img src="/assets/support-image/mail.png" alt="" class="footer-contact-icon">
                                     <a href="mailto:support@m3ak.ma"
-                                        class="hover:text-brand dark:hover:text-accent-400">support@m3ak.ma</a>
+                                        class="footer-contact-link">support@m3ak.ma</a>
                                 </li>
                                 <li class="footer-contact">
                                     <img src="/assets/support-image/phone.png" alt="" class="footer-contact-icon">
                                     <a href="tel:+2125220000000"
-                                        class="hover:text-brand dark:hover:text-accent-400">+212 5 22 XX XX XX</a>
+                                        class="footer-contact-link">+212 5 22 XX XX XX</a>
                                 </li>
                             </ul>
                         </div>

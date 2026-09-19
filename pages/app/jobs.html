@@ -209,26 +209,115 @@
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { transition-duration: .001ms !important; }
         }
+
+        /* Page-specific extracted classes */
+        .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
+        .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
+        .menu-icon { @apply size-6 object-contain; }
+        .site-brand { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .icon-img-sm { @apply size-5 object-contain; }
+        .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .avatar-btn { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+
+        .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .sidebar-top { @apply mb-5 px-2; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-icon-mask { @apply size-[18px] shrink-0 bg-[#DC2626]; }
+        .nav-icon-sm { @apply size-[18px] object-contain; }
+        .nav-icon-svg { @apply size-[18px] shrink-0; }
+        .sidebar-foot { @apply mt-auto space-y-1 pt-6; }
+
+        .app-main { @apply min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
+        .content-wrap { @apply mx-auto max-w-[1200px]; }
+        .page-header-row { @apply flex flex-wrap items-start justify-between gap-3; }
+        .page-title { @apply text-2xl font-extrabold tracking-tight lg:text-[28px]; }
+        .page-subtitle { @apply mt-1 max-w-xl text-sm text-muted dark:text-mist-300; }
+        .cnie-badge { @apply inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3 py-1.5 text-xs font-bold text-brand dark:text-accent-400; }
+
+        .search-form { @apply mt-5 flex flex-col gap-2.5 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-white/10 sm:flex-row sm:flex-wrap sm:items-center; }
+        .search-field { @apply relative block sm:min-w-[220px] sm:flex-1; }
+        .search-icon { @apply absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .search-submit-btn { @apply rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto; }
+
+        .banners-grid { @apply mt-5 grid gap-4 lg:grid-cols-2; }
+        .banner-top-row { @apply flex items-start justify-between gap-2; }
+        .banner-title { @apply mt-3 text-lg font-extrabold leading-snug lg:text-xl; }
+        .banner-stats { @apply mt-4 grid grid-cols-3 gap-2 text-center; }
+        .banner-stat-value { @apply text-lg font-extrabold; }
+        .banner-stat-label { @apply text-[10px] text-muted dark:text-mist-300; }
+        .banner-stat-label--white { @apply text-[10px] text-white/60; }
+        .banner-pill-sub { @apply mt-1 text-[10px] text-muted dark:text-mist-300; }
+        .banner-pill-sub--white { @apply mt-1 text-[10px] text-white/60; }
+        .banner-actions { @apply mt-4 flex flex-wrap items-center gap-x-4 gap-y-2; }
+
+        .banner-card--concours { @apply relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-accent-400/20 bg-gradient-to-br from-brand-soft to-[#DCEAF6] dark:from-night-800 dark:to-[#0E2A20] p-5; }
+        .banner-badge--concours { @apply inline-flex items-center gap-1.5 rounded-full bg-white/70 dark:bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400; }
+        .banner-tag--concours { @apply shrink-0 rounded-full bg-brand/10 dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400; }
+        .banner-desc--concours { @apply mt-1.5 max-w-[92%] text-xs text-muted dark:text-mist-300; }
+        .banner-pill--concours { @apply inline-block rounded-full bg-brand/10 dark:bg-accent-400/15 px-2 py-0.5 text-[11px] font-bold text-brand dark:text-accent-400; }
+        .banner-btn--brand { @apply rounded-lg bg-brand px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .banner-link--brand { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+
+        .banner-card--accelerator { @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#111C3F] to-[#20306E] p-5 text-white; }
+        .banner-badge--accelerator { @apply inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide; }
+        .banner-tag--accelerator { @apply shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold; }
+        .banner-desc--accelerator { @apply mt-1.5 max-w-[85%] text-xs text-white/70; }
+        .banner-pill--accelerator { @apply inline-block rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-bold; }
+        .banner-btn--light { @apply rounded-lg bg-white px-4 py-2.5 text-xs font-bold text-[#111C3F] shadow-sm transition hover:bg-white/90; }
+        .banner-link--white { @apply text-xs font-semibold text-white/80 hover:underline; }
+
+        .main-grid { @apply mt-6 lg:flex lg:items-start lg:gap-6; }
+        .primary-col { @apply min-w-0 flex-1 space-y-6; }
+        .section-row { @apply flex flex-wrap items-end justify-between gap-3; }
+        .section-heading { @apply text-lg font-extrabold; }
+        .section-count { @apply text-xs text-muted dark:text-mist-300; }
+        .job-list { @apply mt-3 space-y-3; }
+        .pagination-row { @apply mt-5 flex items-center justify-center gap-1.5; }
+        .sector-grid { @apply mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6; }
+
+        .rail { @apply mt-6 space-y-5 lg:mt-0 lg:w-80 lg:shrink-0; }
+        .rail-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10; }
+        .rail-heading { @apply flex items-center gap-1.5 text-sm font-bold; }
+        .rail-heading-icon { @apply size-4 text-brand dark:text-accent-400; }
+        .rail-heading-sm { @apply text-sm font-bold; }
+        .applications-list { @apply mt-3 space-y-3.5; }
+        .rail-btn-outline { @apply mt-4 w-full rounded-lg border border-black/10 dark:border-white/15 py-2 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700; }
+        .tools-list { @apply mt-3 space-y-2; }
+
+        .skills-card { @apply relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-accent-400/20 bg-brand-soft/70 dark:bg-accent-400/10 p-4; }
+        .skills-heading { @apply flex items-center gap-1.5 text-sm font-bold text-brand dark:text-accent-400; }
+        .skills-list { @apply mt-3 space-y-2 text-xs font-semibold text-ink dark:text-mist-100; }
+        .skills-item { @apply flex items-center gap-2 rounded-lg bg-white/70 dark:bg-night-800/70 px-3 py-2; }
+        .skills-dot { @apply size-1.5 shrink-0 rounded-full bg-brand dark:bg-accent-400; }
+        .qr-btn { @apply mt-3.5 flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-3.5 py-2.5 text-xs font-bold text-white transition hover:bg-brand-dark; }
+
+        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+<body class="page-body" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services"
-                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak
+            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak
                 Morocco</a>
 
 
-            <div class="ml-auto flex items-center gap-1.5">
+            <div class="header-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
@@ -236,16 +325,14 @@
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <img src="/assets/images/notification.png" alt="Notifications" class="icon-img-sm" />
+                    <span class="notif-dot"></span>
                 </button>
 
 
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="avatar-btn">
                     <span class="sr-only">Your profile</span>A
                 </button>
             </div>
@@ -255,14 +342,13 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim hidden"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2 sidebar-head">
+        <aside id="sidebar" class="app-sidebar -translate-x-full">
+            <div class="sidebar-top sidebar-head">
                 <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                    <p class="sidebar-title">M3ak Morocco</p>
+                    <p class="sidebar-sub">Citizen Services Portal</p>
                 </div>
             </div>
 
@@ -280,7 +366,7 @@
                     <span class="nav-label">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+                    class="nav-item--active">
                     <img src="/assets/icon-bar-left/Jobs.png" alt="Jobs" class="nav-icon" style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Jobs</span>
                 </a>
@@ -302,56 +388,55 @@
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
+            <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-                    <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                    class="nav-item--danger">
+                    <span class="nav-icon-mask" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- ══════════ CONTENT ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
+        <main class="app-main">
 
-            <div class="mx-auto max-w-[1200px]">
+            <div class="content-wrap">
 
                 <!-- Page header -->
-                <div class="flex flex-wrap items-start justify-between gap-3">
+                <div class="page-header-row">
                     <div>
-                        <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">Jobs &amp; Employment Portal</h1>
-                        <p class="mt-1 max-w-xl text-sm text-muted dark:text-mist-300">
+                        <h1 class="page-title">Jobs &amp; Employment Portal</h1>
+                        <p class="page-subtitle">
                             Accédez à des milliers d'opportunités vérifiées dans la fonction publique et le secteur privé grâce à votre identité numérique sécurisée.
                         </p>
                     </div>
-                    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3 py-1.5 text-xs font-bold text-brand dark:text-accent-400">
+                    <span class="cnie-badge">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" /><path d="m9 12 2 2 4-4" /></svg>
                         Portail Certifié CNIE
                     </span>
                 </div>
 
                 <!-- Search / filter bar -->
-                <form id="jobSearchForm"
-                    class="mt-5 flex flex-col gap-2.5 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-white/10 sm:flex-row sm:flex-wrap sm:items-center">
-                    <label class="relative block sm:min-w-[220px] sm:flex-1">
+                <form id="jobSearchForm" class="search-form">
+                    <label class="search-field">
                         <span class="sr-only">Poste ou mot-clé</span>
-                        <img src="/assets/images/search.png" alt="" class="absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain" />
+                        <img src="/assets/images/search.png" alt="" class="search-icon" />
                         <input id="qInput" type="search" placeholder="Ingénieur d'État, Fonctionnaire, Développeur…"
                             class="field field--search w-full" />
                     </label>
@@ -376,105 +461,101 @@
                         <option>Éducation &amp; Enseignement</option>
                     </select>
 
-                    <button type="submit"
-                        class="rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto">
+                    <button type="submit" class="search-submit-btn">
                         Filtrer CNIE
                     </button>
                 </form>
 
                 <!-- Banners: Concours National + Accélérateur d'Emploi -->
-                <div class="mt-5 grid gap-4 lg:grid-cols-2">
+                <div class="banners-grid">
 
-                    <section class="relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-accent-400/20 bg-gradient-to-br from-brand-soft to-[#DCEAF6] dark:from-night-800 dark:to-[#0E2A20] p-5">
-                        <div class="flex items-start justify-between gap-2">
-                            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/70 dark:bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-brand dark:text-accent-400">
+                    <section class="banner-card--concours">
+                        <div class="banner-top-row">
+                            <span class="banner-badge--concours">
                                 Concours d'État + Emploi
                             </span>
-                            <span class="shrink-0 rounded-full bg-brand/10 dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Actualisé</span>
+                            <span class="banner-tag--concours">Actualisé</span>
                         </div>
 
-                        <h2 class="mt-3 text-lg font-extrabold leading-snug lg:text-xl">Concours National Unifié de Recrutement</h2>
-                        <p class="mt-1.5 max-w-[92%] text-xs text-muted dark:text-mist-300">
+                        <h2 class="banner-title">Concours National Unifié de Recrutement</h2>
+                        <p class="banner-desc--concours">
                             Postulez aux postes de la fonction publique via le portail national — candidature unique, vérification biométrique CNIE.
                         </p>
 
-                        <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+                        <div class="banner-stats">
                             <div>
-                                <p class="text-lg font-extrabold">1,450</p>
-                                <p class="text-[10px] text-muted dark:text-mist-300">Postes</p>
+                                <p class="banner-stat-value">1,450</p>
+                                <p class="banner-stat-label">Postes</p>
                             </div>
                             <div>
-                                <p class="text-lg font-extrabold">15 Nov</p>
-                                <p class="text-[10px] text-muted dark:text-mist-300">Date limite</p>
+                                <p class="banner-stat-value">15 Nov</p>
+                                <p class="banner-stat-label">Date limite</p>
                             </div>
                             <div>
-                                <span class="inline-block rounded-full bg-brand/10 dark:bg-accent-400/15 px-2 py-0.5 text-[11px] font-bold text-brand dark:text-accent-400">Éligible CNIE</span>
-                                <p class="mt-1 text-[10px] text-muted dark:text-mist-300">100% Certifié</p>
+                                <span class="banner-pill--concours">Éligible CNIE</span>
+                                <p class="banner-pill-sub">100% Certifié</p>
                             </div>
                         </div>
 
-                        <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-                            <button type="button" id="openConcours"
-                                class="rounded-lg bg-brand px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40">
+                        <div class="banner-actions">
+                            <button type="button" id="openConcours" class="banner-btn--brand">
                                 Ouvrir ma Candidature
                             </button>
-                            <button type="button" id="viewReferentiel"
-                                class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">
+                            <button type="button" id="viewReferentiel" class="banner-link--brand">
                                 Consulter le Référentiel
                             </button>
                         </div>
                     </section>
 
-                    <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#111C3F] to-[#20306E] p-5 text-white">
-                        <div class="flex items-start justify-between gap-2">
-                            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
+                    <section class="banner-card--accelerator">
+                        <div class="banner-top-row">
+                            <span class="banner-badge--accelerator">
                                 Partenariat Secteur Privé
                             </span>
-                            <span class="shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold">Vérifié</span>
+                            <span class="banner-tag--accelerator">Vérifié</span>
                         </div>
 
-                        <h2 class="mt-3 text-lg font-extrabold leading-snug lg:text-xl">Accélérateur d'Emploi &amp; Salaires Vérifiés</h2>
-                        <p class="mt-1.5 max-w-[85%] text-xs text-white/70">
+                        <h2 class="banner-title">Accélérateur d'Emploi &amp; Salaires Vérifiés</h2>
+                        <p class="banner-desc--accelerator">
                             Offres en CDI vérifiées, salaires transparents et cotisations CNSS garanties par nos partenaires certifiés.
                         </p>
 
-                        <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+                        <div class="banner-stats">
                             <div>
-                                <p class="text-lg font-extrabold">4,200+</p>
-                                <p class="text-[10px] text-white/60">Offres</p>
+                                <p class="banner-stat-value">4,200+</p>
+                                <p class="banner-stat-label--white">Offres</p>
                             </div>
                             <div>
-                                <p class="text-lg font-extrabold">18,500</p>
-                                <p class="text-[10px] text-white/60">Salaire médian</p>
+                                <p class="banner-stat-value">18,500</p>
+                                <p class="banner-stat-label--white">Salaire médian</p>
                             </div>
                             <div>
-                                <span class="inline-block rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-bold">100% CDI</span>
-                                <p class="mt-1 text-[10px] text-white/60">CNSS</p>
+                                <span class="banner-pill--accelerator">100% CDI</span>
+                                <p class="banner-pill-sub--white">CNSS</p>
                             </div>
                         </div>
 
-                        <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-                            <button type="button" id="openAccelerator"
-                                class="rounded-lg bg-white px-4 py-2.5 text-xs font-bold text-[#111C3F] shadow-sm transition hover:bg-white/90">
+                        <div class="banner-actions">
+                            <button type="button" id="openAccelerator" class="banner-btn--light">
                                 Explorer les Offres Certifiées
                             </button>
-                            <button type="button" id="viewMore" class="text-xs font-semibold text-white/80 hover:underline">
+                            <button type="button" id="viewMore" class="banner-link--white">
                                 En savoir plus
                             </button>
                         </div>
                     </section>
                 </div>
 
-                <div class="mt-6 lg:flex lg:items-start lg:gap-6">
+                <div class="main-grid">
 
                     <!-- ─────────── Primary column ─────────── -->
-                    <div class="min-w-0 flex-1 space-y-6">
+                    <div class="primary-col">
 
                         <section id="results">
-                            <div class="flex flex-wrap items-end justify-between gap-3">
+                            <div class="section-row">
                                 <div>
-                                    <h2 class="text-lg font-extrabold">Dernières Opportunités Vérifiées</h2>
-                                    <p class="text-xs text-muted dark:text-mist-300"><span id="resultsCount">0</span> postes correspondent à votre recherche</p>
+                                    <h2 class="section-heading">Dernières Opportunités Vérifiées</h2>
+                                    <p class="section-count"><span id="resultsCount">0</span> postes correspondent à votre recherche</p>
                                 </div>
                                 <select id="sortSelect" class="field w-auto text-xs" aria-label="Trier par">
                                     <option value="relevance">Pertinence (Par défaut)</option>
@@ -483,69 +564,67 @@
                                 </select>
                             </div>
 
-                            <div id="jobList" class="mt-3 space-y-3"></div>
+                            <div id="jobList" class="job-list"></div>
 
-                            <nav id="pagination" class="mt-5 flex items-center justify-center gap-1.5" aria-label="Pagination"></nav>
+                            <nav id="pagination" class="pagination-row" aria-label="Pagination"></nav>
                         </section>
 
                         <!-- Explore by Ministry & Sector -->
                         <section>
-                            <h2 class="text-lg font-extrabold">Explorer les Dernières par Ministère &amp; Secteur</h2>
-                            <div id="sectorGrid" class="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6"></div>
+                            <h2 class="section-heading">Explorer les Dernières par Ministère &amp; Secteur</h2>
+                            <div id="sectorGrid" class="sector-grid"></div>
                         </section>
                     </div>
 
                     <!-- ─────────── Right rail ─────────── -->
-                    <aside class="mt-6 space-y-5 lg:mt-0 lg:w-80 lg:shrink-0">
+                    <aside class="rail">
 
                         <!-- Active applications -->
-                        <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-                            <h2 class="flex items-center gap-1.5 text-sm font-bold">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-brand dark:text-accent-400"><rect x="3" y="4" width="18" height="18" rx="2.5" /><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4" /></svg>
+                        <section class="rail-card">
+                            <h2 class="rail-heading">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-heading-icon"><rect x="3" y="4" width="18" height="18" rx="2.5" /><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4" /></svg>
                                 Mes Candidatures Actives
                             </h2>
 
-                            <ol id="applicationsList" class="mt-3 space-y-3.5"></ol>
+                            <ol id="applicationsList" class="applications-list"></ol>
 
-                            <button type="button" id="viewHistory"
-                                class="mt-4 w-full rounded-lg border border-black/10 dark:border-white/15 py-2 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700">
+                            <button type="button" id="viewHistory" class="rail-btn-outline">
                                 Voir Tout l'Historique
                             </button>
                         </section>
 
                         <!-- Skills passport -->
-                        <section class="relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-accent-400/20 bg-brand-soft/70 dark:bg-accent-400/10 p-4">
-                            <h2 class="flex items-center gap-1.5 text-sm font-bold text-brand dark:text-accent-400">
+                        <section class="skills-card">
+                            <h2 class="skills-heading">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><rect x="3" y="4" width="18" height="16" rx="2.5" /><circle cx="9" cy="10" r="2" /><path d="M5 18c.5-2 2-3 4-3s3.5 1 4 3M14 9h5M14 13h5" /></svg>
                                 Mon Passeport Compétences CNIE
                             </h2>
 
-                            <ul class="mt-3 space-y-2 text-xs font-semibold text-ink dark:text-mist-100">
-                                <li class="flex items-center gap-2 rounded-lg bg-white/70 dark:bg-night-800/70 px-3 py-2">
-                                    <span class="size-1.5 shrink-0 rounded-full bg-brand dark:bg-accent-400"></span>
+                            <ul class="skills-list">
+                                <li class="skills-item">
+                                    <span class="skills-dot"></span>
                                     Ingénieur d'État Vérifié
                                 </li>
-                                <li class="flex items-center gap-2 rounded-lg bg-white/70 dark:bg-night-800/70 px-3 py-2">
-                                    <span class="size-1.5 shrink-0 rounded-full bg-brand dark:bg-accent-400"></span>
+                                <li class="skills-item">
+                                    <span class="skills-dot"></span>
                                     Intelligence Artificielle &amp; Cloud/IoT
                                 </li>
-                                <li class="flex items-center gap-2 rounded-lg bg-white/70 dark:bg-night-800/70 px-3 py-2">
-                                    <span class="size-1.5 shrink-0 rounded-full bg-brand dark:bg-accent-400"></span>
+                                <li class="skills-item">
+                                    <span class="skills-dot"></span>
                                     Génération CNIE &amp; Blockchain Sécurisé
                                 </li>
                             </ul>
 
-                            <button type="button" id="getQrBtn"
-                                class="mt-3.5 flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-3.5 py-2.5 text-xs font-bold text-white transition hover:bg-brand-dark">
+                            <button type="button" id="getQrBtn" class="qr-btn">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 14h3v3h-3zM19 14h2M14 19h2M19 19h2" /></svg>
                                 Obtenir QR Code de Vérification
                             </button>
                         </section>
 
                         <!-- Exam prep tools -->
-                        <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
-                            <h2 class="text-sm font-bold">Outils &amp; Préparation aux Concours</h2>
-                            <div id="toolsList" class="mt-3 space-y-2"></div>
+                        <section class="rail-card">
+                            <h2 class="rail-heading-sm">Outils &amp; Préparation aux Concours</h2>
+                            <div id="toolsList" class="tools-list"></div>
                         </section>
                     </aside>
                 </div>
@@ -553,8 +632,7 @@
         </main>
     </div>
 
-    <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+    <div id="toast" class="toast">
     </div>
 
     <script>

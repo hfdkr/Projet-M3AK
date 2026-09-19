@@ -102,6 +102,83 @@
 
         .compliance-pill { @apply inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-night-800 px-3 py-1.5 text-[11px] font-semibold text-ink dark:text-mist-100 ring-1 ring-black/5 dark:ring-white/10; }
 
+        /* Page-specific extracted classes */
+        .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
+        .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
+        .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
+        .menu-icon { @apply size-6 object-contain; }
+        .brand-link { @apply flex items-center gap-2.5; }
+        .app-brand-mark { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .logo-img-light { @apply size-full object-contain dark:hidden; }
+        .logo-img-dark { @apply hidden size-full object-contain dark:block; }
+        .brand-name { @apply block text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .icon-img-sm { @apply size-5 object-contain; }
+        .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .avatar-btn { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+
+        .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .sidebar-top { @apply mb-5 px-2; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-icon-mask { @apply size-[18px] shrink-0 bg-[#DC2626]; }
+        .nav-icon-sm { @apply size-[18px] object-contain; }
+        .nav-icon-svg { @apply size-[18px] shrink-0; }
+        .sidebar-foot { @apply mt-auto space-y-1 pt-6; }
+        .svc-body { @apply flex flex-1 flex-col p-4; }
+        .svc-title { @apply mt-1 text-sm font-bold leading-snug; }
+        .svc-meta-icon { @apply size-3.5 shrink-0; }
+
+        .app-main { @apply min-w-0 flex-1 px-4 pb-16 pt-6 lg:px-8 lg:pt-8; }
+        .content-wrap { @apply mx-auto max-w-[1200px] space-y-8; }
+        .page-header-row { @apply flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between; }
+        .page-title { @apply text-2xl font-extrabold tracking-tight lg:text-[28px]; }
+        .page-subtitle { @apply mt-2 max-w-xl text-sm leading-relaxed text-muted dark:text-mist-300; }
+        .badge-icon { @apply size-4 shrink-0; }
+
+        .filter-scroll { @apply -mx-4 overflow-x-auto px-4 lg:mx-0 lg:px-0; }
+        .filter-tabs-row { @apply flex w-max gap-2 lg:w-full lg:flex-wrap; }
+        .filter-dot { @apply size-1.5 rounded-full bg-brand dark:bg-accent-400; }
+
+        .feature-grid { @apply grid gap-4 lg:grid-cols-2; }
+        .feature-card--blue { @apply bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]; }
+        .feature-card--green { @apply bg-gradient-to-br from-brand to-[#043528]; }
+        .feature-heading { @apply mt-4 text-xl font-extrabold; }
+        .feature-heading-sub { @apply font-bold text-white/80; }
+        .feature-desc { @apply mt-2 max-w-md text-sm leading-relaxed text-white/85; }
+        .feature-btn--light { @apply mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-[#1E3A8A] transition hover:bg-white/90; }
+        .feature-btn--dark { @apply mt-5 inline-flex items-center gap-2 rounded-full bg-[#04331F] px-4 py-2.5 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-[#052a1a]; }
+
+        .section-row { @apply flex items-end justify-between gap-4; }
+        .section-heading { @apply text-lg font-extrabold tracking-tight; }
+        .section-sub { @apply mt-1 text-xs text-muted dark:text-mist-300; }
+        .see-all-link { @apply inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+        .services-grid { @apply mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4; }
+
+        .svc-media--aid { @apply bg-gradient-to-br from-brand-soft to-brand-line dark:from-night-700 dark:to-night-600 text-brand dark:text-accent-400; }
+        .svc-media--deeds { @apply bg-gradient-to-br from-blue/15 to-blue/5 dark:from-blue/25 dark:to-night-600 text-blue; }
+        .svc-media--permits { @apply bg-gradient-to-br from-amber/15 to-amber/5 dark:from-amber/25 dark:to-night-600 text-amber; }
+        .svc-media--leases { @apply bg-gradient-to-br from-violet/15 to-violet/5 dark:from-violet/25 dark:to-night-600 text-violet; }
+        .svc-img { @apply absolute inset-0 h-full w-full object-cover; }
+        .svc-stat-label { @apply text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300; }
+        .svc-stat-value { @apply text-sm font-extrabold; }
+        .svc-stat-unit { @apply text-[10px] font-semibold text-muted dark:text-mist-300; }
+        .services-empty { @apply py-14 text-center text-sm text-muted dark:text-mist-300; }
+
+        .partners-card { @apply rounded-2xl bg-brand-soft dark:bg-accent-400/10 p-5 ring-1 ring-brand-line dark:ring-accent-400/20 lg:flex lg:items-center lg:justify-between lg:gap-6; }
+        .partners-info { @apply flex items-start gap-3; }
+        .partners-icon-badge { @apply grid size-9 shrink-0 place-items-center rounded-full bg-brand text-white; }
+        .partners-title { @apply text-sm font-bold; }
+        .partners-desc { @apply mt-1 max-w-lg text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .partners-pills { @apply mt-4 flex flex-wrap gap-2 lg:mt-0 lg:shrink-0 lg:justify-end; }
+        .pill-icon { @apply size-3.5 text-brand dark:text-accent-400; }
+        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
+
         /* Icon rail: collapsed at rest, expands automatically on hover/focus */
         @media (min-width: 1024px) {
 
@@ -151,29 +228,27 @@
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+<body class="page-body" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-3 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services" class="flex items-center gap-2.5">
-                <span
-                    class="hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]">
-                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="size-full object-contain dark:hidden">
-                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden size-full object-contain dark:block">
+            <a href="/pages/app/coming-soon.html?feature=Services" class="brand-link">
+                <span class="app-brand-mark">
+                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
                 </span>
                 <span class="leading-tight">
-                    <span class="block text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak
+                    <span class="brand-name">M3ak
                         Morocco</span> </span>
             </a>
 
-            <div class="ml-auto flex items-center gap-1.5">
+            <div class="header-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
                     aria-pressed="false">
                     <span class="theme-toggle-thumb">
@@ -182,17 +257,13 @@
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="" class="size-5 object-contain" />
-                    <span
-                        class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <img src="/assets/images/notification.png" alt="" class="icon-img-sm" />
+                    <span class="notif-dot"></span>
                 </button>
 
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40"
-                    data-user-initials>A</button>
+                <button type="button" class="avatar-btn" data-user-initials>A</button>
             </div>
         </div>
     </header>
@@ -200,14 +271,13 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim hidden"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
-            <div class="mb-5 px-2 sidebar-head">
+        <aside id="sidebar" class="app-sidebar -translate-x-full">
+            <div class="sidebar-top sidebar-head">
                 <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                    <p class="sidebar-title">M3ak Morocco</p>
+                    <p class="sidebar-sub">Citizen Services Portal</p>
                 </div>
             </div>
 
@@ -221,7 +291,7 @@
                     <span class="nav-label">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+                    class="nav-item--active">
                     <img src="/assets/icon-bar-left/Housing.png" alt="Housing" class="nav-icon"
                         style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Housing</span>
@@ -248,53 +318,53 @@
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
+            <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-                    <span class="size-[18px] shrink-0 bg-[#DC2626]"
+                    class="nav-item--danger">
+                    <span class="nav-icon-mask"
                         style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="size-[18px] shrink-0">
+                        stroke-linejoin="round" class="nav-icon-svg">
                         <rect x="9" y="2" width="6" height="12" rx="3" />
                         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
                     </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- ══════════ CONTENT ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-16 pt-6 lg:px-8 lg:pt-8">
-            <div class="mx-auto max-w-[1200px] space-y-8">
+        <main class="app-main">
+            <div class="content-wrap">
 
                 <!-- Page header -->
-                <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div class="page-header-row">
                     <div>
-                        <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">Housing &amp; Property
+                        <h1 class="page-title">Housing &amp; Property
                             Services</h1>
-                        <p class="mt-2 max-w-xl text-sm leading-relaxed text-muted dark:text-mist-300">
+                        <p class="page-subtitle">
                             Access government housing assistance programs, property deeds, and urban planning
                             services across Morocco.
                         </p>
                     </div>
                     <span class="verified-badge shrink-0">
-                        <svg viewBox="0 0 24 24" fill="none" class="size-4 shrink-0" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" class="badge-icon" aria-hidden="true">
                             <path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z"
                                 stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
                             <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
@@ -305,8 +375,8 @@
                 </div>
 
                 <!-- Filter tabs -->
-                <div class="-mx-4 overflow-x-auto px-4 no-scrollbar lg:mx-0 lg:px-0">
-                    <div id="filterTabs" class="flex w-max gap-2 lg:w-full lg:flex-wrap">
+                <div class="no-scrollbar filter-scroll">
+                    <div id="filterTabs" class="filter-tabs-row">
                         <button type="button" class="filter-chip" data-filter="all" aria-selected="true">
                             <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true">
                                 <path d="M4 11.5 12 4l8 7.5M6 10v9h12v-9" stroke="currentColor" stroke-width="1.7"
@@ -315,7 +385,7 @@
                             All Services
                         </button>
                         <button type="button" class="filter-chip" data-filter="aid" aria-selected="false">
-                            <span class="size-1.5 rounded-full bg-brand dark:bg-accent-400"></span>
+                            <span class="filter-dot"></span>
                             Daam Sakane (Direct Housing Aid)
                         </button>
                         <button type="button" class="filter-chip" data-filter="deeds" aria-selected="false">ANCFCC Land
@@ -328,8 +398,8 @@
                 </div>
 
                 <!-- Feature cards -->
-                <div class="grid gap-4 lg:grid-cols-2">
-                    <article class="feature-card bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]">
+                <div class="feature-grid">
+                    <article class="feature-card feature-card--blue">
                         <svg viewBox="0 0 24 24" fill="none" class="feature-watermark" aria-hidden="true">
                             <path d="M3 11.5 12 3l9 8.5M5 10v11h14V10" stroke="currentColor" stroke-width="1.2"
                                 stroke-linejoin="round" />
@@ -343,14 +413,14 @@
                                 </svg>
                                 Direct State Aid
                             </span>
-                            <h2 class="mt-4 text-xl font-extrabold">Daam Sakane <span
-                                    class="font-bold text-white/80">(دعم السكن)</span></h2>
-                            <p class="mt-2 max-w-md text-sm leading-relaxed text-white/85">
+                            <h2 class="feature-heading">Daam Sakane <span
+                                    class="feature-heading-sub">(دعم السكن)</span></h2>
+                            <p class="feature-desc">
                                 Check your eligibility for up to 100,000&nbsp;DH direct financial aid for principal
                                 residence purchase across all Moroccan regions.
                             </p>
                             <button type="button" data-action="Daam Sakane subsidy application"
-                                class="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-[#1E3A8A] transition hover:bg-white/90">
+                                class="feature-btn--light">
                                 Apply for Subsidy
                                 <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true">
                                     <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2"
@@ -360,7 +430,7 @@
                         </div>
                     </article>
 
-                    <article class="feature-card bg-gradient-to-br from-brand to-[#043528]">
+                    <article class="feature-card feature-card--green">
                         <svg viewBox="0 0 24 24" fill="none" class="feature-watermark" aria-hidden="true">
                             <path d="M3 11.5 12 3l9 8.5M5 10v11h14V10" stroke="currentColor" stroke-width="1.2"
                                 stroke-linejoin="round" />
@@ -374,14 +444,14 @@
                                 </svg>
                                 Conservation Foncière
                             </span>
-                            <h2 class="mt-4 text-xl font-extrabold">Muhafadati <span
-                                    class="font-bold text-white/80">(محافظتي)</span> &mdash; ANCFCC</h2>
-                            <p class="mt-2 max-w-md text-sm leading-relaxed text-white/85">
+                            <h2 class="feature-heading">Muhafadati <span
+                                    class="feature-heading-sub">(محافظتي)</span> &mdash; ANCFCC</h2>
+                            <p class="feature-desc">
                                 Protect your real estate with instant SMS/Email notifications on any title deed
                                 transaction, mortgage filing, or cadastral modification.
                             </p>
                             <button type="button" data-action="Muhafadati title deed monitoring"
-                                class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#04331F] px-4 py-2.5 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-[#052a1a]">
+                                class="feature-btn--dark">
                                 Manage Title Deeds
                                 <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true">
                                     <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2"
@@ -394,15 +464,15 @@
 
                 <!-- Essential services -->
                 <section>
-                    <div class="flex items-end justify-between gap-4">
+                    <div class="section-row">
                         <div>
-                            <h2 class="text-lg font-extrabold tracking-tight">Essential Property &amp; Housing Services
+                            <h2 class="section-heading">Essential Property &amp; Housing Services
                             </h2>
-                            <p class="mt-1 text-xs text-muted dark:text-mist-300">Official procedures approved by
+                            <p class="section-sub">Official procedures approved by
                                 Moroccan Ministries and Municipalities</p>
                         </div>
                         <a href="/pages/app/coming-soon.html?feature=All+Housing+Services"
-                            class="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400 hover:underline">
+                            class="see-all-link">
                             See all (18)
                             <svg viewBox="0 0 24 24" fill="none" class="size-3.5" aria-hidden="true">
                                 <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -411,24 +481,23 @@
                         </a>
                     </div>
 
-                    <div id="servicesGrid" class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    <div id="servicesGrid" class="services-grid">
 
                         <!-- Card 1 -->
                         <article class="svc-card" data-cat="aid" data-name="Principal Residence Subsidy">
-                            <div
-                                class="svc-media bg-gradient-to-br from-brand-soft to-brand-line dark:from-night-700 dark:to-night-600 text-brand dark:text-accent-400">
+                            <div class="svc-media svc-media--aid">
                                 <img src="/assets/housing-icons/al-omran-appartement.png" alt="al-omran"
-                                    class="absolute inset-0 h-full w-full object-cover">
+                                    class="svc-img">
                                 <span class="svc-rating">
                                      <img src="/assets/images/icon-star.png" class="size-2 object-contain alt=" icon-star">
                                     4.9 Verified
                                 </span>
                             </div>
-                            <div class="flex flex-1 flex-col p-4">
+                            <div class="svc-body">
                                 <p class="svc-cat text-brand dark:text-accent-400">Direct State Aid</p>
-                                <h3 class="mt-1 text-sm font-bold leading-snug">Principal Residence Subsidy</h3>
+                                <h3 class="svc-title">Principal Residence Subsidy</h3>
                                 <p class="svc-meta">
-                                    <svg viewBox="0 0 24 24" fill="none" class="size-3.5 shrink-0" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" class="svc-meta-icon" aria-hidden="true">
                                         <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"
                                             stroke="currentColor" stroke-width="1.6" />
                                         <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6" />
@@ -437,11 +506,10 @@
                                 </p>
                                 <div class="svc-foot -mx-4 mt-4">
                                     <div>
-                                        <p
-                                            class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">
+                                        <p class="svc-stat-label">
                                             Aid Amount</p>
-                                        <p class="text-sm font-extrabold">70k&ndash;100k <span
-                                                class="text-[10px] font-semibold text-muted dark:text-mist-300">DH</span>
+                                        <p class="svc-stat-value">70k&ndash;100k <span
+                                                class="svc-stat-unit">DH</span>
                                         </p>
                                     </div>
                                     <button type="button" class="svc-btn"
@@ -452,29 +520,27 @@
 
                         <!-- Card 2 -->
                         <article class="svc-card" data-cat="deeds" data-name="Electronic Ownership Certificate">
-                            <div
-                                class="svc-media bg-gradient-to-br from-blue/15 to-blue/5 dark:from-blue/25 dark:to-night-600 text-blue">
+                            <div class="svc-media svc-media--deeds">
                                 <img src="/assets/housing-icons/legal-vlue-appartement.png" alt="icon-appartement"
-                                    class="absolute inset-0 h-full w-full object-cover">
+                                    class="svc-img">
                                 <span class="svc-rating">
                                     <img src="/assets/images/icon-star.png" class="size-2 object-contain alt=" icon-star">
                                     4.9 ANCFCC
                                 </span>
                             </div>
-                            <div class="flex flex-1 flex-col p-4">
+                            <div class="svc-body">
                                 <p class="svc-cat text-blue">Cadastre &amp; Title</p>
-                                <h3 class="mt-1 text-sm font-bold leading-snug">Electronic Ownership Certificate</h3>
+                                <h3 class="svc-title">Electronic Ownership Certificate</h3>
                                 <p class="svc-meta">
                                     <img src="" alt="">
                                     Online Issuance &bull; Legal Value
                                 </p>
                                 <div class="svc-foot -mx-4 mt-4">
                                     <div>
-                                        <p
-                                            class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">
+                                        <p class="svc-stat-label">
                                             Official fee</p>
-                                        <p class="text-sm font-extrabold">100 <span
-                                                class="text-[10px] font-semibold text-muted dark:text-mist-300">MAD</span>
+                                        <p class="svc-stat-value">100 <span
+                                                class="svc-stat-unit">MAD</span>
                                         </p>
                                     </div>
                                     <button type="button" class="svc-btn"
@@ -485,29 +551,27 @@
 
                         <!-- Card 3 -->
                         <article class="svc-card" data-cat="permits" data-name="Building &amp; Renovation Permit">
-                            <div
-                                class="svc-media bg-gradient-to-br from-amber/15 to-amber/5 dark:from-amber/25 dark:to-night-600 text-amber">
+                            <div class="svc-media svc-media--permits">
                                <img src="/assets/housing-icons/agence-urbaine.png" alt="icon-agence urbain"
-                                    class="absolute inset-0 h-full w-full object-cover">
+                                    class="svc-img">
                                 <span class="svc-rating">
                                    <img src="/assets/images/icon-star.png" class="size-2 object-contain alt=" icon-star">
                                     4.8 Rokhas
                                 </span>
                             </div>
-                            <div class="flex flex-1 flex-col p-4">
+                            <div class="svc-body">
                                 <p class="svc-cat text-amber">Urban Planning</p>
-                                <h3 class="mt-1 text-sm font-bold leading-snug">Building &amp; Renovation Permit</h3>
+                                <h3 class="svc-title">Building &amp; Renovation Permit</h3>
                                 <p class="svc-meta">
                                    <img src="" alt="icon">
                                     Commune &amp; Agence Urbaine
                                 </p>
                                 <div class="svc-foot -mx-4 mt-4">
                                     <div>
-                                        <p
-                                            class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">
+                                        <p class="svc-stat-label">
                                             Processing</p>
-                                        <p class="text-sm font-extrabold">~15 <span
-                                                class="text-[10px] font-semibold text-muted dark:text-mist-300">Days</span>
+                                        <p class="svc-stat-value">~15 <span
+                                                class="svc-stat-unit">Days</span>
                                         </p>
                                     </div>
                                     <button type="button" class="svc-btn"
@@ -518,20 +582,19 @@
 
                         <!-- Card 4 -->
                         <article class="svc-card" data-cat="leases" data-name="Certified Lease Agreement">
-                            <div
-                                class="svc-media bg-gradient-to-br from-violet/15 to-violet/5 dark:from-violet/25 dark:to-night-600 text-violet">
+                            <div class="svc-media svc-media--leases">
                                 <img src="/assets/housing-icons/apartment-in-Casablanca.png" alt="icon-appartement"
-                                    class="absolute inset-0 h-full w-full object-cover">
+                                    class="svc-img">
                                 <span class="svc-rating">
                                     <img src="/assets/images/icon-star.png" class="size-2 object-contain alt=" icon-star">
                                     4.9 Legal
                                 </span>
                             </div>
-                            <div class="flex flex-1 flex-col p-4">
+                            <div class="svc-body">
                                 <p class="svc-cat text-violet">Rental Registry</p>
-                                <h3 class="mt-1 text-sm font-bold leading-snug">Certified Lease Agreement</h3>
+                                <h3 class="svc-title">Certified Lease Agreement</h3>
                                 <p class="svc-meta">
-                                    <svg viewBox="0 0 24 24" fill="none" class="size-3.5 shrink-0" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" class="svc-meta-icon" aria-hidden="true">
                                         <path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z"
                                             stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
                                     </svg>
@@ -539,11 +602,10 @@
                                 </p>
                                 <div class="svc-foot -mx-4 mt-4">
                                     <div>
-                                        <p
-                                            class="text-[10px] font-semibold uppercase tracking-wide text-muted dark:text-mist-300">
+                                        <p class="svc-stat-label">
                                             Legal Stamp</p>
-                                        <p class="text-sm font-extrabold">Digital <span
-                                                class="text-[10px] font-semibold text-muted dark:text-mist-300">e-Signature</span>
+                                        <p class="svc-stat-value">Digital <span
+                                                class="svc-stat-unit">e-Signature</span>
                                         </p>
                                     </div>
                                     <button type="button" class="svc-btn"
@@ -553,16 +615,15 @@
                         </article>
                     </div>
 
-                    <p id="servicesEmpty" class="hidden py-14 text-center text-sm text-muted dark:text-mist-300">
+                    <p id="servicesEmpty" class="services-empty hidden">
                         No services match this filter.
                     </p>
                 </section>
 
                 <!-- Partners / compliance -->
-                <section
-                    class="rounded-2xl bg-brand-soft dark:bg-accent-400/10 p-5 ring-1 ring-brand-line dark:ring-accent-400/20 lg:flex lg:items-center lg:justify-between lg:gap-6">
-                    <div class="flex items-start gap-3">
-                        <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand text-white">
+                <section class="partners-card">
+                    <div class="partners-info">
+                        <span class="partners-icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" class="size-5" aria-hidden="true">
                                 <path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
@@ -570,16 +631,16 @@
                             </svg>
                         </span>
                         <div>
-                            <p class="text-sm font-bold">Verified Institutional Partners</p>
-                            <p class="mt-1 max-w-lg text-xs leading-relaxed text-muted dark:text-mist-300">
+                            <p class="partners-title">Verified Institutional Partners</p>
+                            <p class="partners-desc">
                                 Coordinated with Al Omrane, ANCFCC (Conservation Foncière), and the Ministry of
                                 National Territorial Planning &amp; Housing.
                             </p>
                         </div>
                     </div>
-                    <div class="mt-4 flex flex-wrap gap-2 lg:mt-0 lg:shrink-0 lg:justify-end">
+                    <div class="partners-pills">
                         <span class="compliance-pill">
-                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5 text-brand dark:text-accent-400"
+                            <svg viewBox="0 0 24 24" fill="none" class="pill-icon"
                                 aria-hidden="true">
                                 <path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
@@ -587,7 +648,7 @@
                             Data Privacy (Loi 09-08)
                         </span>
                         <span class="compliance-pill">
-                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5 text-brand dark:text-accent-400"
+                            <svg viewBox="0 0 24 24" fill="none" class="pill-icon"
                                 aria-hidden="true">
                                 <path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
@@ -595,7 +656,7 @@
                             Legal Value (Loi 43-20)
                         </span>
                         <span class="compliance-pill">
-                            <svg viewBox="0 0 24 24" fill="none" class="size-3.5 text-brand dark:text-accent-400"
+                            <svg viewBox="0 0 24 24" fill="none" class="pill-icon"
                                 aria-hidden="true">
                                 <path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
@@ -609,8 +670,7 @@
         </main>
     </div>
 
-    <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300">
+    <div id="toast" class="toast">
     </div>
 
     <script>
