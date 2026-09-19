@@ -156,7 +156,10 @@
         @media (min-width: 1024px) {
 
             /* Collapsed rail: every service card becomes a centered circle */
-            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar a {
+                transition: width .2s ease, padding .2s ease;
+            }
+
             #sidebar:not(:hover):not(:focus-within) a {
                 width: 2.75rem;
                 height: 2.75rem;
@@ -167,6 +170,7 @@
                 justify-content: center;
                 border-radius: 9999px;
             }
+
             #sidebar {
                 width: 5rem;
                 transition: width .2s ease;
@@ -279,13 +283,16 @@
                 <span class="sr-only">Open menu</span>
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
             </button>
-            
-            <a href="/pages/app/coming-soon.html?feature=Services" class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
+
+            <a href="/pages/app/coming-soon.html?feature=Services"
+                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak
+                Morocco</a>
 
 
             <div class="ml-auto flex items-center gap-1.5">
                 <!-- dark light mode button -->
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                    aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
                         <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
@@ -295,7 +302,8 @@
                 <button type="button"
                     class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/transport-icon/notification.png" alt="Notifications" class="size-5 object-contain" />
+                    <img src="/assets/transport-icon/notification.png" alt="Notifications"
+                        class="size-5 object-contain" />
                     <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white"></span>
                 </button>
 
@@ -315,7 +323,7 @@
         <aside id="sidebar"
             class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
             <div class="mb-5 px-2 sidebar-head">
-                
+
                 <div class="sidebar-text">
                     <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
                     <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
@@ -327,9 +335,10 @@
                     <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
                     <span class="nav-label">My Space</span>
                 </a>
-<a href="/pages/app/transport.html" aria-current="page"
+                <a href="/pages/app/transport.html" aria-current="page"
                     class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
-                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" style="filter:brightness(0) invert(1)" />
+                    <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon"
+                        style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
@@ -361,7 +370,9 @@
             <div class="mt-auto space-y-1 pt-6">
                 <a href="/pages/app/emergence.html"
                     class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-                    <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                    <span class="size-[18px] shrink-0 bg-[#DC2626]"
+                        style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
+                        aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
@@ -373,7 +384,11 @@
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="size-[18px] shrink-0">
+                        <rect x="9" y="2" width="6" height="12" rx="3" />
+                        <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+                    </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
@@ -399,7 +414,8 @@
                             <button id="swapBtn" type="button"
                                 class="grid size-8 place-items-center rounded-full bg-canvas dark:bg-night-900 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40">
                                 <span class="sr-only">Swap start and destination</span>
-                                <img src="/assets/transport-icon/icon-change.png" alt="Swap start and destination" class="size-4 object-contain" />
+                                <img src="/assets/transport-icon/icon-change.png" alt="Swap start and destination"
+                                    class="size-4 object-contain" />
                             </button>
                         </div>
 
@@ -450,16 +466,19 @@
                             <img src="/assets/transport-icon/home.png" alt="Home" class="size-3.5 object-contain" />Home
                         </button>
                         <button type="button" data-place="Office" class="chip">
-                            <img src="/assets/transport-icon/office.png" alt="Office" class="size-3.5 object-contain" />Office
+                            <img src="/assets/transport-icon/office.png" alt="Office"
+                                class="size-3.5 object-contain" />Office
                         </button>
                         <button type="button" data-place="Marina Mall" class="chip">
-                            <img src="/assets/transport-icon/marina-mall.png" alt="Marina Mall" class="size-3.5 object-contain" />Marina Mall
+                            <img src="/assets/transport-icon/marina-mall.png" alt="Marina Mall"
+                                class="size-3.5 object-contain" />Marina Mall
                         </button>
                     </div>
                 </div>
 
                 <!-- Carte réelle : OpenStreetMap via Leaflet, position actuelle + lignes de transport -->
-                <div class="relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none">
+                <div
+                    class="relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none">
                     <div id="transitMap" class="size-full"></div>
                 </div>
 
@@ -482,7 +501,12 @@
 
                 <!-- Fast Pass -->
                 <div class="relative mt-4 overflow-hidden rounded-2xl bg-brand p-5 text-white">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="pointer-events-none absolute -right-8 -top-10 size-40 object-contain text-white/15"><path d="M3 10a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 1 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a2 2 0 1 0 0-4z" /><path d="M10 6v2M10 12v2M10 18v-2" stroke-linecap="round" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                        class="pointer-events-none absolute -right-8 -top-10 size-40 object-contain text-white/15">
+                        <path
+                            d="M3 10a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 1 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a2 2 0 1 0 0-4z" />
+                        <path d="M10 6v2M10 12v2M10 18v-2" stroke-linecap="round" />
+                    </svg>
                     <p class="text-base font-extrabold">Fast Pass</p>
                     <p class="mt-1 text-xs text-white/75">Unlimited travel for 24 hours</p>
                     <div class="mt-5 flex items-end justify-between gap-3">
@@ -504,16 +528,13 @@
 
     <!-- FAB support (desktop) -->
     <button id="fabDesktop" type="button"
-  class="group fixed bottom-6 right-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid">
-  
-  <span class="sr-only">Buy a ticket</span>
+        class="group fixed bottom-6 right-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid">
 
-  <img
-    src="/assets/transport-icon/ticket.png"
-    alt="Buy a ticket"
-    class="size-3 object-contain transition-all group-hover:size-5"
-  />
-</button>
+        <span class="sr-only">Buy a ticket</span>
+
+        <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket"
+            class="size-3 object-contain transition-all group-hover:size-5" />
+    </button>
 
     <!-- FAB support (mobile) -->
     <button id="fabMobile" type="button"

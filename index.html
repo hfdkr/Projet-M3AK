@@ -62,7 +62,9 @@
         .div-nav{
             @apply flex items-center gap-[8px];
         }
-        .div-logo{@apply bg-green-900 p-[5px] rounded-[10px]}
+        .div-logo{
+            @apply bg-green-50 dark:bg-green-900 p-[5px] rounded-[10px]
+        }
         h1{
             @apply font-hanken font-extrabold text-[20px] leading-[30px] tracking-[-0.5%] text-green-600 dark:text-accent-400;
         }
@@ -547,7 +549,7 @@
     <footer>
         <div class="div-footer">
             <div class="footer-logo">
-                <img src="./assets/settings/logo-dark.png" alt="logo-page" class="size-6 object-contain">
+                <img src="./assets/settings/logo-dark.svg" alt="logo-page" class="size-6 object-contain">
                 <span class="footer-brand">M3ak</span>
             </div>
             <p class="footer-copyright">
