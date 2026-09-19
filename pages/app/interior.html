@@ -174,25 +174,76 @@
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { transition-duration: .001ms !important; }
         }
+
+        .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
+
+        /* ---------- App top bar ---------- */
+        .app-topbar       { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
+        .menu-icon        { @apply size-6 object-contain; }
+        .brand-link       { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .header-actions   { @apply ml-auto flex items-center gap-1.5; }
+        .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .notif-dot        { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .app-avatar       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+
+        /* ---------- Back bar ---------- */
+        .back-bar       { @apply border-b border-black/5 dark:border-white/10 bg-canvas dark:bg-night-900; }
+        .back-bar-inner { @apply mx-auto max-w-[1400px] px-4 lg:px-6 py-2; }
+        .back-link      { @apply inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors; }
+
+        /* ---------- Sidebar / drawer ---------- */
+        .app-scrim   { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
+        .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
+        .sidebar-foot     { @apply mt-auto space-y-1 pt-6; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-item-icon-sm  { @apply size-[18px] object-contain; }
+        .nav-item-icon-svg { @apply size-[18px] shrink-0; }
+
+        /* ---------- Main content ---------- */
+        .app-main    { @apply min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
+        .page-title    { @apply text-2xl font-extrabold tracking-tight lg:text-[26px]; }
+        .page-subtitle { @apply mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300; }
+        .search-field   { @apply relative mt-5 block max-w-xl; }
+        .search-icon    { @apply absolute left-3.5 top-1/2 size-4 -translate-y-1/2 object-contain text-muted dark:text-mist-300; }
+        .search-input   { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .directory-grid { @apply mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3; }
+        .directory-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
+        .directory-icon { @apply grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .directory-icon-svg { @apply size-5 object-contain; }
+        .directory-title { @apply mt-3 text-sm font-bold; }
+        .directory-desc  { @apply mt-1 text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .empty-state { @apply py-16 text-center text-sm text-muted dark:text-mist-300; }
+
+        /* ---------- CTA banner ---------- */
+        .cta-card     { @apply relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9; }
+        .cta-watermark{ @apply pointer-events-none absolute -right-8 -bottom-10 size-40 object-contain text-white/15; }
+        .cta-body     { @apply relative max-w-sm; }
+        .cta-title    { @apply text-lg font-extrabold; }
+        .cta-text     { @apply mt-1.5 text-sm text-white/80; }
+        .cta-btn      { @apply relative mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft lg:mt-0 lg:shrink-0; }
+
+        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
     </style>
 </head>
 
-<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
+<body class="page-body" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services"
-                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
+            <a href="/pages/app/coming-soon.html?feature=Services" class="brand-link">M3ak Morocco</a>
 
 
-            <div class="ml-auto flex items-center gap-1.5">
+            <div class="header-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
@@ -200,16 +251,14 @@
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
                     <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <span class="notif-dot"></span>
                 </button>
 
 
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-avatar">
                     <span class="sr-only">Your profile</span>A
                 </button>
             </div>
@@ -217,10 +266,9 @@
     </header>
 
     <!-- ══════════ BACK BAR ══════════ -->
-    <div class="border-b border-black/5 dark:border-white/10 bg-canvas dark:bg-night-900">
-        <div class="mx-auto max-w-[1400px] px-4 lg:px-6 py-2">
-            <a href="/pages/app/coming-soon.html?feature=Services"
-                class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-brand dark:hover:text-accent-400 transition-colors">
+    <div class="back-bar">
+        <div class="back-bar-inner">
+            <a href="/pages/app/coming-soon.html?feature=Services" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
                 Back to Services Directory
             </a>
@@ -230,14 +278,13 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim hidden"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+        <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="mb-5 px-2 sidebar-head">
                 <div class="sidebar-text">
-                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
-                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
+                    <p class="sidebar-title">M3ak Morocco</p>
+                    <p class="sidebar-sub">Citizen Services Portal</p>
                 </div>
             </div>
 
@@ -276,120 +323,116 @@
                 </a>
             </nav>
 
-            <div class="mt-auto space-y-1 pt-6">
-                <a href="/pages/app/emergence.html"
-                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+            <div class="sidebar-foot">
+                <a href="/pages/app/emergence.html" class="nav-item--danger">
                     <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-item-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- ══════════ CONTENU ══════════ -->
-        <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
+        <main class="app-main">
 
             <div>
-                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[26px]">Interior</h1>
-                <p class="mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300">
+                <h1 class="page-title">Interior</h1>
+                <p class="page-subtitle">
                     National ID, passports, and residence permit services from the Ministry of Interior.
                 </p>
             </div>
 
-            <label class="relative mt-5 block max-w-xl">
+            <label class="search-field">
                 <span class="sr-only">Search interior services</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 object-contain text-muted dark:text-mist-300"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
-                <input id="interiorSearch" type="search" placeholder="Search interior services..."
-                    class="w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+                <input id="interiorSearch" type="search" placeholder="Search interior services..." class="search-input" />
             </label>
 
-            <div id="interiorGrid" class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div id="interiorGrid" class="directory-grid">
 
-                <a href="#" data-name="Passport Application" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 object-contain"><rect x="5" y="2" width="14" height="20" rx="2" /><circle cx="12" cy="10" r="2.5" /><path d="M9 17h6" /></svg>
+                <a href="#" data-name="Passport Application" class="directory-card group">
+                    <span class="directory-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><rect x="5" y="2" width="14" height="20" rx="2" /><circle cx="12" cy="10" r="2.5" /><path d="M9 17h6" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">Passport Application</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Apply for a new biometric passport or renew an existing one.</p>
+                    <h2 class="directory-title">Passport Application</h2>
+                    <p class="directory-desc">Apply for a new biometric passport or renew an existing one.</p>
                 </a>
 
-                <a href="#" data-name="Residence Permits" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 object-contain"><rect x="2" y="5" width="20" height="14" rx="2" /><circle cx="8" cy="12" r="2" /><path d="M13 10h6M13 14h4" /></svg>
+                <a href="#" data-name="Residence Permits" class="directory-card group">
+                    <span class="directory-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><rect x="2" y="5" width="20" height="14" rx="2" /><circle cx="8" cy="12" r="2" /><path d="M13 10h6M13 14h4" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">Residence Permits</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Carte de séjour applications and renewals for foreign residents.</p>
+                    <h2 class="directory-title">Residence Permits</h2>
+                    <p class="directory-desc">Carte de séjour applications and renewals for foreign residents.</p>
                 </a>
 
-                <a href="#" data-name="National ID Card" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 object-contain"><rect x="2" y="5" width="20" height="14" rx="2" /><path d="M6 15h4M2 10h20" /></svg>
+                <a href="#" data-name="National ID Card" class="directory-card group">
+                    <span class="directory-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><rect x="2" y="5" width="20" height="14" rx="2" /><path d="M6 15h4M2 10h20" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">National ID Card (CNIE)</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">First-time issuance and status tracking of your CNIE.</p>
+                    <h2 class="directory-title">National ID Card (CNIE)</h2>
+                    <p class="directory-desc">First-time issuance and status tracking of your CNIE.</p>
                 </a>
 
-                <a href="#" data-name="Local Authority Registration" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 object-contain"><path d="M4 21V9l8-5 8 5v12" /><path d="M9 21v-6h6v6M9 10h.01M15 10h.01" /></svg>
+                <a href="#" data-name="Local Authority Registration" class="directory-card group">
+                    <span class="directory-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><path d="M4 21V9l8-5 8 5v12" /><path d="M9 21v-6h6v6M9 10h.01M15 10h.01" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">Local Authority Registration</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Register your household with your local commune or arrondissement.</p>
+                    <h2 class="directory-title">Local Authority Registration</h2>
+                    <p class="directory-desc">Register your household with your local commune or arrondissement.</p>
                 </a>
 
-                <a href="#" data-name="Public Gathering Permits" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 object-contain"><circle cx="9" cy="7" r="4" /><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2M17 3a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.85" /></svg>
+                <a href="#" data-name="Public Gathering Permits" class="directory-card group">
+                    <span class="directory-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><circle cx="9" cy="7" r="4" /><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2M17 3a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.85" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">Public Gathering Permits</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Authorization requests for public events and demonstrations.</p>
+                    <h2 class="directory-title">Public Gathering Permits</h2>
+                    <p class="directory-desc">Authorization requests for public events and demonstrations.</p>
                 </a>
 
-                <a href="#" data-name="Civil Protection Services" class="directory-card group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                    <span class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5 object-contain"><path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" /></svg>
+                <a href="#" data-name="Civil Protection Services" class="directory-card group">
+                    <span class="directory-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" /></svg>
                     </span>
-                    <h2 class="mt-3 text-sm font-bold">Civil Protection</h2>
-                    <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Fire safety inspections and civil protection service requests.</p>
+                    <h2 class="directory-title">Civil Protection</h2>
+                    <p class="directory-desc">Fire safety inspections and civil protection service requests.</p>
                 </a>
             </div>
 
-            <p id="interiorEmpty" class="hidden py-16 text-center text-sm text-muted dark:text-mist-300">
+            <p id="interiorEmpty" class="empty-state hidden">
                 No interior services match your search.
             </p>
 
             <!-- CTA -->
-            <div class="relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" class="pointer-events-none absolute -right-8 -bottom-10 size-40 object-contain text-white/15"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18M8 15h2M14 15h2M8 18h2M14 18h2" /></svg>
-                <div class="relative max-w-sm">
-                    <p class="text-lg font-extrabold">Renewing a Passport?</p>
-                    <p class="mt-1.5 text-sm text-white/80">Book an appointment slot at your nearest prefecture to skip the line.</p>
+            <div class="cta-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" class="cta-watermark"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18M8 15h2M14 15h2M8 18h2M14 18h2" /></svg>
+                <div class="cta-body">
+                    <p class="cta-title">Renewing a Passport?</p>
+                    <p class="cta-text">Book an appointment slot at your nearest prefecture to skip the line.</p>
                 </div>
-                <button type="button" id="bookAppointmentBtn"
-                    class="relative mt-5 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-brand transition hover:bg-brand-soft lg:mt-0 lg:shrink-0">
+                <button type="button" id="bookAppointmentBtn" class="cta-btn">
                     Book an Appointment
                 </button>
             </div>
         </main>
     </div>
 
-    <div id="toast"
-        class="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
+    <div id="toast" class="toast">
     </div>
 
     <script>

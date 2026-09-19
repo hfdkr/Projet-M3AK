@@ -88,6 +88,7 @@
                                 hover:bg-[#F1F4F2] dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 transition-colors; }
         .nav-item--active { @apply bg-brand dark:bg-brand font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark hover:text-white; }
         .nav-item--danger { @apply bg-danger font-semibold text-white hover:bg-[#C82C23] hover:text-white; }
+        .nav-item--emergency { @apply rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 font-semibold text-[#DC2626] shadow-sm hover:bg-[#DC2626]/20 hover:text-[#DC2626] focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
         .nav-icon      { @apply size-[18px] shrink-0 object-contain; }
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
         .nav-item--active .nav-icon { filter: brightness(0) invert(1); opacity: 1; }
@@ -276,7 +277,7 @@
             </nav>
 
             <div class="sidebar-foot">
-                <a href="/pages/app/emergence.html" class="nav-item rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 font-semibold text-[#DC2626] shadow-sm hover:bg-[#DC2626]/20 hover:text-[#DC2626] focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+                <a href="/pages/app/emergence.html" class="nav-item nav-item--emergency">
                     <i class="size-[18px] shrink-0 bg-[#DC2626]" style="display:inline-block;-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></i>
                     <span>Emergency Support</span>
                 </a>
@@ -289,7 +290,7 @@
                     <span>Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span>AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">

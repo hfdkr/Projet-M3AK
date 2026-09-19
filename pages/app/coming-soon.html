@@ -53,14 +53,28 @@
         body {
             @apply bg-canvas dark:bg-night-900 text-ink dark:text-mist-100 font-sans transition-colors duration-200;
         }
+
+        .page-shell       { @apply min-h-screen flex flex-col; }
+        .page-header       { @apply border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .page-header-inner { @apply mx-auto flex h-16 max-w-[1200px] items-center gap-4 px-6; }
+        .brand-link        { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .cs-main    { @apply mx-auto flex max-w-[560px] flex-1 flex-col items-center justify-center px-6 py-20 text-center; }
+        .feature-icon { @apply grid size-16 place-items-center rounded-2xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .cs-title   { @apply mt-6 text-2xl font-extrabold tracking-tight; }
+        .cs-desc    { @apply mt-3 text-sm leading-relaxed text-muted dark:text-mist-300; }
+        .cs-actions { @apply mt-8 flex flex-wrap items-center justify-center gap-3; }
+        .btn-primary-lg   { @apply rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark; }
+        .btn-secondary-lg { @apply rounded-full border border-black/10 dark:border-white/15 px-6 py-3 text-sm font-semibold text-ink dark:text-mist-100 transition hover:bg-white dark:hover:bg-night-800; }
+        .page-footer { @apply border-t border-black/5 dark:border-white/10 bg-white dark:bg-night-800 py-6; }
+        .footer-copy { @apply text-center text-xs text-muted dark:text-mist-300; }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col" data-require-auth>
+<body class="page-shell" data-require-auth>
 
-    <header class="border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="mx-auto flex h-16 max-w-[1200px] items-center gap-4 px-6">
-            <a href="/pages/app/overview.html" class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</a>
+    <header class="page-header">
+        <div class="page-header-inner">
+            <a href="/pages/app/overview.html" class="brand-link">M3ak Morocco</a>
 
             <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
@@ -71,32 +85,30 @@
         </div>
     </header>
 
-    <main class="mx-auto flex max-w-[560px] flex-1 flex-col items-center justify-center px-6 py-20 text-center">
-        <span class="grid size-16 place-items-center rounded-2xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+    <main class="cs-main">
+        <span class="feature-icon">
             <img src="/assets/coming-soon/SVG.png" alt="time-icon">
 
         </span>
 
-        <h1 id="feature-title" class="mt-6 text-2xl font-extrabold tracking-tight">This service is coming soon</h1>
-        <p id="feature-desc" class="mt-3 text-sm leading-relaxed text-muted dark:text-mist-300">
+        <h1 id="feature-title" class="cs-title">This service is coming soon</h1>
+        <p id="feature-desc" class="cs-desc">
             We're building this part of the M3ak citizen portal. It isn't available yet, but the rest of the
             platform is ready for you to explore.
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href="/pages/app/overview.html"
-                class="rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark">
+        <div class="cs-actions">
+            <a href="/pages/app/overview.html" class="btn-primary-lg">
                 Back to My Space
             </a>
-            <button type="button" onclick="history.back()"
-                class="rounded-full border border-black/10 dark:border-white/15 px-6 py-3 text-sm font-semibold text-ink dark:text-mist-100 transition hover:bg-white dark:hover:bg-night-800">
+            <button type="button" onclick="history.back()" class="btn-secondary-lg">
                 Go Back
             </button>
         </div>
     </main>
 
-    <footer class="border-t border-black/5 dark:border-white/10 bg-white dark:bg-night-800 py-6">
-        <p class="text-center text-xs text-muted dark:text-mist-300">© 2026 Kingdom of Morocco · M3ak Super App.</p>
+    <footer class="page-footer">
+        <p class="footer-copy">© 2026 Kingdom of Morocco · M3ak Super App.</p>
     </footer>
 
     <script>
