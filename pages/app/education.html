@@ -102,6 +102,38 @@
 
         .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
 
+        /* ---------- App top bar ---------- */
+        .app-topbar       { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-brand-mark   { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-avatar       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-sidebar      { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .app-scrim        { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+
+        /* ---------- Cards & badges ---------- */
+        .card             { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
+        .icon-badge       { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .info-pill-blue   { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400; }
+        .status-pill      { @apply rounded-md px-2 py-0.5 text-[10px] font-bold; }
+        .table-action-link{ @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+
+        /* ---------- Service links grid ---------- */
+        .service-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
+        .service-link  { @apply mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400; }
+
+        /* ---------- Hero gradient cards ---------- */
+        .hero-card        { @apply relative overflow-hidden rounded-2xl p-6 text-white lg:p-7; }
+        .hero-badge        { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold; }
+        .hero-btn-outline  { @apply rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10; }
+        .hero-btn-solid    { @apply flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold transition; }
+
+        /* ---------- Academic calendar list ---------- */
+        .calendar-item { @apply flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3; }
+        .calendar-date  { @apply grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10; }
+
         .tab {
             display: flex;
             flex-direction: column;
@@ -186,15 +218,13 @@
 <body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
-        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
-            <button id="menuBtn" type="button"
-                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 ">
+    <header class="app-topbar">
+        <div class="app-topbar-inner">
+            <button id="menuBtn" type="button" class="app-menu-btn">
                 <span class="sr-only">Open menu</span>
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 lg:hidden object-contain" />
             </button>
-            <span
-                class="hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]">
+            <span class="app-brand-mark">
                 <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="size-full object-contain dark:hidden">
                 <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden size-full object-contain dark:block">
             </span>
@@ -213,8 +243,7 @@
                     </span>
                 </button>
 
-                <button type="button"
-                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
                     <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
                     <span
@@ -222,8 +251,7 @@
                 </button>
 
 
-                <button type="button"
-                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
+                <button type="button" class="app-avatar">
                     <span class="sr-only">Your profile</span>A
                 </button>
             </div>
@@ -233,10 +261,9 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
+        <div id="scrim" class="app-scrim hidden"></div>
 
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+        <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="mb-5 px-2 sidebar-head">
                 <div class="sidebar-text">
                     <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
@@ -261,8 +288,7 @@
                     <img src="/assets/icon-bar-left/Jobs.png" alt="Jobs" class="nav-icon" />
                     <span class="nav-label">Jobs</span>
                 </a>
-                <a href="/pages/app/education.html" aria-current="page"
-                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+                <a href="/pages/app/education.html" aria-current="page" class="nav-item--active">
                     <img src="/assets/icon-bar-left/education.png" alt="Education" class="nav-icon"
                         style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Education</span>
@@ -316,11 +342,9 @@
         <main class="min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8">
 
             <!-- LETTERHEAD -->
-            <div
-                class="flex flex-wrap items-start justify-between gap-4 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10">
+            <div class="card flex flex-wrap items-start justify-between gap-4 p-4">
                 <div class="flex items-start gap-3">
-                    <span
-                        class="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <span class="icon-badge">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="size-5">
                             <path d="M3 22h18M4 22V11l8-6 8 6v11M9 22v-7h6v7M4 11h16" />
@@ -346,8 +370,7 @@
                 </div>
             </div>
 
-            <span
-                class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+            <span class="info-pill-blue mt-4">
                 Citizen Space · National &amp; Higher Education
             </span>
 
@@ -384,13 +407,11 @@
             <!-- HERO CARDS -->
             <div class="mt-5 grid gap-4 lg:grid-cols-2">
 
-                <section
-                    class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:p-7">
+                <section class="hero-card bg-gradient-to-br from-brand to-brand-dark">
                     <div class="flex items-start justify-between gap-3">
                         <p class="text-[11px] font-semibold uppercase tracking-[1px] text-white/70">Session 2026/2027 ·
                             Open</p>
-                        <span
-                            class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
+                        <span class="hero-badge">
                             <span class="size-1.5 rounded-full bg-accent-400"></span>RSU Connected
                         </span>
                     </div>
@@ -405,10 +426,10 @@
                     </div>
                     <div class="mt-5 flex flex-wrap gap-2">
                         <button type="button" data-demo-action="Opening eligibility criteria…"
-                            class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10">Eligibility
+                            class="hero-btn-outline">Eligibility
                             Criteria</button>
                         <button type="button" data-demo-action="Opening the Minhaty application…"
-                            class="flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-brand transition hover:bg-brand-soft">
+                            class="hero-btn-solid text-brand hover:bg-brand-soft">
                             Check Eligibility &amp; Apply
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -418,13 +439,11 @@
                     </div>
                 </section>
 
-                <section
-                    class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A] p-6 text-white lg:p-7">
+                <section class="hero-card bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]">
                     <div class="flex items-start justify-between gap-3">
                         <p class="text-[11px] font-semibold uppercase tracking-[1px] text-white/70">School Year
                             2026–2027</p>
-                        <span
-                            class="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold">
+                        <span class="hero-badge">
                             <span class="size-1.5 rounded-full bg-accent-400"></span>Massar Code Synced
                         </span>
                     </div>
@@ -440,10 +459,10 @@
                     </div>
                     <div class="mt-5 flex flex-wrap gap-2">
                         <button type="button" data-demo-action="Opening transcripts & grades…"
-                            class="rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10">Transcripts
+                            class="hero-btn-outline">Transcripts
                             &amp; Grades</button>
                         <button type="button" data-demo-action="Opening the student dossier…"
-                            class="flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-[#1E3A8A] transition hover:bg-blue-50">
+                            class="hero-btn-solid text-[#1E3A8A] hover:bg-blue-50">
                             Access Student Dossier
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -457,8 +476,7 @@
             <!-- STUDENT PROFILE + CALENDAR -->
             <div class="mt-4 grid gap-4 lg:grid-cols-3 lg:gap-5">
 
-                <section
-                    class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10 lg:col-span-2">
+                <section class="card p-5 lg:col-span-2">
                     <div class="flex flex-wrap items-start justify-between gap-3">
                         <div class="flex items-center gap-3">
                             <span
@@ -521,7 +539,7 @@
                     </div>
                 </section>
 
-                <section class="rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-white/10">
+                <section class="card p-5">
                     <div class="flex items-center justify-between gap-2">
                         <p class="flex items-center gap-2 text-sm font-bold">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -536,9 +554,8 @@
                     </div>
 
                     <ul class="mt-4 space-y-2.5">
-                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-                            <div
-                                class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+                        <li class="calendar-item">
+                            <div class="calendar-date">
                                 <span class="text-[9px] font-bold uppercase tracking-wider text-danger">Jun</span>
                                 <span class="text-lg font-extrabold leading-none">04</span>
                             </div>
@@ -548,9 +565,8 @@
                                     standard session</p>
                             </div>
                         </li>
-                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-                            <div
-                                class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+                        <li class="calendar-item">
+                            <div class="calendar-date">
                                 <span
                                     class="text-[9px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Jul</span>
                                 <span class="text-lg font-extrabold leading-none">12</span>
@@ -561,9 +577,8 @@
                                     pre-selection platform</p>
                             </div>
                         </li>
-                        <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
-                            <div
-                                class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
+                        <li class="calendar-item">
+                            <div class="calendar-date">
                                 <span
                                     class="text-[9px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Aug</span>
                                 <span class="text-lg font-extrabold leading-none">28</span>
@@ -591,8 +606,7 @@
                         <p class="mt-1 text-xs text-muted dark:text-mist-300">Official government portals interconnected
                             via the national digital identity framework.</p>
                     </div>
-                    <span
-                        class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                    <span class="info-pill-blue">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0">
                             <rect x="5" y="11" width="14" height="10" rx="2" />
@@ -604,10 +618,8 @@
 
                 <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
 
-                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
@@ -619,8 +631,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Register new students in
                             primary/secondary public institutions and transfer academic dossiers between regional
                             delegations.</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             Primary &amp; Middle School Portal
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -629,10 +640,8 @@
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Equivalence & Degrees…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path
@@ -644,8 +653,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Digital degree
                             verification, apostille authentication, and equivalence for foreign credentials with
                             official Barid Al-Maghrib QR codes.</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             Secure Electronic Stamp
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -654,10 +662,8 @@
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening University Pre-registration…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening University Pre-registration…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path d="M4 22h16M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M2 6l10-4 10 4" />
@@ -667,8 +673,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Unified applications for
                             Moroccan public universities, engineering faculties (ENSA, ENSAM), medical faculties
                             (FMP/FMD), and business schools (ENCG).</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             Cursus Sup Maroc
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -677,10 +682,8 @@
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…"
-                        class="group rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">
-                        <span
-                            class="grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
+                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="service-card group">
+                        <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-5">
                                 <path
@@ -691,8 +694,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-muted dark:text-mist-300">Registration for
                             specialized technician (TS) degrees, Cités des Métiers et des Compétences (CMC), and
                             recognized vocational qualifications.</p>
-                        <span
-                            class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400">
+                        <span class="service-link">
                             OFPPT Tskwine 2027
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -716,8 +718,7 @@
                         All Procedures (3)</span>
                 </div>
 
-                <div
-                    class="mt-4 overflow-x-auto rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
+                <div class="card mt-4 overflow-x-auto">
                     <table class="w-full min-w-[720px] text-left text-sm">
                         <thead>
                             <tr class="text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300">
@@ -746,12 +747,12 @@
                                 <td class="px-4 py-3.5 text-muted dark:text-mist-300">14 Jan 2027</td>
                                 <td class="px-4 py-3.5">
                                     <span
-                                        class="rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400">Validated
+                                        class="status-pill bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">Validated
                                         + Bank Transfer</span>
                                 </td>
                                 <td class="px-4 py-3.5 text-right">
                                     <a href="#" data-demo-action="Opening dossier MHT-2027-89412…"
-                                        class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Consult</a>
+                                        class="table-action-link">Consult</a>
                                 </td>
                             </tr>
                             <tr>
@@ -770,12 +771,12 @@
                                 <td class="px-4 py-3.5 text-muted dark:text-mist-300">03 Dec 2026</td>
                                 <td class="px-4 py-3.5">
                                     <span
-                                        class="rounded-md bg-blue-50 dark:bg-blue-500/15 px-2 py-0.5 text-[10px] font-bold text-blue-600 dark:text-blue-400">Digital
+                                        class="status-pill bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">Digital
                                         Certificate Ready</span>
                                 </td>
                                 <td class="px-4 py-3.5 text-right">
                                     <a href="#" data-demo-action="Downloading QR certificate for EQV-2026-55021…"
-                                        class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Download
+                                        class="table-action-link">Download
                                         QR</a>
                                 </td>
                             </tr>
@@ -795,12 +796,12 @@
                                 <td class="px-4 py-3.5 text-muted dark:text-mist-300">18 Feb 2027</td>
                                 <td class="px-4 py-3.5">
                                     <span
-                                        class="rounded-md bg-amber-50 dark:bg-amber-500/15 px-2 py-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400">Awaiting
+                                        class="status-pill bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">Awaiting
                                         S2 Bac Grades</span>
                                 </td>
                                 <td class="px-4 py-3.5 text-right">
                                     <a href="#" data-demo-action="Editing wishes for TWJ-2027-01039…"
-                                        class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">Edit
+                                        class="table-action-link">Edit
                                         Wishes</a>
                                 </td>
                             </tr>
