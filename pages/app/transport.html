@@ -504,10 +504,16 @@
 
     <!-- FAB support (desktop) -->
     <button id="fabDesktop" type="button"
-        class="fixed bottom-6 right-6 z-30 hidden size-12 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid">
-        <span class="sr-only">Buy a ticket</span>
-        <img src="/assets/transport-icon/ticket.png" alt="Buy a ticket" class="size-6 object-contain" />
-    </button>
+  class="group fixed bottom-6 right-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid">
+  
+  <span class="sr-only">Buy a ticket</span>
+
+  <img
+    src="/assets/transport-icon/ticket.png"
+    alt="Buy a ticket"
+    class="size-3 object-contain transition-all group-hover:size-5"
+  />
+</button>
 
     <!-- FAB support (mobile) -->
     <button id="fabMobile" type="button"
