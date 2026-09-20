@@ -67,6 +67,7 @@
             align-items: center;
             gap: .75rem;
             border-radius: .75rem;
+            border: 1px solid transparent;
             padding: .625rem .75rem;
             font-size: .875rem;
             font-weight: 500;
@@ -111,7 +112,7 @@
         .app-avatar       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-sidebar      { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .app-scrim        { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
-        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl border border-transparent bg-brand dark:bg-brand px-3 py-2.5 text-sm font-medium text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
 
         /* ---------- Cards & badges ---------- */
         .card             { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
@@ -195,7 +196,7 @@
         /* ---------- Sidebar head / danger link ---------- */
         .sidebar-title    { @apply text-base font-extrabold text-brand dark:text-accent-400; }
         .sidebar-sub      { @apply text-[11px] text-muted dark:text-mist-300; }
-        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-medium text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
         .nav-item-icon-sm { @apply size-[18px] object-contain; }
         .nav-item-icon-svg{ @apply size-[18px] shrink-0; }
 
