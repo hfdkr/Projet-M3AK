@@ -175,17 +175,39 @@
             transition: background-color .15s, color .15s;
         }
 
-        .nav-item:hover { background: #F1F4F2; color: #0F1A15; }
-        .dark .nav-item { color: #7C8981; }
-        .dark .nav-item:hover { background: #151C18; color: #E7ECE9; }
+        .nav-item:hover {
+            background: #F1F4F2;
+            color: #0F1A15;
+        }
 
-        .nav-icon { width: 18px; height: 18px; flex-shrink: 0; object-fit: contain; }
-        .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
+        .dark .nav-item {
+            color: #7C8981;
+        }
+
+        .dark .nav-item:hover {
+            background: #151C18;
+            color: #E7ECE9;
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .dark .nav-icon:not(.nav-icon--active) {
+            filter: brightness(0) invert(1);
+            opacity: .9;
+        }
 
         @media (min-width: 1024px) {
 
             /* Collapsed rail: every service card becomes a centered circle */
-            #sidebar a { transition: width .2s ease, padding .2s ease; }
+            #sidebar a {
+                transition: width .2s ease, padding .2s ease;
+            }
+
             #sidebar:not(:hover):not(:focus-within) a {
                 width: 2.75rem;
                 height: 2.75rem;
@@ -196,9 +218,20 @@
                 justify-content: center;
                 border-radius: 9999px;
             }
-            #sidebar { width: 5rem; transition: width .2s ease; }
-            #sidebar:hover, #sidebar:focus-within { width: 14rem; }
-            #sidebar a img { flex-shrink: 0; }
+
+            #sidebar {
+                width: 5rem;
+                transition: width .2s ease;
+            }
+
+            #sidebar:hover,
+            #sidebar:focus-within {
+                width: 14rem;
+            }
+
+            #sidebar a img {
+                flex-shrink: 0;
+            }
 
             #sidebar .sidebar-text,
             #sidebar .nav-label {
@@ -213,15 +246,22 @@
             #sidebar:hover .sidebar-text,
             #sidebar:hover .nav-label,
             #sidebar:focus-within .sidebar-text,
-            #sidebar:focus-within .nav-label { width: auto; opacity: 1; }
+            #sidebar:focus-within .nav-label {
+                width: auto;
+                opacity: 1;
+            }
 
             #sidebar .sidebar-head,
-            #sidebar a { justify-content: center; }
+            #sidebar a {
+                justify-content: center;
+            }
 
             #sidebar:hover .sidebar-head,
             #sidebar:hover a,
             #sidebar:focus-within .sidebar-head,
-            #sidebar:focus-within a { justify-content: flex-start; }
+            #sidebar:focus-within a {
+                justify-content: flex-start;
+            }
         }
     </style>
 
@@ -283,9 +323,9 @@
 
         .quick-calls-grid { @apply grid gap-3 sm:grid-cols-3 lg:grid-cols-1; }
         .quick-call-btn { @apply flex items-center gap-3 rounded-2xl p-4 text-left ring-1 dark:bg-night-700 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .quick-call-btn--police { @apply bg-brand-soft ring-brand-line; }
-        .quick-call-btn--ambulance { @apply bg-[#EAF0FA] ring-[#D3E0F2]; }
-        .quick-call-btn--gendarmerie { @apply bg-[#E7EEF7] ring-[#CFDDEE]; }
+        .quick-call-btn--police { @apply bg-brand-soft ring-brand-line dark:bg-night-700 dark:ring-night-600; }
+        .quick-call-btn--ambulance { @apply bg-[#EAF0FA] ring-[#D3E0F2] dark:bg-night-700 dark:ring-night-600; }
+        .quick-call-btn--gendarmerie { @apply bg-[#E7EEF7] ring-[#CFDDEE] dark:bg-night-700 dark:ring-night-600; }
         .quick-call-icon--police { @apply flex size-10 shrink-0 items-center justify-center bg-green-900 rounded-xl shadow-sm; }
         .quick-call-icon--ambulance { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-blue shadow-sm; }
         .quick-call-icon--gendarmerie { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-muted-900 shadow-sm; }
@@ -391,7 +431,8 @@
 
             <div class="header-actions">
                 <!-- dark light mode — theme.js does the work, this button just carries the data-theme-toggle hook -->
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                    aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
                         <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
@@ -434,26 +475,16 @@
                     Emergency Services
                 </p>
             </div>
-            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                    <span class="theme-toggle-thumb">
-                        <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                    </span>
-                </button>
+            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                aria-pressed="false">
+                <span class="theme-toggle-thumb">
+                    <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
+                    <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                </span>
+            </button>
 
         </div>
     </header>
-
-    <!-- BACK BAR -->
-    <div class="back-bar">
-        <div class="back-bar-inner">
-            <a href="/pages/app/overview.html" class="back-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
-                Back to My Space
-            </a>
-        </div>
-    </div>
-
     <div class="lg:flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
@@ -472,7 +503,7 @@
                     <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
                     <span class="nav-label">My Space</span>
                 </a>
-<a href="/pages/app/transport.html" class="nav-item">
+                <a href="/pages/app/transport.html" class="nav-item">
                     <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon" />
                     <span class="nav-label">Transport</span>
                 </a>
@@ -503,21 +534,22 @@
             </nav>
 
             <div class="sidebar-foot">
-                <a href="/pages/app/emergence.html" aria-current="page"
-                    class="nav-item--danger">
-                    <span class="nav-icon-mask" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                <a href="/pages/app/emergence.html" aria-current="page" class="nav-item--danger">
+                    <span class="nav-icon-mask"
+                        style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
+                        aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon-sm" />
                     <span class="nav-label">Help Center</span>
                 </a>
-                <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon-sm" />
-                    <span class="nav-label">Settings</span>
-                </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="nav-icon-svg">
+                        <rect x="9" y="2" width="6" height="12" rx="3" />
+                        <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+                    </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
@@ -527,439 +559,446 @@
             </div>
         </aside>
 
-    <main class="app-main">
+        <main class="app-main">
 
-        <!-- TITLE -->
-        <div class="page-title-row">
+            <!-- TITLE -->
+            <div class="page-title-row">
 
-            <div>
-                <h2 class="page-title">
-                    Emergency Hub
-                </h2>
+                <div>
+                    <h2 class="page-title">
+                        Emergency Hub
+                    </h2>
 
-                <p class="page-subtitle">
-                    Command center for immediate assistance and critical resources.
-                </p>
+                    <p class="page-subtitle">
+                        Command center for immediate assistance and critical resources.
+                    </p>
+                </div>
+
+                <div class="clock-wrap">
+                    <p id="clock" class="clock-text">
+                        --:--:--
+                    </p>
+
+                    <p class="location-text">
+                        <span data-profile-city>Agadir</span>, Morocco
+                    </p>
+                </div>
+
             </div>
 
-            <div class="clock-wrap">
-                <p id="clock" class="clock-text">
-                    --:--:--
-                </p>
+            <!-- SOS + QUICK CALLS -->
+            <div class="sos-grid">
 
-                <p class="location-text">
-                    <span data-profile-city>Agadir</span>, Morocco
-                </p>
-            </div>
+                <!-- SOS CARD -->
+                <section id="sosCard" class="sos-card">
 
-        </div>
+                    <h2 class="card-title-sm">
+                        Need Emergency Help?
+                    </h2>
 
-        <!-- SOS + QUICK CALLS -->
-        <div class="sos-grid">
+                    <p class="sos-desc">
+                        Press and hold the button for 3 seconds to trigger an SOS alert to all emergency services and
+                        primary contacts.
+                    </p>
 
-            <!-- SOS CARD -->
-            <section id="sosCard" class="sos-card">
+                    <div class="sos-halo sos-halo-wrap">
 
-                <h2 class="card-title-sm">
-                    Need Emergency Help?
-                </h2>
-
-                <p class="sos-desc">
-                    Press and hold the button for 3 seconds to trigger an SOS alert to all emergency services and
-                    primary contacts.
-                </p>
-
-                <div class="sos-halo sos-halo-wrap">
-
-                    <!--
+                        <!--
                         No JS timer here: the red ring is a CSS transition that takes exactly
                         3 seconds to fill while the button is held (:active). When it finishes
                         filling, a "transitionend" event fires — that's the only bit of JS below,
                         it just opens the SOS dialog. Let go early and the ring resets itself.
                     -->
-                    <button id="sosBtn" type="button" oncontextmenu="return false" aria-describedby="sosHint"
-                        class="group sos-btn">
-                        <span class="sos-btn-content">
+                        <button id="sosBtn" type="button" oncontextmenu="return false" aria-describedby="sosHint"
+                            class="group sos-btn">
+                            <span class="sos-btn-content">
 
-                            <img src="/assets/emergence-image/sos-logo.png" alt="SOS-logo" class="sos-icon" />
+                                <img src="/assets/emergence-image/sos-logo.png" alt="SOS-logo" class="sos-icon" />
 
-                            <span class="sos-label">
-                                SOS
+                                <span class="sos-label">
+                                    SOS
+                                </span>
+
                             </span>
 
+                        </button>
+                    </div>
+
+                    <p id="sosHint" class="sos-hint">
+                        Press and hold to trigger
+                    </p>
+
+                </section>
+
+                <!-- QUICK CALLS — each opens its own <dialog>, declared further down the page -->
+                <div class="quick-calls-grid">
+
+                    <!-- POLICE -->
+                    <button type="button" onclick="policeDialog.showModal()"
+                        class="quick-call-btn quick-call-btn--police">
+
+                        <span class="quick-call-icon--police">
+                            <img src="/assets/emergence-image/police-icon.png" alt="Police-icon"
+                                class="quick-call-icon-img" />
+                        </span>
+
+                        <span class="quick-call-info">
+                            <span class="quick-call-name">
+                                Police
+                            </span>
+
+                            <span class="quick-call-sub">
+                                National Emergency Line
+                            </span>
+                        </span>
+
+                        <span class="quick-call-right">
+                            <span class="quick-call-number">
+                                19
+                            </span>
+
+                            <span class="quick-call-tag">
+                                Quick Dial
+                            </span>
                         </span>
 
                     </button>
+
+                    <!-- AMBULANCE -->
+                    <button type="button" onclick="ambulanceDialog.showModal()"
+                        class="quick-call-btn quick-call-btn--ambulance">
+
+                        <span class="quick-call-icon--ambulance">
+                            <img src="/assets/emergence-image/ambulance-icon.png" alt="Ambulance" class="icon-img-sm" />
+                        </span>
+
+                        <span class="quick-call-info">
+                            <span class="quick-call-name">
+                                Ambulance
+                            </span>
+
+                            <span class="quick-call-sub">
+                                Fire Dept &amp; Medical
+                            </span>
+                        </span>
+
+                        <span class="quick-call-right">
+                            <span class="quick-call-number">
+                                15
+                            </span>
+
+                            <span class="quick-call-tag">
+                                Quick Dial
+                            </span>
+                        </span>
+
+                    </button>
+
+                    <!-- GENDARMERIE -->
+                    <button type="button" onclick="gendarmerieDialog.showModal()"
+                        class="quick-call-btn quick-call-btn--gendarmerie">
+
+                        <span class="quick-call-icon--gendarmerie">
+                            <img src="/assets/emergence-image/gendarme-icon.png" alt="Gendarmerie"
+                                class="icon-img-sm" />
+                        </span>
+
+                        <span class="quick-call-info">
+                            <span class="quick-call-name">
+                                Gendarmerie
+                            </span>
+
+                            <span class="quick-call-sub">
+                                Rural Emergency Line
+                            </span>
+                        </span>
+
+                        <span class="quick-call-right">
+                            <span class="quick-call-number">
+                                177
+                            </span>
+
+                            <span class="quick-call-tag">
+                                Quick Dial
+                            </span>
+                        </span>
+
+                    </button>
+
                 </div>
-
-                <p id="sosHint" class="sos-hint">
-                    Press and hold to trigger
-                </p>
-
-            </section>
-
-            <!-- QUICK CALLS — each opens its own <dialog>, declared further down the page -->
-            <div class="quick-calls-grid">
-
-                <!-- POLICE -->
-                <button type="button" onclick="policeDialog.showModal()"
-                    class="quick-call-btn quick-call-btn--police">
-
-                    <span class="quick-call-icon--police">
-                        <img src="/assets/emergence-image/police-icon.png" alt="Police-icon"
-                            class="quick-call-icon-img" />
-                    </span>
-
-                    <span class="quick-call-info">
-                        <span class="quick-call-name">
-                            Police
-                        </span>
-
-                        <span class="quick-call-sub">
-                            National Emergency Line
-                        </span>
-                    </span>
-
-                    <span class="quick-call-right">
-                        <span class="quick-call-number">
-                            19
-                        </span>
-
-                        <span class="quick-call-tag">
-                            Quick Dial
-                        </span>
-                    </span>
-
-                </button>
-
-                <!-- AMBULANCE -->
-                <button type="button" onclick="ambulanceDialog.showModal()"
-                    class="quick-call-btn quick-call-btn--ambulance">
-
-                    <span class="quick-call-icon--ambulance">
-                        <img src="/assets/emergence-image/ambulance-icon.png" alt="Ambulance"
-                            class="icon-img-sm" />
-                    </span>
-
-                    <span class="quick-call-info">
-                        <span class="quick-call-name">
-                            Ambulance
-                        </span>
-
-                        <span class="quick-call-sub">
-                            Fire Dept &amp; Medical
-                        </span>
-                    </span>
-
-                    <span class="quick-call-right">
-                        <span class="quick-call-number">
-                            15
-                        </span>
-
-                        <span class="quick-call-tag">
-                            Quick Dial
-                        </span>
-                    </span>
-
-                </button>
-
-                <!-- GENDARMERIE -->
-                <button type="button" onclick="gendarmerieDialog.showModal()"
-                    class="quick-call-btn quick-call-btn--gendarmerie">
-
-                    <span class="quick-call-icon--gendarmerie">
-                        <img src="/assets/emergence-image/gendarme-icon.png" alt="Gendarmerie"
-                            class="icon-img-sm" />
-                    </span>
-
-                    <span class="quick-call-info">
-                        <span class="quick-call-name">
-                            Gendarmerie
-                        </span>
-
-                        <span class="quick-call-sub">
-                            Rural Emergency Line
-                        </span>
-                    </span>
-
-                    <span class="quick-call-right">
-                        <span class="quick-call-number">
-                            177
-                        </span>
-
-                        <span class="quick-call-tag">
-                            Quick Dial
-                        </span>
-                    </span>
-
-                </button>
-
             </div>
-        </div>
 
-        <!-- MAP + MEDICAL + CONTACTS -->
-        <div class="content-grid">
+            <!-- MAP + MEDICAL + CONTACTS -->
+            <div class="content-grid">
 
-            <!-- MAP -->
-            <section id="mapSection" class="map-card">
+                <!-- MAP -->
+                <section id="mapSection" class="map-card">
 
-                <div class="map-card-head">
+                    <div class="map-card-head">
 
-                    <p class="map-card-title">
-                        <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="icon-img-xs" />
-                        Real-time Emergency Map ·
-                        <span data-profile-city>Agadir</span>
-                    </p>
-
-                    <div class="no-scrollbar map-tabs-row" id="mapTabs">
-
-                        <button type="button" data-layer="hospitals" class="map-tab map-tab-btn">
-                            Hospitals
-                        </button>
-
-                        <button type="button" data-layer="pharmacies" class="map-tab map-tab-btn">
-                            Pharmacies
-                        </button>
-
-                        <button type="button" data-layer="police" class="map-tab map-tab-btn">
-                            Police Stations
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="map-frame">
-
-                    <div id="leafletMap" class="size-full"></div>
-
-                    <div id="mapLoading" class="map-loading">
-                        <span class="map-loading-text">
-                            <svg viewBox="0 0 24 24" fill="none" class="spinner-icon"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3" stroke-opacity=".25" /><path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg>
-                            Loading nearby facilities…
-                        </span>
-                    </div>
-                </div>
-
-                <div class="places-wrap">
-                    <p id="placesStatus" class="places-status"></p>
-                    <div id="placesList" class="places-list"></div>
-                </div>
-            </section>
-
-            <!-- RIGHT COLUMN -->
-            <div class="right-col">
-
-                <!-- MEDICAL ID — plain <input> fields, always editable. No JS: the pencil icon is just a
-                     <label for="bloodType"> so clicking it focuses the first field for free. -->
-                <section class="medical-card">
-
-                    <div class="medical-head">
-
-                        <p class="medical-title">
-                            Medical ID
+                        <p class="map-card-title">
+                            <img src="/assets/emergence-image/maps-icon.png" alt="maps-icon" class="icon-img-xs" />
+                            Real-time Emergency Map ·
+                            <span data-profile-city>Agadir</span>
                         </p>
 
-                        <label for="bloodType" title="Edit medical ID" class="medical-edit-btn">
-                            <span class="sr-only">Edit medical ID</span>
-                            <img src="/assets/emergence-image/edit-Icon.png" alt="Edit Icon" class="icon-img-xs" />
-                        </label>
+                        <div class="no-scrollbar map-tabs-row" id="mapTabs">
+
+                            <button type="button" data-layer="hospitals" class="map-tab map-tab-btn">
+                                Hospitals
+                            </button>
+
+                            <button type="button" data-layer="pharmacies" class="map-tab map-tab-btn">
+                                Pharmacies
+                            </button>
+
+                            <button type="button" data-layer="police" class="map-tab map-tab-btn">
+                                Police Stations
+                            </button>
+
+                        </div>
                     </div>
 
-                    <div class="medical-fields-grid">
+                    <div class="map-frame">
 
-                        <div>
-                            <label for="bloodType" class="medical-field-label">
-                                Blood type
-                            </label>
-                            <input id="bloodType" type="text" value="A Positive" data-profile-bloodtype
-                                class="medical-input" />
+                        <div id="leafletMap" class="size-full"></div>
+
+                        <div id="mapLoading" class="map-loading">
+                            <span class="map-loading-text">
+                                <svg viewBox="0 0 24 24" fill="none" class="spinner-icon">
+                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3"
+                                        stroke-opacity=".25" />
+                                    <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3"
+                                        stroke-linecap="round" />
+                                </svg>
+                                Loading nearby facilities…
+                            </span>
                         </div>
+                    </div>
 
-                        <div>
-                            <label for="weight" class="medical-field-label">
-                                Weight
-                            </label>
-                            <input id="weight" type="text" value="78 kg" data-profile-weight
-                                class="medical-input" />
-                        </div>
-
-                        <div class="col-span-2">
-                            <label for="allergies" class="medical-field-label">
-                                Allergies
-                            </label>
-                            <input id="allergies" type="text" value="Penicillin, Peanuts" data-profile-allergies
-                                class="medical-input--semibold" />
-                        </div>
-
-                        <div class="col-span-2">
-                            <label for="medications" class="medical-field-label">
-                                Medications
-                            </label>
-                            <input id="medications" type="text" value="None" data-profile-medications
-                                class="medical-input--semibold" />
-                        </div>
-
+                    <div class="places-wrap">
+                        <p id="placesStatus" class="places-status"></p>
+                        <div id="placesList" class="places-list"></div>
                     </div>
                 </section>
 
-                <!-- EMERGENCY CONTACTS — static list; "Add a contact" is a native <details> disclosure -->
-                <section class="contacts-card">
+                <!-- RIGHT COLUMN -->
+                <div class="right-col">
 
-                    <p class="card-title-sm">
-                        Emergency Contacts
-                    </p>
+                    <!-- MEDICAL ID — plain <input> fields, always editable. No JS: the pencil icon is just a
+                     <label for="bloodType"> so clicking it focuses the first field for free. -->
+                    <section class="medical-card">
 
-                    <ul id="contactList" class="contacts-list">
+                        <div class="medical-head">
 
-                        <li class="contact-item">
-                            <span class="contact-avatar">AM</span>
-                            <span class="contact-info">
-                                <span class="contact-name">Amina Mansouri</span>
-                                <span class="contact-role">Mother · +212 6xx-xxxxxx</span>
-                            </span>
-                            <span class="contact-status--ok" title="Reachable"></span>
-                        </li>
+                            <p class="medical-title">
+                                Medical ID
+                            </p>
 
-                        <li class="contact-item">
-                            <span class="contact-avatar">DE</span>
-                            <span class="contact-info">
-                                <span class="contact-name">Driss El Fassi</span>
-                                <span class="contact-role">Brother · +212 7xx-xxxxxx</span>
-                            </span>
-                            <span class="contact-status--off" title="Unreachable"></span>
-                        </li>
+                            <label for="bloodType" title="Edit medical ID" class="medical-edit-btn">
+                                <span class="sr-only">Edit medical ID</span>
+                                <img src="/assets/emergence-image/edit-Icon.png" alt="Edit Icon" class="icon-img-xs" />
+                            </label>
+                        </div>
 
-                        <li class="contact-item">
-                            <span class="contact-avatar">ST</span>
-                            <span class="contact-info">
-                                <span class="contact-name">Dr. Sarah Tazi</span>
-                                <span class="contact-role">Personal Physician · +212 5xx-xxxxxx</span>
-                            </span>
-                            <span class="contact-status--ok" title="Reachable"></span>
-                        </li>
+                        <div class="medical-fields-grid">
 
-                    </ul>
-
-                    <details class="group mt-4">
-                        <summary class="add-contact-summary">
-                            <img src="/assets/emergence-image/add-Icon.png" alt="Add Icon" class="icon-img-xs" />
-                            Add a contact
-                        </summary>
-
-                        <form class="add-contact-form" onsubmit="return addContact(event)">
-
-                            <div class="add-contact-fields">
-
-                                <input id="cName" required type="text" placeholder="Full name"
-                                    class="add-contact-input" />
-
-                                <input id="cRole" type="text" placeholder="Relationship (e.g. Sister)"
-                                    class="add-contact-input" />
-
-                                <input id="cPhone" required type="tel" placeholder="+212 6xx-xxxxxx"
-                                    class="add-contact-input" />
-
+                            <div>
+                                <label for="bloodType" class="medical-field-label">
+                                    Blood type
+                                </label>
+                                <input id="bloodType" type="text" value="A Positive" data-profile-bloodtype
+                                    class="medical-input" />
                             </div>
 
-                            <div class="add-contact-actions">
-
-                                <button type="submit" class="add-contact-save">
-                                    Save contact
-                                </button>
-
-                                <button type="button" onclick="this.closest('details').removeAttribute('open')" class="add-contact-cancel">
-                                    Cancel
-                                </button>
-
+                            <div>
+                                <label for="weight" class="medical-field-label">
+                                    Weight
+                                </label>
+                                <input id="weight" type="text" value="78 kg" data-profile-weight
+                                    class="medical-input" />
                             </div>
-                        </form>
-                    </details>
-                </section>
 
+                            <div class="col-span-2">
+                                <label for="allergies" class="medical-field-label">
+                                    Allergies
+                                </label>
+                                <input id="allergies" type="text" value="Penicillin, Peanuts" data-profile-allergies
+                                    class="medical-input--semibold" />
+                            </div>
+
+                            <div class="col-span-2">
+                                <label for="medications" class="medical-field-label">
+                                    Medications
+                                </label>
+                                <input id="medications" type="text" value="None" data-profile-medications
+                                    class="medical-input--semibold" />
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- EMERGENCY CONTACTS — static list; "Add a contact" is a native <details> disclosure -->
+                    <section class="contacts-card">
+
+                        <p class="card-title-sm">
+                            Emergency Contacts
+                        </p>
+
+                        <ul id="contactList" class="contacts-list">
+
+                            <li class="contact-item">
+                                <span class="contact-avatar">AM</span>
+                                <span class="contact-info">
+                                    <span class="contact-name">Amina Mansouri</span>
+                                    <span class="contact-role">Mother · +212 6xx-xxxxxx</span>
+                                </span>
+                                <span class="contact-status--ok" title="Reachable"></span>
+                            </li>
+
+                            <li class="contact-item">
+                                <span class="contact-avatar">DE</span>
+                                <span class="contact-info">
+                                    <span class="contact-name">Driss El Fassi</span>
+                                    <span class="contact-role">Brother · +212 7xx-xxxxxx</span>
+                                </span>
+                                <span class="contact-status--off" title="Unreachable"></span>
+                            </li>
+
+                            <li class="contact-item">
+                                <span class="contact-avatar">ST</span>
+                                <span class="contact-info">
+                                    <span class="contact-name">Dr. Sarah Tazi</span>
+                                    <span class="contact-role">Personal Physician · +212 5xx-xxxxxx</span>
+                                </span>
+                                <span class="contact-status--ok" title="Reachable"></span>
+                            </li>
+
+                        </ul>
+
+                        <details class="group mt-4">
+                            <summary class="add-contact-summary">
+                                <img src="/assets/emergence-image/add-Icon.png" alt="Add Icon" class="icon-img-xs" />
+                                Add a contact
+                            </summary>
+
+                            <form class="add-contact-form" onsubmit="return addContact(event)">
+
+                                <div class="add-contact-fields">
+
+                                    <input id="cName" required type="text" placeholder="Full name"
+                                        class="add-contact-input" />
+
+                                    <input id="cRole" type="text" placeholder="Relationship (e.g. Sister)"
+                                        class="add-contact-input" />
+
+                                    <input id="cPhone" required type="tel" placeholder="+212 6xx-xxxxxx"
+                                        class="add-contact-input" />
+
+                                </div>
+
+                                <div class="add-contact-actions">
+
+                                    <button type="submit" class="add-contact-save">
+                                        Save contact
+                                    </button>
+
+                                    <button type="button" onclick="this.closest('details').removeAttribute('open')"
+                                        class="add-contact-cancel">
+                                        Cancel
+                                    </button>
+
+                                </div>
+                            </form>
+                        </details>
+                    </section>
+
+                </div>
             </div>
-        </div>
 
-        <!-- EMERGENCY PROCEDURES -->
-        <section id="proceduresSection" class="procedures-section">
+            <!-- EMERGENCY PROCEDURES -->
+            <section id="proceduresSection" class="procedures-section">
 
-            <h2 class="procedures-title">
-                Emergency Procedures
-            </h2>
+                <h2 class="procedures-title">
+                    Emergency Procedures
+                </h2>
 
-            <p class="procedures-sub">
-                Follow these protocols while waiting for professional help.
-            </p>
+                <p class="procedures-sub">
+                    Follow these protocols while waiting for professional help.
+                </p>
 
-            <div class="no-scrollbar procedures-scroll">
+                <div class="no-scrollbar procedures-scroll">
 
-                <article class="procedure-card">
+                    <article class="procedure-card">
 
-                    <span class="procedure-icon--aid">
-                        <img src="/assets/emergence-image/aid-Icon.png" alt="aid-Icon" class="icon-img-sm" />
-                    </span>
+                        <span class="procedure-icon--aid">
+                            <img src="/assets/emergence-image/aid-Icon.png" alt="aid-Icon" class="icon-img-sm" />
+                        </span>
 
-                    <h3 class="procedure-title">
-                        First Aid
-                    </h3>
+                        <h3 class="procedure-title">
+                            First Aid
+                        </h3>
 
-                    <p class="procedure-desc">
-                        CPR instructions, wound care, and choking maneuvers.
-                    </p>
+                        <p class="procedure-desc">
+                            CPR instructions, wound care, and choking maneuvers.
+                        </p>
 
-                </article>
+                    </article>
 
-                <article class="procedure-card">
+                    <article class="procedure-card">
 
-                    <span class="procedure-icon--fire">
-                        <img src="/assets/emergence-image/safety-Icon.png" alt="safety-Icon" class="icon-img-sm" />
-                    </span>
+                        <span class="procedure-icon--fire">
+                            <img src="/assets/emergence-image/safety-Icon.png" alt="safety-Icon" class="icon-img-sm" />
+                        </span>
 
-                    <h3 class="procedure-title">
-                        Fire Safety
-                    </h3>
+                        <h3 class="procedure-title">
+                            Fire Safety
+                        </h3>
 
-                    <p class="procedure-desc">
-                        Evacuation routes, fire extinguisher use, and containment.
-                    </p>
+                        <p class="procedure-desc">
+                            Evacuation routes, fire extinguisher use, and containment.
+                        </p>
 
-                </article>
+                    </article>
 
-                <article class="procedure-card">
+                    <article class="procedure-card">
 
-                    <span class="procedure-icon--quake">
-                        <img src="/assets/emergence-image/earthquake-Icon.png" alt="earthquake-Icon" class="icon-img-sm" />
-                    </span>
+                        <span class="procedure-icon--quake">
+                            <img src="/assets/emergence-image/earthquake-Icon.png" alt="earthquake-Icon"
+                                class="icon-img-sm" />
+                        </span>
 
-                    <h3 class="procedure-title">
-                        Earthquake
-                    </h3>
+                        <h3 class="procedure-title">
+                            Earthquake
+                        </h3>
 
-                    <p class="procedure-desc">
-                        Drop, cover, and hold procedures for seismic events.
-                    </p>
+                        <p class="procedure-desc">
+                            Drop, cover, and hold procedures for seismic events.
+                        </p>
 
-                </article>
+                    </article>
 
-                <article class="procedure-card">
+                    <article class="procedure-card">
 
-                    <span class="procedure-icon--accident">
-                        <img src="/assets/emergence-image/accedent-Icon.png" alt="accedent-Icon" class="icon-img-sm" />
-                    </span>
+                        <span class="procedure-icon--accident">
+                            <img src="/assets/emergence-image/accedent-Icon.png" alt="accedent-Icon"
+                                class="icon-img-sm" />
+                        </span>
 
-                    <h3 class="procedure-title">
-                        Road Accident
-                    </h3>
+                        <h3 class="procedure-title">
+                            Road Accident
+                        </h3>
 
-                    <p class="procedure-desc">
-                        Securing the scene and initial victim assessment.
-                    </p>
+                        <p class="procedure-desc">
+                            Securing the scene and initial victim assessment.
+                        </p>
 
-                </article>
+                    </article>
 
-            </div>
-        </section>
+                </div>
+            </section>
 
-    </main>
+        </main>
     </div>
 
     <!-- FOOTER mobile -->
@@ -1499,4 +1538,5 @@
 
     </script>
 </body>
+
 </html>
