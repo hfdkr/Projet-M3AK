@@ -237,100 +237,24 @@
         /* Hamburger: mobile only */
         #menuBtn { display: none; }
         @media (max-width: 1023.98px) { #menuBtn { display: inline-flex; } }
-
-        /* Page-specific extracted classes */
-        .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
-        .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
-        .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
-        .menu-icon { @apply size-6 object-contain; }
-        .icon-img-sm { @apply size-5 object-contain; }
-        .site-brand { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
-        .header-actions { @apply ml-auto flex items-center gap-1.5; }
-        .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
-        .avatar-btn { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
-
-        .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
-        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
-        .sidebar-top { @apply mb-5 px-2; }
-        .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
-        .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
-        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
-        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
-        .nav-icon-mask { @apply size-[18px] shrink-0 bg-[#DC2626]; }
-        .nav-icon-sm { @apply size-[18px] object-contain; }
-        .nav-icon-svg { @apply size-[18px] shrink-0; }
-        .sidebar-foot { @apply mt-auto space-y-1 pt-6; }
-        .content-col { @apply min-w-0 flex-1; }
-
-        .app-main { @apply mx-auto max-w-[1180px] px-4 pb-6 pt-5 lg:px-8 lg:pb-12 lg:pt-7; }
-        .page-title { @apply text-2xl font-extrabold tracking-tight lg:text-[28px]; }
-        .page-subtitle { @apply mt-1.5 text-sm text-muted dark:text-mist-300; }
-        .chips-row { @apply mt-4 flex gap-2 overflow-x-auto; }
-
-        .voice-grid { @apply mt-5 grid gap-5 lg:grid-cols-[1fr_360px]; }
-        .mic-panel { @apply flex flex-col rounded-2xl bg-white dark:bg-night-800 p-6 ring-1 ring-black/5 dark:ring-white/10 lg:p-8; }
-        .mic-content { @apply flex flex-1 flex-col items-center justify-center gap-5 py-6; }
-        .mic-btn { @apply grid size-24 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-dark text-white transition hover:scale-[1.03] focus-visible:ring-4 focus-visible:ring-brand/30 lg:size-28; }
-        .mic-icon { @apply size-9 lg:size-10; }
-        .wave-wrap { @apply flex flex-col items-center gap-1.5; }
-        .mic-status { @apply text-sm font-semibold text-brand dark:text-accent-400; }
-        .mic-stats { @apply grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center; }
-        .mic-stat-value { @apply text-xl font-extrabold lg:text-2xl; }
-        .mic-stat-value--accent { @apply text-xl font-extrabold text-brand dark:text-accent-400 lg:text-2xl; }
-        .mic-stat-label { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
-        .mic-stat-divider { @apply border-x border-black/5 dark:border-white/10; }
-
-        .transcript-panel { @apply flex max-h-[560px] flex-col rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
-        .transcript-head { @apply flex items-center gap-2 border-b border-black/5 dark:border-white/10 px-4 py-3; }
-        .panel-title-sm { @apply text-sm font-bold; }
-        .transcript-body { @apply flex-1 space-y-3 overflow-y-auto px-4 py-4; }
-        .chat-form { @apply border-t border-black/5 dark:border-white/10 p-3; }
-        .chat-input-row { @apply flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 pl-4 pr-1.5; }
-        .chat-input { @apply min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300; }
-        .chat-icon-btn { @apply grid size-8 shrink-0 place-items-center rounded-full text-muted transition hover:text-brand dark:hover:text-accent-400; }
-        .chat-icon-svg { @apply size-4; }
-        .chat-send-btn { @apply grid size-8 shrink-0 place-items-center rounded-full bg-yellow-400 text-ink transition hover:bg-yellow-300 focus-visible:ring-2 focus-visible:ring-yellow-300; }
-
-        .two-col-grid { @apply mt-5 grid gap-5 lg:grid-cols-2; }
-        .info-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5; }
-        .lang-grid { @apply mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4; }
-        .lang-name { @apply block text-sm font-bold; }
-        .capability-list { @apply mt-3 space-y-3; }
-        .capability-title { @apply text-sm font-semibold; }
-        .capability-desc { @apply text-xs text-muted dark:text-mist-300; }
-        .panel-head-row { @apply flex items-center justify-between; }
-        .view-all-link { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
-        .divided-list { @apply mt-3 divide-y divide-black/5 dark:divide-white/10; }
-
-        .footer-prompt { @apply mt-5 text-center text-xs text-muted dark:text-mist-300; }
-        .footer-prompt-link { @apply font-semibold text-brand dark:text-accent-400 hover:underline; }
-        .toast { @apply pointer-events-none fixed bottom-24 left-1/2 z-50 max-w-[92vw] -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
-
-        .footer-mobile { @apply mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden; }
-        .footer-mobile-inner { @apply mx-auto max-w-[1280px] px-6 py-8; }
-        .footer-mobile-stack { @apply flex flex-col items-center gap-4 text-center; }
-        .footer-brand { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
-        .footer-nav { @apply flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300; }
-        .footer-link { @apply hover:text-brand dark:hover:text-accent-400; }
-        .footer-copyright { @apply text-xs text-muted dark:text-mist-300; }
     </style>
 </head>
 
-<body class="page-body" data-require-auth>
+<body class="bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100" data-require-auth>
 
     <!-- ══════════ TOP BAR ══════════ -->
-    <header class="app-topbar">
-        <div class="app-topbar-inner">
-            <button id="menuBtn" type="button" class="app-menu-btn">
+    <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
+        <div class="flex h-16 items-center gap-4 px-4 lg:px-6">
+            <button id="menuBtn" type="button"
+                class="grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden">
                 <span class="sr-only">Open menu</span>
-                <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
+                <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak Morocco</a>
+            <a href="/pages/app/coming-soon.html?feature=Services"
+                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
 
-            <div class="header-actions">
+            <div class="ml-auto flex items-center gap-1.5">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
@@ -338,13 +262,15 @@
                     </span>
                 </button>
 
-                <button type="button" class="icon-btn">
+                <button type="button"
+                    class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="icon-img-sm" />
-                    <span class="notif-dot"></span>
+                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
+                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
                 </button>
 
-                <button type="button" class="avatar-btn">
+                <button type="button"
+                    class="ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Your profile</span>A
                 </button>
             </div>
@@ -354,13 +280,14 @@
     <div class="flex">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
-        <div id="scrim" class="app-scrim hidden"></div>
+        <div id="scrim" class="fixed inset-0 z-40 hidden bg-black/40 lg:hidden"></div>
 
-        <aside id="sidebar" class="app-sidebar -translate-x-full">
-            <div class="sidebar-top sidebar-head">
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0">
+            <div class="mb-5 px-2 sidebar-head">
                 <div class="sidebar-text">
-                    <p class="sidebar-title">M3ak Morocco</p>
-                    <p class="sidebar-sub">Citizen Services Portal</p>
+                    <p class="text-base font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+                    <p class="text-[11px] text-muted dark:text-mist-300">Citizen Services Portal</p>
                 </div>
             </div>
 
@@ -399,44 +326,44 @@
                 </a>
             </nav>
 
-            <div class="sidebar-foot">
+            <div class="mt-auto space-y-1 pt-6">
                 <a href="/pages/app/emergence.html"
-                    class="nav-item--danger">
-                    <span class="nav-icon-mask" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                    class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
+                    <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
-                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-icon-sm" />
+                    <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Help Center</span>
                 </a>
                 <a href="/pages/app/overview.html#account" class="nav-item">
-                    <img src="/assets/icon-bar-left/settings.png" alt="" class="nav-icon-sm" />
+                    <img src="/assets/icon-bar-left/settings.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Settings</span>
                 </a>
                 <a href="/pages/app/assistant.html" aria-current="page"
-                    class="nav-item--active">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-icon-sm" />
+                    <img src="/assets/icon-bar-left/Logout.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- ═══════════ MAIN ═══════════ -->
-        <div class="content-col">
+        <div class="min-w-0 flex-1">
 
-            <main class="app-main">
+            <main class="mx-auto max-w-[1180px] px-4 pb-6 pt-5 lg:px-8 lg:pb-12 lg:pt-7">
 
-                <h1 class="page-title">AI Voice Assistant</h1>
-                <p class="page-subtitle">
+                <h1 class="text-2xl font-extrabold tracking-tight lg:text-[28px]">AI Voice Assistant</h1>
+                <p class="mt-1.5 text-sm text-muted dark:text-mist-300">
                     Talk naturally with M3AK to manage your digital identity and services.
                 </p>
 
                 <!-- Quick actions -->
-                <div class="no-scrollbar chips-row">
+                <div class="no-scrollbar mt-4 flex gap-2 overflow-x-auto">
                     <button type="button" class="chip" data-say="Open my profile">
                         Open my profile
                     </button>
@@ -449,57 +376,61 @@
                 </div>
 
                 <!-- Voice + transcript -->
-                <div class="voice-grid">
+                <div class="mt-5 grid gap-5 lg:grid-cols-[1fr_360px]">
 
                     <!-- Mic panel -->
-                    <section id="micPanel" class="is-idle mic-panel">
-                        <div class="mic-content">
-                            <button type="button" id="micBtn" class="mic-ring mic-btn">
+                    <section id="micPanel"
+                        class="is-idle flex flex-col rounded-2xl bg-white dark:bg-night-800 p-6 ring-1 ring-black/5 dark:ring-white/10 lg:p-8">
+                        <div class="flex flex-1 flex-col items-center justify-center gap-5 py-6">
+                            <button type="button" id="micBtn"
+                                class="mic-ring grid size-24 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-dark text-white transition hover:scale-[1.03] focus-visible:ring-4 focus-visible:ring-brand/30 lg:size-28">
                                 <span class="sr-only">Start voice conversation</span>
-                                <svg id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mic-icon"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                                <svg id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-9 lg:size-10"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                             </button>
 
-                            <div class="wave-wrap">
+                            <div class="flex flex-col items-center gap-1.5">
                                 <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                                <p id="micStatus" class="mic-status">Voice assistant unavailable</p>
+                                <p id="micStatus" class="text-sm font-semibold text-brand dark:text-accent-400">Voice assistant unavailable</p>
                             </div>
                         </div>
 
-                        <div class="mic-stats">
+                        <div class="grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center">
                             <div>
-                                <p class="mic-stat-value">128</p>
-                                <p class="mic-stat-label">Conversations</p>
+                                <p class="text-xl font-extrabold lg:text-2xl">128</p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Conversations</p>
                             </div>
-                            <div class="mic-stat-divider">
-                                <p class="mic-stat-value">2.4h</p>
-                                <p class="mic-stat-label">Talk Time</p>
+                            <div class="border-x border-black/5 dark:border-white/10">
+                                <p class="text-xl font-extrabold lg:text-2xl">2.4h</p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Talk Time</p>
                             </div>
                             <div>
-                                <p class="mic-stat-value--accent">98%</p>
-                                <p class="mic-stat-label">Satisfaction</p>
+                                <p class="text-xl font-extrabold text-brand dark:text-accent-400 lg:text-2xl">98%</p>
+                                <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Satisfaction</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Transcript panel -->
-                    <section class="transcript-panel">
-                        <div class="transcript-head">
-                            <h2 class="panel-title-sm">M3AK Live Transcript</h2>
+                    <section class="flex max-h-[560px] flex-col rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
+                        <div class="flex items-center gap-2 border-b border-black/5 dark:border-white/10 px-4 py-3">
+                            <h2 class="text-sm font-bold">M3AK Live Transcript</h2>
                         </div>
 
-                        <div id="transcript" class="transcript-body"></div>
+                        <div id="transcript" class="flex-1 space-y-3 overflow-y-auto px-4 py-4"></div>
 
-                        <form id="chatForm" class="chat-form">
-                            <div class="chat-input-row">
+                        <form id="chatForm" class="border-t border-black/5 dark:border-white/10 p-3">
+                            <div class="flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 pl-4 pr-1.5">
                                 <input id="chatInput" type="text" autocomplete="off" placeholder="Type or speak a message…"
-                                    class="chat-input" />
-                                <button type="button" id="inlineMic" class="chat-icon-btn">
+                                    class="min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300" />
+                                <button type="button" id="inlineMic"
+                                    class="grid size-8 shrink-0 place-items-center rounded-full text-muted transition hover:text-brand dark:hover:text-accent-400">
                                     <span class="sr-only">Speak</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chat-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
                                 </button>
-                                <button type="submit" class="chat-send-btn">
+                                <button type="submit"
+                                    class="grid size-8 shrink-0 place-items-center rounded-full bg-yellow-400 text-ink transition hover:bg-yellow-300 focus-visible:ring-2 focus-visible:ring-yellow-300">
                                     <span class="sr-only">Send</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chat-icon-svg"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
                                 </button>
                             </div>
                         </form>
@@ -507,81 +438,82 @@
                 </div>
 
                 <!-- Languages + capabilities -->
-                <div class="two-col-grid">
+                <div class="mt-5 grid gap-5 lg:grid-cols-2">
 
-                    <section class="info-card">
-                        <h2 class="panel-title-sm">
+                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                        <h2 class="text-sm font-bold">
                             Spoken Languages
                         </h2>
-                        <div id="langGrid" class="lang-grid">
+                        <div id="langGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
                             <button type="button" data-lang="English" class="lang rounded-xl border px-3 py-2.5 text-center">
-                                <span class="lang-name">English</span>
+                                <span class="block text-sm font-bold">English</span>
                                 <span class="lang-state block text-[11px]">Active</span>
                             </button>
                             <button type="button" data-lang="العربية" class="lang rounded-xl border px-3 py-2.5 text-center">
-                                <span class="lang-name">العربية</span>
+                                <span class="block text-sm font-bold">العربية</span>
                                 <span class="lang-state block text-[11px]">Available</span>
                             </button>
                             <button type="button" data-lang="Français" class="lang rounded-xl border px-3 py-2.5 text-center">
-                                <span class="lang-name">Français</span>
+                                <span class="block text-sm font-bold">Français</span>
                                 <span class="lang-state block text-[11px]">Available</span>
                             </button>
                             <button type="button" data-lang="Tamazight" class="lang rounded-xl border px-3 py-2.5 text-center">
-                                <span class="lang-name">Tamazight</span>
+                                <span class="block text-sm font-bold">Tamazight</span>
                                 <span class="lang-state block text-[11px]">Available</span>
                             </button>
                         </div>
                     </section>
 
-                    <section class="info-card">
-                        <h2 class="panel-title-sm">
+                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                        <h2 class="text-sm font-bold">
                             AI Capabilities
                         </h2>
-                        <ul class="capability-list">
+                        <ul class="mt-3 space-y-3">
                             <li>
-                                <p class="capability-title">Contextual Navigation</p>
-                                <p class="capability-desc">Ask to open specific sections of your dashboard directly.</p>
+                                <p class="text-sm font-semibold">Contextual Navigation</p>
+                                <p class="text-xs text-muted dark:text-mist-300">Ask to open specific sections of your dashboard directly.</p>
                             </li>
                             <li>
-                                <p class="capability-title">Document Querying</p>
-                                <p class="capability-desc">Request summaries or specific data from uploaded documents.</p>
+                                <p class="text-sm font-semibold">Document Querying</p>
+                                <p class="text-xs text-muted dark:text-mist-300">Request summaries or specific data from uploaded documents.</p>
                             </li>
                         </ul>
                     </section>
                 </div>
 
                 <!-- Recent voice sessions -->
-                <section class="info-card mt-5">
-                    <div class="panel-head-row">
-                        <h2 class="panel-title-sm">
+                <section class="mt-5 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-sm font-bold">
                             Recent Voice Sessions
                         </h2>
-                        <button type="button" id="viewAllSessions" class="view-all-link">View All</button>
+                        <button type="button" id="viewAllSessions" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">View All</button>
                     </div>
 
-                    <ul id="sessionList" class="divided-list"></ul>
+                    <ul id="sessionList" class="mt-3 divide-y divide-black/5 dark:divide-white/10"></ul>
                 </section>
 
-                <p class="footer-prompt">
-                    Prefer a person? <a href="/pages/app/support.html" class="footer-prompt-link">Go to the Help Center &rarr;</a>
+                <p class="mt-5 text-center text-xs text-muted dark:text-mist-300">
+                    Prefer a person? <a href="/pages/app/support.html" class="font-semibold text-brand dark:text-accent-400 hover:underline">Go to the Help Center &rarr;</a>
                 </p>
             </main>
         </div>
     </div>
 
-    <div id="toast" class="toast">
+    <div id="toast"
+        class="pointer-events-none fixed bottom-24 left-1/2 z-50 max-w-[92vw] -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
     </div>
      <!-- FOOTER mobile -->
-    <footer class="footer-mobile">
-        <div class="footer-mobile-inner">
-            <div class="footer-mobile-stack">
-                <p class="footer-brand">M3ak Morocco</p>
-                <nav class="footer-nav">
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Legal Notice</a>
+    <footer class="mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden">
+        <div class="mx-auto max-w-[1280px] px-6 py-8">
+            <div class="flex flex-col items-center gap-4 text-center">
+                <p class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>
+                <nav class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300">
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Terms of Service</a>
+                    <a href="#" class="hover:text-brand dark:hover:text-accent-400">Legal Notice</a>
                 </nav>
-                <p class="footer-copyright">© 2026 M3ak Morocco. All rights reserved.</p>
+                <p class="text-xs text-muted dark:text-mist-300">© 2026 M3ak Morocco. All rights reserved.</p>
             </div>
         </div>
     </footer>

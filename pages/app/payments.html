@@ -63,6 +63,7 @@
             align-items: center;
             gap: .75rem;
             border-radius: .75rem;
+            border: 1px solid transparent;
             padding: .625rem .75rem;
             font-size: .875rem;
             font-weight: 500;
@@ -194,8 +195,8 @@
         .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
         .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
         .sidebar-foot     { @apply mt-auto space-y-1 pt-6; }
-        .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
-        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
+        .nav-item--active { @apply flex items-center gap-3 rounded-xl border border-transparent bg-brand dark:bg-brand px-3 py-2.5 text-sm font-medium text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
+        .nav-item--danger { @apply flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-medium text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40; }
         .nav-item-icon-sm  { @apply size-[18px] object-contain; }
         .nav-item-icon-svg { @apply size-[18px] shrink-0; }
 
