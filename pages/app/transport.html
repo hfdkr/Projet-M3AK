@@ -317,7 +317,7 @@
         .map-frame { @apply relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none; }
         .alert-desktop { @apply absolute bottom-6 left-1/2 z-10 hidden w-[26rem] max-w-[calc(100%-3rem)] -translate-x-1/2 lg:block; }
 
-        .tracking-panel { @apply relative -mt-5 rounded-t-3xl bg-canvas dark:bg-night-900 px-4 pt-4 lg:mt-0 lg:w-[22rem] lg:shrink-0 lg:overflow-y-auto lg:rounded-none lg:border-l lg:border-black/5 lg:bg-canvas lg:px-5 lg:py-6; }
+        .tracking-panel { @apply relative -mt-5 rounded-t-3xl bg-canvas dark:bg-night-900 px-4 pt-4 pb-28 lg:mt-0 lg:w-[22rem] lg:shrink-0 lg:overflow-y-auto lg:rounded-none lg:border-l lg:border-black/5 lg:bg-canvas lg:px-5 lg:py-6; }
         .drag-handle { @apply mx-auto mb-4 block h-1.5 w-12 rounded-full bg-black/15 dark:bg-white/20 lg:hidden; }
         .tracking-title { @apply text-lg font-extrabold text-brand dark:text-accent-400 lg:text-base lg:text-ink; }
         .tracking-sub { @apply mt-1 text-xs text-muted dark:text-mist-300; }
@@ -396,8 +396,7 @@
                     <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
                     <span class="nav-label">My Space</span>
                 </a>
-                <a href="/pages/app/transport.html" aria-current="page"
-                    class="nav-item--active">
+                <a href="/pages/app/transport.html" aria-current="page" class="nav-item--active">
                     <img src="/assets/icon-bar-left/transport.png" alt="Transport" class="nav-icon"
                         style="filter:brightness(0) invert(1)" />
                     <span class="nav-label">Transport</span>
@@ -429,8 +428,7 @@
             </nav>
 
             <div class="sidebar-foot">
-                <a href="/pages/app/emergence.html"
-                    class="nav-item--danger">
+                <a href="/pages/app/emergence.html" class="nav-item--danger">
                     <span class="nav-icon-mask"
                         style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></span>
@@ -522,8 +520,7 @@
                             <img src="/assets/transport-icon/home.png" alt="Home" class="chip-icon" />Home
                         </button>
                         <button type="button" data-place="Office" class="chip">
-                            <img src="/assets/transport-icon/office.png" alt="Office"
-                                class="chip-icon" />Office
+                            <img src="/assets/transport-icon/office.png" alt="Office" class="chip-icon" />Office
                         </button>
                         <button type="button" data-place="Marina Mall" class="chip">
                             <img src="/assets/transport-icon/marina-mall.png" alt="Marina Mall"
