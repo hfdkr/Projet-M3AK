@@ -96,11 +96,11 @@
             opacity: .9;
         }
 
-        .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .verified-badge { @apply inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3 py-1.5 text-[11px] font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 md:gap-2 md:px-3.5 md:py-2 md:text-xs; }
 
         /* ---------- App top bar ---------- */
         .app-topbar       { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-topbar-inner { @apply flex h-14 items-center gap-3 px-3 md:h-16 md:gap-4 md:px-4 lg:px-6; }
         .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-brand-mark   { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
         .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
@@ -111,82 +111,82 @@
 
         /* ---------- Cards & badges ---------- */
         .card             { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
-        .icon-badge       { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
-        .info-pill-blue   { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400; }
+        .icon-badge       { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400 md:size-10; }
+        .info-pill-blue   { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-2.5 py-0.5 text-[10px] font-semibold text-blue-700 dark:text-blue-400 md:px-3 md:py-1 md:text-[11px]; }
         .status-pill      { @apply rounded-md px-2 py-0.5 text-[10px] font-bold; }
         .table-action-link{ @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
 
         /* ---------- Service links grid ---------- */
-        .service-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
-        .service-link  { @apply mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400; }
+        .service-card { @apply rounded-2xl bg-white dark:bg-night-800 p-3.5 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md md:p-4; }
+        .service-link  { @apply mt-2.5 inline-flex items-center gap-1 text-[11px] font-semibold text-brand dark:text-accent-400 md:mt-3 md:text-xs; }
 
         /* ---------- Hero gradient cards ---------- */
-        .hero-card        { @apply relative overflow-hidden rounded-2xl p-6 text-white lg:p-7; }
-        .hero-badge        { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold; }
-        .hero-btn-outline  { @apply rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10; }
-        .hero-btn-solid    { @apply flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold transition; }
+        .hero-card        { @apply relative overflow-hidden rounded-2xl p-4 text-white md:p-6 lg:p-7; }
+        .hero-badge        { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2 py-0.5 text-[9px] font-semibold md:px-2.5 md:py-1 md:text-[10px]; }
+        .hero-btn-outline  { @apply rounded-lg border border-white/40 px-3.5 py-1.5 text-[11px] font-semibold transition hover:bg-white/10 md:px-4 md:py-2 md:text-xs; }
+        .hero-btn-solid    { @apply flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-[11px] font-semibold transition md:px-4 md:py-2 md:text-xs; }
 
         /* ---------- Academic calendar list ---------- */
-        .calendar-item { @apply flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3; }
-        .calendar-date  { @apply grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10; }
-        .calendar-badge      { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-bold text-muted dark:text-mist-300; }
-        .calendar-card-title { @apply flex items-center gap-2 text-sm font-bold; }
+        .calendar-item { @apply flex items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 p-2.5 md:gap-3 md:p-3; }
+        .calendar-date  { @apply grid w-11 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1 ring-1 ring-black/5 dark:ring-white/10 md:w-12 md:py-1.5; }
+        .calendar-badge      { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[9px] font-bold text-muted dark:text-mist-300 md:text-[10px]; }
+        .calendar-card-title { @apply flex items-center gap-1.5 text-[13px] font-bold md:gap-2 md:text-sm; }
         .calendar-month      { @apply text-[9px] font-bold uppercase tracking-wider; }
-        .calendar-day        { @apply text-lg font-extrabold leading-none; }
-        .calendar-event-title { @apply truncate text-sm font-semibold; }
-        .calendar-event-sub   { @apply mt-0.5 truncate text-[11px] text-muted dark:text-mist-300; }
-        .btn-sync        { @apply mt-4 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-2 text-xs font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700; }
-        .section-title    { @apply text-base font-extrabold; }
-        .section-subtitle { @apply mt-1 text-xs text-muted dark:text-mist-300; }
-        .table-showing-badge { @apply rounded-md bg-canvas dark:bg-night-700 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300; }
-        .table-header-row { @apply text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300; }
-        .table-th       { @apply px-4 py-3; }
-        .table-th-right { @apply px-4 py-3 text-right; }
-        .table-cell        { @apply px-4 py-3.5 text-muted dark:text-mist-300; }
-        .table-cell-ref     { @apply flex items-center gap-2 px-4 py-3.5 font-semibold; }
-        .table-cell-status  { @apply px-4 py-3.5; }
-        .table-cell-action  { @apply px-4 py-3.5 text-right; }
+        .calendar-day        { @apply text-base font-extrabold leading-none md:text-lg; }
+        .calendar-event-title { @apply truncate text-[13px] font-semibold md:text-sm; }
+        .calendar-event-sub   { @apply mt-0.5 truncate text-[10px] text-muted dark:text-mist-300 md:text-[11px]; }
+        .btn-sync        { @apply mt-3 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-1.5 text-[11px] font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700 md:mt-4 md:py-2 md:text-xs; }
+        .section-title    { @apply text-[15px] font-extrabold md:text-base; }
+        .section-subtitle { @apply mt-1 text-[11px] leading-snug text-muted dark:text-mist-300 md:text-xs md:leading-normal; }
+        .table-showing-badge { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-semibold text-muted dark:text-mist-300 md:px-2.5 md:py-1 md:text-[11px]; }
+        .table-header-row { @apply text-[10px] font-bold uppercase tracking-wider text-muted dark:text-mist-300 md:text-[11px]; }
+        .table-th       { @apply px-3 py-2.5 md:px-4 md:py-3; }
+        .table-th-right { @apply px-3 py-2.5 text-right md:px-4 md:py-3; }
+        .table-cell        { @apply px-3 py-3 text-muted dark:text-mist-300 md:px-4 md:py-3.5; }
+        .table-cell-ref     { @apply flex items-center gap-2 px-3 py-3 font-semibold md:px-4 md:py-3.5; }
+        .table-cell-status  { @apply px-3 py-3 md:px-4 md:py-3.5; }
+        .table-cell-action  { @apply px-3 py-3 text-right md:px-4 md:py-3.5; }
         .table-doc-icon { @apply size-4 shrink-0 text-muted dark:text-mist-300; }
-        .disclaimer      { @apply mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-canvas dark:bg-night-700 p-4; }
-        .disclaimer-text { @apply flex items-start gap-2.5 max-w-xl text-xs text-muted dark:text-mist-300; }
-        .disclaimer-ref  { @apply text-[11px] font-semibold text-muted dark:text-mist-300; }
-        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
-        .footer-mobile   { @apply mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden; }
-        .footer-brand    { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
-        .footer-nav      { @apply flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300; }
+        .disclaimer      { @apply mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-canvas dark:bg-night-700 p-3.5 md:mt-6 md:gap-4 md:p-4; }
+        .disclaimer-text { @apply flex items-start gap-2 max-w-xl text-[11px] leading-snug text-muted dark:text-mist-300 md:gap-2.5 md:text-xs md:leading-normal; }
+        .disclaimer-ref  { @apply text-[10px] font-semibold text-muted dark:text-mist-300 md:text-[11px]; }
+        .toast { @apply pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-4 py-2.5 text-center text-[13px] font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 md:bottom-8 md:px-5 md:py-3 md:text-sm; }
+        .footer-mobile   { @apply mt-6 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors md:mt-8 lg:hidden; }
+        .footer-brand    { @apply text-base font-extrabold text-brand dark:text-accent-400 md:text-lg; }
+        .footer-nav      { @apply flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px] text-muted dark:text-mist-300 md:gap-x-5 md:text-xs; }
         .footer-link     { @apply hover:text-brand dark:hover:text-accent-400; }
-        .footer-copyright{ @apply text-xs text-muted dark:text-mist-300; }
+        .footer-copyright{ @apply text-[11px] text-muted dark:text-mist-300 md:text-xs; }
         .page-body   { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
-        .footer-wrap  { @apply mx-auto max-w-[1280px] px-6 py-8; }
-        .footer-inner { @apply flex flex-col items-center gap-4 text-center; }
+        .footer-wrap  { @apply mx-auto max-w-[1280px] px-4 py-6 md:px-6 md:py-8; }
+        .footer-inner { @apply flex flex-col items-center gap-3 text-center md:gap-4; }
         .calendar-card-head { @apply flex items-center justify-between gap-2; }
-        .hero-card-head     { @apply flex items-start justify-between gap-3; }
+        .hero-card-head     { @apply flex items-start justify-between gap-2 md:gap-3; }
         .logo-img    { @apply size-full object-contain; }
-        .data-table  { @apply w-full min-w-[720px] text-left text-sm; }
+        .data-table  { @apply w-full min-w-[620px] text-left text-[13px] md:min-w-[720px] md:text-sm; }
         .header-actions { @apply ml-auto flex items-center gap-1.5; }
-        .letterhead-card { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 flex flex-wrap items-start justify-between gap-4 p-4; }
-        .title-row    { @apply flex flex-wrap items-start justify-between gap-3; }
+        .letterhead-card { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 flex flex-wrap items-start justify-between gap-3 p-3 md:gap-4 md:p-4; }
+        .title-row    { @apply flex flex-wrap items-start justify-between gap-2 md:gap-3; }
         .progress-head{ @apply flex flex-wrap items-center justify-between gap-2; }
-        .section-head { @apply flex flex-wrap items-end justify-between gap-3; }
-        .title-block  { @apply mt-3 flex flex-wrap items-start justify-between gap-4; }
+        .section-head { @apply flex flex-wrap items-end justify-between gap-2 md:gap-3; }
+        .title-block  { @apply mt-3 flex flex-wrap items-start justify-between gap-3 md:gap-4; }
         .data-table-body { @apply divide-y divide-black/5 dark:divide-night-600; }
-        .info-row       { @apply flex items-center gap-3; }
+        .info-row       { @apply flex items-center gap-2.5 md:gap-3; }
         .info-row-text  { @apply min-w-0; }
-        .letterhead-row { @apply flex items-start gap-3; }
+        .letterhead-row { @apply flex items-start gap-2.5 md:gap-3; }
         .title-actions  { @apply flex flex-wrap gap-2 lg:shrink-0; }
-        .app-main       { @apply min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
-        .service-desc   { @apply mt-1 text-xs leading-relaxed text-muted dark:text-mist-300; }
-        .service-title  { @apply mt-3 text-sm font-bold; }
-        .profile-calendar-grid { @apply mt-4 grid gap-4 lg:grid-cols-3 lg:gap-5; }
-        .service-grid   { @apply mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4; }
-        .hero-actions   { @apply mt-5 flex flex-wrap gap-2; }
-        .hero-grid      { @apply mt-5 grid gap-4 lg:grid-cols-2; }
+        .app-main       { @apply min-w-0 flex-1 px-3 pb-5 pt-4 md:px-4 md:pb-6 md:pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
+        .service-desc   { @apply mt-1 text-[11px] leading-snug text-muted dark:text-mist-300 md:text-xs md:leading-relaxed; }
+        .service-title  { @apply mt-2.5 text-[13px] font-bold md:mt-3 md:text-sm; }
+        .profile-calendar-grid { @apply mt-3 grid gap-3 md:mt-4 md:gap-4 lg:grid-cols-3 lg:gap-5; }
+        .service-grid   { @apply mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 md:mt-4 md:gap-3 lg:grid-cols-4; }
+        .hero-actions   { @apply mt-4 flex flex-wrap gap-2 md:mt-5; }
+        .hero-grid      { @apply mt-4 grid gap-3 md:mt-5 md:gap-4 lg:grid-cols-2; }
         .sidebar-foot   { @apply mt-auto space-y-1 pt-6; }
         .hero-dot       { @apply size-1.5 rounded-full bg-accent-400; }
-        .menu-icon      { @apply size-6 lg:hidden object-contain; }
+        .menu-icon      { @apply size-5 md:size-6 lg:hidden object-contain; }
 
         /* ---------- Header brand / notifications ---------- */
-        .brand-link { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .brand-link { @apply text-lg font-extrabold tracking-tight text-brand dark:text-accent-400 md:text-xl lg:w-52 lg:text-2xl; }
         .notif-dot  { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
 
         /* ---------- Sidebar head / danger link ---------- */
@@ -197,35 +197,35 @@
         .nav-item-icon-svg{ @apply size-[18px] shrink-0; }
 
         /* ---------- Letterhead / page title ---------- */
-        .letterhead-title { @apply text-sm font-extrabold; }
-        .letterhead-sub    { @apply text-xs text-muted dark:text-mist-300; }
-        .letterhead-legal  { @apply mt-1.5 text-[11px] text-muted dark:text-mist-300; }
-        .page-title    { @apply text-2xl font-extrabold tracking-tight lg:text-[26px]; }
-        .page-subtitle { @apply mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300; }
-        .btn-outline { @apply flex items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700; }
-        .btn-primary { @apply flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark; }
+        .letterhead-title { @apply text-[13px] font-extrabold md:text-sm; }
+        .letterhead-sub    { @apply text-[11px] leading-snug text-muted dark:text-mist-300 md:text-xs md:leading-normal; }
+        .letterhead-legal  { @apply mt-1 text-[10px] text-muted dark:text-mist-300 md:mt-1.5 md:text-[11px]; }
+        .page-title    { @apply text-xl font-extrabold tracking-tight md:text-2xl lg:text-[26px]; }
+        .page-subtitle { @apply mt-1 max-w-lg text-[13px] leading-snug text-muted dark:text-mist-300 md:mt-1.5 md:text-sm md:leading-normal; }
+        .btn-outline { @apply flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-1.5 text-[11px] font-semibold transition hover:bg-canvas dark:hover:bg-night-700 md:gap-2 md:px-4 md:py-2 md:text-xs; }
+        .btn-primary { @apply flex items-center gap-1.5 rounded-full bg-brand px-3.5 py-1.5 text-[11px] font-semibold text-white transition hover:bg-brand-dark md:gap-2 md:px-4 md:py-2 md:text-xs; }
 
         /* ---------- Hero card text ---------- */
-        .hero-label   { @apply text-[11px] font-semibold uppercase tracking-[1px] text-white/70; }
-        .hero-heading { @apply mt-3 text-lg font-extrabold; }
-        .hero-text    { @apply mt-2 text-sm text-white/80; }
+        .hero-label   { @apply text-[10px] font-semibold uppercase tracking-[1px] text-white/70 md:text-[11px]; }
+        .hero-heading { @apply mt-2.5 text-base font-extrabold leading-snug md:mt-3 md:text-lg md:leading-normal; }
+        .hero-text    { @apply mt-1.5 text-[13px] leading-snug text-white/80 md:mt-2 md:text-sm md:leading-normal; }
         .hero-stat-label { @apply text-[10px] font-semibold uppercase tracking-wider text-white/60; }
-        .hero-stat-value { @apply text-xl font-extrabold; }
+        .hero-stat-value { @apply text-lg font-extrabold md:text-xl; }
 
         /* ---------- Student profile card ---------- */
-        .profile-avatar     { @apply grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[11px] font-bold text-brand dark:text-accent-400; }
-        .profile-name       { @apply flex items-center gap-2 text-sm font-bold; }
-        .profile-status     { @apply rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400; }
-        .profile-meta       { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
-        .stat-row     { @apply mt-5 grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center; }
-        .stat-value   { @apply text-base font-extrabold lg:text-2xl; }
-        .stat-label   { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
-        .progress-block { @apply mt-5 border-t border-black/5 dark:border-white/10 pt-5; }
-        .progress-title  { @apply text-xs font-bold; }
-        .progress-status { @apply text-[11px] font-semibold text-brand dark:text-accent-400; }
-        .progress-track { @apply mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10; }
+        .profile-avatar     { @apply grid size-8 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[10px] font-bold text-brand dark:text-accent-400 md:size-9 md:text-[11px]; }
+        .profile-name       { @apply flex items-center gap-1.5 text-[13px] font-bold md:gap-2 md:text-sm; }
+        .profile-status     { @apply rounded-md bg-brand-soft dark:bg-accent-400/15 px-1.5 py-0.5 text-[9px] font-bold text-brand dark:text-accent-400 md:px-2 md:text-[10px]; }
+        .profile-meta       { @apply mt-0.5 text-[10px] leading-snug text-muted dark:text-mist-300 md:text-[11px] md:leading-normal; }
+        .stat-row     { @apply mt-4 grid grid-cols-3 gap-1.5 border-t border-black/5 dark:border-white/10 pt-4 text-center md:mt-5 md:gap-2 md:pt-5; }
+        .stat-value   { @apply text-sm font-extrabold md:text-base lg:text-2xl; }
+        .stat-label   { @apply mt-0.5 text-[10px] leading-snug text-muted dark:text-mist-300 md:text-[11px]; }
+        .progress-block { @apply mt-4 border-t border-black/5 dark:border-white/10 pt-4 md:mt-5 md:pt-5; }
+        .progress-title  { @apply text-[11px] font-bold md:text-xs; }
+        .progress-status { @apply text-[10px] font-semibold text-brand dark:text-accent-400 md:text-[11px]; }
+        .progress-track { @apply mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10 md:mt-2.5; }
         .progress-fill  { @apply block h-full w-3/4 rounded-full bg-brand dark:bg-accent-400; }
-        .progress-steps { @apply mt-2 flex flex-wrap justify-between gap-x-3 gap-y-1 text-[10px] font-semibold text-muted dark:text-mist-300; }
+        .progress-steps { @apply mt-2 flex flex-wrap justify-between gap-x-2 gap-y-1 text-[9px] font-semibold leading-snug text-muted dark:text-mist-300 md:gap-x-3 md:text-[10px]; }
         .progress-step--current { @apply text-ink dark:text-white; }
 
         /* ---------- Shell bits ---------- */
@@ -243,7 +243,7 @@
         .icon-xs        { @apply size-3.5; }
         .icon-xs-fixed  { @apply size-3.5 shrink-0; }
         .icon-sm        { @apply size-4; }
-        .icon-md        { @apply size-5; }
+        .icon-md        { @apply size-[18px] md:size-5; }
         .disclaimer-icon { @apply mt-0.5 size-4 shrink-0; }
 
         /* ---------- Letterhead ---------- */
@@ -251,28 +251,28 @@
         .live-dot       { @apply relative flex size-3; }
         .live-dot-ping  { @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75; }
         .live-dot-core  { @apply relative inline-flex size-3 rounded-full bg-brand; }
-        .info-pill-blue--spaced { @apply mt-4; }
+        .info-pill-blue--spaced { @apply mt-3 md:mt-4; }
 
         /* ---------- Hero cards ---------- */
         .hero-card--green { @apply bg-gradient-to-br from-brand to-brand-dark; }
         .hero-card--blue  { @apply bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]; }
-        .hero-stat-block  { @apply mt-5; }
+        .hero-stat-block  { @apply mt-4 md:mt-5; }
         .hero-btn-solid--green { @apply text-brand hover:bg-brand-soft; }
         .hero-btn-solid--blue  { @apply text-[#1E3A8A] hover:bg-blue-50; }
 
         /* ---------- Cards / sections ---------- */
         /* min-w-0: these are grid items whose intrinsic minimum would otherwise be
            driven by the nested `1fr` .stat-row, blowing out the auto column track. */
-        .profile-card  { @apply min-w-0 p-5 lg:col-span-2; }
-        .calendar-card { @apply min-w-0 p-5; }
-        .table-card    { @apply mt-4 overflow-x-auto; }
-        .section-block { @apply mt-10; }
+        .profile-card  { @apply min-w-0 p-4 md:p-5 lg:col-span-2; }
+        .calendar-card { @apply min-w-0 p-4 md:p-5; }
+        .table-card    { @apply mt-3 overflow-x-auto md:mt-4; }
+        .section-block { @apply mt-7 md:mt-10; }
         .stat-cell           { @apply min-w-0; }
         .stat-cell--divided  { @apply border-x border-black/5 dark:border-white/10; }
         .stat-value--accent  { @apply text-brand dark:text-accent-400; }
 
         /* ---------- Calendar list ---------- */
-        .calendar-list  { @apply mt-4 space-y-2.5; }
+        .calendar-list  { @apply mt-3 space-y-2 md:mt-4 md:space-y-2.5; }
         .calendar-event { @apply min-w-0 flex-1; }
         .calendar-month--red   { @apply text-danger; }
         .calendar-month--blue  { @apply text-blue-600 dark:text-blue-400; }
