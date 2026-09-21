@@ -131,6 +131,8 @@
         .faq-item    { @apply p-5; }
         .faq-summary { @apply flex cursor-pointer list-none items-center justify-between text-sm font-semibold [&::-webkit-details-marker]:hidden; }
         .faq-chevron { @apply size-4 shrink-0 object-contain transition group-open:rotate-180; }
+        .faq-chevron--light { @apply dark:hidden; }
+        .faq-chevron--dark  { @apply hidden dark:block; }
         .faq-answer  { @apply mt-3 text-sm leading-relaxed text-muted dark:text-mist-300; }
 
         .still-help      { @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark dark:from-night-700 dark:to-night-800 p-7 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-10; }
@@ -464,7 +466,8 @@
                     <details class="faq-item group">
                         <summary class="faq-summary">
                             How do I verify my Moroccan ID?
-                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron">
+                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron faq-chevron--light">
+                            <img src="/assets/support-image/Icon-down-white.svg" alt="" class="faq-chevron faq-chevron--dark">
                         </summary>
                         <p class="faq-answer">
                             Verification is simple. Navigate to "Identity" in your account settings, then follow the
@@ -474,7 +477,8 @@
                     <details class="faq-item group">
                         <summary class="faq-summary">
                             What happens if I lose my phone?
-                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron">
+                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron faq-chevron--light">
+                            <img src="/assets/support-image/Icon-down-white.svg" alt="" class="faq-chevron faq-chevron--dark">
                         </summary>
                         <p class="faq-answer">
                             You can recover your account using your registered email address. From the log in page,
@@ -484,7 +488,8 @@
                     <details class="faq-item group">
                         <summary class="faq-summary">
                             Is my biometric data secure?
-                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron">
+                            <img src="/assets/support-image/drop-down.png" alt="" class="faq-chevron faq-chevron--light">
+                            <img src="/assets/support-image/Icon-down-white.svg" alt="" class="faq-chevron faq-chevron--dark">
                         </summary>
                         <p class="faq-answer">
                             Yes. All biometric data is encrypted end-to-end and stored under Kingdom of Morocco data
