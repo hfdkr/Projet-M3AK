@@ -54,10 +54,6 @@
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
-        html, body {
-            overflow-x: hidden;
-        }
-
         body {
             -webkit-font-smoothing: antialiased;
         }
@@ -100,11 +96,11 @@
             opacity: .9;
         }
 
-        .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .verified-badge { @apply inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3 py-1.5 text-[11px] font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 md:gap-2 md:px-3.5 md:py-2 md:text-xs; }
 
         /* ---------- App top bar ---------- */
         .app-topbar       { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-topbar-inner { @apply flex h-14 items-center gap-3 px-3 md:h-16 md:gap-4 md:px-4 lg:px-6; }
         .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-brand-mark   { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
         .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
@@ -115,81 +111,82 @@
 
         /* ---------- Cards & badges ---------- */
         .card             { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10; }
-        .icon-badge       { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
-        .info-pill-blue   { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-3 py-1 text-[11px] font-semibold text-blue-700 dark:text-blue-400; }
+        .icon-badge       { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400 md:size-10; }
+        .info-pill-blue   { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 px-2.5 py-0.5 text-[10px] font-semibold text-blue-700 dark:text-blue-400 md:px-3 md:py-1 md:text-[11px]; }
         .status-pill      { @apply rounded-md px-2 py-0.5 text-[10px] font-bold; }
         .table-action-link{ @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
 
         /* ---------- Service links grid ---------- */
-        .service-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
-        .service-link  { @apply mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand dark:text-accent-400; }
+        .service-card { @apply rounded-2xl bg-white dark:bg-night-800 p-3.5 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md md:p-4; }
+        .service-link  { @apply mt-2.5 inline-flex items-center gap-1 text-[11px] font-semibold text-brand dark:text-accent-400 md:mt-3 md:text-xs; }
 
         /* ---------- Hero gradient cards ---------- */
-        .hero-card        { @apply relative overflow-hidden rounded-2xl p-6 text-white lg:p-7; }
-        .hero-badge        { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-semibold; }
-        .hero-btn-outline  { @apply rounded-lg border border-white/40 px-4 py-2 text-xs font-semibold transition hover:bg-white/10; }
-        .hero-btn-solid    { @apply flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-xs font-semibold transition; }
+        .hero-card        { @apply relative overflow-hidden rounded-2xl p-4 text-white md:p-6 lg:p-7; }
+        .hero-badge        { @apply inline-flex items-center gap-1.5 rounded-full bg-white/20 px-2 py-0.5 text-[9px] font-semibold md:px-2.5 md:py-1 md:text-[10px]; }
+        .hero-btn-outline  { @apply rounded-lg border border-white/40 px-3.5 py-1.5 text-[11px] font-semibold transition hover:bg-white/10 md:px-4 md:py-2 md:text-xs; }
+        .hero-btn-solid    { @apply flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-[11px] font-semibold transition md:px-4 md:py-2 md:text-xs; }
 
         /* ---------- Academic calendar list ---------- */
-        .calendar-item { @apply flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3; }
-        .calendar-date  { @apply grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10; }
-        .calendar-badge      { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-bold text-muted dark:text-mist-300; }
-        .calendar-card-title { @apply flex items-center gap-2 text-sm font-bold; }
+        .calendar-item { @apply flex items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 p-2.5 md:gap-3 md:p-3; }
+        .calendar-date  { @apply grid w-11 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1 ring-1 ring-black/5 dark:ring-white/10 md:w-12 md:py-1.5; }
+        .calendar-badge      { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[9px] font-bold text-muted dark:text-mist-300 md:text-[10px]; }
+        .calendar-card-title { @apply flex items-center gap-1.5 text-[13px] font-bold md:gap-2 md:text-sm; }
         .calendar-month      { @apply text-[9px] font-bold uppercase tracking-wider; }
-        .calendar-day        { @apply text-lg font-extrabold leading-none; }
-        .calendar-event-title { @apply truncate text-sm font-semibold; }
-        .calendar-event-sub   { @apply mt-0.5 truncate text-[11px] text-muted dark:text-mist-300; }
-        .btn-sync        { @apply mt-4 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-2 text-xs font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700; }
-        .section-title    { @apply text-base font-extrabold; }
-        .section-subtitle { @apply mt-1 text-xs text-muted dark:text-mist-300; }
-        .table-showing-badge { @apply rounded-md bg-canvas dark:bg-night-700 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300; }
-        .table-header-row { @apply text-[11px] font-bold uppercase tracking-wider text-muted dark:text-mist-300; }
-        .table-th       { @apply px-4 py-3; }
-        .table-th-right { @apply px-4 py-3 text-right; }
-        .table-cell        { @apply px-4 py-3.5 text-muted dark:text-mist-300; }
-        .table-cell-ref     { @apply flex items-center gap-2 px-4 py-3.5 font-semibold; }
-        .table-cell-status  { @apply px-4 py-3.5; }
-        .table-cell-action  { @apply px-4 py-3.5 text-right; }
+        .calendar-day        { @apply text-base font-extrabold leading-none md:text-lg; }
+        .calendar-event-title { @apply truncate text-[13px] font-semibold md:text-sm; }
+        .calendar-event-sub   { @apply mt-0.5 truncate text-[10px] text-muted dark:text-mist-300 md:text-[11px]; }
+        .btn-sync        { @apply mt-3 w-full rounded-lg border border-dashed border-brand-line dark:border-night-600 py-1.5 text-[11px] font-semibold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-night-700 md:mt-4 md:py-2 md:text-xs; }
+        .section-title    { @apply text-[15px] font-extrabold md:text-base; }
+        .section-subtitle { @apply mt-1 text-[11px] leading-snug text-muted dark:text-mist-300 md:text-xs md:leading-normal; }
+        .table-showing-badge { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-semibold text-muted dark:text-mist-300 md:px-2.5 md:py-1 md:text-[11px]; }
+        .table-header-row { @apply text-[10px] font-bold uppercase tracking-wider text-muted dark:text-mist-300 md:text-[11px]; }
+        .table-th       { @apply px-3 py-2.5 md:px-4 md:py-3; }
+        .table-th-right { @apply px-3 py-2.5 text-right md:px-4 md:py-3; }
+        .table-cell        { @apply px-3 py-3 text-muted dark:text-mist-300 md:px-4 md:py-3.5; }
+        .table-cell-ref     { @apply flex items-center gap-2 px-3 py-3 font-semibold md:px-4 md:py-3.5; }
+        .table-cell-status  { @apply px-3 py-3 md:px-4 md:py-3.5; }
+        .table-cell-action  { @apply px-3 py-3 text-right md:px-4 md:py-3.5; }
         .table-doc-icon { @apply size-4 shrink-0 text-muted dark:text-mist-300; }
-        .disclaimer      { @apply mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-canvas dark:bg-night-700 p-4; }
-        .disclaimer-text { @apply flex items-start gap-2.5 max-w-xl text-xs text-muted dark:text-mist-300; }
-        .disclaimer-ref  { @apply text-[11px] font-semibold text-muted dark:text-mist-300; }
-        .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
-        .footer-mobile   { @apply mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden; }
-        .footer-brand    { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
-        .footer-nav      { @apply flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-muted dark:text-mist-300; }
+        .disclaimer      { @apply mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-canvas dark:bg-night-700 p-3.5 md:mt-6 md:gap-4 md:p-4; }
+        .disclaimer-text { @apply flex items-start gap-2 max-w-xl text-[11px] leading-snug text-muted dark:text-mist-300 md:gap-2.5 md:text-xs md:leading-normal; }
+        .disclaimer-ref  { @apply text-[10px] font-semibold text-muted dark:text-mist-300 md:text-[11px]; }
+        .toast { @apply pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-4 py-2.5 text-center text-[13px] font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 md:bottom-8 md:px-5 md:py-3 md:text-sm; }
+        .footer-mobile   { @apply mt-6 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors md:mt-8 lg:hidden; }
+        .footer-brand    { @apply text-base font-extrabold text-brand dark:text-accent-400 md:text-lg; }
+        .footer-nav      { @apply flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px] text-muted dark:text-mist-300 md:gap-x-5 md:text-xs; }
         .footer-link     { @apply hover:text-brand dark:hover:text-accent-400; }
-        .footer-copyright{ @apply text-xs text-muted dark:text-mist-300; }
+        .footer-copyright{ @apply text-[11px] text-muted dark:text-mist-300 md:text-xs; }
         .page-body   { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
-        .footer-wrap  { @apply mx-auto max-w-[1280px] px-6 py-8; }
-        .footer-inner { @apply flex flex-col items-center gap-4 text-center; }
+        .footer-wrap  { @apply mx-auto max-w-[1280px] px-4 py-6 md:px-6 md:py-8; }
+        .footer-inner { @apply flex flex-col items-center gap-3 text-center md:gap-4; }
         .calendar-card-head { @apply flex items-center justify-between gap-2; }
-        .hero-card-head     { @apply flex items-start justify-between gap-3; }
+        .hero-card-head     { @apply flex items-start justify-between gap-2 md:gap-3; }
         .logo-img    { @apply size-full object-contain; }
-        .data-table  { @apply w-full min-w-[720px] text-left text-sm; }
+        .data-table  { @apply w-full min-w-[620px] text-left text-[13px] md:min-w-[720px] md:text-sm; }
         .header-actions { @apply ml-auto flex items-center gap-1.5; }
-        .letterhead-card { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 flex flex-wrap items-start justify-between gap-4 p-4; }
-        .title-row    { @apply flex flex-wrap items-start justify-between gap-3; }
+        .letterhead-card { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 flex flex-wrap items-start justify-between gap-3 p-3 md:gap-4 md:p-4; }
+        .title-row    { @apply flex flex-wrap items-start justify-between gap-2 md:gap-3; }
         .progress-head{ @apply flex flex-wrap items-center justify-between gap-2; }
-        .section-head { @apply flex flex-wrap items-end justify-between gap-3; }
-        .title-block  { @apply mt-3 flex flex-wrap items-start justify-between gap-4; }
+        .section-head { @apply flex flex-wrap items-end justify-between gap-2 md:gap-3; }
+        .title-block  { @apply mt-3 flex flex-wrap items-start justify-between gap-3 md:gap-4; }
         .data-table-body { @apply divide-y divide-black/5 dark:divide-night-600; }
-        .info-row       { @apply flex items-center gap-3; }
-        .letterhead-row { @apply flex items-start gap-3; }
-        .title-actions  { @apply flex shrink-0 flex-wrap gap-2; }
-        .app-main       { @apply min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
-        .service-desc   { @apply mt-1 text-xs leading-relaxed text-muted dark:text-mist-300; }
-        .service-title  { @apply mt-3 text-sm font-bold; }
-        .profile-calendar-grid { @apply mt-4 grid gap-4 lg:grid-cols-3 lg:gap-5; }
-        .service-grid   { @apply mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4; }
-        .hero-actions   { @apply mt-5 flex flex-wrap gap-2; }
-        .hero-grid      { @apply mt-5 grid gap-4 lg:grid-cols-2; }
+        .info-row       { @apply flex items-center gap-2.5 md:gap-3; }
+        .info-row-text  { @apply min-w-0; }
+        .letterhead-row { @apply flex items-start gap-2.5 md:gap-3; }
+        .title-actions  { @apply flex flex-wrap gap-2 lg:shrink-0; }
+        .app-main       { @apply min-w-0 flex-1 px-3 pb-5 pt-4 md:px-4 md:pb-6 md:pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
+        .service-desc   { @apply mt-1 text-[11px] leading-snug text-muted dark:text-mist-300 md:text-xs md:leading-relaxed; }
+        .service-title  { @apply mt-2.5 text-[13px] font-bold md:mt-3 md:text-sm; }
+        .profile-calendar-grid { @apply mt-3 grid gap-3 md:mt-4 md:gap-4 lg:grid-cols-3 lg:gap-5; }
+        .service-grid   { @apply mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 md:mt-4 md:gap-3 lg:grid-cols-4; }
+        .hero-actions   { @apply mt-4 flex flex-wrap gap-2 md:mt-5; }
+        .hero-grid      { @apply mt-4 grid gap-3 md:mt-5 md:gap-4 lg:grid-cols-2; }
         .sidebar-foot   { @apply mt-auto space-y-1 pt-6; }
         .hero-dot       { @apply size-1.5 rounded-full bg-accent-400; }
-        .menu-icon      { @apply size-6 lg:hidden object-contain; }
+        .menu-icon      { @apply size-5 md:size-6 lg:hidden object-contain; }
 
         /* ---------- Header brand / notifications ---------- */
-        .brand-link { @apply w-52 text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-2xl; }
+        .brand-link { @apply text-lg font-extrabold tracking-tight text-brand dark:text-accent-400 md:text-xl lg:w-52 lg:text-2xl; }
         .notif-dot  { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
 
         /* ---------- Sidebar head / danger link ---------- */
@@ -200,35 +197,91 @@
         .nav-item-icon-svg{ @apply size-[18px] shrink-0; }
 
         /* ---------- Letterhead / page title ---------- */
-        .letterhead-title { @apply text-sm font-extrabold; }
-        .letterhead-sub    { @apply text-xs text-muted dark:text-mist-300; }
-        .letterhead-legal  { @apply mt-1.5 text-[11px] text-muted dark:text-mist-300; }
-        .page-title    { @apply text-2xl font-extrabold tracking-tight lg:text-[26px]; }
-        .page-subtitle { @apply mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300; }
-        .btn-outline { @apply flex items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-4 py-2 text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700; }
-        .btn-primary { @apply flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-dark; }
+        .letterhead-title { @apply text-[13px] font-extrabold md:text-sm; }
+        .letterhead-sub    { @apply text-[11px] leading-snug text-muted dark:text-mist-300 md:text-xs md:leading-normal; }
+        .letterhead-legal  { @apply mt-1 text-[10px] text-muted dark:text-mist-300 md:mt-1.5 md:text-[11px]; }
+        .page-title    { @apply text-xl font-extrabold tracking-tight md:text-2xl lg:text-[26px]; }
+        .page-subtitle { @apply mt-1 max-w-lg text-[13px] leading-snug text-muted dark:text-mist-300 md:mt-1.5 md:text-sm md:leading-normal; }
+        .btn-outline { @apply flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-1.5 text-[11px] font-semibold transition hover:bg-canvas dark:hover:bg-night-700 md:gap-2 md:px-4 md:py-2 md:text-xs; }
+        .btn-primary { @apply flex items-center gap-1.5 rounded-full bg-brand px-3.5 py-1.5 text-[11px] font-semibold text-white transition hover:bg-brand-dark md:gap-2 md:px-4 md:py-2 md:text-xs; }
 
         /* ---------- Hero card text ---------- */
-        .hero-label   { @apply text-[11px] font-semibold uppercase tracking-[1px] text-white/70; }
-        .hero-heading { @apply mt-3 text-lg font-extrabold; }
-        .hero-text    { @apply mt-2 text-sm text-white/80; }
+        .hero-label   { @apply text-[10px] font-semibold uppercase tracking-[1px] text-white/70 md:text-[11px]; }
+        .hero-heading { @apply mt-2.5 text-base font-extrabold leading-snug md:mt-3 md:text-lg md:leading-normal; }
+        .hero-text    { @apply mt-1.5 text-[13px] leading-snug text-white/80 md:mt-2 md:text-sm md:leading-normal; }
         .hero-stat-label { @apply text-[10px] font-semibold uppercase tracking-wider text-white/60; }
-        .hero-stat-value { @apply text-xl font-extrabold; }
+        .hero-stat-value { @apply text-lg font-extrabold md:text-xl; }
 
         /* ---------- Student profile card ---------- */
-        .profile-avatar     { @apply grid size-9 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[11px] font-bold text-brand dark:text-accent-400; }
-        .profile-name       { @apply flex items-center gap-2 text-sm font-bold; }
-        .profile-status     { @apply rounded-md bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400; }
-        .profile-meta       { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
-        .stat-row     { @apply mt-5 grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center; }
-        .stat-value   { @apply text-base font-extrabold lg:text-2xl; }
-        .stat-label   { @apply mt-0.5 text-[11px] text-muted dark:text-mist-300; }
-        .progress-block { @apply mt-5 border-t border-black/5 dark:border-white/10 pt-5; }
-        .progress-title  { @apply text-xs font-bold; }
-        .progress-status { @apply text-[11px] font-semibold text-brand dark:text-accent-400; }
-        .progress-track { @apply mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10; }
+        .profile-avatar     { @apply grid size-8 shrink-0 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-[10px] font-bold text-brand dark:text-accent-400 md:size-9 md:text-[11px]; }
+        .profile-name       { @apply flex items-center gap-1.5 text-[13px] font-bold md:gap-2 md:text-sm; }
+        .profile-status     { @apply rounded-md bg-brand-soft dark:bg-accent-400/15 px-1.5 py-0.5 text-[9px] font-bold text-brand dark:text-accent-400 md:px-2 md:text-[10px]; }
+        .profile-meta       { @apply mt-0.5 text-[10px] leading-snug text-muted dark:text-mist-300 md:text-[11px] md:leading-normal; }
+        .stat-row     { @apply mt-4 grid grid-cols-3 gap-1.5 border-t border-black/5 dark:border-white/10 pt-4 text-center md:mt-5 md:gap-2 md:pt-5; }
+        .stat-value   { @apply text-sm font-extrabold md:text-base lg:text-2xl; }
+        .stat-label   { @apply mt-0.5 text-[10px] leading-snug text-muted dark:text-mist-300 md:text-[11px]; }
+        .progress-block { @apply mt-4 border-t border-black/5 dark:border-white/10 pt-4 md:mt-5 md:pt-5; }
+        .progress-title  { @apply text-[11px] font-bold md:text-xs; }
+        .progress-status { @apply text-[10px] font-semibold text-brand dark:text-accent-400 md:text-[11px]; }
+        .progress-track { @apply mt-2 h-1.5 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10 md:mt-2.5; }
         .progress-fill  { @apply block h-full w-3/4 rounded-full bg-brand dark:bg-accent-400; }
-        .progress-steps { @apply mt-2 flex flex-wrap justify-between gap-x-3 gap-y-1 text-[10px] font-semibold text-muted dark:text-mist-300; }
+        .progress-steps { @apply mt-2 flex flex-wrap justify-between gap-x-2 gap-y-1 text-[9px] font-semibold leading-snug text-muted dark:text-mist-300 md:gap-x-3 md:text-[10px]; }
+        .progress-step--current { @apply text-ink dark:text-white; }
+
+        /* ---------- Shell bits ---------- */
+        .app-shell       { @apply flex; }
+        .sidebar-top     { @apply mb-5 px-2; }
+        .sidebar-nav     { @apply space-y-0.5; }
+        .logo-img-light  { @apply size-full object-contain dark:hidden; }
+        .logo-img-dark   { @apply hidden size-full object-contain dark:block; }
+        .icon-img-sm     { @apply size-5 object-contain; }
+        .nav-icon-mask   { @apply size-[18px] shrink-0 bg-[#DC2626]; }
+        .nav-item--logout  { @apply text-danger; }
+        .nav-label--nowrap { @apply whitespace-nowrap; }
+
+        /* ---------- Shared icon sizes ---------- */
+        .icon-xs        { @apply size-3.5; }
+        .icon-xs-fixed  { @apply size-3.5 shrink-0; }
+        .icon-sm        { @apply size-4; }
+        .icon-md        { @apply size-[18px] md:size-5; }
+        .disclaimer-icon { @apply mt-0.5 size-4 shrink-0; }
+
+        /* ---------- Letterhead ---------- */
+        .letterhead-meta { @apply text-right; }
+        .live-dot       { @apply relative flex size-3; }
+        .live-dot-ping  { @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75; }
+        .live-dot-core  { @apply relative inline-flex size-3 rounded-full bg-brand; }
+        .info-pill-blue--spaced { @apply mt-3 md:mt-4; }
+
+        /* ---------- Hero cards ---------- */
+        .hero-card--green { @apply bg-gradient-to-br from-brand to-brand-dark; }
+        .hero-card--blue  { @apply bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]; }
+        .hero-stat-block  { @apply mt-4 md:mt-5; }
+        .hero-btn-solid--green { @apply text-brand hover:bg-brand-soft; }
+        .hero-btn-solid--blue  { @apply text-[#1E3A8A] hover:bg-blue-50; }
+
+        /* ---------- Cards / sections ---------- */
+        /* min-w-0: these are grid items whose intrinsic minimum would otherwise be
+           driven by the nested `1fr` .stat-row, blowing out the auto column track. */
+        .profile-card  { @apply min-w-0 p-4 md:p-5 lg:col-span-2; }
+        .calendar-card { @apply min-w-0 p-4 md:p-5; }
+        .table-card    { @apply mt-3 overflow-x-auto md:mt-4; }
+        .section-block { @apply mt-7 md:mt-10; }
+        .stat-cell           { @apply min-w-0; }
+        .stat-cell--divided  { @apply border-x border-black/5 dark:border-white/10; }
+        .stat-value--accent  { @apply text-brand dark:text-accent-400; }
+
+        /* ---------- Calendar list ---------- */
+        .calendar-list  { @apply mt-3 space-y-2 md:mt-4 md:space-y-2.5; }
+        .calendar-event { @apply min-w-0 flex-1; }
+        .calendar-month--red   { @apply text-danger; }
+        .calendar-month--blue  { @apply text-blue-600 dark:text-blue-400; }
+        .calendar-month--amber { @apply text-amber-600 dark:text-amber-400; }
+
+        /* ---------- Status pills ---------- */
+        .status-pill--success { @apply bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .status-pill--info    { @apply bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400; }
+        .status-pill--warning { @apply bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400; }
 
         .tab {
             display: flex;
@@ -321,8 +374,8 @@
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
             </button>
             <span class="app-brand-mark">
-                <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img dark:hidden">
-                <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden logo-img dark:block">
+                <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+                <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
             </span>
 
             <a href="/pages/app/education.html" class="brand-link">M3ak
@@ -340,7 +393,7 @@
 
                 <button type="button" class="app-icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
+                    <img src="/assets/images/notification.png" alt="Notifications" class="icon-img-sm" />
                     <span class="notif-dot"></span>
                 </button>
 
@@ -352,20 +405,20 @@
         </div>
     </header>
 
-    <div class="flex">
+    <div class="app-shell">
 
         <!-- ══════════ SIDEBAR / DRAWER ══════════ -->
         <div id="scrim" class="app-scrim hidden"></div>
 
         <aside id="sidebar" class="app-sidebar -translate-x-full">
-            <div class="mb-5 px-2 sidebar-head">
+            <div class="sidebar-top sidebar-head">
                 <div class="sidebar-text">
                     <p class="sidebar-title">M3ak Morocco</p>
                     <p class="sidebar-sub">Citizen Services Portal</p>
                 </div>
             </div>
 
-            <nav class="space-y-0.5">
+            <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/icon-bar-left/my-space.png" alt="" class="nav-icon" />
                     <span class="nav-label">My Space</span>
@@ -403,10 +456,10 @@
 
             <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html" class="nav-item--danger">
-                    <span class="size-[18px] shrink-0 bg-[#DC2626]"
+                    <span class="nav-icon-mask"
                         style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></span>
-                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+                    <span class="nav-label nav-label--nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/icon-bar-left/help-center.png" alt="" class="nav-item-icon-sm" />
@@ -420,7 +473,7 @@
                     </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
-                <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
+                <a href="/pages/auth/login.html" class="nav-item nav-item--logout" data-action="logout">
                     <img src="/assets/icon-bar-left/Logout.png" alt="" class="nav-item-icon-sm" />
                     <span class="nav-label">Logout</span>
                 </a>
@@ -442,12 +495,11 @@
                             Sports · MESRSI</p>
                     </div>
                 </div>
-                <div class="text-right">
+                <div class="letterhead-meta">
                     <span class="verified-badge">
-                        <span class="relative flex size-3">
-                            <span
-                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75"></span>
-                            <span class="relative inline-flex size-3 rounded-full bg-brand"></span>
+                        <span class="live-dot">
+                            <span class="live-dot-ping"></span>
+                            <span class="live-dot-core"></span>
                         </span>
                         Unified Massar &amp; Minhaty National Portal
                     </span>
@@ -456,7 +508,7 @@
                 </div>
             </div>
 
-            <span class="info-pill-blue mt-4">
+            <span class="info-pill-blue info-pill-blue--spaced">
                 Citizen Space · National &amp; Higher Education
             </span>
 
@@ -474,14 +526,14 @@
                     <button type="button" data-demo-action="Preparing your Baccalaureate certificate…"
                         class="btn-outline">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                            stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                             <path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" />
                         </svg>
                         Baccalaureate Certificate
                     </button>
                     <button type="button" data-demo-action="Starting a new dossier…" class="btn-primary">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                            stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                             <path d="M12 5v14M5 12h14" />
                         </svg>
                         New Dossier
@@ -492,7 +544,7 @@
             <!-- HERO CARDS -->
             <div class="hero-grid">
 
-                <section class="hero-card bg-gradient-to-br from-brand to-brand-dark">
+                <section class="hero-card hero-card--green">
                     <div class="hero-card-head">
                         <p class="hero-label">Session 2026/2027 ·
                             Open</p>
@@ -505,7 +557,7 @@
                         Direct application &amp; automated eligibility tracking for higher education grants up to 6,334
                         MAD/year, indexed with the Moroccan Social Register (RSU).
                     </p>
-                    <div class="mt-5">
+                    <div class="hero-stat-block">
                         <p class="hero-stat-label">Filing deadline</p>
                         <p class="hero-stat-value">31 July 2027</p>
                     </div>
@@ -514,17 +566,17 @@
                             class="hero-btn-outline">Eligibility
                             Criteria</button>
                         <button type="button" data-demo-action="Opening the Minhaty application…"
-                            class="hero-btn-solid text-brand hover:bg-brand-soft">
+                            class="hero-btn-solid hero-btn-solid--green">
                             Check Eligibility &amp; Apply
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </button>
                     </div>
                 </section>
 
-                <section class="hero-card bg-gradient-to-br from-[#2E6BF2] to-[#1E3A8A]">
+                <section class="hero-card hero-card--blue">
                     <div class="hero-card-head">
                         <p class="hero-label">School Year
                             2026–2027</p>
@@ -537,7 +589,7 @@
                         Official school transcripts, continuous assessments, national baccalaureate tracking, and
                         automated university guidance matching.
                     </p>
-                    <div class="mt-5">
+                    <div class="hero-stat-block">
                         <p class="hero-stat-label">Pre-Bac applications
                         </p>
                         <p class="hero-stat-value">4 Wishes Submitted</p>
@@ -547,10 +599,10 @@
                             class="hero-btn-outline">Transcripts
                             &amp; Grades</button>
                         <button type="button" data-demo-action="Opening the student dossier…"
-                            class="hero-btn-solid text-[#1E3A8A] hover:bg-blue-50">
+                            class="hero-btn-solid hero-btn-solid--blue">
                             Access Student Dossier
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </button>
@@ -561,11 +613,11 @@
             <!-- STUDENT PROFILE + CALENDAR -->
             <div class="profile-calendar-grid">
 
-                <section class="card p-5 lg:col-span-2">
+                <section class="card profile-card">
                     <div class="title-row">
                         <div class="info-row">
                             <span class="profile-avatar">YA</span>
-                            <div>
+                            <div class="info-row-text">
                                 <p class="profile-name">
                                     Yassine Alaoui
                                     <span class="profile-status">Active</span>
@@ -576,7 +628,7 @@
                         </div>
                         <span class="verified-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs-fixed">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
                                 <path d="M9 12l2 2 4-4" />
                             </svg>
@@ -585,17 +637,17 @@
                     </div>
 
                     <div class="stat-row">
-                        <div class="min-w-0">
+                        <div class="stat-cell">
                             <p class="stat-value">2nd Year</p>
                             <p class="stat-label">Study Cycle · Baccalaureate,
                                 Science Mathematics A</p>
                         </div>
-                        <div class="min-w-0 border-x border-black/5 dark:border-white/10">
-                            <p class="stat-value text-brand dark:text-accent-400">17.84/20</p>
+                        <div class="stat-cell stat-cell--divided">
+                            <p class="stat-value stat-value--accent">17.84/20</p>
                             <p class="stat-label">Overall Average (S1) · Mention:
                                 Very Good</p>
                         </div>
-                        <div class="min-w-0">
+                        <div class="stat-cell">
                             <p class="stat-value">Validated</p>
                             <p class="stat-label">Minhaty Scholarship · Paid:
                                 1,900 MAD (1st Installment)</p>
@@ -614,17 +666,17 @@
                         <div class="progress-steps">
                             <span>Application Filed</span>
                             <span>Dossier Review</span>
-                            <span class="text-ink dark:text-white">Place Confirmation</span>
+                            <span class="progress-step--current">Place Confirmation</span>
                             <span>Administrative Registration</span>
                         </div>
                     </div>
                 </section>
 
-                <section class="card p-5">
+                <section class="card calendar-card">
                     <div class="calendar-card-head">
                         <p class="calendar-card-title">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                                 <rect x="3" y="4" width="18" height="18" rx="2" />
                                 <path d="M16 2v4M8 2v4M3 10h18" />
                             </svg>
@@ -633,13 +685,13 @@
                         <span class="calendar-badge">Official</span>
                     </div>
 
-                    <ul class="mt-4 space-y-2.5">
+                    <ul class="calendar-list">
                         <li class="calendar-item">
                             <div class="calendar-date">
-                                <span class="calendar-month text-danger">Jun</span>
+                                <span class="calendar-month calendar-month--red">Jun</span>
                                 <span class="calendar-day">04</span>
                             </div>
-                            <div class="min-w-0 flex-1">
+                            <div class="calendar-event">
                                 <p class="calendar-event-title">National Baccalaureate Exams</p>
                                 <p class="calendar-event-sub">All tracks,
                                     standard session</p>
@@ -647,10 +699,10 @@
                         </li>
                         <li class="calendar-item">
                             <div class="calendar-date">
-                                <span class="calendar-month text-blue-600 dark:text-blue-400">Jul</span>
+                                <span class="calendar-month calendar-month--blue">Jul</span>
                                 <span class="calendar-day">12</span>
                             </div>
-                            <div class="min-w-0 flex-1">
+                            <div class="calendar-event">
                                 <p class="calendar-event-title">ENSA / ENSAM / ENCG Entrance Exams</p>
                                 <p class="calendar-event-sub">Unified
                                     pre-selection platform</p>
@@ -658,10 +710,10 @@
                         </li>
                         <li class="calendar-item">
                             <div class="calendar-date">
-                                <span class="calendar-month text-amber-600 dark:text-amber-400">Aug</span>
+                                <span class="calendar-month calendar-month--amber">Aug</span>
                                 <span class="calendar-day">28</span>
                             </div>
-                            <div class="min-w-0 flex-1">
+                            <div class="calendar-event">
                                 <p class="calendar-event-title">OFPPT &amp; Métiers Registration Closes</p>
                                 <p class="calendar-event-sub">Qualifying
                                     vocational programs</p>
@@ -676,7 +728,7 @@
             </div>
 
             <!-- KEY ADMINISTRATIVE SERVICES -->
-            <section class="mt-10">
+            <section class="section-block">
                 <div class="section-head">
                     <div>
                         <h2 class="section-title">Key Administrative Education Services</h2>
@@ -685,7 +737,7 @@
                     </div>
                     <span class="info-pill-blue">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0">
+                            stroke-linecap="round" stroke-linejoin="round" class="icon-xs-fixed">
                             <rect x="5" y="11" width="14" height="10" rx="2" />
                             <path d="M8 11V7a4 4 0 0 1 8 0v4" />
                         </svg>
@@ -695,10 +747,10 @@
 
                 <div class="service-grid">
 
-                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="service-card group">
+                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="service-card">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-md">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
                                 <circle cx="10" cy="7" r="4" />
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
@@ -711,16 +763,16 @@
                         <span class="service-link">
                             Primary &amp; Middle School Portal
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="service-card group">
+                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="service-card">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-md">
                                 <path
                                     d="M12 2l2.4 1.6 2.85-.3 1.2 2.6 2.6 1.2-.3 2.85L22.35 12l-1.6 2.4.3 2.85-2.6 1.2-1.2 2.6-2.85-.3L12 22l-2.4-1.6-2.85.3-1.2-2.6-2.6-1.2.3-2.85L1.65 12l1.6-2.4-.3-2.85 2.6-1.2 1.2-2.6 2.85.3Z" />
                                 <path d="M9 12l2 2 4-4" />
@@ -733,16 +785,16 @@
                         <span class="service-link">
                             Secure Electronic Stamp
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening University Pre-registration…" class="service-card group">
+                    <a href="#" data-demo-action="Opening University Pre-registration…" class="service-card">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-md">
                                 <path d="M4 22h16M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M2 6l10-4 10 4" />
                             </svg>
                         </span>
@@ -753,16 +805,16 @@
                         <span class="service-link">
                             Cursus Sup Maroc
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="service-card group">
+                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="service-card">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-md">
                                 <path
                                     d="M14.7 6.3a4 4 0 0 0-5.6 5.6L2 19l3 3 7.1-7.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2-2 2.5-2.5Z" />
                             </svg>
@@ -774,7 +826,7 @@
                         <span class="service-link">
                             OFPPT Tskwine 2027
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
@@ -783,7 +835,7 @@
             </section>
 
             <!-- ACTIVE REQUESTS TABLE -->
-            <section class="mt-10">
+            <section class="section-block">
                 <div class="section-head">
                     <div>
                         <h2 class="section-title">Active Requests &amp; Digital Academic Records</h2>
@@ -794,7 +846,7 @@
                         All Procedures (3)</span>
                 </div>
 
-                <div class="card mt-4 overflow-x-auto">
+                <div class="card table-card">
                     <table class="data-table">
                         <thead>
                             <tr class="table-header-row">
@@ -822,7 +874,7 @@
                                 <td class="table-cell">14 Jan 2027</td>
                                 <td class="table-cell-status">
                                     <span
-                                        class="status-pill bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">Validated
+                                        class="status-pill status-pill--success">Validated
                                         + Bank Transfer</span>
                                 </td>
                                 <td class="table-cell-action">
@@ -845,7 +897,7 @@
                                 <td class="table-cell">03 Dec 2026</td>
                                 <td class="table-cell-status">
                                     <span
-                                        class="status-pill bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400">Digital
+                                        class="status-pill status-pill--info">Digital
                                         Certificate Ready</span>
                                 </td>
                                 <td class="table-cell-action">
@@ -869,7 +921,7 @@
                                 <td class="table-cell">18 Feb 2027</td>
                                 <td class="table-cell-status">
                                     <span
-                                        class="status-pill bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400">Awaiting
+                                        class="status-pill status-pill--warning">Awaiting
                                         S2 Bac Grades</span>
                                 </td>
                                 <td class="table-cell-action">
@@ -887,7 +939,7 @@
             <div class="disclaimer">
                 <p class="disclaimer-text">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="mt-0.5 size-4 shrink-0">
+                        stroke-linejoin="round" class="disclaimer-icon">
                         <circle cx="12" cy="12" r="10" />
                         <path d="M12 16v-4M12 8h.01" />
                     </svg>
@@ -899,7 +951,7 @@
                     <button type="button" data-demo-action="Connecting you to dedicated assistance…"
                         class="btn-primary">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
+                            stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                             <path
                                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
                         </svg>

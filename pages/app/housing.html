@@ -84,7 +84,7 @@
         .dark .nav-icon:not(.nav-icon--active) { filter: brightness(0) invert(1); opacity: .9; }
 
         /* ---------- Housing page components ---------- */
-        .verified-badge { @apply inline-flex items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .verified-badge { @apply inline-flex max-w-full items-center gap-2 rounded-full bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2 text-xs font-semibold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 lg:shrink-0; }
 
         .filter-chip   { @apply inline-flex shrink-0 items-center gap-2 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30; }
         .filter-chip[aria-selected="true"] { @apply border-transparent bg-ink text-white dark:bg-accent-400 dark:text-night-900; }
@@ -173,10 +173,10 @@
         .feature-heading { @apply mt-4 text-xl font-extrabold; }
         .feature-heading-sub { @apply font-bold text-white/80; }
         .feature-desc { @apply mt-2 max-w-md text-sm leading-relaxed text-white/85; }
-        .feature-stats { @apply mt-4 grid grid-cols-3 gap-2 rounded-xl bg-black/10 p-3; }
-        .feature-stat-value { @apply text-base font-extrabold; }
+        .feature-stats { @apply mt-4 grid grid-cols-3 items-start gap-1.5 rounded-xl bg-black/10 p-3 sm:gap-2; }
+        .feature-stat-value { @apply whitespace-nowrap text-xs font-extrabold leading-tight sm:text-base; }
         .feature-stat-label { @apply mt-0.5 text-[10px] text-white/70; }
-        .feature-pill { @apply inline-block rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold; }
+        .feature-pill { @apply inline-block whitespace-nowrap rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold; }
         .feature-actions { @apply mt-5 flex flex-wrap items-center gap-x-4 gap-y-2; }
         .feature-btn--light { @apply inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-[#1E3A8A] transition hover:bg-white/90; }
         .feature-btn--dark { @apply inline-flex items-center gap-2 rounded-full bg-[#04331F] px-4 py-2.5 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-[#052a1a]; }
@@ -432,7 +432,7 @@
                             services across Morocco.
                         </p>
                     </div>
-                    <span class="verified-badge shrink-0">
+                    <span class="verified-badge">
                         <svg viewBox="0 0 24 24" fill="none" class="badge-icon" aria-hidden="true">
                             <path d="M12 2.5 4 6v6c0 5 3.4 8.3 8 9.5 4.6-1.2 8-4.5 8-9.5V6l-8-3.5Z"
                                 stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
@@ -452,7 +452,7 @@
                             class="field field--search w-full" />
                     </label>
 
-                    <select id="categorySelect" class="field sm:w-56" aria-label="Category">
+                    <select id="categorySelect" class="field w-full sm:w-56" aria-label="Category">
                         <option value="all">All Categories</option>
                         <option value="aid">Daam Sakane (Direct Housing Aid)</option>
                         <option value="deeds">ANCFCC Land &amp; Title Deeds</option>
