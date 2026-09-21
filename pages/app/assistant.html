@@ -208,6 +208,11 @@
         .wave span:nth-child(5) { animation-delay: .24s; }
         .wave span:nth-child(6) { animation-delay: .12s; }
         .wave span:nth-child(7) { animation-delay: 0s; }
+        .app-brand-wrap     { @apply flex items-center gap-2.5; }
+        .app-brand-mark      { @apply hidden md:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .app-brand-mark img  { @apply size-full object-contain; }
+        .app-brand-text      { @apply leading-tight; }
+        .app-brand-name      { @apply block text-base font-extrabold tracking-tight text-brand dark:text-accent-400; }        
 
         @keyframes wave {
             0%, 100% { height: 7px; }
@@ -251,11 +256,19 @@
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="size-6 object-contain" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services"
-                class="text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl">M3ak Morocco</a>
+            <a href="/pages/app/assistant.html" class="app-brand-wrap">
+                <span class="app-brand-mark">
+                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="dark:hidden">
+                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="hidden dark:block">
+                </span>
+                <span class="app-brand-text">
+                    <span class="app-brand-name">M3ak Morocco</span>
+                </span>
+            </a>
 
             <div class="ml-auto flex items-center gap-1.5">
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
+                    aria-pressed="false">
                     <span class="theme-toggle-thumb">
                         <img src="/assets/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
                         <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
@@ -266,7 +279,8 @@
                     class="relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40">
                     <span class="sr-only">Notifications</span>
                     <img src="/assets/images/notification.png" alt="Notifications" class="size-5 object-contain" />
-                    <span class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
+                    <span
+                        class="absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900"></span>
                 </button>
 
                 <button type="button"
@@ -329,17 +343,23 @@
             <div class="mt-auto space-y-1 pt-6">
                 <a href="/pages/app/emergence.html"
                     class="flex items-center gap-3 rounded-xl border border-[#DC2626]/30 bg-[#DC2626]/10 px-3 py-2.5 text-sm font-semibold text-[#DC2626] shadow-sm transition hover:bg-[#DC2626]/20 focus-visible:ring-2 focus-visible:ring-[#DC2626]/40">
-                    <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
+                    <span class="size-[18px] shrink-0 bg-[#DC2626]"
+                        style="-webkit-mask-image:url(/assets/icon-bar-left/Emergency.png);mask-image:url(/assets/icon-bar-left/Emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
+                        aria-hidden="true"></span>
                     <span class="nav-label whitespace-nowrap">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/icon-bar-left/help-center.png" alt="" class="size-[18px] object-contain" />
                     <span class="nav-label">Help Center</span>
                 </a>
-                
+
                 <a href="/pages/app/assistant.html" aria-current="page"
                     class="flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-[18px] shrink-0"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="size-[18px] shrink-0">
+                        <rect x="9" y="2" width="6" height="12" rx="3" />
+                        <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+                    </svg>
                     <span class="nav-label">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
@@ -382,16 +402,24 @@
                             <button type="button" id="micBtn"
                                 class="mic-ring grid size-24 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-dark text-white transition hover:scale-[1.03] focus-visible:ring-4 focus-visible:ring-brand/30 lg:size-28">
                                 <span class="sr-only">Start voice conversation</span>
-                                <svg id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-9 lg:size-10"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                                <svg id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="size-9 lg:size-10">
+                                    <rect x="9" y="2" width="6" height="12" rx="3" />
+                                    <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+                                </svg>
                             </button>
 
                             <div class="flex flex-col items-center gap-1.5">
-                                <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                                <p id="micStatus" class="text-sm font-semibold text-brand dark:text-accent-400">Voice assistant unavailable</p>
+                                <div class="wave">
+                                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                                <p id="micStatus" class="text-sm font-semibold text-brand dark:text-accent-400">Voice
+                                    assistant unavailable</p>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center">
+                        <div
+                            class="grid grid-cols-3 gap-2 border-t border-black/5 dark:border-white/10 pt-5 text-center">
                             <div>
                                 <p class="text-xl font-extrabold lg:text-2xl">128</p>
                                 <p class="mt-0.5 text-[11px] text-muted dark:text-mist-300">Conversations</p>
@@ -408,7 +436,8 @@
                     </section>
 
                     <!-- Transcript panel -->
-                    <section class="flex max-h-[560px] flex-col rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
+                    <section
+                        class="flex max-h-[560px] flex-col rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10">
                         <div class="flex items-center gap-2 border-b border-black/5 dark:border-white/10 px-4 py-3">
                             <h2 class="text-sm font-bold">M3AK Live Transcript</h2>
                         </div>
@@ -416,18 +445,28 @@
                         <div id="transcript" class="flex-1 space-y-3 overflow-y-auto px-4 py-4"></div>
 
                         <form id="chatForm" class="border-t border-black/5 dark:border-white/10 p-3">
-                            <div class="flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 pl-4 pr-1.5">
-                                <input id="chatInput" type="text" autocomplete="off" placeholder="Type or speak a message…"
+                            <div
+                                class="flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 pl-4 pr-1.5">
+                                <input id="chatInput" type="text" autocomplete="off"
+                                    placeholder="Type or speak a message…"
                                     class="min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300" />
                                 <button type="button" id="inlineMic"
                                     class="grid size-8 shrink-0 place-items-center rounded-full text-muted transition hover:text-brand dark:hover:text-accent-400">
                                     <span class="sr-only">Speak</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                                        <rect x="9" y="2" width="6" height="12" rx="3" />
+                                        <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
+                                    </svg>
                                 </button>
                                 <button type="submit"
                                     class="grid size-8 shrink-0 place-items-center rounded-full bg-yellow-400 text-ink transition hover:bg-yellow-300 focus-visible:ring-2 focus-visible:ring-yellow-300">
                                     <span class="sr-only">Send</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                                        <path d="m22 2-7 20-4-9-9-4Z" />
+                                        <path d="M22 2 11 13" />
+                                    </svg>
                                 </button>
                             </div>
                         </form>
@@ -437,61 +476,74 @@
                 <!-- Languages + capabilities -->
                 <div class="mt-5 grid gap-5 lg:grid-cols-2">
 
-                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                    <section
+                        class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
                         <h2 class="text-sm font-bold">
                             Spoken Languages
                         </h2>
                         <div id="langGrid" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                            <button type="button" data-lang="English" class="lang rounded-xl border px-3 py-2.5 text-center">
+                            <button type="button" data-lang="English"
+                                class="lang rounded-xl border px-3 py-2.5 text-center">
                                 <span class="block text-sm font-bold">English</span>
                                 <span class="lang-state block text-[11px]">Active</span>
                             </button>
-                            <button type="button" data-lang="العربية" class="lang rounded-xl border px-3 py-2.5 text-center">
+                            <button type="button" data-lang="العربية"
+                                class="lang rounded-xl border px-3 py-2.5 text-center">
                                 <span class="block text-sm font-bold">العربية</span>
                                 <span class="lang-state block text-[11px]">Available</span>
                             </button>
-                            <button type="button" data-lang="Français" class="lang rounded-xl border px-3 py-2.5 text-center">
+                            <button type="button" data-lang="Français"
+                                class="lang rounded-xl border px-3 py-2.5 text-center">
                                 <span class="block text-sm font-bold">Français</span>
                                 <span class="lang-state block text-[11px]">Available</span>
                             </button>
-                            <button type="button" data-lang="Tamazight" class="lang rounded-xl border px-3 py-2.5 text-center">
+                            <button type="button" data-lang="Tamazight"
+                                class="lang rounded-xl border px-3 py-2.5 text-center">
                                 <span class="block text-sm font-bold">Tamazight</span>
                                 <span class="lang-state block text-[11px]">Available</span>
                             </button>
                         </div>
                     </section>
 
-                    <section class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                    <section
+                        class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
                         <h2 class="text-sm font-bold">
                             AI Capabilities
                         </h2>
                         <ul class="mt-3 space-y-3">
                             <li>
                                 <p class="text-sm font-semibold">Contextual Navigation</p>
-                                <p class="text-xs text-muted dark:text-mist-300">Ask to open specific sections of your dashboard directly.</p>
+                                <p class="text-xs text-muted dark:text-mist-300">Ask to open specific sections of your
+                                    dashboard directly.</p>
                             </li>
                             <li>
                                 <p class="text-sm font-semibold">Document Querying</p>
-                                <p class="text-xs text-muted dark:text-mist-300">Request summaries or specific data from uploaded documents.</p>
+                                <p class="text-xs text-muted dark:text-mist-300">Request summaries or specific data from
+                                    uploaded documents.</p>
                             </li>
                         </ul>
                     </section>
                 </div>
 
                 <!-- Recent voice sessions -->
-                <section class="mt-5 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
+                <section
+                    class="mt-5 rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 lg:p-5">
                     <div class="flex items-center justify-between">
                         <h2 class="text-sm font-bold">
                             Recent Voice Sessions
                         </h2>
-                        <button type="button" id="viewAllSessions" class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">View All</button>
+                        <button type="button" id="viewAllSessions"
+                            class="text-xs font-semibold text-brand dark:text-accent-400 hover:underline">View
+                            All</button>
                     </div>
 
                     <ul id="sessionList" class="mt-3 divide-y divide-black/5 dark:divide-white/10"></ul>
                 </section>
 
                 <p class="mt-5 text-center text-xs text-muted dark:text-mist-300">
-                    Prefer a person? <a href="/pages/app/support.html" class="font-semibold text-brand dark:text-accent-400 hover:underline">Go to the Help Center &rarr;</a>
+                    Prefer a person? <a href="/pages/app/support.html"
+                        class="font-semibold text-brand dark:text-accent-400 hover:underline">Go to the Help Center
+                        &rarr;</a>
                 </p>
             </main>
         </div>
@@ -500,8 +552,9 @@
     <div id="toast"
         class="pointer-events-none fixed bottom-24 left-1/2 z-50 max-w-[92vw] -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8">
     </div>
-     <!-- FOOTER mobile -->
-    <footer class="mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden">
+    <!-- FOOTER mobile -->
+    <footer
+        class="mt-8 border-t border-black/5 dark:border-night-600 bg-white dark:bg-night-800 transition-colors lg:hidden">
         <div class="mx-auto max-w-[1280px] px-6 py-8">
             <div class="flex flex-col items-center gap-4 text-center">
                 <p class="text-lg font-extrabold text-brand dark:text-accent-400">M3ak Morocco</p>

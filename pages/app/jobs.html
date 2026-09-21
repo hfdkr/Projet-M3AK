@@ -218,6 +218,9 @@
         .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .menu-icon { @apply size-6 object-contain; }
         .site-brand { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .topbar-search { @apply relative ml-2 hidden lg:block lg:w-72 xl:w-80; }
+        .topbar-search-icon { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .topbar-search-input { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
         .header-actions { @apply ml-auto flex items-center gap-1.5; }
         .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .icon-img-sm { @apply size-5 object-contain; }
@@ -317,6 +320,12 @@
             <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak
                 Morocco</a>
 
+            <label class="topbar-search">
+                <span class="sr-only">Search services, files, or records</span>
+                <img src="/assets/images/search.png" alt="" class="topbar-search-icon" />
+                <input id="topbarSearch" type="search" placeholder="Search services, files, or records…"
+                    class="topbar-search-input" />
+            </label>
 
             <div class="header-actions">
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
@@ -568,7 +577,7 @@
 
                         <!-- Explore by Ministry & Sector -->
                         <section>
-                            <h2 class="section-heading">Explorer les Dernières par Ministère &amp; Secteur</h2>
+                            <h2 class="section-heading">Explorer les Carrières par Ministère &amp; Secteur</h2>
                             <div id="sectorGrid" class="sector-grid"></div>
                         </section>
                     </div>
