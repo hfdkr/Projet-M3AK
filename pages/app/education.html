@@ -54,10 +54,6 @@
             --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
         }
 
-        html, body {
-            overflow-x: hidden;
-        }
-
         body {
             -webkit-font-smoothing: antialiased;
         }
@@ -175,8 +171,9 @@
         .title-block  { @apply mt-3 flex flex-wrap items-start justify-between gap-4; }
         .data-table-body { @apply divide-y divide-black/5 dark:divide-night-600; }
         .info-row       { @apply flex items-center gap-3; }
+        .info-row-text  { @apply min-w-0; }
         .letterhead-row { @apply flex items-start gap-3; }
-        .title-actions  { @apply flex shrink-0 flex-wrap gap-2; }
+        .title-actions  { @apply flex flex-wrap gap-2 lg:shrink-0; }
         .app-main       { @apply min-w-0 flex-1 px-4 pb-6 pt-6 lg:px-8 lg:pb-16 lg:pt-8; }
         .service-desc   { @apply mt-1 text-xs leading-relaxed text-muted dark:text-mist-300; }
         .service-title  { @apply mt-3 text-sm font-bold; }
@@ -189,7 +186,7 @@
         .menu-icon      { @apply size-6 lg:hidden object-contain; }
 
         /* ---------- Header brand / notifications ---------- */
-        .brand-link { @apply w-52 text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-2xl; }
+        .brand-link { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
         .notif-dot  { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
 
         /* ---------- Sidebar head / danger link ---------- */
@@ -264,8 +261,10 @@
         .hero-btn-solid--blue  { @apply text-[#1E3A8A] hover:bg-blue-50; }
 
         /* ---------- Cards / sections ---------- */
-        .profile-card  { @apply p-5 lg:col-span-2; }
-        .calendar-card { @apply p-5; }
+        /* min-w-0: these are grid items whose intrinsic minimum would otherwise be
+           driven by the nested `1fr` .stat-row, blowing out the auto column track. */
+        .profile-card  { @apply min-w-0 p-5 lg:col-span-2; }
+        .calendar-card { @apply min-w-0 p-5; }
         .table-card    { @apply mt-4 overflow-x-auto; }
         .section-block { @apply mt-10; }
         .stat-cell           { @apply min-w-0; }
@@ -618,7 +617,7 @@
                     <div class="title-row">
                         <div class="info-row">
                             <span class="profile-avatar">YA</span>
-                            <div>
+                            <div class="info-row-text">
                                 <p class="profile-name">
                                     Yassine Alaoui
                                     <span class="profile-status">Active</span>
