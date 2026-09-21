@@ -489,7 +489,8 @@
 
                         <div id="modes" class="modes-grid">
                             <button type="button" data-mode="Bus" data-icon="bus" class="mode">
-                                <img src="/assets/transport-icon/bus.png" alt="Bus" class="icon-img-sm" />
+                                <img src="/assets/transport-icon/Icon-bus.svg" alt="Bus" class="icon-img-sm dark:hidden" />
+                                <img src="/assets/transport-icon/bus.png" alt="Bus" class="hidden icon-img-sm dark:block" />
                                 Bus
                             </button>
                             <button type="button" data-mode="Tram" data-icon="tram" class="mode">
@@ -734,7 +735,8 @@
             return `
   <div class="flex items-center gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 shadow-lg ring-1 ring-black/5 dark:ring-white/10">
     <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15">
-      <img src="${ICONS}bus.png" alt="Bus" class="size-5 object-contain" />
+      <img src="${ICONS}Icon-bus.svg" alt="Bus" class="size-5 object-contain dark:hidden" />
+      <img src="${ICONS}bus.png" alt="Bus" class="hidden size-5 object-contain dark:block" />
     </span>
     <div class="min-w-0 flex-1">
       <p class="truncate text-sm font-bold">${ALERT.line}</p>
