@@ -93,6 +93,22 @@
             updateFinalStepGate();
         }
 
+        /* Contact phone accepts digits only (plus the usual phone punctuation:
+           + ( ) spaces and dashes). Letters are dropped as they are typed
+           rather than rejected later, so the field can never hold a non-number. */
+        var phoneInput = document.getElementById("emergencyPhone");
+        if (phoneInput) {
+            phoneInput.addEventListener("input", function () {
+                var cleaned = phoneInput.value.replace(/[^0-9+()\s-]/g, "");
+                if (cleaned === phoneInput.value) { return; }
+                /* Keep the caret where the user left it after stripping. */
+                var removed = phoneInput.value.length - cleaned.length;
+                var caret = Math.max(0, (phoneInput.selectionStart || 0) - removed);
+                phoneInput.value = cleaned;
+                phoneInput.setSelectionRange(caret, caret);
+            });
+        }
+
         function validateStep(n) {
             var stepEl = document.querySelector('.ob-step[data-step="' + n + '"]');
             var required = stepEl.querySelectorAll("[required]");

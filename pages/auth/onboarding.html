@@ -202,7 +202,9 @@
                     </div>
                     <div>
                         <label for="emergencyPhone" class="ob-field-label">Contact Phone</label>
-                        <input id="emergencyPhone" type="tel" placeholder="+212 6xx-xxxxxx" class="ob-field-input" required>
+                        <input id="emergencyPhone" type="tel" inputmode="tel" autocomplete="tel"
+                            pattern="[0-9+()\s-]*" maxlength="20" placeholder="+212 6xx-xxxxxx"
+                            title="Digits only — you may use + ( ) spaces and dashes" class="ob-field-input" required>
                     </div>
                 </div>
             </fieldset>
