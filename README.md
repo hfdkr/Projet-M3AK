@@ -12,17 +12,17 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
 ## 📸 Preview
 
 <p align="center">
-  <img src="./assets/screenshots/screen-index.png" alt="Landing Page" width="48%">
-  <img src="./assets/screenshots/screen-overview.png" alt="Overview Page" width="48%">
+  <img src="./assets/screenshot/landing-page.png" alt="M3AK landing page" width="48%">
+  <img src="./assets/screenshot/onboarding.png" alt="Onboarding profile setup" width="48%">
 </p>
 
 <p align="center">
   <b>Landing Page</b>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <b>Overview Page</b>
+  <b>Onboarding</b>
 </p>
 
-> More screenshots (Emergency Hub, Payments, Jobs) coming soon — see [Notes & Scope](#-notes--scope).
+> More screenshots (My Space, Emergency Hub, Payments, Jobs) coming soon.
 
 ---
 
@@ -61,7 +61,8 @@ Projet-M3AK/
 │   ├── health-image/
 │   ├── support-image/
 │   ├── coming-soon/
-│   └── settings/               # Logo, theme toggle, notification, avatar, password show/hide (SVG pairs)
+│   ├── settings/               # Logo, theme toggle, notification, avatar, password show/hide (SVG pairs)
+│   └── screenshot/             # README preview images
 │
 ├── pages/
 │   ├── auth/
@@ -272,8 +273,6 @@ A few deliberate boundaries of this frontend stage, so the demo reads as intende
   shared **Coming Soon** page rather than shipping half-built pages.
 * **Tablet viewports reuse the desktop/laptop layout** as a functional fallback; a tablet-tuned breakpoint
   is planned (see Future Features).
-* The two preview screenshots above point at `assets/screenshots/`, which isn't committed yet, so they
-  render as broken on GitHub until the images are added.
 
 Navigation, authentication-flow, responsive, dark-mode, asset-path and accessibility issues identified
 during development have all been reviewed and fixed.
