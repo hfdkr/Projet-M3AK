@@ -162,9 +162,9 @@ Projet-M3AK/
 
 ---
 
-## 📋 Roadmap
+## 📌 Current Progress
 
-### ✅ Current / Completed
+Everything listed here is implemented and working in the current project.
 
 **Setup**
 
@@ -178,20 +178,19 @@ Projet-M3AK/
 - [x] Sign In Page (UI + validation, wired to session)
 - [x] Sign Up Page (UI + validation, wired to session)
 - [x] Forgot Password Page
-- [x] Reset Password Page (live requirement checks + reset flow)
+- [x] Reset Password Page (live requirement checks + password-match validation)
 - [x] Onboarding (post-signup profile setup)
 - [x] Region-restricted screen for non-Morocco profiles
 
-**App**
+**App Pages**
 
 - [x] Services Directory / signed-in landing page (`home.html`)
 - [x] My Space (`overview.html` — Dashboard, My Requests, Appointments, Personal Info, Account tabs)
 - [x] Transport Page
 - [x] Health / Find a Specialist Page
-- [x] Emergency Hub Page
+- [x] Emergency Hub Page (press-and-hold SOS, quick dial, live map, medical ID)
 - [x] Help Center Page (shared across the app)
 - [x] AI Assistant Page
-- [x] Coming Soon placeholder (for sections without a dedicated page yet)
 - [x] Housing Page
 - [x] Jobs Page
 - [x] Education Page
@@ -199,15 +198,18 @@ Projet-M3AK/
 - [x] Civil Registry Page (birth/marriage/residence certificates, CNIE renewal)
 - [x] Interior Page (passports, residence permits, CNIE)
 - [x] Finance Page (income tax, VAT, customs)
+- [x] Coming Soon placeholder (shared, for categories without a dedicated page)
 
 **Shared UI System**
 
 - [x] Light/dark theme on every page, shared across tabs (`theme.js`)
 - [x] Collapsible left sidebar, consistent on all 13 app pages
 - [x] Standardized responsive footer across all 22 pages
+- [x] Consistent app header (brand, theme toggle, notifications, session-aware avatar)
 - [x] Session handling + auth guard shared across pages (`session.js`)
 - [x] Client-side form validation (password rules, password match, numeric phone input)
-- [x] Accessibility pass (ARIA attributes, keyboard focus, descriptive `alt` text)
+- [x] Unified English copy and shared icon sets across the app
+- [x] Accessibility pass (ARIA attributes, keyboard focus, descriptive `alt` text on every image)
 
 **Responsive Design**
 
@@ -216,7 +218,17 @@ Projet-M3AK/
 
 **Deployment**
 
-- [x] Deployed on [Vercel](https://projet-m3-ak.vercel.app/)
+- [x] Deployed on Vercel — https://projet-m3-ak.vercel.app/
+
+**The frontend scope for this stage is complete.** Everything planned beyond it is listed under
+[Future Features & Improvements](#-future-features--improvements) and the
+[Future Backend Phase](#-future-backend-phase-planned--20262027-academic-year).
+
+---
+
+## 📋 Roadmap
+
+What comes after the completed frontend stage above.
 
 ### 🔮 Future Features & Improvements
 
@@ -265,37 +277,6 @@ A few deliberate boundaries of this frontend stage, so the demo reads as intende
 
 Navigation, authentication-flow, responsive, dark-mode, asset-path and accessibility issues identified
 during development have all been reviewed and fixed.
-
----
-
-## 📌 Current Progress
-
-- ✅ Project setup completed
-- ✅ Landing page completed
-- ✅ Auth pages (login, signup, forgot password, reset password, onboarding, region-restricted) — UI
-  complete, fully wired to the shared session
-- ✅ Home/Services Directory, My Space, Transport, Health, Housing, Jobs, Education, Payments, Registry,
-  Interior, Finance, Emergency Hub, Help Center, AI Assistant — UI complete and cross-linked
-- ✅ Internal navigation, auth JS, and session guard fixed across the app
-- ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
-- ✅ Instagram-style collapsible sidebar rolled out to all 13 app pages that have one
-- ✅ Sidebar nav icons largely migrated from the PNG set to inline SVG (`currentColor`-driven active and
-  dark-mode states); Settings removed from the sidebar since it now lives as a My Space tab
-- ✅ Shared responsive footer standardized across all 22 pages, replacing seven different per-page footers
-- ✅ Header polish across the app: brand no longer wraps on narrow phones, the logo mark is hidden on
-  mobile, and the logo now reloads the current page instead of linking to Coming Soon
-- ✅ Jobs and Finance pages translated to English; Jobs restyled (employer-type tabs, richer job cards,
-  full-width sector band) and its sector tiles wired to the `jobs-icon/` set
-- ✅ Education page given a mobile-compact type and spacing scale; Payments "Pay a Bill" tiles wired to
-  the `payment-icons/` set
-- ✅ Accessibility pass — descriptive `alt` text added to every image across the project
-- ✅ Account/Settings page (now the Account tab in My Space) got the mobile hamburger + drawer it was missing
-- ✅ Mobile and desktop breakpoints in place across the app
-- ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
-
-**The frontend scope for this stage is complete.** Everything planned beyond it is listed under
-[Future Features & Improvements](#-future-features--improvements) and the
-[Future Backend Phase](#-future-backend-phase-planned--20262027-academic-year).
 
 ---
 
