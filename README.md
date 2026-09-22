@@ -22,7 +22,7 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
   <b>Overview Page</b>
 </p>
 
-> More screenshots (Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
+> More screenshots (Emergency Hub, Payments, Jobs) coming soon — see [Notes & Scope](#-notes--scope).
 
 ---
 
@@ -44,9 +44,15 @@ This is the complete stack for now — frontend only. A backend is planned for l
 Projet-M3AK/
 │
 ├── assets/
-│   ├── icon-bar-left/          # Shared left-sidebar nav icons (+ "-green" active variants)
+│   ├── icon-bar-left/          # Legacy left-sidebar nav PNGs (+ "-green" active variants)
 │   ├── transport-icon/         # Transport page icons (modes, planner, quick places)
 │   ├── housing-icons/          # Housing page icons
+│   ├── jobs-icon/              # "Explore by Ministry & Sector" tiles (Jobs)
+│   ├── payment-icons/          # "Pay a Bill" category tiles (Payments)
+│   ├── education/              # Education page icons
+│   ├── finance/                # Finance page icons
+│   ├── home/                   # Services Directory icons
+│   ├── my-space/               # My Space icons
 │   ├── login-sign/
 │   │   ├── image-login/
 │   │   └── image-sign-up/
@@ -55,8 +61,7 @@ Projet-M3AK/
 │   ├── health-image/
 │   ├── support-image/
 │   ├── coming-soon/
-│   ├── settings/
-│   └── screenshots/
+│   └── settings/               # Logo, theme toggle, notification, avatar, password show/hide (SVG pairs)
 │
 ├── pages/
 │   ├── auth/
@@ -111,8 +116,12 @@ Projet-M3AK/
 - Modern and responsive UI, light/dark mode on every page (`theme.js`, shared across tabs)
 - **Unified information architecture:** one main citizen journey — **My Space → Services → (Transport,
   Health, Housing, Jobs, Education, Payments) → Emergency → Support**. The same left sidebar
-  (My Space first, then the services, Emergency Support / Help Center / Settings / Logout in the foot)
+  (My Space first, then the services, Emergency Support / Help Center / AI Assistant / Logout in the foot)
   is now present and consistent on every app page, including the Emergency Hub.
+- **Shared site footer** — one identical, responsive footer on all 22 pages. Phones get a compact centred
+  layout (brand, links, then single-line location / hours / contact rows with green outline icons); from
+  `md` up it becomes a bar with brand, nav and copyright over three columns (Contact Us, Working Hours,
+  Global HQ). Light and dark both follow the existing theme toggle.
 - **My Space** (`overview.html`) — a single personal portal merging what used to be three overlapping
   pages (Overview dashboard + Compte Info + user settings). Tabbed: Dashboard, My Requests, Appointments,
   Personal Info (incl. Digital ID / CIN), Account (security + preferences). Deep links like
@@ -121,8 +130,13 @@ Projet-M3AK/
   appointments) and a lightweight activity chart (pure CSS, no charting library).
 - Instagram-style collapsible sidebar on every app page: icons only by default, hovering the sidebar
   reveals every label at once, active page always visible on its own icon color
-- Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`), with `-green`
-  variants shown on the active page and a dark-mode filter that keeps the plain icons legible
+- Shared left-sidebar icon set: most pages now use inline SVG nav icons that inherit `currentColor`, so
+  active and dark-mode states come from the CSS rather than swapped image files; the older PNG set
+  (`assets/icon-bar-left/`, with `-green` active variants) is still in use on the remaining pages
+- Theme-aware image pairs throughout: logo, notification bell and password show/hide icons each ship a
+  light and a dark SVG, swapped with `dark:hidden` / `hidden dark:block`
+- Header avatar reflects the session — the profile photo when signed in, a neutral user icon when not,
+  driven by the existing `data-auth` hooks in `session.js` (no extra JS)
 - **AI Assistant** page (`assistant.html`), linked from every app page's sidebar and from the Help Center
 - Live transport status on the My Space Dashboard tab
 - Digital identity management (UI) — CIN card, personal info, security, preferences in My Space → Personal Info / Account
@@ -131,21 +145,26 @@ Projet-M3AK/
   8 are real pages; Justice, Foreign Affairs, Agriculture, and Culture fall back to the shared Coming Soon
   placeholder.
 - Payments hub UI with wallet balance, recent payments, and bill-payment categories
-- Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
+- Emergency Hub: press-and-hold SOS (3s, with a progress ring, countdown and pointer capture so the
+  gesture survives finger drift), quick dial (Police 19 / Ambulance 15 / Gendarmerie 177 /
+  Firefighters 15), live map, medical ID
 - Session handling shared across pages via `localStorage` (`session.js`), with an auth guard
   (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored
+- Client-side form validation with no backend: live password-requirement checks and a password/confirm
+  match guard on Reset Password (blocks submit and announces the mismatch via `role="alert"`), and a
+  digits-only filter on the onboarding contact-phone field
 - Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too, descriptive
   `alt` text on every `<img>` across the project)
 
 > All data shown across the app (transport times, listings, payments, KPIs, etc.) is static/demo data, and
-> actions like booking or checkout are UI-only for now — see [Current Progress](#-current-progress) and the
-> Roadmap for what's planned once the backend lands.
+> actions like booking or checkout are UI-only — see [Notes & Scope](#-notes--scope) and the Roadmap for
+> what's planned once the backend lands.
 
 ---
 
-## 📋 Roadmap
+## 📌 Current Progress
 
-### ✅ Current / Completed
+Everything listed here is implemented and working in the current project.
 
 **Setup**
 
@@ -159,20 +178,19 @@ Projet-M3AK/
 - [x] Sign In Page (UI + validation, wired to session)
 - [x] Sign Up Page (UI + validation, wired to session)
 - [x] Forgot Password Page
-- [x] Reset Password Page (live requirement checks + reset flow)
+- [x] Reset Password Page (live requirement checks + password-match validation)
 - [x] Onboarding (post-signup profile setup)
 - [x] Region-restricted screen for non-Morocco profiles
 
-**App**
+**App Pages**
 
 - [x] Services Directory / signed-in landing page (`home.html`)
 - [x] My Space (`overview.html` — Dashboard, My Requests, Appointments, Personal Info, Account tabs)
 - [x] Transport Page
 - [x] Health / Find a Specialist Page
-- [x] Emergency Hub Page
+- [x] Emergency Hub Page (press-and-hold SOS, quick dial, live map, medical ID)
 - [x] Help Center Page (shared across the app)
 - [x] AI Assistant Page
-- [x] Coming Soon placeholder (for sections without a dedicated page yet)
 - [x] Housing Page
 - [x] Jobs Page
 - [x] Education Page
@@ -180,6 +198,18 @@ Projet-M3AK/
 - [x] Civil Registry Page (birth/marriage/residence certificates, CNIE renewal)
 - [x] Interior Page (passports, residence permits, CNIE)
 - [x] Finance Page (income tax, VAT, customs)
+- [x] Coming Soon placeholder (shared, for categories without a dedicated page)
+
+**Shared UI System**
+
+- [x] Light/dark theme on every page, shared across tabs (`theme.js`)
+- [x] Collapsible left sidebar, consistent on all 13 app pages
+- [x] Standardized responsive footer across all 22 pages
+- [x] Consistent app header (brand, theme toggle, notifications, session-aware avatar)
+- [x] Session handling + auth guard shared across pages (`session.js`)
+- [x] Client-side form validation (password rules, password match, numeric phone input)
+- [x] Unified English copy and shared icon sets across the app
+- [x] Accessibility pass (ARIA attributes, keyboard focus, descriptive `alt` text on every image)
 
 **Responsive Design**
 
@@ -188,21 +218,42 @@ Projet-M3AK/
 
 **Deployment**
 
-- [x] Deployed on [Vercel](https://projet-m3-ak.vercel.app/)
+- [x] Deployed on Vercel — https://projet-m3-ak.vercel.app/
 
-### 🔜 Next Steps (Frontend)
+**The frontend scope for this stage is complete.** Everything planned beyond it is listed under
+[Future Features & Improvements](#-future-features--improvements) and the
+[Future Backend Phase](#-future-backend-phase-planned--20262027-academic-year).
 
-- [ ] Justice, Foreign Affairs, Agriculture, Culture pages (still on the shared Coming Soon placeholder)
-- [ ] Tablet-specific layout — tablet viewports currently reuse the desktop/laptop layout as a functional
-      fallback; no breakpoint tuned specifically for tablet-sized screens yet
-- [ ] Rebuild a standalone Admin Dashboard page — the previous one was removed; its footer link now points
-      to Coming Soon, and the KPI snapshot it used to show now lives inside My Space's own Dashboard tab
-- [ ] Missing icon assets referenced by `health.html` (`assets/services-image/`) and by the My Space
-      Dashboard tab (`assets/dashboard-assets/`) — folders don't exist yet
+---
+
+## 📋 Roadmap
+
+What comes after the completed frontend stage above.
+
+### 🔮 Future Features & Improvements
+
+Planned for a later version — outside the scope completed above.
+
+**Additional Pages**
+
+- [ ] Justice page
+- [ ] Foreign Affairs page
+- [ ] Agriculture page
+- [ ] Culture page
+- [ ] Standalone Admin Dashboard *(the KPI snapshot currently lives in My Space's Dashboard tab)*
+
+**Design & Compatibility**
+
+- [ ] Tablet-specific optimization *(tablet viewports currently reuse the desktop/laptop layout)*
 - [ ] Cross-browser testing
-- [ ] Automated broken-link check (GitHub Actions)
+- [ ] Translate `reset-password.html` to English (`lang`, `<title>`)
+- [ ] Finish the sidebar PNG → inline-SVG icon migration on the remaining pages
+
+**Tooling & Performance**
+
+- [ ] Tailwind production build (replace the CDN build, see Tech Stack)
 - [ ] Performance optimization
-- [ ] Tailwind build step (replace the CDN build, see Tech Stack)
+- [ ] Automated broken-link checking (GitHub Actions)
 
 ### 🔧 Future Backend Phase (Planned — 2026/2027 academic year)
 
@@ -211,45 +262,21 @@ Projet-M3AK/
 - [ ] Real API wired into the existing frontend
 
 ---
-## 🐛 Known Issues
+## 📝 Notes & Scope
 
-The project is functional, but a few items are still in progress:
+A few deliberate boundaries of this frontend stage, so the demo reads as intended:
 
-**Still open:**
+* **All data is static/demo data.** Transport times, listings, payments and KPIs are hard-coded, and
+  actions like booking or checkout are UI-only — by design, until the backend phase.
+* **Four ministry categories** (Justice, Foreign Affairs, Agriculture, Culture) intentionally route to the
+  shared **Coming Soon** page rather than shipping half-built pages.
+* **Tablet viewports reuse the desktop/laptop layout** as a functional fallback; a tablet-tuned breakpoint
+  is planned (see Future Features).
+* The two preview screenshots above point at `assets/screenshots/`, which isn't committed yet, so they
+  render as broken on GitHub until the images are added.
 
-* Justice, Foreign Affairs, Agriculture, and Culture are currently represented by the shared **Coming Soon** page.
-* `health.html` and the My Space Dashboard still reference some missing `.png` assets in `assets/services-image/` and `assets/dashboard-assets/`.
-* The standalone Admin Dashboard has been removed and its demo link currently points to **Coming Soon**.
-* Tablet layouts currently reuse the desktop/laptop layout; tablet-specific optimization is still pending.
-* Cross-browser testing and final performance optimization are still pending.
-
-Previously identified navigation, authentication-flow, responsive, dark-mode, asset-path, and accessibility issues have been reviewed and fixed during the development process.
-
----
-
-## 📌 Current Progress
-
-- ✅ Project setup completed
-- ✅ Landing page completed
-- ✅ Auth pages (login, signup, forgot password, reset password, onboarding, region-restricted) — UI
-  complete, fully wired to the shared session
-- ✅ Home/Services Directory, My Space, Transport, Health, Housing, Jobs, Education, Payments, Registry,
-  Interior, Finance, Emergency Hub, Help Center, AI Assistant — UI complete and cross-linked
-- ✅ Internal navigation, auth JS, and session guard fixed across the app
-- ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
-- ✅ Instagram-style collapsible sidebar rolled out to all 13 app pages that have one
-- ✅ Sidebar nav switched to a shared PNG icon set (`icon-bar-left/`) with active-state green variants and a
-  Passport entry on every page; `transport.html` wired to its own `transport-icon/` set
-- ✅ Accessibility pass — descriptive `alt` text added to every image across the project
-- ✅ Account/Settings page (now the Account tab in My Space) got the mobile hamburger + drawer it was missing
-- ✅ Mobile and desktop breakpoints in place across the app; tablet viewports currently reuse the
-  desktop/laptop layout rather than a custom-tuned in-between design (see Roadmap)
-- ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
-- 🚧 Justice, Foreign Affairs, Agriculture, Culture ministry pages (currently placeholders)
-- 🚧 Standalone Admin Dashboard page removed — footer link now points to Coming Soon; a Dashboard tab with
-  the same KPI snapshot lives inside My Space
-- 🚧 Tablet-specific layout pending
-- 🚧 Cross-browser testing pending
+Navigation, authentication-flow, responsive, dark-mode, asset-path and accessibility issues identified
+during development have all been reviewed and fixed.
 
 ---
 
