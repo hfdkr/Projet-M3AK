@@ -219,10 +219,10 @@
         /* Page-specific extracted classes */
         .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
         .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-2 px-3 sm:gap-4 sm:px-4 lg:px-6; }
         .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .menu-icon { @apply size-6 object-contain; }
-        .site-brand { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
+        .site-brand { @apply whitespace-nowrap text-[15px] sm:text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
         .topbar-search { @apply relative ml-2 hidden lg:block lg:w-72 xl:w-80; }
         .topbar-search-icon { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
         .topbar-search-input { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
@@ -423,8 +423,7 @@
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="menu-icon" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak
-                Morocco</a>
+            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak Morocco</a>
 
             <label class="topbar-search">
                 <span class="sr-only">Search services, files, or records</span>

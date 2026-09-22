@@ -126,7 +126,7 @@
 
     .desktop-topbar { @apply sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block; }
     .desktop-topbar-inner { @apply flex h-16 items-center gap-6 px-6; }
-    .brand-link { @apply flex w-56 shrink-0 items-center gap-3 text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
+    .brand-link { @apply flex w-56 shrink-0 items-center gap-3 whitespace-nowrap text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
     .app-brand-mark { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
     .logo-img-light { @apply size-full object-contain dark:hidden; }
     .logo-img-dark { @apply hidden size-full object-contain dark:block; }
@@ -156,7 +156,7 @@
     .mobile-topbar-left { @apply flex items-center justify-between gap-3; }
     .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
     .menu-icon { @apply size-6 object-contain; }
-    .mobile-brand-text { @apply text-lg font-extrabold text-brand dark:text-accent-400; }
+    .mobile-brand-text { @apply whitespace-nowrap text-[15px] sm:text-lg font-extrabold text-brand dark:text-accent-400; }
     .mobile-topbar-right { @apply flex items-center gap-2; }
 
     .app-main { @apply px-4 pb-6 pt-5 lg:px-8 lg:pb-10 lg:pt-8; }
