@@ -270,14 +270,18 @@
         .desktop-topbar { @apply sticky top-0 z-40 hidden border-b border-black/5 dark:border-night-600 bg-white/90 dark:bg-night-800/90 backdrop-blur transition-colors lg:block; }
         .desktop-topbar-inner { @apply mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6; }
         .topbar-title { @apply text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        /* Brand lockup — same mark + wordmark as every other app page. */
+        .brand-link      { @apply flex items-center gap-2.5; }
+        .app-brand-mark  { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .logo-img-light  { @apply size-full object-contain dark:hidden; }
+        .logo-img-dark   { @apply hidden size-full object-contain dark:block; }
+        .brand-name      { @apply block text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-lg; }
         .header-actions { @apply ml-auto flex items-center gap-3; }
         .icon-btn { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .icon-img-sm { @apply size-5 object-contain; }
         .icon-img-xs { @apply size-4 object-contain; }
         .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800; }
-        .settings-link { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .avatar-btn { @apply grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .sos-trigger-link { @apply flex items-center gap-2 rounded-full bg-danger px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40; }
 
         .mobile-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-800/95 px-4 py-3.5 backdrop-blur lg:hidden; }
         .mobile-topbar-row { @apply flex items-center justify-between; }
@@ -316,6 +320,9 @@
         .sos-desc { @apply mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted dark:text-mist-300; }
         .sos-halo-wrap { @apply relative mx-auto mt-7 grid size-40 place-items-center lg:mt-8; }
         .sos-btn { @apply relative grid size-40 select-none touch-none place-items-center rounded-full bg-danger text-white shadow-[0_12px_34px_rgba(225,54,44,.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-danger/35; }
+        /* Hold-progress ring: JS drives stroke-dashoffset from full to 0 over 3s. */
+        .sos-ring { @apply pointer-events-none absolute inset-0 size-full -rotate-90; }
+        .sos-ring circle { fill: none; stroke: rgba(255, 255, 255, .92); stroke-width: 5; stroke-linecap: round; }
         .sos-btn-content { @apply pointer-events-none flex flex-col items-center gap-1.5; }
         .sos-icon { @apply size-8 object-contain; }
         .sos-label { @apply text-sm font-extrabold tracking-[0.12em]; }
@@ -326,9 +333,11 @@
         .quick-call-btn--police { @apply bg-brand-soft ring-brand-line dark:bg-night-700 dark:ring-night-600; }
         .quick-call-btn--ambulance { @apply bg-[#EAF0FA] ring-[#D3E0F2] dark:bg-night-700 dark:ring-night-600; }
         .quick-call-btn--gendarmerie { @apply bg-[#E7EEF7] ring-[#CFDDEE] dark:bg-night-700 dark:ring-night-600; }
+        .quick-call-btn--firefighters { @apply bg-[#FDECE7] ring-[#F7D3C6] dark:bg-night-700 dark:ring-night-600; }
         .quick-call-icon--police { @apply flex size-10 shrink-0 items-center justify-center bg-green-900 rounded-xl shadow-sm; }
         .quick-call-icon--ambulance { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-blue shadow-sm; }
         .quick-call-icon--gendarmerie { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-muted-900 shadow-sm; }
+        .quick-call-icon--firefighters { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-[#E1362C] text-white shadow-sm; }
         .quick-call-icon-img { @apply h-5 w-5 object-contain; }
         .quick-call-info { @apply min-w-0 flex-1; }
         .quick-call-name { @apply block text-sm font-bold dark:text-white; }
@@ -424,9 +433,13 @@
     <header class="desktop-topbar">
         <div class="desktop-topbar-inner">
 
-            <h1 class="topbar-title">
-                Morocco Public Service
-            </h1>
+            <a href="/pages/app/overview.html" class="brand-link">
+                <span class="app-brand-mark">
+                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+                </span>
+                <span class="brand-name">M3ak Morocco</span>
+            </a>
 
 
             <div class="header-actions">
@@ -440,24 +453,16 @@
                 </button>
                 <button type="button" class="icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/emergence-image/notification.png" alt="notification-icon" class="icon-img-sm" />
+                    <img src="/assets/settings/icon-notification-light.svg" alt="Notifications" class="icon-img-sm dark:hidden" />
+                    <img src="/assets/settings/icon-notification-dark.svg" alt="" class="hidden icon-img-sm dark:block" />
                     <span class="notif-dot"></span>
                 </button>
 
-                <a href="/pages/app/coming-soon.html?feature=Settings" class="settings-link">
-                    <span class="sr-only">Settings</span>
-                    <img src="/assets/emergence-image/setting-icon.png" alt="Setting-icon" class="icon-img-sm" />
-                </a>
-
                 <button type="button" class="avatar-btn">
                     <span class="sr-only">Your profile</span>
-                    SA
+                    <img src="/assets/settings/photo-icon.svg" alt="" class="size-full rounded-full object-cover" data-auth="user" />
+                    <img src="/assets/settings/icon-user.svg" alt="" class="size-5 object-contain" data-auth="guest" />
                 </button>
-
-                <!-- Just a link to the SOS card — no JS needed, scroll-behavior:smooth (in the CSS above) handles the animation -->
-                <a href="#sosCard" class="sos-trigger-link">
-                    SOS Trigger
-                </a>
 
             </div>
         </div>
@@ -471,9 +476,13 @@
                     <span class="sr-only">Open menu</span>
                     <img src="/assets/images/menu-icon.png" alt="" class="menu-icon" />
                 </button>
-                <p class="mobile-topbar-title">
-                    Emergency Services
-                </p>
+                <a href="/pages/app/overview.html" class="brand-link">
+                    <span class="app-brand-mark">
+                        <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+                        <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+                    </span>
+                    <span class="brand-name">M3ak Morocco</span>
+                </a>
             </div>
             <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
                 aria-pressed="false">
@@ -565,9 +574,9 @@
             <div class="page-title-row">
 
                 <div>
-                    <h2 class="page-title">
+                    <h1 class="page-title">
                         Emergency Hub
-                    </h2>
+                    </h1>
 
                     <p class="page-subtitle">
                         Command center for immediate assistance and critical resources.
@@ -611,6 +620,10 @@
                     -->
                         <button id="sosBtn" type="button" oncontextmenu="return false" aria-describedby="sosHint"
                             class="group sos-btn">
+                            <svg class="sos-ring" viewBox="0 0 100 100" aria-hidden="true">
+                                <circle id="sosRing" cx="50" cy="50" r="46" />
+                            </svg>
+
                             <span class="sos-btn-content">
 
                                 <img src="/assets/emergence-image/sos-logo.png" alt="SOS-logo" class="sos-icon" />
@@ -716,6 +729,40 @@
                         <span class="quick-call-right">
                             <span class="quick-call-number">
                                 177
+                            </span>
+
+                            <span class="quick-call-tag">
+                                Quick Dial
+                            </span>
+                        </span>
+
+                    </button>
+
+                    <!-- FIREFIGHTERS -->
+                    <button type="button" onclick="firefightersDialog.showModal()"
+                        class="quick-call-btn quick-call-btn--firefighters">
+
+                        <span class="quick-call-icon--firefighters">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-img-sm" aria-hidden="true">
+                                <path d="M12 2.5s5.5 4.6 5.5 9.6a5.5 5.5 0 0 1-11 0c0-1.9.8-3.6 1.8-5 .3 1.3 1.1 2.2 2 2.2 1.3 0 1.9-1.6 1.7-3.4-.1-1.4-.4-2.6 0-3.4Z" />
+                                <path d="M12 21.5a3 3 0 0 0 3-3c0-1.8-3-4.3-3-4.3s-3 2.5-3 4.3a3 3 0 0 0 3 3Z" />
+                            </svg>
+                        </span>
+
+                        <span class="quick-call-info">
+                            <span class="quick-call-name">
+                                Firefighters
+                            </span>
+
+                            <span class="quick-call-sub">
+                                Civil Protection &bull; Fire &amp; Rescue
+                            </span>
+                        </span>
+
+                        <span class="quick-call-right">
+                            <span class="quick-call-number">
+                                15
                             </span>
 
                             <span class="quick-call-tag">
@@ -1001,51 +1048,7 @@
         </main>
     </div>
 
-    <!-- FOOTER mobile -->
-    <footer class="footer-mobile">
-        <div class="footer-mobile-inner">
-            <div class="footer-mobile-stack">
-                <p class="footer-brand">M3ak Morocco</p>
-                <nav class="footer-nav">
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                    <a href="#" class="footer-link">Terms of Service</a>
-                    <a href="#" class="footer-link">Legal Notice</a>
-                </nav>
-                <p class="footer-copyright">© 2026 M3ak Morocco. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
-    <!-- FOOTER desktop -->
-    <footer class="footer-desktop">
-
-        <div class="footer-desktop-inner">
-
-            <div class="footer-desktop-row">
-
-                <p>
-                    © 2026 Kingdom of Morocco · M3ak Super App. All rights reserved.
-                </p>
-
-                <nav class="footer-nav-desktop">
-
-                    <a href="#" class="footer-link">
-                        Privacy Policy
-                    </a>
-
-                    <a href="#" class="footer-link">
-                        Terms of Service
-                    </a>
-
-                    <a href="/pages/app/support.html" class="footer-link">
-                        Help Center
-                    </a>
-
-                </nav>
-
-            </div>
-        </div>
-    </footer>
 
     <!-- ======================================================
          DIALOGS — native <dialog>. Opened with `id.showModal()` (see the
@@ -1109,6 +1112,31 @@
             </form>
             <a href="tel:177" class="dialog-btn-danger">
                 Call 177
+            </a>
+        </div>
+    </dialog>
+
+    <dialog id="firefightersDialog" aria-labelledby="firefightersDialogTitle" class="confirm-dialog">
+        <span class="dialog-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" class="dialog-icon-img" aria-hidden="true">
+                <path d="M12 2.5s5.5 4.6 5.5 9.6a5.5 5.5 0 0 1-11 0c0-1.9.8-3.6 1.8-5 .3 1.3 1.1 2.2 2 2.2 1.3 0 1.9-1.6 1.7-3.4-.1-1.4-.4-2.6 0-3.4Z" />
+                <path d="M12 21.5a3 3 0 0 0 3-3c0-1.8-3-4.3-3-4.3s-3 2.5-3 4.3a3 3 0 0 0 3 3Z" />
+            </svg>
+        </span>
+        <h2 id="firefightersDialogTitle" class="dialog-title">Call Firefighters</h2>
+        <p class="dialog-desc">
+            You are about to call Civil Protection (fire &amp; rescue) on 15. Only confirm if you need emergency
+            assistance.
+        </p>
+        <div class="dialog-actions">
+            <form method="dialog" class="flex-1">
+                <button class="dialog-btn-secondary">
+                    Not now
+                </button>
+            </form>
+            <a href="tel:15" class="dialog-btn-danger">
+                Call 15
             </a>
         </div>
     </dialog>
@@ -1219,14 +1247,82 @@
         ───────────────────────────── */
 
         (function () {
-            let sosTimer = null;
-            function startSosHold() { sosTimer = setTimeout(() => sosDialog.showModal(), 3000); }
-            function cancelSosHold() { clearTimeout(sosTimer); }
+            const HOLD_MS = 3000;
+            const ring = document.getElementById("sosRing");
+            const hint = document.getElementById("sosHint");
+            const RING_LEN = 2 * Math.PI * 46;
+            const IDLE_HINT = hint.textContent.trim();
+
+            let rafId = null;
+            let startedAt = 0;
+
+            ring.style.strokeDasharray = RING_LEN.toFixed(1);
+            resetRing();
+
+            function resetRing() {
+                ring.style.strokeDashoffset = RING_LEN.toFixed(1);
+                hint.textContent = IDLE_HINT;
+            }
+
+            function frame(now) {
+                const p = Math.min((now - startedAt) / HOLD_MS, 1);
+                ring.style.strokeDashoffset = (RING_LEN * (1 - p)).toFixed(1);
+
+                if (p < 1) {
+                    hint.textContent = "Keep holding… " + Math.ceil((1 - p) * (HOLD_MS / 1000)) + "s";
+                    rafId = requestAnimationFrame(frame);
+                    return;
+                }
+
+                rafId = null;
+                hint.textContent = "Alert sent";
+                navigator.vibrate?.([60, 40, 60]);
+                sosDialog.showModal();
+            }
+
+            function startSosHold(event) {
+                if (rafId !== null) return;
+                /* Stops the touch long-press callout and text selection, which
+                   would otherwise interrupt the hold mid-way. */
+                event.preventDefault();
+
+                /* Pointer capture keeps the gesture alive when the finger or
+                   cursor drifts off the button — without it the old handler
+                   cancelled on the slightest movement, which is why holding
+                   almost never reached 3s. */
+                try { sosBtn.setPointerCapture(event.pointerId); } catch (err) { /* not critical */ }
+
+                navigator.vibrate?.(20);
+                startedAt = performance.now();
+                rafId = requestAnimationFrame(frame);
+            }
+
+            function cancelSosHold() {
+                if (rafId === null) return;
+                cancelAnimationFrame(rafId);
+                rafId = null;
+                resetRing();
+            }
 
             sosBtn.addEventListener("pointerdown", startSosHold);
             sosBtn.addEventListener("pointerup", cancelSosHold);
-            sosBtn.addEventListener("pointerleave", cancelSosHold);
             sosBtn.addEventListener("pointercancel", cancelSosHold);
+
+            /* Keyboard equivalent: hold Space/Enter for the same 3 seconds. */
+            sosBtn.addEventListener("keydown", (event) => {
+                if ((event.key === " " || event.key === "Enter") && !event.repeat) {
+                    event.preventDefault();
+                    if (rafId !== null) return;
+                    navigator.vibrate?.(20);
+                    startedAt = performance.now();
+                    rafId = requestAnimationFrame(frame);
+                }
+            });
+            sosBtn.addEventListener("keyup", cancelSosHold);
+            sosBtn.addEventListener("blur", cancelSosHold);
+
+            /* Put the ring back to zero once the alert dialog is dismissed. */
+            sosDialog.addEventListener("close", resetRing);
         })();
 
 
@@ -1537,6 +1633,82 @@
         }
 
     </script>
+    <!-- ══════════ SITE FOOTER ══════════ -->
+    <footer class="border-t border-black/10 bg-white text-slate-600 transition-colors dark:border-white/10 dark:bg-[#0F1512] dark:text-slate-400">
+        <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
+
+            <!-- Brand · nav · copyright -->
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                </nav>
+
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+            </div>
+
+            <!-- Compact info — phones only -->
+            <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
+                <p class="flex items-center justify-center gap-1.5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    Vala Bleu · Agadir, Morocco
+                </p>
+                <p class="flex items-center justify-center gap-1.5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+                    Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
+                </p>
+                <p class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+                    <a href="mailto:support@m3ak.ma" class="flex items-center gap-1.5 transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
+                        support@m3ak.ma
+                    </a>
+                    <a href="tel:+2125220000000" class="flex items-center gap-1.5 transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 6.2 2 2 0 0 1 6 4z" /></svg>
+                        +212 5 22 XX XX XX
+                    </a>
+                </p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+            </div>
+
+            <!-- Full columns — tablet and up -->
+            <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
+
+                <section>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <p class="mb-1 flex items-center gap-2 text-[13px]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
+                        <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
+                    </p>
+                    <p class="flex items-center gap-2 text-[13px]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 6.2 2 2 0 0 1 6 4z" /></svg>
+                        <a href="tel:+2125220000000" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">+212 5 22 XX XX XX</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
+                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <p class="mb-1 text-[13px]">Vala Bleu</p>
+                    <p class="mb-1 text-[13px]">Agadir</p>
+                    <p class="text-[13px]">Morocco</p>
+                </section>
+
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>

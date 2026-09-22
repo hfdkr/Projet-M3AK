@@ -249,17 +249,18 @@
         .search-form { @apply mt-5 flex flex-col gap-2.5 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-white/10 sm:flex-row sm:flex-wrap sm:items-center; }
         .search-field { @apply relative block sm:min-w-[220px] sm:flex-1; }
         .search-icon { @apply absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
-        .search-submit-btn { @apply rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto; }
+        .search-submit-btn { @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto; }
 
         .banners-grid { @apply mt-5 grid gap-4 lg:grid-cols-2; }
         .banner-top-row { @apply flex items-start justify-between gap-2; }
         .banner-title { @apply mt-3 text-lg font-extrabold leading-snug lg:text-xl; }
-        .banner-stats { @apply mt-4 grid grid-cols-3 gap-2 text-center; }
-        .banner-stat-value { @apply text-lg font-extrabold; }
-        .banner-stat-label { @apply text-[10px] text-muted dark:text-mist-300; }
-        .banner-stat-label--white { @apply text-[10px] text-white/60; }
-        .banner-pill-sub { @apply mt-1 text-[10px] text-muted dark:text-mist-300; }
-        .banner-pill-sub--white { @apply mt-1 text-[10px] text-white/60; }
+        .banner-stats { @apply mt-4 grid grid-cols-3 gap-2; }
+        .banner-stat { @apply min-w-0 rounded-xl bg-white/70 dark:bg-white/5 p-2.5 text-center; }
+        .banner-stat-value { @apply text-base font-extrabold leading-tight lg:text-lg; }
+        .banner-stat-label { @apply mt-0.5 text-[10px] leading-snug text-muted dark:text-mist-300; }
+        .banner-stat-label--white { @apply mt-0.5 text-[10px] leading-snug text-muted dark:text-mist-300; }
+        .banner-pill-sub { @apply mt-1 text-[10px] leading-snug text-muted dark:text-mist-300; }
+        .banner-pill-sub--white { @apply mt-1 text-[10px] leading-snug text-muted dark:text-mist-300; }
         .banner-actions { @apply mt-4 flex flex-wrap items-center gap-x-4 gap-y-2; }
 
         .banner-card--concours { @apply relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-accent-400/20 bg-gradient-to-br from-brand-soft to-[#DCEAF6] dark:from-night-800 dark:to-[#0E2A20] p-5; }
@@ -270,13 +271,13 @@
         .banner-btn--brand { @apply rounded-lg bg-brand px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40; }
         .banner-link--brand { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
 
-        .banner-card--accelerator { @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#111C3F] to-[#20306E] p-5 text-white; }
-        .banner-badge--accelerator { @apply inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide; }
-        .banner-tag--accelerator { @apply shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-bold; }
-        .banner-desc--accelerator { @apply mt-1.5 max-w-[85%] text-xs text-white/70; }
-        .banner-pill--accelerator { @apply inline-block rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-bold; }
-        .banner-btn--light { @apply rounded-lg bg-white px-4 py-2.5 text-xs font-bold text-[#111C3F] shadow-sm transition hover:bg-white/90; }
-        .banner-link--white { @apply text-xs font-semibold text-white/80 hover:underline; }
+        .banner-card--accelerator { @apply relative overflow-hidden rounded-2xl border border-blue-200/80 dark:border-blue-400/20 bg-gradient-to-br from-blue-50 to-[#E8EEFB] dark:from-night-800 dark:to-[#14203F] p-5; }
+        .banner-badge--accelerator { @apply inline-flex items-center gap-1.5 rounded-full bg-white/70 dark:bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-blue-700 dark:text-blue-400; }
+        .banner-tag--accelerator { @apply shrink-0 rounded-full bg-blue-600/10 dark:bg-blue-400/15 px-2 py-0.5 text-[10px] font-bold text-blue-700 dark:text-blue-400; }
+        .banner-desc--accelerator { @apply mt-1.5 max-w-[92%] text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .banner-pill--accelerator { @apply inline-block rounded-full bg-blue-600/10 dark:bg-blue-400/15 px-2 py-0.5 text-[11px] font-bold text-blue-700 dark:text-blue-400; }
+        .banner-btn--light { @apply inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500/40; }
+        .banner-link--white { @apply text-xs font-semibold text-blue-700 dark:text-blue-400 hover:underline; }
 
         .main-grid { @apply mt-6 lg:flex lg:items-start lg:gap-6; }
         .primary-col { @apply min-w-0 flex-1 space-y-6; }
@@ -284,7 +285,7 @@
         .section-heading { @apply text-lg font-extrabold; }
         .section-count { @apply text-xs text-muted dark:text-mist-300; }
         .job-list { @apply mt-3 space-y-3; }
-        .pagination-row { @apply mt-5 flex items-center justify-center gap-1.5; }
+        .pagination-row { @apply flex flex-wrap items-center gap-1.5; }
         .sector-grid { @apply mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6; }
 
         .rail { @apply mt-6 space-y-5 lg:mt-0 lg:w-80 lg:shrink-0; }
@@ -298,10 +299,107 @@
 
         .skills-card { @apply relative overflow-hidden rounded-2xl border border-brand-line/70 dark:border-accent-400/20 bg-brand-soft/70 dark:bg-accent-400/10 p-4; }
         .skills-heading { @apply flex items-center gap-1.5 text-sm font-bold text-brand dark:text-accent-400; }
-        .skills-list { @apply mt-3 space-y-2 text-xs font-semibold text-ink dark:text-mist-100; }
-        .skills-item { @apply flex items-center gap-2 rounded-lg bg-white/70 dark:bg-night-800/70 px-3 py-2; }
-        .skills-dot { @apply size-1.5 shrink-0 rounded-full bg-brand dark:bg-accent-400; }
-        .qr-btn { @apply mt-3.5 flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-3.5 py-2.5 text-xs font-bold text-white transition hover:bg-brand-dark; }
+        .skills-list { @apply mt-3 space-y-2; }
+        .qr-btn { @apply mt-3.5 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-soft dark:bg-accent-400/15 px-3.5 py-2.5 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 transition hover:bg-brand/10 dark:hover:bg-accent-400/20; }
+
+        /* ---------- Breadcrumb + header CTAs ---------- */
+        .breadcrumb      { @apply flex flex-wrap items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-brand dark:text-accent-400; }
+        .breadcrumb-sep  { @apply text-muted/60 dark:text-mist-300/60; }
+        .breadcrumb-here { @apply font-semibold normal-case tracking-normal text-muted dark:text-mist-300; }
+        .header-cta-row  { @apply flex shrink-0 flex-wrap items-center gap-2; }
+        .btn-ghost { @apply inline-flex items-center gap-1.5 rounded-lg border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-3.5 py-2 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .btn-solid { @apply inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .btn-icon  { @apply size-3.5 shrink-0; }
+
+        /* ---------- Popular tags ---------- */
+        .tags-row   { @apply mt-3 flex flex-wrap items-center gap-2; }
+        .tags-label { @apply text-[10px] font-extrabold uppercase tracking-wider text-muted dark:text-mist-300; }
+        .tag-chip   { @apply inline-flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400; }
+        .tag-chip--lead { @apply border-brand/40 dark:border-accent-400/40 bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .tag-dot    { @apply size-1.5 shrink-0 rounded-full bg-brand dark:bg-accent-400; }
+
+        /* ---------- Result tabs ---------- */
+        .sort-select  { @apply w-auto text-xs; }
+        .result-tabs  { @apply mt-3 flex flex-wrap items-center gap-1 rounded-2xl bg-canvas dark:bg-night-800 p-1 ring-1 ring-black/5 dark:ring-white/10 sm:inline-flex sm:flex-nowrap sm:rounded-full; }
+        .result-tab   { @apply rounded-full px-3 py-1.5 text-[11px] font-bold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100; }
+        .result-tab[aria-selected="true"] { @apply bg-brand text-white shadow-sm hover:text-white dark:bg-accent-400 dark:text-night-900 dark:hover:text-night-900; }
+
+        /* ---------- Job card ---------- */
+        .job-card      { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:shadow-md; }
+        .job-card-row  { @apply flex items-start gap-3; }
+        .job-icon      { @apply grid size-10 shrink-0 place-items-center rounded-xl; }
+        .job-icon--public  { @apply bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .job-icon--private { @apply bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400; }
+        .job-body      { @apply min-w-0 flex-1; }
+        .job-head      { @apply flex flex-wrap items-start justify-between gap-x-3 gap-y-1; }
+        .job-head-main { @apply min-w-0; }
+        .job-org       { @apply text-[11px] font-extrabold uppercase leading-snug tracking-wide; }
+        .job-org--public  { @apply text-brand dark:text-accent-400; }
+        .job-org--private { @apply text-blue-700 dark:text-blue-400; }
+        .job-salary-wrap  { @apply shrink-0 text-right; }
+        .job-salary-label { @apply block text-[10px] leading-tight text-muted dark:text-mist-300; }
+        .job-salary       { @apply block text-sm font-extrabold leading-tight; }
+        .job-salary-unit  { @apply text-[10px] font-semibold text-muted dark:text-mist-300; }
+        /* Colour comes from a PILL_TONE class added alongside this one. */
+        .job-deadline-pill { @apply mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold; }
+        .job-ref       { @apply mt-1 text-[10px] font-medium text-muted dark:text-mist-300; }
+        .job-title     { @apply mt-1.5 text-sm font-bold leading-snug lg:text-base; }
+        .job-desc      { @apply mt-1 text-xs leading-relaxed text-muted dark:text-mist-300; }
+        .job-tags      { @apply mt-2.5 flex flex-wrap gap-1.5; }
+        .job-tag       { @apply rounded-full bg-canvas dark:bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-muted dark:text-mist-300; }
+        .job-meta-row  { @apply mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted dark:text-mist-300; }
+        .job-meta      { @apply inline-flex items-center gap-1; }
+        .job-foot      { @apply mt-3 flex flex-wrap items-center justify-between gap-2.5 border-t border-black/5 dark:border-white/10 pt-3; }
+        .job-cnie      { @apply inline-flex items-center gap-1.5 text-[11px] font-bold text-brand dark:text-accent-400; }
+        .job-actions   { @apply flex shrink-0 items-center gap-2; }
+        .job-save-btn  { @apply inline-flex items-center gap-1.5 rounded-lg border border-black/10 dark:border-white/15 px-3 py-2 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700; }
+        .job-apply-btn { @apply inline-flex items-center gap-1.5 rounded-lg bg-brand px-3.5 py-2 text-xs font-bold text-white transition hover:bg-brand-dark; }
+        .job-apply-btn--private { @apply bg-blue-600 hover:bg-blue-700; }
+        .job-empty     { @apply rounded-2xl border border-dashed border-black/10 dark:border-white/15 py-8 text-center text-xs text-muted dark:text-mist-300; }
+
+        /* ---------- Pagination ---------- */
+        .pagination-wrap { @apply mt-5 flex flex-wrap items-center justify-between gap-3; }
+        .pagination-info { @apply text-[11px] text-muted dark:text-mist-300; }
+        .page-btn      { @apply size-8 rounded-lg text-xs font-bold transition; }
+        .page-btn--on  { @apply bg-brand text-white shadow-sm dark:bg-accent-400 dark:text-night-900; }
+        .page-btn--off { @apply text-muted hover:bg-canvas dark:text-mist-300 dark:hover:bg-night-800; }
+        .page-nav-btn  { @apply rounded-lg border border-black/10 dark:border-white/15 px-3 py-1.5 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-800 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent; }
+
+        /* ---------- Rail: applications ---------- */
+        .rail-head-row    { @apply flex items-center justify-between gap-2; }
+        .rail-count-badge { @apply shrink-0 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2 py-0.5 text-[10px] font-bold text-brand dark:text-accent-400; }
+        .app-item      { @apply rounded-xl border border-black/10 dark:border-white/15 p-3 transition hover:border-brand/40 dark:hover:border-accent-400/40; }
+        .app-item-head { @apply flex items-start justify-between gap-2; }
+        .app-org       { @apply text-[9px] font-extrabold uppercase leading-snug tracking-wider text-brand dark:text-accent-400; }
+        .app-title     { @apply mt-1 text-xs font-bold leading-snug; }
+        .app-meta      { @apply mt-1 text-[10px] leading-snug text-muted dark:text-mist-300; }
+        .app-status    { @apply shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-bold; }
+        .app-foot      { @apply mt-2 flex justify-end; }
+        .app-action    { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[9px] font-bold text-muted dark:text-mist-300; }
+
+        /* ---------- Rail: skills passport ---------- */
+        .skills-sub      { @apply mt-1.5 text-[10px] leading-snug text-muted dark:text-mist-300; }
+        .skills-row      { @apply flex items-center gap-2.5 rounded-xl bg-white dark:bg-night-800/70 p-2.5 ring-1 ring-black/5 dark:ring-white/10; }
+        .skills-row-icon { @apply grid size-7 shrink-0 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .skills-row-main { @apply min-w-0 flex-1; }
+        .skills-row-title{ @apply block text-[11px] font-bold leading-tight; }
+        .skills-row-sub  { @apply mt-0.5 block text-[9px] leading-snug text-muted dark:text-mist-300; }
+        .skills-check    { @apply grid size-4 shrink-0 place-items-center rounded-full bg-brand text-white dark:bg-accent-400 dark:text-night-900; }
+
+        /* ---------- Rail: tools ---------- */
+        .tool-btn     { @apply flex w-full items-center gap-2.5 rounded-xl border border-black/10 dark:border-white/15 px-3 py-2.5 text-left text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700; }
+        .tool-icon    { @apply grid size-7 shrink-0 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .tool-name    { @apply min-w-0 flex-1 leading-snug; }
+        .tool-chevron { @apply size-3.5 shrink-0 text-muted dark:text-mist-300; }
+
+        /* ---------- Sectors (full-width band) ---------- */
+        .sector-section    { @apply mt-8; }
+        .sector-head       { @apply flex flex-wrap items-center justify-between gap-2; }
+        .sector-meta       { @apply text-[11px] text-muted dark:text-mist-300; }
+        .sector-tile       { @apply flex flex-col items-center gap-2 rounded-2xl bg-white dark:bg-night-800 p-3.5 text-center ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
+        .sector-tile-icon  { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .sector-tile-name  { @apply text-xs font-bold leading-tight; }
+        .sector-tile-count { @apply text-[10px] text-muted dark:text-mist-300; }
 
         .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300 lg:bottom-8; }
     </style>
@@ -337,13 +435,16 @@
 
                 <button type="button" class="icon-btn">
                     <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/notification.png" alt="Notifications" class="icon-img-sm" />
+                    <img src="/assets/settings/icon-notification-light.svg" alt="Notifications" class="icon-img-sm dark:hidden" />
+                    <img src="/assets/settings/icon-notification-dark.svg" alt="" class="hidden icon-img-sm dark:block" />
                     <span class="notif-dot"></span>
                 </button>
 
 
                 <button type="button" class="avatar-btn">
-                    <span class="sr-only">Your profile</span>A
+                    <span class="sr-only">Your profile</span>
+                    <img src="/assets/settings/photo-icon.svg" alt="" class="size-full rounded-full object-cover" data-auth="user" />
+                    <img src="/assets/settings/icon-user.svg" alt="" class="size-5 object-contain" data-auth="guest" />
                 </button>
             </div>
         </div>
@@ -425,17 +526,29 @@
             <div class="content-wrap">
 
                 <!-- Page header -->
+                <p class="breadcrumb">
+                    Public Employment &amp; Exams
+                    <span class="breadcrumb-sep">›</span>
+                    <span class="breadcrumb-here">National Recruitment Portal</span>
+                </p>
+
                 <div class="page-header-row">
                     <div>
                         <h1 class="page-title">Jobs &amp; Employment Portal</h1>
                         <p class="page-subtitle">
-                            Access thousands of verified opportunities in the public service and private sector, powered by your secure digital identity.
+                            Access Moroccan civil service exams and verified private sector opportunities with your certified CNIE digital identity.
                         </p>
                     </div>
-                    <span class="cnie-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" /><path d="m9 12 2 2 4-4" /></svg>
-                        CNIE Certified Portal
-                    </span>
+                    <div class="header-cta-row">
+                        <button type="button" id="digitalCvBtn" class="btn-ghost">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6" /><path d="m9 15 2 2 4-4" /></svg>
+                            Certified Digital CV
+                        </button>
+                        <button type="button" id="jobAlertBtn" class="btn-solid">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
+                            Create Job Alert
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Search / filter bar -->
@@ -468,9 +581,22 @@
                     </select>
 
                     <button type="submit" class="search-submit-btn">
-                        Filter CNIE
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M3 5h18l-7 8v5l-4 2v-7Z" /></svg>
+                        Filter (<span id="filterCount">0</span>)
                     </button>
                 </form>
+
+                <!-- Popular tags -->
+                <div class="tags-row">
+                    <span class="tags-label">Popular tags</span>
+                    <button type="button" data-tag="Finance &amp; Customs" class="tag-chip tag-chip--lead">
+                        <span class="tag-dot"></span>MEF Exam (Finance)
+                    </button>
+                    <button type="button" data-tag="Public Service (Civil Service Exams)" class="tag-chip">Grade Scale 11 / State Engineers</button>
+                    <button type="button" data-tag="Public Service (Civil Service Exams)" class="tag-chip">2nd Grade Administrators</button>
+                    <button type="button" data-tag="Public Health" class="tag-chip">Healthcare Professions</button>
+                    <button type="button" data-tag="Tech &amp; Telecom" class="tag-chip">1-Click Application</button>
+                </div>
 
                 <!-- Banners: National Recruitment Exam + Job Accelerator -->
                 <div class="banners-grid">
@@ -489,17 +615,17 @@
                         </p>
 
                         <div class="banner-stats">
-                            <div>
+                            <div class="banner-stat">
                                 <p class="banner-stat-value">1,450</p>
-                                <p class="banner-stat-label">Positions</p>
+                                <p class="banner-stat-label">Open Positions</p>
                             </div>
-                            <div>
+                            <div class="banner-stat">
                                 <p class="banner-stat-value">Nov 15</p>
-                                <p class="banner-stat-label">Deadline</p>
+                                <p class="banner-stat-label">Deadline 2026</p>
                             </div>
-                            <div>
+                            <div class="banner-stat">
                                 <span class="banner-pill--concours">CNIE Eligible</span>
-                                <p class="banner-pill-sub">100% Certified</p>
+                                <p class="banner-pill-sub">Validation Status</p>
                             </div>
                         </div>
 
@@ -527,17 +653,17 @@
                         </p>
 
                         <div class="banner-stats">
-                            <div>
-                                <p class="banner-stat-value">4,200+</p>
-                                <p class="banner-stat-label--white">Listings</p>
+                            <div class="banner-stat">
+                                <p class="banner-stat-value">4,280+</p>
+                                <p class="banner-stat-label--white">Verified Offers</p>
                             </div>
-                            <div>
+                            <div class="banner-stat">
                                 <p class="banner-stat-value">18,500</p>
-                                <p class="banner-stat-label--white">Median Salary</p>
+                                <p class="banner-stat-label--white">Average Salary (MAD)</p>
                             </div>
-                            <div>
+                            <div class="banner-stat">
                                 <span class="banner-pill--accelerator">100% Permanent</span>
-                                <p class="banner-pill-sub--white">CNSS</p>
+                                <p class="banner-pill-sub--white">Declared CNSS</p>
                             </div>
                         </div>
 
@@ -563,22 +689,25 @@
                                     <h2 class="section-heading">Latest Verified Opportunities</h2>
                                     <p class="section-count"><span id="resultsCount">0</span> positions match your search</p>
                                 </div>
-                                <select id="sortSelect" class="field w-auto text-xs" aria-label="Sort by">
+                                <select id="sortSelect" class="field sort-select" aria-label="Sort by">
                                     <option value="relevance">Relevance (Default)</option>
                                     <option value="salary">Salary (Highest First)</option>
                                     <option value="recent">Date Posted</option>
                                 </select>
                             </div>
 
+                            <div id="resultTabs" class="result-tabs" role="tablist" aria-label="Filter by employer type">
+                                <button type="button" role="tab" data-scope="all" aria-selected="true" class="result-tab">All (<span data-count="all">0</span>)</button>
+                                <button type="button" role="tab" data-scope="public" aria-selected="false" class="result-tab">Public Contests (<span data-count="public">0</span>)</button>
+                                <button type="button" role="tab" data-scope="private" aria-selected="false" class="result-tab">Private &amp; Multinationals (<span data-count="private">0</span>)</button>
+                            </div>
+
                             <div id="jobList" class="job-list"></div>
 
-                            <nav id="pagination" class="pagination-row" aria-label="Pagination"></nav>
-                        </section>
-
-                        <!-- Explore by Ministry & Sector -->
-                        <section>
-                            <h2 class="section-heading">Explore Careers by Ministry &amp; Sector</h2>
-                            <div id="sectorGrid" class="sector-grid"></div>
+                            <div class="pagination-wrap">
+                                <p id="paginationInfo" class="pagination-info"></p>
+                                <nav id="pagination" class="pagination-row" aria-label="Pagination"></nav>
+                            </div>
                         </section>
                     </div>
 
@@ -587,15 +716,18 @@
 
                         <!-- Active applications -->
                         <section class="rail-card">
-                            <h2 class="rail-heading">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-heading-icon"><rect x="3" y="4" width="18" height="18" rx="2.5" /><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4" /></svg>
-                                My Active Applications
-                            </h2>
+                            <div class="rail-head-row">
+                                <h2 class="rail-heading">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-heading-icon"><rect x="3" y="4" width="18" height="18" rx="2.5" /><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4" /></svg>
+                                    My Active Applications
+                                </h2>
+                                <span class="rail-count-badge">3 in progress</span>
+                            </div>
 
                             <ol id="applicationsList" class="applications-list"></ol>
 
                             <button type="button" id="viewHistory" class="rail-btn-outline">
-                                View Full History
+                                View Full Competition History
                             </button>
                         </section>
 
@@ -606,34 +738,72 @@
                                 My CNIE Skills Passport
                             </h2>
 
+                            <p class="skills-sub">Your academic and professional records are verified directly by official government registries.</p>
+
                             <ul class="skills-list">
-                                <li class="skills-item">
-                                    <span class="skills-dot"></span>
-                                    Verified State Engineer
+                                <li class="skills-row">
+                                    <span class="skills-row-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M12 3 2 8l10 5 10-5-10-5Z" /><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" /></svg>
+                                    </span>
+                                    <span class="skills-row-main">
+                                        <span class="skills-row-title">State Engineering Diploma</span>
+                                        <span class="skills-row-sub">Verified by the Ministry of Higher Education</span>
+                                    </span>
+                                    <span class="skills-check">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="size-2.5"><path d="m20 6-11 11-5-5" /></svg>
+                                    </span>
                                 </li>
-                                <li class="skills-item">
-                                    <span class="skills-dot"></span>
-                                    Artificial Intelligence &amp; Cloud/IoT
+                                <li class="skills-row">
+                                    <span class="skills-row-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" /></svg>
+                                    </span>
+                                    <span class="skills-row-main">
+                                        <span class="skills-row-title">Criminal Record Extract (Record #3)</span>
+                                        <span class="skills-row-sub">Clean record, certified by the Ministry of Justice</span>
+                                    </span>
+                                    <span class="skills-check">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="size-2.5"><path d="m20 6-11 11-5-5" /></svg>
+                                    </span>
                                 </li>
-                                <li class="skills-item">
-                                    <span class="skills-dot"></span>
-                                    CNIE Generation &amp; Secure Blockchain
+                                <li class="skills-row">
+                                    <span class="skills-row-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><rect x="2.5" y="6" width="19" height="12" rx="2.5" /><circle cx="12" cy="12" r="2.5" /></svg>
+                                    </span>
+                                    <span class="skills-row-main">
+                                        <span class="skills-row-title">CNSS Attestation &amp; Wage History</span>
+                                        <span class="skills-row-sub">62 verified contribution months</span>
+                                    </span>
+                                    <span class="skills-check">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="size-2.5"><path d="m20 6-11 11-5-5" /></svg>
+                                    </span>
                                 </li>
                             </ul>
 
                             <button type="button" id="getQrBtn" class="qr-btn">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 14h3v3h-3zM19 14h2M14 19h2M19 19h2" /></svg>
-                                Get Verification QR Code
+                                Generate Recruiter Verification QR Code
                             </button>
                         </section>
 
                         <!-- Exam prep tools -->
                         <section class="rail-card">
-                            <h2 class="rail-heading-sm">Tools &amp; Exam Preparation</h2>
+                            <h2 class="rail-heading">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-heading-icon"><path d="M4 19.5V6a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 1.5Z" /><path d="M8 8h7M8 12h5" /></svg>
+                                Preparation &amp; Civil Exam Tools
+                            </h2>
                             <div id="toolsList" class="tools-list"></div>
                         </section>
                     </aside>
                 </div>
+
+                <!-- Explore by Ministry & Sector (full-width band) -->
+                <section class="sector-section">
+                    <div class="sector-head">
+                        <h2 class="section-heading">Explore Careers by Ministry &amp; Sector</h2>
+                        <p class="sector-meta">12 Connected Ministerial Departments</p>
+                    </div>
+                    <div id="sectorGrid" class="sector-grid"></div>
+                </section>
             </div>
         </main>
     </div>
@@ -673,6 +843,9 @@
                 title: "Chief State Engineer — Information Systems Security & Sovereign Cloud",
                 desc: "Lead the cybersecurity strategy and migration to Morocco's sovereign cloud for critical ministerial systems.",
                 salaryMin: 19500, salaryMax: 24000,
+                salaryNote: "Grade Scale 11 · Index 509",
+                pill: "Closes in 4 days (Nov 10, 2026)", pillTone: "urgent",
+                ref: "Exam Ref: MEF-2026-ING-04",
                 posted: "Posted 2 days ago", deadline: "Apply before Nov 20",
                 location: "Rabat · Administrative City",
                 tags: ["Open Position", "CNIE Required", "Master's Degree Required"],
@@ -684,6 +857,9 @@
                 title: "1st Grade Specialist Physician — CHU Ibn Sina & CHU Tangier",
                 desc: "Tenured specialist physician position, attached to the university hospital network, with possible dual assignment.",
                 salaryMin: 22000, salaryMax: 28500,
+                salaryNote: "Special Medical Status",
+                pill: "Open until Nov 28, 2026", pillTone: "open",
+                ref: "Exam Ref: MSPS-CHU-2026",
                 posted: "Posted 4 days ago", deadline: "Apply before Nov 28",
                 location: "Rabat · CHU Ibn Sina",
                 tags: ["Open Position", "CNIE Required", "No Oral Interview"],
@@ -695,6 +871,8 @@
                 title: "Senior Fullstack Tech Lead (React, Node.js, Go) — FinTech Hub",
                 desc: "Lead a fullstack product team within a CFC-certified fintech hub, salary and benefits 100% declared to CNSS.",
                 salaryMin: 32000, salaryMax: 45000,
+                salaryNote: "Guaranteed Annual Package",
+                pill: "M3ak Verified Private Sector", pillTone: "private",
                 posted: "Posted 6h ago", deadline: "Applications open",
                 location: "Casablanca · CFC Tower",
                 tags: ["New", "Verified Permanent Contract", "Hybrid Remote"],
@@ -706,6 +884,8 @@
                 title: "Director of Port Operations & Maritime Supply Chain",
                 desc: "Oversee port operations and the international logistics chain for a major player in maritime trade.",
                 salaryMin: 28000, salaryMax: 38000,
+                salaryNote: "Executive Package",
+                pill: "Immediate Permanent Contract (CDI)", pillTone: "open",
                 posted: "Posted 1 day ago", deadline: "Apply before Dec 5",
                 location: "Tanger Med · Port Zone",
                 tags: ["Verified Permanent Contract", "Master's Degree Required"],
@@ -714,12 +894,12 @@
         ];
 
         var SECTORS = [
-            { name: "Tech & Telecom", icon: '<rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" />' },
-            { name: "Public Health", icon: '<path d="M12 21s-7-4.9-7-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 7 3.6C19 16.1 12 21 12 21z" />' },
-            { name: "Civil Security & HR", icon: '<path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" />' },
-            { name: "Finance & Customs", icon: '<rect x="2.5" y="6" width="19" height="12" rx="2.5" /><circle cx="12" cy="12" r="2.5" />' },
-            { name: "Transport & Logistics", icon: '<path d="M3 16V7a1 1 0 0 1 1-1h8v10M12 16h7l2-4h-5V8h-4" /><circle cx="7" cy="18" r="1.6" /><circle cx="17" cy="18" r="1.6" />' },
-            { name: "Education & Teaching", icon: '<path d="M12 3 2 8l10 5 10-5-10-5Z" /><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" />' }
+            { name: "Tech & Telecom", count: 312, icon: '<rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" />' },
+            { name: "Public Health", count: 184, icon: '<path d="M12 21s-7-4.9-7-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 7 3.6C19 16.1 12 21 12 21z" />' },
+            { name: "Civil Security & HR", count: 245, icon: '<path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" />' },
+            { name: "Finance & Customs", count: 120, icon: '<rect x="2.5" y="6" width="19" height="12" rx="2.5" /><circle cx="12" cy="12" r="2.5" />' },
+            { name: "Transport & Logistics", count: 88, icon: '<path d="M3 16V7a1 1 0 0 1 1-1h8v10M12 16h7l2-4h-5V8h-4" /><circle cx="7" cy="18" r="1.6" /><circle cx="17" cy="18" r="1.6" />' },
+            { name: "Education & Teaching", count: 420, icon: '<path d="M12 3 2 8l10 5 10-5-10-5Z" /><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" />' }
         ];
 
         var ICON = function (paths, cls) {
@@ -729,85 +909,123 @@
         var ICON_CLOCK = '<circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" />';
         var ICON_BUILDING = '<path d="M4 21V9l8-5 8 5v12" /><path d="M9 21v-6h6v6M9 10h.01M15 10h.01" />';
         var ICON_BOOKMARK = '<path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1Z" />';
+        var ICON_USERS = '<path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9.5" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" />';
+        var ICON_CHECK_SHIELD = '<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" /><path d="m9 12 2 2 4-4" />';
+        var ICON_CHEVRON = '<path d="m9 18 6-6-6-6" />';
 
         function fmtSalary(min, max) {
             return min.toLocaleString("en-US") + " – " + max.toLocaleString("en-US") + " MAD";
         }
 
         /* ── Job cards ── */
+        var PILL_TONE = {
+            urgent:  "bg-danger/10 text-danger",
+            open:    "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400",
+            private: "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400"
+        };
+
         function jobCard(j) {
-            var badgeClass = j.isPublic
-                ? "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400"
-                : "bg-blue-50 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400";
-            var applyLabel = j.isPublic ? "Apply Now" : "Apply";
+            var scope = j.isPublic ? "public" : "private";
+            var applyLabel = j.isPublic ? "Apply Now" : "Apply with M3ak Profile";
             return '' +
-                '<article data-job class="rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:shadow-md">' +
-                '<div class="flex items-start gap-3">' +
-                '<span class="grid size-10 shrink-0 place-items-center rounded-xl ' + badgeClass + '">' + ICON(ICON_BUILDING, "size-5") + '</span>' +
-                '<div class="min-w-0 flex-1">' +
-                '<div class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">' +
-                '<span class="rounded bg-slate-100 dark:bg-white/10 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-500 dark:text-mist-300">' + j.org + '</span>' +
-                '<span class="text-sm font-extrabold text-brand dark:text-accent-400">' + fmtSalary(j.salaryMin, j.salaryMax) + '</span>' +
+                '<article data-job class="job-card">' +
+                '<div class="job-card-row">' +
+                '<span class="job-icon job-icon--' + scope + '">' + ICON(ICON_BUILDING, "size-5") + '</span>' +
+                '<div class="job-body">' +
+
+                '<div class="job-head">' +
+                '<div class="job-head-main">' +
+                '<p class="job-org job-org--' + scope + '">' + j.org + '</p>' +
+                (j.pill ? '<span class="job-deadline-pill ' + (PILL_TONE[j.pillTone] || PILL_TONE.open) + '">' + ICON(ICON_CLOCK, "size-2.5") + j.pill + '</span>' : "") +
+                (j.ref ? '<p class="job-ref">' + j.ref + '</p>' : "") +
                 '</div>' +
-                '<p class="mt-1 text-[11px] font-medium text-muted dark:text-mist-300">' + j.posted + '</p>' +
-                '<h3 class="mt-1 text-sm font-bold leading-snug">' + j.title + '</h3>' +
-                '<p class="mt-1 text-xs text-muted dark:text-mist-300">' + j.desc + '</p>' +
-                '<div class="mt-2.5 flex flex-wrap gap-1.5">' +
-                j.tags.map(function (t) {
-                    return '<span class="rounded-full bg-slate-100 dark:bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-600 dark:text-mist-300">' + t + '</span>';
-                }).join("") +
+                '<span class="job-salary-wrap">' +
+                (j.salaryNote ? '<span class="job-salary-label">' + j.salaryNote + '</span>' : "") +
+                '<span class="job-salary">' + fmtSalary(j.salaryMin, j.salaryMax) + '</span>' +
+                '<span class="job-salary-unit">MAD / month</span>' +
+                '</span>' +
                 '</div>' +
-                '<div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-black/5 dark:border-white/10 pt-3">' +
-                '<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted dark:text-mist-300">' +
-                '<span class="inline-flex items-center gap-1">' + ICON(ICON_PIN, "size-3") + j.location + '</span>' +
-                '<span class="inline-flex items-center gap-1">' + ICON(ICON_CLOCK, "size-3") + j.deadline + '</span>' +
+
+                '<h3 class="job-title">' + j.title + '</h3>' +
+                '<p class="job-desc">' + j.desc + '</p>' +
+
+                '<div class="job-tags">' +
+                j.tags.map(function (t) { return '<span class="job-tag">' + t + '</span>'; }).join("") +
                 '</div>' +
-                '<div class="flex shrink-0 items-center gap-2">' +
-                '<button type="button" data-save="' + j.title + '" class="inline-flex items-center gap-1.5 rounded-lg border border-black/10 dark:border-white/15 px-3 py-2 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-700">' + ICON(ICON_BOOKMARK, "size-3.5") + 'Save</button>' +
-                '<button type="button" data-apply="' + j.title + '" class="rounded-lg bg-brand px-3.5 py-2 text-xs font-bold text-white transition hover:bg-brand-dark">' + applyLabel + '</button>' +
+
+                '<div class="job-meta-row">' +
+                '<span class="job-meta">' + ICON(ICON_PIN, "size-3") + j.location + '</span>' +
+                '<span class="job-meta">' + ICON(ICON_CLOCK, "size-3") + j.deadline + '</span>' +
+                '<span class="job-meta">' + ICON(ICON_USERS, "size-3") + j.posted + '</span>' +
+                '</div>' +
+
+                '<div class="job-foot">' +
+                '<span class="job-cnie">' + ICON(ICON_CHECK_SHIELD, "size-3.5") + (j.isPublic ? "Apply with 1-Click CNIE" : "100% Declared CNSS") + '</span>' +
+                '<div class="job-actions">' +
+                '<button type="button" data-save="' + j.title + '" class="job-save-btn">' + ICON(ICON_BOOKMARK, "size-3.5") + 'Save</button>' +
+                '<button type="button" data-apply="' + j.title + '" class="job-apply-btn' + (j.isPublic ? "" : " job-apply-btn--private") + '">' + ICON(ICON_CHECK_SHIELD, "size-3.5") + applyLabel + '</button>' +
                 '</div></div>' +
+
                 '</div></div>' +
                 '</article>';
         }
 
         function sectorTile(s) {
             return '' +
-                '<button type="button" data-sector="' + s.name + '" class="flex flex-col items-center gap-2 rounded-2xl bg-white dark:bg-night-800 p-3 text-center ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md">' +
-                '<span class="grid size-9 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">' + ICON(s.icon, "size-4") + '</span>' +
-                '<span class="text-xs font-bold leading-tight">' + s.name + '</span>' +
+                '<button type="button" data-sector="' + s.name + '" class="sector-tile">' +
+                '<span class="sector-tile-icon">' + ICON(s.icon, "size-4") + '</span>' +
+                '<span class="sector-tile-name">' + s.name + '</span>' +
+                '<span class="sector-tile-count">' + s.count + ' Contests</span>' +
                 '</button>';
         }
         document.getElementById("sectorGrid").innerHTML = SECTORS.map(sectorTile).join("");
 
         /* ── Active applications (right rail) ── */
         var APPLICATIONS = [
-            { title: "State Engineer", org: "Ministry of Infrastructure", status: "Awaiting Interview", statusClass: "bg-amber-100 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400" },
-            { title: "Finance Controller", org: "General Tax Directorate", status: "Submitted", statusClass: "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400" },
-            { title: "CNIE Generation & Secure Blockchain", org: "National Registry Agency", status: "Under Review", statusClass: "bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-400" }
+            {
+                org: "Ministry of Finance", title: "Digitalization Project Manager",
+                meta: "Interview: Nov 18, 2026 in Rabat",
+                status: "Oral Exam", statusClass: "bg-amber-100 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400",
+                action: "Notice PDF"
+            },
+            {
+                org: "ANP (Moroccan Ports)", title: "Information Systems Auditor",
+                meta: "Pre-selection validated by diploma",
+                status: "File Approved", statusClass: "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400",
+                action: "Track"
+            },
+            {
+                org: "Maroc Telecom", title: "Cloud Solutions Architect",
+                meta: "Transmitted to the Tech department",
+                status: "HR Review", statusClass: "bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-400",
+                action: "Details"
+            }
         ];
-        document.getElementById("applicationsList").innerHTML = APPLICATIONS.map(function (a, i) {
+        document.getElementById("applicationsList").innerHTML = APPLICATIONS.map(function (a) {
             return '' +
-                '<li class="relative pl-4">' +
-                '<span class="absolute left-0 top-1.5 size-2 rounded-full bg-brand dark:bg-accent-400 ring-2 ring-brand-soft dark:ring-accent-400/25"></span>' +
-                '<div class="flex items-center justify-between gap-2">' +
-                '<p class="text-xs font-bold">' + a.title + '</p>' +
-                '<span class="rounded-full ' + a.statusClass + ' px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide">' + a.status + '</span>' +
+                '<li class="app-item">' +
+                '<div class="app-item-head">' +
+                '<p class="app-org">' + a.org + '</p>' +
+                '<span class="app-status ' + a.statusClass + '">' + a.status + '</span>' +
                 '</div>' +
-                '<p class="text-[11px] text-muted dark:text-mist-300">' + a.org + '</p>' +
+                '<p class="app-title">' + a.title + '</p>' +
+                '<p class="app-meta">' + a.meta + '</p>' +
+                '<div class="app-foot"><span class="app-action">' + a.action + '</span></div>' +
                 '</li>';
         }).join("");
 
         /* ── Exam prep tools (right rail) ── */
         var TOOLS = [
-            { name: "ONCF Exam Simulator", icon: '<path d="M4 19V9l8-6 8 6v10" /><path d="M9 19v-6h6v6" />' },
-            { name: "AI Oral Interview Simulator", icon: '<rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" />' },
-            { name: "Administrative Law & Constitution", icon: '<path d="M12 3v18M4 20h16M6 9c0-2 3-4 6-4M18 9c0-2-3-4-6-4" />' }
+            { name: "Past Papers & MCQs (Grade 10 & 11)", icon: '<path d="M4 19.5V6a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 1.5Z" /><path d="M8 8h7M8 12h5" />' },
+            { name: "M3ak AI Oral Interview Simulator", icon: '<rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" />' },
+            { name: "Administrative Law & Moroccan Constitution", icon: '<path d="M12 3v18M4 20h16M6 9c0-2 3-4 6-4M18 9c0-2-3-4-6-4" />' }
         ];
         document.getElementById("toolsList").innerHTML = TOOLS.map(function (t) {
             return '' +
-                '<button type="button" data-tool="' + t.name + '" class="flex w-full items-center gap-2.5 rounded-xl border border-black/10 dark:border-white/15 px-3 py-2.5 text-left text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700">' +
-                '<span class="grid size-7 shrink-0 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">' + ICON(t.icon, "size-3.5") + '</span>' +
-                t.name +
+                '<button type="button" data-tool="' + t.name + '" class="tool-btn">' +
+                '<span class="tool-icon">' + ICON(t.icon, "size-3.5") + '</span>' +
+                '<span class="tool-name">' + t.name + '</span>' +
+                ICON(ICON_CHEVRON, "tool-chevron") +
                 '</button>';
         }).join("");
         document.querySelectorAll("[data-tool]").forEach(function (btn) {
@@ -815,7 +1033,7 @@
         });
 
         /* ── Filtering + sorting ── */
-        var state = { q: "", location: "", category: "", sort: "relevance", page: 1 };
+        var state = { q: "", location: "", category: "", sort: "relevance", scope: "all", page: 1 };
         var PAGE_SIZE = 4;
 
         function matches(j) {
@@ -824,6 +1042,8 @@
                 var hay = (j.title + " " + j.org + " " + j.category).toLowerCase();
                 if (hay.indexOf(q) === -1) return false;
             }
+            if (state.scope === "public" && !j.isPublic) return false;
+            if (state.scope === "private" && j.isPublic) return false;
             if (state.category && j.category !== state.category) return false;
             if (state.location) {
                 if (state.location === "Remote") {
@@ -838,7 +1058,7 @@
             return true;
         }
 
-        var EMPTY_ROW = '<p class="rounded-2xl border border-dashed border-black/10 dark:border-white/15 py-8 text-center text-xs text-muted dark:text-mist-300">No positions match your filters at this time.</p>';
+        var EMPTY_ROW = '<p class="job-empty">No positions match your filters at this time.</p>';
 
         function sortJobs(list) {
             var copy = list.slice();
@@ -850,6 +1070,24 @@
             return copy;
         }
 
+        /* Tab counts ignore the scope filter so each tab shows its own total. */
+        function scopeCount(scope) {
+            var saved = state.scope;
+            state.scope = scope;
+            var n = JOBS.filter(matches).length;
+            state.scope = saved;
+            return n;
+        }
+
+        function renderCounts() {
+            ["all", "public", "private"].forEach(function (s) {
+                var el = document.querySelector('[data-count="' + s + '"]');
+                if (el) el.textContent = scopeCount(s);
+            });
+            var fc = document.getElementById("filterCount");
+            if (fc) fc.textContent = scopeCount("all");
+        }
+
         function render() {
             var filtered = sortJobs(JOBS.filter(matches));
             var pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
@@ -859,18 +1097,29 @@
             document.getElementById("resultsCount").textContent = filtered.length;
             document.getElementById("jobList").innerHTML = pageItems.length ? pageItems.map(jobCard).join("") : EMPTY_ROW;
 
+            renderCounts();
+            renderPaginationInfo(filtered.length);
             renderPagination(pages);
             bindCards();
         }
 
+        function renderPaginationInfo(total) {
+            var from = total ? (state.page - 1) * PAGE_SIZE + 1 : 0;
+            var to = Math.min(state.page * PAGE_SIZE, total);
+            document.getElementById("paginationInfo").textContent =
+                "Showing " + from + " to " + to + " of " + total + " active opportunities";
+        }
+
         function renderPagination(pages) {
-            var html = "";
+            var html = '<button type="button" data-page="' + Math.max(1, state.page - 1) + '" class="page-nav-btn"' +
+                (state.page === 1 ? " disabled" : "") + '>Previous</button>';
             for (var p = 1; p <= pages; p++) {
                 var on = p === state.page;
-                html += '<button type="button" data-page="' + p + '" class="size-8 rounded-lg text-xs font-bold transition ' +
-                    (on ? "bg-brand text-white" : "text-muted hover:bg-canvas dark:text-mist-300 dark:hover:bg-night-800") + '">' + p + '</button>';
+                html += '<button type="button" data-page="' + p + '" class="page-btn ' +
+                    (on ? "page-btn--on" : "page-btn--off") + '"' + (on ? ' aria-current="page"' : "") + '>' + p + '</button>';
             }
-            html += '<button type="button" data-page="' + Math.min(pages, state.page + 1) + '" class="ml-2 rounded-lg border border-black/10 dark:border-white/15 px-3 py-1.5 text-xs font-bold text-ink dark:text-mist-100 transition hover:bg-canvas dark:hover:bg-night-800">Next →</button>';
+            html += '<button type="button" data-page="' + Math.min(pages, state.page + 1) + '" class="page-nav-btn"' +
+                (state.page === pages ? " disabled" : "") + '>Next</button>';
             document.getElementById("pagination").innerHTML = html;
         }
 
@@ -920,6 +1169,38 @@
             render();
         });
 
+        /* ── Employer-type tabs ── */
+        document.getElementById("resultTabs").addEventListener("click", function (e) {
+            var tab = e.target.closest("[data-scope]");
+            if (!tab) return;
+            state.scope = tab.dataset.scope;
+            state.page = 1;
+            this.querySelectorAll("[data-scope]").forEach(function (t) {
+                t.setAttribute("aria-selected", String(t === tab));
+            });
+            render();
+        });
+
+        /* ── Popular tag chips ── */
+        document.querySelectorAll("[data-tag]").forEach(function (chip) {
+            chip.addEventListener("click", function () {
+                var name = chip.dataset.tag.replace(/&amp;/g, "&");
+                state.category = name;
+                document.getElementById("categorySelect").value = name;
+                state.page = 1;
+                render();
+                document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+                toast("Filtering by " + name);
+            });
+        });
+
+        document.getElementById("digitalCvBtn").addEventListener("click", function () {
+            toast("Generating your certified digital CV…");
+        });
+        document.getElementById("jobAlertBtn").addEventListener("click", function () {
+            toast("Job alert created — we'll notify you about matching openings");
+        });
+
         document.getElementById("sectorGrid").addEventListener("click", function (e) {
             var tile = e.target.closest("[data-sector]");
             if (!tile) return;
@@ -967,6 +1248,82 @@
 
         render();
     </script>
+    <!-- ══════════ SITE FOOTER ══════════ -->
+    <footer class="border-t border-black/10 bg-white text-slate-600 transition-colors dark:border-white/10 dark:bg-[#0F1512] dark:text-slate-400">
+        <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
+
+            <!-- Brand · nav · copyright -->
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                </nav>
+
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+            </div>
+
+            <!-- Compact info — phones only -->
+            <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
+                <p class="flex items-center justify-center gap-1.5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    Vala Bleu · Agadir, Morocco
+                </p>
+                <p class="flex items-center justify-center gap-1.5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+                    Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
+                </p>
+                <p class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+                    <a href="mailto:support@m3ak.ma" class="flex items-center gap-1.5 transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
+                        support@m3ak.ma
+                    </a>
+                    <a href="tel:+2125220000000" class="flex items-center gap-1.5 transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 6.2 2 2 0 0 1 6 4z" /></svg>
+                        +212 5 22 XX XX XX
+                    </a>
+                </p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+            </div>
+
+            <!-- Full columns — tablet and up -->
+            <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
+
+                <section>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <p class="mb-1 flex items-center gap-2 text-[13px]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
+                        <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
+                    </p>
+                    <p class="flex items-center gap-2 text-[13px]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 6.2 2 2 0 0 1 6 4z" /></svg>
+                        <a href="tel:+2125220000000" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">+212 5 22 XX XX XX</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
+                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                </section>
+
+                <section>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <p class="mb-1 text-[13px]">Vala Bleu</p>
+                    <p class="mb-1 text-[13px]">Agadir</p>
+                    <p class="text-[13px]">Morocco</p>
+                </section>
+
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
