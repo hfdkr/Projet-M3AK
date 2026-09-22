@@ -127,7 +127,7 @@
     .desktop-topbar { @apply sticky top-0 z-40 hidden border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800 lg:block; }
     .desktop-topbar-inner { @apply flex h-16 items-center gap-6 px-6; }
     .brand-link { @apply flex w-56 shrink-0 items-center gap-3 whitespace-nowrap text-2xl font-extrabold tracking-tight text-brand dark:text-accent-400; }
-    .app-brand-mark { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+    .app-brand-mark { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
     .logo-img-light { @apply size-full object-contain dark:hidden; }
     .logo-img-dark { @apply hidden size-full object-contain dark:block; }
     .header-actions { @apply ml-auto flex items-center gap-2; }
@@ -452,7 +452,7 @@
   <!-- ══════════ TOP BAR (desktop) ══════════ -->
   <header class="desktop-topbar">
     <div class="desktop-topbar-inner">
-      <a href="/pages/app/coming-soon.html?feature=Services" class="brand-link">
+      <a href="/pages/app/overview.html" class="brand-link">
         <span class="app-brand-mark">
           <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
           <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">

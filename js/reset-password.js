@@ -76,10 +76,17 @@
             return allValid;
         }
 
+        /* While typing, stay quiet until the confirm field has something in it —
+           flagging a mismatch on the first keystroke is just noise. */
         function paintMatch() {
             var matches = confirmPassword.value.length === 0 || confirmPassword.value === newPassword.value;
-            if (matchError) { matchError.classList.toggle("hidden", matches); }
+            showMismatch(!matches);
             return matches;
+        }
+
+        function showMismatch(isMismatch) {
+            if (matchError) { matchError.classList.toggle("hidden", !isMismatch); }
+            confirmPassword.setAttribute("aria-invalid", isMismatch ? "true" : "false");
         }
 
         function refresh() {
@@ -95,7 +102,17 @@
         confirmPassword.addEventListener("input", refresh);
         refresh();
 
-        resetBtn.addEventListener("click", function () {
+        resetBtn.addEventListener("click", function (event) {
+            /* Submit-time guard. The disabled button is the first line of
+               defence, but re-check here so a mismatch can never get through
+               and the user is told why instead of nothing happening. */
+            if (!confirmPassword.value || confirmPassword.value !== newPassword.value) {
+                event.preventDefault();
+                showMismatch(true);
+                confirmPassword.focus();
+                return;
+            }
+
             if (resetBtn.disabled) { return; }
 
             resetBtn.disabled = true;
