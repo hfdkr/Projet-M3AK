@@ -191,6 +191,11 @@
             padding-left: 2.25rem;
         }
 
+        /* Selects that carry a leading icon need the same left inset. */
+        .field--select {
+            padding-left: 2.25rem;
+        }
+
         .field:focus-visible {
             border-color: #0B6B45;
             box-shadow: 0 0 0 2px rgba(11, 107, 69, .2);
@@ -249,6 +254,8 @@
         .search-form { @apply mt-5 flex flex-col gap-2.5 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-white/10 sm:flex-row sm:flex-wrap sm:items-center; }
         .search-field { @apply relative block sm:min-w-[220px] sm:flex-1; }
         .search-icon { @apply absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .select-field { @apply relative block; }
+        .select-icon { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted dark:text-mist-300; }
         .search-submit-btn { @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto; }
 
         .banners-grid { @apply mt-5 grid gap-4 lg:grid-cols-2; }
@@ -398,6 +405,7 @@
         .sector-meta       { @apply text-[11px] text-muted dark:text-mist-300; }
         .sector-tile       { @apply flex flex-col items-center gap-2 rounded-2xl bg-white dark:bg-night-800 p-3.5 text-center ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
         .sector-tile-icon  { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
+        .sector-tile-icon-img { @apply size-[18px] object-contain; }
         .sector-tile-name  { @apply text-xs font-bold leading-tight; }
         .sector-tile-count { @apply text-[10px] text-muted dark:text-mist-300; }
 
@@ -560,7 +568,12 @@
                             class="field field--search w-full" />
                     </label>
 
-                    <select id="locationSelect" class="field sm:w-48" aria-label="Region">
+                    <label class="select-field sm:w-48">
+                        <span class="sr-only">Region</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="select-icon" aria-hidden="true">
+                            <path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" />
+                        </svg>
+                        <select id="locationSelect" class="field field--select w-full">
                         <option value="">All Regions</option>
                         <option>Rabat - Salé - Kénitra</option>
                         <option>Casablanca - Settat</option>
@@ -568,9 +581,15 @@
                         <option>Marrakech - Safi</option>
                         <option>Agadir</option>
                         <option>Remote</option>
-                    </select>
+                        </select>
+                    </label>
 
-                    <select id="categorySelect" class="field sm:w-60" aria-label="Sector">
+                    <label class="select-field sm:w-60">
+                        <span class="sr-only">Sector</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="select-icon" aria-hidden="true">
+                            <path d="M3 21h18M4 21V9.5L12 4l8 5.5V21" /><path d="M9.5 21v-6h5v6" />
+                        </svg>
+                        <select id="categorySelect" class="field field--select w-full">
                         <option value="">All Sectors</option>
                         <option>Public Service (Civil Service Exams)</option>
                         <option>Tech &amp; Telecom</option>
@@ -578,7 +597,8 @@
                         <option>Finance &amp; Customs</option>
                         <option>Transport &amp; Logistics</option>
                         <option>Education &amp; Teaching</option>
-                    </select>
+                        </select>
+                    </label>
 
                     <button type="submit" class="search-submit-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M3 5h18l-7 8v5l-4 2v-7Z" /></svg>
@@ -894,12 +914,12 @@
         ];
 
         var SECTORS = [
-            { name: "Tech & Telecom", count: 312, icon: '<rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" />' },
-            { name: "Public Health", count: 184, icon: '<path d="M12 21s-7-4.9-7-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 7 3.6C19 16.1 12 21 12 21z" />' },
-            { name: "Civil Security & HR", count: 245, icon: '<path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" />' },
-            { name: "Finance & Customs", count: 120, icon: '<rect x="2.5" y="6" width="19" height="12" rx="2.5" /><circle cx="12" cy="12" r="2.5" />' },
-            { name: "Transport & Logistics", count: 88, icon: '<path d="M3 16V7a1 1 0 0 1 1-1h8v10M12 16h7l2-4h-5V8h-4" /><circle cx="7" cy="18" r="1.6" /><circle cx="17" cy="18" r="1.6" />' },
-            { name: "Education & Teaching", count: 420, icon: '<path d="M12 3 2 8l10 5 10-5-10-5Z" /><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" />' }
+            { name: "Tech & Telecom", count: 312, icon: "/assets/jobs-icon/icon-tech.svg" },
+            { name: "Public Health", count: 184, icon: "/assets/jobs-icon/icon-health.svg" },
+            { name: "Civil Security & HR", count: 245, icon: "/assets/jobs-icon/civil-icon.svg" },
+            { name: "Finance & Customs", count: 120, icon: "/assets/jobs-icon/icon-finance.svg" },
+            { name: "Transport & Logistics", count: 88, icon: "/assets/jobs-icon/icon-transport.svg" },
+            { name: "Education & Teaching", count: 420, icon: "/assets/jobs-icon/icon-education.svg" }
         ];
 
         var ICON = function (paths, cls) {
@@ -973,7 +993,7 @@
         function sectorTile(s) {
             return '' +
                 '<button type="button" data-sector="' + s.name + '" class="sector-tile">' +
-                '<span class="sector-tile-icon">' + ICON(s.icon, "size-4") + '</span>' +
+                '<span class="sector-tile-icon"><img src="' + s.icon + '" alt="" class="sector-tile-icon-img" /></span>' +
                 '<span class="sector-tile-name">' + s.name + '</span>' +
                 '<span class="sector-tile-count">' + s.count + ' Contests</span>' +
                 '</button>';
