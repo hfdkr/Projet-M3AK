@@ -135,8 +135,6 @@
     .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800; }
     .lang-btn { @apply flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40; }
     .avatar-menu-btn { @apply ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
-    .avatar-initials { @apply grid size-8 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
-    .avatar-initials-lg { @apply grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
     .user-dropdown { @apply absolute right-0 z-50 mt-2 w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg; }
     .dropdown-link { @apply block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600; }
     .dropdown-link-danger { @apply block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600; }
@@ -484,7 +482,8 @@
 
         <div class="relative" data-auth="user">
           <button type="button" data-menu-toggle aria-expanded="false" aria-haspopup="menu" class="avatar-menu-btn">
-            <span data-user-initials class="avatar-initials">A</span>
+            <span class="sr-only">Your profile</span>
+            <img src="/assets/settings/photo-icon.svg" alt="" class="size-8 rounded-full object-cover" />
           </button>
 
           <div data-menu role="menu" class="user-dropdown hidden">
@@ -601,7 +600,7 @@
               <img src="/assets/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
             </span>
           </button>
-          <span data-user-initials class="avatar-initials-lg">A</span>
+          <img src="/assets/settings/photo-icon.svg" alt="Your profile" class="size-9 rounded-full object-cover" />
         </div>
       </div>
 

@@ -259,7 +259,10 @@
                     <img src="/assets/settings/icon-notification-dark.svg" alt="" class="hidden icon-img-sm dark:block" />
                     <span class="app-notif-dot"></span>
                 </button>
-                <button type="button" class="app-avatar" data-auth="user" data-user-initials>A</button>
+                <button type="button" class="app-avatar" data-auth="user">
+                    <span class="sr-only">Your profile</span>
+                    <img src="/assets/settings/photo-icon.svg" alt="" class="size-full rounded-full object-cover" data-auth="user" />
+                </button>
                 <a href="/pages/auth/login.html" class="app-login-btn" data-auth="guest">Log in</a>
             </div>
         </div>
