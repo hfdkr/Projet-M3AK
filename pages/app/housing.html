@@ -105,14 +105,14 @@
         /* Page-specific extracted classes */
         .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
         .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-2 px-3 sm:gap-3 sm:px-4 lg:px-6; }
         .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .menu-icon { @apply size-6 object-contain; }
         .brand-link { @apply flex items-center gap-2.5; }
         .app-brand-mark { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
         .logo-img-light { @apply size-full object-contain dark:hidden; }
         .logo-img-dark { @apply hidden size-full object-contain dark:block; }
-        .brand-name { @apply block text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .brand-name { @apply block whitespace-nowrap text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .header-actions { @apply ml-auto flex items-center gap-1.5; }
         .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .icon-img-sm { @apply size-5 object-contain; }
@@ -244,8 +244,7 @@
                     <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
                 </span>
                 <span class="leading-tight">
-                    <span class="brand-name">M3ak
-                        Morocco</span> </span>
+                    <span class="brand-name">M3ak Morocco</span> </span>
             </a>
 
             <div class="header-actions">

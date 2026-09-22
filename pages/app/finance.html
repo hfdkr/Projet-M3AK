@@ -55,13 +55,13 @@
 
         /* ---------- App top bar ---------- */
         .app-topbar         { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner   { @apply flex h-16 items-center gap-3 px-4 lg:px-6; }
+        .app-topbar-inner   { @apply flex h-16 items-center gap-2 px-3 sm:gap-3 sm:px-4 lg:px-6; }
         .app-menu-btn       { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .app-brand-wrap     { @apply flex items-center gap-2.5; }
         .app-brand-mark     { @apply hidden grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
         .app-brand-mark img { @apply size-full object-contain; }
         .app-brand-text     { @apply leading-tight; }
-        .app-brand-name     { @apply block text-base font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        .app-brand-name     { @apply block whitespace-nowrap text-base font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .app-brand-sub      { @apply block text-[10px] font-bold uppercase tracking-wide text-muted dark:text-mist-300; }
         .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
         .app-icon-btn       { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
