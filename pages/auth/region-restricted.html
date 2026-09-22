@@ -39,9 +39,9 @@
     </style>
 </head>
 
-<body class="grid min-h-screen place-items-center px-4">
+<body class="grid min-h-screen grid-rows-[1fr_auto]">
 
-    <div class="w-full max-w-md rounded-2xl bg-white dark:bg-night-800 p-8 text-center ring-1 ring-black/5 dark:ring-white/10">
+    <div class="mx-auto my-auto w-[min(100%-2rem,28rem)] rounded-2xl bg-white dark:bg-night-800 p-8 text-center ring-1 ring-black/5 dark:ring-white/10">
 
         <span class="mx-auto grid size-14 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-7"><circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" /></svg>
@@ -64,6 +64,66 @@
             </a>
         </div>
     </div>
+    <!-- ══════════ SITE FOOTER ══════════ -->
+    <footer class="border-t border-black/10 bg-white text-slate-600 transition-colors dark:border-white/10 dark:bg-[#0F1512] dark:text-slate-400">
+        <div class="mx-auto w-full max-w-[1200px] px-4 py-8 md:px-8 md:py-10">
+
+            <div class="flex flex-col items-center gap-3 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
+                <p class="text-xl font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+
+                <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs md:gap-x-6" aria-label="Footer">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                </nav>
+
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+            </div>
+
+            <div class="mt-7 grid gap-5 md:mt-8 md:grid-cols-3 md:gap-8">
+
+                <section class="flex items-start gap-3 md:order-3 md:block">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5 shrink-0 text-[#0B6B45] dark:text-[#2ED573] md:hidden" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                    <div class="min-w-0">
+                        <h2 class="text-sm font-bold text-slate-900 dark:text-white md:mb-3 md:text-[11px] md:uppercase md:tracking-[0.09em]">Global HQ</h2>
+                        <p class="mt-0.5 text-[13px] md:mt-0 md:mb-1">Vala Bleu</p>
+                        <p class="text-[13px] md:mb-1">Agadir</p>
+                        <p class="text-[13px]">Morocco</p>
+                    </div>
+                </section>
+
+                <section class="flex items-start gap-3 md:order-2 md:block">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5 shrink-0 text-[#0B6B45] dark:text-[#2ED573] md:hidden" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
+                    <div class="min-w-0">
+                        <h2 class="text-sm font-bold text-slate-900 dark:text-white md:mb-3 md:text-[11px] md:uppercase md:tracking-[0.09em]">Working Hours</h2>
+                        <p class="mt-0.5 text-[13px] md:mt-0 md:mb-1">Monday - Friday: 8am - 8pm</p>
+                        <p class="text-[13px] md:mb-1">Saturday: 10am - 4pm</p>
+                        <p class="text-[13px] md:mb-1">Sunday: Closed</p>
+                        <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    </div>
+                </section>
+
+                <section class="flex items-start gap-3 md:order-1 md:block">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-5 shrink-0 text-[#0B6B45] dark:text-[#2ED573] md:hidden" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><circle cx="9" cy="11" r="2" /><path d="M5.5 16.5c.6-1.6 1.9-2.4 3.5-2.4s2.9.8 3.5 2.4M15.5 10h3.5M15.5 13.5h3.5" /></svg>
+                    <div class="min-w-0">
+                        <h2 class="text-sm font-bold text-slate-900 dark:text-white md:mb-3 md:text-[11px] md:uppercase md:tracking-[0.09em]">Contact Us</h2>
+                        <p class="mt-0.5 flex items-center gap-2 text-[13px] md:mt-0 md:mb-1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="hidden size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573] md:block" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
+                            <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
+                        </p>
+                        <p class="flex items-center gap-2 text-[13px]">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="hidden size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573] md:block" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 6.2 2 2 0 0 1 6 4z" /></svg>
+                            <a href="tel:+2125220000000" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">+212 5 22 XX XX XX</a>
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
