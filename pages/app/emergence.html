@@ -281,9 +281,7 @@
         .icon-img-sm { @apply size-5 object-contain; }
         .icon-img-xs { @apply size-4 object-contain; }
         .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800; }
-        .settings-link { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .avatar-btn { @apply grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .sos-trigger-link { @apply flex items-center gap-2 rounded-full bg-danger px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#C82C23] focus-visible:ring-2 focus-visible:ring-danger/40; }
 
         .mobile-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-night-600 bg-white/95 dark:bg-night-800/95 px-4 py-3.5 backdrop-blur lg:hidden; }
         .mobile-topbar-row { @apply flex items-center justify-between; }
@@ -464,11 +462,6 @@
                     <span class="sr-only">Your profile</span>
                     SA
                 </button>
-
-                <!-- Just a link to the SOS card — no JS needed, scroll-behavior:smooth (in the CSS above) handles the animation -->
-                <a href="#sosCard" class="sos-trigger-link">
-                    SOS Trigger
-                </a>
 
             </div>
         </div>
