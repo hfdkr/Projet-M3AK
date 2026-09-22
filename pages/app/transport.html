@@ -275,13 +275,15 @@
         /* Page-specific extracted classes */
         .page-body { @apply bg-canvas dark:bg-night-900 font-sans text-ink dark:text-mist-100; }
         .app-topbar { @apply sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800; }
-        .app-topbar-inner { @apply flex h-16 items-center gap-4 px-4 lg:px-6; }
+        .app-topbar-inner { @apply flex h-16 items-center gap-2 px-3 sm:gap-4 sm:px-4 lg:px-6; }
         .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .icon-img-md { @apply size-6 object-contain; }
         .icon-img-sm { @apply size-5 object-contain; }
         .icon-img-xs { @apply size-4 object-contain; }
-        .site-brand { @apply text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
-        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        /* whitespace-nowrap keeps "M3ak Morocco" on one line; the smaller
+           mobile size is what makes it fit the narrow header row. */
+        .site-brand { @apply whitespace-nowrap text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400 sm:text-xl lg:w-52 lg:text-2xl; }
+        .header-actions { @apply ml-auto flex shrink-0 items-center gap-0.5 sm:gap-1.5; }
         .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white; }
         .avatar-btn { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
@@ -351,8 +353,7 @@
                 <img src="/assets/images/menu-icon.png" alt="Open menu" class="icon-img-md" />
             </button>
 
-            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak
-                Morocco</a>
+            <a href="/pages/app/coming-soon.html?feature=Services" class="site-brand">M3ak Morocco</a>
 
 
             <div class="header-actions">
