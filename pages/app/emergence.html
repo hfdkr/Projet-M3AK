@@ -316,6 +316,9 @@
         .sos-desc { @apply mx-auto mt-2 max-w-sm text-xs leading-relaxed text-muted dark:text-mist-300; }
         .sos-halo-wrap { @apply relative mx-auto mt-7 grid size-40 place-items-center lg:mt-8; }
         .sos-btn { @apply relative grid size-40 select-none touch-none place-items-center rounded-full bg-danger text-white shadow-[0_12px_34px_rgba(225,54,44,.35)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-danger/35; }
+        /* Hold-progress ring: JS drives stroke-dashoffset from full to 0 over 3s. */
+        .sos-ring { @apply pointer-events-none absolute inset-0 size-full -rotate-90; }
+        .sos-ring circle { fill: none; stroke: rgba(255, 255, 255, .92); stroke-width: 5; stroke-linecap: round; }
         .sos-btn-content { @apply pointer-events-none flex flex-col items-center gap-1.5; }
         .sos-icon { @apply size-8 object-contain; }
         .sos-label { @apply text-sm font-extrabold tracking-[0.12em]; }
@@ -326,9 +329,11 @@
         .quick-call-btn--police { @apply bg-brand-soft ring-brand-line dark:bg-night-700 dark:ring-night-600; }
         .quick-call-btn--ambulance { @apply bg-[#EAF0FA] ring-[#D3E0F2] dark:bg-night-700 dark:ring-night-600; }
         .quick-call-btn--gendarmerie { @apply bg-[#E7EEF7] ring-[#CFDDEE] dark:bg-night-700 dark:ring-night-600; }
+        .quick-call-btn--firefighters { @apply bg-[#FDECE7] ring-[#F7D3C6] dark:bg-night-700 dark:ring-night-600; }
         .quick-call-icon--police { @apply flex size-10 shrink-0 items-center justify-center bg-green-900 rounded-xl shadow-sm; }
         .quick-call-icon--ambulance { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-blue shadow-sm; }
         .quick-call-icon--gendarmerie { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-muted-900 shadow-sm; }
+        .quick-call-icon--firefighters { @apply grid size-10 shrink-0 place-items-center rounded-xl bg-[#E1362C] text-white shadow-sm; }
         .quick-call-icon-img { @apply h-5 w-5 object-contain; }
         .quick-call-info { @apply min-w-0 flex-1; }
         .quick-call-name { @apply block text-sm font-bold dark:text-white; }
@@ -443,11 +448,6 @@
                     <img src="/assets/emergence-image/notification.png" alt="notification-icon" class="icon-img-sm" />
                     <span class="notif-dot"></span>
                 </button>
-
-                <a href="/pages/app/coming-soon.html?feature=Settings" class="settings-link">
-                    <span class="sr-only">Settings</span>
-                    <img src="/assets/emergence-image/setting-icon.png" alt="Setting-icon" class="icon-img-sm" />
-                </a>
 
                 <button type="button" class="avatar-btn">
                     <span class="sr-only">Your profile</span>
@@ -611,6 +611,10 @@
                     -->
                         <button id="sosBtn" type="button" oncontextmenu="return false" aria-describedby="sosHint"
                             class="group sos-btn">
+                            <svg class="sos-ring" viewBox="0 0 100 100" aria-hidden="true">
+                                <circle id="sosRing" cx="50" cy="50" r="46" />
+                            </svg>
+
                             <span class="sos-btn-content">
 
                                 <img src="/assets/emergence-image/sos-logo.png" alt="SOS-logo" class="sos-icon" />
@@ -716,6 +720,40 @@
                         <span class="quick-call-right">
                             <span class="quick-call-number">
                                 177
+                            </span>
+
+                            <span class="quick-call-tag">
+                                Quick Dial
+                            </span>
+                        </span>
+
+                    </button>
+
+                    <!-- FIREFIGHTERS -->
+                    <button type="button" onclick="firefightersDialog.showModal()"
+                        class="quick-call-btn quick-call-btn--firefighters">
+
+                        <span class="quick-call-icon--firefighters">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-img-sm" aria-hidden="true">
+                                <path d="M12 2.5s5.5 4.6 5.5 9.6a5.5 5.5 0 0 1-11 0c0-1.9.8-3.6 1.8-5 .3 1.3 1.1 2.2 2 2.2 1.3 0 1.9-1.6 1.7-3.4-.1-1.4-.4-2.6 0-3.4Z" />
+                                <path d="M12 21.5a3 3 0 0 0 3-3c0-1.8-3-4.3-3-4.3s-3 2.5-3 4.3a3 3 0 0 0 3 3Z" />
+                            </svg>
+                        </span>
+
+                        <span class="quick-call-info">
+                            <span class="quick-call-name">
+                                Firefighters
+                            </span>
+
+                            <span class="quick-call-sub">
+                                Civil Protection &bull; Fire &amp; Rescue
+                            </span>
+                        </span>
+
+                        <span class="quick-call-right">
+                            <span class="quick-call-number">
+                                15
                             </span>
 
                             <span class="quick-call-tag">
@@ -1069,6 +1107,31 @@
         </div>
     </dialog>
 
+    <dialog id="firefightersDialog" aria-labelledby="firefightersDialogTitle" class="confirm-dialog">
+        <span class="dialog-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" class="dialog-icon-img" aria-hidden="true">
+                <path d="M12 2.5s5.5 4.6 5.5 9.6a5.5 5.5 0 0 1-11 0c0-1.9.8-3.6 1.8-5 .3 1.3 1.1 2.2 2 2.2 1.3 0 1.9-1.6 1.7-3.4-.1-1.4-.4-2.6 0-3.4Z" />
+                <path d="M12 21.5a3 3 0 0 0 3-3c0-1.8-3-4.3-3-4.3s-3 2.5-3 4.3a3 3 0 0 0 3 3Z" />
+            </svg>
+        </span>
+        <h2 id="firefightersDialogTitle" class="dialog-title">Call Firefighters</h2>
+        <p class="dialog-desc">
+            You are about to call Civil Protection (fire &amp; rescue) on 15. Only confirm if you need emergency
+            assistance.
+        </p>
+        <div class="dialog-actions">
+            <form method="dialog" class="flex-1">
+                <button class="dialog-btn-secondary">
+                    Not now
+                </button>
+            </form>
+            <a href="tel:15" class="dialog-btn-danger">
+                Call 15
+            </a>
+        </div>
+    </dialog>
+
     <dialog id="sosDialog" aria-labelledby="sosDialogTitle" class="confirm-dialog">
         <span class="dialog-icon-badge">
             <img src="/assets/emergence-image/sos-logo.png" alt="Sos logo" class="dialog-icon-img" />
@@ -1175,14 +1238,82 @@
         ───────────────────────────── */
 
         (function () {
-            let sosTimer = null;
-            function startSosHold() { sosTimer = setTimeout(() => sosDialog.showModal(), 3000); }
-            function cancelSosHold() { clearTimeout(sosTimer); }
+            const HOLD_MS = 3000;
+            const ring = document.getElementById("sosRing");
+            const hint = document.getElementById("sosHint");
+            const RING_LEN = 2 * Math.PI * 46;
+            const IDLE_HINT = hint.textContent.trim();
+
+            let rafId = null;
+            let startedAt = 0;
+
+            ring.style.strokeDasharray = RING_LEN.toFixed(1);
+            resetRing();
+
+            function resetRing() {
+                ring.style.strokeDashoffset = RING_LEN.toFixed(1);
+                hint.textContent = IDLE_HINT;
+            }
+
+            function frame(now) {
+                const p = Math.min((now - startedAt) / HOLD_MS, 1);
+                ring.style.strokeDashoffset = (RING_LEN * (1 - p)).toFixed(1);
+
+                if (p < 1) {
+                    hint.textContent = "Keep holding… " + Math.ceil((1 - p) * (HOLD_MS / 1000)) + "s";
+                    rafId = requestAnimationFrame(frame);
+                    return;
+                }
+
+                rafId = null;
+                hint.textContent = "Alert sent";
+                navigator.vibrate?.([60, 40, 60]);
+                sosDialog.showModal();
+            }
+
+            function startSosHold(event) {
+                if (rafId !== null) return;
+                /* Stops the touch long-press callout and text selection, which
+                   would otherwise interrupt the hold mid-way. */
+                event.preventDefault();
+
+                /* Pointer capture keeps the gesture alive when the finger or
+                   cursor drifts off the button — without it the old handler
+                   cancelled on the slightest movement, which is why holding
+                   almost never reached 3s. */
+                try { sosBtn.setPointerCapture(event.pointerId); } catch (err) { /* not critical */ }
+
+                navigator.vibrate?.(20);
+                startedAt = performance.now();
+                rafId = requestAnimationFrame(frame);
+            }
+
+            function cancelSosHold() {
+                if (rafId === null) return;
+                cancelAnimationFrame(rafId);
+                rafId = null;
+                resetRing();
+            }
 
             sosBtn.addEventListener("pointerdown", startSosHold);
             sosBtn.addEventListener("pointerup", cancelSosHold);
-            sosBtn.addEventListener("pointerleave", cancelSosHold);
             sosBtn.addEventListener("pointercancel", cancelSosHold);
+
+            /* Keyboard equivalent: hold Space/Enter for the same 3 seconds. */
+            sosBtn.addEventListener("keydown", (event) => {
+                if ((event.key === " " || event.key === "Enter") && !event.repeat) {
+                    event.preventDefault();
+                    if (rafId !== null) return;
+                    navigator.vibrate?.(20);
+                    startedAt = performance.now();
+                    rafId = requestAnimationFrame(frame);
+                }
+            });
+            sosBtn.addEventListener("keyup", cancelSosHold);
+            sosBtn.addEventListener("blur", cancelSosHold);
+
+            /* Put the ring back to zero once the alert dialog is dismissed. */
+            sosDialog.addEventListener("close", resetRing);
         })();
 
 
