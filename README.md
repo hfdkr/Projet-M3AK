@@ -22,7 +22,7 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
   <b>Overview Page</b>
 </p>
 
-> More screenshots (Emergency Hub, Admin Dashboard) coming soon — see [Known Issues](#-known-issues).
+> More screenshots (Emergency Hub, Payments, Jobs) coming soon — see [Notes & Scope](#-notes--scope).
 
 ---
 
@@ -157,8 +157,8 @@ Projet-M3AK/
   `alt` text on every `<img>` across the project)
 
 > All data shown across the app (transport times, listings, payments, KPIs, etc.) is static/demo data, and
-> actions like booking or checkout are UI-only for now — see [Current Progress](#-current-progress) and the
-> Roadmap for what's planned once the backend lands.
+> actions like booking or checkout are UI-only — see [Notes & Scope](#-notes--scope) and the Roadmap for
+> what's planned once the backend lands.
 
 ---
 
@@ -200,6 +200,15 @@ Projet-M3AK/
 - [x] Interior Page (passports, residence permits, CNIE)
 - [x] Finance Page (income tax, VAT, customs)
 
+**Shared UI System**
+
+- [x] Light/dark theme on every page, shared across tabs (`theme.js`)
+- [x] Collapsible left sidebar, consistent on all 13 app pages
+- [x] Standardized responsive footer across all 22 pages
+- [x] Session handling + auth guard shared across pages (`session.js`)
+- [x] Client-side form validation (password rules, password match, numeric phone input)
+- [x] Accessibility pass (ARIA attributes, keyboard focus, descriptive `alt` text)
+
 **Responsive Design**
 
 - [x] Mobile layout
@@ -209,19 +218,30 @@ Projet-M3AK/
 
 - [x] Deployed on [Vercel](https://projet-m3-ak.vercel.app/)
 
-### 🔜 Next Steps (Frontend)
+### 🔮 Future Features & Improvements
 
-- [ ] Justice, Foreign Affairs, Agriculture, Culture pages (still on the shared Coming Soon placeholder)
-- [ ] Tablet-specific layout — tablet viewports currently reuse the desktop/laptop layout as a functional
-      fallback; no breakpoint tuned specifically for tablet-sized screens yet
-- [ ] Rebuild a standalone Admin Dashboard page — the previous one was removed; its footer link now points
-      to Coming Soon, and the KPI snapshot it used to show now lives inside My Space's own Dashboard tab
-- [ ] Translate `reset-password.html` to English (`lang`, `<title>`) to match the rest of the project
-- [ ] Finish the sidebar PNG → inline-SVG icon migration on the remaining pages
+Planned for a later version — outside the scope completed above.
+
+**Additional Pages**
+
+- [ ] Justice page
+- [ ] Foreign Affairs page
+- [ ] Agriculture page
+- [ ] Culture page
+- [ ] Standalone Admin Dashboard *(the KPI snapshot currently lives in My Space's Dashboard tab)*
+
+**Design & Compatibility**
+
+- [ ] Tablet-specific optimization *(tablet viewports currently reuse the desktop/laptop layout)*
 - [ ] Cross-browser testing
-- [ ] Automated broken-link check (GitHub Actions)
+- [ ] Translate `reset-password.html` to English (`lang`, `<title>`)
+- [ ] Finish the sidebar PNG → inline-SVG icon migration on the remaining pages
+
+**Tooling & Performance**
+
+- [ ] Tailwind production build (replace the CDN build, see Tech Stack)
 - [ ] Performance optimization
-- [ ] Tailwind build step (replace the CDN build, see Tech Stack)
+- [ ] Automated broken-link checking (GitHub Actions)
 
 ### 🔧 Future Backend Phase (Planned — 2026/2027 academic year)
 
@@ -230,22 +250,21 @@ Projet-M3AK/
 - [ ] Real API wired into the existing frontend
 
 ---
-## 🐛 Known Issues
+## 📝 Notes & Scope
 
-The project is functional, but a few items are still in progress:
+A few deliberate boundaries of this frontend stage, so the demo reads as intended:
 
-**Still open:**
+* **All data is static/demo data.** Transport times, listings, payments and KPIs are hard-coded, and
+  actions like booking or checkout are UI-only — by design, until the backend phase.
+* **Four ministry categories** (Justice, Foreign Affairs, Agriculture, Culture) intentionally route to the
+  shared **Coming Soon** page rather than shipping half-built pages.
+* **Tablet viewports reuse the desktop/laptop layout** as a functional fallback; a tablet-tuned breakpoint
+  is planned (see Future Features).
+* The two preview screenshots above point at `assets/screenshots/`, which isn't committed yet, so they
+  render as broken on GitHub until the images are added.
 
-* Justice, Foreign Affairs, Agriculture, and Culture are currently represented by the shared **Coming Soon** page.
-* The standalone Admin Dashboard has been removed and its demo link currently points to **Coming Soon**.
-* Tablet layouts currently reuse the desktop/laptop layout; tablet-specific optimization is still pending.
-* `reset-password.html` is still `lang="fr"` with a French `<title>`, while the other 22 pages are English.
-* Sidebar nav icons are mid-migration: most pages use inline SVG, the rest still use the older PNG set.
-* The two preview screenshots in this README point at `assets/screenshots/`, which isn't in the repo yet —
-  the images render as broken on GitHub until they're added.
-* Cross-browser testing and final performance optimization are still pending.
-
-Previously identified navigation, authentication-flow, responsive, dark-mode, asset-path, and accessibility issues have been reviewed and fixed during the development process.
+Navigation, authentication-flow, responsive, dark-mode, asset-path and accessibility issues identified
+during development have all been reviewed and fixed.
 
 ---
 
@@ -271,14 +290,12 @@ Previously identified navigation, authentication-flow, responsive, dark-mode, as
   the `payment-icons/` set
 - ✅ Accessibility pass — descriptive `alt` text added to every image across the project
 - ✅ Account/Settings page (now the Account tab in My Space) got the mobile hamburger + drawer it was missing
-- ✅ Mobile and desktop breakpoints in place across the app; tablet viewports currently reuse the
-  desktop/laptop layout rather than a custom-tuned in-between design (see Roadmap)
+- ✅ Mobile and desktop breakpoints in place across the app
 - ✅ Deployed on Vercel: https://projet-m3-ak.vercel.app/
-- 🚧 Justice, Foreign Affairs, Agriculture, Culture ministry pages (currently placeholders)
-- 🚧 Standalone Admin Dashboard page removed — footer link now points to Coming Soon; a Dashboard tab with
-  the same KPI snapshot lives inside My Space
-- 🚧 Tablet-specific layout pending
-- 🚧 Cross-browser testing pending
+
+**The frontend scope for this stage is complete.** Everything planned beyond it is listed under
+[Future Features & Improvements](#-future-features--improvements) and the
+[Future Backend Phase](#-future-backend-phase-planned--20262027-academic-year).
 
 ---
 
