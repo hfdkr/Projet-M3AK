@@ -270,6 +270,12 @@
         .desktop-topbar { @apply sticky top-0 z-40 hidden border-b border-black/5 dark:border-night-600 bg-white/90 dark:bg-night-800/90 backdrop-blur transition-colors lg:block; }
         .desktop-topbar-inner { @apply mx-auto flex h-16 max-w-[1280px] items-center gap-10 px-6; }
         .topbar-title { @apply text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
+        /* Brand lockup — same mark + wordmark as every other app page. */
+        .brand-link      { @apply flex items-center gap-2.5; }
+        .app-brand-mark  { @apply grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
+        .logo-img-light  { @apply size-full object-contain dark:hidden; }
+        .logo-img-dark   { @apply hidden size-full object-contain dark:block; }
+        .brand-name      { @apply block text-[15px] font-extrabold tracking-tight text-brand dark:text-accent-400 lg:text-lg; }
         .header-actions { @apply ml-auto flex items-center gap-3; }
         .icon-btn { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .icon-img-sm { @apply size-5 object-contain; }
@@ -429,9 +435,13 @@
     <header class="desktop-topbar">
         <div class="desktop-topbar-inner">
 
-            <h1 class="topbar-title">
-                Morocco Public Service
-            </h1>
+            <a href="/pages/app/overview.html" class="brand-link">
+                <span class="app-brand-mark">
+                    <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+                    <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+                </span>
+                <span class="brand-name">M3ak Morocco</span>
+            </a>
 
 
             <div class="header-actions">
@@ -472,9 +482,13 @@
                     <span class="sr-only">Open menu</span>
                     <img src="/assets/images/menu-icon.png" alt="" class="menu-icon" />
                 </button>
-                <p class="mobile-topbar-title">
-                    Emergency Services
-                </p>
+                <a href="/pages/app/overview.html" class="brand-link">
+                    <span class="app-brand-mark">
+                        <img src="/assets/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
+                        <img src="/assets/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+                    </span>
+                    <span class="brand-name">M3ak Morocco</span>
+                </a>
             </div>
             <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
                 aria-pressed="false">
@@ -566,9 +580,9 @@
             <div class="page-title-row">
 
                 <div>
-                    <h2 class="page-title">
+                    <h1 class="page-title">
                         Emergency Hub
-                    </h2>
+                    </h1>
 
                     <p class="page-subtitle">
                         Command center for immediate assistance and critical resources.
