@@ -44,9 +44,15 @@ This is the complete stack for now — frontend only. A backend is planned for l
 Projet-M3AK/
 │
 ├── assets/
-│   ├── icon-bar-left/          # Shared left-sidebar nav icons (+ "-green" active variants)
+│   ├── icon-bar-left/          # Legacy left-sidebar nav PNGs (+ "-green" active variants)
 │   ├── transport-icon/         # Transport page icons (modes, planner, quick places)
 │   ├── housing-icons/          # Housing page icons
+│   ├── jobs-icon/              # "Explore by Ministry & Sector" tiles (Jobs)
+│   ├── payment-icons/          # "Pay a Bill" category tiles (Payments)
+│   ├── education/              # Education page icons
+│   ├── finance/                # Finance page icons
+│   ├── home/                   # Services Directory icons
+│   ├── my-space/               # My Space icons
 │   ├── login-sign/
 │   │   ├── image-login/
 │   │   └── image-sign-up/
@@ -55,8 +61,7 @@ Projet-M3AK/
 │   ├── health-image/
 │   ├── support-image/
 │   ├── coming-soon/
-│   ├── settings/
-│   └── screenshots/
+│   └── settings/               # Logo, theme toggle, notification, avatar, password show/hide (SVG pairs)
 │
 ├── pages/
 │   ├── auth/
@@ -111,8 +116,12 @@ Projet-M3AK/
 - Modern and responsive UI, light/dark mode on every page (`theme.js`, shared across tabs)
 - **Unified information architecture:** one main citizen journey — **My Space → Services → (Transport,
   Health, Housing, Jobs, Education, Payments) → Emergency → Support**. The same left sidebar
-  (My Space first, then the services, Emergency Support / Help Center / Settings / Logout in the foot)
+  (My Space first, then the services, Emergency Support / Help Center / AI Assistant / Logout in the foot)
   is now present and consistent on every app page, including the Emergency Hub.
+- **Shared site footer** — one identical, responsive footer on all 22 pages. Phones get a compact centred
+  layout (brand, links, then single-line location / hours / contact rows with green outline icons); from
+  `md` up it becomes a bar with brand, nav and copyright over three columns (Contact Us, Working Hours,
+  Global HQ). Light and dark both follow the existing theme toggle.
 - **My Space** (`overview.html`) — a single personal portal merging what used to be three overlapping
   pages (Overview dashboard + Compte Info + user settings). Tabbed: Dashboard, My Requests, Appointments,
   Personal Info (incl. Digital ID / CIN), Account (security + preferences). Deep links like
@@ -121,8 +130,13 @@ Projet-M3AK/
   appointments) and a lightweight activity chart (pure CSS, no charting library).
 - Instagram-style collapsible sidebar on every app page: icons only by default, hovering the sidebar
   reveals every label at once, active page always visible on its own icon color
-- Shared left-sidebar icon set: nav items use a single PNG set (`assets/icon-bar-left/`), with `-green`
-  variants shown on the active page and a dark-mode filter that keeps the plain icons legible
+- Shared left-sidebar icon set: most pages now use inline SVG nav icons that inherit `currentColor`, so
+  active and dark-mode states come from the CSS rather than swapped image files; the older PNG set
+  (`assets/icon-bar-left/`, with `-green` active variants) is still in use on the remaining pages
+- Theme-aware image pairs throughout: logo, notification bell and password show/hide icons each ship a
+  light and a dark SVG, swapped with `dark:hidden` / `hidden dark:block`
+- Header avatar reflects the session — the profile photo when signed in, a neutral user icon when not,
+  driven by the existing `data-auth` hooks in `session.js` (no extra JS)
 - **AI Assistant** page (`assistant.html`), linked from every app page's sidebar and from the Help Center
 - Live transport status on the My Space Dashboard tab
 - Digital identity management (UI) — CIN card, personal info, security, preferences in My Space → Personal Info / Account
@@ -131,9 +145,14 @@ Projet-M3AK/
   8 are real pages; Justice, Foreign Affairs, Agriculture, and Culture fall back to the shared Coming Soon
   placeholder.
 - Payments hub UI with wallet balance, recent payments, and bill-payment categories
-- Emergency Hub: hold-to-trigger SOS, quick dial (Police 19 / Ambulance 15 / Gendarmerie 177), live map, medical ID
+- Emergency Hub: press-and-hold SOS (3s, with a progress ring, countdown and pointer capture so the
+  gesture survives finger drift), quick dial (Police 19 / Ambulance 15 / Gendarmerie 177 /
+  Firefighters 15), live map, medical ID
 - Session handling shared across pages via `localStorage` (`session.js`), with an auth guard
   (`data-require-auth`) that redirects to Log in on every app/admin page if no session is stored
+- Client-side form validation with no backend: live password-requirement checks and a password/confirm
+  match guard on Reset Password (blocks submit and announces the mismatch via `role="alert"`), and a
+  digits-only filter on the onboarding contact-phone field
 - Clean and accessible design (ARIA attributes, keyboard-focus reveals sidebar labels too, descriptive
   `alt` text on every `<img>` across the project)
 
@@ -197,8 +216,8 @@ Projet-M3AK/
       fallback; no breakpoint tuned specifically for tablet-sized screens yet
 - [ ] Rebuild a standalone Admin Dashboard page — the previous one was removed; its footer link now points
       to Coming Soon, and the KPI snapshot it used to show now lives inside My Space's own Dashboard tab
-- [ ] Missing icon assets referenced by `health.html` (`assets/services-image/`) and by the My Space
-      Dashboard tab (`assets/dashboard-assets/`) — folders don't exist yet
+- [ ] Translate `reset-password.html` to English (`lang`, `<title>`) to match the rest of the project
+- [ ] Finish the sidebar PNG → inline-SVG icon migration on the remaining pages
 - [ ] Cross-browser testing
 - [ ] Automated broken-link check (GitHub Actions)
 - [ ] Performance optimization
@@ -218,9 +237,12 @@ The project is functional, but a few items are still in progress:
 **Still open:**
 
 * Justice, Foreign Affairs, Agriculture, and Culture are currently represented by the shared **Coming Soon** page.
-* `health.html` and the My Space Dashboard still reference some missing `.png` assets in `assets/services-image/` and `assets/dashboard-assets/`.
 * The standalone Admin Dashboard has been removed and its demo link currently points to **Coming Soon**.
 * Tablet layouts currently reuse the desktop/laptop layout; tablet-specific optimization is still pending.
+* `reset-password.html` is still `lang="fr"` with a French `<title>`, while the other 22 pages are English.
+* Sidebar nav icons are mid-migration: most pages use inline SVG, the rest still use the older PNG set.
+* The two preview screenshots in this README point at `assets/screenshots/`, which isn't in the repo yet —
+  the images render as broken on GitHub until they're added.
 * Cross-browser testing and final performance optimization are still pending.
 
 Previously identified navigation, authentication-flow, responsive, dark-mode, asset-path, and accessibility issues have been reviewed and fixed during the development process.
@@ -238,8 +260,15 @@ Previously identified navigation, authentication-flow, responsive, dark-mode, as
 - ✅ Internal navigation, auth JS, and session guard fixed across the app
 - ✅ Dark mode verified complete on every page (two pages were silently broken, now fixed)
 - ✅ Instagram-style collapsible sidebar rolled out to all 13 app pages that have one
-- ✅ Sidebar nav switched to a shared PNG icon set (`icon-bar-left/`) with active-state green variants and a
-  Passport entry on every page; `transport.html` wired to its own `transport-icon/` set
+- ✅ Sidebar nav icons largely migrated from the PNG set to inline SVG (`currentColor`-driven active and
+  dark-mode states); Settings removed from the sidebar since it now lives as a My Space tab
+- ✅ Shared responsive footer standardized across all 22 pages, replacing seven different per-page footers
+- ✅ Header polish across the app: brand no longer wraps on narrow phones, the logo mark is hidden on
+  mobile, and the logo now reloads the current page instead of linking to Coming Soon
+- ✅ Jobs and Finance pages translated to English; Jobs restyled (employer-type tabs, richer job cards,
+  full-width sector band) and its sector tiles wired to the `jobs-icon/` set
+- ✅ Education page given a mobile-compact type and spacing scale; Payments "Pay a Bill" tiles wired to
+  the `payment-icons/` set
 - ✅ Accessibility pass — descriptive `alt` text added to every image across the project
 - ✅ Account/Settings page (now the Account tab in My Space) got the mobile hamburger + drawer it was missing
 - ✅ Mobile and desktop breakpoints in place across the app; tablet viewports currently reuse the
