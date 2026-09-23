@@ -58,7 +58,7 @@ function openModal({
 
     /* CHANGE ICON */
     $("#modalIcon").src =
-        `/assets/emergence-image/${icon}`;
+        `/assets/images/pages/emergence/${icon}`;
 
     $("#modalIcon").alt = title;
 
@@ -494,7 +494,7 @@ function showLayer(key) {
         p.status;
 
     $("#placeIcon").src =
-        `/assets/emergence-image/${p.icon}`;
+        `/assets/images/pages/emergence/${p.icon}`;
 
 
     const bbox = [
