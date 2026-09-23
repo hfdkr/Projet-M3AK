@@ -12,8 +12,8 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
 ## 📸 Preview
 
 <p align="center">
-  <img src="./assets/screenshot/landing-page.png" alt="M3AK landing page" width="48%">
-  <img src="./assets/screenshot/onboarding.png" alt="Onboarding profile setup" width="48%">
+  <img src="./assets/images/screenshots/landing-page.png" alt="M3AK landing page" width="48%">
+  <img src="./assets/images/screenshots/onboarding.png" alt="Onboarding profile setup" width="48%">
 </p>
 
 <p align="center">
@@ -44,25 +44,29 @@ This is the complete stack for now — frontend only. A backend is planned for l
 Projet-M3AK/
 │
 ├── assets/
-│   ├── icon-bar-left/          # Legacy left-sidebar nav PNGs (+ "-green" active variants)
-│   ├── transport-icon/         # Transport page icons (modes, planner, quick places)
-│   ├── housing-icons/          # Housing page icons
-│   ├── jobs-icon/              # "Explore by Ministry & Sector" tiles (Jobs)
-│   ├── payment-icons/          # "Pay a Bill" category tiles (Payments)
-│   ├── education/              # Education page icons
-│   ├── finance/                # Finance page icons
-│   ├── home/                   # Services Directory icons
-│   ├── my-space/               # My Space icons
-│   ├── login-sign/
-│   │   ├── image-login/
-│   │   └── image-sign-up/
-│   ├── images/
-│   ├── emergence-image/
-│   ├── health-image/
-│   ├── support-image/
-│   ├── coming-soon/
-│   ├── settings/               # Logo, theme toggle, notification, avatar, password show/hide (SVG pairs)
-│   └── screenshot/             # README preview images
+│   └── images/
+│       ├── pages/              # Assets owned by a single page
+│       │   ├── auth/           # Login, sign-up, onboarding, reset-password
+│       │   ├── education/
+│       │   ├── emergence/
+│       │   ├── finance/
+│       │   ├── health/
+│       │   ├── home/           # Services Directory
+│       │   ├── housing/        # Property photos
+│       │   ├── my-space/
+│       │   ├── settings/       # Logo, theme toggle, notification, avatar, password show/hide
+│       │   └── support/
+│       │
+│       ├── icons/              # Icon sets tied to one feature
+│       │   ├── housing/
+│       │   ├── jobs/           # "Explore by Ministry & Sector" tiles
+│       │   ├── payments/       # "Pay a Bill" category tiles
+│       │   └── transport/      # Modes, planner, quick places
+│       │
+│       ├── ui/                 # Shared across pages (menu, search, star, arrows…)
+│       │   └── nav/            # Left-sidebar nav icons
+│       ├── coming-soon/
+│       └── screenshots/        # README preview images
 │
 ├── pages/
 │   ├── auth/
@@ -133,7 +137,7 @@ Projet-M3AK/
   reveals every label at once, active page always visible on its own icon color
 - Shared left-sidebar icon set: most pages now use inline SVG nav icons that inherit `currentColor`, so
   active and dark-mode states come from the CSS rather than swapped image files; the older PNG set
-  (`assets/icon-bar-left/`, with `-green` active variants) is still in use on the remaining pages
+  (`assets/images/ui/nav/`, with `-green` active variants) is still in use on the remaining pages
 - Theme-aware image pairs throughout: logo, notification bell and password show/hide icons each ship a
   light and a dark SVG, swapped with `dark:hidden` / `hidden dark:block`
 - Header avatar reflects the session — the profile photo when signed in, a neutral user icon when not,
