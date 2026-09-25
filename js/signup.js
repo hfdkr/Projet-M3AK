@@ -28,22 +28,22 @@
             var valid = true;
 
             if (!fullName.value.trim()) {
-                showError(fullName, "Enter your full name.");
+                showError(fullName, "auth.errors.fullName");
                 valid = false;
             }
 
             if (!/^[A-Za-z]{1,2}\d{5,7}$/.test(cni.value.trim())) {
-                showError(cni, "National ID looks like AB123456.");
+                showError(cni, "auth.errors.idFormat");
                 valid = false;
             }
 
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
-                showError(email, "Enter a valid email address.");
+                showError(email, "auth.errors.validEmail");
                 valid = false;
             }
 
             if (phone.value.trim().replace(/[^\d+]/g, "").length < 9) {
-                showError(phone, "Enter a valid phone number.");
+                showError(phone, "auth.errors.validPhone");
                 valid = false;
             }
 
@@ -51,7 +51,7 @@
 
             submit.disabled = true;
             submit.classList.add("opacity-70");
-            submit.firstChild.textContent = "Creating account...";
+            window.M3akI18n.setKey(submit, "auth.signup.creating");
 
             window.setTimeout(function () {
                 window.M3ak.signIn({ name: fullName.value.trim(), email: email.value.trim() });
@@ -60,7 +60,8 @@
         });
     }
 
-    function showError(field, message) {
+    /* `messageKey` is a translations.js key (re-translated on language switch). */
+    function showError(field, messageKey) {
         var wrap = field.closest(".signup-field-wrap") || field.parentElement;
         var error = wrap.parentElement.querySelector(".field-error");
 
@@ -70,7 +71,7 @@
             wrap.parentElement.appendChild(error);
         }
 
-        error.textContent = message;
+        window.M3akI18n.setKey(error, messageKey);
         field.classList.add("ring-2", "ring-red-200");
     }
 

@@ -5,9 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-  <title>My Space — M3ak Morocco</title>
+  <title data-i18n="overview.pageTitle">My Space — M3ak Morocco</title>
   <script src="/js/session.js"></script>
   <script src="/js/theme.js"></script>
+  <script src="/js/translations.js"></script>
+  <script src="/js/i18n.js"></script>
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -107,10 +109,10 @@
     .toggle-switch-on { @apply bg-brand dark:bg-accent-400; }
 
     .toggle-switch-thumb {
-      @apply inline-block size-[18px] translate-x-[3px] rounded-full bg-white shadow transition-transform;
+      @apply inline-block size-[18px] translate-x-[3px] rtl:-translate-x-[3px] rounded-full bg-white shadow transition-transform;
     }
 
-    .toggle-switch-on .toggle-switch-thumb { @apply translate-x-[23px]; }
+    .toggle-switch-on .toggle-switch-thumb { @apply translate-x-[23px] rtl:-translate-x-[23px]; }
 
     .field-select {
       @apply w-full bg-canvas dark:bg-night-700 ring-1 ring-black/5 dark:ring-white/10 rounded-xl
@@ -130,17 +132,16 @@
     .app-brand-mark { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
     .logo-img-light { @apply size-full object-contain dark:hidden; }
     .logo-img-dark { @apply hidden size-full object-contain dark:block; }
-    .header-actions { @apply ml-auto flex items-center gap-2; }
+    .header-actions { @apply ms-auto flex items-center gap-2; }
     .icon-btn { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40; }
-    .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800; }
-    .lang-btn { @apply flex items-center gap-1 rounded-full px-2 py-1.5 text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/40; }
-    .avatar-menu-btn { @apply ml-2 flex items-center gap-2 rounded-full py-1 pl-1 pr-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
-    .user-dropdown { @apply absolute right-0 z-50 mt-2 w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg; }
+    .notif-dot { @apply absolute end-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-800; }
+    .avatar-menu-btn { @apply ms-2 flex items-center gap-2 rounded-full py-1 ps-1 pe-3 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
+    .user-dropdown { @apply absolute end-0 z-50 mt-2 w-48 rounded-xl border border-black/5 dark:border-white/10 bg-white dark:bg-night-700 py-1.5 shadow-lg; }
     .dropdown-link { @apply block px-3.5 py-2 text-sm text-ink dark:text-mist-100 hover:bg-canvas dark:hover:bg-night-600; }
-    .dropdown-link-danger { @apply block w-full px-3.5 py-2 text-left text-sm text-danger hover:bg-canvas dark:hover:bg-night-600; }
+    .dropdown-link-danger { @apply block w-full px-3.5 py-2 text-start text-sm text-danger hover:bg-canvas dark:hover:bg-night-600; }
 
     .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
-    .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+    .app-sidebar { @apply fixed inset-y-0 start-0 z-50 flex w-64 flex-col overflow-y-auto border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
     .sidebar-top { @apply mb-5 px-2; }
     .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
     .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
@@ -195,7 +196,7 @@
     .divided-list { @apply mt-4 divide-y divide-black/5 dark:divide-white/10; }
     .summary-list { @apply mt-4 space-y-2.5; }
 
-    .view-map-btn { @apply ml-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400; }
+    .view-map-btn { @apply ms-auto rounded-full border border-black/10 dark:border-white/15 px-2.5 py-1 text-[11px] font-semibold text-muted dark:text-mist-300 transition hover:border-brand dark:hover:border-accent-400 hover:text-brand dark:hover:text-accent-400; }
     .live-badge { @apply inline-flex items-center gap-1.5 rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand dark:text-accent-400; }
     .live-dot { @apply size-1.5 animate-pulse rounded-full bg-brand dark:bg-accent-400; }
     .transport-grid { @apply mt-4 grid gap-3 sm:grid-cols-2; }
@@ -222,7 +223,7 @@
     .locate-btn { @apply flex items-center gap-2 rounded-lg bg-brand dark:bg-accent-400 px-3.5 py-2 text-xs font-semibold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 focus-visible:ring-2 focus-visible:ring-brand/40; }
     .locate-icon { @apply size-4 shrink-0; }
     .follow-btn { @apply rounded-lg border border-black/10 dark:border-white/15 px-3.5 py-2 text-xs font-semibold text-muted dark:text-mist-300 transition hover:text-ink dark:hover:text-mist-100 focus-visible:ring-2 focus-visible:ring-brand/30; }
-    .map-external-link { @apply ml-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
+    .map-external-link { @apply ms-auto text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
 
     .quick-btn { @apply flex flex-col items-center gap-2.5 rounded-xl bg-canvas dark:bg-night-700 px-3 py-5 text-center transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-brand/40; }
     .quick-icon { @apply size-6 object-contain; }
@@ -452,48 +453,46 @@
   <!-- ══════════ TOP BAR (desktop) ══════════ -->
   <header class="desktop-topbar">
     <div class="desktop-topbar-inner">
-      <a href="/pages/app/overview.html" class="brand-link">
+      <a href="/pages/app/overview.html" class="brand-link" data-i18n="brand.name">
         <span class="app-brand-mark">
-          <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
-          <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+          <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="logo-img-light">
+          <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="logo-img-dark">
         </span>
 
         M3ak Morocco
       </a>
       <div class="header-actions">
+        <div data-lang-switcher></div>
+
         <!-- Dark / light mode -->
-        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
           <span class="theme-toggle-thumb">
-            <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-            <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+            <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+            <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
           </span>
         </button>
 
         <button type="button" class="icon-btn">
-          <span class="sr-only">Notifications</span>
-          <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" class="icon-img-sm dark:hidden" />
+          <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+          <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications" class="icon-img-sm dark:hidden" />
           <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification" class="hidden icon-img-sm dark:block" />
           <span class="notif-dot"></span>
-        </button>
-        <button id="langBtn" type="button" class="lang-btn">
-          <span class="sr-only">Change language</span>
-          <span id="langLabel" class="text-sm font-bold">EN</span>
         </button>
 
         <div class="relative" data-auth="user">
           <button type="button" data-menu-toggle aria-expanded="false" aria-haspopup="menu" class="avatar-menu-btn">
-            <span class="sr-only">Your profile</span>
-            <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" class="size-8 rounded-full object-cover" />
+            <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+            <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto" class="size-8 rounded-full object-cover" />
           </button>
 
           <div data-menu role="menu" class="user-dropdown hidden">
-            <a href="/pages/app/overview.html#personal-info" role="menuitem" class="dropdown-link">Personal
+            <a href="/pages/app/overview.html#personal-info" role="menuitem" class="dropdown-link" data-i18n="overview.menu.personal">Personal
               info</a>
-            <a href="/pages/app/overview.html#digital-id" role="menuitem" class="dropdown-link">My
+            <a href="/pages/app/overview.html#digital-id" role="menuitem" class="dropdown-link" data-i18n="home.myDocuments">My
               documents</a>
-            <a href="/pages/app/overview.html#account" role="menuitem" class="dropdown-link">Account
+            <a href="/pages/app/overview.html#account" role="menuitem" class="dropdown-link" data-i18n="overview.menu.account">Account
               settings</a>
-            <button type="button" data-action="logout" role="menuitem" class="dropdown-link-danger">Sign
+            <button type="button" data-action="logout" role="menuitem" class="dropdown-link-danger" data-i18n="nav.logout">Sign
               out</button>
           </div>
         </div>
@@ -509,46 +508,46 @@
     <aside id="sidebar" class="app-sidebar -translate-x-full">
       <div class="sidebar-top sidebar-head">
         <div class="sidebar-text">
-          <p class="sidebar-title">
+          <p class="sidebar-title" data-i18n="brand.name">
             M3ak Morocco</p>
-          <p class="sidebar-sub">Citizen Services Portal</p>
+          <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
         </div>
       </div>
 
-      <nav class="space-y-0.5 text-sm font-medium" aria-label="Primary">
+      <nav class="space-y-0.5 text-sm font-medium" aria-label="Primary" data-i18n-aria-label="home.primaryNav">
         <a href="/pages/app/overview.html" aria-current="page"
           class="nav-item--active">
           <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon"
             style="filter:brightness(0) invert(1)" />
-          <span class="nav-label">My Space</span>
+          <span class="nav-label" data-i18n="nav.mySpace">My Space</span>
         </a>
         <a href="/pages/app/transport.html" class="nav-item">
-          <img src="/assets/images/ui/nav/transport.png" alt="Transport" class="nav-icon" />
-          <span class="nav-label">Transport</span>
+          <img src="/assets/images/ui/nav/transport.png" alt="Transport" data-i18n-alt="nav.transport" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.transport">Transport</span>
         </a>
         <a href="/pages/app/housing.html" class="nav-item">
-          <img src="/assets/images/ui/nav/housing.png" alt="Housing" class="nav-icon" />
-          <span class="nav-label">Housing</span>
+          <img src="/assets/images/ui/nav/housing.png" alt="Housing" data-i18n-alt="nav.housing" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.housing">Housing</span>
         </a>
         <a href="/pages/app/jobs.html" class="nav-item">
-          <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" class="nav-icon" />
-          <span class="nav-label">Jobs</span>
+          <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" data-i18n-alt="nav.jobs" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.jobs">Jobs</span>
         </a>
         <a href="/pages/app/education.html" class="nav-item">
-          <img src="/assets/images/ui/nav/education.png" alt="Education" class="nav-icon" />
-          <span class="nav-label">Education</span>
+          <img src="/assets/images/ui/nav/education.png" alt="Education" data-i18n-alt="nav.education" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.education">Education</span>
         </a>
         <a href="/pages/app/health.html" class="nav-item">
-          <img src="/assets/images/ui/nav/healthcare.png" alt="Healthcare" class="nav-icon" />
-          <span class="nav-label">Healthcare</span>
+          <img src="/assets/images/ui/nav/healthcare.png" alt="Healthcare" data-i18n-alt="nav.healthcare" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.healthcare">Healthcare</span>
         </a>
         <a href="/pages/app/payments.html" class="nav-item">
-          <img src="/assets/images/ui/nav/payment.png" alt="Payments" class="nav-icon" />
-          <span class="nav-label">Payments</span>
+          <img src="/assets/images/ui/nav/payment.png" alt="Payments" data-i18n-alt="nav.payments" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.payments">Payments</span>
         </a>
         <a href="/pages/app/finance.html" class="nav-item">
-          <img src="/assets/images/ui/nav/finance.png" alt="Finance" class="nav-icon" />
-          <span class="nav-label">Finance</span>
+          <img src="/assets/images/ui/nav/finance.png" alt="Finance" data-i18n-alt="nav.finance" class="nav-icon" />
+          <span class="nav-label" data-i18n="nav.finance">Finance</span>
         </a>
       </nav>
 
@@ -558,11 +557,11 @@
           <span class="nav-icon-mask"
             style="-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
             aria-hidden="true"></span>
-          <span class="nav-label whitespace-nowrap">Emergency Support</span>
+          <span class="nav-label whitespace-nowrap" data-i18n="nav.emergencySupport">Emergency Support</span>
         </a>
         <a href="/pages/app/support.html" class="nav-item">
           <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-icon-sm" />
-          <span class="nav-label">Help Center</span>
+          <span class="nav-label" data-i18n="nav.helpCenter">Help Center</span>
         </a>
         <a href="/pages/app/assistant.html" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -570,11 +569,11 @@
             <rect x="9" y="2" width="6" height="12" rx="3" />
             <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
           </svg>
-          <span class="nav-label">AI Assistant</span>
+          <span class="nav-label" data-i18n="nav.aiAssistant">AI Assistant</span>
         </a>
         <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-          <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon-sm" />
-          <span class="nav-label">Logout</span>
+          <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon-sm rtl:-scale-x-100" />
+          <span class="nav-label" data-i18n="nav.logout">Logout</span>
         </a>
       </div>
     </aside>
@@ -586,21 +585,22 @@
       <div class="mobile-topbar">
         <div class="mobile-topbar-left">
           <button id="menuBtn" type="button" class="app-menu-btn">
-            <span class="sr-only">Open menu</span>
+            <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
             <img src="/assets/images/ui/menu-icon.png" alt="icon-menu" class="menu-icon" />
           </button>
-          <span class="mobile-brand-text">M3ak Morocco</span>
+          <span class="mobile-brand-text" data-i18n="brand.name">M3ak Morocco</span>
 
         </div>
         <div class="mobile-topbar-right">
+          <div data-lang-switcher></div>
           <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-            aria-pressed="false">
+            data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
             <span class="theme-toggle-thumb">
-              <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-              <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+              <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+              <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
             </span>
           </button>
-          <img src="/assets/images/pages/settings/photo-icon.svg" alt="Your profile" class="size-9 rounded-full object-cover" />
+          <img src="/assets/images/pages/settings/photo-icon.svg" alt="Your profile" data-i18n-alt="common.yourProfile" class="size-9 rounded-full object-cover" />
         </div>
       </div>
 
@@ -609,30 +609,30 @@
         <!-- Salutation -->
         <div class="page-header-row">
           <div>
-            <h1 class="page-title">My Space</h1>
+            <h1 class="page-title" data-i18n="nav.mySpace">My Space</h1>
             <p class="page-subtitle">
-              Welcome back, <span data-user-name>there</span>. Your services, requests, appointments and account
-              in one place.
+              <span data-i18n="overview.welcome">Welcome back,</span> <span data-user-name>there</span><span data-i18n="overview.welcomeRest">. Your services, requests, appointments and account
+              in one place.</span>
             </p>
           </div>
           <span class="weather-badge">
-            <span class="weather-dot"></span>Agadir · <span id="temp">24</span>°C
+            <span class="weather-dot"></span><span data-i18n="footer.agadir">Agadir</span> · <bdi><span id="temp">24</span>°C</bdi>
           </span>
         </div>
 
         <!-- Tabs -->
         <div class="no-scrollbar tabs-scroll">
-          <div role="tablist" aria-label="My Space sections" class="tabs-row">
+          <div role="tablist" aria-label="My Space sections" data-i18n-aria-label="overview.tabsLabel" class="tabs-row">
             <button type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true"
-              class="ms-tab">Dashboard</button>
+              class="ms-tab" data-i18n="overview.tabs.dashboard">Dashboard</button>
             <button type="button" role="tab" id="tab-requests" aria-controls="panel-requests" aria-selected="false"
-              tabindex="-1" class="ms-tab">My Requests</button>
+              tabindex="-1" class="ms-tab" data-i18n="overview.tabs.requests">My Requests</button>
             <button type="button" role="tab" id="tab-appointments" aria-controls="panel-appointments"
-              aria-selected="false" tabindex="-1" class="ms-tab">Appointments</button>
+              aria-selected="false" tabindex="-1" class="ms-tab" data-i18n="overview.tabs.appointments">Appointments</button>
             <button type="button" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="false"
-              tabindex="-1" class="ms-tab">Personal Info</button>
+              tabindex="-1" class="ms-tab" data-i18n="overview.tabs.personal">Personal Info</button>
             <button type="button" role="tab" id="tab-account" aria-controls="panel-account" aria-selected="false"
-              tabindex="-1" class="ms-tab">Account</button>
+              tabindex="-1" class="ms-tab" data-i18n="overview.tabs.account">Account</button>
           </div>
         </div>
 
@@ -652,7 +652,7 @@
 
                 </span>
               </div>
-              <p class="kpi-label">Active
+              <p class="kpi-label" data-i18n="overview.kpi.requests">Active
                 Requests</p>
               <p class="kpi-value" id="kpiRequests">3</p>
             </article>
@@ -667,9 +667,9 @@
                   <img src="/assets/images/pages/my-space/icon-card-citizens.png" class="kpi-delta-icon" alt="citizen">
                 </span>
               </div>
-              <p class="kpi-label">Paid
+              <p class="kpi-label" data-i18n="overview.kpi.paid">Paid
                 This Month</p>
-              <p class="kpi-value" id="kpiPaid">DH 691</p>
+              <p class="kpi-value" id="kpiPaid" data-i18n="overview.kpi.paidValue">DH 691</p>
             </article>
 
             <article class="fade-up kpi-card">
@@ -682,7 +682,7 @@
                   <img src="/assets/images/pages/my-space/icon-card-citizens.png" class="kpi-delta-icon" alt="citizen">
                 </span>
               </div>
-              <p class="kpi-label">
+              <p class="kpi-label" data-i18n="overview.kpi.appointments">
                 Upcoming Appointments</p>
               <p class="kpi-value" id="kpiAppts">2</p>
             </article>
@@ -697,7 +697,7 @@
                   <img src="/assets/images/pages/my-space/icon-card-time.png" class="kpi-delta-icon" alt="citizen">
                 </span>
               </div>
-              <p class="kpi-label">
+              <p class="kpi-label" data-i18n="overview.kpi.documents">
                 Documents</p>
               <p class="kpi-value">4</p>
             </article>
@@ -711,11 +711,11 @@
                 <span class="kpi-icon--blue">
                   <img src="/assets/images/ui/nav/transport.png" alt="icon-transport" class="icon-img-sm" />
                 </span>
-                <h2 class="panel-title">Public Transport Live Status</h2>
-                <button id="openMap" type="button" class="view-map-btn">
+                <h2 class="panel-title" data-i18n="overview.transport.title">Public Transport Live Status</h2>
+                <button id="openMap" type="button" class="view-map-btn" data-i18n="overview.transport.viewMap">
                   View Map
                 </button>
-                <span class="live-badge">
+                <span class="live-badge" data-i18n="overview.transport.live">
                   <span class="live-dot"></span>Live Now
                 </span>
               </div>
@@ -723,7 +723,7 @@
               <div class="transport-grid">
                 <article class="transit-card">
                   <div class="transit-row">
-                    <p class="transit-title">Tramway T1</p>
+                    <p class="transit-title" data-i18n="overview.transport.tram">Tramway T1</p>
                     <p class="transit-eta"><span id="tramEta">2</span><span
                         id="tramUnit"> min</span></p>
                   </div>
@@ -731,18 +731,18 @@
                     <span id="tramBar" class="progress-fill--brand"
                       style="width:0%"></span>
                   </div>
-                  <p class="transit-sub">Towards: Hassan II</p>
+                  <p class="transit-sub" data-i18n="overview.transport.tramTowards">Towards: Hassan II</p>
                 </article>
 
                 <article class="transit-card">
                   <div class="transit-row">
-                    <p class="transit-title">Al Boraq 104</p>
+                    <p class="transit-title" data-i18n="overview.transport.boraq">Al Boraq 104</p>
                     <p class="transit-time">14:15</p>
                   </div>
                   <div class="bar progress-track">
                     <span id="boraqBar" class="progress-fill--blue" style="width:0%"></span>
                   </div>
-                  <p class="transit-sub">Towards: Tangier Ville</p>
+                  <p class="transit-sub" data-i18n="overview.transport.boraqTowards">Towards: Tangier Ville</p>
                 </article>
               </div>
 
@@ -755,12 +755,12 @@
                       <img src="/assets/images/pages/emergence/maps-icon.png" alt="icon-map" class="icon-img-sm" />
                     </span>
                     <div class="map-modal-title-wrap">
-                      <p id="mapModalTitle" class="panel-title">Live Network Map</p>
-                      <p id="mapStatus" class="map-modal-status">Waiting for your
+                      <p id="mapModalTitle" class="panel-title" data-i18n="overview.map.title">Live Network Map</p>
+                      <p id="mapStatus" class="map-modal-status" data-i18n="overview.map.waiting">Waiting for your
                         location…</p>
                     </div>
                     <button id="closeMap" type="button" class="map-modal-close">
-                      <span class="sr-only">Close map</span>
+                      <span class="sr-only" data-i18n="overview.map.close">Close map</span>
                       <span aria-hidden="true" class="close-glyph">&times;</span>
                     </button>
                   </div>
@@ -768,7 +768,7 @@
                   <div id="liveMap" class="live-map-canvas"></div>
 
                   <div class="map-modal-foot">
-                    <button id="locateMe" type="button" class="locate-btn">
+                    <button id="locateMe" type="button" class="locate-btn" data-i18n="overview.map.locate">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="locate-icon">
                         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
@@ -776,11 +776,11 @@
                       </svg>
                       Locate me
                     </button>
-                    <button id="followMe" type="button" aria-pressed="false" class="follow-btn">
+                    <button id="followMe" type="button" aria-pressed="false" class="follow-btn" data-i18n="overview.map.follow">
                       Follow my position
                     </button>
                     <a id="externalMap" href="https://www.google.com/maps" target="_blank" rel="noopener"
-                      class="map-external-link">Open in
+                      class="map-external-link" data-i18n="overview.map.external">Open in
                       Google Maps</a>
                   </div>
                 </div>
@@ -790,8 +790,8 @@
             <!-- Next appointment -->
             <section class="fade-up panel-card">
               <div class="panel-head-row">
-                <h2 class="panel-title">Next Appointment</h2>
-                <button type="button" data-goto-tab="tab-appointments" class="panel-link-btn">View
+                <h2 class="panel-title" data-i18n="overview.nextAppt">Next Appointment</h2>
+                <button type="button" data-goto-tab="tab-appointments" class="panel-link-btn" data-i18n="common.viewAll">View
                   all</button>
               </div>
               <div id="nextAppt" class="mt-4"></div>
@@ -801,11 +801,11 @@
             <section class="fade-up panel-card--wide">
               <div class="panel-head-row">
                 <div>
-                  <h2 class="panel-title">Your Activity</h2>
-                  <p class="panel-sub">Interactions with public services · last 7
+                  <h2 class="panel-title" data-i18n="overview.activity.title">Your Activity</h2>
+                  <p class="panel-sub" data-i18n="overview.activity.sub">Interactions with public services · last 7
                     days</p>
                 </div>
-                <span class="total-badge">24
+                <span class="total-badge" data-i18n="overview.activity.total">24
                   total</span>
               </div>
               <div id="activityChart" class="activity-chart"></div>
@@ -814,8 +814,8 @@
             <!-- Recent payments -->
             <section class="fade-up panel-card">
               <div class="panel-head-row">
-                <h2 class="panel-title">Recent Payments</h2>
-                <a href="/pages/app/payments.html" class="panel-link">Open wallet</a>
+                <h2 class="panel-title" data-i18n="payments.recent">Recent Payments</h2>
+                <a href="/pages/app/payments.html" class="panel-link" data-i18n="overview.openWallet">Open wallet</a>
               </div>
               <ul id="payList" class="divided-list"></ul>
             </section>
@@ -823,31 +823,31 @@
             <!-- Requests snapshot -->
             <section class="fade-up panel-card">
               <div class="panel-head-row">
-                <h2 class="panel-title">Requests</h2>
-                <button type="button" data-goto-tab="tab-requests" class="panel-link-btn">Open</button>
+                <h2 class="panel-title" data-i18n="overview.requestsShort">Requests</h2>
+                <button type="button" data-goto-tab="tab-requests" class="panel-link-btn" data-i18n="overview.open">Open</button>
               </div>
               <div id="reqSummary" class="summary-list"></div>
             </section>
 
             <!-- Quick services -->
             <section class="fade-up panel-card--wide">
-              <h2 class="panel-title">Quick Citizen Services</h2>
+              <h2 class="panel-title" data-i18n="overview.quick.title">Quick Citizen Services</h2>
               <div class="quick-grid">
                 <button type="button" data-service="Civil Status" class="quick group quick-btn">
                   <img src="/assets/images/pages/my-space/icon-civil.png" alt="icon-civil-status" class="quick-icon" />
-                  <span class="quick-label">Civil Status</span>
+                  <span class="quick-label" data-i18n="overview.quick.civil">Civil Status</span>
                 </button>
                 <button type="button" data-service="Driving License" class="quick group quick-btn">
                   <img src="/assets/images/pages/my-space/icon-driving.png" alt="icon-driving-license" class="quick-icon" />
-                  <span class="quick-label">Driving License</span>
+                  <span class="quick-label" data-i18n="overview.quick.driving">Driving License</span>
                 </button>
                 <button type="button" data-service="Property Tax" class="quick group quick-btn">
                   <img src="/assets/images/pages/my-space/icon-tax.png" alt="icon-tax" class="quick-icon" />
-                  <span class="quick-label">Property Tax</span>
+                  <span class="quick-label" data-i18n="overview.quick.tax">Property Tax</span>
                 </button>
                 <button type="button" data-service="Social Security" class="quick group quick-btn">
                   <img src="/assets/images/pages/my-space/icon-social-sec.png" alt="icon-social-security" class="quick-icon" />
-                  <span class="quick-label">Social Security</span>
+                  <span class="quick-label" data-i18n="overview.quick.social">Social Security</span>
                 </button>
               </div>
             </section>
@@ -859,11 +859,11 @@
           <div class="panel-card">
             <div class="panel-head-row">
               <div>
-                <h2 class="panel-title">Service Requests</h2>
-                <p class="panel-sub-lg">Every administrative request you have opened
+                <h2 class="panel-title" data-i18n="overview.requests.title">Service Requests</h2>
+                <p class="panel-sub-lg" data-i18n="overview.requests.sub">Every administrative request you have opened
                   across M3ak.</p>
               </div>
-              <button id="newRequest" type="button" class="new-request-btn">
+              <button id="newRequest" type="button" class="new-request-btn" data-i18n="overview.requests.new">
                 New request
               </button>
             </div>
@@ -877,11 +877,11 @@
           <div class="panel-card">
             <div class="panel-head-row">
               <div>
-                <h2 class="panel-title">Appointments</h2>
-                <p class="panel-sub-lg">Upcoming visits to public offices and clinics.</p>
+                <h2 class="panel-title" data-i18n="overview.tabs.appointments">Appointments</h2>
+                <p class="panel-sub-lg" data-i18n="overview.appointments.sub">Upcoming visits to public offices and clinics.</p>
               </div>
               <button id="addAppt" type="button" class="add-appt-btn">
-                <span class="sr-only">Add an appointment</span>
+                <span class="sr-only" data-i18n="overview.appointments.add">Add an appointment</span>
                 <img src="/assets/images/pages/emergence/add-icon.png" alt="icon-add" class="icon-img-sm" />
               </button>
             </div>
@@ -897,17 +897,17 @@
             <div class="info-card-head">
               <h2 class="info-card-title">
                 <img src="/assets/images/ui/icon-profile.png" alt="icon-profile" class="icon-img-xs" />
-                Personal Information
+                <span data-i18n="onboarding.personal">Personal Information</span>
               </h2>
             </div>
 
             <div class="fields-grid">
               <div>
-                <label for="fullName" class="field-label">Full Name</label>
+                <label for="fullName" class="field-label" data-i18n="auth.signup.fullName">Full Name</label>
                 <div class="field-row">
                   <input id="fullName" type="text" class="field-value" value="Amine El Mansouri" data-user-name
                     readonly>
-                  <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name">
+                  <button type="button" class="field-edit" data-edit-field="fullName" aria-label="Edit full name" data-i18n-aria-label="overview.edit.fullName">
                     <img src="/assets/images/pages/my-space/icon-change-light.png" alt="icon-change"
                       class="field-edit-icon field-edit-icon--light" />
                     <img src="/assets/images/pages/my-space/icon-change-dark.png" alt="icon-change"
@@ -916,11 +916,11 @@
                 </div>
               </div>
               <div>
-                <label for="email" class="field-label">Email Address</label>
+                <label for="email" class="field-label" data-i18n="auth.email">Email Address</label>
                 <div class="field-row">
                   <input id="email" type="email" class="field-value" value="amine.mansouri@m3ak.gov.ma" data-user-email
                     readonly>
-                  <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address">
+                  <button type="button" class="field-edit" data-edit-field="email" aria-label="Edit email address" data-i18n-aria-label="overview.edit.email">
                     <img src="/assets/images/pages/my-space/icon-change-light.png" alt="icon-change"
                       class="field-edit-icon field-edit-icon--light" />
                     <img src="/assets/images/pages/my-space/icon-change-dark.png" alt="icon-change"
@@ -929,10 +929,10 @@
                 </div>
               </div>
               <div>
-                <label for="phone" class="field-label">Phone Number</label>
+                <label for="phone" class="field-label" data-i18n="auth.phone">Phone Number</label>
                 <div class="field-row">
                   <input id="phone" type="tel" class="field-value" value="+212 661-000000" data-profile-phone readonly>
-                  <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number">
+                  <button type="button" class="field-edit" data-edit-field="phone" aria-label="Edit phone number" data-i18n-aria-label="overview.edit.phone">
                     <img src="/assets/images/pages/my-space/icon-change-light.png" alt="icon-change"
                       class="field-edit-icon field-edit-icon--light" />
                     <img src="/assets/images/pages/my-space/icon-change-dark.png" alt="icon-change"
@@ -941,11 +941,11 @@
                 </div>
               </div>
               <div>
-                <label for="address" class="field-label">Mailing Address</label>
+                <label for="address" class="field-label" data-i18n="overview.fields.address">Mailing Address</label>
                 <div class="field-row">
                   <input id="address" type="text" class="field-value" value="14, Avenue Mohammed V, Agadir"
                     data-profile-address readonly>
-                  <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address">
+                  <button type="button" class="field-edit" data-edit-field="address" aria-label="Edit mailing address" data-i18n-aria-label="overview.edit.address">
                     <img src="/assets/images/pages/my-space/icon-change-light.png" alt="icon-change"
                       class="field-edit-icon field-edit-icon--light" />
                     <img src="/assets/images/pages/my-space/icon-change-dark.png" alt="icon-change"
@@ -954,10 +954,10 @@
                 </div>
               </div>
               <div>
-                <label for="city" class="field-label">City</label>
+                <label for="city" class="field-label" data-i18n="profile.city">City</label>
                 <div class="field-row">
                   <input id="city" type="text" class="field-value" value="Agadir" data-profile-city readonly>
-                  <button type="button" class="field-edit" data-edit-field="city" aria-label="Edit city">
+                  <button type="button" class="field-edit" data-edit-field="city" aria-label="Edit city" data-i18n-aria-label="overview.edit.city">
                     <img src="/assets/images/pages/my-space/icon-change-light.png" alt="icon-change"
                       class="field-edit-icon field-edit-icon--light" />
                     <img src="/assets/images/pages/my-space/icon-change-dark.png" alt="icon-change"
@@ -966,10 +966,10 @@
                 </div>
               </div>
               <div>
-                <label for="country" class="field-label">Country of Residence</label>
+                <label for="country" class="field-label" data-i18n="profile.country">Country of Residence</label>
                 <div class="field-row">
                   <input id="country" type="text" class="field-value" value="Morocco" data-profile-country readonly>
-                  <button type="button" class="field-edit" data-edit-field="country" aria-label="Edit country">
+                  <button type="button" class="field-edit" data-edit-field="country" aria-label="Edit country" data-i18n-aria-label="overview.edit.country">
                     <img src="/assets/images/pages/my-space/icon-change-light.png" alt="icon-change"
                       class="field-edit-icon field-edit-icon--light" />
                     <img src="/assets/images/pages/my-space/icon-change-dark.png" alt="icon-change"
@@ -980,7 +980,7 @@
             </div>
 
             <div class="form-actions-row">
-              <button type="button" id="savePersonalInfo" class="save-btn">
+              <button type="button" id="savePersonalInfo" class="save-btn" data-i18n="overview.saveChanges">
                 Save Changes
               </button>
             </div>
@@ -990,10 +990,10 @@
           <section id="digital-id" class="cin-card">
             <div class="cin-top-row">
               <div>
-                <p class="cin-kicker">Kingdom of Morocco</p>
-                <h2 class="cin-title">Digital Identity CIN</h2>
+                <p class="cin-kicker" data-i18n="brand.kingdom">Kingdom of Morocco</p>
+                <h2 class="cin-title" data-i18n="overview.cin.title">Digital Identity CIN</h2>
               </div>
-              <span class="cin-active-badge">
+              <span class="cin-active-badge" data-i18n="overview.cin.active">
                 <span class="cin-active-dot"></span>
                 Active
               </span>
@@ -1002,24 +1002,26 @@
             <div class="cin-details-row">
               <div class="cin-fields">
                 <div>
-                  <p class="cin-field-label">CIN Number</p>
+                  <p class="cin-field-label" data-i18n="overview.cin.number">CIN Number</p>
                   <p class="cin-field-value">AB123456</p>
                 </div>
                 <div>
-                  <p class="cin-field-label">Expiry Date</p>
-                  <p class="cin-field-value">12 / 2028</p>
+                  <p class="cin-field-label" data-i18n="overview.cin.expiry">Expiry Date</p>
+                  <p class="cin-field-value" dir="ltr">12 / 2028</p>
                 </div>
               </div>
               <span class="cin-icon-badge">
-                <img src="/assets/images/pages/my-space/digitale-id.png" alt="Digital ID" class="cin-icon-img"
+                <img src="/assets/images/pages/my-space/digitale-id.png" alt="Digital ID" data-i18n-alt="auth.reset.digitalId" class="cin-icon-img"
                   style="filter:brightness(0) invert(1)" />
               </span>
             </div>
 
             <div class="cin-actions">
-              <button type="button" data-doc-action="View Details" class="cin-btn--light">View
+              <button type="button" data-doc-action="View Details" class="cin-btn--light"
+                data-i18n-attr="data-doc-action:overview.cin.details" data-i18n="overview.cin.details">View
                 Details</button>
-              <button type="button" data-doc-action="Renew Document" class="cin-btn--outline">Renew
+              <button type="button" data-doc-action="Renew Document" class="cin-btn--outline"
+                data-i18n-attr="data-doc-action:overview.cin.renew" data-i18n="overview.cin.renew">Renew
                 Document</button>
             </div>
           </section>
@@ -1033,32 +1035,34 @@
             <section id="security" class="info-card">
               <h2 class="section-title-icon">
                 <img src="/assets/images/ui/security.png" alt="icon-secure" class="icon-img-xs" />
-                Security
+                <span data-i18n="overview.security.title">Security</span>
               </h2>
 
               <div class="settings-row">
                 <div>
-                  <p class="settings-label">Password</p>
-                  <p class="settings-sub">Last changed 3 months ago</p>
+                  <p class="settings-label" data-i18n="auth.password">Password</p>
+                  <p class="settings-sub" data-i18n="overview.security.lastChanged">Last changed 3 months ago</p>
                 </div>
-                <button type="button" data-account-action="Update password" class="settings-link-btn">Update</button>
+                <button type="button" data-account-action="Update password" class="settings-link-btn"
+                  data-i18n-attr="data-account-action:overview.security.updatePassword" data-i18n="overview.security.update">Update</button>
               </div>
 
               <div class="settings-row">
                 <div>
-                  <p class="settings-label">Two-Factor Auth (2FA)</p>
-                  <p class="settings-sub--active">Enabled</p>
+                  <p class="settings-label" data-i18n="overview.security.twoFactor">Two-Factor Auth (2FA)</p>
+                  <p class="settings-sub--active" data-i18n="overview.security.enabled">Enabled</p>
                 </div>
-                <button type="button" data-account-action="Manage 2FA" class="settings-link-btn">Manage</button>
+                <button type="button" data-account-action="Manage 2FA" class="settings-link-btn"
+                  data-i18n-attr="data-account-action:overview.security.manage2fa" data-i18n="overview.security.manage">Manage</button>
               </div>
 
               <div class="settings-row">
                 <div>
-                  <p class="settings-label">Biometric Login</p>
-                  <p class="settings-sub">FaceID or Fingerprint</p>
+                  <p class="settings-label" data-i18n="overview.security.biometric">Biometric Login</p>
+                  <p class="settings-sub" data-i18n="overview.security.biometricSub">FaceID or Fingerprint</p>
                 </div>
                 <button type="button" class="toggle-switch toggle-switch-on" data-toggle-switch aria-pressed="true"
-                  aria-label="Toggle biometric login">
+                  aria-label="Toggle biometric login" data-i18n-aria-label="overview.security.toggleBiometric">
                   <span class="toggle-switch-thumb"></span>
                 </button>
               </div>
@@ -1073,30 +1077,31 @@
                   <path
                     d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" />
                 </svg>
-                Preferences
+                <span data-i18n="overview.preferences.title">Preferences</span>
               </h2>
 
+              <!-- Bound to the site-wide language system (js/i18n.js); each
+                   option value is a language code. -->
               <div id="language">
-                <label for="platformLanguage" class="field-label">Platform Language</label>
-                <select id="platformLanguage" class="field-select">
-                  <option>العربية (المغرب)</option>
-                  <option>Français</option>
-                  <option selected>English</option>
+                <label for="platformLanguage" class="field-label" data-i18n="overview.preferences.language">Platform Language</label>
+                <select id="platformLanguage" class="field-select" data-lang-select>
+                  <option value="en" lang="en">English</option>
+                  <option value="ar" lang="ar">العربية</option>
                 </select>
               </div>
 
               <div id="notifications" class="mt-4">
-                <p class="field-label">Notifications</p>
+                <p class="field-label" data-i18n="common.notifications">Notifications</p>
                 <label class="notif-row">
-                  <span class="text-sm">Email Notifications</span>
+                  <span class="text-sm" data-i18n="overview.preferences.email">Email Notifications</span>
                   <input type="checkbox" class="notif-checkbox" checked>
                 </label>
                 <label class="notif-row--spaced">
-                  <span class="text-sm">SMS Alerts</span>
+                  <span class="text-sm" data-i18n="overview.preferences.sms">SMS Alerts</span>
                   <input type="checkbox" class="notif-checkbox" checked>
                 </label>
                 <label class="notif-row--spaced">
-                  <span class="text-sm">Push Notifications</span>
+                  <span class="text-sm" data-i18n="overview.preferences.push">Push Notifications</span>
                   <input type="checkbox" class="notif-checkbox">
                 </label>
               </div>
@@ -1106,11 +1111,11 @@
             <section class="info-card lg:col-span-2">
               <div class="signout-row">
                 <div>
-                  <p class="settings-label">Sign out of this device</p>
-                  <p class="settings-sub">You will need to sign in again to reach
+                  <p class="settings-label" data-i18n="overview.signout.title">Sign out of this device</p>
+                  <p class="settings-sub" data-i18n="overview.signout.sub">You will need to sign in again to reach
                     your space.</p>
                 </div>
-                <button type="button" data-action="logout" class="signout-btn">
+                <button type="button" data-action="logout" class="signout-btn" data-i18n="nav.logout">
                   Sign out
                 </button>
               </div>
@@ -1128,23 +1133,38 @@
   <script>
     const $ = (s, r = document) => r.querySelector(s);
 
+    /* ── Translation helper ──
+       Data stays in English (statuses drive the chip colours); what is shown
+       goes through translations.js, falling back to the English data. */
+    function tr(key, fallback, vars) {
+      const value = M3akI18n.t(key, vars);
+      if (value !== key) return value;
+      return String(fallback).replace(/\{(\w+)\}/g, (m, k) => (vars && k in vars ? vars[k] : m));
+    }
+    const STATUS_KEYS = {
+      "Confirmed": "confirmed", "Pending": "pending", "Cancelled": "cancelled",
+      "Approved": "approved", "In review": "inReview", "Pending documents": "pendingDocs", "Rejected": "rejected"
+    };
+    const statusLabel = s => tr("overview.status." + STATUS_KEYS[s], s);
+    const itemText = (group, item, field) => tr("overview." + group + "." + item.id + "." + field, item[field]);
+
     /* ── Données (mock, front-only) ── */
     const APPOINTMENTS = [
-      { month: "OCT", day: 24, title: "CNIE Renewal", place: "Prefectural Office", status: "Confirmed" },
-      { month: "OCT", day: 28, title: "Medical Checkup", place: "Ibn Sina Hospital", status: "Pending" }
+      { id: "a1", month: "OCT", day: 24, title: "CNIE Renewal", place: "Prefectural Office", status: "Confirmed" },
+      { id: "a2", month: "OCT", day: 28, title: "Medical Checkup", place: "Ibn Sina Hospital", status: "Pending" }
     ];
 
     const PAYMENTS = [
-      { label: "Redal Water/Elec", date: "Oct 12, 2026", amount: 342.50 },
-      { label: "Maroc Telecom", date: "Oct 05, 2026", amount: 199.00 },
-      { label: "FRMF Tickets", date: "Sep 28, 2026", amount: 150.00 }
+      { id: "p1", label: "Redal Water/Elec", date: "Oct 12, 2026", amount: 342.50 },
+      { id: "p2", label: "Maroc Telecom", date: "Oct 05, 2026", amount: 199.00 },
+      { id: "p3", label: "FRMF Tickets", date: "Sep 28, 2026", amount: 150.00 }
     ];
 
     const REQUESTS = [
-      { ref: "REQ-40921", title: "CNIE Renewal", dept: "Interior — Civil Registry", status: "In review", date: "Oct 18, 2026" },
-      { ref: "REQ-40876", title: "Housing Subsidy Application", dept: "Housing", status: "Approved", date: "Oct 09, 2026" },
-      { ref: "REQ-40712", title: "University Scholarship", dept: "Education", status: "Pending documents", date: "Sep 28, 2026" },
-      { ref: "REQ-40588", title: "Business License", dept: "Finance", status: "Rejected", date: "Sep 15, 2026" }
+      { id: "r1", ref: "REQ-40921", title: "CNIE Renewal", dept: "Interior — Civil Registry", status: "In review", date: "Oct 18, 2026" },
+      { id: "r2", ref: "REQ-40876", title: "Housing Subsidy Application", dept: "Housing", status: "Approved", date: "Oct 09, 2026" },
+      { id: "r3", ref: "REQ-40712", title: "University Scholarship", dept: "Education", status: "Pending documents", date: "Sep 28, 2026" },
+      { id: "r4", ref: "REQ-40588", title: "Business License", dept: "Finance", status: "Rejected", date: "Sep 15, 2026" }
     ];
 
     const ACTIVITY = [
@@ -1173,7 +1193,7 @@
         Pending: "bg-red-50 dark:bg-danger/15 text-danger",
         Cancelled: "bg-black/5 dark:bg-white/10 text-muted dark:text-mist-300"
       };
-      return `<span class="rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map.Cancelled}">${s}</span>`;
+      return `<span class="rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map.Cancelled}">${statusLabel(s)}</span>`;
     }
 
     function reqChip(s) {
@@ -1183,7 +1203,7 @@
         "Pending documents": "bg-amber-50 dark:bg-amber-500/15 text-amber-600 dark:text-amber-400",
         "Rejected": "bg-red-50 dark:bg-danger/15 text-danger"
       };
-      return `<span class="shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map["In review"]}">${s}</span>`;
+      return `<span class="shrink-0 rounded-md px-2 py-0.5 text-[10px] font-bold ${map[s] || map["In review"]}">${statusLabel(s)}</span>`;
     }
 
     /* ── Rendu appointments ── */
@@ -1191,14 +1211,14 @@
       return `
       <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3">
         <div class="grid w-12 shrink-0 place-items-center rounded-lg bg-white dark:bg-night-800 py-1.5 ring-1 ring-black/5 dark:ring-white/10">
-          <span class="text-[9px] font-bold uppercase tracking-wider text-danger">${a.month}</span>
+          <span class="text-[9px] font-bold uppercase tracking-wider text-danger">${tr("overview.months." + a.month, a.month)}</span>
           <span class="text-lg font-extrabold leading-none">${a.day}</span>
         </div>
         <div class="min-w-0 flex-1">
-          <p class="truncate text-sm font-semibold">${a.title}</p>
+          <p class="truncate text-sm font-semibold">${itemText("appts", a, "title")}</p>
           <p class="mt-0.5 flex items-center gap-1 text-[11px] text-muted dark:text-mist-300">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
-            <span class="truncate">${a.place}</span>
+            <span class="truncate">${itemText("appts", a, "place")}</span>
           </p>
         </div>
         ${apptChip(a.status)}
@@ -1210,7 +1230,7 @@
       const next = APPOINTMENTS[0];
       $("#nextAppt").innerHTML = next
         ? `<ul class="space-y-3">${apptItem(next)}</ul>`
-        : `<p class="text-sm text-muted dark:text-mist-300">No upcoming appointment.</p>`;
+        : `<p class="text-sm text-muted dark:text-mist-300">${tr("overview.appointments.none", "No upcoming appointment.")}</p>`;
     }
 
     /* ── Rendu paiements ── */
@@ -1221,10 +1241,10 @@
           <img src="/assets/images/pages/my-space/icon-payment.png" alt="icon-payment" class="size-4 object-contain" />
         </span>
         <div class="min-w-0 flex-1">
-          <p class="truncate text-sm font-semibold">${p.label}</p>
-          <p class="text-[11px] text-muted dark:text-mist-300">${p.date}</p>
+          <p class="truncate text-sm font-semibold">${itemText("payments", p, "label")}</p>
+          <p class="text-[11px] text-muted dark:text-mist-300">${itemText("payments", p, "date")}</p>
         </div>
-        <p class="shrink-0 text-sm font-bold">- ${p.amount.toFixed(2)} DH</p>
+        <p class="shrink-0 text-sm font-bold"><bdi>- ${p.amount.toFixed(2)}</bdi> ${tr("finance.dh", "DH")}</p>
       </li>`).join("");
     }
 
@@ -1234,10 +1254,10 @@
       <li class="flex items-center gap-3 rounded-xl bg-canvas dark:bg-night-700 p-3.5 ring-1 ring-black/5 dark:ring-white/10">
         <div class="min-w-0 flex-1">
           <div class="flex items-center gap-2">
-            <p class="truncate text-sm font-semibold">${r.title}</p>
+            <p class="truncate text-sm font-semibold">${itemText("requestsData", r, "title")}</p>
             ${reqChip(r.status)}
           </div>
-          <p class="mt-1 text-[11px] text-muted dark:text-mist-300">${r.ref} · ${r.dept} · ${r.date}</p>
+          <p class="mt-1 text-[11px] text-muted dark:text-mist-300">${r.ref} · ${itemText("requestsData", r, "dept")} · ${itemText("requestsData", r, "date")}</p>
         </div>
       </li>`).join("");
     }
@@ -1245,9 +1265,9 @@
     /* ── Rendu requests snapshot (dashboard) ── */
     function renderReqSummary() {
       const rows = [
-        { label: "In review", status: "In review" },
-        { label: "Approved", status: "Approved" },
-        { label: "Action needed", status: "Pending documents" }
+        { label: tr("overview.status.inReview", "In review"), status: "In review" },
+        { label: tr("overview.status.approved", "Approved"), status: "Approved" },
+        { label: tr("overview.status.actionNeeded", "Action needed"), status: "Pending documents" }
       ];
       $("#reqSummary").innerHTML = rows.map(row => {
         const count = REQUESTS.filter(r => r.status === row.status).length;
@@ -1265,7 +1285,7 @@
       $("#activityChart").innerHTML = ACTIVITY.map(a => `
         <div class="flex h-full flex-1 flex-col items-center justify-end gap-2">
           <div class="w-2.5 rounded-full bg-brand dark:bg-accent-400 transition-[height] duration-700 ease-out" style="height:0%" data-h="${Math.round(a.value / max * 100)}"></div>
-          <span class="text-[10px] text-muted dark:text-mist-300">${a.day}</span>
+          <span class="text-[10px] text-muted dark:text-mist-300">${tr("overview.days." + a.day, a.day)}</span>
         </div>`).join("");
       requestAnimationFrame(() => {
         $("#activityChart").querySelectorAll("[data-h]").forEach(bar => {
@@ -1281,8 +1301,8 @@
     function tick() {
       tramSeconds = tramSeconds > 0 ? tramSeconds - 1 : 420;
       const arriving = tramSeconds <= 30;
-      $("#tramEta").textContent = arriving ? "Arriving" : Math.ceil(tramSeconds / 60);
-      $("#tramUnit").textContent = arriving ? "" : " min";
+      $("#tramEta").textContent = arriving ? tr("overview.transport.arriving", "Arriving") : Math.ceil(tramSeconds / 60);
+      $("#tramUnit").textContent = arriving ? "" : " " + tr("overview.transport.min", "min");
       $("#tramBar").style.width = Math.min(100, 100 - (tramSeconds / TRAM_WINDOW) * 100).toFixed(1) + "%";
     }
 
@@ -1305,9 +1325,13 @@
       tab.addEventListener("click", () => selectTab(tab));
       tab.addEventListener("keydown", e => {
         const i = tabs.indexOf(tab);
+        /* In RTL the tabs run right-to-left, so the arrow keys swap meaning */
+        const rtl = M3akI18n.dir() === "rtl";
+        const forward = rtl ? "ArrowLeft" : "ArrowRight";
+        const backward = rtl ? "ArrowRight" : "ArrowLeft";
         let n = null;
-        if (e.key === "ArrowRight" || e.key === "ArrowDown") n = (i + 1) % tabs.length;
-        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = (i - 1 + tabs.length) % tabs.length;
+        if (e.key === forward || e.key === "ArrowDown") n = (i + 1) % tabs.length;
+        else if (e.key === backward || e.key === "ArrowUp") n = (i - 1 + tabs.length) % tabs.length;
         else if (e.key === "Home") n = 0;
         else if (e.key === "End") n = tabs.length - 1;
         if (n !== null) { e.preventDefault(); selectTab(tabs[n], true); }
@@ -1356,7 +1380,7 @@
     $("#openMap").addEventListener("click", () => {
       $("#mapModal").classList.remove("hidden");
       $("#mapModal").classList.add("flex");
-      $("#mapStatus").textContent = "Showing the live transit network";
+      M3akI18n.setKey($("#mapStatus"), "overview.map.showing");
     });
     $("#closeMap").addEventListener("click", () => {
       $("#mapModal").classList.add("hidden");
@@ -1364,40 +1388,32 @@
     });
     $("#mapModal").addEventListener("click", e => { if (e.target.id === "mapModal") $("#closeMap").click(); });
     $("#locateMe").addEventListener("click", () => {
-      $("#mapStatus").textContent = "Locating your position…";
-      toast("Locating your position");
+      M3akI18n.setKey($("#mapStatus"), "overview.map.locating");
+      toast(tr("overview.toast.locating", "Locating your position"));
     });
     $("#followMe").addEventListener("click", () => {
       const on = $("#followMe").getAttribute("aria-pressed") === "true";
       $("#followMe").setAttribute("aria-pressed", String(!on));
-      toast(on ? "Stopped following your position" : "Following your position");
+      toast(on ? tr("overview.toast.stopFollowing", "Stopped following your position") : tr("overview.toast.following", "Following your position"));
     });
 
     /* ── Interactions ── */
     $("#addAppt").addEventListener("click", () => {
-      APPOINTMENTS.push({ month: "NOV", day: 3, title: "Passport Photo", place: "Annexe Administrative", status: "Pending" });
+      APPOINTMENTS.push({ id: "a3", month: "NOV", day: 3, title: "Passport Photo", place: "Annexe Administrative", status: "Pending" });
       renderAppointments();
-      toast("Appointment added to your schedule");
+      toast(tr("overview.toast.apptAdded", "Appointment added to your schedule"));
     });
-    $("#newRequest").addEventListener("click", () => toast("Opening the new service request form"));
+    $("#newRequest").addEventListener("click", () => toast(tr("overview.toast.newRequest", "Opening the new service request form")));
 
     document.querySelectorAll(".quick").forEach(b =>
-      b.addEventListener("click", () => toast(`Opening ${b.dataset.service}`))
+      b.addEventListener("click", () => toast(tr("common.opening", "Opening {name}…", { name: b.querySelector(".quick-label").textContent.trim() })))
     );
     document.querySelectorAll("[data-doc-action]").forEach(b =>
-      b.addEventListener("click", () => toast(b.dataset.docAction + " — coming soon"))
+      b.addEventListener("click", () => toast(tr("overview.toast.comingSoon", "{name} — coming soon", { name: b.dataset.docAction })))
     );
     document.querySelectorAll("[data-account-action]").forEach(b =>
-      b.addEventListener("click", () => toast(b.dataset.accountAction + " — coming soon"))
+      b.addEventListener("click", () => toast(tr("overview.toast.comingSoon", "{name} — coming soon", { name: b.dataset.accountAction })))
     );
-
-    $("#langBtn").addEventListener("click", () => {
-      const langs = ["EN", "FR", "AR"];
-      const cur = $("#langLabel").textContent;
-      const next = langs[(langs.indexOf(cur) + 1) % langs.length];
-      $("#langLabel").textContent = next;
-      toast(`Interface language set to ${next}`);
-    });
 
     /* ── Biometric toggle ── */
     document.querySelectorAll("[data-toggle-switch]").forEach(btn => {
@@ -1434,7 +1450,7 @@
         ["phone", "address", "city", "country"].forEach(id => {
           document.getElementById(id).readOnly = true;
         });
-        toast("Personal information saved");
+        toast(tr("overview.toast.saved", "Personal information saved"));
       });
     }
 
@@ -1449,33 +1465,43 @@
       tick();
     });
     setInterval(tick, 1000);
+
+    /* Script-built lists follow a language switch */
+    document.addEventListener("m3ak:languagechange", () => {
+      renderAppointments();
+      renderPayments();
+      renderRequests();
+      renderReqSummary();
+      renderActivity();
+      tick();
+    });
   </script>
     <!-- ══════════ SITE FOOTER ══════════ -->
     <footer class="border-t border-black/10 bg-white text-slate-600 transition-colors dark:border-white/10 dark:bg-[#0F1512] dark:text-slate-400">
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -1489,14 +1515,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -1508,18 +1534,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Find your Specialist — M3ak Morocco</title>
+    <title data-i18n="health.pageTitle">Find your Specialist — M3ak Morocco</title>
     <script src="/js/session.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
@@ -68,7 +70,7 @@
         .app-brand-mark img { @apply size-full object-contain; }
         .app-brand-name     { @apply whitespace-nowrap text-[15px] sm:text-lg font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .app-brand-flag     { @apply hidden rounded-full bg-brand-soft dark:bg-accent-400/15 px-2.5 py-1 text-[10px] font-bold text-brand dark:text-accent-400 sm:inline-block; }
-        .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
+        .app-topbar-actions { @apply ms-auto flex items-center gap-1.5; }
         .app-icon-btn       { @apply grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-icon-btn--lg   { @apply hidden lg:grid; }
         .app-avatar         { @apply grid size-9 place-items-center overflow-hidden rounded-full bg-brand-soft dark:bg-night-700 text-sm font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-night-600; }
@@ -77,8 +79,8 @@
         .app-body    { @apply flex; }
         .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 lg:hidden; }
         .app-scrim.is-open { @apply block lg:hidden; }
-        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
-                              border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5
+        .app-sidebar { @apply fixed inset-y-0 start-0 z-50 flex w-64 -translate-x-full max-lg:rtl:translate-x-full flex-col overflow-y-auto
+                              border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5
                               transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .app-sidebar.is-open { @apply translate-x-0; }
         .sidebar-head  { @apply mb-5 px-2; }
@@ -143,8 +145,8 @@
 
         /* ---------- Mobile search ---------- */
         .mobile-search    { @apply relative mt-4 lg:hidden; }
-        .mobile-search-icon { @apply pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60; }
-        .mobile-search-input { @apply w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 pl-10 pr-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25; }
+        .mobile-search-icon { @apply pointer-events-none absolute start-4 top-1/2 size-4 -translate-y-1/2 object-contain opacity-60; }
+        .mobile-search-input { @apply w-full rounded-full border border-black/5 dark:border-night-600 bg-white dark:bg-night-800 py-3 ps-10 pe-4 text-sm text-ink dark:text-mist-100 outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25 dark:focus-visible:ring-accent-400/25; }
 
         /* ---------- Specialty filters ---------- */
         .filter-row      { @apply mt-5 flex gap-2 overflow-x-auto pb-1; }
@@ -158,8 +160,8 @@
         .service-hero-title{ @apply relative mt-4 text-base font-extrabold; }
         .service-hero-text { @apply relative mt-1.5 max-w-[220px] text-xs leading-relaxed text-white/85; }
         .service-hero-btn  { @apply relative mt-4 rounded-full bg-white px-4 py-2 text-xs font-bold shadow-sm transition hover:bg-white/90; }
-        .service-hero-watermark-tc { @apply pointer-events-none absolute -top-1 right-2 size-28 object-contain; }
-        .service-hero-watermark-hv { @apply pointer-events-none absolute top-1 right-6 size-28 max-w-[80px] object-contain opacity-15; }
+        .service-hero-watermark-tc { @apply pointer-events-none absolute -top-1 end-2 size-28 object-contain; }
+        .service-hero-watermark-hv { @apply pointer-events-none absolute top-1 end-6 size-28 max-w-[80px] object-contain opacity-15; }
 
         /* ---------- Nearby doctors ---------- */
         .section-row     { @apply mt-8 flex items-center justify-between; }
@@ -167,7 +169,7 @@
         .see-all-link    { @apply text-xs font-semibold text-brand dark:text-accent-400 hover:underline; }
         .doctor-grid     { @apply mt-4 grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-4; }
         .doctor-card     { @apply relative flex gap-3 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-night-600 transition hover:-translate-y-0.5 hover:shadow-md lg:block lg:gap-0 lg:overflow-hidden lg:p-0; }
-        .doctor-rating   { @apply absolute right-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:right-1.5 lg:top-1.5; }
+        .doctor-rating   { @apply absolute end-2 top-2 z-10 flex items-center gap-0.5 rounded-full bg-white/95 dark:bg-night-900/90 px-1.5 py-0.5 text-[10px] font-bold text-ink dark:text-white shadow lg:end-1.5 lg:top-1.5; }
         .doctor-rating-icon { @apply size-2.5 object-contain; }
         .doctor-photo-wrap  { @apply size-20 shrink-0 overflow-hidden rounded-xl bg-canvas dark:bg-night-700 lg:aspect-[4/3] lg:size-auto lg:w-full lg:rounded-none; }
         .doctor-photo    { @apply size-full object-cover; }
@@ -212,31 +214,33 @@
     <header class="app-topbar">
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn">
-                <span class="sr-only">Open menu</span>
+                <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
                 <img src="/assets/images/ui/menu-icon.png" alt="icon-menu" class="size-6 object-contain">
             </button>
 
             <a href="/pages/app/health.html" class="app-brand">
                 <span class="app-brand-mark">
-                    <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" class="dark:hidden">
-                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo"
+                    <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="dark:hidden">
+                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt"
                         class="hidden dark:block">
                 </span>
-                <span class="app-brand-name">M3ak Morocco</span>
-                <span class="app-brand-flag">Royaume du Maroc</span>
+                <span class="app-brand-name" data-i18n="brand.name">M3ak Morocco</span>
+                <span class="app-brand-flag" data-i18n="brand.kingdom">Royaume du Maroc</span>
             </a>
 
             <div class="app-topbar-actions">
+                <div data-lang-switcher></div>
+
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-                    aria-pressed="false">
+                    data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <button type="button" class="app-icon-btn app-icon-btn--lg">
-                    <span class="sr-only">Search</span>
+                    <span class="sr-only" data-i18n="common.search">Search</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="size-5 object-contain">
                         <circle cx="11" cy="11" r="7" />
@@ -245,16 +249,16 @@
                 </button>
 
                 <button type="button" class="app-icon-btn">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications"
+                    <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications"
                         class="size-5 object-contain dark:hidden" />
                     <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification"
                         class="hidden size-5 object-contain dark:block" />
                 </button>
 
                 <button type="button" class="app-avatar">
-                    <span class="sr-only">Your profile</span>
-                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile"
+                    <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto"
                         class="size-full rounded-full object-cover" data-auth="user" />
                     <img src="/assets/images/pages/settings/icon-user.svg" alt="icon-user" class="size-5 object-contain"
                         data-auth="guest" />
@@ -270,42 +274,42 @@
 
         <aside id="sidebar" class="app-sidebar">
             <div class="sidebar-head">
-                <p class="sidebar-title">M3ak Morocco</p>
-                <p class="sidebar-sub">Citizen Services Portal</p>
+                <p class="sidebar-title" data-i18n="brand.name">M3ak Morocco</p>
+                <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
             </div>
 
             <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon">
-                    <span>My Space</span>
+                    <span data-i18n="nav.mySpace">My Space</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
                     <img src="/assets/images/ui/nav/transport.png" alt="icon-transport" class="nav-icon">
-                    <span>Transport</span>
+                    <span data-i18n="nav.transport">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
                     <img src="/assets/images/ui/nav/housing.png" alt="icon-housing" class="nav-icon">
-                    <span>Housing</span>
+                    <span data-i18n="nav.housing">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
                     <img src="/assets/images/ui/nav/jobs.png" alt="icon-jobs" class="nav-icon">
-                    <span>Jobs</span>
+                    <span data-i18n="nav.jobs">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
                     <img src="/assets/images/ui/nav/education.png" alt="icon-education" class="nav-icon">
-                    <span>Education</span>
+                    <span data-i18n="nav.education">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item nav-item--active" aria-current="page">
                     <img src="/assets/images/ui/nav/healthcare.png" alt="icon-healthcare" class="nav-icon">
-                    <span>Healthcare</span>
+                    <span data-i18n="nav.healthcare">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
                     <img src="/assets/images/ui/nav/payment.png" alt="icon-payment" class="nav-icon">
-                    <span>Payments</span>
+                    <span data-i18n="nav.payments">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
                     <img src="/assets/images/ui/nav/finance.png" alt="icon-finance" class="nav-icon">
-                    <span>Finance</span>
+                    <span data-i18n="nav.finance">Finance</span>
                 </a>
             </nav>
 
@@ -314,11 +318,11 @@
                     <i class="size-[18px] shrink-0 bg-[#DC2626]"
                         style="display:inline-block;-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></i>
-                    <span>Emergency Support</span>
+                    <span data-i18n="nav.emergencySupport">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-icon">
-                    <span>Help Center</span>
+                    <span data-i18n="nav.helpCenter">Help Center</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -326,11 +330,11 @@
                         <rect x="9" y="2" width="6" height="12" rx="3" />
                         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
                     </svg>
-                    <span>AI Assistant</span>
+                    <span data-i18n="nav.aiAssistant">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
-                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon">
-                    <span>Logout</span>
+                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon rtl:-scale-x-100">
+                    <span data-i18n="nav.logout">Logout</span>
                 </a>
             </div>
         </aside>
@@ -341,15 +345,15 @@
             <!-- TITLE -->
             <div class="page-title-row">
                 <div>
-                    <h1 class="page-title">
+                    <h1 class="page-title" data-i18n="health.title">
                         Find your Specialist
                     </h1>
-                    <p class="page-subtitle">
+                    <p class="page-subtitle" data-i18n="health.subtitle">
                         Access quality healthcare services across Morocco instantly.
                     </p>
                 </div>
 
-                <p class="official-badge">
+                <p class="official-badge" data-i18n="health.official">
                     <img src="/assets/images/pages/health/icon-official.png" alt="icon-official"
                         class="size-4 object-contain" />
                     Official Public Service Provider
@@ -363,7 +367,7 @@
                 <img src="/assets/images/pages/health/icon-search.png" alt="icon-search"
                     class="mobile-search-icon hidden dark:block" />
                 <input type="search" placeholder="Search doctors, specialties, or clinics..."
-                    class="mobile-search-input" />
+                    data-i18n-placeholder="health.searchPlaceholder" class="mobile-search-input" />
             </div>
 
             <!-- FILTER PILLS — pure CSS toggle via radio + peer, no JS -->
@@ -371,7 +375,8 @@
 
                 <input type="radio" name="specialty" id="filter-all" class="peer/all sr-only" checked>
                 <label for="filter-all"
-                    class="specialty-filter peer-checked/all:bg-brand peer-checked/all:text-white peer-checked/all:ring-0 dark:peer-checked/all:bg-accent-400 dark:peer-checked/all:text-night-900">
+                    class="specialty-filter peer-checked/all:bg-brand peer-checked/all:text-white peer-checked/all:ring-0 dark:peer-checked/all:bg-accent-400 dark:peer-checked/all:text-night-900"
+                    data-i18n="health.allDoctors">
                     <img src="/assets/images/pages/health/icon-docotr-light.png" alt="icon-doctor"
                         class="size-3.5 object-contain dark:hidden" />
                     <img src="/assets/images/pages/health/icon-docotr.png" alt="icon-doctor"
@@ -381,7 +386,8 @@
 
                 <input type="radio" name="specialty" id="filter-cardiology" class="peer/cardio sr-only">
                 <label for="filter-cardiology"
-                    class="specialty-filter peer-checked/cardio:bg-brand peer-checked/cardio:text-white peer-checked/cardio:ring-0 dark:peer-checked/cardio:bg-accent-400 dark:peer-checked/cardio:text-night-900">
+                    class="specialty-filter peer-checked/cardio:bg-brand peer-checked/cardio:text-white peer-checked/cardio:ring-0 dark:peer-checked/cardio:bg-accent-400 dark:peer-checked/cardio:text-night-900"
+                    data-i18n="health.cardiology">
                     <img src="/assets/images/pages/health/icon-cardiology.png" alt="icon-cardiology"
                         class="specialty-icon" />
                     Cardiology
@@ -389,7 +395,8 @@
 
                 <input type="radio" name="specialty" id="filter-psychiatry" class="peer/psych sr-only">
                 <label for="filter-psychiatry"
-                    class="specialty-filter peer-checked/psych:bg-brand peer-checked/psych:text-white peer-checked/psych:ring-0 dark:peer-checked/psych:bg-accent-400 dark:peer-checked/psych:text-night-900">
+                    class="specialty-filter peer-checked/psych:bg-brand peer-checked/psych:text-white peer-checked/psych:ring-0 dark:peer-checked/psych:bg-accent-400 dark:peer-checked/psych:text-night-900"
+                    data-i18n="health.psychiatry">
                     <img src="/assets/images/pages/health/icon-psychiatry.png" alt="icon-psychiatry"
                         class="specialty-icon" />
                     Psychiatry
@@ -397,7 +404,8 @@
 
                 <input type="radio" name="specialty" id="filter-pediatrics" class="peer/ped sr-only">
                 <label for="filter-pediatrics"
-                    class="specialty-filter peer-checked/ped:bg-brand peer-checked/ped:text-white peer-checked/ped:ring-0 dark:peer-checked/ped:bg-accent-400 dark:peer-checked/ped:text-night-900">
+                    class="specialty-filter peer-checked/ped:bg-brand peer-checked/ped:text-white peer-checked/ped:ring-0 dark:peer-checked/ped:bg-accent-400 dark:peer-checked/ped:text-night-900"
+                    data-i18n="health.pediatrics">
                     <img src="/assets/images/pages/health/icon-pediatrics.png" alt="icon-pediatrics"
                         class="specialty-icon" />
                     Pediatrics
@@ -405,7 +413,8 @@
 
                 <input type="radio" name="specialty" id="filter-ophthalmology" class="peer/eye sr-only">
                 <label for="filter-ophthalmology"
-                    class="specialty-filter peer-checked/eye:bg-brand peer-checked/eye:text-white peer-checked/eye:ring-0 dark:peer-checked/eye:bg-accent-400 dark:peer-checked/eye:text-night-900">
+                    class="specialty-filter peer-checked/eye:bg-brand peer-checked/eye:text-white peer-checked/eye:ring-0 dark:peer-checked/eye:bg-accent-400 dark:peer-checked/eye:text-night-900"
+                    data-i18n="health.ophthalmology">
                     <img src="/assets/images/pages/health/icon-ophthalmology.png" alt="icon-ophthalmology"
                         class="specialty-icon" />
                     Ophthalmology
@@ -422,11 +431,11 @@
                     <span class="service-hero-badge">
                         <img src="/assets/images/pages/health/card-tele-consult.png" alt="image-teleconsultation">
                     </span>
-                    <h2 class="service-hero-title">Tele-Consult</h2>
-                    <p class="service-hero-text">
+                    <h2 class="service-hero-title" data-i18n="health.teleTitle">Tele-Consult</h2>
+                    <p class="service-hero-text" data-i18n="health.teleText">
                         Connect with top-rated doctors via secure instant video calls from anywhere.
                     </p>
-                    <button type="button" class="service-hero-btn text-blue-dark">
+                    <button type="button" class="service-hero-btn text-blue-dark" data-i18n="health.teleBtn">
                         Start Consultation
                     </button>
                 </section>
@@ -437,11 +446,11 @@
                     <span class="service-hero-badge">
                         <img src="/assets/images/pages/health/icon-home.png" alt="icon-home-visit">
                     </span>
-                    <h2 class="service-hero-title">Home Visit</h2>
-                    <p class="service-hero-text">
+                    <h2 class="service-hero-title" data-i18n="health.visitTitle">Home Visit</h2>
+                    <p class="service-hero-text" data-i18n="health.visitText">
                         Professional medical care at your doorstep. Skilled doctors available for house calls.
                     </p>
-                    <button type="button" class="service-hero-btn text-brand-dark">
+                    <button type="button" class="service-hero-btn text-brand-dark" data-i18n="health.visitBtn">
                         Request Visit
                     </button>
                 </section>
@@ -450,8 +459,8 @@
 
             <!-- NEARBY DOCTORS -->
             <div class="section-row">
-                <h2 class="section-heading">Nearby Doctors</h2>
-                <a href="/pages/app/coming-soon.html?feature=Doctor+Directory" class="see-all-link">See all</a>
+                <h2 class="section-heading" data-i18n="health.nearby">Nearby Doctors</h2>
+                <a href="/pages/app/coming-soon.html?feature=Doctor+Directory" class="see-all-link" data-i18n="common.seeAll">See all</a>
             </div>
 
             <div class="doctor-grid">
@@ -463,22 +472,22 @@
                     </span>
                     <div class="doctor-photo-wrap">
                         <img src="/assets/images/pages/health/sofia-amrani.png" alt="Dr. Sofia Amrani"
-                            class="doctor-photo" />
+                            data-i18n-alt="health.doctors.sofia" class="doctor-photo" />
                     </div>
                     <div class="doctor-body">
-                        <p class="doctor-specialty">Cardiologist</p>
-                        <h3 class="doctor-name">Dr. Sofia Amrani</h3>
+                        <p class="doctor-specialty" data-i18n="health.doctors.cardiologist">Cardiologist</p>
+                        <h3 class="doctor-name" data-i18n="health.doctors.sofia">Dr. Sofia Amrani</h3>
                         <p class="doctor-location">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon">
                                 <path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" />
                                 <circle cx="12" cy="10" r="2.5" />
                             </svg>
-                            <span class="truncate">Agadir, Talborjt (1.2 km)</span>
+                            <span class="truncate" data-i18n="health.doctors.talborjt">Agadir, Talborjt (1.2 km)</span>
                         </p>
                         <div class="doctor-foot">
-                            <p class="doctor-price">200 <span class="doctor-price-unit">MAD</span></p>
-                            <button type="button" class="doctor-book-btn">Book</button>
+                            <p class="doctor-price">200 <span class="doctor-price-unit" data-i18n="common.mad">MAD</span></p>
+                            <button type="button" class="doctor-book-btn" data-i18n="health.book">Book</button>
                         </div>
                     </div>
                 </article>
@@ -490,22 +499,22 @@
                     </span>
                     <div class="doctor-photo-wrap">
                         <img src="/assets/images/pages/health/yasmine-idrissi.png" alt="Dr. Yasmine Idrissi"
-                            class="doctor-photo" />
+                            data-i18n-alt="health.doctors.yasmine" class="doctor-photo" />
                     </div>
                     <div class="doctor-body">
-                        <p class="doctor-specialty">Dermatologist</p>
-                        <h3 class="doctor-name">Dr. Yasmine Idrissi</h3>
+                        <p class="doctor-specialty" data-i18n="health.doctors.dermatologist">Dermatologist</p>
+                        <h3 class="doctor-name" data-i18n="health.doctors.yasmine">Dr. Yasmine Idrissi</h3>
                         <p class="doctor-location">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon">
                                 <path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" />
                                 <circle cx="12" cy="10" r="2.5" />
                             </svg>
-                            <span class="truncate">Agadir, Founty (0.8 km)</span>
+                            <span class="truncate" data-i18n="health.doctors.founty">Agadir, Founty (0.8 km)</span>
                         </p>
                         <div class="doctor-foot">
-                            <p class="doctor-price">450 <span class="doctor-price-unit">MAD</span></p>
-                            <button type="button" class="doctor-book-btn">Book</button>
+                            <p class="doctor-price">450 <span class="doctor-price-unit" data-i18n="common.mad">MAD</span></p>
+                            <button type="button" class="doctor-book-btn" data-i18n="health.book">Book</button>
                         </div>
                     </div>
                 </article>
@@ -516,22 +525,22 @@
                         4.9
                     </span>
                     <div class="doctor-photo-wrap">
-                        <img src="/assets/images/pages/health/jack-wmor.png" alt="Dr. Jack Wmor" class="doctor-photo" />
+                        <img src="/assets/images/pages/health/jack-wmor.png" alt="Dr. Jack Wmor" data-i18n-alt="health.doctors.jack" class="doctor-photo" />
                     </div>
                     <div class="doctor-body">
-                        <p class="doctor-specialty">Pediatrician</p>
-                        <h3 class="doctor-name">Dr. Jack Wmor</h3>
+                        <p class="doctor-specialty" data-i18n="health.doctors.pediatrician">Pediatrician</p>
+                        <h3 class="doctor-name" data-i18n="health.doctors.jack">Dr. Jack Wmor</h3>
                         <p class="doctor-location">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon">
                                 <path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" />
                                 <circle cx="12" cy="10" r="2.5" />
                             </svg>
-                            <span class="truncate">Agadir, Nouveau Talborjt (2.5 km)</span>
+                            <span class="truncate" data-i18n="health.doctors.nouveauTalborjt">Agadir, Nouveau Talborjt (2.5 km)</span>
                         </p>
                         <div class="doctor-foot">
-                            <p class="doctor-price">400 <span class="doctor-price-unit">MAD</span></p>
-                            <button type="button" class="doctor-book-btn">Book</button>
+                            <p class="doctor-price">400 <span class="doctor-price-unit" data-i18n="common.mad">MAD</span></p>
+                            <button type="button" class="doctor-book-btn" data-i18n="health.book">Book</button>
                         </div>
                     </div>
                 </article>
@@ -543,22 +552,22 @@
                     </span>
                     <div class="doctor-photo-wrap">
                         <img src="/assets/images/pages/health/nina-olivia.png" alt="Dr. Nina Olivia"
-                            class="doctor-photo" />
+                            data-i18n-alt="health.doctors.nina" class="doctor-photo" />
                     </div>
                     <div class="doctor-body">
-                        <p class="doctor-specialty">Ophthalmologist</p>
-                        <h3 class="doctor-name">Dr. Nina Olivia</h3>
+                        <p class="doctor-specialty" data-i18n="health.doctors.ophthalmologist">Ophthalmologist</p>
+                        <h3 class="doctor-name" data-i18n="health.doctors.nina">Dr. Nina Olivia</h3>
                         <p class="doctor-location">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="doctor-location-icon">
                                 <path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" />
                                 <circle cx="12" cy="10" r="2.5" />
                             </svg>
-                            <span class="truncate">Agadir, Charaf (3.0 km)</span>
+                            <span class="truncate" data-i18n="health.doctors.charaf">Agadir, Charaf (3.0 km)</span>
                         </p>
                         <div class="doctor-foot">
-                            <p class="doctor-price">480 <span class="doctor-price-unit">MAD</span></p>
-                            <button type="button" class="doctor-book-btn">Book</button>
+                            <p class="doctor-price">480 <span class="doctor-price-unit" data-i18n="common.mad">MAD</span></p>
+                            <button type="button" class="doctor-book-btn" data-i18n="health.book">Book</button>
                         </div>
                     </div>
                 </article>
@@ -573,20 +582,20 @@
                             class="verified-icon" />
                     </span>
                     <div>
-                        <p class="verified-title">Verified Professionals</p>
-                        <p class="verified-desc">
+                        <p class="verified-title" data-i18n="health.verifiedTitle">Verified Professionals</p>
+                        <p class="verified-desc" data-i18n="health.verifiedText">
                             All practitioners on M3ak are licensed and verified by the Ministry of Health.
                         </p>
                     </div>
                 </div>
 
                 <div class="verified-badges">
-                    <span class="verified-chip">
+                    <span class="verified-chip" data-i18n="health.privacy">
                         <img src="/assets/images/pages/health/icon-done.png" alt="icon-done"
                             class="verified-chip-icon" />
                         Data Privacy Guaranteed
                     </span>
-                    <span class="verified-chip">
+                    <span class="verified-chip" data-i18n="health.securePayment">
                         <img src="/assets/images/pages/health/icon-done.png" alt="icon-done"
                             class="verified-chip-icon" />
                         Secure Payment
@@ -606,33 +615,33 @@
 
             <!-- Brand · nav · copyright -->
             <div
-                class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak
+                class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak
                     Morocco</p>
 
                 <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs"
-                    aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy
+                    aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy
                         Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of
                         Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal
                         Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security
                         Disclosure</a>
                     <a href="/pages/app/support.html"
-                        class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help
+                        class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help
                         Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026
                     M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div
                 class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]"
                         aria-hidden="true">
@@ -641,7 +650,7 @@
                     </svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]"
                         aria-hidden="true">
@@ -672,7 +681,7 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times
                     GMT+1</p>
             </div>
 
@@ -680,7 +689,7 @@
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">
                         Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -706,20 +715,20 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">
                         Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">
                         Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

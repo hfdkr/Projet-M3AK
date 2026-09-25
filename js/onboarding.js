@@ -89,7 +89,7 @@
                 dot.classList.toggle("is-done", n < step);
             });
             backBtn.classList.toggle("invisible", step === 1);
-            nextBtn.textContent = step === TOTAL_STEPS ? "Finish Setup" : "Next";
+            window.M3akI18n.setKey(nextBtn, step === TOTAL_STEPS ? "onboarding.finish" : "common.next");
             updateFinalStepGate();
         }
 
@@ -114,7 +114,10 @@
             var required = stepEl.querySelectorAll("[required]");
             for (var i = 0; i < required.length; i++) {
                 if (!required[i].value.trim()) {
-                    showError("Please fill in " + (required[i].previousElementSibling ? required[i].previousElementSibling.textContent : "this field") + ".");
+                    var label = required[i].previousElementSibling;
+                    showError(window.M3akI18n.t("onboarding.fillIn", {
+                        field: label ? label.textContent.trim() : window.M3akI18n.t("onboarding.thisField")
+                    }));
                     required[i].focus();
                     return false;
                 }

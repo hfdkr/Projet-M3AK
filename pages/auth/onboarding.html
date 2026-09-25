@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Complete Your Profile — M3ak Morocco</title>
+    <title data-i18n="onboarding.pageTitle">Complete Your Profile — M3ak Morocco</title>
     <script src="/js/session.js"></script>
     <script src="/js/onboarding.js" defer></script>
 
@@ -65,22 +67,25 @@
 
     <header class="sticky top-0 z-40 border-b border-black/5 dark:border-white/10 bg-white dark:bg-night-800">
         <div class="mx-auto flex h-16 max-w-[1590px] items-center justify-between px-4">
-            <p class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400">M3ak Morocco</p>
-            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                <span class="theme-toggle-thumb">
-                    <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                    <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                </span>
-            </button>
+            <p class="text-lg font-extrabold tracking-tight text-brand dark:text-accent-400" data-i18n="brand.name">M3ak Morocco</p>
+            <div class="flex items-center gap-2">
+                <div data-lang-switcher></div>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
+                    </span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main class="mx-auto max-w-[640px] px-4 py-8 lg:py-12">
 
         <div class="text-center">
-            <h1 class="text-2xl font-extrabold tracking-tight">Complete Your Profile</h1>
+            <h1 class="text-2xl font-extrabold tracking-tight" data-i18n="onboarding.title">Complete Your Profile</h1>
             <p class="mt-1.5 text-sm text-muted dark:text-mist-300">
-                Welcome, <span data-user-name>there</span> — this only takes a minute, and you won't be asked again.
+                <span data-i18n="onboarding.welcome">Welcome,</span> <span data-user-name>there</span> <span data-i18n="onboarding.welcomeRest">— this only takes a minute, and you won't be asked again.</span>
             </p>
         </div>
 
@@ -94,35 +99,36 @@
 
             <!-- STEP 1 — Personal Information -->
             <fieldset class="ob-step is-active" data-step="1">
-                <legend class="mb-4 text-base font-bold">Personal Information</legend>
+                <legend class="mb-4 text-base font-bold" data-i18n="onboarding.personal">Personal Information</legend>
 
+                <!-- Option values stay English: they are what the profile stores. -->
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
-                        <label for="dob" class="ob-field-label">Date of Birth</label>
+                        <label for="dob" class="ob-field-label" data-i18n="profile.dob">Date of Birth</label>
                         <input id="dob" type="date" class="ob-field-input">
                     </div>
                     <div>
-                        <label for="gender" class="ob-field-label">Gender</label>
+                        <label for="gender" class="ob-field-label" data-i18n="profile.gender">Gender</label>
                         <select id="gender" class="ob-field-input">
-                            <option value="">Select…</option>
-                            <option>Female</option>
-                            <option>Male</option>
-                            <option>Prefer not to say</option>
+                            <option value="" data-i18n="common.select">Select…</option>
+                            <option value="Female" data-i18n="profile.values.female">Female</option>
+                            <option value="Male" data-i18n="profile.values.male">Male</option>
+                            <option value="Prefer not to say" data-i18n="profile.values.preferNot">Prefer not to say</option>
                         </select>
                     </div>
                     <div>
-                        <label for="weight" class="ob-field-label">Weight</label>
-                        <input id="weight" type="text" placeholder="e.g. 70 kg" class="ob-field-input">
+                        <label for="weight" class="ob-field-label" data-i18n="profile.weight">Weight</label>
+                        <input id="weight" type="text" placeholder="e.g. 70 kg" data-i18n-placeholder="onboarding.weightPlaceholder" class="ob-field-input">
                     </div>
                     <div>
-                        <label for="motherTongue" class="ob-field-label">Mother Tongue</label>
+                        <label for="motherTongue" class="ob-field-label" data-i18n="profile.motherTongue">Mother Tongue</label>
                         <select id="motherTongue" class="ob-field-input">
-                            <option value="">Select…</option>
-                            <option>Arabic</option>
-                            <option>Amazigh (Tamazight)</option>
-                            <option>French</option>
-                            <option>English</option>
-                            <option>Other</option>
+                            <option value="" data-i18n="common.select">Select…</option>
+                            <option value="Arabic" data-i18n="profile.values.arabic">Arabic</option>
+                            <option value="Amazigh (Tamazight)" data-i18n="profile.values.amazigh">Amazigh (Tamazight)</option>
+                            <option value="French" data-i18n="profile.values.french">French</option>
+                            <option value="English" data-i18n="profile.values.english">English</option>
+                            <option value="Other" data-i18n="profile.values.other">Other</option>
                         </select>
                     </div>
                 </div>
@@ -130,21 +136,21 @@
 
             <!-- STEP 2 — Location -->
             <fieldset class="ob-step" data-step="2">
-                <legend class="mb-4 text-base font-bold">Location</legend>
+                <legend class="mb-4 text-base font-bold" data-i18n="onboarding.location">Location</legend>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
-                        <label for="country" class="ob-field-label">Country of Residence</label>
+                        <label for="country" class="ob-field-label" data-i18n="profile.country">Country of Residence</label>
                         <select id="country" class="ob-field-input" required>
-                            <option value="Morocco" selected>Morocco</option>
-                            <option>France</option>
-                            <option>Spain</option>
-                            <option>Other</option>
+                            <option value="Morocco" selected data-i18n="profile.values.morocco">Morocco</option>
+                            <option value="France" data-i18n="profile.values.france">France</option>
+                            <option value="Spain" data-i18n="profile.values.spain">Spain</option>
+                            <option value="Other" data-i18n="profile.values.other">Other</option>
                         </select>
                     </div>
                     <div>
-                        <label for="city" class="ob-field-label">City</label>
-                        <input id="city" type="text" list="cityOptions" placeholder="e.g. Agadir" class="ob-field-input" required>
+                        <label for="city" class="ob-field-label" data-i18n="profile.city">City</label>
+                        <input id="city" type="text" list="cityOptions" placeholder="e.g. Agadir" data-i18n-placeholder="onboarding.cityPlaceholder" class="ob-field-input" required>
                         <datalist id="cityOptions">
                             <option value="Agadir">
                             <option value="Casablanca">
@@ -160,51 +166,51 @@
                     </div>
                 </div>
 
-                <p class="mt-4 rounded-xl bg-brand-soft dark:bg-accent-400/15 p-3 text-xs text-brand dark:text-accent-400">
+                <p class="mt-4 rounded-xl bg-brand-soft dark:bg-accent-400/15 p-3 text-xs text-brand dark:text-accent-400" data-i18n="onboarding.cityNote">
                     Your city personalizes services across M3ak — including the Emergency page's map of nearby hospitals, pharmacies and police stations.
                 </p>
             </fieldset>
 
             <!-- STEP 3 — Medical ID + Emergency Contact -->
             <fieldset class="ob-step" data-step="3">
-                <legend class="mb-4 text-base font-bold">Medical ID &amp; Emergency Contact</legend>
+                <legend class="mb-4 text-base font-bold" data-i18n="onboarding.medical">Medical ID &amp; Emergency Contact</legend>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
-                        <label for="bloodType" class="ob-field-label">Blood Type</label>
+                        <label for="bloodType" class="ob-field-label" data-i18n="profile.bloodType">Blood Type</label>
                         <select id="bloodType" class="ob-field-input">
-                            <option value="">Select…</option>
+                            <option value="" data-i18n="common.select">Select…</option>
                             <option>A+</option><option>A-</option>
                             <option>B+</option><option>B-</option>
                             <option>AB+</option><option>AB-</option>
                             <option>O+</option><option>O-</option>
-                            <option>Unknown</option>
+                            <option value="Unknown" data-i18n="profile.values.unknown">Unknown</option>
                         </select>
                     </div>
                     <div>
-                        <label for="allergies" class="ob-field-label">Allergies</label>
-                        <input id="allergies" type="text" placeholder="e.g. Penicillin (leave blank if none)" class="ob-field-input">
+                        <label for="allergies" class="ob-field-label" data-i18n="profile.allergies">Allergies</label>
+                        <input id="allergies" type="text" placeholder="e.g. Penicillin (leave blank if none)" data-i18n-placeholder="onboarding.allergiesPlaceholder" class="ob-field-input">
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="medications" class="ob-field-label">Current Medications</label>
-                        <input id="medications" type="text" placeholder="e.g. None" class="ob-field-input">
+                        <label for="medications" class="ob-field-label" data-i18n="profile.medications">Current Medications</label>
+                        <input id="medications" type="text" placeholder="e.g. None" data-i18n-placeholder="onboarding.medicationsPlaceholder" class="ob-field-input">
                     </div>
                 </div>
 
                 <div class="mt-5 grid gap-4 border-t border-black/5 dark:border-white/10 pt-5 sm:grid-cols-3">
                     <div>
-                        <label for="emergencyName" class="ob-field-label">Emergency Contact Name</label>
-                        <input id="emergencyName" type="text" placeholder="Full name" class="ob-field-input" required>
+                        <label for="emergencyName" class="ob-field-label" data-i18n="profile.emergencyName">Emergency Contact Name</label>
+                        <input id="emergencyName" type="text" placeholder="Full name" data-i18n-placeholder="auth.signup.fullName" class="ob-field-input" required>
                     </div>
                     <div>
-                        <label for="emergencyRelation" class="ob-field-label">Relationship</label>
-                        <input id="emergencyRelation" type="text" placeholder="e.g. Mother" class="ob-field-input">
+                        <label for="emergencyRelation" class="ob-field-label" data-i18n="profile.relationship">Relationship</label>
+                        <input id="emergencyRelation" type="text" placeholder="e.g. Mother" data-i18n-placeholder="onboarding.relationPlaceholder" class="ob-field-input">
                     </div>
                     <div>
-                        <label for="emergencyPhone" class="ob-field-label">Contact Phone</label>
+                        <label for="emergencyPhone" class="ob-field-label" data-i18n="profile.contactPhone">Contact Phone</label>
                         <input id="emergencyPhone" type="tel" inputmode="tel" autocomplete="tel"
                             pattern="[0-9+()\s-]*" maxlength="20" placeholder="+212 6xx-xxxxxx"
-                            title="Digits only — you may use + ( ) spaces and dashes" class="ob-field-input" required>
+                            title="Digits only — you may use + ( ) spaces and dashes" data-i18n-title="onboarding.phoneHint" class="ob-field-input" required>
                     </div>
                 </div>
             </fieldset>
@@ -212,14 +218,14 @@
             <p id="obError" class="mt-4 hidden text-xs font-semibold text-danger"></p>
 
             <div class="mt-6 flex items-center justify-between">
-                <button type="button" id="obBack" class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white">
+                <button type="button" id="obBack" class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white" data-i18n="common.back">
                     Back
                 </button>
                 <div class="flex gap-2">
-                    <button type="button" id="obSkip" class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white disabled:opacity-40 disabled:pointer-events-none">
+                    <button type="button" id="obSkip" class="rounded-full px-4 py-2.5 text-sm font-semibold text-muted dark:text-mist-300 hover:text-ink dark:hover:text-white disabled:opacity-40 disabled:pointer-events-none" data-i18n="onboarding.skip">
                         Skip for now
                     </button>
-                    <button type="button" id="obNext" class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300 disabled:opacity-40 disabled:pointer-events-none">
+                    <button type="button" id="obNext" class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark dark:bg-accent-400 dark:text-night-900 dark:hover:bg-accent-300 disabled:opacity-40 disabled:pointer-events-none" data-i18n="common.next">
                         Next
                     </button>
                 </div>
@@ -231,27 +237,27 @@
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -265,14 +271,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -284,18 +290,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

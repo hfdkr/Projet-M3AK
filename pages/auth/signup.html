@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Create Account — M3ak Morocco</title>
+    <title data-i18n="auth.signup.pageTitle">Create Account — M3ak Morocco</title>
     <style type="text/tailwindcss">
         @custom-variant dark (&:where(.dark, .dark *));
 
@@ -53,7 +55,7 @@
         /* Theme toggle — icon only on mobile, pill switch on tablet/desktop */
         .theme-toggle        { @apply relative flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
                                       md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
-        .theme-toggle--panel { @apply absolute top-[32px] right-[48px]; }
+        .signup-panel-actions { @apply absolute top-[32px] end-[48px] flex items-center gap-2; }
         .theme-toggle-thumb  { @apply grid place-items-center h-6 w-6 rounded-full
                                       md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
         .theme-toggle-sun    { @apply col-start-1 row-start-1 h-5 w-5 md:h-4 md:w-4 object-contain transition-all duration-300 dark:rotate-90 dark:scale-0; }
@@ -71,7 +73,7 @@
             @apply hidden md:flex md:flex-col md:justify-center md:items-center md:bg-mint-50 dark:md:bg-night-800 md:p-[48px] md:relative;
         }
         .signup-brand{
-            @apply flex items-center gap-[8px] absolute top-[32px] left-[48px];
+            @apply flex items-center gap-[8px] absolute top-[32px] start-[48px];
         }
         .signup-brand-mark{
             @apply rounded-[8px] flex items-center justify-center shrink-0 bg-green dark:bg-accent-400 p-[6px];
@@ -86,7 +88,7 @@
             @apply w-full h-[300px] object-cover;
         }
         .signup-status-badge{
-            @apply absolute bottom-[16px] right-[16px] bg-white dark:bg-night-700 rounded-[16px] shadow-md px-[14px] py-[10px] flex items-center gap-[10px];
+            @apply absolute bottom-[16px] end-[16px] bg-white dark:bg-night-700 rounded-[16px] shadow-md px-[14px] py-[10px] flex items-center gap-[10px];
         }
         .signup-status-icon{
             @apply w-[28px] h-[28px] rounded-full bg-blue-600 flex items-center justify-center shrink-0;
@@ -145,10 +147,10 @@
             @apply relative;
         }
         .signup-field-icon{
-            @apply absolute left-[14px] top-1/2 -translate-y-1/2 text-slate-400 dark:text-mist-300;
+            @apply absolute start-[14px] top-1/2 -translate-y-1/2 text-slate-400 dark:text-mist-300;
         }
         .signup-field-input{
-            @apply w-full bg-mint-50 dark:bg-night-800 border border-grey-200 dark:border-night-600 rounded-[12px] pl-[42px] pr-[14px] py-[12px]
+            @apply w-full bg-mint-50 dark:bg-night-800 border border-grey-200 dark:border-night-600 rounded-[12px] ps-[42px] pe-[14px] py-[12px]
                    font-jakarta text-[14px] text-black-700 dark:text-mist-100 placeholder:text-slate-400 dark:placeholder:text-mist-300 outline-none
                    focus:border-green-900 dark:focus:border-accent-400 focus:bg-white dark:focus:bg-night-700 transition-colors;
         }
@@ -188,36 +190,39 @@
 
             <div class="signup-brand">
                 <div class="signup-brand-mark">
-                    <img src="/assets/images/pages/auth/logo-signup.png" alt="M3ak logo" class="icon-5" />
+                    <img src="/assets/images/pages/auth/logo-signup.png" alt="M3ak logo" data-i18n-alt="brand.logoAlt" class="icon-5" />
                 </div>
-                <span class="signup-brand-name">M3ak Morocco</span>
+                <span class="signup-brand-name" data-i18n="brand.name">M3ak Morocco</span>
             </div>
 
-            <button type="button" class="theme-toggle theme-toggle--panel" data-theme-toggle
-                aria-label="Toggle dark mode" aria-pressed="false">
-                <span class="theme-toggle-thumb">
-                    <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                    <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                </span>
-            </button>
+            <div class="signup-panel-actions">
+                <div data-lang-switcher></div>
+                <button type="button" class="theme-toggle" data-theme-toggle
+                    aria-label="Toggle dark mode" data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
+                    </span>
+                </button>
+            </div>
 
             <div class="signup-visual">
-                <img class="signup-visual-img" src="/assets/images/pages/auth/digitale-identity.png" alt="Digital ID preview">
+                <img class="signup-visual-img" src="/assets/images/pages/auth/digitale-identity.png" alt="Digital ID preview" data-i18n-alt="auth.signup.previewAlt">
 
                 <div class="signup-status-badge">
                     <div class="signup-status-icon">
                         <img src="/assets/images/pages/auth/secure-status.png" alt="icon-secure-status" class="icon-5" />
                     </div>
                     <div>
-                        <p class="signup-status-label">Security Status</p>
-                        <p class="signup-status-value">Advanced Protection</p>
+                        <p class="signup-status-label" data-i18n="auth.signup.securityStatus">Security Status</p>
+                        <p class="signup-status-value" data-i18n="auth.signup.advancedProtection">Advanced Protection</p>
                     </div>
                 </div>
             </div>
 
             <div class="signup-heading">
-                <h2 class="signup-heading-title">Secure Your Digital Identity</h2>
-                <p class="signup-heading-desc">
+                <h2 class="signup-heading-title" data-i18n="auth.signup.heroTitle">Secure Your Digital Identity</h2>
+                <p class="signup-heading-desc" data-i18n="auth.signup.heroText">
                     Join thousands of Moroccan citizens accessing government services
                     with ease, speed, and industry-leading biometric security.
                 </p>
@@ -231,19 +236,20 @@
 
             <!-- mobile-only top bar: back link + secured pill -->
             <div class="signup-topbar">
-                <a href="/pages/auth/login.html" class="signup-back-link">
-                    <img src="/assets/images/pages/auth/icon-back-green.png" alt="icon-back" class="w-4 h-4 object-contain" />
+                <a href="/pages/auth/login.html" class="signup-back-link" data-i18n="auth.backToLogin">
+                    <img src="/assets/images/pages/auth/icon-back-green.png" alt="icon-back" class="w-4 h-4 object-contain rtl:-scale-x-100" />
                     Back to Log in
                 </a>
                 <div class="signup-topbar-actions">
+                    <div data-lang-switcher></div>
                     <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-                        aria-pressed="false">
+                        data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                         <span class="theme-toggle-thumb">
-                            <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                            <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                            <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                            <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                         </span>
                     </button>
-                    <span class="signup-secured-pill">
+                    <span class="signup-secured-pill" data-i18n="auth.signup.secured">
                         <img src="/assets/images/pages/auth/sigr-icon.png" alt="icon-signature" class="w-4 h-4 object-contain">
                         Secured
                     </span>
@@ -254,40 +260,40 @@
 
                 <div class="signup-brand-mobile">
                     <div class="signup-brand-mark">
-                        <img src="/assets/images/pages/auth/logo-signup.png" alt="M3ak logo" class="icon-5" />
+                        <img src="/assets/images/pages/auth/logo-signup.png" alt="M3ak logo" data-i18n-alt="brand.logoAlt" class="icon-5" />
                     </div>
-                    <span class="signup-brand-name">M3ak Morocco</span>
+                    <span class="signup-brand-name" data-i18n="brand.name">M3ak Morocco</span>
                 </div>
 
                 <div class="signup-header">
-                    <h1 class="signup-header-title">Create Account</h1>
-                    <p class="signup-header-desc">Start your journey into the Moroccan digital ecosystem.</p>
+                    <h1 class="signup-header-title" data-i18n="auth.signup.title">Create Account</h1>
+                    <p class="signup-header-desc" data-i18n="auth.signup.subtitle">Start your journey into the Moroccan digital ecosystem.</p>
                 </div>
 
                 <form class="signup-form">
                     <div>
-                        <label for="fullName" class="signup-field-label">Full Name</label>
+                        <label for="fullName" class="signup-field-label" data-i18n="auth.signup.fullName">Full Name</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
                                 <img src="/assets/images/pages/auth/icon-user-name.png" alt="icon-user" class="icon-5" />
                             </span>
                             <input class="signup-field-input" type="text" id="fullName"
-                                placeholder="Mohamed El Idrissi">
+                                placeholder="Mohamed El Idrissi" data-i18n-placeholder="auth.signup.fullNamePlaceholder">
                         </div>
                     </div>
 
                     <div>
-                        <label for="cni" class="signup-field-label">National ID (CNI)</label>
+                        <label for="cni" class="signup-field-label" data-i18n="auth.signup.cni">National ID (CNI)</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
                                 <img src="/assets/images/pages/auth/icon-cni.png" alt="icon-cni" class="icon-5" />
                             </span>
-                            <input class="signup-field-input" type="text" id="cni" placeholder="E.G. AB123456">
+                            <input class="signup-field-input" type="text" id="cni" placeholder="E.G. AB123456" data-i18n-placeholder="auth.identifierPlaceholder">
                         </div>
                     </div>
 
                     <div>
-                        <label for="email" class="signup-field-label">Email Address</label>
+                        <label for="email" class="signup-field-label" data-i18n="auth.email">Email Address</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
                                 <img src="/assets/images/pages/auth/icon-email.png" alt="icon-email" class="icon-5" />
@@ -297,7 +303,7 @@
                     </div>
 
                     <div>
-                        <label for="phone" class="signup-field-label">Phone Number</label>
+                        <label for="phone" class="signup-field-label" data-i18n="auth.phone">Phone Number</label>
                         <div class="signup-field-wrap">
                             <span class="signup-field-icon">
                                 <img src="/assets/images/pages/auth/icon-mobile.png" alt="icon-mobile" class="icon-5" />
@@ -306,23 +312,23 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="signup-btn-primary">
+                    <button type="submit" class="signup-btn-primary" data-i18n="auth.signup.title">
                         Create Account
-                        <img src="/assets/images/pages/auth/icon-right.png" alt="icon-arrow-right" class="w-4 h-4 object-contain dark:hidden">
-                        <img src="/assets/images/pages/auth/icon-right-dark.png" alt="icon-arrow-right" class="hidden w-4 h-4 object-contain dark:block">
+                        <img src="/assets/images/pages/auth/icon-right.png" alt="icon-arrow-right" class="w-4 h-4 object-contain dark:hidden rtl:-scale-x-100">
+                        <img src="/assets/images/pages/auth/icon-right-dark.png" alt="icon-arrow-right" class="hidden w-4 h-4 object-contain dark:block rtl:-scale-x-100">
                     </button>
                 </form>
 
-                <p class="signup-login-note">
-                    Already have an account? <a href="/pages/auth/login.html" class="signup-login-link">Log in</a>
+                <p class="signup-login-note" data-i18n="landing.haveAccount">
+                    Already have an account? <a href="/pages/auth/login.html" class="signup-login-link" data-i18n="landing.logIn">Log in</a>
                 </p>
 
                 <div class="signup-footer">
-                    <span class="signup-secure-pill">
+                    <span class="signup-secure-pill" data-i18n="auth.signup.encrypted">
                         <img src="/assets/images/pages/auth/sigr-icon.png" alt="icon-signature" class="w-4 h-4 object-contain" />
                         Secure &amp; 256-bit AES Encrypted
                     </span>
-                    <p class="signup-terms">
+                    <p class="signup-terms" data-i18n="auth.signup.terms">
                         By creating an account, you agree to our Terms of Service and Privacy Policy.
                         © 2026 Kingdom of Morocco Digital Services.
                     </p>
@@ -338,27 +344,27 @@
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -372,14 +378,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -391,18 +397,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

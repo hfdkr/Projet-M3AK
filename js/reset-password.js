@@ -22,7 +22,9 @@
                 if (open) { open.classList.toggle("hidden", hidden); }
                 if (closed) { closed.classList.toggle("hidden", !hidden); }
 
-                button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+                var key = hidden ? "common.hidePassword" : "common.showPassword";
+                button.setAttribute("data-i18n-aria-label", key);
+                button.setAttribute("aria-label", window.M3akI18n.t(key));
             });
         });
     }
@@ -116,7 +118,7 @@
             if (resetBtn.disabled) { return; }
 
             resetBtn.disabled = true;
-            resetBtn.textContent = "Redirecting to Log in...";
+            window.M3akI18n.setKey(resetBtn, "auth.reset.redirecting");
 
             window.setTimeout(function () {
                 window.location.href = "/pages/auth/login.html";

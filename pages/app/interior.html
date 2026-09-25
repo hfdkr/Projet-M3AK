@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Interior — M3ak Morocco</title>
+    <title data-i18n="interior.pageTitle">Interior — M3ak Morocco</title>
     <script src="/js/session.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -184,10 +186,10 @@
         .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .menu-icon        { @apply size-6 object-contain; }
         .brand-link       { @apply whitespace-nowrap text-[15px] sm:text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
-        .header-actions   { @apply ml-auto flex items-center gap-1.5; }
+        .header-actions   { @apply ms-auto flex items-center gap-1.5; }
         .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .notif-dot        { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
-        .app-avatar       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .notif-dot        { @apply absolute end-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .app-avatar       { @apply ms-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
 
         /* ---------- Back bar ---------- */
         .back-bar       { @apply border-b border-black/5 dark:border-white/10 bg-canvas dark:bg-night-900; }
@@ -196,7 +198,7 @@
 
         /* ---------- Sidebar / drawer ---------- */
         .app-scrim   { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
-        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .app-sidebar { @apply fixed inset-y-0 start-0 z-50 flex w-64 flex-col overflow-y-auto border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
         .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
         .sidebar-foot     { @apply mt-auto space-y-1 pt-6; }
@@ -209,8 +211,8 @@
         .page-title    { @apply text-2xl font-extrabold tracking-tight lg:text-[26px]; }
         .page-subtitle { @apply mt-1.5 max-w-lg text-sm text-muted dark:text-mist-300; }
         .search-field   { @apply relative mt-5 block max-w-xl; }
-        .search-icon    { @apply absolute left-3.5 top-1/2 size-4 -translate-y-1/2 object-contain text-muted dark:text-mist-300; }
-        .search-input   { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .search-icon    { @apply absolute start-3.5 top-1/2 size-4 -translate-y-1/2 object-contain text-muted dark:text-mist-300; }
+        .search-input   { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-white dark:bg-night-800 py-2.5 ps-10 pe-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
         .directory-grid { @apply mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3; }
         .directory-card { @apply rounded-2xl bg-white dark:bg-night-800 p-4 ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-0.5 hover:shadow-md; }
         .directory-icon { @apply grid size-10 place-items-center rounded-xl bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
@@ -221,7 +223,7 @@
 
         /* ---------- CTA banner ---------- */
         .cta-card     { @apply relative mt-8 overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-9; }
-        .cta-watermark{ @apply pointer-events-none absolute -right-8 -bottom-10 size-40 object-contain text-white/15; }
+        .cta-watermark{ @apply pointer-events-none absolute -end-8 -bottom-10 size-40 object-contain text-white/15; }
         .cta-body     { @apply relative max-w-sm; }
         .cta-title    { @apply text-lg font-extrabold; }
         .cta-text     { @apply mt-1.5 text-sm text-white/80; }
@@ -237,32 +239,34 @@
     <header class="app-topbar">
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn">
-                <span class="sr-only">Open menu</span>
-                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" class="menu-icon" />
+                <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
+                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" data-i18n-alt="common.openMenu" class="menu-icon" />
             </button>
 
-            <a href="/pages/app/interior.html" class="brand-link">M3ak Morocco</a>
+            <a href="/pages/app/interior.html" class="brand-link" data-i18n="brand.name">M3ak Morocco</a>
 
 
             <div class="header-actions">
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <div data-lang-switcher></div>
+
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <button type="button" class="app-icon-btn">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" class="size-5 object-contain dark:hidden" />
+                    <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications" class="size-5 object-contain dark:hidden" />
                     <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification" class="hidden size-5 object-contain dark:block" />
                     <span class="notif-dot"></span>
                 </button>
 
 
                 <button type="button" class="app-avatar">
-                    <span class="sr-only">Your profile</span>
-                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" class="size-full rounded-full object-cover" data-auth="user" />
+                    <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto" class="size-full rounded-full object-cover" data-auth="user" />
                     <img src="/assets/images/pages/settings/icon-user.svg" alt="icon-user" class="size-5 object-contain" data-auth="guest" />
                 </button>
             </div>
@@ -272,8 +276,8 @@
     <!-- ══════════ BACK BAR ══════════ -->
     <div class="back-bar">
         <div class="back-bar-inner">
-            <a href="/pages/app/coming-soon.html?feature=Services" class="back-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            <a href="/pages/app/coming-soon.html?feature=Services" class="back-link" data-i18n="interior.backToServices">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 rtl:-scale-x-100"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
                 Back to Services Directory
             </a>
         </div>
@@ -287,62 +291,62 @@
         <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="mb-5 px-2 sidebar-head">
                 <div class="sidebar-text">
-                    <p class="sidebar-title">M3ak Morocco</p>
-                    <p class="sidebar-sub">Citizen Services Portal</p>
+                    <p class="sidebar-title" data-i18n="brand.name">M3ak Morocco</p>
+                    <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
                 </div>
             </div>
 
             <nav class="space-y-0.5">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
+                    <span class="nav-label" data-i18n="nav.mySpace">My Space</span>
                 </a>
 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" class="nav-icon" />
-                    <span class="nav-label">Transport</span>
+                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" data-i18n-alt="nav.transport" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.transport">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
+                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" data-i18n-alt="nav.housing" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.housing">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" class="nav-icon" />
-                    <span class="nav-label">Jobs</span>
+                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" data-i18n-alt="nav.jobs" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.jobs">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/education.png" alt="Education" class="nav-icon" />
-                    <span class="nav-label">Education</span>
+                    <img src="/assets/images/ui/nav/education.png" alt="Education" data-i18n-alt="nav.education" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.education">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
+                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" data-i18n-alt="nav.healthcare" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.healthcare">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
+                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" data-i18n-alt="nav.payments" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.payments">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" class="nav-icon" />
-                    <span class="nav-label">Finance</span>
+                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" data-i18n-alt="nav.finance" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.finance">Finance</span>
                 </a>
             </nav>
 
             <div class="sidebar-foot">
                 <a href="/pages/app/emergence.html" class="nav-item--danger">
                     <span class="size-[18px] shrink-0 bg-[#DC2626]" style="-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
-                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+                    <span class="nav-label whitespace-nowrap" data-i18n="nav.emergencySupport">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-item-icon-sm" />
-                    <span class="nav-label">Help Center</span>
+                    <span class="nav-label" data-i18n="nav.helpCenter">Help Center</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-item-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
-                    <span class="nav-label">AI Assistant</span>
+                    <span class="nav-label" data-i18n="nav.aiAssistant">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-item-icon-sm" />
-                    <span class="nav-label">Logout</span>
+                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-item-icon-sm rtl:-scale-x-100" />
+                    <span class="nav-label" data-i18n="nav.logout">Logout</span>
                 </a>
             </div>
         </aside>
@@ -351,16 +355,16 @@
         <main class="app-main">
 
             <div>
-                <h1 class="page-title">Interior</h1>
-                <p class="page-subtitle">
+                <h1 class="page-title" data-i18n="interior.title">Interior</h1>
+                <p class="page-subtitle" data-i18n="interior.subtitle">
                     National ID, passports, and residence permit services from the Ministry of Interior.
                 </p>
             </div>
 
             <label class="search-field">
-                <span class="sr-only">Search interior services</span>
+                <span class="sr-only" data-i18n="interior.searchLabel">Search interior services</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
-                <input id="interiorSearch" type="search" placeholder="Search interior services..." class="search-input" />
+                <input id="interiorSearch" type="search" placeholder="Search interior services..." data-i18n-placeholder="interior.searchPlaceholder" class="search-input" />
             </label>
 
             <div id="interiorGrid" class="directory-grid">
@@ -369,52 +373,52 @@
                     <span class="directory-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><rect x="5" y="2" width="14" height="20" rx="2" /><circle cx="12" cy="10" r="2.5" /><path d="M9 17h6" /></svg>
                     </span>
-                    <h2 class="directory-title">Passport Application</h2>
-                    <p class="directory-desc">Apply for a new biometric passport or renew an existing one.</p>
+                    <h2 class="directory-title" data-i18n="interior.cards.passport">Passport Application</h2>
+                    <p class="directory-desc" data-i18n="interior.cards.passportText">Apply for a new biometric passport or renew an existing one.</p>
                 </a>
 
                 <a href="#" data-name="Residence Permits" class="directory-card group">
                     <span class="directory-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><rect x="2" y="5" width="20" height="14" rx="2" /><circle cx="8" cy="12" r="2" /><path d="M13 10h6M13 14h4" /></svg>
                     </span>
-                    <h2 class="directory-title">Residence Permits</h2>
-                    <p class="directory-desc">Carte de séjour applications and renewals for foreign residents.</p>
+                    <h2 class="directory-title" data-i18n="interior.cards.residence">Residence Permits</h2>
+                    <p class="directory-desc" data-i18n="interior.cards.residenceText">Carte de séjour applications and renewals for foreign residents.</p>
                 </a>
 
                 <a href="#" data-name="National ID Card" class="directory-card group">
                     <span class="directory-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><rect x="2" y="5" width="20" height="14" rx="2" /><path d="M6 15h4M2 10h20" /></svg>
                     </span>
-                    <h2 class="directory-title">National ID Card (CNIE)</h2>
-                    <p class="directory-desc">First-time issuance and status tracking of your CNIE.</p>
+                    <h2 class="directory-title" data-i18n="interior.cards.nationalId">National ID Card (CNIE)</h2>
+                    <p class="directory-desc" data-i18n="interior.cards.nationalIdText">First-time issuance and status tracking of your CNIE.</p>
                 </a>
 
                 <a href="#" data-name="Local Authority Registration" class="directory-card group">
                     <span class="directory-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><path d="M4 21V9l8-5 8 5v12" /><path d="M9 21v-6h6v6M9 10h.01M15 10h.01" /></svg>
                     </span>
-                    <h2 class="directory-title">Local Authority Registration</h2>
-                    <p class="directory-desc">Register your household with your local commune or arrondissement.</p>
+                    <h2 class="directory-title" data-i18n="interior.cards.localAuth">Local Authority Registration</h2>
+                    <p class="directory-desc" data-i18n="interior.cards.localAuthText">Register your household with your local commune or arrondissement.</p>
                 </a>
 
                 <a href="#" data-name="Public Gathering Permits" class="directory-card group">
                     <span class="directory-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><circle cx="9" cy="7" r="4" /><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2M17 3a4 4 0 0 1 0 8M22 21v-2a4 4 0 0 0-3-3.85" /></svg>
                     </span>
-                    <h2 class="directory-title">Public Gathering Permits</h2>
-                    <p class="directory-desc">Authorization requests for public events and demonstrations.</p>
+                    <h2 class="directory-title" data-i18n="interior.cards.gathering">Public Gathering Permits</h2>
+                    <p class="directory-desc" data-i18n="interior.cards.gatheringText">Authorization requests for public events and demonstrations.</p>
                 </a>
 
                 <a href="#" data-name="Civil Protection Services" class="directory-card group">
                     <span class="directory-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="directory-icon-svg"><path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" /></svg>
                     </span>
-                    <h2 class="directory-title">Civil Protection</h2>
-                    <p class="directory-desc">Fire safety inspections and civil protection service requests.</p>
+                    <h2 class="directory-title" data-i18n="interior.cards.civilProtection">Civil Protection</h2>
+                    <p class="directory-desc" data-i18n="interior.cards.civilProtectionText">Fire safety inspections and civil protection service requests.</p>
                 </a>
             </div>
 
-            <p id="interiorEmpty" class="empty-state hidden">
+            <p id="interiorEmpty" class="empty-state hidden" data-i18n="registry.empty">
                 No interior services match your search.
             </p>
 
@@ -422,10 +426,10 @@
             <div class="cta-card">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" class="cta-watermark"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18M8 15h2M14 15h2M8 18h2M14 18h2" /></svg>
                 <div class="cta-body">
-                    <p class="cta-title">Renewing a Passport?</p>
-                    <p class="cta-text">Book an appointment slot at your nearest prefecture to skip the line.</p>
+                    <p class="cta-title" data-i18n="interior.ctaTitle">Renewing a Passport?</p>
+                    <p class="cta-text" data-i18n="interior.ctaText">Book an appointment slot at your nearest prefecture to skip the line.</p>
                 </div>
-                <button type="button" id="bookAppointmentBtn" class="cta-btn">
+                <button type="button" id="bookAppointmentBtn" class="cta-btn" data-i18n="interior.ctaBtn">
                     Book an Appointment
                 </button>
             </div>
@@ -458,7 +462,8 @@
         document.querySelectorAll(".directory-card").forEach(function (card) {
             card.addEventListener("click", function (e) {
                 e.preventDefault();
-                toast("Opening " + card.dataset.name + "…");
+                var title = card.querySelector(".directory-title");
+                toast(M3akI18n.t("common.opening", { name: title ? title.textContent.trim() : card.dataset.name }));
             });
         });
 
@@ -468,7 +473,8 @@
             var q = search.value.trim().toLowerCase();
             var visible = 0;
             cards.forEach(function (card) {
-                var match = card.dataset.name.toLowerCase().includes(q);
+                /* English name + the visible (possibly Arabic) title and text */
+                var match = (card.dataset.name + " " + card.textContent).toLowerCase().includes(q);
                 card.classList.toggle("hidden", !match);
                 if (match) visible++;
             });
@@ -476,7 +482,7 @@
         });
 
         document.getElementById("bookAppointmentBtn").addEventListener("click", function () {
-            toast("Loading available appointment slots…");
+            toast(M3akI18n.t("interior.toast.appointment"));
         });
     </script>
     <!-- ══════════ SITE FOOTER ══════════ -->
@@ -484,27 +490,27 @@
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -518,14 +524,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -537,18 +543,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>
