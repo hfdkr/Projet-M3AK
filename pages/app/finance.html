@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Finance &amp; Treasury — M3ak Morocco</title>
+    <title data-i18n="finance.pageTitle">Finance &amp; Treasury — M3ak Morocco</title>
     <script src="/js/session.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -63,20 +65,20 @@
         .app-brand-text     { @apply leading-tight; }
         .app-brand-name     { @apply block whitespace-nowrap text-base font-extrabold tracking-tight text-brand dark:text-accent-400; }
         .app-brand-sub      { @apply block text-[10px] font-bold uppercase tracking-wide text-muted dark:text-mist-300; }
-        .app-topbar-actions { @apply ml-auto flex items-center gap-1.5; }
+        .app-topbar-actions { @apply ms-auto flex items-center gap-1.5; }
         .app-icon-btn       { @apply relative grid size-9 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .app-notif-dot      { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
-        .app-user           { @apply hidden text-right leading-tight sm:block; }
+        .app-notif-dot      { @apply absolute end-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .app-user           { @apply hidden text-end leading-tight sm:block; }
         .app-user-name      { @apply block text-sm font-bold; }
         .app-user-id        { @apply block text-[11px] text-muted dark:text-mist-300; }
-        .app-avatar         { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
+        .app-avatar         { @apply ms-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25; }
 
         /* ---------- App shell / sidebar (drawer on mobile + tablet, docked on desktop) ---------- */
         .app-body    { @apply flex; }
         .app-scrim   { @apply fixed inset-0 z-40 hidden bg-black/40 lg:hidden; }
         .app-scrim.is-open { @apply block lg:hidden; }
-        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-y-auto
-                              border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5
+        .app-sidebar { @apply fixed inset-y-0 start-0 z-50 flex w-64 -translate-x-full max-lg:rtl:translate-x-full flex-col overflow-y-auto
+                              border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5
                               transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .app-sidebar.is-open { @apply translate-x-0; }
         .sidebar-head  { @apply mb-5 px-2; }
@@ -140,7 +142,7 @@
         .fin-hero-label  { @apply text-xs font-semibold uppercase tracking-wide text-muted dark:text-mist-300; }
         .fin-hero-amount { @apply mt-3 text-[32px] font-extrabold leading-none tracking-tight lg:text-[40px]; }
         .fin-hero-cur    { @apply text-lg font-bold text-muted dark:text-mist-300; }
-        .fin-hero-warn   { @apply ml-1 align-middle; }
+        .fin-hero-warn   { @apply ms-1 align-middle; }
         .fin-hero-meta   { @apply mt-2.5 text-xs leading-relaxed text-muted dark:text-mist-300; }
         .fin-hero-actions{ @apply mt-4 flex items-center gap-2 lg:mt-0 lg:shrink-0; }
         .fin-pay-all     { @apply inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand dark:bg-accent-400 px-5 py-3 text-sm font-bold text-white dark:text-night-900 transition hover:bg-brand-dark dark:hover:bg-accent-300 lg:flex-none; }
@@ -180,7 +182,7 @@
 
         .fin-emergency   { @apply flex w-full items-center justify-center gap-2 rounded-2xl bg-danger px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#C82C23]; }
         .fin-emergency img { @apply size-4 object-contain; }
-        .fin-legal       { @apply flex flex-col gap-1 pt-1 text-center text-[11px] text-muted dark:text-mist-300 lg:flex-row lg:items-center lg:justify-between lg:text-left; }
+        .fin-legal       { @apply flex flex-col gap-1 pt-1 text-center text-[11px] text-muted dark:text-mist-300 lg:flex-row lg:items-center lg:justify-between lg:text-start; }
 
         #toast { @apply pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink dark:bg-night-600 px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg dark:ring-1 dark:ring-white/10 transition-opacity duration-300; }
     </style>
@@ -192,33 +194,35 @@
     <header class="app-topbar">
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn">
-                <span class="sr-only">Open menu</span>
+                <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
                 <img src="/assets/images/ui/menu-icon.png" alt="icon-menu" class="size-6 object-contain">
             </button>
 
             <a href="/pages/app/finance.html" class="app-brand-wrap">
                 <span class="app-brand-mark">
-                    <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" class="dark:hidden">
-                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo"
+                    <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="dark:hidden">
+                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt"
                         class="hidden dark:block">
                 </span>
                 <span class="app-brand-text">
-                    <span class="app-brand-name">M3ak Morocco</span>
+                    <span class="app-brand-name" data-i18n="brand.name">M3ak Morocco</span>
                 </span>
             </a>
 
             <div class="app-topbar-actions">
+                <div data-lang-switcher></div>
+
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-                    aria-pressed="false">
+                    data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <button type="button" class="app-icon-btn">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications"
+                    <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications"
                         class="size-5 object-contain dark:hidden" />
                     <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification"
                         class="hidden size-5 object-contain dark:block" />
@@ -227,11 +231,11 @@
 
                 <span class="app-user">
                     <span class="app-user-name" data-user-name>Ahmed B.</span>
-                    <span class="app-user-id">CNIE: A749102</span>
+                    <span class="app-user-id" data-i18n="finance.cnie">CNIE: A749102</span>
                 </span>
                 <button type="button" class="app-avatar">
-                    <span class="sr-only">Your profile</span>
-                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile"
+                    <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto"
                         class="size-full rounded-full object-cover" data-auth="user" />
                     <img src="/assets/images/pages/settings/icon-user.svg" alt="icon-user" class="size-5 object-contain"
                         data-auth="guest" />
@@ -247,42 +251,42 @@
 
         <aside id="sidebar" class="app-sidebar">
             <div class="sidebar-head">
-                <p class="sidebar-title">M3ak Morocco</p>
-                <p class="sidebar-sub">Citizen Services Portal</p>
+                <p class="sidebar-title" data-i18n="brand.name">M3ak Morocco</p>
+                <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
             </div>
 
             <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon">
-                    <span>My Space</span>
+                    <span data-i18n="nav.mySpace">My Space</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
                     <img src="/assets/images/ui/nav/transport.png" alt="icon-transport" class="nav-icon">
-                    <span>Transport</span>
+                    <span data-i18n="nav.transport">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
                     <img src="/assets/images/ui/nav/housing.png" alt="icon-housing" class="nav-icon">
-                    <span>Housing</span>
+                    <span data-i18n="nav.housing">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
                     <img src="/assets/images/ui/nav/jobs.png" alt="icon-jobs" class="nav-icon">
-                    <span>Jobs</span>
+                    <span data-i18n="nav.jobs">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
                     <img src="/assets/images/ui/nav/education.png" alt="icon-education" class="nav-icon">
-                    <span>Education</span>
+                    <span data-i18n="nav.education">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
                     <img src="/assets/images/ui/nav/healthcare.png" alt="icon-healthcare" class="nav-icon">
-                    <span>Healthcare</span>
+                    <span data-i18n="nav.healthcare">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
                     <img src="/assets/images/ui/nav/payment.png" alt="icon-payment" class="nav-icon">
-                    <span>Payments</span>
+                    <span data-i18n="nav.payments">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item nav-item--active" aria-current="page">
                     <img src="/assets/images/ui/nav/finance.png" alt="icon-finance" class="nav-icon">
-                    <span>Finance</span>
+                    <span data-i18n="nav.finance">Finance</span>
                 </a>
             </nav>
 
@@ -291,11 +295,11 @@
                     <i class="size-[18px] shrink-0 bg-[#DC2626]"
                         style="display:inline-block;-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></i>
-                    <span>Emergency Support</span>
+                    <span data-i18n="nav.emergencySupport">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-icon">
-                    <span>Help Center</span>
+                    <span data-i18n="nav.helpCenter">Help Center</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -303,11 +307,11 @@
                         <rect x="9" y="2" width="6" height="12" rx="3" />
                         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
                     </svg>
-                    <span>AI Assistant</span>
+                    <span data-i18n="nav.aiAssistant">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item" data-action="logout">
-                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon">
-                    <span>Logout</span>
+                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon rtl:-scale-x-100">
+                    <span data-i18n="nav.logout">Logout</span>
                 </a>
             </div>
         </aside>
@@ -320,27 +324,28 @@
                 <section class="fin-hero">
                     <div class="fin-hero-main">
                         <div class="fin-hero-top">
-                            <span class="badge badge--ok">TGR &amp; DGI Up to Date</span>
-                            <span class="fin-hero-label">Total Outstanding Balance</span>
+                            <span class="badge badge--ok" data-i18n="finance.upToDate">TGR &amp; DGI Up to Date</span>
+                            <span class="fin-hero-label" data-i18n="finance.totalLabel">Total Outstanding Balance</span>
                         </div>
 
                         <p class="fin-hero-amount">
-                            1,420<span class="fin-hero-cur">.00 DH</span>
-                            <span class="badge badge--due fin-hero-warn">2 payments due soon</span>
+                            1,420<span class="fin-hero-cur" data-i18n="finance.heroCur">.00 DH</span>
+                            <span class="badge badge--due fin-hero-warn" data-i18n="finance.dueSoon">2 payments due soon</span>
                         </p>
 
-                        <p class="fin-hero-meta">
+                        <p class="fin-hero-meta" data-i18n="finance.heroMeta">
                             2026 Vehicle Tax (700 DH) • Redal Rabat Bill (342.50 DH) •
                             Secure direct debit via Bank Al-Maghrib
                         </p>
                     </div>
 
                     <div class="fin-hero-actions">
-                        <button type="button" class="fin-pay-all" data-pay="1,420 DH">
+                        <button type="button" class="fin-pay-all" data-pay="1,420 DH" data-i18n="finance.payAll"
+                            data-i18n-attr="data-pay:finance.payLabels.all">
                             <img src="/assets/images/pages/finance/icon-flash.svg" alt="icon-quick-pay">
                             Pay All (1,420 DH)
                         </button>
-                        <button type="button" class="fin-icon-btn" data-open="history" aria-label="Payment history">
+                        <button type="button" class="fin-icon-btn" data-open="history" aria-label="Payment history" data-i18n-aria-label="finance.historyAria">
                             <img src="/assets/images/pages/finance/icon-history.svg" alt="icon-history">
                         </button>
                     </div>
@@ -353,14 +358,15 @@
                         <div class="fin-card-top">
                             <span class="fin-card-icon"><img src="/assets/images/pages/finance/vignette-icon.svg"
                                     alt="icon-vehicle-tax"></span>
-                            <span class="badge badge--due">Due</span>
+                            <span class="badge badge--due" data-i18n="finance.due">Due</span>
                         </div>
-                        <p class="fin-card-name">DGI • 2026 Vehicle Tax</p>
-                        <p class="fin-card-amount">700.00 <span class="fin-card-unit">DH</span></p>
+                        <p class="fin-card-name" data-i18n="finance.vehicleTax">DGI • 2026 Vehicle Tax</p>
+                        <p class="fin-card-amount">700.00 <span class="fin-card-unit" data-i18n="finance.dh">DH</span></p>
                         <p class="fin-card-sub">Peugeot 208 (29-A-8829)</p>
                         <div class="fin-card-foot">
-                            <span class="fin-card-ref">Due: 31 Jan</span>
-                            <button type="button" class="fin-card-cta" data-pay="700 DH — 2026 Vehicle Tax">Pay
+                            <span class="fin-card-ref" data-i18n="finance.dueDate">Due: 31 Jan</span>
+                            <button type="button" class="fin-card-cta" data-pay="700 DH — 2026 Vehicle Tax" data-i18n="finance.pay"
+                                data-i18n-attr="data-pay:finance.payLabels.vehicle">Pay
                                 →</button>
                         </div>
                     </article>
@@ -369,14 +375,15 @@
                         <div class="fin-card-top">
                             <span class="fin-card-icon"><img src="/assets/images/pages/finance/icon-iam.svg"
                                     alt="icon-iam"></span>
-                            <span class="badge badge--date">28 Oct</span>
+                            <span class="badge badge--date" data-i18n="finance.oct28">28 Oct</span>
                         </div>
-                        <p class="fin-card-name">Redal &amp; IAM Fibre</p>
-                        <p class="fin-card-amount">541.50 <span class="fin-card-unit">DH</span></p>
-                        <p class="fin-card-sub">Redal: 342.50 • IAM: 199</p>
+                        <p class="fin-card-name" data-i18n="finance.redalIam">Redal &amp; IAM Fibre</p>
+                        <p class="fin-card-amount">541.50 <span class="fin-card-unit" data-i18n="finance.dh">DH</span></p>
+                        <p class="fin-card-sub" data-i18n="finance.redalIamSplit">Redal: 342.50 • IAM: 199</p>
                         <div class="fin-card-foot">
-                            <span class="fin-card-ref">Account: 9812-004</span>
-                            <button type="button" class="fin-card-cta" data-pay="541.50 DH — Redal &amp; IAM">Pay
+                            <span class="fin-card-ref" data-i18n="finance.account">Account: 9812-004</span>
+                            <button type="button" class="fin-card-cta" data-pay="541.50 DH — Redal &amp; IAM" data-i18n="finance.pay"
+                                data-i18n-attr="data-pay:finance.payLabels.redal">Pay
                                 →</button>
                         </div>
                     </article>
@@ -385,14 +392,14 @@
                         <div class="fin-card-top">
                             <span class="fin-card-icon"><img src="/assets/images/pages/finance/people-icon.svg"
                                     alt="icon-people"></span>
-                            <span class="badge badge--ok">Payments Active</span>
+                            <span class="badge badge--ok" data-i18n="finance.paymentsActive">Payments Active</span>
                         </div>
-                        <p class="fin-card-name">ASD &amp; AMO Benefits</p>
-                        <p class="fin-card-amount fin-card-amount--pos">+500.00 <span class="fin-card-unit">DH/mo</span>
+                        <p class="fin-card-name" data-i18n="finance.benefits">ASD &amp; AMO Benefits</p>
+                        <p class="fin-card-amount fin-card-amount--pos"><bdi>+500.00</bdi> <span class="fin-card-unit" data-i18n="finance.perMonth">DH/mo</span>
                         </p>
-                        <p class="fin-card-sub">2 children • AMO Tadamon</p>
+                        <p class="fin-card-sub" data-i18n="finance.children">2 children • AMO Tadamon</p>
                         <div class="fin-card-foot">
-                            <span class="fin-card-ref">Next: 15 Nov</span>
+                            <span class="fin-card-ref" data-i18n="finance.nextPayment">Next: 15 Nov</span>
                             <span class="fin-card-ref">RSU: 092-281</span>
                         </div>
                     </article>
@@ -401,14 +408,15 @@
                         <div class="fin-card-top">
                             <span class="fin-card-icon"><img src="/assets/images/pages/finance/tgr-icon.svg"
                                     alt="icon-tgr"></span>
-                            <span class="badge badge--ok">100% Settled</span>
+                            <span class="badge badge--ok" data-i18n="finance.settled">100% Settled</span>
                         </div>
-                        <p class="fin-card-name">General Treasury (TGR)</p>
-                        <p class="fin-card-amount">0.00 <span class="fin-card-unit">DH Due</span></p>
-                        <p class="fin-card-sub">Housing Tax (TH) paid</p>
+                        <p class="fin-card-name" data-i18n="finance.tgr">General Treasury (TGR)</p>
+                        <p class="fin-card-amount">0.00 <span class="fin-card-unit" data-i18n="finance.dhDue">DH Due</span></p>
+                        <p class="fin-card-sub" data-i18n="finance.housingTaxPaid">Housing Tax (TH) paid</p>
                         <div class="fin-card-foot">
-                            <span class="fin-card-ref">Fiscal Year 2026/27</span>
-                            <button type="button" class="fin-card-cta" data-download="Housing Tax Receipt">Receipt
+                            <span class="fin-card-ref" data-i18n="finance.fiscalYear">Fiscal Year 2026/27</span>
+                            <button type="button" class="fin-card-cta" data-download="Housing Tax Receipt" data-i18n="finance.receipt"
+                                data-i18n-attr="data-download:finance.downloads.housingTax">Receipt
                                 ↓</button>
                         </div>
                     </article>
@@ -417,23 +425,24 @@
                 <!-- Certified operations -->
                 <section class="fin-panel">
                     <div class="fin-panel-head">
-                        <p class="fin-panel-title">
+                        <p class="fin-panel-title" data-i18n="finance.latest">
                             <img src="/assets/images/pages/finance/tgr2-icon.svg" alt="icon-tgr">
                             Latest TGR-Certified Transactions
                         </p>
-                        <button type="button" class="fin-panel-link" data-open="history">View history →</button>
+                        <button type="button" class="fin-panel-link" data-open="history" data-i18n="finance.viewHistory">View history →</button>
                     </div>
 
                     <div class="fin-row">
                         <span class="fin-row-icon"><img src="/assets/images/pages/finance/pro-icon.svg"
                                 alt="icon-dgi"></span>
                         <div class="fin-row-main">
-                            <p class="fin-row-title">General Tax Directorate (DGI) • Business Tax</p>
-                            <p class="fin-row-meta">15 Oct 2026 • Ref: 2026-TX-984128 • TGR Stamped</p>
+                            <p class="fin-row-title" data-i18n="finance.rows.businessTax">General Tax Directorate (DGI) • Business Tax</p>
+                            <p class="fin-row-meta" data-i18n="finance.rows.businessTaxMeta">15 Oct 2026 • Ref: 2026-TX-984128 • TGR Stamped</p>
                         </div>
-                        <span class="fin-row-amount">2,450.00 DH</span>
+                        <span class="fin-row-amount" data-i18n="finance.rows.businessTaxAmount">2,450.00 DH</span>
                         <button type="button" class="fin-row-dl" data-download="Business Tax Receipt"
-                            aria-label="Download receipt">
+                            aria-label="Download receipt" data-i18n-aria-label="finance.downloadReceipt"
+                            data-i18n-attr="data-download:finance.downloads.businessTax">
                             <img src="/assets/images/pages/finance/icon-down.svg" alt="icon-download">
                         </button>
                     </div>
@@ -442,12 +451,13 @@
                         <span class="fin-row-icon"><img src="/assets/images/pages/finance/icon-eau-elec.svg"
                                 alt="icon eau&elec"></span>
                         <div class="fin-row-main">
-                            <p class="fin-row-title">Redal Rabat-Salé • Water &amp; Electricity</p>
-                            <p class="fin-row-meta">28 Sep 2026 • Ref: RDL-7729-1102 • Receipted</p>
+                            <p class="fin-row-title" data-i18n="finance.rows.redal">Redal Rabat-Salé • Water &amp; Electricity</p>
+                            <p class="fin-row-meta" data-i18n="finance.rows.redalMeta">28 Sep 2026 • Ref: RDL-7729-1102 • Receipted</p>
                         </div>
-                        <span class="fin-row-amount">312.00 DH</span>
+                        <span class="fin-row-amount" data-i18n="finance.rows.redalAmount">312.00 DH</span>
                         <button type="button" class="fin-row-dl" data-download="Redal Receipt"
-                            aria-label="Download receipt">
+                            aria-label="Download receipt" data-i18n-aria-label="finance.downloadReceipt"
+                            data-i18n-attr="data-download:finance.downloads.redal">
                             <img src="/assets/images/pages/finance/icon-down.svg" alt="icon-download">
                         </button>
                     </div>
@@ -456,27 +466,28 @@
                         <span class="fin-row-icon"><img src="/assets/images/pages/finance/asd-icon.svg"
                                 alt="icon-social-assistance"></span>
                         <div class="fin-row-main">
-                            <p class="fin-row-title">Direct Social Assistance (ASD) • Monthly Payment</p>
-                            <p class="fin-row-meta">15 Sep 2026 • Ref: ASD-SEP-2026 • Credited</p>
+                            <p class="fin-row-title" data-i18n="finance.rows.asd">Direct Social Assistance (ASD) • Monthly Payment</p>
+                            <p class="fin-row-meta" data-i18n="finance.rows.asdMeta">15 Sep 2026 • Ref: ASD-SEP-2026 • Credited</p>
                         </div>
-                        <span class="fin-row-amount fin-row-amount--pos">+500.00 DH</span>
+                        <span class="fin-row-amount fin-row-amount--pos" data-i18n="finance.rows.asdAmount">+500.00 DH</span>
                         <button type="button" class="fin-row-dl" data-download="ASD Credit Notice"
-                            aria-label="Download notice">
+                            aria-label="Download notice" data-i18n-aria-label="finance.downloadNotice"
+                            data-i18n-attr="data-download:finance.downloads.asd">
                             <img src="/assets/images/pages/finance/icon-doc.svg" alt="icon-document">
                         </button>
                     </div>
                 </section>
 
                 <!-- Emergency -->
-                <button type="button" class="fin-emergency" onclick="location.href='/pages/app/emergence.html'">
+                <button type="button" class="fin-emergency" onclick="location.href='/pages/app/emergence.html'" data-i18n="nav.emergencySupport">
                     <img src="/assets/images/pages/emergence/sos-logo.png" alt="logo-sos">
                     Emergency Support
                 </button>
 
                 <!-- Legal -->
                 <p class="fin-legal">
-                    <span>✓ Compliant with Law 43-20 • Qualified electronic signature of the Moroccan State</span>
-                    <span>Kingdom of Morocco • General Treasury of the Kingdom • DGI</span>
+                    <span data-i18n="finance.legal1">✓ Compliant with Law 43-20 • Qualified electronic signature of the Moroccan State</span>
+                    <span data-i18n="finance.legal2">Kingdom of Morocco • General Treasury of the Kingdom • DGI</span>
                 </p>
             </div>
         </main>
@@ -496,19 +507,19 @@
 
         document.querySelectorAll("[data-pay]").forEach(function (btn) {
             btn.addEventListener("click", function () {
-                toast("Secure payment of " + btn.dataset.pay + " — redirecting to Bank Al-Maghrib…");
+                toast(M3akI18n.t("finance.toast.pay", { amount: btn.dataset.pay }));
             });
         });
 
         document.querySelectorAll("[data-download]").forEach(function (btn) {
             btn.addEventListener("click", function () {
-                toast("Downloading: " + btn.dataset.download + " (certified PDF)");
+                toast(M3akI18n.t("finance.toast.download", { name: btn.dataset.download }));
             });
         });
 
         document.querySelectorAll("[data-open='history']").forEach(function (btn) {
             btn.addEventListener("click", function () {
-                toast("Opening full TGR transaction history…");
+                toast(M3akI18n.t("finance.toast.history"));
             });
         });
     </script>
@@ -519,33 +530,33 @@
 
             <!-- Brand · nav · copyright -->
             <div
-                class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak
+                class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak
                     Morocco</p>
 
                 <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs"
-                    aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy
+                    aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy
                         Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of
                         Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal
                         Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security
                         Disclosure</a>
                     <a href="/pages/app/support.html"
-                        class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help
+                        class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help
                         Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026
                     M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div
                 class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]"
                         aria-hidden="true">
@@ -554,7 +565,7 @@
                     </svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                         stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]"
                         aria-hidden="true">
@@ -585,7 +596,7 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times
                     GMT+1</p>
             </div>
 
@@ -593,7 +604,7 @@
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">
                         Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -619,20 +630,20 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">
                         Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">
                         Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>M3ak Morocco | Login</title>
+    <title data-i18n="auth.login.pageTitle">M3ak Morocco | Login</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,13 +53,14 @@
         }
 
         /* ---------- Top bar ---------- */
-        .page-flourish   { @apply hidden md:block md:absolute md:top-[390px] md:right-6; }
+        .page-flourish   { @apply hidden md:block md:absolute md:top-[390px] md:end-6; }
         .auth-topbar     { @apply flex items-center justify-between px-6 pt-6; }
+        .auth-topbar-actions { @apply flex items-center gap-2; }
         .back-link       { @apply flex items-center gap-2 font-medium text-brand dark:text-accent-400; }
-        .back-icon       { @apply w-5 h-5 object-contain; }
+        .back-icon       { @apply w-5 h-5 object-contain rtl:-scale-x-100; }
 
         /* ---------- Theme toggle — icon only on mobile, pill switch on tablet/desktop ---------- */
-        .theme-toggle       { @apply relative ml-auto flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
+        .theme-toggle       { @apply relative ms-auto flex items-center justify-center shrink-0 cursor-pointer h-9 w-9 rounded-full
                                      md:h-8 md:w-14 md:justify-start md:p-1 md:bg-slate-200 md:dark:bg-slate-700 md:transition-colors md:duration-300; }
         .theme-toggle-thumb { @apply grid place-items-center h-6 w-6 rounded-full
                                      md:bg-white md:shadow-md md:transition-transform md:duration-300 md:dark:translate-x-6 md:dark:bg-slate-900; }
@@ -86,13 +89,13 @@
         .field-head   { @apply flex justify-between; }
         .field-link   { @apply text-sm text-blue-600 dark:text-accent-400; }
         .input-wrap   { @apply relative mt-2; }
-        .input-icon   { @apply absolute left-4 top-1/2 -translate-y-1/2; }
-        .input        { @apply w-full h-12 rounded-xl bg-field dark:bg-night-800 pl-12 pr-4 outline-none
+        .input-icon   { @apply absolute start-4 top-1/2 -translate-y-1/2; }
+        .input        { @apply w-full h-12 rounded-xl bg-field dark:bg-night-800 ps-12 pe-4 outline-none
                                border border-transparent transition-all
                                text-gray-800 dark:text-mist-100 placeholder:text-gray-400 dark:placeholder:text-mist-300
                                focus:border-brand dark:focus:border-accent-400 focus:ring-4 focus:ring-green-100 dark:focus:ring-accent-400/15; }
-        .input--pw    { @apply pr-12; }
-        .input-toggle { @apply absolute right-4 top-1/2 -translate-y-1/2 grid place-items-center h-5 w-5; }
+        .input--pw    { @apply pe-12; }
+        .input-toggle { @apply absolute end-4 top-1/2 -translate-y-1/2 grid place-items-center h-5 w-5; }
 
         /* Password visibility icon — eye when hidden, eye-off when shown; black in light, white in dark */
         .pw-icon { @apply col-start-1 row-start-1 hidden h-5 w-5 object-contain; }
@@ -130,7 +133,7 @@
         .lang-dropdown       { @apply relative inline-block; }
         .lang-btn            { @apply flex items-center gap-2 bg-transparent cursor-pointer; }
         .lang-icon           { @apply w-4 h-4 object-contain; }
-        .lang-menu           { @apply hidden absolute right-0 mt-2 w-40 bg-white dark:bg-night-700 border dark:border-night-600 rounded-lg shadow-lg z-50; }
+        .lang-menu           { @apply hidden absolute end-0 mt-2 w-40 bg-white dark:bg-night-700 border dark:border-night-600 rounded-lg shadow-lg z-50; }
         .language-option     { @apply px-4 py-2 hover:bg-gray-100 dark:hover:bg-night-600 dark:text-mist-200 cursor-pointer; }
     </style>
 
@@ -143,17 +146,20 @@
     <!-- TOP -->
     <header>
         <div class="auth-topbar">
-            <a href="/index.html" class="back-link">
+            <a href="/index.html" class="back-link" data-i18n="common.backToHome">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-icon"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
                 Back to Home
             </a>
 
-            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
-                <span class="theme-toggle-thumb">
-                    <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                    <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
-                </span>
-            </button>
+            <div class="auth-topbar-actions">
+                <div data-lang-switcher></div>
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
+                    <span class="theme-toggle-thumb">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
+                    </span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -162,10 +168,10 @@
         <section>
             <div class="auth-intro">
                 <div class="auth-logo">
-                    <img src="/assets/images/pages/auth/logo.png" alt="logo-m3ak">
+                    <img src="/assets/images/pages/auth/logo.png" alt="logo-m3ak" data-i18n-alt="brand.logoAlt">
                 </div>
-                <h1 class="auth-title">M3ak Morocco</h1>
-                <p class="auth-subtitle">Access your unified citizen portal</p>
+                <h1 class="auth-title" data-i18n="brand.name">M3ak Morocco</h1>
+                <p class="auth-subtitle" data-i18n="auth.login.subtitle">Access your unified citizen portal</p>
             </div>
         </section>
 
@@ -178,27 +184,27 @@
 
                                 <!-- EMAIL -->
                                 <div>
-                                    <label class="field-label">National ID or Email</label>
+                                    <label class="field-label" data-i18n="auth.identifierLabel">National ID or Email</label>
                                     <div class="input-wrap">
                                         <div class="input-icon">
                                             <img src="/assets/images/pages/auth/user-icon.png" alt="icon-user">
                                         </div>
-                                        <input id="identifier" type="text" placeholder="e.g. AB123456" class="input">
+                                        <input id="identifier" type="text" placeholder="e.g. AB123456" data-i18n-placeholder="auth.identifierPlaceholder" class="input">
                                     </div>
                                 </div>
 
                                 <!-- PASSWORD -->
                                 <div>
                                     <div class="field-head">
-                                        <label class="field-label">Password</label>
-                                        <a href="/pages/auth/forgot-password.html" class="field-link">Forgot?</a>
+                                        <label class="field-label" data-i18n="auth.password">Password</label>
+                                        <a href="/pages/auth/forgot-password.html" class="field-link" data-i18n="auth.login.forgot">Forgot?</a>
                                     </div>
                                     <div class="input-wrap">
                                         <div class="input-icon">
                                             <img src="/assets/images/pages/auth/securety-icon.png" alt="secure icon">
                                         </div>
                                         <input id="password" type="password" placeholder="••••••••" class="input input--pw">
-                                        <button type="button" data-toggle-password class="input-toggle" aria-label="Show password">
+                                        <button type="button" data-toggle-password class="input-toggle" aria-label="Show password" data-i18n-aria-label="common.showPassword">
                                             <img src="/assets/images/pages/settings/show-black.svg"   alt="icon-password-show" class="pw-icon pw-icon--show-light">
                                             <img src="/assets/images/pages/settings/show-white.svg"   alt="icon-password-show" class="pw-icon pw-icon--show-dark">
                                             <img src="/assets/images/pages/settings/hidden-black.svg" alt="icon-password-hide" class="pw-icon pw-icon--hide-light">
@@ -207,11 +213,11 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn-primary">Sign In</button>
+                                <button type="submit" class="btn-primary" data-i18n="auth.login.signIn">Sign In</button>
 
                                 <div class="divider">
                                     <div class="divider-line"></div>
-                                    <span class="divider-text">OR CONTINUE WITH</span>
+                                    <span class="divider-text" data-i18n="auth.login.orContinue">OR CONTINUE WITH</span>
                                     <div class="divider-line"></div>
                                 </div>
 
@@ -222,9 +228,9 @@
                                     </button>
                                 </div>
 
-                                <p class="auth-switch">
+                                <p class="auth-switch" data-i18n="auth.login.noAccount">
                                     Don't have an account?
-                                    <a href="/pages/auth/signup.html" class="auth-switch-link">Create ID</a>
+                                    <a href="/pages/auth/signup.html" class="auth-switch-link" data-i18n="auth.login.createId">Create ID</a>
                                 </p>
                             </form>
                         </div>
@@ -239,27 +245,27 @@
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -273,14 +279,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -292,18 +298,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

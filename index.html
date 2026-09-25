@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
-    <title>M3ak Morocco</title>
+    <title data-i18n="landing.pageTitle">M3ak Morocco</title>
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
 
     <style type="text/tailwindcss">
@@ -98,16 +100,16 @@
             @apply relative;
         }
         .div-left-icon{
-            @apply flex absolute top-[7px] left-[15px] bg-white dark:bg-night-700 rounded-[14px] shadow-lg items-center justify-center p-[13px] md:p-[19px] md:rounded-[16px];
+            @apply flex absolute top-[7px] start-[15px] bg-white dark:bg-night-700 rounded-[14px] shadow-lg items-center justify-center p-[13px] md:p-[19px] md:rounded-[16px];
         }
         .div-badge{
-            @apply absolute top-[67%] right-0 rounded-[14px] shadow-lg pl-[12px] py-[12px] flex items-center gap-[8px] md:top-auto md:bottom-[60px] md:right-[-10px] md:rounded-[16px] md:pl-[16px] md:py-[16px] md:gap-[10px] bg-white dark:bg-night-700;
+            @apply absolute top-[67%] end-0 rounded-[14px] shadow-lg ps-[12px] py-[12px] flex items-center gap-[8px] md:top-auto md:bottom-[60px] md:end-[-10px] md:rounded-[16px] md:ps-[16px] md:py-[16px] md:gap-[10px] bg-white dark:bg-night-700;
         }
         .div-img{
             @apply bg-blue-600 w-[30px] h-[30px] rounded-full flex items-center justify-center shrink-0 md:w-[36px] md:h-[36px];
         }
         .status-content{
-            @apply flex flex-col leading-tight my-[12px] mr-[12px] ml-[10px] md:my-[16px] md:mr-[16px] md:ml-[12px];
+            @apply flex flex-col leading-tight my-[12px] me-[12px] ms-[10px] md:my-[16px] md:me-[16px] md:ms-[12px];
         }
         .status-label{
             @apply font-jakarta text-[12px] leading-[14px] text-green-700 dark:text-mist-300 md:text-[16px] md:leading-[16px];
@@ -116,7 +118,7 @@
             @apply font-jakarta font-bold text-[13px] leading-[18px] text-green-900 dark:text-accent-400 md:text-[16px] md:leading-[24px];
         }
         .section-2{
-            @apply flex items-center justify-center container mx-auto text-center my-[28px] md:order-1 md:justify-start md:text-left md:my-0 md:mx-0;
+            @apply flex items-center justify-center container mx-auto text-center my-[28px] md:order-1 md:justify-start md:text-start md:my-0 md:mx-0;
         }
         .span-section-2{
             @apply hidden md:inline-flex items-center gap-[6px] bg-green-50 dark:bg-accent-400/15 text-green-900 dark:text-accent-400 font-jakarta font-semibold text-[13px] py-[6px] px-[14px] rounded-[999px] mb-[20px];
@@ -215,7 +217,7 @@
             @apply font-jakarta font-bold text-[22px] leading-[28px] text-grey dark:text-mist-100 text-center mb-[20px];
         }
         .step2-card{
-            @apply bg-white dark:bg-night-700 rounded-[14px] p-[16px] shadow-sm dark:border dark:border-night-600 text-left mb-[24px];
+            @apply bg-white dark:bg-night-700 rounded-[14px] p-[16px] shadow-sm dark:border dark:border-night-600 text-start mb-[24px];
         }
         .step2-icon{
             @apply w-[40px] h-[40px] rounded-[10px] bg-green-500 dark:bg-accent-400/20 flex items-center justify-center mb-[12px];
@@ -232,7 +234,7 @@
 
         /* ---------- Screen 3: Contact Us ---------- */
         .step3-title{
-            @apply font-jakarta font-bold text-[30px] leading-[32px] text-grey dark:text-mist-100 text-left mb-[24px];
+            @apply font-jakarta font-bold text-[30px] leading-[32px] text-grey dark:text-mist-100 text-start mb-[24px];
         }
         .step3-btn-primary{
             @apply flex items-center justify-center gap-[8px] bg-green-900 dark:bg-accent-400 text-white dark:text-night-900 font-jakarta font-semibold text-[14px] py-[16px] rounded-[12px] w-full mb-[12px] hover:bg-blue-600 dark:hover:bg-accent-300 hover:cursor-pointer;
@@ -249,28 +251,30 @@
         <div class="div-header">
             <div class="div-nav">
                 <div class="div-logo">
-                    <img src="/assets/images/pages/settings/logo-light.svg" alt="logo-m3ak"
+                    <img src="/assets/images/pages/settings/logo-light.svg" alt="logo-m3ak" data-i18n-alt="brand.logoAlt"
                         class="size-7 object-contain dark:hidden">
-                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="logo-m3ak"
+                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="logo-m3ak" data-i18n-alt="brand.logoAlt"
                         class="hidden size-7 object-contain dark:block">
                 </div>
-                <h1>
+                <h1 data-i18n="brand.short">
                     M3ak
                 </h1>
             </div>
 
 
             <div class="flex items-center gap-[10px]">
+                <div data-lang-switcher></div>
+
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-                    aria-pressed="false">
+                    data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <!-- Mobile skip button -->
-                <button class="button-header" id="skip-btn">
+                <button class="button-header" id="skip-btn" data-i18n="common.skip">
                     Skip
                 </button>
             </div>
@@ -289,7 +293,7 @@
                 <section class="section-1">
                     <div class="div-section">
                         <img src="./assets/images/ui/img-section.png" alt="digital identity card"
-                            class="w-full rounded-[24px]">
+                            data-i18n-alt="landing.cardAlt" class="w-full rounded-[24px]">
 
                         <!-- Top Left Floating Icon -->
                         <div class="div-left-icon">
@@ -303,10 +307,10 @@
                             </div>
 
                             <div class="status-content">
-                                <span class="status-label">
+                                <span class="status-label" data-i18n="landing.status">
                                     Status
                                 </span>
-                                <span class="status-value">
+                                <span class="status-value" data-i18n="landing.secured">
                                     Secured
                                 </span>
                             </div>
@@ -319,19 +323,19 @@
                     <div class="md:w-full">
 
                         <!-- Desktop eyebrow pill -->
-                        <span class="span-section-2">
+                        <span class="span-section-2" data-i18n="landing.statusSecured">
                             <span class="status-dot"></span>
                             Status Secured
                         </span>
 
                         <div>
-                            <h3 class="hero-title">
+                            <h3 class="hero-title" data-i18n="landing.heroTitle">
                                 Your Unified
-                                <span class="hero-highlight md:whitespace-nowrap">
+                                <span class="hero-highlight md:whitespace-nowrap" data-i18n="landing.heroHighlight">
                                     Digital Identity
                                 </span>
                             </h3>
-                            <p class="hero-description">
+                            <p class="hero-description" data-i18n="landing.heroText">
                                 Securely access all government
                                 services with a single, biometric-
                                 protected citizen profile. Designed for the modern
@@ -347,14 +351,14 @@
                         </div>
 
                         <div class="hero-actions" id="hero-actions-source">
-                            <a href="/pages/auth/signup.html" class="button-get-started">
+                            <a href="/pages/auth/signup.html" class="button-get-started" data-i18n="landing.getStarted">
                                 Get Started
-                                <img src="./assets/images/ui/icon-button.png" alt="icon-arrow-right">
+                                <img src="./assets/images/ui/icon-button.png" alt="icon-arrow-right" class="rtl:-scale-x-100">
                             </a>
                             <div class="login-wrapper">
-                                <span class="login-text">Already
+                                <span class="login-text" data-i18n="landing.haveAccount">Already
                                     have an accout?
-                                    <a href="/pages/auth/login.html" class="login-link-2">Log in</a>
+                                    <a href="/pages/auth/login.html" class="login-link-2" data-i18n="landing.logIn">Log in</a>
                                 </span>
                             </div>
                         </div>
@@ -363,17 +367,17 @@
                         <div class="stats-row">
                             <div>
                                 <p class="stat-number">100%</p>
-                                <p class="stat-label">Biometric Secure</p>
+                                <p class="stat-label" data-i18n="landing.biometric">Biometric Secure</p>
                             </div>
                             <div>
                                 <p class="stat-number">256-bit</p>
-                                <p class="stat-label">Encryption Standard</p>
+                                <p class="stat-label" data-i18n="landing.encryption">Encryption Standard</p>
                             </div>
                         </div>
                         <div class="login-wrapper-2">
-                            <span class="login-text">
+                            <span class="login-text" data-i18n="landing.trouble">
                                 Having trouble?
-                                <a href="/pages/app/support.html?as=guest" class="login-link">Chat with Support</a>
+                                <a href="/pages/app/support.html?as=guest" class="login-link" data-i18n="landing.chatSupport">Chat with Support</a>
                             </span>
                         </div>
                     </div>
@@ -382,7 +386,7 @@
 
             <!-- Features Section (desktop/tablet only) -->
             <section class="section-features">
-                <h2 class="features-title">
+                <h2 class="features-title" data-i18n="landing.whyTitle">
                     Why choose M3ak?
                 </h2>
                 <div class="features-grid">
@@ -390,8 +394,8 @@
                         <div class="feature-icon">
                             <img src="./assets/images/ui/icon-1.png" alt="icon-secure">
                         </div>
-                        <h4 class="feature-title">Highest Security</h4>
-                        <p class="feature-description">
+                        <h4 class="feature-title" data-i18n="landing.securityTitle">Highest Security</h4>
+                        <p class="feature-description" data-i18n="landing.securityText">
                             Government-graded biometric encryption keeps your identity always protected.
                         </p>
                     </div>
@@ -399,8 +403,8 @@
                         <div class="feature-icon">
                             <img src="./assets/images/ui/vector.png" alt="icon-instant-access">
                         </div>
-                        <h4 class="feature-title">Instant Access</h4>
-                        <p class="feature-description">
+                        <h4 class="feature-title" data-i18n="landing.accessTitle">Instant Access</h4>
+                        <p class="feature-description" data-i18n="landing.accessText">
                             Skip the lines. Access all Moroccan government portals instantly with one single login.
                         </p>
                     </div>
@@ -408,8 +412,8 @@
                         <div class="feature-icon">
                             <img src="./assets/images/ui/vector-1.png" alt="icon-cloud">
                         </div>
-                        <h4 class="feature-title">Cloud Unified</h4>
-                        <p class="feature-description">
+                        <h4 class="feature-title" data-i18n="landing.cloudTitle">Cloud Unified</h4>
+                        <p class="feature-description" data-i18n="landing.cloudText">
                             Your documents, always synchronized and ready wherever you need to prove your status.
                         </p>
                     </div>
@@ -423,14 +427,14 @@
         <section class="onboarding-step hidden" data-step="2">
             <div class="container mx-auto max-w-[420px] px-[8px] pt-[8px] flex flex-col">
 
-                <h3 class="step2-title">Why choose M3ak?</h3>
+                <h3 class="step2-title" data-i18n="landing.whyTitle">Why choose M3ak?</h3>
                 <div class="carousel flex gap-6 overflow-x-auto cursor-grab active:cursor-grabbing select-none">
                     <div class="step2-card w-[240px] shrink-0">
                         <div class="step2-icon">
                             <img src="./assets/images/ui/card-secure.png" alt="security icon">
                         </div>
-                        <h4 class="step2-card-title">Highest Security</h4>
-                        <p class="step2-card-desc">
+                        <h4 class="step2-card-title" data-i18n="landing.securityTitle">Highest Security</h4>
+                        <p class="step2-card-desc" data-i18n="landing.securityTextAlt">
                             Government-grade biometric encryption ensures your identity stays yours, and yours
                             alone.
                         </p>
@@ -439,8 +443,8 @@
                         <div class="step2-icon">
                             <img src="./assets/images/ui/vector.png" alt="icon instant acces">
                         </div>
-                        <h4 class="step2-card-title">Instant Access</h4>
-                        <p class="step2-card-desc">
+                        <h4 class="step2-card-title" data-i18n="landing.accessTitle">Instant Access</h4>
+                        <p class="step2-card-desc" data-i18n="landing.accessText">
                             Skip the lines. Access all Moroccan
                             government portals instantly with one
                             single login.
@@ -450,8 +454,8 @@
                         <div class="step2-icon">
                             <img src="./assets/images/ui/vector-1.png" alt="icon claude">
                         </div>
-                        <h4 class="step2-card-title">Cloud Unified</h4>
-                        <p class="step2-card-desc">Your documents, always synchr-
+                        <h4 class="step2-card-title" data-i18n="landing.cloudTitle">Cloud Unified</h4>
+                        <p class="step2-card-desc" data-i18n="landing.cloudTextAlt">Your documents, always synchr-
                             onized and ready whenever
                             you need to prove your status.
                         </p>
@@ -475,14 +479,14 @@
         <section class="onboarding-step hidden" data-step="3">
             <div class="container mx-auto max-w-[420px] px-[8px] pt-[8px] flex flex-col">
 
-                <h3 class="step3-title">Contact Us</h3>
+                <h3 class="step3-title" data-i18n="landing.contactTitle">Contact Us</h3>
 
-                <a href="/pages/app/support.html?as=guest" class="step3-btn-primary">
+                <a href="/pages/app/support.html?as=guest" class="step3-btn-primary" data-i18n="landing.chatSupport">
                     <img src="./assets/images/ui/icon-chat.png" alt="chat support icon">
                     Chat with Support
                 </a>
 
-                <a href="mailto:support@m3ak.ma" class="step3-btn-secondary">
+                <a href="mailto:support@m3ak.ma" class="step3-btn-secondary" data-i18n="landing.emailSupport">
                     <img src="./assets/images/ui/icon-email-light.png" alt="email chat icon" class="dark:hidden">
                     <img src="./assets/images/ui/icon-email-dark.png" alt="email chat icon" class="hidden dark:block">
                     Email Support
@@ -507,27 +511,27 @@
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -541,14 +545,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -560,18 +564,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

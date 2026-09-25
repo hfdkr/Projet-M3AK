@@ -50,8 +50,10 @@
         button.setAttribute("type", "button");
         button.addEventListener("click", function () {
             var hidden = input.type === "password";
+            var key = hidden ? "common.hidePassword" : "common.showPassword";
             input.type = hidden ? "text" : "password";
-            button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+            button.setAttribute("data-i18n-aria-label", key);
+            button.setAttribute("aria-label", window.M3akI18n.t(key));
             input.focus();
         });
     }
@@ -86,25 +88,25 @@
             var valid = true;
 
             if (!idValue) {
-                showError(identifier, "Enter your National ID or email.");
+                showError(identifier, "auth.errors.enterIdentifier");
                 valid = false;
             } else if (idValue.indexOf("@") !== -1 && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(idValue)) {
-                showError(identifier, "This email address is not valid.");
+                showError(identifier, "auth.errors.invalidEmail");
                 valid = false;
             } else if (idValue.indexOf("@") === -1 && !/^[A-Za-z]{1,2}\d{5,7}$/.test(idValue)) {
-                showError(identifier, "National ID looks like AB123456.");
+                showError(identifier, "auth.errors.idFormat");
                 valid = false;
             }
 
             if (pwValue.length < 6) {
-                showError(password, "Password must be at least 6 characters.");
+                showError(password, "auth.errors.passwordLength");
                 valid = false;
             }
 
             if (!valid) { return; }
 
             submit.disabled = true;
-            submit.textContent = "Signing in...";
+            window.M3akI18n.setKey(submit, "auth.login.signingIn");
             submit.classList.add("opacity-70");
 
             /* Demo: no backend yet, open the session and redirect.
@@ -127,7 +129,9 @@
 
     /* ---------- inline errors ---------- */
 
-    function showError(field, message) {
+    /* `messageKey` is a translations.js key; the error keeps it so it
+       re-translates if the language is switched while it is showing. */
+    function showError(field, messageKey) {
         var wrapper = field.parentElement;
         var error = wrapper.parentElement.querySelector(".field-error");
 
@@ -137,7 +141,7 @@
             wrapper.parentElement.appendChild(error);
         }
 
-        error.textContent = message;
+        window.M3akI18n.setKey(error, messageKey);
         field.classList.add("ring-2", "ring-red-200");
         field.setAttribute("aria-invalid", "true");
     }

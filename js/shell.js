@@ -53,11 +53,13 @@
 
         /* Pointer moves clear of the open drawer → close it (mobile + tablet).
            Uses the cursor position rather than mouseenter/leave, which the
-           sidebar can miss when it slides in under a resting cursor. */
+           sidebar can miss when it slides in under a resting cursor.
+           Both edges are checked: the drawer docks right in Arabic (RTL). */
         function isOpen() { return sidebar.classList.contains("is-open"); }
         document.addEventListener("mousemove", function (e) {
             if (!isOpen() || !isDrawer() || !settled()) { return; }
-            if (e.clientX > sidebar.getBoundingClientRect().right + 24) { setOpen(false); }
+            var rect = sidebar.getBoundingClientRect();
+            if (e.clientX > rect.right + 24 || e.clientX < rect.left - 24) { setOpen(false); }
         });
         sidebar.addEventListener("mouseleave", function () {
             if (isDrawer() && settled()) { setOpen(false); }

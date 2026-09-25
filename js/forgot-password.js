@@ -15,12 +15,12 @@
 
             var value = identifier.value.trim();
             if (!value) {
-                showError(identifier, "Enter your National ID or email.");
+                showError(identifier, "auth.errors.enterIdentifier");
                 return;
             }
 
             submit.disabled = true;
-            submit.textContent = "Sending reset link...";
+            window.M3akI18n.setKey(submit, "auth.forgot.sending");
             submit.classList.add("opacity-70");
 
             /* Demo: no backend/email yet — go straight to the reset step */
@@ -30,7 +30,8 @@
         });
     });
 
-    function showError(field, message) {
+    /* `messageKey` is a translations.js key (re-translated on language switch). */
+    function showError(field, messageKey) {
         var wrapper = field.parentElement;
         var error = wrapper.parentElement.querySelector(".field-error");
 
@@ -40,7 +41,7 @@
             wrapper.parentElement.appendChild(error);
         }
 
-        error.textContent = message;
+        window.M3akI18n.setKey(error, messageKey);
         field.classList.add("ring-2", "ring-red-200");
     }
 
