@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Assistant — M3ak Morocco</title>
+    <title data-i18n="assistant.pageTitle">AI Assistant — M3ak Morocco</title>
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
     <script src="/js/session.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -247,15 +249,15 @@
         .menu-icon        { @apply size-6 object-contain; }
         .logo-img-light   { @apply dark:hidden; }
         .logo-img-dark    { @apply hidden dark:block; }
-        .header-actions   { @apply ml-auto flex items-center gap-1.5; }
+        .header-actions   { @apply ms-auto flex items-center gap-1.5; }
         .icon-btn         { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .icon-img-sm      { @apply size-5 object-contain; }
-        .notif-dot        { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
-        .avatar-btn       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .notif-dot        { @apply absolute end-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .avatar-btn       { @apply ms-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
 
         .app-shell   { @apply flex; }
         .app-scrim   { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
-        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .app-sidebar { @apply fixed inset-y-0 start-0 z-50 flex w-64 flex-col overflow-y-auto border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .sidebar-top   { @apply mb-5 px-2; }
         .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
         .sidebar-sub   { @apply text-[11px] text-muted dark:text-mist-300; }
@@ -296,11 +298,12 @@
         .panel-title      { @apply text-sm font-bold; }
 
         .chat-form     { @apply border-t border-black/5 dark:border-white/10 p-3; }
-        .chat-bar      { @apply flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 pl-4 pr-1.5; }
+        .chat-bar      { @apply flex items-center gap-1.5 rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-900 py-1 ps-4 pe-1.5; }
         .chat-input    { @apply min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300; }
         .chat-mic-btn  { @apply grid size-8 shrink-0 place-items-center rounded-full text-muted transition hover:text-brand dark:hover:text-accent-400; }
         .chat-send-btn { @apply grid size-8 shrink-0 place-items-center rounded-full bg-yellow-400 text-ink transition hover:bg-yellow-300 focus-visible:ring-2 focus-visible:ring-yellow-300; }
         .chat-btn-icon { @apply size-4; }
+        .chat-send-icon { @apply size-4 rtl:-scale-x-100; }
 
         /* Transcript bubbles (built by script) */
         .msg-row          { @apply flex items-end gap-2; }
@@ -309,8 +312,8 @@
         .msg-avatar--ai   { @apply bg-brand text-white; }
         .msg-avatar--user { @apply bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400 text-[8px]; }
         .msg-bubble       { @apply max-w-[80%] rounded-2xl px-3 py-2 text-xs leading-relaxed; }
-        .msg-bubble--ai   { @apply bg-canvas dark:bg-night-700 text-ink dark:text-mist-100 rounded-bl-sm; }
-        .msg-bubble--user { @apply bg-brand text-white rounded-br-sm; }
+        .msg-bubble--ai   { @apply bg-canvas dark:bg-night-700 text-ink dark:text-mist-100 rounded-es-sm; }
+        .msg-bubble--user { @apply bg-brand text-white rounded-ee-sm; }
 
         /* ---------- Languages + capabilities ---------- */
         .info-grid  { @apply mt-5 grid gap-5 lg:grid-cols-2; }
@@ -337,7 +340,7 @@
         .session-body      { @apply min-w-0 flex-1; }
         .session-title     { @apply truncate text-sm font-semibold; }
         .session-meta      { @apply text-[11px] text-muted dark:text-mist-300; }
-        .session-chevron   { @apply size-5 shrink-0 text-muted dark:text-mist-300; }
+        .session-chevron   { @apply size-5 shrink-0 text-muted dark:text-mist-300 rtl:-scale-x-100; }
 
         /* ---------- Footnote, toast, footer ---------- */
         .assistant-footnote      { @apply mt-5 text-center text-xs text-muted dark:text-mist-300; }
@@ -363,39 +366,41 @@
     <header class="app-topbar">
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn">
-                <span class="sr-only">Open menu</span>
-                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" class="menu-icon" />
+                <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
+                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" data-i18n-alt="common.openMenu" class="menu-icon" />
             </button>
 
             <a href="/pages/app/assistant.html" class="app-brand-wrap">
                 <span class="app-brand-mark">
-                    <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
-                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+                    <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="logo-img-light">
+                    <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="logo-img-dark">
                 </span>
                 <span class="app-brand-text">
-                    <span class="app-brand-name">M3ak Morocco</span>
+                    <span class="app-brand-name" data-i18n="brand.name">M3ak Morocco</span>
                 </span>
             </a>
 
             <div class="header-actions">
+                <div data-lang-switcher></div>
+
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-                    aria-pressed="false">
+                    data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <button type="button" class="icon-btn">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" class="icon-img-sm dark:hidden" />
+                    <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications" class="icon-img-sm dark:hidden" />
                     <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification" class="hidden icon-img-sm dark:block" />
                     <span class="notif-dot"></span>
                 </button>
 
                 <button type="button" class="avatar-btn">
-                    <span class="sr-only">Your profile</span>
-                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" class="size-full rounded-full object-cover" data-auth="user" />
+                    <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto" class="size-full rounded-full object-cover" data-auth="user" />
                     <img src="/assets/images/pages/settings/icon-user.svg" alt="icon-user" class="size-5 object-contain" data-auth="guest" />
                 </button>
             </div>
@@ -411,43 +416,43 @@
         <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="sidebar-top sidebar-head">
                 <div class="sidebar-text">
-                    <p class="sidebar-title">M3ak Morocco</p>
-                    <p class="sidebar-sub">Citizen Services Portal</p>
+                    <p class="sidebar-title" data-i18n="brand.name">M3ak Morocco</p>
+                    <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
                 </div>
             </div>
 
             <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
+                    <span class="nav-label" data-i18n="nav.mySpace">My Space</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" class="nav-icon" />
-                    <span class="nav-label">Transport</span>
+                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" data-i18n-alt="nav.transport" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.transport">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
+                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" data-i18n-alt="nav.housing" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.housing">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" class="nav-icon" />
-                    <span class="nav-label">Jobs</span>
+                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" data-i18n-alt="nav.jobs" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.jobs">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/education.png" alt="Education" class="nav-icon" />
-                    <span class="nav-label">Education</span>
+                    <img src="/assets/images/ui/nav/education.png" alt="Education" data-i18n-alt="nav.education" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.education">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
+                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" data-i18n-alt="nav.healthcare" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.healthcare">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
+                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" data-i18n-alt="nav.payments" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.payments">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" class="nav-icon" />
-                    <span class="nav-label">Finance</span>
+                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" data-i18n-alt="nav.finance" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.finance">Finance</span>
                 </a>
             </nav>
 
@@ -456,11 +461,11 @@
                     <span class="nav-icon-mask"
                         style="-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></span>
-                    <span class="nav-label nav-label--nowrap">Emergency Support</span>
+                    <span class="nav-label nav-label--nowrap" data-i18n="nav.emergencySupport">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-icon-sm" />
-                    <span class="nav-label">Help Center</span>
+                    <span class="nav-label" data-i18n="nav.helpCenter">Help Center</span>
                 </a>
 
                 <a href="/pages/app/assistant.html" aria-current="page" class="nav-item--active">
@@ -469,11 +474,11 @@
                         <rect x="9" y="2" width="6" height="12" rx="3" />
                         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
                     </svg>
-                    <span class="nav-label">AI Assistant</span>
+                    <span class="nav-label" data-i18n="nav.aiAssistant">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item nav-item--logout" data-action="logout">
-                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon-sm" />
-                    <span class="nav-label">Logout</span>
+                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon-sm rtl:-scale-x-100" />
+                    <span class="nav-label" data-i18n="nav.logout">Logout</span>
                 </a>
             </div>
         </aside>
@@ -483,20 +488,20 @@
 
             <main class="app-main">
 
-                <h1 class="page-title">AI Voice Assistant</h1>
-                <p class="page-subtitle">
+                <h1 class="page-title" data-i18n="assistant.title">AI Voice Assistant</h1>
+                <p class="page-subtitle" data-i18n="assistant.subtitle">
                     Talk naturally with M3AK to manage your digital identity and services.
                 </p>
 
                 <!-- Quick actions -->
                 <div class="quick-actions no-scrollbar">
-                    <button type="button" class="chip" data-say="Open my profile">
+                    <button type="button" class="chip" data-say="Open my profile" data-i18n="assistant.chips.profile">
                         Open my profile
                     </button>
-                    <button type="button" class="chip" data-say="Digital Identity status">
+                    <button type="button" class="chip" data-say="Digital Identity status" data-i18n="assistant.chips.identity">
                         Digital Identity status
                     </button>
-                    <button type="button" class="chip" data-say="Show recent transactions">
+                    <button type="button" class="chip" data-say="Show recent transactions" data-i18n="assistant.chips.transactions">
                         Show recent transactions
                     </button>
                 </div>
@@ -508,7 +513,7 @@
                     <section id="micPanel" class="mic-panel is-idle">
                         <div class="mic-stage">
                             <button type="button" id="micBtn" class="mic-btn mic-ring">
-                                <span class="sr-only">Start voice conversation</span>
+                                <span class="sr-only" data-i18n="assistant.startVoice">Start voice conversation</span>
                                 <svg id="micIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="mic-icon">
                                     <rect x="9" y="2" width="6" height="12" rx="3" />
@@ -520,7 +525,7 @@
                                 <div class="wave">
                                     <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                                 </div>
-                                <p id="micStatus" class="mic-status">Voice
+                                <p id="micStatus" class="mic-status" data-i18n="assistant.micUnavailable">Voice
                                     assistant unavailable</p>
                             </div>
                         </div>
@@ -528,15 +533,15 @@
                         <div class="mic-stats">
                             <div>
                                 <p class="stat-value">128</p>
-                                <p class="stat-label">Conversations</p>
+                                <p class="stat-label" data-i18n="assistant.stats.conversations">Conversations</p>
                             </div>
                             <div class="stat-cell--divided">
-                                <p class="stat-value">2.4h</p>
-                                <p class="stat-label">Talk Time</p>
+                                <p class="stat-value" data-i18n="assistant.stats.talkTimeValue">2.4h</p>
+                                <p class="stat-label" data-i18n="assistant.stats.talkTime">Talk Time</p>
                             </div>
                             <div>
                                 <p class="stat-value stat-value--accent">98%</p>
-                                <p class="stat-label">Satisfaction</p>
+                                <p class="stat-label" data-i18n="assistant.stats.satisfaction">Satisfaction</p>
                             </div>
                         </div>
                     </section>
@@ -544,7 +549,7 @@
                     <!-- Transcript panel -->
                     <section class="transcript-panel">
                         <div class="transcript-head">
-                            <h2 class="panel-title">M3AK Live Transcript</h2>
+                            <h2 class="panel-title" data-i18n="assistant.transcript">M3AK Live Transcript</h2>
                         </div>
 
                         <div id="transcript" class="transcript-log"></div>
@@ -552,9 +557,9 @@
                         <form id="chatForm" class="chat-form">
                             <div class="chat-bar">
                                 <input id="chatInput" type="text" autocomplete="off"
-                                    placeholder="Type or speak a message…" class="chat-input" />
+                                    placeholder="Type or speak a message…" data-i18n-placeholder="assistant.placeholder" class="chat-input" />
                                 <button type="button" id="inlineMic" class="chat-mic-btn">
-                                    <span class="sr-only">Speak</span>
+                                    <span class="sr-only" data-i18n="assistant.speak">Speak</span>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" class="chat-btn-icon">
                                         <rect x="9" y="2" width="6" height="12" rx="3" />
@@ -562,9 +567,9 @@
                                     </svg>
                                 </button>
                                 <button type="submit" class="chat-send-btn">
-                                    <span class="sr-only">Send</span>
+                                    <span class="sr-only" data-i18n="assistant.send">Send</span>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="chat-btn-icon">
+                                        stroke-linecap="round" stroke-linejoin="round" class="chat-send-icon">
                                         <path d="m22 2-7 20-4-9-9-4Z" />
                                         <path d="M22 2 11 13" />
                                     </svg>
@@ -578,42 +583,43 @@
                 <div class="info-grid">
 
                     <section class="panel">
-                        <h2 class="panel-title">
+                        <h2 class="panel-title" data-i18n="assistant.spokenLanguages">
                             Spoken Languages
                         </h2>
+                        <!-- Voice languages keep their own names (endonyms) in every UI language -->
                         <div id="langGrid" class="lang-grid">
                             <button type="button" data-lang="English" class="lang">
-                                <span class="lang-name">English</span>
-                                <span class="lang-state">Active</span>
+                                <span class="lang-name" lang="en">English</span>
+                                <span class="lang-state" data-i18n="assistant.active">Active</span>
                             </button>
                             <button type="button" data-lang="العربية" class="lang">
-                                <span class="lang-name">العربية</span>
-                                <span class="lang-state">Available</span>
+                                <span class="lang-name" lang="ar">العربية</span>
+                                <span class="lang-state" data-i18n="assistant.available">Available</span>
                             </button>
                             <button type="button" data-lang="Français" class="lang">
-                                <span class="lang-name">Français</span>
-                                <span class="lang-state">Available</span>
+                                <span class="lang-name" lang="fr">Français</span>
+                                <span class="lang-state" data-i18n="assistant.available">Available</span>
                             </button>
                             <button type="button" data-lang="Tamazight" class="lang">
                                 <span class="lang-name">Tamazight</span>
-                                <span class="lang-state">Available</span>
+                                <span class="lang-state" data-i18n="assistant.available">Available</span>
                             </button>
                         </div>
                     </section>
 
                     <section class="panel">
-                        <h2 class="panel-title">
+                        <h2 class="panel-title" data-i18n="assistant.capabilities">
                             AI Capabilities
                         </h2>
                         <ul class="capability-list">
                             <li>
-                                <p class="capability-title">Contextual Navigation</p>
-                                <p class="capability-desc">Ask to open specific sections of your
+                                <p class="capability-title" data-i18n="assistant.navTitle">Contextual Navigation</p>
+                                <p class="capability-desc" data-i18n="assistant.navText">Ask to open specific sections of your
                                     dashboard directly.</p>
                             </li>
                             <li>
-                                <p class="capability-title">Document Querying</p>
-                                <p class="capability-desc">Request summaries or specific data from
+                                <p class="capability-title" data-i18n="assistant.docsTitle">Document Querying</p>
+                                <p class="capability-desc" data-i18n="assistant.docsText">Request summaries or specific data from
                                     uploaded documents.</p>
                             </li>
                         </ul>
@@ -623,18 +629,18 @@
                 <!-- Recent voice sessions -->
                 <section class="panel panel--spaced">
                     <div class="panel-head">
-                        <h2 class="panel-title">
+                        <h2 class="panel-title" data-i18n="assistant.recentSessions">
                             Recent Voice Sessions
                         </h2>
-                        <button type="button" id="viewAllSessions" class="link-btn">View
+                        <button type="button" id="viewAllSessions" class="link-btn" data-i18n="common.viewAll">View
                             All</button>
                     </div>
 
                     <ul id="sessionList" class="session-list"></ul>
                 </section>
 
-                <p class="assistant-footnote">
-                    Prefer a person? <a href="/pages/app/support.html" class="assistant-footnote-link">Go to the Help
+                <p class="assistant-footnote" data-i18n="assistant.footnote">
+                    Prefer a person? <a href="/pages/app/support.html" class="assistant-footnote-link" data-i18n="assistant.footnoteLink">Go to the Help
                         Center
                         &rarr;</a>
                 </p>
@@ -676,18 +682,21 @@
 
         /* ── Transcript ── */
         var transcript = $("#transcript");
+        var t = M3akI18n.t;
 
-        function bubble(role, text) {
+        /* Assistant lines pass a translations key so they follow a language
+           switch; what the user typed is shown as-is. */
+        function bubble(role, text, key) {
             var wrap = document.createElement("div");
             wrap.className = "msg-row " + (role === "user" ? "msg-row--user" : "");
 
             var avatar = document.createElement("span");
             avatar.className = "msg-avatar " + (role === "user" ? "msg-avatar--user" : "msg-avatar--ai");
-            avatar.textContent = role === "user" ? "You" : "AI";
+            M3akI18n.setKey(avatar, role === "user" ? "assistant.you" : "assistant.ai");
 
             var b = document.createElement("div");
             b.className = "msg-bubble " + (role === "user" ? "msg-bubble--user" : "msg-bubble--ai");
-            b.textContent = text;
+            if (key) { M3akI18n.setKey(b, key); } else { b.textContent = text; }
 
             wrap.appendChild(avatar);
             wrap.appendChild(b);
@@ -695,13 +704,11 @@
             transcript.scrollTop = transcript.scrollHeight;
         }
 
-        var UNAVAILABLE = "AI assistance is currently unavailable. Please use the options below to view your details.";
-
         function assistantReply() {
-            setTimeout(function () { bubble("assistant", UNAVAILABLE); }, 400);
+            setTimeout(function () { bubble("assistant", null, "assistant.unavailable"); }, 400);
         }
 
-        bubble("assistant", UNAVAILABLE);
+        bubble("assistant", null, "assistant.unavailable");
 
         function send(text) {
             if (!text.trim()) return;
@@ -717,16 +724,16 @@
         });
 
         $$(".chip").forEach(function (c) {
-            c.addEventListener("click", function () { send(c.dataset.say); });
+            c.addEventListener("click", function () { send(c.textContent); });
         });
 
         /* ── Mic (voice assistant is offline) ── */
         var panel = $("#micPanel"), micStatus = $("#micStatus");
         panel.classList.add("is-idle");
-        micStatus.textContent = "Voice assistant unavailable";
+        M3akI18n.setKey(micStatus, "assistant.micUnavailable");
 
         function micUnavailable() {
-            toast("AI voice assistance is currently unavailable");
+            toast(t("assistant.toast.mic"));
         }
         $("#micBtn").addEventListener("click", micUnavailable);
         $("#inlineMic").addEventListener("click", micUnavailable);
@@ -737,67 +744,73 @@
                 var on = b.dataset.lang === active;
                 b.classList.toggle("lang--active", on);
                 var state = $(".lang-state", b);
-                state.textContent = on ? "Active" : "Available";
+                M3akI18n.setKey(state, on ? "assistant.active" : "assistant.available");
                 state.classList.toggle("lang-state--active", on);
             });
         }
         $$(".lang").forEach(function (b) {
             b.addEventListener("click", function () {
                 paintLangs(b.dataset.lang);
-                toast(b.dataset.lang + " selected for voice");
+                toast(t("assistant.toast.langSelected", { lang: b.dataset.lang }));
             });
         });
         paintLangs("English");
 
         /* ── Recent sessions ── */
         var SESSIONS = [
-            { title: "Identity Verification Support", when: "Today, 10:42 AM", len: "1m 45s" },
-            { title: "Appointment Rescheduling", when: "Yesterday, 14:15 PM", len: "3m 12s" }
+            { key: "identity", min: 1, sec: 45 },
+            { key: "appointment", min: 3, sec: 12 }
         ];
-        $("#sessionList").innerHTML = SESSIONS.map(function (s) {
-            return '' +
-                '<li class="session-item">' +
-                '<button type="button" data-play="' + s.title + '" class="session-play-btn">' +
-                '<svg viewBox="0 0 24 24" fill="currentColor" class="session-play-icon"><path d="M8 5v14l11-7Z" /></svg></button>' +
-                '<div class="session-body">' +
-                '<p class="session-title">' + s.title + '</p>' +
-                '<p class="session-meta">' + s.when + ' · ' + s.len + '</p>' +
-                '</div>' +
-                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="session-chevron"><path d="m9 18 6-6-6-6" /></svg>' +
-                '</li>';
-        }).join("");
-        $$("[data-play]").forEach(function (b) {
-            b.addEventListener("click", function () { toast("Playing “" + b.dataset.play + "”…"); });
-        });
+        function renderSessions() {
+            $("#sessionList").innerHTML = SESSIONS.map(function (s) {
+                var title = t("assistant.sessions." + s.key);
+                return '' +
+                    '<li class="session-item">' +
+                    '<button type="button" data-play="' + title + '" class="session-play-btn">' +
+                    '<svg viewBox="0 0 24 24" fill="currentColor" class="session-play-icon"><path d="M8 5v14l11-7Z" /></svg></button>' +
+                    '<div class="session-body">' +
+                    '<p class="session-title">' + title + '</p>' +
+                    '<p class="session-meta">' + t("assistant.sessions." + s.key + "When") + ' · ' +
+                    t("assistant.sessions.length", { min: s.min, sec: s.sec }) + '</p>' +
+                    '</div>' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="session-chevron"><path d="m9 18 6-6-6-6" /></svg>' +
+                    '</li>';
+            }).join("");
+            $$("[data-play]").forEach(function (b) {
+                b.addEventListener("click", function () { toast(t("assistant.toast.playing", { title: b.dataset.play })); });
+            });
+        }
+        renderSessions();
+        document.addEventListener("m3ak:languagechange", renderSessions);
 
-        $("#viewAllSessions").addEventListener("click", function () { toast("Opening your full voice history…"); });
+        $("#viewAllSessions").addEventListener("click", function () { toast(t("assistant.toast.history")); });
     </script>
     <!-- ══════════ SITE FOOTER ══════════ -->
     <footer class="border-t border-black/10 bg-white text-slate-600 transition-colors dark:border-white/10 dark:bg-[#0F1512] dark:text-slate-400">
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -811,14 +824,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -830,18 +843,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>

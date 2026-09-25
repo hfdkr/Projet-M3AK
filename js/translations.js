@@ -32,6 +32,69 @@ window.M3akTranslations = {
             toast: { appointment: "Loading available appointment slots…" }
         },
 
+        footer: {
+            agadir: "Agadir"
+        },
+
+        transport: {
+            currentLocation: "Current Location",
+            operator: "ALSA City Bus",
+            busLine: "Bus {n}",
+            tramLine: "Tram {n}",
+            nextStop: "Next: {stop}",
+            minutes: "{n} min",
+            arrow: "→",
+            youAreHere: "You are here",
+            status: { onTime: "On Time", delay: "+5 min Delay" },
+            modeNames: { bus: "bus", tram: "tram", train: "train", taxi: "taxi" },
+            stops: {
+                talborjt: "Talborjt",
+                marina: "Marina d'Agadir",
+                founty: "Founty",
+                bensergao: "Bensergao",
+                dcheira: "Dcheira",
+                alHouda: "Al Houda",
+                gare: "Gare Routière Agadir"
+            },
+            alert: {
+                line: "Line {n} - Arrival Soon",
+                detail: "Arriving in {n} min at {stop}",
+                track: "Track Live"
+            },
+            toast: {
+                swapped: "Start and destination swapped",
+                noDestination: "Enter a destination to see routes",
+                searching: "Searching {mode} routes to {dest}",
+                tracking: "Tracking Line L12 in real time",
+                noGeolocation: "Geolocation isn't supported on this device",
+                locationUnavailable: "Location unavailable — showing {city}",
+                passAdded: "Fast Pass added to your basket — 30 MAD",
+                ticket: "Opening ticket purchase"
+            }
+        },
+
+        assistant: {
+            you: "You",
+            ai: "AI",
+            unavailable: "AI assistance is currently unavailable. Please use the options below to view your details.",
+            micUnavailable: "Voice assistant unavailable",
+            active: "Active",
+            available: "Available",
+            sessions: {
+                identity: "Identity Verification Support",
+                identityWhen: "Today, 10:42 AM",
+                appointment: "Appointment Rescheduling",
+                appointmentWhen: "Yesterday, 14:15 PM",
+                length: "{min}m {sec}s"
+            },
+            toast: {
+                mic: "AI voice assistance is currently unavailable",
+                langSelected: "{lang} selected for voice",
+                playing: "Playing “{title}”…",
+                history: "Opening your full voice history…"
+            }
+        },
+
         support: {
             toast: {
                 chat: "Connecting you to a support agent…",
@@ -389,6 +452,230 @@ window.M3akTranslations = {
                 noraRole: "طالبة، طنجة",
                 hafid: "حفيظ ك.",
                 hafidRole: "طالب، أكادير"
+            }
+        },
+
+        education: {
+            pageTitle: "التعليم — معاك المغرب",
+            ministry: "وزارة التربية الوطنية والتعليم الأولي والرياضة · MESRSI",
+            portalBadge: "البوابة الوطنية الموحَّدة مسار ومنحتي",
+            legalRef: "المرجع القانوني: الظهير رقم 1-20-80 (القانون 43-20)",
+            citizenSpace: "فضاء المواطن · التعليم الوطني والعالي",
+            title: "خدمات التعليم والتعليم العالي",
+            subtitle: "بوابة موحَّدة للتسجيل المدرسي الوطني، وتتبُّع التلاميذ عبر مسار، والتسجيل القبلي بالجامعات، والمنح (منحتي)، والشهادات المصادق عليها من بريد المغرب.",
+            bacCert: "شهادة البكالوريا",
+            newDossier: "ملف جديد",
+            session: "دورة 2026/2027 · مفتوحة",
+            rsuConnected: "مرتبط بالسجل الاجتماعي الموحَّد",
+            minhatyTitle: "المنحة الوطنية منحتي (Minhaty)",
+            minhatyText: "تقديم مباشر للطلب وتتبُّع آلي للأهلية لمنح التعليم العالي حتى 6,334 درهم سنوياً، بالاعتماد على السجل الاجتماعي الموحَّد (RSU).",
+            deadline: "آخر أجل للإيداع",
+            deadlineValue: "31 يوليوز 2027",
+            eligibility: "شروط الأهلية",
+            apply: "تحقَّق من الأهلية وقدِّم طلبك",
+            schoolYear: "الموسم الدراسي 2026–2027",
+            massarSynced: "رمز مسار متزامن",
+            massarTitle: "بوابة التلميذ مسار وتوجيهي",
+            massarText: "كشوف النقط الرسمية، والمراقبة المستمرة، وتتبُّع البكالوريا الوطنية، والتوجيه الجامعي الآلي.",
+            preBac: "طلبات ما قبل البكالوريا",
+            wishes: "4 رغبات مقدَّمة",
+            transcripts: "كشوف النقط والنتائج",
+            dossier: "ولوج ملف التلميذ",
+            student: {
+                name: "ياسين العلوي",
+                active: "نشط",
+                meta: "رمز مسار: R130094821 · ثانوية ابن زهر، أكادير",
+                cnie: "البطاقة الوطنية موثَّقة (BE492019)",
+                year: "السنة الثانية",
+                cycle: "السلك الدراسي · البكالوريا، العلوم الرياضية أ",
+                average: "المعدل العام (الأسدس 1) · الميزة: حسن جداً",
+                validated: "مُصادَق عليها",
+                scholarship: "منحة منحتي · المؤدّى: 1,900 درهم (الدفعة الأولى)"
+            },
+            progress: {
+                title: "تقدُّم القبول في توجيهي 2027",
+                status: "المرحلة 3 من 4 · تأكيد اللائحة الرئيسية",
+                filed: "إيداع الطلب",
+                review: "دراسة الملف",
+                confirmation: "تأكيد المقعد",
+                registration: "التسجيل الإداري"
+            },
+            calendar: {
+                title: "الأجندة الدراسية",
+                official: "رسمي",
+                jun: "يونيو",
+                jul: "يوليوز",
+                aug: "غشت",
+                bac: "امتحانات البكالوريا الوطنية",
+                bacSub: "جميع المسالك، الدورة العادية",
+                ensa: "مباريات ولوج ENSA / ENSAM / ENCG",
+                ensaSub: "منصة الانتقاء الأولي الموحَّدة",
+                ofppt: "آخر أجل للتسجيل في OFPPT ومدن المهن",
+                ofpptSub: "برامج التكوين المهني التأهيلية",
+                sync: "مزامنة الأجندة الحكومية"
+            },
+            servicesTitle: "أهم الخدمات الإدارية للتعليم",
+            servicesSub: "بوابات حكومية رسمية مترابطة عبر الإطار الوطني للهوية الرقمية.",
+            cnieRequired: "يتطلب المصادقة بالبطاقة الوطنية",
+            services: {
+                enrollment: "التسجيل المدرسي (مسار)",
+                enrollmentText: "سجِّل التلاميذ الجدد في المؤسسات العمومية الابتدائية والثانوية وانقل الملفات الدراسية بين المديريات الإقليمية.",
+                enrollmentLink: "بوابة الابتدائي والإعدادي",
+                equivalence: "المعادلة والشهادات",
+                equivalenceText: "التحقق الرقمي من الشهادات، والمصادقة بالأبوستيل، ومعادلة الشهادات الأجنبية مع رموز QR رسمية من بريد المغرب.",
+                equivalenceLink: "ختم إلكتروني آمن",
+                university: "التسجيل القبلي بالجامعات",
+                universityText: "طلبات موحَّدة للجامعات العمومية المغربية، ومدارس المهندسين (ENSA، ENSAM)، وكليات الطب (FMP/FMD)، ومدارس التجارة (ENCG).",
+                vocational: "التكوين المهني (OFPPT)",
+                vocationalText: "التسجيل في دبلومات التقني المتخصص (TS)، ومدن المهن والكفاءات (CMC)، والمؤهلات المهنية المعترف بها.",
+                vocationalLink: "OFPPT تكوين 2027"
+            },
+            requestsTitle: "الطلبات الجارية والسجلات الدراسية الرقمية",
+            requestsSub: "مرتبط مباشرة بالمنظومة المعلوماتية للتربية الوطنية (منظومة مسار).",
+            showing: "المعروض: جميع الإجراءات (3)",
+            table: {
+                reference: "الملف / المرجع",
+                beneficiary: "المستفيد",
+                service: "نوع الخدمة",
+                date: "تاريخ الإيداع",
+                status: "الحالة",
+                action: "الإجراء",
+                son: "ياسين العلوي (الابن)",
+                holder: "مريم العلوي (صاحبة الشهادة)",
+                r1Service: "المنحة الوطنية منحتي – السلك الأول",
+                r1Date: "14 يناير 2027",
+                r1Status: "مُصادَق عليها + تحويل بنكي",
+                consult: "اطلاع",
+                r2Service: "معادلة الماستر المتخصص (MESRSI)",
+                r2Date: "03 دجنبر 2026",
+                r2Status: "الشهادة الرقمية جاهزة",
+                downloadQr: "تحميل رمز QR",
+                r3Service: "طلب ولوج ENSA الرباط / طنجة",
+                r3Date: "18 فبراير 2027",
+                r3Status: "في انتظار نقط الأسدس الثاني للبكالوريا",
+                editWishes: "تعديل الرغبات"
+            },
+            disclaimer: "بوابة تُسيَّر تحت الإشراف المشترك للدولة المغربية، ومطابقة للقانون رقم 09-08 المتعلق بحماية المعطيات الشخصية (CNDP) والقانون رقم 43-20 المتعلق بخدمات الثقة بشأن المعاملات الإلكترونية.",
+            cndpRef: "مرجع CNDP: A-S-102/2023",
+            assistance: "المساعدة المخصَّصة 0800",
+            actions: {
+                bac: "جارٍ إعداد شهادة البكالوريا…",
+                newDossier: "جارٍ إنشاء ملف جديد…",
+                eligibility: "جارٍ فتح شروط الأهلية…",
+                minhaty: "جارٍ فتح طلب منحتي…",
+                transcripts: "جارٍ فتح كشوف النقط والنتائج…",
+                dossier: "جارٍ فتح ملف التلميذ…",
+                sync: "جارٍ مزامنة أجندتك الحكومية…",
+                enrollment: "جارٍ فتح التسجيل المدرسي (مسار)…",
+                equivalence: "جارٍ فتح المعادلة والشهادات…",
+                university: "جارٍ فتح التسجيل القبلي بالجامعات…",
+                vocational: "جارٍ فتح التكوين المهني (OFPPT)…",
+                consult: "جارٍ فتح الملف MHT-2027-89412…",
+                qr: "جارٍ تحميل شهادة QR للملف EQV-2026-55021…",
+                wishes: "جارٍ تعديل الرغبات للملف TWJ-2027-01039…",
+                assistance: "جارٍ توصيلك بالمساعدة المخصَّصة…"
+            }
+        },
+
+        transport: {
+            pageTitle: "النقل — معاك المغرب",
+            whereTo: "إلى أين؟",
+            swap: "تبديل نقطة الانطلاق والوجهة",
+            startingPoint: "نقطة الانطلاق",
+            currentLocationAlt: "الموقع الحالي",
+            currentLocation: "موقعي الحالي",
+            destination: "الوجهة",
+            destinationPlaceholder: "أدخل الوجهة",
+            modes: { bus: "حافلة", tram: "ترامواي", train: "قطار", taxi: "طاكسي" },
+            modeNames: { bus: "الحافلة", tram: "الترامواي", train: "القطار", taxi: "الطاكسي" },
+            findRoutes: "ابحث عن المسارات",
+            chips: { home: "المنزل", office: "المكتب", marina: "مارينا مول" },
+            liveTracking: "التتبُّع المباشر",
+            liveTrackingSub: "المسارات النشطة في منطقتك",
+            fastPass: "بطاقة التنقل السريع",
+            fastPassSub: "تنقُّل غير محدود لمدة 24 ساعة",
+            buyNow: "اشترِ الآن",
+            buyTicket: "اشترِ تذكرة",
+            operator: "حافلات ألزا الحضرية",
+            busLine: "حافلة {n}",
+            tramLine: "ترامواي {n}",
+            nextStop: "المحطة التالية: {stop}",
+            minutes: "{n} د",
+            arrow: "←",
+            youAreHere: "أنت هنا",
+            status: { onTime: "في الموعد", delay: "تأخير 5 د" },
+            stops: {
+                talborjt: "تالبرجت",
+                marina: "مارينا أكادير",
+                founty: "فونتي",
+                bensergao: "بنسركاو",
+                dcheira: "الدشيرة",
+                alHouda: "الهدى",
+                gare: "المحطة الطرقية أكادير"
+            },
+            alert: {
+                line: "الخط {n} — الوصول قريباً",
+                detail: "يصل خلال {n} د إلى {stop}",
+                track: "تتبَّع مباشرة"
+            },
+            toast: {
+                swapped: "تم تبديل نقطة الانطلاق والوجهة",
+                noDestination: "أدخل وجهة لعرض المسارات",
+                searching: "جارٍ البحث عن مسارات {mode} نحو {dest}",
+                tracking: "جارٍ تتبُّع الخط L12 مباشرة",
+                noGeolocation: "تحديد الموقع غير مدعوم على هذا الجهاز",
+                locationUnavailable: "الموقع غير متاح — عرض {city}",
+                passAdded: "تمت إضافة بطاقة التنقل السريع إلى سلتك — 30 درهم",
+                ticket: "جارٍ فتح شراء التذاكر"
+            }
+        },
+
+        assistant: {
+            pageTitle: "المساعد الذكي — معاك المغرب",
+            title: "المساعد الصوتي الذكي",
+            subtitle: "تحدَّث بشكل طبيعي مع معاك لتدبير هويتك الرقمية وخدماتك.",
+            chips: {
+                profile: "افتح ملفي الشخصي",
+                identity: "حالة الهوية الرقمية",
+                transactions: "اعرض آخر المعاملات"
+            },
+            startVoice: "ابدأ محادثة صوتية",
+            micUnavailable: "المساعد الصوتي غير متاح",
+            stats: {
+                conversations: "محادثة",
+                talkTimeValue: "2.4 س",
+                talkTime: "مدة المحادثة",
+                satisfaction: "نسبة الرضا"
+            },
+            transcript: "النص المباشر لمحادثة معاك",
+            placeholder: "اكتب رسالة أو تحدَّث…",
+            speak: "تحدَّث",
+            send: "إرسال",
+            spokenLanguages: "اللغات المنطوقة",
+            active: "مفعَّلة",
+            available: "متاحة",
+            capabilities: "قدرات الذكاء الاصطناعي",
+            navTitle: "تنقُّل حسب السياق",
+            navText: "اطلب فتح أقسام محددة من لوحة التحكم مباشرة.",
+            docsTitle: "الاستعلام عن الوثائق",
+            docsText: "اطلب ملخصات أو بيانات محددة من الوثائق المرفوعة.",
+            recentSessions: "آخر الجلسات الصوتية",
+            footnote: "تفضِّل التحدث إلى شخص؟",
+            footnoteLink: "انتقل إلى مركز المساعدة ←",
+            you: "أنت",
+            unavailable: "المساعدة بالذكاء الاصطناعي غير متاحة حالياً. يرجى استعمال الخيارات أدناه للاطلاع على بياناتك.",
+            sessions: {
+                identity: "دعم التحقق من الهوية",
+                identityWhen: "اليوم، 10:42 صباحاً",
+                appointment: "إعادة جدولة موعد",
+                appointmentWhen: "أمس، 14:15",
+                length: "{min} د {sec} ث"
+            },
+            toast: {
+                mic: "المساعدة الصوتية بالذكاء الاصطناعي غير متاحة حالياً",
+                langSelected: "تم اختيار {lang} للمساعد الصوتي",
+                playing: "جارٍ تشغيل «{title}»…",
+                history: "جارٍ فتح سجلك الصوتي الكامل…"
             }
         },
 

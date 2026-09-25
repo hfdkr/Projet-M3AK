@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Jobs &amp; Employment Portal — M3ak Morocco</title>
+    <title data-i18n="jobs.pageTitle">Jobs &amp; Employment Portal — M3ak Morocco</title>
     <script src="/js/session.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -188,12 +190,12 @@
         }
 
         .field--search {
-            padding-left: 2.25rem;
+            padding-inline-start: 2.25rem;
         }
 
-        /* Selects that carry a leading icon need the same left inset. */
+        /* Selects that carry a leading icon need the same start inset. */
         .field--select {
-            padding-left: 2.25rem;
+            padding-inline-start: 2.25rem;
         }
 
         .field:focus-visible {
@@ -223,17 +225,17 @@
         .app-menu-btn { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40 lg:hidden; }
         .menu-icon { @apply size-6 object-contain; }
         .site-brand { @apply whitespace-nowrap text-[15px] sm:text-xl font-extrabold tracking-tight text-brand dark:text-accent-400 lg:w-52 lg:text-2xl; }
-        .topbar-search { @apply relative ml-2 hidden lg:block lg:w-72 xl:w-80; }
-        .topbar-search-icon { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
-        .topbar-search-input { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 pl-9 pr-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
-        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        .topbar-search { @apply relative ms-2 hidden lg:block lg:w-72 xl:w-80; }
+        .topbar-search-icon { @apply pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .topbar-search-input { @apply w-full rounded-full border border-black/10 dark:border-white/15 bg-canvas dark:bg-night-800 py-2 ps-9 pe-4 text-sm outline-none placeholder:text-muted dark:placeholder:text-mist-300 focus-visible:border-brand dark:focus-visible:border-accent-400 focus-visible:ring-2 focus-visible:ring-brand/25; }
+        .header-actions { @apply ms-auto flex items-center gap-1.5; }
         .icon-btn { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .icon-img-sm { @apply size-5 object-contain; }
-        .notif-dot { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
-        .avatar-btn { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .notif-dot { @apply absolute end-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .avatar-btn { @apply ms-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
 
         .app-scrim { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
-        .app-sidebar { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .app-sidebar { @apply fixed inset-y-0 start-0 z-50 flex w-64 flex-col overflow-y-auto border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .sidebar-top { @apply mb-5 px-2; }
         .sidebar-title { @apply text-base font-extrabold text-brand dark:text-accent-400; }
         .sidebar-sub { @apply text-[11px] text-muted dark:text-mist-300; }
@@ -253,9 +255,9 @@
 
         .search-form { @apply mt-5 flex flex-col gap-2.5 rounded-2xl bg-white dark:bg-night-800 p-3 ring-1 ring-black/5 dark:ring-white/10 sm:flex-row sm:flex-wrap sm:items-center; }
         .search-field { @apply relative block sm:min-w-[220px] sm:flex-1; }
-        .search-icon { @apply absolute left-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
+        .search-icon { @apply absolute start-3 top-1/2 size-4 -translate-y-1/2 object-contain; }
         .select-field { @apply relative block; }
-        .select-icon { @apply pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted dark:text-mist-300; }
+        .select-icon { @apply pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted dark:text-mist-300; }
         .search-submit-btn { @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-dark focus-visible:ring-2 focus-visible:ring-brand/40 sm:w-auto; }
 
         .banners-grid { @apply mt-5 grid gap-4 lg:grid-cols-2; }
@@ -343,7 +345,7 @@
         .job-org       { @apply text-[11px] font-extrabold uppercase leading-snug tracking-wide; }
         .job-org--public  { @apply text-brand dark:text-accent-400; }
         .job-org--private { @apply text-blue-700 dark:text-blue-400; }
-        .job-salary-wrap  { @apply shrink-0 text-right; }
+        .job-salary-wrap  { @apply shrink-0 text-end; }
         .job-salary-label { @apply block text-[10px] leading-tight text-muted dark:text-mist-300; }
         .job-salary       { @apply block text-sm font-extrabold leading-tight; }
         .job-salary-unit  { @apply text-[10px] font-semibold text-muted dark:text-mist-300; }
@@ -394,10 +396,10 @@
         .skills-check    { @apply grid size-4 shrink-0 place-items-center rounded-full bg-brand text-white dark:bg-accent-400 dark:text-night-900; }
 
         /* ---------- Rail: tools ---------- */
-        .tool-btn     { @apply flex w-full items-center gap-2.5 rounded-xl border border-black/10 dark:border-white/15 px-3 py-2.5 text-left text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700; }
+        .tool-btn     { @apply flex w-full items-center gap-2.5 rounded-xl border border-black/10 dark:border-white/15 px-3 py-2.5 text-start text-xs font-semibold transition hover:bg-canvas dark:hover:bg-night-700; }
         .tool-icon    { @apply grid size-7 shrink-0 place-items-center rounded-lg bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400; }
         .tool-name    { @apply min-w-0 flex-1 leading-snug; }
-        .tool-chevron { @apply size-3.5 shrink-0 text-muted dark:text-mist-300; }
+        .tool-chevron { @apply size-3.5 shrink-0 text-muted dark:text-mist-300 rtl:-scale-x-100; }
 
         /* ---------- Sectors (full-width band) ---------- */
         .sector-section    { @apply mt-8; }
@@ -419,38 +421,40 @@
     <header class="app-topbar">
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn">
-                <span class="sr-only">Open menu</span>
-                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" class="menu-icon" />
+                <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
+                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" data-i18n-alt="common.openMenu" class="menu-icon" />
             </button>
 
-            <a href="/pages/app/jobs.html" class="site-brand">M3ak Morocco</a>
+            <a href="/pages/app/jobs.html" class="site-brand" data-i18n="brand.name">M3ak Morocco</a>
 
             <label class="topbar-search">
-                <span class="sr-only">Search services, files, or records</span>
+                <span class="sr-only" data-i18n="jobs.topSearchLabel">Search services, files, or records</span>
                 <img src="/assets/images/ui/search.png" alt="icon-search" class="topbar-search-icon" />
                 <input id="topbarSearch" type="search" placeholder="Search services, files, or records…"
-                    class="topbar-search-input" />
+                    data-i18n-placeholder="jobs.topSearchPlaceholder" class="topbar-search-input" />
             </label>
 
             <div class="header-actions">
-                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+                <div data-lang-switcher></div>
+
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <button type="button" class="icon-btn">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" class="icon-img-sm dark:hidden" />
+                    <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications" class="icon-img-sm dark:hidden" />
                     <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification" class="hidden icon-img-sm dark:block" />
                     <span class="notif-dot"></span>
                 </button>
 
 
                 <button type="button" class="avatar-btn">
-                    <span class="sr-only">Your profile</span>
-                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" class="size-full rounded-full object-cover" data-auth="user" />
+                    <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto" class="size-full rounded-full object-cover" data-auth="user" />
                     <img src="/assets/images/pages/settings/icon-user.svg" alt="icon-user" class="size-5 object-contain" data-auth="guest" />
                 </button>
             </div>
@@ -465,44 +469,44 @@
         <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="sidebar-top sidebar-head">
                 <div class="sidebar-text">
-                    <p class="sidebar-title">M3ak Morocco</p>
-                    <p class="sidebar-sub">Citizen Services Portal</p>
+                    <p class="sidebar-title" data-i18n="brand.name">M3ak Morocco</p>
+                    <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
                 </div>
             </div>
 
             <nav class="space-y-0.5">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
+                    <span class="nav-label" data-i18n="nav.mySpace">My Space</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" class="nav-icon" />
-                    <span class="nav-label">Transport</span>
+                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" data-i18n-alt="nav.transport" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.transport">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
+                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" data-i18n-alt="nav.housing" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.housing">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" aria-current="page"
                     class="nav-item--active">
-                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" class="nav-icon" style="filter:brightness(0) invert(1)" />
-                    <span class="nav-label">Jobs</span>
+                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" data-i18n-alt="nav.jobs" class="nav-icon" style="filter:brightness(0) invert(1)" />
+                    <span class="nav-label" data-i18n="nav.jobs">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/education.png" alt="Education" class="nav-icon" />
-                    <span class="nav-label">Education</span>
+                    <img src="/assets/images/ui/nav/education.png" alt="Education" data-i18n-alt="nav.education" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.education">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
+                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" data-i18n-alt="nav.healthcare" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.healthcare">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
+                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" data-i18n-alt="nav.payments" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.payments">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" class="nav-icon" />
-                    <span class="nav-label">Finance</span>
+                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" data-i18n-alt="nav.finance" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.finance">Finance</span>
                 </a>
             </nav>
 
@@ -510,19 +514,19 @@
                 <a href="/pages/app/emergence.html"
                     class="nav-item--danger">
                     <span class="nav-icon-mask" style="-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;" aria-hidden="true"></span>
-                    <span class="nav-label whitespace-nowrap">Emergency Support</span>
+                    <span class="nav-label whitespace-nowrap" data-i18n="nav.emergencySupport">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-icon-sm" />
-                    <span class="nav-label">Help Center</span>
+                    <span class="nav-label" data-i18n="nav.helpCenter">Help Center</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon-svg"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" /></svg>
-                    <span class="nav-label">AI Assistant</span>
+                    <span class="nav-label" data-i18n="nav.aiAssistant">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item text-danger" data-action="logout">
-                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon-sm" />
-                    <span class="nav-label">Logout</span>
+                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-icon-sm rtl:-scale-x-100" />
+                    <span class="nav-label" data-i18n="nav.logout">Logout</span>
                 </a>
             </div>
         </aside>
@@ -534,24 +538,24 @@
 
                 <!-- Page header -->
                 <p class="breadcrumb">
-                    Public Employment &amp; Exams
+                    <span data-i18n="jobs.breadcrumb">Public Employment &amp; Exams</span>
                     <span class="breadcrumb-sep">›</span>
-                    <span class="breadcrumb-here">National Recruitment Portal</span>
+                    <span class="breadcrumb-here" data-i18n="jobs.breadcrumbHere">National Recruitment Portal</span>
                 </p>
 
                 <div class="page-header-row">
                     <div>
-                        <h1 class="page-title">Jobs &amp; Employment Portal</h1>
-                        <p class="page-subtitle">
+                        <h1 class="page-title" data-i18n="jobs.title">Jobs &amp; Employment Portal</h1>
+                        <p class="page-subtitle" data-i18n="jobs.subtitle">
                             Access Moroccan civil service exams and verified private sector opportunities with your certified CNIE digital identity.
                         </p>
                     </div>
                     <div class="header-cta-row">
-                        <button type="button" id="digitalCvBtn" class="btn-ghost">
+                        <button type="button" id="digitalCvBtn" class="btn-ghost" data-i18n="jobs.digitalCv">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><path d="M14 2v6h6" /><path d="m9 15 2 2 4-4" /></svg>
                             Certified Digital CV
                         </button>
-                        <button type="button" id="jobAlertBtn" class="btn-solid">
+                        <button type="button" id="jobAlertBtn" class="btn-solid" data-i18n="jobs.jobAlert">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
                             Create Job Alert
                         </button>
@@ -559,62 +563,63 @@
                 </div>
 
                 <!-- Search / filter bar -->
+                <!-- Option values stay English: the job data and filters match on them. -->
                 <form id="jobSearchForm" class="search-form">
                     <label class="search-field">
-                        <span class="sr-only">Job title or keyword</span>
+                        <span class="sr-only" data-i18n="jobs.keywordLabel">Job title or keyword</span>
                         <img src="/assets/images/ui/search.png" alt="icon-search" class="search-icon" />
                         <input id="qInput" type="search" placeholder="State Engineer, Civil Servant, Developer…"
-                            class="field field--search w-full" />
+                            data-i18n-placeholder="jobs.keywordPlaceholder" class="field field--search w-full" />
                     </label>
 
                     <label class="select-field sm:w-48">
-                        <span class="sr-only">Region</span>
+                        <span class="sr-only" data-i18n="jobs.region">Region</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="select-icon" aria-hidden="true">
                             <path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" />
                         </svg>
                         <select id="locationSelect" class="field field--select w-full">
-                        <option value="">All Regions</option>
-                        <option>Rabat - Salé - Kénitra</option>
-                        <option>Casablanca - Settat</option>
-                        <option>Tangier - Tétouan - Al Hoceïma</option>
-                        <option>Marrakech - Safi</option>
-                        <option>Agadir</option>
-                        <option>Remote</option>
+                        <option value="" data-i18n="jobs.allRegions">All Regions</option>
+                        <option value="Rabat - Salé - Kénitra" data-i18n="jobs.regions.rabat">Rabat - Salé - Kénitra</option>
+                        <option value="Casablanca - Settat" data-i18n="jobs.regions.casablanca">Casablanca - Settat</option>
+                        <option value="Tangier - Tétouan - Al Hoceïma" data-i18n="jobs.regions.tangier">Tangier - Tétouan - Al Hoceïma</option>
+                        <option value="Marrakech - Safi" data-i18n="jobs.regions.marrakech">Marrakech - Safi</option>
+                        <option value="Agadir" data-i18n="footer.agadir">Agadir</option>
+                        <option value="Remote" data-i18n="jobs.regions.remote">Remote</option>
                         </select>
                     </label>
 
                     <label class="select-field sm:w-60">
-                        <span class="sr-only">Sector</span>
+                        <span class="sr-only" data-i18n="jobs.sector">Sector</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="select-icon" aria-hidden="true">
                             <path d="M3 21h18M4 21V9.5L12 4l8 5.5V21" /><path d="M9.5 21v-6h5v6" />
                         </svg>
                         <select id="categorySelect" class="field field--select w-full">
-                        <option value="">All Sectors</option>
-                        <option>Public Service (Civil Service Exams)</option>
-                        <option>Tech &amp; Telecom</option>
-                        <option>Public Health</option>
-                        <option>Finance &amp; Customs</option>
-                        <option>Transport &amp; Logistics</option>
-                        <option>Education &amp; Teaching</option>
+                        <option value="" data-i18n="jobs.allSectors">All Sectors</option>
+                        <option value="Public Service (Civil Service Exams)" data-i18n="jobs.categories.publicService">Public Service (Civil Service Exams)</option>
+                        <option value="Tech &amp; Telecom" data-i18n="jobs.categories.tech">Tech &amp; Telecom</option>
+                        <option value="Public Health" data-i18n="jobs.categories.health">Public Health</option>
+                        <option value="Finance &amp; Customs" data-i18n="jobs.categories.finance">Finance &amp; Customs</option>
+                        <option value="Transport &amp; Logistics" data-i18n="jobs.categories.transport">Transport &amp; Logistics</option>
+                        <option value="Education &amp; Teaching" data-i18n="jobs.categories.education">Education &amp; Teaching</option>
                         </select>
                     </label>
 
                     <button type="submit" class="search-submit-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M3 5h18l-7 8v5l-4 2v-7Z" /></svg>
-                        Filter (<span id="filterCount">0</span>)
+                        <span data-i18n="jobs.filter">Filter</span> (<span id="filterCount">0</span>)
                     </button>
                 </form>
 
                 <!-- Popular tags -->
                 <div class="tags-row">
-                    <span class="tags-label">Popular tags</span>
-                    <button type="button" data-tag="Finance &amp; Customs" class="tag-chip tag-chip--lead">
+                    <span class="tags-label" data-i18n="jobs.popularTags">Popular tags</span>
+                    <button type="button" data-tag="Finance &amp; Customs" class="tag-chip tag-chip--lead" data-i18n="jobs.tags.mef">
                         <span class="tag-dot"></span>MEF Exam (Finance)
                     </button>
-                    <button type="button" data-tag="Public Service (Civil Service Exams)" class="tag-chip">Grade Scale 11 / State Engineers</button>
-                    <button type="button" data-tag="Public Service (Civil Service Exams)" class="tag-chip">2nd Grade Administrators</button>
-                    <button type="button" data-tag="Public Health" class="tag-chip">Healthcare Professions</button>
-                    <button type="button" data-tag="Tech &amp; Telecom" class="tag-chip">1-Click Application</button>
+                    <button type="button" data-tag="Public Service (Civil Service Exams)" class="tag-chip" data-i18n="jobs.tags.grade11">Grade Scale 11 / State Engineers</button>
+                    <button type="button" data-tag="Public Service (Civil Service Exams)" class="tag-chip" data-i18n="jobs.tags.administrators">2nd Grade Administrators</button>
+                    <button type="button" data-tag="Public Health" class="tag-chip" data-i18n="jobs.tags.health">Healthcare Professions</button>
+                    <button type="button" data-tag="Tech &amp; Telecom" class="tag-chip" data-i18n="jobs.tags.oneClick">1-Click Application</button>
                 </div>
 
                 <!-- Banners: National Recruitment Exam + Job Accelerator -->
@@ -622,37 +627,37 @@
 
                     <section class="banner-card--concours">
                         <div class="banner-top-row">
-                            <span class="banner-badge--concours">
+                            <span class="banner-badge--concours" data-i18n="jobs.concours.badge">
                                 Civil Service + Employment
                             </span>
-                            <span class="banner-tag--concours">Updated</span>
+                            <span class="banner-tag--concours" data-i18n="jobs.concours.tag">Updated</span>
                         </div>
 
-                        <h2 class="banner-title">National Unified Recruitment Exam</h2>
-                        <p class="banner-desc--concours">
+                        <h2 class="banner-title" data-i18n="jobs.concours.title">National Unified Recruitment Exam</h2>
+                        <p class="banner-desc--concours" data-i18n="jobs.concours.text">
                             Apply for public service positions through the national portal — single application, biometric CNIE verification.
                         </p>
 
                         <div class="banner-stats">
                             <div class="banner-stat">
                                 <p class="banner-stat-value">1,450</p>
-                                <p class="banner-stat-label">Open Positions</p>
+                                <p class="banner-stat-label" data-i18n="jobs.concours.positions">Open Positions</p>
                             </div>
                             <div class="banner-stat">
-                                <p class="banner-stat-value">Nov 15</p>
-                                <p class="banner-stat-label">Deadline 2026</p>
+                                <p class="banner-stat-value" data-i18n="jobs.concours.deadlineValue">Nov 15</p>
+                                <p class="banner-stat-label" data-i18n="jobs.concours.deadline">Deadline 2026</p>
                             </div>
                             <div class="banner-stat">
-                                <span class="banner-pill--concours">CNIE Eligible</span>
-                                <p class="banner-pill-sub">Validation Status</p>
+                                <span class="banner-pill--concours" data-i18n="jobs.concours.eligible">CNIE Eligible</span>
+                                <p class="banner-pill-sub" data-i18n="jobs.concours.validation">Validation Status</p>
                             </div>
                         </div>
 
                         <div class="banner-actions">
-                            <button type="button" id="openConcours" class="banner-btn--brand">
+                            <button type="button" id="openConcours" class="banner-btn--brand" data-i18n="jobs.concours.open">
                                 Open My Application
                             </button>
-                            <button type="button" id="viewReferentiel" class="banner-link--brand">
+                            <button type="button" id="viewReferentiel" class="banner-link--brand" data-i18n="jobs.concours.guide">
                                 View Reference Guide
                             </button>
                         </div>
@@ -660,37 +665,37 @@
 
                     <section class="banner-card--accelerator">
                         <div class="banner-top-row">
-                            <span class="banner-badge--accelerator">
+                            <span class="banner-badge--accelerator" data-i18n="jobs.accelerator.badge">
                                 Private Sector Partnership
                             </span>
-                            <span class="banner-tag--accelerator">Verified</span>
+                            <span class="banner-tag--accelerator" data-i18n="jobs.accelerator.tag">Verified</span>
                         </div>
 
-                        <h2 class="banner-title">Job Accelerator &amp; Verified Salaries</h2>
-                        <p class="banner-desc--accelerator">
+                        <h2 class="banner-title" data-i18n="jobs.accelerator.title">Job Accelerator &amp; Verified Salaries</h2>
+                        <p class="banner-desc--accelerator" data-i18n="jobs.accelerator.text">
                             Verified permanent contracts, transparent salaries, and guaranteed CNSS contributions from our certified partners.
                         </p>
 
                         <div class="banner-stats">
                             <div class="banner-stat">
                                 <p class="banner-stat-value">4,280+</p>
-                                <p class="banner-stat-label--white">Verified Offers</p>
+                                <p class="banner-stat-label--white" data-i18n="jobs.accelerator.offers">Verified Offers</p>
                             </div>
                             <div class="banner-stat">
                                 <p class="banner-stat-value">18,500</p>
-                                <p class="banner-stat-label--white">Average Salary (MAD)</p>
+                                <p class="banner-stat-label--white" data-i18n="jobs.accelerator.salary">Average Salary (MAD)</p>
                             </div>
                             <div class="banner-stat">
-                                <span class="banner-pill--accelerator">100% Permanent</span>
-                                <p class="banner-pill-sub--white">Declared CNSS</p>
+                                <span class="banner-pill--accelerator" data-i18n="jobs.accelerator.permanent">100% Permanent</span>
+                                <p class="banner-pill-sub--white" data-i18n="jobs.accelerator.cnss">Declared CNSS</p>
                             </div>
                         </div>
 
                         <div class="banner-actions">
-                            <button type="button" id="openAccelerator" class="banner-btn--light">
+                            <button type="button" id="openAccelerator" class="banner-btn--light" data-i18n="jobs.accelerator.explore">
                                 Explore Certified Listings
                             </button>
-                            <button type="button" id="viewMore" class="banner-link--white">
+                            <button type="button" id="viewMore" class="banner-link--white" data-i18n="common.learnMore">
                                 Learn More
                             </button>
                         </div>
@@ -705,27 +710,27 @@
                         <section id="results">
                             <div class="section-row">
                                 <div>
-                                    <h2 class="section-heading">Latest Verified Opportunities</h2>
-                                    <p class="section-count"><span id="resultsCount">0</span> positions match your search</p>
+                                    <h2 class="section-heading" data-i18n="jobs.latest">Latest Verified Opportunities</h2>
+                                    <p class="section-count" data-i18n="jobs.matchCount"><span id="resultsCount">0</span> positions match your search</p>
                                 </div>
-                                <select id="sortSelect" class="field sort-select" aria-label="Sort by">
-                                    <option value="relevance">Relevance (Default)</option>
-                                    <option value="salary">Salary (Highest First)</option>
-                                    <option value="recent">Date Posted</option>
+                                <select id="sortSelect" class="field sort-select" aria-label="Sort by" data-i18n-aria-label="jobs.sortBy">
+                                    <option value="relevance" data-i18n="jobs.sort.relevance">Relevance (Default)</option>
+                                    <option value="salary" data-i18n="jobs.sort.salary">Salary (Highest First)</option>
+                                    <option value="recent" data-i18n="jobs.sort.recent">Date Posted</option>
                                 </select>
                             </div>
 
-                            <div id="resultTabs" class="result-tabs" role="tablist" aria-label="Filter by employer type">
-                                <button type="button" role="tab" data-scope="all" aria-selected="true" class="result-tab">All (<span data-count="all">0</span>)</button>
-                                <button type="button" role="tab" data-scope="public" aria-selected="false" class="result-tab">Public Contests (<span data-count="public">0</span>)</button>
-                                <button type="button" role="tab" data-scope="private" aria-selected="false" class="result-tab">Private &amp; Multinationals (<span data-count="private">0</span>)</button>
+                            <div id="resultTabs" class="result-tabs" role="tablist" aria-label="Filter by employer type" data-i18n-aria-label="jobs.tabs.label">
+                                <button type="button" role="tab" data-scope="all" aria-selected="true" class="result-tab"><span data-i18n="jobs.tabs.all">All</span> (<span data-count="all">0</span>)</button>
+                                <button type="button" role="tab" data-scope="public" aria-selected="false" class="result-tab"><span data-i18n="jobs.tabs.public">Public Contests</span> (<span data-count="public">0</span>)</button>
+                                <button type="button" role="tab" data-scope="private" aria-selected="false" class="result-tab"><span data-i18n="jobs.tabs.private">Private &amp; Multinationals</span> (<span data-count="private">0</span>)</button>
                             </div>
 
                             <div id="jobList" class="job-list"></div>
 
                             <div class="pagination-wrap">
                                 <p id="paginationInfo" class="pagination-info"></p>
-                                <nav id="pagination" class="pagination-row" aria-label="Pagination"></nav>
+                                <nav id="pagination" class="pagination-row" aria-label="Pagination" data-i18n-aria-label="jobs.pagination"></nav>
                             </div>
                         </section>
                     </div>
@@ -736,28 +741,28 @@
                         <!-- Active applications -->
                         <section class="rail-card">
                             <div class="rail-head-row">
-                                <h2 class="rail-heading">
+                                <h2 class="rail-heading" data-i18n="jobs.rail.applications">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-heading-icon"><rect x="3" y="4" width="18" height="18" rx="2.5" /><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4" /></svg>
                                     My Active Applications
                                 </h2>
-                                <span class="rail-count-badge">3 in progress</span>
+                                <span class="rail-count-badge" data-i18n="jobs.rail.inProgress">3 in progress</span>
                             </div>
 
                             <ol id="applicationsList" class="applications-list"></ol>
 
-                            <button type="button" id="viewHistory" class="rail-btn-outline">
+                            <button type="button" id="viewHistory" class="rail-btn-outline" data-i18n="jobs.rail.history">
                                 View Full Competition History
                             </button>
                         </section>
 
                         <!-- Skills passport -->
                         <section class="skills-card">
-                            <h2 class="skills-heading">
+                            <h2 class="skills-heading" data-i18n="jobs.skills.title">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><rect x="3" y="4" width="18" height="16" rx="2.5" /><circle cx="9" cy="10" r="2" /><path d="M5 18c.5-2 2-3 4-3s3.5 1 4 3M14 9h5M14 13h5" /></svg>
                                 My CNIE Skills Passport
                             </h2>
 
-                            <p class="skills-sub">Your academic and professional records are verified directly by official government registries.</p>
+                            <p class="skills-sub" data-i18n="jobs.skills.text">Your academic and professional records are verified directly by official government registries.</p>
 
                             <ul class="skills-list">
                                 <li class="skills-row">
@@ -765,8 +770,8 @@
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M12 3 2 8l10 5 10-5-10-5Z" /><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" /></svg>
                                     </span>
                                     <span class="skills-row-main">
-                                        <span class="skills-row-title">State Engineering Diploma</span>
-                                        <span class="skills-row-sub">Verified by the Ministry of Higher Education</span>
+                                        <span class="skills-row-title" data-i18n="jobs.skills.diploma">State Engineering Diploma</span>
+                                        <span class="skills-row-sub" data-i18n="jobs.skills.diplomaSub">Verified by the Ministry of Higher Education</span>
                                     </span>
                                     <span class="skills-check">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="size-2.5"><path d="m20 6-11 11-5-5" /></svg>
@@ -777,8 +782,8 @@
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M12 2 4 5v6c0 5.2 3.4 9.3 8 11 4.6-1.7 8-5.8 8-11V5l-8-3Z" /></svg>
                                     </span>
                                     <span class="skills-row-main">
-                                        <span class="skills-row-title">Criminal Record Extract (Record #3)</span>
-                                        <span class="skills-row-sub">Clean record, certified by the Ministry of Justice</span>
+                                        <span class="skills-row-title" data-i18n="jobs.skills.record">Criminal Record Extract (Record #3)</span>
+                                        <span class="skills-row-sub" data-i18n="jobs.skills.recordSub">Clean record, certified by the Ministry of Justice</span>
                                     </span>
                                     <span class="skills-check">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="size-2.5"><path d="m20 6-11 11-5-5" /></svg>
@@ -789,8 +794,8 @@
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><rect x="2.5" y="6" width="19" height="12" rx="2.5" /><circle cx="12" cy="12" r="2.5" /></svg>
                                     </span>
                                     <span class="skills-row-main">
-                                        <span class="skills-row-title">CNSS Attestation &amp; Wage History</span>
-                                        <span class="skills-row-sub">62 verified contribution months</span>
+                                        <span class="skills-row-title" data-i18n="jobs.skills.cnss">CNSS Attestation &amp; Wage History</span>
+                                        <span class="skills-row-sub" data-i18n="jobs.skills.cnssSub">62 verified contribution months</span>
                                     </span>
                                     <span class="skills-check">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="size-2.5"><path d="m20 6-11 11-5-5" /></svg>
@@ -798,7 +803,7 @@
                                 </li>
                             </ul>
 
-                            <button type="button" id="getQrBtn" class="qr-btn">
+                            <button type="button" id="getQrBtn" class="qr-btn" data-i18n="jobs.skills.qr">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><path d="M14 14h3v3h-3zM19 14h2M14 19h2M19 19h2" /></svg>
                                 Generate Recruiter Verification QR Code
                             </button>
@@ -806,7 +811,7 @@
 
                         <!-- Exam prep tools -->
                         <section class="rail-card">
-                            <h2 class="rail-heading">
+                            <h2 class="rail-heading" data-i18n="jobs.rail.tools">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rail-heading-icon"><path d="M4 19.5V6a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 1.5Z" /><path d="M8 8h7M8 12h5" /></svg>
                                 Preparation &amp; Civil Exam Tools
                             </h2>
@@ -818,8 +823,8 @@
                 <!-- Explore by Ministry & Sector (full-width band) -->
                 <section class="sector-section">
                     <div class="sector-head">
-                        <h2 class="section-heading">Explore Careers by Ministry &amp; Sector</h2>
-                        <p class="sector-meta">12 Connected Ministerial Departments</p>
+                        <h2 class="section-heading" data-i18n="jobs.sectorsTitle">Explore Careers by Ministry &amp; Sector</h2>
+                        <p class="sector-meta" data-i18n="jobs.sectorsMeta">12 Connected Ministerial Departments</p>
                     </div>
                     <div id="sectorGrid" class="sector-grid"></div>
                 </section>

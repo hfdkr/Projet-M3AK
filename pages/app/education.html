@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/assets/images/ui/img-mobile-1.png">
-    <title>Education — M3ak Morocco</title>
+    <title data-i18n="education.pageTitle">Education — M3ak Morocco</title>
     <script src="/js/session.js"></script>
     <script src="/js/theme.js"></script>
+    <script src="/js/translations.js"></script>
+    <script src="/js/i18n.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,8 +106,8 @@
         .app-menu-btn     { @apply grid size-9 place-items-center rounded-lg hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
         .app-brand-mark   { @apply hidden lg:grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft dark:bg-brand p-[5px]; }
         .app-icon-btn     { @apply relative grid size-9 place-items-center rounded-full hover:bg-canvas dark:hover:bg-night-700 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .app-avatar       { @apply ml-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
-        .app-sidebar      { @apply fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
+        .app-avatar       { @apply ms-1 grid size-9 place-items-center rounded-full bg-brand-soft dark:bg-accent-400/15 text-xs font-bold text-brand dark:text-accent-400 ring-1 ring-brand-line dark:ring-accent-400/25 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .app-sidebar      { @apply fixed inset-y-0 start-0 z-50 flex w-64 flex-col overflow-y-auto border-e border-[#E2E8F0] dark:border-[#232824e6] bg-white dark:bg-[#090D0B] px-3 py-5 transition-transform duration-300 lg:sticky lg:top-16 lg:z-0 lg:h-[calc(100vh-4rem)] lg:w-56 lg:translate-x-0; }
         .app-scrim        { @apply fixed inset-0 z-40 bg-black/40 lg:hidden; }
         .nav-item--active { @apply flex items-center gap-3 rounded-xl bg-brand dark:bg-brand px-3 py-2.5 text-sm font-semibold text-white dark:text-white shadow-sm ring-1 ring-brand-dark hover:bg-brand-dark; }
 
@@ -141,11 +143,11 @@
         .table-showing-badge { @apply rounded-md bg-canvas dark:bg-night-700 px-2 py-0.5 text-[10px] font-semibold text-muted dark:text-mist-300 md:px-2.5 md:py-1 md:text-[11px]; }
         .table-header-row { @apply text-[10px] font-bold uppercase tracking-wider text-muted dark:text-mist-300 md:text-[11px]; }
         .table-th       { @apply px-3 py-2.5 md:px-4 md:py-3; }
-        .table-th-right { @apply px-3 py-2.5 text-right md:px-4 md:py-3; }
+        .table-th-right { @apply px-3 py-2.5 text-end md:px-4 md:py-3; }
         .table-cell        { @apply px-3 py-3 text-muted dark:text-mist-300 md:px-4 md:py-3.5; }
         .table-cell-ref     { @apply flex items-center gap-2 px-3 py-3 font-semibold md:px-4 md:py-3.5; }
         .table-cell-status  { @apply px-3 py-3 md:px-4 md:py-3.5; }
-        .table-cell-action  { @apply px-3 py-3 text-right md:px-4 md:py-3.5; }
+        .table-cell-action  { @apply px-3 py-3 text-end md:px-4 md:py-3.5; }
         .table-doc-icon { @apply size-4 shrink-0 text-muted dark:text-mist-300; }
         .disclaimer      { @apply mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-canvas dark:bg-night-700 p-3.5 md:mt-6 md:gap-4 md:p-4; }
         .disclaimer-text { @apply flex items-start gap-2 max-w-xl text-[11px] leading-snug text-muted dark:text-mist-300 md:gap-2.5 md:text-xs md:leading-normal; }
@@ -162,8 +164,8 @@
         .calendar-card-head { @apply flex items-center justify-between gap-2; }
         .hero-card-head     { @apply flex items-start justify-between gap-2 md:gap-3; }
         .logo-img    { @apply size-full object-contain; }
-        .data-table  { @apply w-full min-w-[620px] text-left text-[13px] md:min-w-[720px] md:text-sm; }
-        .header-actions { @apply ml-auto flex items-center gap-1.5; }
+        .data-table  { @apply w-full min-w-[620px] text-start text-[13px] md:min-w-[720px] md:text-sm; }
+        .header-actions { @apply ms-auto flex items-center gap-1.5; }
         .letterhead-card { @apply rounded-2xl bg-white dark:bg-night-800 ring-1 ring-black/5 dark:ring-white/10 flex flex-wrap items-start justify-between gap-3 p-3 md:gap-4 md:p-4; }
         .title-row    { @apply flex flex-wrap items-start justify-between gap-2 md:gap-3; }
         .progress-head{ @apply flex flex-wrap items-center justify-between gap-2; }
@@ -187,7 +189,7 @@
 
         /* ---------- Header brand / notifications ---------- */
         .brand-link { @apply whitespace-nowrap text-[15px] sm:text-lg font-extrabold tracking-tight text-brand dark:text-accent-400 md:text-xl lg:w-52 lg:text-2xl; }
-        .notif-dot  { @apply absolute right-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
+        .notif-dot  { @apply absolute end-2 top-2 size-2 rounded-full bg-danger ring-2 ring-white dark:ring-night-900; }
 
         /* ---------- Sidebar head / danger link ---------- */
         .sidebar-title    { @apply text-base font-extrabold text-brand dark:text-accent-400; }
@@ -247,7 +249,8 @@
         .disclaimer-icon { @apply mt-0.5 size-4 shrink-0; }
 
         /* ---------- Letterhead ---------- */
-        .letterhead-meta { @apply text-right; }
+        .letterhead-meta { @apply text-end; }
+        .icon-arrow      { @apply size-3.5 rtl:-scale-x-100; }
         .live-dot       { @apply relative flex size-3; }
         .live-dot-ping  { @apply absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75; }
         .live-dot-core  { @apply relative inline-flex size-3 rounded-full bg-brand; }
@@ -370,37 +373,39 @@
     <header class="app-topbar">
         <div class="app-topbar-inner">
             <button id="menuBtn" type="button" class="app-menu-btn">
-                <span class="sr-only">Open menu</span>
-                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" class="menu-icon" />
+                <span class="sr-only" data-i18n="common.openMenu">Open menu</span>
+                <img src="/assets/images/ui/menu-icon.png" alt="Open menu" data-i18n-alt="common.openMenu" class="menu-icon" />
             </button>
             <span class="app-brand-mark">
-                <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" class="logo-img-light">
-                <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" class="logo-img-dark">
+                <img src="/assets/images/pages/settings/logo-light.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="logo-img-light">
+                <img src="/assets/images/pages/settings/logo-dark.svg" alt="M3ak Morocco logo" data-i18n-alt="brand.logoAlt" class="logo-img-dark">
             </span>
 
-            <a href="/pages/app/education.html" class="brand-link">M3ak Morocco</a>
+            <a href="/pages/app/education.html" class="brand-link" data-i18n="brand.name">M3ak Morocco</a>
 
 
             <div class="header-actions">
+                <div data-lang-switcher></div>
+
                 <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode"
-                    aria-pressed="false">
+                    data-i18n-aria-label="common.toggleDarkMode" aria-pressed="false">
                     <span class="theme-toggle-thumb">
-                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" class="theme-toggle-sun">
-                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" class="theme-toggle-moon">
+                        <img src="/assets/images/pages/settings/sun.png" alt="Light mode" data-i18n-alt="common.lightMode" class="theme-toggle-sun">
+                        <img src="/assets/images/pages/settings/moon.png" alt="Dark mode" data-i18n-alt="common.darkMode" class="theme-toggle-moon">
                     </span>
                 </button>
 
                 <button type="button" class="app-icon-btn">
-                    <span class="sr-only">Notifications</span>
-                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" class="icon-img-sm dark:hidden" />
+                    <span class="sr-only" data-i18n="common.notifications">Notifications</span>
+                    <img src="/assets/images/pages/settings/icon-notification-light.svg" alt="Notifications" data-i18n-alt="common.notifications" class="icon-img-sm dark:hidden" />
                     <img src="/assets/images/pages/settings/icon-notification-dark.svg" alt="icon-notification" class="hidden icon-img-sm dark:block" />
                     <span class="notif-dot"></span>
                 </button>
 
 
                 <button type="button" class="app-avatar">
-                    <span class="sr-only">Your profile</span>
-                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" class="size-full rounded-full object-cover" data-auth="user" />
+                    <span class="sr-only" data-i18n="common.yourProfile">Your profile</span>
+                    <img src="/assets/images/pages/settings/photo-icon.svg" alt="image-profile" data-i18n-alt="common.profilePhoto" class="size-full rounded-full object-cover" data-auth="user" />
                     <img src="/assets/images/pages/settings/icon-user.svg" alt="icon-user" class="size-5 object-contain" data-auth="guest" />
                 </button>
             </div>
@@ -415,44 +420,44 @@
         <aside id="sidebar" class="app-sidebar -translate-x-full">
             <div class="sidebar-top sidebar-head">
                 <div class="sidebar-text">
-                    <p class="sidebar-title">M3ak Morocco</p>
-                    <p class="sidebar-sub">Citizen Services Portal</p>
+                    <p class="sidebar-title" data-i18n="brand.name">M3ak Morocco</p>
+                    <p class="sidebar-sub" data-i18n="brand.portal">Citizen Services Portal</p>
                 </div>
             </div>
 
             <nav class="sidebar-nav">
                 <a href="/pages/app/overview.html" class="nav-item">
                     <img src="/assets/images/ui/nav/my-space.png" alt="icon-my-space" class="nav-icon" />
-                    <span class="nav-label">My Space</span>
+                    <span class="nav-label" data-i18n="nav.mySpace">My Space</span>
                 </a>
                 <a href="/pages/app/transport.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" class="nav-icon" />
-                    <span class="nav-label">Transport</span>
+                    <img src="/assets/images/ui/nav/transport.png" alt="Transport" data-i18n-alt="nav.transport" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.transport">Transport</span>
                 </a>
                 <a href="/pages/app/housing.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" class="nav-icon" />
-                    <span class="nav-label">Housing</span>
+                    <img src="/assets/images/ui/nav/housing.png" alt="Housing" data-i18n-alt="nav.housing" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.housing">Housing</span>
                 </a>
                 <a href="/pages/app/jobs.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" class="nav-icon" />
-                    <span class="nav-label">Jobs</span>
+                    <img src="/assets/images/ui/nav/jobs.png" alt="Jobs" data-i18n-alt="nav.jobs" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.jobs">Jobs</span>
                 </a>
                 <a href="/pages/app/education.html" aria-current="page" class="nav-item--active">
-                    <img src="/assets/images/ui/nav/education.png" alt="Education" class="nav-icon"
+                    <img src="/assets/images/ui/nav/education.png" alt="Education" data-i18n-alt="nav.education" class="nav-icon"
                         style="filter:brightness(0) invert(1)" />
-                    <span class="nav-label">Education</span>
+                    <span class="nav-label" data-i18n="nav.education">Education</span>
                 </a>
                 <a href="/pages/app/health.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" class="nav-icon" />
-                    <span class="nav-label">Healthcare</span>
+                    <img src="/assets/images/ui/nav/healthcare.png" alt="Health" data-i18n-alt="nav.healthcare" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.healthcare">Healthcare</span>
                 </a>
                 <a href="/pages/app/payments.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" class="nav-icon" />
-                    <span class="nav-label">Payments</span>
+                    <img src="/assets/images/ui/nav/payment.png" alt="Payment" data-i18n-alt="nav.payments" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.payments">Payments</span>
                 </a>
                 <a href="/pages/app/finance.html" class="nav-item">
-                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" class="nav-icon" />
-                    <span class="nav-label">Finance</span>
+                    <img src="/assets/images/ui/nav/finance.png" alt="Finance" data-i18n-alt="nav.finance" class="nav-icon" />
+                    <span class="nav-label" data-i18n="nav.finance">Finance</span>
                 </a>
             </nav>
 
@@ -461,11 +466,11 @@
                     <span class="nav-icon-mask"
                         style="-webkit-mask-image:url(/assets/images/ui/nav/emergency.png);mask-image:url(/assets/images/ui/nav/emergency.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;"
                         aria-hidden="true"></span>
-                    <span class="nav-label nav-label--nowrap">Emergency Support</span>
+                    <span class="nav-label nav-label--nowrap" data-i18n="nav.emergencySupport">Emergency Support</span>
                 </a>
                 <a href="/pages/app/support.html" class="nav-item">
                     <img src="/assets/images/ui/nav/help-center.png" alt="icon-help-center" class="nav-item-icon-sm" />
-                    <span class="nav-label">Help Center</span>
+                    <span class="nav-label" data-i18n="nav.helpCenter">Help Center</span>
                 </a>
                 <a href="/pages/app/assistant.html" class="nav-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -473,11 +478,11 @@
                         <rect x="9" y="2" width="6" height="12" rx="3" />
                         <path d="M5 11a7 7 0 0 0 14 0M12 18v4" />
                     </svg>
-                    <span class="nav-label">AI Assistant</span>
+                    <span class="nav-label" data-i18n="nav.aiAssistant">AI Assistant</span>
                 </a>
                 <a href="/pages/auth/login.html" class="nav-item nav-item--logout" data-action="logout">
-                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-item-icon-sm" />
-                    <span class="nav-label">Logout</span>
+                    <img src="/assets/images/ui/nav/logout.png" alt="icon-logout" class="nav-item-icon-sm rtl:-scale-x-100" />
+                    <span class="nav-label" data-i18n="nav.logout">Logout</span>
                 </a>
             </div>
         </aside>
@@ -492,48 +497,50 @@
                         <img src="/assets/images/pages/education/icon-royale.svg" alt="icon-royal-emblem">
                     </span>
                     <div>
-                        <p class="letterhead-title">Kingdom of Morocco</p>
-                        <p class="letterhead-sub">Ministry of National Education, Preschool and
+                        <p class="letterhead-title" data-i18n="brand.kingdom">Kingdom of Morocco</p>
+                        <p class="letterhead-sub" data-i18n="education.ministry">Ministry of National Education, Preschool and
                             Sports · MESRSI</p>
                     </div>
                 </div>
                 <div class="letterhead-meta">
-                    <span class="verified-badge">
+                    <span class="verified-badge" data-i18n="education.portalBadge">
                         <span class="live-dot">
                             <span class="live-dot-ping"></span>
                             <span class="live-dot-core"></span>
                         </span>
                         Unified Massar &amp; Minhaty National Portal
                     </span>
-                    <p class="letterhead-legal">Legal Ref: Dahir n° 1-20-80 (Law 43-20)
+                    <p class="letterhead-legal" data-i18n="education.legalRef">Legal Ref: Dahir n° 1-20-80 (Law 43-20)
                     </p>
                 </div>
             </div>
 
-            <span class="info-pill-blue info-pill-blue--spaced">
+            <span class="info-pill-blue info-pill-blue--spaced" data-i18n="education.citizenSpace">
                 Citizen Space · National &amp; Higher Education
             </span>
 
             <!-- TITLE -->
             <div class="title-block">
                 <div>
-                    <h1 class="page-title">Education &amp; Higher Learning
+                    <h1 class="page-title" data-i18n="education.title">Education &amp; Higher Learning
                         Services</h1>
-                    <p class="page-subtitle">
+                    <p class="page-subtitle" data-i18n="education.subtitle">
                         Unified portal for national school registration, Massar student tracking, university
                         pre-registration, scholarships (Minhaty), and Barid Al-Maghrib certified degree credentials.
                     </p>
                 </div>
                 <div class="title-actions">
                     <button type="button" data-demo-action="Preparing your Baccalaureate certificate…"
-                        class="btn-outline">
+                        data-i18n-attr="data-demo-action:education.actions.bac"
+                        class="btn-outline" data-i18n="education.bacCert">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                             <path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16" />
                         </svg>
                         Baccalaureate Certificate
                     </button>
-                    <button type="button" data-demo-action="Starting a new dossier…" class="btn-primary">
+                    <button type="button" data-demo-action="Starting a new dossier…" class="btn-primary"
+                        data-i18n-attr="data-demo-action:education.actions.newDossier" data-i18n="education.newDossier">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                             <path d="M12 5v14M5 12h14" />
@@ -548,30 +555,32 @@
 
                 <section class="hero-card hero-card--green">
                     <div class="hero-card-head">
-                        <p class="hero-label">Session 2026/2027 ·
+                        <p class="hero-label" data-i18n="education.session">Session 2026/2027 ·
                             Open</p>
-                        <span class="hero-badge">
+                        <span class="hero-badge" data-i18n="education.rsuConnected">
                             <span class="hero-dot"></span>RSU Connected
                         </span>
                     </div>
-                    <h2 class="hero-heading">Minhaty (منحتي) National Scholarship</h2>
-                    <p class="hero-text">
+                    <h2 class="hero-heading" data-i18n="education.minhatyTitle">Minhaty (منحتي) National Scholarship</h2>
+                    <p class="hero-text" data-i18n="education.minhatyText">
                         Direct application &amp; automated eligibility tracking for higher education grants up to 6,334
                         MAD/year, indexed with the Moroccan Social Register (RSU).
                     </p>
                     <div class="hero-stat-block">
-                        <p class="hero-stat-label">Filing deadline</p>
-                        <p class="hero-stat-value">31 July 2027</p>
+                        <p class="hero-stat-label" data-i18n="education.deadline">Filing deadline</p>
+                        <p class="hero-stat-value" data-i18n="education.deadlineValue">31 July 2027</p>
                     </div>
                     <div class="hero-actions">
                         <button type="button" data-demo-action="Opening eligibility criteria…"
-                            class="hero-btn-outline">Eligibility
+                            data-i18n-attr="data-demo-action:education.actions.eligibility"
+                            class="hero-btn-outline" data-i18n="education.eligibility">Eligibility
                             Criteria</button>
                         <button type="button" data-demo-action="Opening the Minhaty application…"
-                            class="hero-btn-solid hero-btn-solid--green">
+                            data-i18n-attr="data-demo-action:education.actions.minhaty"
+                            class="hero-btn-solid hero-btn-solid--green" data-i18n="education.apply">
                             Check Eligibility &amp; Apply
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-arrow">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </button>
@@ -580,31 +589,33 @@
 
                 <section class="hero-card hero-card--blue">
                     <div class="hero-card-head">
-                        <p class="hero-label">School Year
+                        <p class="hero-label" data-i18n="education.schoolYear">School Year
                             2026–2027</p>
-                        <span class="hero-badge">
+                        <span class="hero-badge" data-i18n="education.massarSynced">
                             <span class="hero-dot"></span>Massar Code Synced
                         </span>
                     </div>
-                    <h2 class="hero-heading">Massar &amp; Tawjihi Student Portal</h2>
-                    <p class="hero-text">
+                    <h2 class="hero-heading" data-i18n="education.massarTitle">Massar &amp; Tawjihi Student Portal</h2>
+                    <p class="hero-text" data-i18n="education.massarText">
                         Official school transcripts, continuous assessments, national baccalaureate tracking, and
                         automated university guidance matching.
                     </p>
                     <div class="hero-stat-block">
-                        <p class="hero-stat-label">Pre-Bac applications
+                        <p class="hero-stat-label" data-i18n="education.preBac">Pre-Bac applications
                         </p>
-                        <p class="hero-stat-value">4 Wishes Submitted</p>
+                        <p class="hero-stat-value" data-i18n="education.wishes">4 Wishes Submitted</p>
                     </div>
                     <div class="hero-actions">
                         <button type="button" data-demo-action="Opening transcripts & grades…"
-                            class="hero-btn-outline">Transcripts
+                            data-i18n-attr="data-demo-action:education.actions.transcripts"
+                            class="hero-btn-outline" data-i18n="education.transcripts">Transcripts
                             &amp; Grades</button>
                         <button type="button" data-demo-action="Opening the student dossier…"
-                            class="hero-btn-solid hero-btn-solid--blue">
+                            data-i18n-attr="data-demo-action:education.actions.dossier"
+                            class="hero-btn-solid hero-btn-solid--blue" data-i18n="education.dossier">
                             Access Student Dossier
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-arrow">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </button>
@@ -620,15 +631,15 @@
                         <div class="info-row">
                             <span class="profile-avatar">YA</span>
                             <div class="info-row-text">
-                                <p class="profile-name">
+                                <p class="profile-name" data-i18n="education.student.name">
                                     Yassine Alaoui
-                                    <span class="profile-status">Active</span>
+                                    <span class="profile-status" data-i18n="education.student.active">Active</span>
                                 </p>
-                                <p class="profile-meta">Massar Code: R130094821 ·
+                                <p class="profile-meta" data-i18n="education.student.meta">Massar Code: R130094821 ·
                                     Lycée Ibn Zohr, Agadir</p>
                             </div>
                         </div>
-                        <span class="verified-badge">
+                        <span class="verified-badge" data-i18n="education.student.cnie">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="icon-xs-fixed">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
@@ -640,43 +651,43 @@
 
                     <div class="stat-row">
                         <div class="stat-cell">
-                            <p class="stat-value">2nd Year</p>
-                            <p class="stat-label">Study Cycle · Baccalaureate,
+                            <p class="stat-value" data-i18n="education.student.year">2nd Year</p>
+                            <p class="stat-label" data-i18n="education.student.cycle">Study Cycle · Baccalaureate,
                                 Science Mathematics A</p>
                         </div>
                         <div class="stat-cell stat-cell--divided">
                             <p class="stat-value stat-value--accent">17.84/20</p>
-                            <p class="stat-label">Overall Average (S1) · Mention:
+                            <p class="stat-label" data-i18n="education.student.average">Overall Average (S1) · Mention:
                                 Very Good</p>
                         </div>
                         <div class="stat-cell">
-                            <p class="stat-value">Validated</p>
-                            <p class="stat-label">Minhaty Scholarship · Paid:
+                            <p class="stat-value" data-i18n="education.student.validated">Validated</p>
+                            <p class="stat-label" data-i18n="education.student.scholarship">Minhaty Scholarship · Paid:
                                 1,900 MAD (1st Installment)</p>
                         </div>
                     </div>
 
                     <div class="progress-block">
                         <div class="progress-head">
-                            <p class="progress-title">Tawjihi 2027 Admission Progress</p>
-                            <p class="progress-status">Step 3 of 4 · Main List
+                            <p class="progress-title" data-i18n="education.progress.title">Tawjihi 2027 Admission Progress</p>
+                            <p class="progress-status" data-i18n="education.progress.status">Step 3 of 4 · Main List
                                 Confirmation</p>
                         </div>
                         <div class="progress-track">
                             <span class="progress-fill"></span>
                         </div>
                         <div class="progress-steps">
-                            <span>Application Filed</span>
-                            <span>Dossier Review</span>
-                            <span class="progress-step--current">Place Confirmation</span>
-                            <span>Administrative Registration</span>
+                            <span data-i18n="education.progress.filed">Application Filed</span>
+                            <span data-i18n="education.progress.review">Dossier Review</span>
+                            <span class="progress-step--current" data-i18n="education.progress.confirmation">Place Confirmation</span>
+                            <span data-i18n="education.progress.registration">Administrative Registration</span>
                         </div>
                     </div>
                 </section>
 
                 <section class="card calendar-card">
                     <div class="calendar-card-head">
-                        <p class="calendar-card-title">
+                        <p class="calendar-card-title" data-i18n="education.calendar.title">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="icon-sm">
                                 <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -684,46 +695,47 @@
                             </svg>
                             Academic Calendar
                         </p>
-                        <span class="calendar-badge">Official</span>
+                        <span class="calendar-badge" data-i18n="education.calendar.official">Official</span>
                     </div>
 
                     <ul class="calendar-list">
                         <li class="calendar-item">
                             <div class="calendar-date">
-                                <span class="calendar-month calendar-month--red">Jun</span>
+                                <span class="calendar-month calendar-month--red" data-i18n="education.calendar.jun">Jun</span>
                                 <span class="calendar-day">04</span>
                             </div>
                             <div class="calendar-event">
-                                <p class="calendar-event-title">National Baccalaureate Exams</p>
-                                <p class="calendar-event-sub">All tracks,
+                                <p class="calendar-event-title" data-i18n="education.calendar.bac">National Baccalaureate Exams</p>
+                                <p class="calendar-event-sub" data-i18n="education.calendar.bacSub">All tracks,
                                     standard session</p>
                             </div>
                         </li>
                         <li class="calendar-item">
                             <div class="calendar-date">
-                                <span class="calendar-month calendar-month--blue">Jul</span>
+                                <span class="calendar-month calendar-month--blue" data-i18n="education.calendar.jul">Jul</span>
                                 <span class="calendar-day">12</span>
                             </div>
                             <div class="calendar-event">
-                                <p class="calendar-event-title">ENSA / ENSAM / ENCG Entrance Exams</p>
-                                <p class="calendar-event-sub">Unified
+                                <p class="calendar-event-title" data-i18n="education.calendar.ensa">ENSA / ENSAM / ENCG Entrance Exams</p>
+                                <p class="calendar-event-sub" data-i18n="education.calendar.ensaSub">Unified
                                     pre-selection platform</p>
                             </div>
                         </li>
                         <li class="calendar-item">
                             <div class="calendar-date">
-                                <span class="calendar-month calendar-month--amber">Aug</span>
+                                <span class="calendar-month calendar-month--amber" data-i18n="education.calendar.aug">Aug</span>
                                 <span class="calendar-day">28</span>
                             </div>
                             <div class="calendar-event">
-                                <p class="calendar-event-title">OFPPT &amp; Métiers Registration Closes</p>
-                                <p class="calendar-event-sub">Qualifying
+                                <p class="calendar-event-title" data-i18n="education.calendar.ofppt">OFPPT &amp; Métiers Registration Closes</p>
+                                <p class="calendar-event-sub" data-i18n="education.calendar.ofpptSub">Qualifying
                                     vocational programs</p>
                             </div>
                         </li>
                     </ul>
 
-                    <button type="button" data-demo-action="Syncing your government calendar…" class="btn-sync">
+                    <button type="button" data-demo-action="Syncing your government calendar…" class="btn-sync"
+                        data-i18n-attr="data-demo-action:education.actions.sync" data-i18n="education.calendar.sync">
                         Sync Government Calendar
                     </button>
                 </section>
@@ -733,11 +745,11 @@
             <section class="section-block">
                 <div class="section-head">
                     <div>
-                        <h2 class="section-title">Key Administrative Education Services</h2>
-                        <p class="section-subtitle">Official government portals interconnected
+                        <h2 class="section-title" data-i18n="education.servicesTitle">Key Administrative Education Services</h2>
+                        <p class="section-subtitle" data-i18n="education.servicesSub">Official government portals interconnected
                             via the national digital identity framework.</p>
                     </div>
-                    <span class="info-pill-blue">
+                    <span class="info-pill-blue" data-i18n="education.cnieRequired">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="icon-xs-fixed">
                             <rect x="5" y="11" width="14" height="10" rx="2" />
@@ -749,7 +761,8 @@
 
                 <div class="service-grid">
 
-                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="service-card">
+                    <a href="#" data-demo-action="Opening School Enrollment (Massar)…" class="service-card"
+                        data-i18n-attr="data-demo-action:education.actions.enrollment">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="icon-md">
@@ -758,20 +771,21 @@
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
                             </svg>
                         </span>
-                        <h3 class="service-title">School Enrollment (Massar)</h3>
-                        <p class="service-desc">Register new students in
+                        <h3 class="service-title" data-i18n="education.services.enrollment">School Enrollment (Massar)</h3>
+                        <p class="service-desc" data-i18n="education.services.enrollmentText">Register new students in
                             primary/secondary public institutions and transfer academic dossiers between regional
                             delegations.</p>
-                        <span class="service-link">
+                        <span class="service-link" data-i18n="education.services.enrollmentLink">
                             Primary &amp; Middle School Portal
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-arrow">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="service-card">
+                    <a href="#" data-demo-action="Opening Equivalence & Degrees…" class="service-card"
+                        data-i18n-attr="data-demo-action:education.actions.equivalence">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="icon-md">
@@ -780,40 +794,42 @@
                                 <path d="M9 12l2 2 4-4" />
                             </svg>
                         </span>
-                        <h3 class="service-title">Equivalence &amp; Degrees</h3>
-                        <p class="service-desc">Digital degree
+                        <h3 class="service-title" data-i18n="education.services.equivalence">Equivalence &amp; Degrees</h3>
+                        <p class="service-desc" data-i18n="education.services.equivalenceText">Digital degree
                             verification, apostille authentication, and equivalence for foreign credentials with
                             official Barid Al-Maghrib QR codes.</p>
-                        <span class="service-link">
+                        <span class="service-link" data-i18n="education.services.equivalenceLink">
                             Secure Electronic Stamp
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-arrow">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening University Pre-registration…" class="service-card">
+                    <a href="#" data-demo-action="Opening University Pre-registration…" class="service-card"
+                        data-i18n-attr="data-demo-action:education.actions.university">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="icon-md">
                                 <path d="M4 22h16M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M2 6l10-4 10 4" />
                             </svg>
                         </span>
-                        <h3 class="service-title">University Pre-registration</h3>
-                        <p class="service-desc">Unified applications for
+                        <h3 class="service-title" data-i18n="education.services.university">University Pre-registration</h3>
+                        <p class="service-desc" data-i18n="education.services.universityText">Unified applications for
                             Moroccan public universities, engineering faculties (ENSA, ENSAM), medical faculties
                             (FMP/FMD), and business schools (ENCG).</p>
                         <span class="service-link">
                             Cursus Sup Maroc
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-arrow">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
                     </a>
 
-                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="service-card">
+                    <a href="#" data-demo-action="Opening Vocational Training (OFPPT)…" class="service-card"
+                        data-i18n-attr="data-demo-action:education.actions.vocational">
                         <span class="icon-badge">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" class="icon-md">
@@ -821,14 +837,14 @@
                                     d="M14.7 6.3a4 4 0 0 0-5.6 5.6L2 19l3 3 7.1-7.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2-2 2.5-2.5Z" />
                             </svg>
                         </span>
-                        <h3 class="service-title">Vocational Training (OFPPT)</h3>
-                        <p class="service-desc">Registration for
+                        <h3 class="service-title" data-i18n="education.services.vocational">Vocational Training (OFPPT)</h3>
+                        <p class="service-desc" data-i18n="education.services.vocationalText">Registration for
                             specialized technician (TS) degrees, Cités des Métiers et des Compétences (CMC), and
                             recognized vocational qualifications.</p>
-                        <span class="service-link">
+                        <span class="service-link" data-i18n="education.services.vocationalLink">
                             OFPPT Tskwine 2027
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
+                                stroke-linecap="round" stroke-linejoin="round" class="icon-arrow">
                                 <path d="M5 12h14M13 5l7 7-7 7" />
                             </svg>
                         </span>
@@ -840,11 +856,11 @@
             <section class="section-block">
                 <div class="section-head">
                     <div>
-                        <h2 class="section-title">Active Requests &amp; Digital Academic Records</h2>
-                        <p class="section-subtitle">Directly connected to the National
+                        <h2 class="section-title" data-i18n="education.requestsTitle">Active Requests &amp; Digital Academic Records</h2>
+                        <p class="section-subtitle" data-i18n="education.requestsSub">Directly connected to the National
                             Education Information System (Système d'Information Massar).</p>
                     </div>
-                    <span class="table-showing-badge">Showing:
+                    <span class="table-showing-badge" data-i18n="education.showing">Showing:
                         All Procedures (3)</span>
                 </div>
 
@@ -852,12 +868,12 @@
                     <table class="data-table">
                         <thead>
                             <tr class="table-header-row">
-                                <th class="table-th">Dossier / Reference</th>
-                                <th class="table-th">Beneficiary</th>
-                                <th class="table-th">Service Type</th>
-                                <th class="table-th">Filing Date</th>
-                                <th class="table-th">Status</th>
-                                <th class="table-th-right">Action</th>
+                                <th class="table-th" data-i18n="education.table.reference">Dossier / Reference</th>
+                                <th class="table-th" data-i18n="education.table.beneficiary">Beneficiary</th>
+                                <th class="table-th" data-i18n="education.table.service">Service Type</th>
+                                <th class="table-th" data-i18n="education.table.date">Filing Date</th>
+                                <th class="table-th" data-i18n="education.table.status">Status</th>
+                                <th class="table-th-right" data-i18n="education.table.action">Action</th>
                             </tr>
                         </thead>
                         <tbody class="data-table-body">
@@ -870,18 +886,19 @@
                                     </svg>
                                     MHT-2027-89412
                                 </td>
-                                <td class="table-cell">Yassine Alaoui (Son)</td>
-                                <td class="table-cell">Minhaty National Scholarship – 1st
+                                <td class="table-cell" data-i18n="education.table.son">Yassine Alaoui (Son)</td>
+                                <td class="table-cell" data-i18n="education.table.r1Service">Minhaty National Scholarship – 1st
                                     Cycle</td>
-                                <td class="table-cell">14 Jan 2027</td>
+                                <td class="table-cell" data-i18n="education.table.r1Date">14 Jan 2027</td>
                                 <td class="table-cell-status">
                                     <span
-                                        class="status-pill status-pill--success">Validated
+                                        class="status-pill status-pill--success" data-i18n="education.table.r1Status">Validated
                                         + Bank Transfer</span>
                                 </td>
                                 <td class="table-cell-action">
                                     <a href="#" data-demo-action="Opening dossier MHT-2027-89412…"
-                                        class="table-action-link">Consult</a>
+                                        data-i18n-attr="data-demo-action:education.actions.consult"
+                                        class="table-action-link" data-i18n="education.table.consult">Consult</a>
                                 </td>
                             </tr>
                             <tr>
@@ -893,18 +910,19 @@
                                     </svg>
                                     EQV-2026-55021
                                 </td>
-                                <td class="table-cell">Meryem Alaoui (Holder)</td>
-                                <td class="table-cell">Specialized Master Equivalence
+                                <td class="table-cell" data-i18n="education.table.holder">Meryem Alaoui (Holder)</td>
+                                <td class="table-cell" data-i18n="education.table.r2Service">Specialized Master Equivalence
                                     (MESRSI)</td>
-                                <td class="table-cell">03 Dec 2026</td>
+                                <td class="table-cell" data-i18n="education.table.r2Date">03 Dec 2026</td>
                                 <td class="table-cell-status">
                                     <span
-                                        class="status-pill status-pill--info">Digital
+                                        class="status-pill status-pill--info" data-i18n="education.table.r2Status">Digital
                                         Certificate Ready</span>
                                 </td>
                                 <td class="table-cell-action">
                                     <a href="#" data-demo-action="Downloading QR certificate for EQV-2026-55021…"
-                                        class="table-action-link">Download
+                                        data-i18n-attr="data-demo-action:education.actions.qr"
+                                        class="table-action-link" data-i18n="education.table.downloadQr">Download
                                         QR</a>
                                 </td>
                             </tr>
@@ -917,18 +935,19 @@
                                     </svg>
                                     TWJ-2027-01039
                                 </td>
-                                <td class="table-cell">Yassine Alaoui (Son)</td>
-                                <td class="table-cell">ENSA Rabat / Tangier Entrance
+                                <td class="table-cell" data-i18n="education.table.son">Yassine Alaoui (Son)</td>
+                                <td class="table-cell" data-i18n="education.table.r3Service">ENSA Rabat / Tangier Entrance
                                     Application</td>
-                                <td class="table-cell">18 Feb 2027</td>
+                                <td class="table-cell" data-i18n="education.table.r3Date">18 Feb 2027</td>
                                 <td class="table-cell-status">
                                     <span
-                                        class="status-pill status-pill--warning">Awaiting
+                                        class="status-pill status-pill--warning" data-i18n="education.table.r3Status">Awaiting
                                         S2 Bac Grades</span>
                                 </td>
                                 <td class="table-cell-action">
                                     <a href="#" data-demo-action="Editing wishes for TWJ-2027-01039…"
-                                        class="table-action-link">Edit
+                                        data-i18n-attr="data-demo-action:education.actions.wishes"
+                                        class="table-action-link" data-i18n="education.table.editWishes">Edit
                                         Wishes</a>
                                 </td>
                             </tr>
@@ -939,7 +958,7 @@
 
             <!-- LEGAL DISCLAIMER -->
             <div class="disclaimer">
-                <p class="disclaimer-text">
+                <p class="disclaimer-text" data-i18n="education.disclaimer">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="disclaimer-icon">
                         <circle cx="12" cy="12" r="10" />
@@ -949,9 +968,10 @@
                     protection of personal data (CNDP) and Law n° 43-20 on trusted electronic transaction services.
                 </p>
                 <div class="info-row">
-                    <span class="disclaimer-ref">CNDP Ref: A-S-102/2023</span>
+                    <span class="disclaimer-ref" data-i18n="education.cndpRef">CNDP Ref: A-S-102/2023</span>
                     <button type="button" data-demo-action="Connecting you to dedicated assistance…"
-                        class="btn-primary">
+                        data-i18n-attr="data-demo-action:education.actions.assistance"
+                        class="btn-primary" data-i18n="education.assistance">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="icon-xs">
                             <path
@@ -1001,27 +1021,27 @@
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -1035,14 +1055,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -1054,18 +1074,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>
