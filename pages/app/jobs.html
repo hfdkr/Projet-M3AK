@@ -856,12 +856,46 @@
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") openDrawer(false); });
         sidebar.addEventListener("mouseleave", function () { if (window.matchMedia("(max-width: 1023px)").matches) openDrawer(false); });
 
+        /* ── Translation helpers ──
+           The data below stays in English (filters and sorting match on it);
+           what is shown goes through translations.js, with the English data
+           as the fallback. */
+        function tr(key, fallback, vars) {
+            var value = M3akI18n.t(key, vars);
+            if (value !== key) return value;
+            return String(fallback).replace(/\{(\w+)\}/g, function (m, k) {
+                return vars && Object.prototype.hasOwnProperty.call(vars, k) ? vars[k] : m;
+            });
+        }
+        var CATEGORY_KEYS = {
+            "Public Service (Civil Service Exams)": "publicService",
+            "Tech & Telecom": "tech",
+            "Public Health": "health",
+            "Finance & Customs": "finance",
+            "Transport & Logistics": "transport",
+            "Education & Teaching": "education",
+            "Civil Security & HR": "civil"
+        };
+        var TAG_KEYS = {
+            "Open Position": "open",
+            "CNIE Required": "cnie",
+            "Master's Degree Required": "master",
+            "No Oral Interview": "noOral",
+            "New": "new",
+            "Verified Permanent Contract": "permanent",
+            "Hybrid Remote": "hybrid"
+        };
+        function categoryName(name) { return tr("jobs.categories." + CATEGORY_KEYS[name], name); }
+        function tagName(name) { return tr("jobs.jobTags." + TAG_KEYS[name], name); }
+        function jobText(j, field) { return tr("jobs.data." + j.id + "." + field, j[field]); }
+
         /* ── Data ──
            No live jobs API/backend yet — static/demo data, like the rest of
            the app (see README). Mirrors the M3ak civil-service job portal:
            verified government (CNIE) postings + certified private-sector ones. */
         var JOBS = [
             {
+                id: "j1",
                 org: "Ministry of Economy and Finance", isPublic: true,
                 category: "Public Service (Civil Service Exams)",
                 title: "Chief State Engineer — Information Systems Security & Sovereign Cloud",
@@ -876,6 +910,7 @@
                 remote: false
             },
             {
+                id: "j2",
                 org: "Ministry of Health and Social Protection", isPublic: true,
                 category: "Public Health",
                 title: "1st Grade Specialist Physician — CHU Ibn Sina & CHU Tangier",
@@ -890,6 +925,7 @@
                 remote: false
             },
             {
+                id: "j3",
                 org: "Casablanca Finance City — Tech Hub", isPublic: false,
                 category: "Tech & Telecom",
                 title: "Senior Fullstack Tech Lead (React, Node.js, Go) — FinTech Hub",
@@ -903,6 +939,7 @@
                 remote: true
             },
             {
+                id: "j4",
                 org: "Customs Chamber — International Logistics", isPublic: false,
                 category: "Transport & Logistics",
                 title: "Director of Port Operations & Maritime Supply Chain",
@@ -938,7 +975,7 @@
         var ICON_CHEVRON = '<path d="m9 18 6-6-6-6" />';
 
         function fmtSalary(min, max) {
-            return min.toLocaleString("en-US") + " – " + max.toLocaleString("en-US") + " MAD";
+            return min.toLocaleString("en-US") + " – " + max.toLocaleString("en-US") + " " + tr("common.mad", "MAD");
         }
 
         /* ── Job cards ── */
@@ -950,7 +987,8 @@
 
         function jobCard(j) {
             var scope = j.isPublic ? "public" : "private";
-            var applyLabel = j.isPublic ? "Apply Now" : "Apply with M3ak Profile";
+            var applyLabel = j.isPublic ? tr("jobs.card.applyPublic", "Apply Now") : tr("jobs.card.applyPrivate", "Apply with M3ak Profile");
+            var title = jobText(j, "title");
             return '' +
                 '<article data-job class="job-card">' +
                 '<div class="job-card-row">' +
@@ -959,35 +997,35 @@
 
                 '<div class="job-head">' +
                 '<div class="job-head-main">' +
-                '<p class="job-org job-org--' + scope + '">' + j.org + '</p>' +
-                (j.pill ? '<span class="job-deadline-pill ' + (PILL_TONE[j.pillTone] || PILL_TONE.open) + '">' + ICON(ICON_CLOCK, "size-2.5") + j.pill + '</span>' : "") +
-                (j.ref ? '<p class="job-ref">' + j.ref + '</p>' : "") +
+                '<p class="job-org job-org--' + scope + '">' + jobText(j, "org") + '</p>' +
+                (j.pill ? '<span class="job-deadline-pill ' + (PILL_TONE[j.pillTone] || PILL_TONE.open) + '">' + ICON(ICON_CLOCK, "size-2.5") + jobText(j, "pill") + '</span>' : "") +
+                (j.ref ? '<p class="job-ref">' + jobText(j, "ref") + '</p>' : "") +
                 '</div>' +
                 '<span class="job-salary-wrap">' +
-                (j.salaryNote ? '<span class="job-salary-label">' + j.salaryNote + '</span>' : "") +
+                (j.salaryNote ? '<span class="job-salary-label">' + jobText(j, "salaryNote") + '</span>' : "") +
                 '<span class="job-salary">' + fmtSalary(j.salaryMin, j.salaryMax) + '</span>' +
-                '<span class="job-salary-unit">MAD / month</span>' +
+                '<span class="job-salary-unit">' + tr("jobs.card.perMonth", "MAD / month") + '</span>' +
                 '</span>' +
                 '</div>' +
 
-                '<h3 class="job-title">' + j.title + '</h3>' +
-                '<p class="job-desc">' + j.desc + '</p>' +
+                '<h3 class="job-title">' + title + '</h3>' +
+                '<p class="job-desc">' + jobText(j, "desc") + '</p>' +
 
                 '<div class="job-tags">' +
-                j.tags.map(function (t) { return '<span class="job-tag">' + t + '</span>'; }).join("") +
+                j.tags.map(function (t) { return '<span class="job-tag">' + tagName(t) + '</span>'; }).join("") +
                 '</div>' +
 
                 '<div class="job-meta-row">' +
-                '<span class="job-meta">' + ICON(ICON_PIN, "size-3") + j.location + '</span>' +
-                '<span class="job-meta">' + ICON(ICON_CLOCK, "size-3") + j.deadline + '</span>' +
-                '<span class="job-meta">' + ICON(ICON_USERS, "size-3") + j.posted + '</span>' +
+                '<span class="job-meta">' + ICON(ICON_PIN, "size-3") + jobText(j, "location") + '</span>' +
+                '<span class="job-meta">' + ICON(ICON_CLOCK, "size-3") + jobText(j, "deadline") + '</span>' +
+                '<span class="job-meta">' + ICON(ICON_USERS, "size-3") + jobText(j, "posted") + '</span>' +
                 '</div>' +
 
                 '<div class="job-foot">' +
-                '<span class="job-cnie">' + ICON(ICON_CHECK_SHIELD, "size-3.5") + (j.isPublic ? "Apply with 1-Click CNIE" : "100% Declared CNSS") + '</span>' +
+                '<span class="job-cnie">' + ICON(ICON_CHECK_SHIELD, "size-3.5") + (j.isPublic ? tr("jobs.card.cnie", "Apply with 1-Click CNIE") : tr("jobs.card.cnss", "100% Declared CNSS")) + '</span>' +
                 '<div class="job-actions">' +
-                '<button type="button" data-save="' + j.title + '" class="job-save-btn">' + ICON(ICON_BOOKMARK, "size-3.5") + 'Save</button>' +
-                '<button type="button" data-apply="' + j.title + '" class="job-apply-btn' + (j.isPublic ? "" : " job-apply-btn--private") + '">' + ICON(ICON_CHECK_SHIELD, "size-3.5") + applyLabel + '</button>' +
+                '<button type="button" data-save="' + title + '" class="job-save-btn">' + ICON(ICON_BOOKMARK, "size-3.5") + tr("jobs.card.save", "Save") + '</button>' +
+                '<button type="button" data-apply="' + title + '" class="job-apply-btn' + (j.isPublic ? "" : " job-apply-btn--private") + '">' + ICON(ICON_CHECK_SHIELD, "size-3.5") + applyLabel + '</button>' +
                 '</div></div>' +
 
                 '</div></div>' +
@@ -998,62 +1036,74 @@
             return '' +
                 '<button type="button" data-sector="' + s.name + '" class="sector-tile">' +
                 '<span class="sector-tile-icon"><img src="' + s.icon + '" alt="icon-sector" class="sector-tile-icon-img" /></span>' +
-                '<span class="sector-tile-name">' + s.name + '</span>' +
-                '<span class="sector-tile-count">' + s.count + ' Contests</span>' +
+                '<span class="sector-tile-name">' + categoryName(s.name) + '</span>' +
+                '<span class="sector-tile-count">' + tr("jobs.card.contests", "{n} Contests", { n: s.count }) + '</span>' +
                 '</button>';
         }
-        document.getElementById("sectorGrid").innerHTML = SECTORS.map(sectorTile).join("");
+        function renderSectors() {
+            document.getElementById("sectorGrid").innerHTML = SECTORS.map(sectorTile).join("");
+        }
 
         /* ── Active applications (right rail) ── */
         var APPLICATIONS = [
             {
+                id: "a1",
                 org: "Ministry of Finance", title: "Digitalization Project Manager",
                 meta: "Interview: Nov 18, 2026 in Rabat",
                 status: "Oral Exam", statusClass: "bg-amber-100 dark:bg-amber-500/15 text-amber-700 dark:text-amber-400",
                 action: "Notice PDF"
             },
             {
+                id: "a2",
                 org: "ANP (Moroccan Ports)", title: "Information Systems Auditor",
                 meta: "Pre-selection validated by diploma",
                 status: "File Approved", statusClass: "bg-brand-soft dark:bg-accent-400/15 text-brand dark:text-accent-400",
                 action: "Track"
             },
             {
+                id: "a3",
                 org: "Maroc Telecom", title: "Cloud Solutions Architect",
                 meta: "Transmitted to the Tech department",
                 status: "HR Review", statusClass: "bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-400",
                 action: "Details"
             }
         ];
-        document.getElementById("applicationsList").innerHTML = APPLICATIONS.map(function (a) {
-            return '' +
-                '<li class="app-item">' +
-                '<div class="app-item-head">' +
-                '<p class="app-org">' + a.org + '</p>' +
-                '<span class="app-status ' + a.statusClass + '">' + a.status + '</span>' +
-                '</div>' +
-                '<p class="app-title">' + a.title + '</p>' +
-                '<p class="app-meta">' + a.meta + '</p>' +
-                '<div class="app-foot"><span class="app-action">' + a.action + '</span></div>' +
-                '</li>';
-        }).join("");
+        function renderApplications() {
+            document.getElementById("applicationsList").innerHTML = APPLICATIONS.map(function (a) {
+                function text(field) { return tr("jobs.applications." + a.id + "." + field, a[field]); }
+                return '' +
+                    '<li class="app-item">' +
+                    '<div class="app-item-head">' +
+                    '<p class="app-org">' + text("org") + '</p>' +
+                    '<span class="app-status ' + a.statusClass + '">' + text("status") + '</span>' +
+                    '</div>' +
+                    '<p class="app-title">' + text("title") + '</p>' +
+                    '<p class="app-meta">' + text("meta") + '</p>' +
+                    '<div class="app-foot"><span class="app-action">' + text("action") + '</span></div>' +
+                    '</li>';
+            }).join("");
+        }
 
         /* ── Exam prep tools (right rail) ── */
         var TOOLS = [
-            { name: "Past Papers & MCQs (Grade 10 & 11)", icon: '<path d="M4 19.5V6a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 1.5Z" /><path d="M8 8h7M8 12h5" />' },
-            { name: "M3ak AI Oral Interview Simulator", icon: '<rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" />' },
-            { name: "Administrative Law & Moroccan Constitution", icon: '<path d="M12 3v18M4 20h16M6 9c0-2 3-4 6-4M18 9c0-2-3-4-6-4" />' }
+            { id: "pastPapers", name: "Past Papers & MCQs (Grade 10 & 11)", icon: '<path d="M4 19.5V6a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 1.5Z" /><path d="M8 8h7M8 12h5" />' },
+            { id: "simulator", name: "M3ak AI Oral Interview Simulator", icon: '<rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v4" />' },
+            { id: "law", name: "Administrative Law & Moroccan Constitution", icon: '<path d="M12 3v18M4 20h16M6 9c0-2 3-4 6-4M18 9c0-2-3-4-6-4" />' }
         ];
-        document.getElementById("toolsList").innerHTML = TOOLS.map(function (t) {
-            return '' +
-                '<button type="button" data-tool="' + t.name + '" class="tool-btn">' +
-                '<span class="tool-icon">' + ICON(t.icon, "size-3.5") + '</span>' +
-                '<span class="tool-name">' + t.name + '</span>' +
-                ICON(ICON_CHEVRON, "tool-chevron") +
-                '</button>';
-        }).join("");
-        document.querySelectorAll("[data-tool]").forEach(function (btn) {
-            btn.addEventListener("click", function () { toast("Opening — " + btn.dataset.tool + "…"); });
+        function renderTools() {
+            document.getElementById("toolsList").innerHTML = TOOLS.map(function (t) {
+                var name = tr("jobs.tools." + t.id, t.name);
+                return '' +
+                    '<button type="button" data-tool="' + name + '" class="tool-btn">' +
+                    '<span class="tool-icon">' + ICON(t.icon, "size-3.5") + '</span>' +
+                    '<span class="tool-name">' + name + '</span>' +
+                    ICON(ICON_CHEVRON, "tool-chevron") +
+                    '</button>';
+            }).join("");
+        }
+        document.getElementById("toolsList").addEventListener("click", function (e) {
+            var btn = e.target.closest("[data-tool]");
+            if (btn) toast(tr("jobs.toast.opening", "Opening — {name}…", { name: btn.dataset.tool }));
         });
 
         /* ── Filtering + sorting ── */
@@ -1063,7 +1113,9 @@
         function matches(j) {
             var q = state.q.trim().toLowerCase();
             if (q) {
-                var hay = (j.title + " " + j.org + " " + j.category).toLowerCase();
+                /* English data + what is on screen, so either language finds it */
+                var hay = (j.title + " " + j.org + " " + j.category + " " +
+                    jobText(j, "title") + " " + jobText(j, "org") + " " + categoryName(j.category)).toLowerCase();
                 if (hay.indexOf(q) === -1) return false;
             }
             if (state.scope === "public" && !j.isPublic) return false;
@@ -1082,7 +1134,9 @@
             return true;
         }
 
-        var EMPTY_ROW = '<p class="job-empty">No positions match your filters at this time.</p>';
+        function emptyRow() {
+            return '<p class="job-empty">' + tr("jobs.card.empty", "No positions match your filters at this time.") + '</p>';
+        }
 
         function sortJobs(list) {
             var copy = list.slice();
@@ -1119,7 +1173,7 @@
             var pageItems = filtered.slice((state.page - 1) * PAGE_SIZE, state.page * PAGE_SIZE);
 
             document.getElementById("resultsCount").textContent = filtered.length;
-            document.getElementById("jobList").innerHTML = pageItems.length ? pageItems.map(jobCard).join("") : EMPTY_ROW;
+            document.getElementById("jobList").innerHTML = pageItems.length ? pageItems.map(jobCard).join("") : emptyRow();
 
             renderCounts();
             renderPaginationInfo(filtered.length);
@@ -1131,31 +1185,31 @@
             var from = total ? (state.page - 1) * PAGE_SIZE + 1 : 0;
             var to = Math.min(state.page * PAGE_SIZE, total);
             document.getElementById("paginationInfo").textContent =
-                "Showing " + from + " to " + to + " of " + total + " active opportunities";
+                tr("jobs.card.showing", "Showing {from} to {to} of {total} active opportunities", { from: from, to: to, total: total });
         }
 
         function renderPagination(pages) {
             var html = '<button type="button" data-page="' + Math.max(1, state.page - 1) + '" class="page-nav-btn"' +
-                (state.page === 1 ? " disabled" : "") + '>Previous</button>';
+                (state.page === 1 ? " disabled" : "") + '>' + tr("jobs.card.previous", "Previous") + '</button>';
             for (var p = 1; p <= pages; p++) {
                 var on = p === state.page;
                 html += '<button type="button" data-page="' + p + '" class="page-btn ' +
                     (on ? "page-btn--on" : "page-btn--off") + '"' + (on ? ' aria-current="page"' : "") + '>' + p + '</button>';
             }
             html += '<button type="button" data-page="' + Math.min(pages, state.page + 1) + '" class="page-nav-btn"' +
-                (state.page === pages ? " disabled" : "") + '>Next</button>';
+                (state.page === pages ? " disabled" : "") + '>' + tr("common.next", "Next") + '</button>';
             document.getElementById("pagination").innerHTML = html;
         }
 
         function bindCards() {
             document.querySelectorAll("[data-apply]").forEach(function (btn) {
                 btn.addEventListener("click", function () {
-                    toast("Secure application launched for “" + btn.dataset.apply.replace(/&amp;/g, "&") + "” — CNIE verification in progress…");
+                    toast(tr("jobs.toast.apply", "Secure application launched for “{title}” — CNIE verification in progress…", { title: btn.dataset.apply.replace(/&amp;/g, "&") }));
                 });
             });
             document.querySelectorAll("[data-save]").forEach(function (btn) {
                 btn.addEventListener("click", function () {
-                    toast("“" + btn.dataset.save.replace(/&amp;/g, "&") + "” added to your favorites");
+                    toast(tr("jobs.toast.saved", "“{title}” added to your favorites", { title: btn.dataset.save.replace(/&amp;/g, "&") }));
                 });
             });
         }
@@ -1176,7 +1230,7 @@
             state.category = document.getElementById("categorySelect").value;
             state.page = 1;
             render();
-            toast(JOBS.filter(matches).length + " positions match your search");
+            toast(tr("jobs.toast.matches", "{n} positions match your search", { n: JOBS.filter(matches).length }));
         });
 
         ["locationSelect", "categorySelect"].forEach(function (id) {
@@ -1214,15 +1268,15 @@
                 state.page = 1;
                 render();
                 document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
-                toast("Filtering by " + name);
+                toast(tr("jobs.toast.filtering", "Filtering by {name}", { name: categoryName(name) }));
             });
         });
 
         document.getElementById("digitalCvBtn").addEventListener("click", function () {
-            toast("Generating your certified digital CV…");
+            toast(tr("jobs.toast.cv", "Generating your certified digital CV…"));
         });
         document.getElementById("jobAlertBtn").addEventListener("click", function () {
-            toast("Job alert created — we'll notify you about matching openings");
+            toast(tr("jobs.toast.alert", "Job alert created — we'll notify you about matching openings"));
         });
 
         document.getElementById("sectorGrid").addEventListener("click", function (e) {
@@ -1234,26 +1288,26 @@
             state.page = 1;
             render();
             document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
-            toast("Showing sector " + name);
+            toast(tr("jobs.toast.sector", "Showing sector {name}", { name: categoryName(name) }));
         });
 
         document.getElementById("viewHistory").addEventListener("click", function () {
-            toast("Opening your full application history…");
+            toast(tr("jobs.toast.history", "Opening your full application history…"));
         });
         document.getElementById("getQrBtn").addEventListener("click", function () {
-            toast("Generating secure verification QR code…");
+            toast(tr("jobs.toast.qr", "Generating secure verification QR code…"));
         });
         document.getElementById("openConcours").addEventListener("click", function () {
-            toast("Opening your National Unified Exam application…");
+            toast(tr("jobs.toast.concours", "Opening your National Unified Exam application…"));
         });
         document.getElementById("viewReferentiel").addEventListener("click", function () {
-            toast("Opening the exam positions reference guide…");
+            toast(tr("jobs.toast.referentiel", "Opening the exam positions reference guide…"));
         });
         document.getElementById("openAccelerator").addEventListener("click", function () {
-            toast("Opening certified private sector listings…");
+            toast(tr("jobs.toast.accelerator", "Opening certified private sector listings…"));
         });
         document.getElementById("viewMore").addEventListener("click", function () {
-            toast("Learn more about the Job Accelerator…");
+            toast(tr("jobs.toast.more", "Learn more about the Job Accelerator…"));
         });
 
         /* Pre-fill the region filter from the user's saved city, if it
@@ -1270,34 +1324,41 @@
             }
         }
 
-        render();
+        function renderAll() {
+            renderSectors();
+            renderApplications();
+            renderTools();
+            render();
+        }
+        renderAll();
+        document.addEventListener("m3ak:languagechange", renderAll);
     </script>
     <!-- ══════════ SITE FOOTER ══════════ -->
     <footer class="border-t border-black/10 bg-white text-slate-600 transition-colors dark:border-white/10 dark:bg-[#0F1512] dark:text-slate-400">
         <div class="mx-auto w-full max-w-[1200px] px-4 py-5 md:px-8 md:py-10">
 
             <!-- Brand · nav · copyright -->
-            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-left md:dark:border-white/10">
-                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg">M3ak Morocco</p>
+            <div class="flex flex-col items-center gap-2 text-center md:flex-row md:justify-between md:gap-6 md:border-b md:border-black/10 md:pb-5 md:text-start md:dark:border-white/10">
+                <p class="text-base font-extrabold tracking-tight text-[#0B6B45] dark:text-[#2ED573] md:text-lg" data-i18n="brand.name">M3ak Morocco</p>
 
-                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer">
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Privacy Policy</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Terms of Service</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Legal Notice</a>
-                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">Security Disclosure</a>
-                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]">Help Center</a>
+                <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] md:gap-x-6 md:text-xs" aria-label="Footer" data-i18n-aria-label="footer.label">
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.terms">Terms of Service</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.legal">Legal Notice</a>
+                    <a href="#" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]" data-i18n="footer.security">Security Disclosure</a>
+                    <a href="/pages/app/support.html" class="font-semibold text-[#0B6B45] transition-colors hover:underline dark:text-[#2ED573]" data-i18n="footer.helpCenter">Help Center</a>
                 </nav>
 
-                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap">© 2026 M3ak Digital Identity. All rights reserved.</p>
+                <p class="hidden text-[11px] text-slate-500 dark:text-slate-400 md:block md:whitespace-nowrap" data-i18n="footer.rights">© 2026 M3ak Digital Identity. All rights reserved.</p>
             </div>
 
             <!-- Compact info — phones only -->
             <div class="mt-4 space-y-1.5 border-t border-black/10 pt-4 text-center text-[11px] dark:border-white/10 md:hidden">
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.address">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></svg>
                     Vala Bleu · Agadir, Morocco
                 </p>
-                <p class="flex items-center justify-center gap-1.5">
+                <p class="flex items-center justify-center gap-1.5" data-i18n="footer.hoursCompact">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-3.5 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></svg>
                     Mon–Fri 8am–8pm · Sat 10am–4pm · Sun closed
                 </p>
@@ -1311,14 +1372,14 @@
                         +212 5 22 XX XX XX
                     </a>
                 </p>
-                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500">© 2026 M3ak Digital Identity · All times GMT+1</p>
+                <p class="pt-1 text-[10px] text-slate-500 dark:text-slate-500" data-i18n="footer.copyCompact">© 2026 M3ak Digital Identity · All times GMT+1</p>
             </div>
 
             <!-- Full columns — tablet and up -->
             <div class="mt-8 hidden gap-8 md:grid md:grid-cols-3">
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Contact Us</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.contactUs">Contact Us</h2>
                     <p class="mb-1 flex items-center gap-2 text-[13px]">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-[#0B6B45] dark:text-[#2ED573]" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>
                         <a href="mailto:support@m3ak.ma" class="transition-colors hover:text-[#0B6B45] dark:hover:text-[#2ED573]">support@m3ak.ma</a>
@@ -1330,18 +1391,18 @@
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Working Hours</h2>
-                    <p class="mb-1 text-[13px]">Monday - Friday: 8am - 8pm</p>
-                    <p class="mb-1 text-[13px]">Saturday: 10am - 4pm</p>
-                    <p class="mb-1 text-[13px]">Sunday: Closed</p>
-                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]">All times in GMT+1</p>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.workingHours">Working Hours</h2>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.weekdays">Monday - Friday: 8am - 8pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.saturday">Saturday: 10am - 4pm</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.sunday">Sunday: Closed</p>
+                    <p class="text-[13px] font-semibold text-[#0B6B45] dark:text-[#2ED573]" data-i18n="footer.timezone">All times in GMT+1</p>
                 </section>
 
                 <section>
-                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white">Global HQ</h2>
+                    <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.09em] text-slate-900 dark:text-white" data-i18n="footer.hq">Global HQ</h2>
                     <p class="mb-1 text-[13px]">Vala Bleu</p>
-                    <p class="mb-1 text-[13px]">Agadir</p>
-                    <p class="text-[13px]">Morocco</p>
+                    <p class="mb-1 text-[13px]" data-i18n="footer.agadir">Agadir</p>
+                    <p class="text-[13px]" data-i18n="footer.morocco">Morocco</p>
                 </section>
 
             </div>
