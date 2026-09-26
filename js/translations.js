@@ -1057,7 +1057,9 @@ window.M3akTranslations = {
                 toward: "في اتجاه {headsign}",
                 stops: "عدد المحطات: {n}",
                 openInGoogle: "افتح في خرائط Google",
-                clear: "مسح المسار"
+                clear: "مسح المسار",
+                unavailableTitle: "غير متوفر في أكادير",
+                unavailable: "خدمات القطار والترامواي غير متوفرة حالياً في أكادير. اختر الحافلة أو الطاكسي لتخطيط رحلتك."
             }
         },
 
