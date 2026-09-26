@@ -47,7 +47,6 @@ window.M3akTranslations = {
             currentLocation: "Current Location",
             operator: "ALSA City Bus",
             busLine: "Bus {n}",
-            tramLine: "Tram {n}",
             nextStop: "Next: {stop}",
             minutes: "{n} min",
             arrow: "→",
@@ -77,6 +76,26 @@ window.M3akTranslations = {
                 locationUnavailable: "Location unavailable — showing {city}",
                 passAdded: "Fast Pass added to your basket — 30 MAD",
                 ticket: "Opening ticket purchase"
+            },
+            route: {
+                mapTitle: "Google Maps",
+                transitTitle: "Public transport route",
+                roadTitle: "Road route",
+                embedTitle: "Route on Google Maps",
+                problemTitle: "No route to show",
+                noTransit: "Google Maps has no bus or tram data for this trip, so the road route is shown instead.",
+                embedNote: "Add a Google Maps API key in js/config.js to draw the line on this map and list each bus step.",
+                loadError: "Google Maps couldn't load — showing the basic map instead.",
+                notFound: "No route found from {from} to {to}.",
+                error: "The route couldn't be calculated right now. Open it in Google Maps instead.",
+                ride: "Ride",
+                walk: "Walk",
+                toward: "toward {headsign}",
+                stops: "{n} stops",
+                openInGoogle: "Open in Google Maps",
+                clear: "Clear route",
+                unavailableTitle: "Not available in Agadir",
+                unavailable: "Train and tram services are not currently available in Agadir. Choose Bus or Taxi to plan your trip."
             }
         },
 
@@ -980,7 +999,7 @@ window.M3akTranslations = {
             currentLocationAlt: "الموقع الحالي",
             currentLocation: "موقعي الحالي",
             destination: "الوجهة",
-            destinationPlaceholder: "أدخل الوجهة",
+            destinationPlaceholder: "الوجهة — أو مثلاً: إنزكان إلى السلام",
             modes: { bus: "حافلة", tram: "ترامواي", train: "قطار", taxi: "طاكسي" },
             modeNames: { bus: "الحافلة", tram: "الترامواي", train: "القطار", taxi: "الطاكسي" },
             findRoutes: "ابحث عن المسارات",
@@ -993,7 +1012,6 @@ window.M3akTranslations = {
             buyTicket: "اشترِ تذكرة",
             operator: "حافلات ألزا الحضرية",
             busLine: "حافلة {n}",
-            tramLine: "ترامواي {n}",
             nextStop: "المحطة التالية: {stop}",
             minutes: "{n} د",
             arrow: "←",
@@ -1022,6 +1040,24 @@ window.M3akTranslations = {
                 locationUnavailable: "الموقع غير متاح — عرض {city}",
                 passAdded: "تمت إضافة بطاقة التنقل السريع إلى سلتك — 30 درهم",
                 ticket: "جارٍ فتح شراء التذاكر"
+            },
+            route: {
+                mapTitle: "خرائط Google",
+                transitTitle: "مسار بالنقل العمومي",
+                roadTitle: "مسار عبر الطريق",
+                embedTitle: "المسار على خرائط Google",
+                problemTitle: "لا يوجد مسار لعرضه",
+                noTransit: "لا تتوفر خرائط Google على بيانات الحافلات أو الترامواي لهذه الرحلة، لذلك يُعرض المسار عبر الطريق.",
+                embedNote: "أضف مفتاح Google Maps API في الملف js/config.js لرسم الخط على هذه الخريطة وعرض مراحل الحافلة.",
+                loadError: "تعذّر تحميل خرائط Google — تُعرض الخريطة البسيطة بدلاً منها.",
+                notFound: "لم يُعثر على مسار من {from} إلى {to}.",
+                error: "تعذّر حساب المسار حالياً. افتحه في خرائط Google بدلاً من ذلك.",
+                ride: "ركوب",
+                walk: "مشي",
+                toward: "في اتجاه {headsign}",
+                stops: "عدد المحطات: {n}",
+                openInGoogle: "افتح في خرائط Google",
+                clear: "مسح المسار"
             }
         },
 
