@@ -17,11 +17,7 @@
     <script src="/js/theme.js"></script>
     <script src="/js/translations.js"></script>
     <script src="/js/i18n.js"></script>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="/js/config.js"></script>
 
     <style type="text/tailwindcss">
 
@@ -319,6 +315,20 @@
         .chips-row { @apply mt-3 flex gap-2 overflow-x-auto lg:mt-3; }
         .chip-icon { @apply size-3.5 object-contain; }
 
+        /* Route found on Google Maps — shown under "Find Routes" */
+        .route-result { @apply mt-3 max-h-64 overflow-y-auto rounded-xl bg-canvas dark:bg-night-900 p-3 text-xs; }
+        .route-result-head { @apply flex items-start justify-between gap-2; }
+        .route-result-title { @apply text-sm font-bold text-ink dark:text-mist-100; }
+        .route-clear { @apply grid size-6 shrink-0 place-items-center rounded-full text-muted dark:text-mist-300 hover:bg-black/5 dark:hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-brand/40; }
+        .route-result-meta { @apply mt-1 text-muted dark:text-mist-300; }
+        .route-note { @apply mt-2 rounded-lg bg-amber-50 dark:bg-amber-400/10 px-2.5 py-2 text-[11px] text-amber-800 dark:text-amber-300; }
+        .route-steps { @apply mt-2.5 space-y-2; }
+        .route-step { @apply flex items-start gap-2 text-ink dark:text-mist-100; }
+        .route-line-badge { @apply shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-extrabold; }
+        .route-walk-badge { @apply shrink-0 rounded-md bg-black/5 dark:bg-white/10 px-1.5 py-0.5 text-[10px] font-bold text-muted dark:text-mist-300; }
+        .route-open { @apply mt-3 inline-flex items-center gap-1 font-semibold text-brand dark:text-accent-400 hover:underline; }
+        .map-embed { @apply size-full border-0; }
+
         .map-frame { @apply relative z-0 mx-4 mt-4 h-72 overflow-hidden rounded-2xl shadow-lg lg:absolute lg:inset-0 lg:z-0 lg:m-0 lg:h-full lg:rounded-2xl lg:shadow-none; }
         .alert-desktop { @apply absolute bottom-6 left-1/2 z-10 hidden w-[26rem] max-w-[calc(100%-3rem)] -translate-x-1/2 lg:block; }
 
@@ -338,9 +348,10 @@
         .pass-buy-btn { @apply rounded-full bg-white dark:bg-night-800 px-5 py-2.5 text-sm font-bold text-brand dark:text-accent-400 transition hover:bg-brand-soft dark:hover:bg-accent-400/15 focus-visible:ring-2 focus-visible:ring-white/60; }
         .alert-mobile { @apply mt-4 lg:hidden; }
 
-        .fab-desktop { @apply fixed bottom-6 end-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid; }
-        .fab-desktop-icon { @apply size-3 object-contain transition-all group-hover:size-5; }
-        .fab-mobile { @apply fixed bottom-6 end-6 z-30 grid size-14 place-items-center rounded-full bg-blue-600 text-white shadow-xl ring-4 ring-white dark:ring-night-900 transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:hidden; }
+        /* data-attention = the one-off "look here" state set by the script below; it reuses the hover sizes */
+        .fab-desktop { @apply fixed bottom-6 end-6 z-30 hidden size-6 place-items-center rounded-2xl bg-blue-600 text-white shadow-xl transition hover:size-12 data-[attention]:size-12 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:grid; }
+        .fab-desktop-icon { @apply size-3 object-contain transition-all group-hover:size-5 group-data-[attention]:size-5; }
+        .fab-mobile { @apply fixed bottom-6 end-6 z-30 grid size-14 place-items-center rounded-full bg-blue-600 text-white shadow-xl ring-4 ring-white dark:ring-night-900 transition data-[attention]:scale-125 hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-400 lg:hidden; }
         .toast { @apply pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-5 py-3 text-center text-sm font-medium text-white opacity-0 shadow-lg transition-opacity duration-300 lg:bottom-8; }
     </style>
 </head>
@@ -491,7 +502,7 @@
                             <span class="sr-only" data-i18n="transport.destination">Destination</span>
                             <img src="/assets/images/icons/transport/destination-locale.png" alt="Destination"
                                 data-i18n-alt="transport.destination" class="field-icon" />
-                            <input id="toInput" type="text" placeholder="Enter Destination"
+                            <input id="toInput" type="text" placeholder="Destination — or e.g. Inezgane to Salam"
                                 data-i18n-placeholder="transport.destinationPlaceholder" class="planner-input--placeholder" />
                         </label>
 
@@ -518,6 +529,8 @@
                         <button id="findRoutes" type="button" class="find-routes-btn" data-i18n="transport.findRoutes">
                             Find Routes
                         </button>
+
+                        <div id="routeResult" class="route-result hidden" aria-live="polite"></div>
                     </div>
 
                     <!-- Raccourcis -->
@@ -535,8 +548,8 @@
                     </div>
                 </div>
 
-                <!-- Carte réelle : OpenStreetMap via Leaflet, position actuelle + lignes de transport.
-                     Kept LTR: Leaflet positions its panes for a left-to-right container. -->
+                <!-- Google Maps: current position, the demo lines, and any route the
+                     person searches for. Kept LTR so the map's own controls stay put. -->
                 <div class="map-frame" dir="ltr">
                     <div id="transitMap" class="size-full"></div>
                 </div>
@@ -649,17 +662,20 @@
            rest of the app (see README). */
         const TRANSIT_LINES = [
             { mode: "Bus", line: 12, color: "#316BF3", stops: ["Talborjt", "Founty", "Marina d'Agadir"] },
-            { mode: "Bus", line: 4, color: "#0B6B45", stops: ["Bensergao", "Al Houda", "Dcheira"] },
-            { mode: "Tram", line: "T1", color: "#9333EA", stops: ["Gare Routière Agadir", "Talborjt", "Marina d'Agadir"] }
+            { mode: "Bus", line: 4, color: "#0B6B45", stops: ["Bensergao", "Al Houda", "Dcheira"] }
         ];
 
         function lineName(l) {
-            return l.mode === "Tram"
-                ? t("transport.tramLine", { n: l.line })
-                : t("transport.busLine", { n: l.line }) + " — " + t("transport.operator");
+            return t("transport.busLine", { n: l.line }) + " — " + t("transport.operator");
         }
 
-        const CITIES = { agadir: { labelKey: "footer.agadir", lat: 30.4278, lon: -9.5981, zoom: 13 } };
+        /* Agadir has no train or tram service yet: picking either explains that
+           instead of showing lines, routes or journey times. */
+        const UNAVAILABLE_MODES = new Set(["Train", "Tram"]);
+        const isUnavailable = (m) => UNAVAILABLE_MODES.has(m);
+
+        /* `name` is what gets appended to typed places ("Salam" -> "Salam, Agadir, Morocco") */
+        const CITIES = { agadir: { name: "Agadir", labelKey: "footer.agadir", lat: 30.4278, lon: -9.5981, zoom: 13 } };
 
         let mode = "Bus";
 
@@ -685,7 +701,14 @@
         $$(".mode").forEach(b => b.addEventListener("click", () => {
             mode = b.dataset.mode;
             paintModes();
-            renderTransitLines(mode);
+            if (isUnavailable(mode)) {
+                showUnavailable();
+            } else if (lastTrip) {
+                showRoute(lastTrip);
+            } else {
+                hideResult();
+                renderTransitLines(mode);
+            }
         }));
 
         /* ── Chips ── */
@@ -710,14 +733,41 @@
         });
 
         /* ── Find routes ── */
-        $("#findRoutes").addEventListener("click", () => {
-            const dest = $("#toInput").value.trim();
-            if (!dest) {
+        /* The destination box also takes a whole trip: "Inezgane to Salam",
+           "Inezgane - Salam", "إنزكان إلى السلام"… */
+        const TRIP_SEPARATOR = /\s+(?:to|vers|à|->|→|←|-|–|—|إلى|الى)\s+/i;
+
+        function readTrip() {
+            const from = $("#fromInput").value.trim();
+            const to = $("#toInput").value.trim();
+            const parts = to.split(TRIP_SEPARATOR);
+            if (parts.length === 2 && parts[0].trim() && parts[1].trim()) {
+                return { from: parts[0].trim(), to: parts[1].trim() };
+            }
+            return { from, to };
+        }
+
+        function findRoutes() {
+            const trip = readTrip();
+            if (!trip.to) {
                 toast(t("transport.toast.noDestination"));
                 $("#toInput").focus();
                 return;
             }
-            toast(t("transport.toast.searching", { mode: t("transport.modeNames." + mode.toLowerCase()), dest }));
+            $("#fromInput").value = trip.from || t("transport.currentLocation");
+            $("#toInput").value = trip.to;
+            showRoute(trip);
+        }
+
+        $("#findRoutes").addEventListener("click", findRoutes);
+        $("#toInput").addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                findRoutes();
+            }
+        });
+        $("#routeResult").addEventListener("click", (e) => {
+            if (e.target.closest("[data-clear-route]")) clearRoute();
         });
 
         /* ── Live tracking ── */
@@ -783,19 +833,45 @@
             $("#alertMobile").innerHTML = alertCard();
             $$("[data-track]").forEach(b => b.addEventListener("click", () => {
                 toast(t("transport.toast.tracking"));
-                if (map) map.flyTo(STOPS["Gare Routière Agadir"], 15);
+                if (map) {
+                    map.panTo(toLatLng(STOPS["Gare Routière Agadir"]));
+                    map.setZoom(15);
+                }
             }));
         }
 
         /* ─────────────────────────────
-           LIVE MAP — real OpenStreetMap tiles via Leaflet, the visitor's
-           actual GPS position (browser geolocation, with a graceful fallback
-           to the city center if it's denied/unavailable), and the demo bus +
-           tram lines defined in TRANSIT_LINES above.
+           LIVE MAP — Google Maps JavaScript API (key in /js/config.js).
+           - Shows the visitor's GPS position and the demo lines above.
+           - "Find Routes" asks Google's Routes library for a public-transport
+             route (the real bus/tram line Google knows) and draws it; when
+             Google has no transit data for the trip it draws the road route.
+           - Without a key (or if Google fails to load) the page falls back to
+             the keyless Google Maps embed, which shows directions but can't
+             be drawn on from JavaScript.
         ───────────────────────────── */
+        const MAPS_CONFIG = window.M3akConfig || {};
+        const DESKTOP = window.matchMedia("(min-width: 1024px)");
+        const PLANNER_WIDTH = 340;   /* px the floating planner covers on desktop */
+        const ROUTE_FIELDS = ["path", "legs", "localizedValues", "distanceMeters", "durationMillis"];
+
         let map = null;
-        let linesLayer = null;
+        let mapMode = "loading";     /* "loading" -> "google" or "embed" */
+        let embedLang = null;        /* language the embed iframe was loaded in */
+        let gm = null;               /* loaded Google classes; null = embed fallback */
+        let infoWindow = null;
         let userMarker = null;
+        let userPosition = null;
+        let demoOverlays = [];
+        let routeOverlays = [];
+        let lastTrip = null;         /* { from, to } currently shown */
+        let routeToken = 0;          /* ignores answers to superseded searches */
+
+        const toLatLng = ([lat, lng]) => ({ lat, lng });
+        const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+            ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const safeColor = (value, fallback) => (/^#[0-9a-f]{3,8}$/i.test(value || "") ? value : fallback);
+        const currentCity = () => CITIES[getCityKey()];
 
         function getCityKey() {
             try {
@@ -807,76 +883,431 @@
             }
         }
 
+        /* ── Map helpers ── */
+        function removeOverlays(list) {
+            list.forEach((o) => (o.setMap ? o.setMap(null) : (o.map = null)));
+            return [];
+        }
+
+        /* A round, centred dot used for stops and "you are here" */
+        function dot(color, size) {
+            const el = document.createElement("span");
+            el.style.cssText = `display:block;width:${size}px;height:${size}px;border-radius:9999px;background:${color};` +
+                "border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);transform:translateY(50%)";
+            return el;
+        }
+
+        function openInfo(html, position) {
+            infoWindow.setContent(`<div dir="${M3akI18n.dir()}" style="font-size:12px;line-height:1.5">${html}</div>`);
+            infoWindow.setPosition(position);
+            infoWindow.open({ map });
+        }
+
+        /* On desktop the planner card floats over the map's start corner
+           (left in English, right in Arabic), so the map controls sit on the
+           opposite side where nothing covers them. */
+        function sideControls() {
+            const P = google.maps.ControlPosition;
+            const rtl = M3akI18n.dir() === "rtl";
+            return {
+                zoomControlOptions: { position: rtl ? P.LEFT_BOTTOM : P.RIGHT_BOTTOM },
+                fullscreenControlOptions: { position: rtl ? P.LEFT_TOP : P.RIGHT_TOP }
+            };
+        }
+
+        /* Keeps a fitted route clear of the planner card on desktop */
+        function fitPadding() {
+            if (!DESKTOP.matches) return 40;
+            const side = M3akI18n.dir() === "rtl" ? "right" : "left";
+            return { top: 40, right: 40, bottom: 40, left: 40, [side]: PLANNER_WIDTH };
+        }
+
+        /* ── Keyless fallback: Google's plain embed ── */
+        function showEmbed(params) {
+            const frame = document.createElement("iframe");
+            frame.className = "map-embed";
+            frame.title = t("transport.route.mapTitle");
+            frame.loading = "lazy";
+            frame.referrerPolicy = "no-referrer-when-downgrade";
+            frame.allowFullscreen = true;
+            frame.src = "https://maps.google.com/maps?" + new URLSearchParams({ ...params, hl: M3akI18n.get(), output: "embed" });
+            $("#transitMap").replaceChildren(frame);
+            embedLang = M3akI18n.get();
+        }
+
+        function useEmbed() {
+            mapMode = "embed";
+            gm = null;
+            map = null;
+            userMarker = null;
+            demoOverlays = [];
+            routeOverlays = [];
+            const city = currentCity();
+            showEmbed({ q: `${city.lat},${city.lon}`, z: String(city.zoom) });
+        }
+
+        /* Google calls this when the key is rejected (wrong key, referrer
+           not allowed, billing off…) — fall back instead of a broken map. */
+        window.gm_authFailure = () => {
+            useEmbed();
+            toast(t("transport.route.loadError"));
+        };
+
+        function loadGoogleMaps() {
+            if (window.google && google.maps && google.maps.importLibrary) return Promise.resolve();
+            return new Promise((resolve, reject) => {
+                window.m3akMapsReady = resolve;
+                const script = document.createElement("script");
+                script.src = "https://maps.googleapis.com/maps/api/js?" + new URLSearchParams({
+                    key: MAPS_CONFIG.googleMapsApiKey,
+                    v: "weekly",
+                    loading: "async",
+                    callback: "m3akMapsReady",
+                    language: M3akI18n.get(),
+                    region: "MA"
+                });
+                script.async = true;
+                script.onerror = () => reject(new Error("Google Maps script failed to load"));
+                document.head.appendChild(script);
+            });
+        }
+
+        /* ── Demo lines ── */
         function renderTransitLines(forMode) {
-            linesLayer.clearLayers();
+            demoOverlays = removeOverlays(demoOverlays);
+            /* a searched route owns the map; unavailable modes draw nothing */
+            if (!gm || routeOverlays.length || isUnavailable(forMode)) return;
+
             const matching = TRANSIT_LINES.filter(l => l.mode === forMode);
             const lines = matching.length ? matching : TRANSIT_LINES;
 
             lines.forEach(line => {
-                const latlngs = line.stops.map(s => STOPS[s]);
                 const name = lineName(line);
-                L.polyline(latlngs, { color: line.color, weight: 5, opacity: 0.85, lineJoin: "round" })
-                    .addTo(linesLayer)
-                    .bindPopup(`<strong>${name}</strong><br>${line.stops.map(stopName).join(" " + t("transport.arrow") + " ")}`);
-
-                line.stops.forEach(stop => {
-                    L.circleMarker(STOPS[stop], { radius: 6, color: "#fff", weight: 2, fillColor: line.color, fillOpacity: 1 })
-                        .addTo(linesLayer)
-                        .bindPopup(`<strong>${stopName(stop)}</strong><br>${name}`);
+                const polyline = new gm.Polyline({
+                    map, path: line.stops.map(s => toLatLng(STOPS[s])),
+                    strokeColor: line.color, strokeWeight: 5, strokeOpacity: 0.85
                 });
+                polyline.addListener("click", (e) => openInfo(
+                    `<strong>${name}</strong><br>${line.stops.map(stopName).join(" " + t("transport.arrow") + " ")}`, e.latLng));
+
+                const stops = line.stops.map(stop => {
+                    const marker = new gm.Marker({ map, position: toLatLng(STOPS[stop]), content: dot(line.color, 12), title: stopName(stop) });
+                    marker.addListener("click", () => openInfo(`<strong>${stopName(stop)}</strong><br>${name}`, marker.position));
+                    return marker;
+                });
+
+                demoOverlays = [...demoOverlays, polyline, ...stops];
             });
         }
 
-        function locateUser(city) {
+        function locateUser() {
             if (!navigator.geolocation) {
                 toast(t("transport.toast.noGeolocation"));
                 return;
             }
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
-                    const here = [pos.coords.latitude, pos.coords.longitude];
-                    if (userMarker) map.removeLayer(userMarker);
-                    userMarker = L.circleMarker(here, { radius: 9, color: "#fff", weight: 3, fillColor: "#316BF3", fillOpacity: 1 })
-                        .addTo(map)
-                        .bindPopup(t("transport.youAreHere"))
-                        .openPopup();
-                    map.setView(here, 15);
+                    userPosition = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                    if (!gm) return;
+                    if (userMarker) userMarker.map = null;
+                    userMarker = new gm.Marker({ map, position: userPosition, content: dot("#316BF3", 18), title: t("transport.youAreHere") });
+                    if (!routeOverlays.length) {
+                        map.setCenter(userPosition);
+                        map.setZoom(15);
+                    }
                 },
-                () => toast(t("transport.toast.locationUnavailable", { city: t(city.labelKey) })),
+                () => toast(t("transport.toast.locationUnavailable", { city: t(currentCity().labelKey) })),
                 { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
             );
         }
 
-        function initMap() {
-            /* Leaflet's default marker icons are relative-pathed; loading via
-               CDN <script>/<link> tags (no bundler) breaks them unless the
-               URLs are pointed at the CDN explicitly. */
-            delete L.Icon.Default.prototype._getIconUrl;
-            L.Icon.Default.mergeOptions({
-                iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-                iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-                shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
+        async function initMap() {
+            if (!MAPS_CONFIG.googleMapsApiKey) {
+                useEmbed();
+                locateUser();
+                return;
+            }
+            try {
+                await loadGoogleMaps();
+                const [maps, markers, routes] = await Promise.all(
+                    ["maps", "marker", "routes"].map((name) => google.maps.importLibrary(name)));
+                gm = {
+                    Map: maps.Map, Polyline: maps.Polyline, InfoWindow: maps.InfoWindow,
+                    Marker: markers.AdvancedMarkerElement, Route: routes.Route
+                };
+
+                const city = currentCity();
+                map = new gm.Map($("#transitMap"), {
+                    center: toLatLng([city.lat, city.lon]),
+                    zoom: city.zoom,
+                    mapId: MAPS_CONFIG.googleMapsMapId || "DEMO_MAP_ID",
+                    colorScheme: document.documentElement.classList.contains("dark") ? "DARK" : "LIGHT",
+                    mapTypeControl: false,
+                    streetViewControl: false,
+                    ...sideControls()
+                });
+                infoWindow = new gm.InfoWindow();
+                mapMode = "google";
+                renderTransitLines(mode);
+            } catch (err) {
+                useEmbed();
+            }
+            locateUser();
+            if (lastTrip) showRoute(lastTrip);   /* searched while the map was loading */
+        }
+
+        /* ── Route search ── */
+        const isHere = (text) => !text || text === t("transport.currentLocation");
+
+        /* Typed names are looked up around the saved city, so "Salam" means
+           Hay Salam in Agadir rather than any Salam in the country. */
+        function placeFor(text) {
+            const city = currentCity();
+            if (isHere(text)) return userPosition || toLatLng([city.lat, city.lon]);
+            return text.includes(",") ? text : `${text}, ${city.name}, Morocco`;
+        }
+
+        const placeParam = (place) => (typeof place === "string" ? place : `${place.lat},${place.lng}`);
+
+        function directionsUrl(origin, destination) {
+            return "https://www.google.com/maps/dir/?" + new URLSearchParams({
+                api: "1",
+                origin: placeParam(origin),
+                destination: placeParam(destination),
+                travelmode: mode === "Taxi" ? "driving" : "transit"
             });
+        }
 
-            map = L.map("transitMap", { zoomControl: true, attributionControl: true });
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: "&copy; OpenStreetMap contributors",
-                maxZoom: 19
-            }).addTo(map);
+        async function computeRoute(origin, destination, travelMode) {
+            const { routes } = await gm.Route.computeRoutes({
+                origin, destination, travelMode,
+                region: "ma",
+                language: M3akI18n.get(),
+                fields: ROUTE_FIELDS
+            });
+            return routes && routes.length ? routes[0] : null;
+        }
 
-            linesLayer = L.layerGroup().addTo(map);
+        async function drawRoute(route) {
+            routeOverlays = removeOverlays(routeOverlays);
+            demoOverlays = removeOverlays(demoOverlays);
+
+            const lines = route.createPolylines({ strokeWeight: 6 });
+            lines.forEach((line) => line.setMap(map));
+            const ends = route.createWaypointAdvancedMarkers ? await route.createWaypointAdvancedMarkers() : [];
+            ends.forEach((marker) => { marker.map = map; });
+            routeOverlays = [...lines, ...ends];
+
+            const bounds = new google.maps.LatLngBounds();
+            (route.path || []).forEach((p) => bounds.extend({ lat: p.lat, lng: p.lng }));
+            if (!bounds.isEmpty()) map.fitBounds(bounds, fitPadding());
+        }
+
+        async function showRoute(trip) {
+            lastTrip = trip;
+            if (isUnavailable(mode)) {
+                showUnavailable();
+                return;
+            }
+            const origin = placeFor(trip.from);
+            const destination = placeFor(trip.to);
+            const base = {
+                from: isHere(trip.from) ? t("transport.currentLocation") : trip.from,
+                to: trip.to,
+                link: directionsUrl(origin, destination)
+            };
+
+            if (mapMode === "loading") {
+                renderResult({ ...base, kind: "loading" });   /* initMap picks lastTrip up */
+                return;
+            }
+            if (mapMode === "embed") {
+                showEmbed({ saddr: placeParam(origin), daddr: placeParam(destination), dirflg: mode === "Taxi" ? "d" : "r" });
+                renderResult({ ...base, kind: "embed" });
+                return;
+            }
+
+            const token = ++routeToken;
+            renderResult({ ...base, kind: "loading" });
+            try {
+                /* Transit first: that is the actual line on Google Maps.
+                   No transit data (common outside big networks) -> road route. */
+                const transit = mode === "Taxi"
+                    ? null
+                    : await computeRoute(origin, destination, "TRANSIT").catch(() => null);
+                const route = transit || await computeRoute(origin, destination, "DRIVING");
+                if (token !== routeToken) return;
+                if (!route) {
+                    renderResult({ ...base, kind: "notFound" });
+                    return;
+                }
+                await drawRoute(route);
+                renderResult({ ...base, kind: transit ? "transit" : "road", route, triedTransit: mode !== "Taxi" });
+            } catch (err) {
+                if (token === routeToken) renderResult({ ...base, kind: "error" });
+            }
+        }
+
+        /* Train / Tram: drop any route on the map (and any search still in
+           flight) and say the service doesn't exist here. The typed trip is
+           kept, so going back to Bus or Taxi searches it again. */
+        function showUnavailable() {
+            routeToken++;
+            routeOverlays = removeOverlays(routeOverlays);
+            demoOverlays = removeOverlays(demoOverlays);
+            if (mapMode === "embed" && lastTrip) useEmbed();   /* the embed was showing directions */
+            renderResult({ kind: "unavailable" });
+        }
+
+        function hideResult() {
+            $("#routeResult").classList.add("hidden");
+            $("#routeResult").replaceChildren();
+        }
+
+        function clearRoute() {
+            routeToken++;
+            lastTrip = null;
+            routeOverlays = removeOverlays(routeOverlays);
+            hideResult();
+            if (mapMode !== "google") {
+                if (mapMode === "embed") useEmbed();
+                return;
+            }
+            const city = currentCity();
             renderTransitLines(mode);
+            map.setCenter(userPosition || toLatLng([city.lat, city.lon]));
+            map.setZoom(userPosition ? 15 : city.zoom);
+        }
 
-            const city = CITIES[getCityKey()];
-            map.setView([city.lat, city.lon], city.zoom);
+        /* ── Route result panel ── */
+        function formatDistance(meters) {
+            const locale = M3akI18n.get() === "ar" ? "ar-MA" : "en";
+            return meters >= 1000
+                ? new Intl.NumberFormat(locale, { style: "unit", unit: "kilometer", maximumFractionDigits: 1 }).format(meters / 1000)
+                : new Intl.NumberFormat(locale, { style: "unit", unit: "meter", maximumFractionDigits: 0 }).format(meters);
+        }
 
-            locateUser(city);
+        function summaryOf(route) {
+            const values = route.localizedValues || {};
+            const duration = values.duration || values.staticDuration ||
+                (route.durationMillis ? t("transport.minutes", { n: Math.round(route.durationMillis / 60000) }) : "");
+            const distance = values.distance || (route.distanceMeters ? formatDistance(route.distanceMeters) : "");
+            return [duration, distance].filter(Boolean).join(" · ");
+        }
+
+        function rideStepHTML(details) {
+            const line = details.line || {};
+            const vehicle = (line.vehicle && (line.vehicle.localizedName || line.vehicle.name)) || "";
+            const name = line.nameShort || line.name || "";
+            const badge = [vehicle, name].filter(Boolean).join(" ") || t("transport.route.ride");
+            const stops = details.stopDetails || {};
+            const from = stops.departureStop && stops.departureStop.name;
+            const to = stops.arrivalStop && stops.arrivalStop.name;
+            const info = [
+                from && to ? `${esc(from)} ${t("transport.arrow")} ${esc(to)}` : "",
+                details.headsign ? esc(t("transport.route.toward", { headsign: details.headsign })) : "",
+                details.stopCount ? esc(t("transport.route.stops", { n: details.stopCount })) : ""
+            ].filter(Boolean).join(" · ");
+            return `<li class="route-step">
+                <span class="route-line-badge" style="background:${safeColor(line.color, "#0B6B45")};color:${safeColor(line.textColor, "#FFFFFF")}">${esc(badge)}</span>
+                <span>${info}</span>
+            </li>`;
+        }
+
+        function walkStepHTML(meters) {
+            return `<li class="route-step">
+                <span class="route-walk-badge">${esc(t("transport.route.walk"))}</span>
+                <span>${esc(formatDistance(meters))}</span>
+            </li>`;
+        }
+
+        /* One badge per bus/tram ride; the walking steps between rides are
+           merged into a single "Walk 350 m" row. */
+        function stepsHTML(route) {
+            const steps = (route.legs || []).flatMap((leg) => leg.steps || []);
+            const rows = [];
+            let walk = 0;
+            steps.forEach((step) => {
+                if (!step.transitDetails) {
+                    walk += step.distanceMeters || 0;
+                    return;
+                }
+                if (walk) rows.push(walkStepHTML(walk));
+                walk = 0;
+                rows.push(rideStepHTML(step.transitDetails));
+            });
+            if (walk) rows.push(walkStepHTML(walk));
+            return rows.length ? `<ol class="route-steps">${rows.join("")}</ol>` : "";
+        }
+
+        const RESULT_TITLES = {
+            transit: "transport.route.transitTitle",
+            road: "transport.route.roadTitle",
+            embed: "transport.route.embedTitle",
+            notFound: "transport.route.problemTitle",
+            error: "transport.route.problemTitle"
+        };
+
+        function resultNote(r) {
+            if (r.kind === "road" && r.triedTransit) return t("transport.route.noTransit");
+            if (r.kind === "embed") return t("transport.route.embedNote");
+            if (r.kind === "notFound") return t("transport.route.notFound", { from: r.from, to: r.to });
+            if (r.kind === "error") return t("transport.route.error");
+            return "";
+        }
+
+        function renderResult(r) {
+            const box = $("#routeResult");
+            box.classList.remove("hidden");
+
+            if (r.kind === "unavailable") {
+                box.innerHTML = `
+                    <p class="route-result-title">${esc(t("transport.route.unavailableTitle"))}</p>
+                    <p class="route-note">${esc(t("transport.route.unavailable"))}</p>`;
+                return;
+            }
+
+            if (r.kind === "loading") {
+                box.innerHTML = `<p class="route-result-meta">${esc(t("transport.toast.searching", {
+                    mode: t("transport.modeNames." + mode.toLowerCase()), dest: r.to
+                }))}</p>`;
+                return;
+            }
+
+            const summary = r.route ? summaryOf(r.route) : "";
+            const note = resultNote(r);
+            box.innerHTML = `
+                <div class="route-result-head">
+                    <p class="route-result-title">${esc(t(RESULT_TITLES[r.kind]))}</p>
+                    <button type="button" class="route-clear" data-clear-route aria-label="${esc(t("transport.route.clear"))}" title="${esc(t("transport.route.clear"))}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-3.5" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+                    </button>
+                </div>
+                <p class="route-result-meta">${esc(r.from)} ${t("transport.arrow")} ${esc(r.to)}${summary ? " · " + esc(summary) : ""}</p>
+                ${note ? `<p class="route-note">${esc(note)}</p>` : ""}
+                ${r.kind === "transit" ? stepsHTML(r.route) : ""}
+                <a class="route-open" href="${esc(r.link)}" target="_blank" rel="noopener">
+                    ${esc(t("transport.route.openInGoogle"))}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></svg>
+                </a>`;
         }
 
         /* ── Ticket + pass ── */
         $("#buyPass").addEventListener("click", () => toast(t("transport.toast.passAdded")));
         $("#fabDesktop").addEventListener("click", () => toast(t("transport.toast.ticket")));
         $("#fabMobile").addEventListener("click", () => toast(t("transport.toast.ticket")));
+
+        /* One attention pulse: 5 s after load the ticket buttons take their
+           enlarged state for 5 s, then ease back. Only the data-attention
+           attribute is toggled, so a real hover is untouched — if the pointer
+           is on the button when it ends, :hover simply keeps it large. */
+        const TICKET_ATTENTION_DELAY_MS = 5000;
+        const TICKET_ATTENTION_HOLD_MS = 5000;
+        setTimeout(() => {
+            const fabs = [$("#fabDesktop"), $("#fabMobile")];
+            fabs.forEach((fab) => fab.setAttribute("data-attention", ""));
+            setTimeout(() => fabs.forEach((fab) => fab.removeAttribute("data-attention")), TICKET_ATTENTION_HOLD_MS);
+        }, TICKET_ATTENTION_DELAY_MS);
 
         /* ── Drawer mobile ── */
         const sidebar = $("#sidebar"), scrim = $("#scrim");
@@ -893,11 +1324,16 @@
         /* ── Init ── */
         paintModes(); paintChips(); renderRoutes(); renderAlerts(); initMap();
 
-        /* Script-built cards and map popups follow a language switch */
+        /* Script-built cards, map controls and the route follow a language
+           switch (Google's own labels keep the language the map loaded in). */
         document.addEventListener("m3ak:languagechange", () => {
             renderRoutes();
             renderAlerts();
-            if (linesLayer) renderTransitLines(mode);
+            if (map) map.setOptions(sideControls());
+            if (isUnavailable(mode)) showUnavailable();
+            else if (lastTrip) showRoute(lastTrip);
+            else if (mapMode === "google") renderTransitLines(mode);
+            else if (mapMode === "embed" && embedLang !== M3akI18n.get()) useEmbed();
         });
     </script>
     <!-- ══════════ SITE FOOTER ══════════ -->

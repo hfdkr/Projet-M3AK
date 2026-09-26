@@ -31,7 +31,8 @@ Backend (real auth, database, API) is planned for a later phase, once that's cov
 - HTML5
 - Tailwind CSS v4 *(via CDN — build step planned, see Roadmap)*
 - JavaScript (vanilla, no framework)
-- OpenStreetMap / Leaflet *(live maps & geolocation)*
+- Google Maps JavaScript API + Routes *(Transport map & route search — key in `js/config.js`)*
+- OpenStreetMap / Leaflet *(Emergency Hub map & geolocation)*
 - Deployed on [Vercel](https://vercel.com/)
 
 This is the complete stack for now — frontend only. A backend is planned for later (see Roadmap).
