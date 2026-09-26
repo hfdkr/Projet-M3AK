@@ -796,6 +796,12 @@
         let map = null;
         let linesLayer = null;
         let userMarker = null;
+        let zoomControl = null;
+
+        /* On desktop the planner card floats over the map's start corner
+           (left in English, right in Arabic), so the zoom buttons go in the
+           opposite top corner where nothing covers them. */
+        const zoomPosition = () => (M3akI18n.dir() === "rtl" ? "topleft" : "topright");
 
         function getCityKey() {
             try {
@@ -858,7 +864,8 @@
                 shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
             });
 
-            map = L.map("transitMap", { zoomControl: true, attributionControl: true });
+            map = L.map("transitMap", { zoomControl: false, attributionControl: true });
+            zoomControl = L.control.zoom({ position: zoomPosition() }).addTo(map);
             L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 attribution: "&copy; OpenStreetMap contributors",
                 maxZoom: 19
@@ -898,6 +905,7 @@
             renderRoutes();
             renderAlerts();
             if (linesLayer) renderTransitLines(mode);
+            if (zoomControl) zoomControl.setPosition(zoomPosition());
         });
     </script>
     <!-- ══════════ SITE FOOTER ══════════ -->
