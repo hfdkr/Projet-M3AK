@@ -1,6 +1,6 @@
 /* ==========================================================
    M3ak Morocco — i18n.js
-   One page, several languages (English ↔ Arabic today, French-ready).
+   One page, several languages (English, French, Arabic).
    Load it in <head>, after /js/translations.js and /js/theme.js, so the
    direction (ltr / rtl) is set before the first paint.
 
@@ -32,6 +32,7 @@
     /* To ship a language: add a row here and its block in translations.js. */
     var LANGUAGES = {
         en: { dir: "ltr", label: "English", short: "EN" },
+        fr: { dir: "ltr", label: "Français", short: "FR" },
         ar: {
             dir: "rtl", label: "العربية", short: "ع",
             font: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"

@@ -1181,7 +1181,7 @@
 
         /* ── Route result panel ── */
         function formatDistance(meters) {
-            const locale = M3akI18n.get() === "ar" ? "ar-MA" : "en";
+            const locale = { ar: "ar-MA", fr: "fr-MA" }[M3akI18n.get()] || "en";
             return meters >= 1000
                 ? new Intl.NumberFormat(locale, { style: "unit", unit: "kilometer", maximumFractionDigits: 1 }).format(meters / 1000)
                 : new Intl.NumberFormat(locale, { style: "unit", unit: "meter", maximumFractionDigits: 0 }).format(meters);
