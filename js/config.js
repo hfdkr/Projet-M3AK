@@ -6,8 +6,9 @@
      - Application restriction: HTTP referrers (your site's domains)
      - API restriction: Maps JavaScript API + Routes API
 
-   googleMapsApiKey — leave empty and the Transport page falls back to
-                      the plain Google Maps embed (no drawn lines).
+   googleMapsApiKey — leave empty and the Transport and Emergency pages
+                      fall back to the plain Google Maps embed (no drawn
+                      lines, no coloured pins for each facility).
    googleMapsMapId  — needed for markers; "DEMO_MAP_ID" is Google's
                       test id, create your own Map ID for production.
 ========================================================== */

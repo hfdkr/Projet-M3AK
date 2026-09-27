@@ -179,11 +179,27 @@ window.M3akTranslations = {
                 sent: "Alert sent"
             },
             map: {
-                layers: { hospitals: "hospitals", pharmacies: "pharmacies", police: "police stations" },
+                layers: {
+                    hospitals: "hospitals & clinics",
+                    pharmacies: "pharmacies",
+                    police: "police stations",
+                    gendarmerie: "gendarmerie posts"
+                },
+                unnamed: {
+                    hospitals: "Health facility",
+                    pharmacies: "Pharmacy",
+                    police: "Police station",
+                    gendarmerie: "Gendarmerie post"
+                },
                 types: { public: "Public", private: "Private" },
                 cities: { agadir: "Agadir" },
                 kmAway: "{km} km away",
                 directions: "Directions",
+                showOnMap: "Show on map",
+                showAll: "Show all {n}",
+                showLess: "Show fewer",
+                frameTitle: "Emergency map on Google Maps",
+                loadError: "Google Maps couldn't load — showing the basic map instead.",
                 none: "No {layer} found near {city}.",
                 found: "{count} {layer} found near {city}",
                 offline: " · offline data",
@@ -1488,12 +1504,31 @@ window.M3akTranslations = {
                 hospitals: "المستشفيات",
                 pharmacies: "الصيدليات",
                 police: "مراكز الشرطة",
+                gendarmerie: "الدرك الملكي",
                 loading: "جارٍ تحميل المرافق القريبة…",
-                layers: { hospitals: "المستشفيات", pharmacies: "الصيدليات", police: "مراكز الشرطة" },
+                layers: {
+                    hospitals: "المستشفيات والمصحات",
+                    pharmacies: "الصيدليات",
+                    police: "مراكز الشرطة",
+                    gendarmerie: "مراكز الدرك الملكي"
+                },
+                unnamed: {
+                    hospitals: "مرفق صحي",
+                    pharmacies: "صيدلية",
+                    police: "مركز الشرطة",
+                    gendarmerie: "مركز الدرك الملكي"
+                },
+                filter: { label: "التصفية حسب النوع", all: "الكل", public: "عمومي", private: "خاص" },
+                moreOnGoogle: "ابحث في خرائط Google",
                 types: { public: "عمومي", private: "خاص" },
                 cities: { agadir: "أكادير" },
                 kmAway: "على بعد {km} كلم",
                 directions: "الاتجاهات",
+                showOnMap: "عرض على الخريطة",
+                showAll: "عرض الكل ({n})",
+                showLess: "عرض أقل",
+                frameTitle: "خريطة الطوارئ على خرائط Google",
+                loadError: "تعذّر تحميل خرائط Google — تُعرض الخريطة البسيطة بدلاً منها.",
                 none: "لم يُعثر على أي نتيجة في فئة «{layer}» بالقرب من {city}.",
                 found: "عدد {layer} بالقرب من {city}: {count}",
                 offline: " · بيانات محفوظة دون اتصال",
@@ -1505,7 +1540,13 @@ window.M3akTranslations = {
                 bloodType: "فصيلة الدم",
                 weight: "الوزن",
                 allergies: "الحساسية",
-                medications: "الأدوية"
+                medications: "الأدوية",
+                values: {
+                    bloodType: "A+",
+                    weight: "78 كلغ",
+                    allergies: "البنسلين، الفول السوداني",
+                    medications: "لا شيء"
+                }
             },
             contacts: {
                 title: "جهات الاتصال في حالات الطوارئ",
@@ -2847,14 +2888,33 @@ window.M3akTranslations = {
                 hospitals: "Hôpitaux",
                 pharmacies: "Pharmacies",
                 police: "Commissariats",
+                gendarmerie: "Gendarmerie",
                 loading: "Chargement des établissements à proximité…",
-                layers: { hospitals: "hôpitaux", pharmacies: "pharmacies", police: "commissariats" },
+                layers: {
+                    hospitals: "hôpitaux et cliniques",
+                    pharmacies: "pharmacies",
+                    police: "commissariats",
+                    gendarmerie: "brigades de gendarmerie"
+                },
+                unnamed: {
+                    hospitals: "Établissement de santé",
+                    pharmacies: "Pharmacie",
+                    police: "Commissariat",
+                    gendarmerie: "Brigade de gendarmerie"
+                },
+                filter: { label: "Filtrer par type", all: "Tous", public: "Public", private: "Privé" },
+                moreOnGoogle: "Rechercher sur Google Maps",
                 types: { public: "Public", private: "Privé" },
                 cities: { agadir: "Agadir" },
                 kmAway: "à {km} km",
                 directions: "Itinéraire",
-                none: "Aucun résultat dans « {layer} » près de {city}.",
-                found: "{count} {layer} trouvés près de {city}",
+                showOnMap: "Voir sur la carte",
+                showAll: "Tout afficher ({n})",
+                showLess: "Afficher moins",
+                frameTitle: "Carte d'urgence sur Google Maps",
+                loadError: "Impossible de charger Google Maps — affichage de la carte simplifiée.",
+                none: "Aucun résultat pour « {layer} » à {city}.",
+                found: "{city} : {count} {layer} à proximité",
                 offline: " · données hors ligne",
                 noCity: "Indiquez votre ville dans « Mon Espace » pour voir les services d'urgence à proximité."
             },
@@ -2864,7 +2924,13 @@ window.M3akTranslations = {
                 bloodType: "Groupe sanguin",
                 weight: "Poids",
                 allergies: "Allergies",
-                medications: "Traitements"
+                medications: "Traitements",
+                values: {
+                    bloodType: "A positif",
+                    weight: "78 kg",
+                    allergies: "Pénicilline, arachides",
+                    medications: "Aucun"
+                }
             },
             contacts: {
                 title: "Contacts d'urgence",
