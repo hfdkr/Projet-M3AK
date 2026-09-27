@@ -351,12 +351,14 @@
         .map-card-title { @apply flex items-center gap-2 text-sm font-bold dark:text-white; }
         .map-tabs-row { @apply flex gap-2 overflow-x-auto; }
         .map-tab-btn { @apply shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold; }
-        .map-frame { @apply relative aspect-[16/10] w-full bg-[#DFE5E0] dark:bg-night-700 lg:aspect-[16/7]; }
-        .map-loading { @apply absolute inset-0 z-[500] grid place-items-center bg-white/80 dark:bg-night-800/80 backdrop-blur-sm; }
+        /* isolate: keeps the map library's own z-indexes (up to 1000) inside the
+           frame, so its controls never float over the sticky top bar. */
+        .map-frame { @apply relative isolate aspect-[16/10] w-full bg-[#DFE5E0] dark:bg-night-700 lg:aspect-[16/7]; }
+        .map-loading { @apply absolute inset-0 z-[1100] grid place-items-center bg-white/80 dark:bg-night-800/80 backdrop-blur-sm; }
         .map-loading-text { @apply flex items-center gap-2 text-xs font-semibold text-muted dark:text-mist-300; }
         .spinner-icon { @apply size-4 shrink-0 animate-spin; }
-        .map-embed { @apply size-full border-0; }
         .map-info { @apply max-w-60 text-xs leading-normal text-ink; }
+        .map-info-link { @apply mt-1 inline-block font-semibold hover:underline; }
         .places-wrap { @apply border-t border-black/5 dark:border-night-600 p-4; }
         .ownership-row { @apply mb-3 flex flex-wrap gap-2; }
         .ownership-btn { @apply cursor-pointer rounded-full px-3 py-1 text-[11px] font-semibold text-muted ring-1 ring-black/10 transition-colors dark:text-mist-300 dark:ring-white/10 aria-pressed:bg-brand-soft aria-pressed:text-brand aria-pressed:ring-transparent dark:aria-pressed:bg-accent-400/15 dark:aria-pressed:text-accent-400; }
@@ -1372,10 +1374,11 @@
            MAP — hospitals & clinics (public and private), pharmacies, police
            and Gendarmerie Royale around the user's saved city.
            Data: OpenStreetMap via Overpass (free, keyless, CORS-enabled),
-           tried on several mirrors and cached for a day so tabs switch fast.
-           Map: Google Maps. With a key in /js/config.js every result is a
-           coloured pin; without one, Google's plain embed shows its own
-           search for the tab, and "Show on map" centres it on one place.
+           asked on several mirrors at once and cached for a day.
+           Map: Google Maps when a key is set in /js/config.js. Google's
+           keyless embed cannot draw our own markers, so without a key (or
+           if Google rejects it) the same pins go on a Leaflet map with
+           CARTO's street tiles instead. Both expose the same `view` API.
         ───────────────────────────── */
 
         const MAPS_CONFIG = window.M3akConfig || {};
@@ -1384,7 +1387,14 @@
             "https://overpass.kumi.systems/api/interpreter",
             "https://maps.mail.ru/osm/tools/overpass/api/interpreter"
         ];
-        const OVERPASS_TIMEOUT_MS = 10000;
+        const OVERPASS_TIMEOUT_MS = 15000;
+        const LEAFLET_CSS = { href: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css", integrity: "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" };
+        const LEAFLET_JS = { src: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js", integrity: "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" };
+        const TILES = {
+            light: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+            dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        };
         const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
         const LIST_PREVIEW = 12;
         const DEDUPE_KM = 0.2;
@@ -1467,12 +1477,13 @@
         const esc = (value) => String(value).replace(/[&<>"']/g, (c) =>
             ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-        let mapMode = "pending";      /* "pending" until Google loads, then "google" or "embed" */
+        let view = null;              /* googleView or leafletView once a map is ready */
+        let fallbackStarted = false;
         let gm = null;
         let map = null;
         let infoWindow = null;
+        let leafletLayer = null;
         let markerById = new Map();
-        let lastEmbedSrc = "";
         let currentLayer = "hospitals";
         let ownershipFilter = "all";
         let showAllPlaces = false;
@@ -1563,8 +1574,7 @@
             return `[out:json][timeout:25];(${filters.map((f) => `nwr${f}${around};`).join("")});out center tags;`;
         }
 
-        async function postOverpass(endpoint, query) {
-            const controller = new AbortController();
+        async function postOverpass(endpoint, query, controller) {
             const timer = setTimeout(() => controller.abort(), OVERPASS_TIMEOUT_MS);
             try {
                 const res = await fetch(endpoint, {
@@ -1580,17 +1590,16 @@
             }
         }
 
-        /* The public Overpass servers are often busy: try each mirror in turn */
+        /* The public Overpass servers are often busy: ask every mirror at once,
+           keep the first answer and cancel the rest. Results are cached for a
+           day, so this runs at most once per tab per day. */
         async function fetchOverpass(query) {
-            let lastError = new Error("No Overpass endpoint configured");
-            for (const endpoint of OVERPASS_ENDPOINTS) {
-                try {
-                    return await postOverpass(endpoint, query);
-                } catch (err) {
-                    lastError = err;
-                }
+            const controllers = OVERPASS_ENDPOINTS.map(() => new AbortController());
+            try {
+                return await Promise.any(OVERPASS_ENDPOINTS.map((endpoint, i) => postOverpass(endpoint, query, controllers[i])));
+            } finally {
+                controllers.forEach((controller) => controller.abort());
             }
-            throw lastError;
         }
 
         const cacheKey = (cityKey, layer) => `m3ak.emergency.${cityKey}.${layer}`;
@@ -1635,6 +1644,8 @@
         const pinColor = (layer, place) => PIN_COLORS[layer === "hospitals" ? place.ownership : layer];
         const googleSearchUrl = (layer, center) => "https://www.google.com/maps/search/?" +
             new URLSearchParams({ api: "1", query: `${LAYERS[layer].google} ${center.label}` });
+        const directionsUrl = (place) => "https://www.google.com/maps/dir/?" +
+            new URLSearchParams({ api: "1", destination: `${place.lat},${place.lon}` });
 
         function visiblePlaces() {
             const { layer, places } = lastResult;
@@ -1644,8 +1655,7 @@
 
         function placeCardHTML(layer, place, center) {
             const km = distanceKm(center, place).toFixed(1);
-            const directions = "https://www.google.com/maps/dir/?" +
-                new URLSearchParams({ api: "1", destination: `${place.lat},${place.lon}` });
+            const directions = directionsUrl(place);
             const tel = place.phone.split(/[;,]/)[0].replace(/[^\d+]/g, "");
             return `
       <article class="place-card">
@@ -1683,8 +1693,8 @@
             more.textContent = showAllPlaces ? t("emergency.map.showLess") : t("emergency.map.showAll", { n: places.length });
         }
 
-        /* ── Google Maps JavaScript API (key set) ── */
-        function openPlaceInfo(layer, place, marker) {
+        /* Popup body for a pin — built as DOM so OSM text is never parsed as HTML */
+        function placeInfo(layer, place) {
             const box = document.createElement("div");
             box.className = "map-info";
             box.dir = M3akI18n.dir();
@@ -1697,68 +1707,91 @@
                     line.textContent = text;
                     return line;
                 });
-            box.append(title, ...lines);
-            infoWindow.setContent(box);
+            const link = document.createElement("a");
+            link.href = directionsUrl(place);
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.className = "map-info-link";
+            link.textContent = t("emergency.map.directions");
+            box.append(title, ...lines, link);
+            return box;
+        }
+
+        /* ── Google Maps JavaScript API (key set) ── */
+        function openGoogleInfo(layer, place, marker) {
+            infoWindow.setContent(placeInfo(layer, place));
             infoWindow.open({ map, anchor: marker });
         }
 
-        function clearMarkers() {
-            markerById.forEach((marker) => { marker.map = null; });
-            markerById = new Map();
-        }
-
-        function showGooglePlaces(layer, places, center) {
-            clearMarkers();
-            infoWindow.close();
-            const bounds = new gm.LatLngBounds();
-            places.forEach((place) => {
-                const color = pinColor(layer, place);
-                const pin = new gm.PinElement({ background: color, borderColor: color, glyphColor: "#FFFFFF" });
-                const marker = new gm.Marker({
-                    map,
-                    position: { lat: place.lat, lng: place.lon },
-                    content: pin.element,
-                    title: placeName(place, layer)
+        const googleView = {
+            show(layer, places, center) {
+                this.clear();
+                const bounds = new gm.LatLngBounds();
+                places.forEach((place) => {
+                    const color = pinColor(layer, place);
+                    const pin = new gm.PinElement({ background: color, borderColor: color, glyphColor: "#FFFFFF" });
+                    const marker = new gm.Marker({
+                        map,
+                        position: { lat: place.lat, lng: place.lon },
+                        content: pin.element,
+                        title: placeName(place, layer)
+                    });
+                    marker.addListener("click", () => openGoogleInfo(layer, place, marker));
+                    markerById.set(place.id, marker);
+                    bounds.extend(marker.position);
                 });
-                marker.addListener("click", () => openPlaceInfo(layer, place, marker));
-                markerById.set(place.id, marker);
-                bounds.extend(marker.position);
-            });
 
-            if (places.length > 1) {
-                map.fitBounds(bounds, 48);
-            } else {
-                const only = places[0] || center;
-                map.setCenter({ lat: only.lat, lng: only.lon });
-                map.setZoom(places.length ? 16 : center.zoom);
+                if (places.length > 1) {
+                    map.fitBounds(bounds, 48);
+                } else {
+                    const only = places[0] || center;
+                    map.setCenter({ lat: only.lat, lng: only.lon });
+                    map.setZoom(places.length ? 16 : center.zoom);
+                }
+            },
+            focus(layer, place) {
+                map.setCenter({ lat: place.lat, lng: place.lon });
+                map.setZoom(17);
+                const marker = markerById.get(place.id);
+                if (marker) openGoogleInfo(layer, place, marker);
+            },
+            clear() {
+                infoWindow.close();
+                markerById.forEach((marker) => { marker.map = null; });
+                markerById = new Map();
             }
-        }
+        };
 
-        /* ── Keyless fallback: Google's plain embed ── */
-        function showEmbed(params) {
-            const src = "https://maps.google.com/maps?" + new URLSearchParams({ ...params, hl: M3akI18n.get(), output: "embed" });
-            if (src === lastEmbedSrc) return;   /* re-renders (filters, "Show all") keep the frame */
-            lastEmbedSrc = src;
-            const frame = document.createElement("iframe");
-            frame.className = "map-embed";
-            frame.title = t("emergency.map.frameTitle");
-            frame.loading = "lazy";
-            frame.referrerPolicy = "no-referrer-when-downgrade";
-            frame.allowFullscreen = true;
-            frame.src = src;
-            document.getElementById("emergencyMap").replaceChildren(frame);
-        }
+        /* ── Keyless fallback: Leaflet + CARTO street tiles, same pins ── */
+        const leafletView = {
+            show(layer, places, center) {
+                this.clear();
+                places.forEach((place) => {
+                    const marker = L.circleMarker([place.lat, place.lon], {
+                        radius: 8, color: "#FFFFFF", weight: 2, fillColor: pinColor(layer, place), fillOpacity: 1
+                    });
+                    marker.bindTooltip(placeName(place, layer));
+                    marker.bindPopup(() => placeInfo(layer, place));
+                    marker.addTo(leafletLayer);
+                    markerById.set(place.id, marker);
+                });
 
-        const showEmbedSearch = (layer, center) => showEmbed({
-            q: `${LAYERS[layer].google}, ${center.label}`,
-            ll: `${center.lat},${center.lon}`,
-            z: String(center.zoom)
-        });
-
-        function showMap(layer, places, center) {
-            if (mapMode === "google") showGooglePlaces(layer, places, center);
-            else if (mapMode === "embed") showEmbedSearch(layer, center);
-        }
+                if (places.length) {
+                    map.fitBounds(places.map((p) => [p.lat, p.lon]), { padding: [32, 32], maxZoom: 15 });
+                } else {
+                    map.setView([center.lat, center.lon], center.zoom);
+                }
+            },
+            focus(layer, place) {
+                map.setView([place.lat, place.lon], 17);
+                const marker = markerById.get(place.id);
+                if (marker) marker.openPopup();
+            },
+            clear() {
+                leafletLayer.clearLayers();
+                markerById = new Map();
+            }
+        };
 
         function renderResults() {
             if (!lastResult) return;
@@ -1766,21 +1799,14 @@
             const places = visiblePlaces();
             renderStatus(layer, places.length, center, offline);
             renderList(layer, places, center);
-            showMap(layer, places, center);
+            if (view) view.show(layer, places, center);
         }
 
         function focusPlace(id) {
             const place = lastResult && lastResult.places.find((p) => p.id === id);
-            if (!place) return;
+            if (!place || !view) return;
             document.getElementById("mapSection").scrollIntoView({ behavior: "smooth", block: "start" });
-            if (mapMode === "google") {
-                map.setCenter({ lat: place.lat, lng: place.lon });
-                map.setZoom(17);
-                const marker = markerById.get(id);
-                if (marker) openPlaceInfo(lastResult.layer, place, marker);
-            } else {
-                showEmbed({ q: `${place.lat},${place.lon}`, z: "17" });
-            }
+            view.focus(lastResult.layer, place);
         }
 
         function paintOwnership() {
@@ -1795,7 +1821,7 @@
             document.getElementById("placesStatus").textContent = t("emergency.map.noCity");
             document.getElementById("placesList").innerHTML = "";
             document.getElementById("placesMore").classList.add("hidden");
-            if (mapMode === "google") clearMarkers();
+            if (view) view.clear();
         }
 
         async function loadLayer(layer) {
@@ -1829,21 +1855,57 @@
             renderResults();
         }
 
-        function useEmbed() {
-            mapMode = "embed";
+        function loadLeaflet() {
+            if (window.L) return Promise.resolve();
+            const css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = LEAFLET_CSS.href;
+            css.integrity = LEAFLET_CSS.integrity;
+            css.crossOrigin = "";
+            document.head.appendChild(css);
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = LEAFLET_JS.src;
+                script.integrity = LEAFLET_JS.integrity;
+                script.crossOrigin = "";
+                script.onload = resolve;
+                script.onerror = () => reject(new Error("Leaflet failed to load"));
+                document.head.appendChild(script);
+            });
+        }
+
+        async function startLeafletMap() {
+            if (fallbackStarted) return;
+            fallbackStarted = true;
+            view = null;
             gm = null;
-            map = null;
             markerById = new Map();
-            lastEmbedSrc = "";
-            if (lastResult) renderResults();
-            else showEmbedSearch(currentLayer, defaultCenter());
+            const container = document.getElementById("emergencyMap");
+            container.replaceChildren();   /* drop a half-built Google map, if any */
+            try {
+                await loadLeaflet();
+            } catch (err) {
+                toast(t("emergency.map.loadError"));
+                return;   /* the list below still works on its own */
+            }
+            const center = defaultCenter();
+            const dark = document.documentElement.classList.contains("dark");
+            map = L.map(container).setView([center.lat, center.lon], center.zoom);
+            L.tileLayer(dark ? TILES.dark : TILES.light, {
+                attribution: TILES.attribution,
+                subdomains: "abcd",
+                maxZoom: 20
+            }).addTo(map);
+            leafletLayer = L.layerGroup().addTo(map);
+            view = leafletView;
+            renderResults();   /* places may have arrived while the map was loading */
         }
 
         /* Google calls this when the key is rejected (wrong key, referrer
            not allowed, billing off…) — fall back instead of a broken map. */
         window.gm_authFailure = () => {
-            useEmbed();
             toast(t("emergency.map.loadError"));
+            startLeafletMap();
         };
 
         function loadGoogleMaps() {
@@ -1867,7 +1929,7 @@
 
         async function startGoogleMap() {
             if (!MAPS_CONFIG.googleMapsApiKey) {
-                useEmbed();
+                startLeafletMap();
                 return;
             }
             try {
@@ -1888,10 +1950,10 @@
                     streetViewControl: false
                 });
                 infoWindow = new gm.InfoWindow();
-                mapMode = "google";
+                view = googleView;
                 renderResults();   /* places may have arrived while Google was loading */
             } catch (err) {
-                useEmbed();
+                startLeafletMap();
             }
         }
 
