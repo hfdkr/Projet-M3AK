@@ -17,10 +17,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="/js/config.js"></script>
 
     <style type="text/tailwindcss">
 
@@ -354,13 +351,33 @@
         .map-card-title { @apply flex items-center gap-2 text-sm font-bold dark:text-white; }
         .map-tabs-row { @apply flex gap-2 overflow-x-auto; }
         .map-tab-btn { @apply shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold; }
-        .map-frame { @apply relative aspect-[16/10] w-full bg-[#DFE5E0] dark:bg-night-700 lg:aspect-[16/7]; }
-        .map-loading { @apply absolute inset-0 z-[500] grid place-items-center bg-white/80 dark:bg-night-800/80 backdrop-blur-sm; }
+        /* isolate: keeps the map library's own z-indexes (up to 1000) inside the
+           frame, so its controls never float over the sticky top bar. */
+        .map-frame { @apply relative isolate aspect-[16/10] w-full bg-[#DFE5E0] dark:bg-night-700 lg:aspect-[16/7]; }
+        .map-loading { @apply absolute inset-0 z-[1100] grid place-items-center bg-white/80 dark:bg-night-800/80 backdrop-blur-sm; }
         .map-loading-text { @apply flex items-center gap-2 text-xs font-semibold text-muted dark:text-mist-300; }
         .spinner-icon { @apply size-4 shrink-0 animate-spin; }
+        .map-info { @apply max-w-60 text-xs leading-normal text-ink; }
+        .map-info-link { @apply mt-1 inline-block font-semibold hover:underline; }
         .places-wrap { @apply border-t border-black/5 dark:border-night-600 p-4; }
-        .places-status { @apply mb-3 text-[11px] font-semibold text-muted dark:text-mist-300; }
+        .ownership-row { @apply mb-3 flex flex-wrap gap-2; }
+        .ownership-btn { @apply cursor-pointer rounded-full px-3 py-1 text-[11px] font-semibold text-muted ring-1 ring-black/10 transition-colors dark:text-mist-300 dark:ring-white/10 aria-pressed:bg-brand-soft aria-pressed:text-brand aria-pressed:ring-transparent dark:aria-pressed:bg-accent-400/15 dark:aria-pressed:text-accent-400; }
+        .places-status-row { @apply mb-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1; }
+        .places-status { @apply text-[11px] font-semibold text-muted dark:text-mist-300; }
+        .places-google-link { @apply text-[11px] font-semibold text-brand hover:underline dark:text-accent-400; }
         .places-list { @apply grid gap-2.5 sm:grid-cols-2; }
+        .places-more { @apply mt-3 w-full cursor-pointer rounded-xl py-2 text-xs font-semibold text-brand ring-1 ring-black/5 transition-colors hover:bg-brand-soft dark:text-accent-400 dark:ring-night-600 dark:hover:bg-night-700; }
+        .place-card { @apply rounded-xl bg-canvas p-3 dark:bg-night-700; }
+        .place-card-head { @apply flex items-start justify-between gap-2; }
+        .place-card-name { @apply flex items-start gap-1.5 text-xs font-bold dark:text-white; }
+        .place-dot { @apply mt-1 size-2 shrink-0 rounded-full; }
+        .place-badge { @apply shrink-0 rounded-md bg-brand-soft px-1.5 py-0.5 text-[9px] font-bold uppercase text-brand dark:bg-accent-400/15 dark:text-accent-400; }
+        .place-meta { @apply mt-1 text-[11px] text-muted dark:text-mist-300; }
+        .place-hours { @apply mt-0.5 text-[10px] text-muted dark:text-mist-300; }
+        .place-phone { @apply font-semibold text-brand hover:underline dark:text-accent-400; }
+        .place-actions { @apply mt-2 flex flex-wrap items-center gap-x-4 gap-y-1; }
+        .place-action { @apply inline-flex cursor-pointer items-center gap-1 text-[11px] font-semibold text-brand hover:underline dark:text-accent-400; }
+        .place-action-icon { @apply size-3 rtl:-scale-x-100; }
 
         .right-col { @apply grid gap-4 lg:gap-5; }
         .medical-card { @apply rounded-2xl bg-gradient-to-br from-brand to-brand-dark p-5 text-white shadow-sm dark:shadow-none; }
@@ -369,8 +386,10 @@
         .medical-edit-btn { @apply grid size-8 cursor-text place-items-center rounded-lg bg-white/15 transition hover:bg-white/25; }
         .medical-fields-grid { @apply mt-5 grid grid-cols-2 gap-x-4 gap-y-4; }
         .medical-field-label { @apply text-[10px] font-bold uppercase tracking-wider text-white/60; }
-        .medical-input { @apply mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-bold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30; }
-        .medical-input--semibold { @apply mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-semibold text-white outline-none focus:bg-white/15 focus:ring-1 focus:ring-white/30; }
+        /* plaintext: each value takes its direction from its own text, so a typed "78 kg"
+           never flips to "kg 78" in Arabic; rtl:text-right keeps it aligned with its label. */
+        .medical-input { @apply mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-bold text-white outline-none [unicode-bidi:plaintext] rtl:text-right focus:bg-white/15 focus:ring-1 focus:ring-white/30; }
+        .medical-input--semibold { @apply mt-1 block w-full rounded bg-transparent px-1 py-0.5 text-sm font-semibold text-white outline-none [unicode-bidi:plaintext] rtl:text-right focus:bg-white/15 focus:ring-1 focus:ring-white/30; }
 
         .contacts-card { @apply rounded-2xl bg-white dark:bg-night-800 p-5 ring-1 ring-black/5 dark:ring-night-600 transition-colors; }
         .contacts-list { @apply mt-4 divide-y divide-black/5 dark:divide-night-600; }
@@ -810,12 +829,16 @@
                                 Police Stations
                             </button>
 
+                            <button type="button" data-layer="gendarmerie" class="map-tab map-tab-btn" data-i18n="emergency.map.gendarmerie">
+                                Gendarmerie
+                            </button>
+
                         </div>
                     </div>
 
                     <div class="map-frame" dir="ltr">
 
-                        <div id="leafletMap" class="size-full"></div>
+                        <div id="emergencyMap" class="size-full"></div>
 
                         <div id="mapLoading" class="map-loading">
                             <span class="map-loading-text">
@@ -831,8 +854,21 @@
                     </div>
 
                     <div class="places-wrap">
-                        <p id="placesStatus" class="places-status"></p>
+                        <!-- Hospitals tab only: public / private split -->
+                        <div id="ownershipFilter" class="ownership-row" role="group" aria-label="Filter by type"
+                            data-i18n-aria-label="emergency.map.filter.label">
+                            <button type="button" class="ownership-btn" data-ownership="all" data-i18n="emergency.map.filter.all">All</button>
+                            <button type="button" class="ownership-btn" data-ownership="public" data-i18n="emergency.map.filter.public">Public</button>
+                            <button type="button" class="ownership-btn" data-ownership="private" data-i18n="emergency.map.filter.private">Private</button>
+                        </div>
+
+                        <div class="places-status-row">
+                            <p id="placesStatus" class="places-status"></p>
+                            <a id="googleSearchLink" href="https://www.google.com/maps" target="_blank" rel="noopener"
+                                class="places-google-link" data-i18n="emergency.map.moreOnGoogle">Search on Google Maps</a>
+                        </div>
                         <div id="placesList" class="places-list"></div>
+                        <button type="button" id="placesMore" class="places-more hidden"></button>
                     </div>
                 </section>
 
@@ -862,7 +898,7 @@
                                     Blood type
                                 </label>
                                 <input id="bloodType" type="text" value="A Positive" data-profile-bloodtype
-                                    class="medical-input" />
+                                    data-i18n-value="emergency.medical.values.bloodType" class="medical-input" />
                             </div>
 
                             <div>
@@ -870,7 +906,7 @@
                                     Weight
                                 </label>
                                 <input id="weight" type="text" value="78 kg" data-profile-weight
-                                    class="medical-input" />
+                                    data-i18n-value="emergency.medical.values.weight" class="medical-input" />
                             </div>
 
                             <div class="col-span-2">
@@ -878,7 +914,7 @@
                                     Allergies
                                 </label>
                                 <input id="allergies" type="text" value="Penicillin, Peanuts" data-profile-allergies
-                                    class="medical-input--semibold" />
+                                    data-i18n-value="emergency.medical.values.allergies" class="medical-input--semibold" />
                             </div>
 
                             <div class="col-span-2">
@@ -886,7 +922,7 @@
                                     Medications
                                 </label>
                                 <input id="medications" type="text" value="None" data-profile-medications
-                                    class="medical-input--semibold" />
+                                    data-i18n-value="emergency.medical.values.medications" class="medical-input--semibold" />
                             </div>
 
                         </div>
@@ -1335,15 +1371,33 @@
 
 
         /* ─────────────────────────────
-           MAP — live multi-result hospitals/pharmacies/police for the
-           user's saved city, via Leaflet (rendering) + Overpass (data).
-           No backend: Overpass is a free, keyless, CORS-enabled public API,
-           queried directly from the browser.
+           MAP — hospitals & clinics (public and private), pharmacies, police
+           and Gendarmerie Royale around the user's saved city.
+           Data: OpenStreetMap via Overpass (free, keyless, CORS-enabled),
+           asked on several mirrors at once and cached for a day.
+           Map: Google Maps when a key is set in /js/config.js. Google's
+           keyless embed cannot draw our own markers, so without a key (or
+           if Google rejects it) the same pins go on a Leaflet map with
+           CARTO's street tiles instead. Both expose the same `view` API.
         ───────────────────────────── */
 
-        const OVERPASS_ENDPOINT = "https://overpass-api.de/api/interpreter";
-        const OVERPASS_TIMEOUT_MS = 12000;
-        const SEARCH_RADIUS_M = 6000;
+        const MAPS_CONFIG = window.M3akConfig || {};
+        const OVERPASS_ENDPOINTS = [
+            "https://overpass-api.de/api/interpreter",
+            "https://overpass.kumi.systems/api/interpreter",
+            "https://maps.mail.ru/osm/tools/overpass/api/interpreter"
+        ];
+        const OVERPASS_TIMEOUT_MS = 15000;
+        const LEAFLET_CSS = { href: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css", integrity: "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" };
+        const LEAFLET_JS = { src: "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js", integrity: "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" };
+        const TILES = {
+            light: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+            dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        };
+        const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+        const LIST_PREVIEW = 12;
+        const DEDUPE_KM = 0.2;
 
         /* Known city centers. Extend this as more cities get real support —
            an unknown city just falls through to the empty state below. */
@@ -1351,17 +1405,53 @@
             agadir: { label: "Agadir", lat: 30.4278, lon: -9.5981, zoom: 13 }
         };
 
-        const AMENITY_BY_LAYER = { hospitals: "hospital", pharmacies: "pharmacy", police: "police" };
+        /* Per tab: search radius (the gendarmerie covers the rural outskirts,
+           so it looks further), the Overpass filters it unions, and the Google
+           search used by the keyless embed and the "Search on Google" link. */
+        const GENDARMERIE_PATTERN = "gendarm|درك";
+        const LAYERS = {
+            hospitals: {
+                radius: 15000,
+                filters: ['["amenity"~"^(hospital|clinic)$"]', '["healthcare"~"^(hospital|clinic)$"]'],
+                google: "hôpital clinique"
+            },
+            pharmacies: {
+                radius: 8000,
+                filters: ['["amenity"="pharmacy"]', '["healthcare"="pharmacy"]'],
+                google: "pharmacie"
+            },
+            police: {
+                radius: 15000,
+                filters: ['["amenity"="police"]'],
+                google: "commissariat de police"
+            },
+            gendarmerie: {
+                radius: 40000,
+                filters: ["name", "name:fr", "name:ar", "operator", "police", "police:type"]
+                    .map((key) => `["amenity"="police"]["${key}"~"${GENDARMERIE_PATTERN}",i]`),
+                google: "Gendarmerie Royale"
+            }
+        };
 
-        /* Small curated dataset, used only if Overpass is unreachable — never
-           mixed with another city's live results, and never shown as if it
-           were live data (the status line says "offline data" when active). */
+        /* Pin colours: hospitals by ownership, the other tabs by tab */
+        const PIN_COLORS = {
+            public: "#DC2626", private: "#7C3AED",
+            pharmacies: "#16A34A", police: "#2563EB", gendarmerie: "#B45309"
+        };
+
+        const GENDARMERIE_RE = new RegExp(GENDARMERIE_PATTERN, "i");
+        const PRIVATE_RE = /clini|priv[ée]|private|مصحة|خاص/i;
+        const PUBLIC_RE = /h[oô]pital|hospital|\bch[ru]\b|centre hospitalier|centre de sant[ée]|dispensaire|militaire|مستشفى|استشفائي|مركز صحي|مستوصف/i;
+
+        /* Small curated dataset, used only if every Overpass mirror fails —
+           never mixed with another city's live results, and never shown as if
+           it were live data (the status line says "offline data" when active). */
         const FALLBACK = {
             agadir: {
                 hospitals: [
-                    { id: "fallback-h1", name: "Hôpital Hassan II d'Agadir", type: "Public", lat: 30.4180, lon: -9.5695, address: "Agadir" },
-                    { id: "fallback-h2", name: "Hôpital Militaire Moulay El Hassan", type: "Public", lat: 30.4025, lon: -9.5731, address: "Agadir" },
-                    { id: "fallback-h3", name: "Clinique Yasmine", type: "Private", lat: 30.4144, lon: -9.5852, address: "Agadir" }
+                    { id: "fallback-h1", name: "Hôpital Hassan II d'Agadir", ownership: "public", lat: 30.4180, lon: -9.5695, address: "Agadir" },
+                    { id: "fallback-h2", name: "Hôpital Militaire Moulay El Hassan", ownership: "public", lat: 30.4025, lon: -9.5731, address: "Agadir" },
+                    { id: "fallback-h3", name: "Clinique Yasmine", ownership: "private", lat: 30.4144, lon: -9.5852, address: "Agadir" }
                 ],
                 pharmacies: [
                     { id: "fallback-p1", name: "Pharmacie de Garde Talborjt", lat: 30.4202, lon: -9.5982, address: "Talborjt, Agadir" },
@@ -1376,24 +1466,37 @@
         };
 
         const layerLabel = (layer) => t("emergency.map.layers." + layer);
-        const typeLabel = (type) => (type ? t("emergency.map.types." + type.toLowerCase()) : "");
+        const typeLabel = (ownership) => t("emergency.map.types." + ownership);
         const cityLabel = (center) => {
             const key = "emergency.map.cities." + center.label.toLowerCase();
             const name = t(key);
             return name === key ? center.label : name;
         };
 
+        /* OSM names and addresses are third-party text: escape before innerHTML */
+        const esc = (value) => String(value).replace(/[&<>"']/g, (c) =>
+            ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+        let view = null;              /* googleView or leafletView once a map is ready */
+        let fallbackStarted = false;
+        let gm = null;
         let map = null;
-        let markerLayer = null;
+        let infoWindow = null;
+        let leafletLayer = null;
+        let markerById = new Map();
         let currentLayer = "hospitals";
+        let ownershipFilter = "all";
+        let showAllPlaces = false;
         let requestToken = 0;
-        let lastRender = null;
+        let lastResult = null;        /* { layer, places, center, offline } */
 
         function getCityKey() {
             const saved = (window.M3ak.getProfile().location || {}).city || "Agadir";
             const key = saved.trim().toLowerCase();
             return CITIES[key] ? key : null;
         }
+
+        const defaultCenter = () => CITIES[getCityKey() || "agadir"];
 
         function haversineKm(lat1, lon1, lat2, lon2) {
             const R = 6371, toRad = (d) => (d * Math.PI) / 180;
@@ -1402,126 +1505,331 @@
             return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         }
 
+        const distanceKm = (from, to) => haversineKm(from.lat, from.lon, to.lat, to.lon);
+        const byDistance = (center) => (a, b) => distanceKm(center, a) - distanceKm(center, b);
+
         function tagAddress(tags) {
-            if (!tags) return "";
             const parts = [tags["addr:housenumber"], tags["addr:street"] || tags["addr:place"], tags["addr:city"]].filter(Boolean);
             return parts.join(" ");
         }
 
-        function publicPrivateLabel(tags) {
-            if (!tags) return "";
-            if (tags.operator && /minist|public|chu|chr|hôpital public/i.test(tags.operator)) return "Public";
-            if (tags.amenity === "hospital" && tags.operator_type) {
-                return /private|priv/i.test(tags.operator_type) ? "Private" : "Public";
-            }
-            return "";
+        function tagText(tags) {
+            return [tags.name, tags["name:fr"], tags["name:ar"], tags["name:en"], tags.operator, tags.police, tags["police:type"]]
+                .filter(Boolean).join(" ");
         }
 
-        function normalizeOverpassElement(el) {
+        /* OSM rarely says who runs a facility, so this reads operator:type
+           first, then the name (Moroccan cliniques are private; hôpitaux,
+           CHU/CHR and centres de santé are public), then the tag itself. */
+        function ownershipOf(tags) {
+            const operatorType = tags["operator:type"] || tags.operator_type || "";
+            if (/priv|commercial/i.test(operatorType)) return "private";
+            if (/public|government|military|state/i.test(operatorType)) return "public";
+            const text = tagText(tags);
+            if (PRIVATE_RE.test(text)) return "private";
+            if (PUBLIC_RE.test(text)) return "public";
+            return tags.amenity === "clinic" || tags.healthcare === "clinic" ? "private" : "public";
+        }
+
+        function normalizeElement(el, layer) {
             const tags = el.tags || {};
             const lat = el.lat ?? (el.center && el.center.lat);
             const lon = el.lon ?? (el.center && el.center.lon);
-            if (lat == null || lon == null || !tags.name) return null;
+            if (lat == null || lon == null) return null;
+            /* Unnamed clinics are mostly private practices, not emergency care */
+            if (!tags.name && (tags.amenity === "clinic" || tags.healthcare === "clinic")) return null;
+            if (layer === "police" && GENDARMERIE_RE.test(tagText(tags))) return null;
             return {
                 id: `${el.type}/${el.id}`,
-                name: tags.name,
-                type: publicPrivateLabel(tags),
                 lat, lon,
+                names: { default: tags.name || "", en: tags["name:en"] || "", fr: tags["name:fr"] || "", ar: tags["name:ar"] || "" },
+                ownership: layer === "hospitals" ? ownershipOf(tags) : "",
                 address: tagAddress(tags),
                 phone: tags.phone || tags["contact:phone"] || "",
                 hours: tags.opening_hours || ""
             };
         }
 
-        async function fetchOverpassLayer(layer, center) {
-            const amenity = AMENITY_BY_LAYER[layer];
-            const query = `[out:json][timeout:15];(node["amenity"="${amenity}"](around:${SEARCH_RADIUS_M},${center.lat},${center.lon});way["amenity"="${amenity}"](around:${SEARCH_RADIUS_M},${center.lat},${center.lon});relation["amenity"="${amenity}"](around:${SEARCH_RADIUS_M},${center.lat},${center.lon}););out center tags;`;
+        function fallbackPlaces(cityKey, layer) {
+            return ((FALLBACK[cityKey] || {})[layer] || []).map((p) => ({
+                id: p.id, lat: p.lat, lon: p.lon,
+                names: { default: p.name },
+                ownership: p.ownership || "",
+                address: p.address, phone: "", hours: ""
+            }));
+        }
 
-            const controller = new AbortController();
+        /* A facility is often mapped twice (a point and its building outline) */
+        function dedupe(places) {
+            return places.reduce((kept, place) => {
+                const twin = place.names.default && kept.some((k) =>
+                    k.names.default === place.names.default && distanceKm(k, place) < DEDUPE_KM);
+                return twin ? kept : [...kept, place];
+            }, []);
+        }
+
+        function overpassQuery(layer, center) {
+            const { radius, filters } = LAYERS[layer];
+            const around = `(around:${radius},${center.lat},${center.lon})`;
+            return `[out:json][timeout:25];(${filters.map((f) => `nwr${f}${around};`).join("")});out center tags;`;
+        }
+
+        async function postOverpass(endpoint, query, controller) {
             const timer = setTimeout(() => controller.abort(), OVERPASS_TIMEOUT_MS);
-
             try {
-                const res = await fetch(OVERPASS_ENDPOINT, {
+                const res = await fetch(endpoint, {
                     method: "POST",
                     body: "data=" + encodeURIComponent(query),
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     signal: controller.signal
                 });
                 if (!res.ok) throw new Error("Overpass responded " + res.status);
-                const json = await res.json();
-
-                const seen = new Set();
-                const results = [];
-                (json.elements || []).forEach((el) => {
-                    const place = normalizeOverpassElement(el);
-                    if (!place || seen.has(place.id)) return;
-                    seen.add(place.id);
-                    results.push(place);
-                });
-                return results;
+                return await res.json();
             } finally {
                 clearTimeout(timer);
             }
         }
 
-        function placeCardHTML(place, center) {
-            const dist = haversineKm(center.lat, center.lon, place.lat, place.lon).toFixed(1);
-            const dir = `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lon}`;
+        /* The public Overpass servers are often busy: ask every mirror at once,
+           keep the first answer and cancel the rest. Results are cached for a
+           day, so this runs at most once per tab per day. */
+        async function fetchOverpass(query) {
+            const controllers = OVERPASS_ENDPOINTS.map(() => new AbortController());
+            try {
+                return await Promise.any(OVERPASS_ENDPOINTS.map((endpoint, i) => postOverpass(endpoint, query, controllers[i])));
+            } finally {
+                controllers.forEach((controller) => controller.abort());
+            }
+        }
+
+        const cacheKey = (cityKey, layer) => `m3ak.emergency.${cityKey}.${layer}`;
+
+        function readCache(key) {
+            try {
+                const hit = JSON.parse(localStorage.getItem(key));
+                return hit && Date.now() - hit.at < CACHE_TTL_MS ? hit.places : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function writeCache(key, places) {
+            try {
+                localStorage.setItem(key, JSON.stringify({ at: Date.now(), places }));
+            } catch (e) {
+                /* storage full or blocked — the next visit simply fetches again */
+            }
+        }
+
+        /* Never throws: cached results under a day old, else live data,
+           else the small offline set */
+        async function placesFor(cityKey, layer) {
+            const center = CITIES[cityKey];
+            const key = cacheKey(cityKey, layer);
+            const cached = readCache(key);
+            if (cached) return { places: cached, offline: false };
+            try {
+                const json = await fetchOverpass(overpassQuery(layer, center));
+                const places = dedupe((json.elements || []).map((el) => normalizeElement(el, layer)).filter(Boolean))
+                    .sort(byDistance(center));
+                writeCache(key, places);
+                return { places, offline: false };
+            } catch (err) {
+                return { places: fallbackPlaces(cityKey, layer).sort(byDistance(center)), offline: true };
+            }
+        }
+
+        const placeName = (place, layer) =>
+            place.names[M3akI18n.get()] || place.names.default || t("emergency.map.unnamed." + layer);
+        const pinColor = (layer, place) => PIN_COLORS[layer === "hospitals" ? place.ownership : layer];
+        const googleSearchUrl = (layer, center) => "https://www.google.com/maps/search/?" +
+            new URLSearchParams({ api: "1", query: `${LAYERS[layer].google} ${center.label}` });
+        const directionsUrl = (place) => "https://www.google.com/maps/dir/?" +
+            new URLSearchParams({ api: "1", destination: `${place.lat},${place.lon}` });
+
+        function visiblePlaces() {
+            const { layer, places } = lastResult;
+            if (layer !== "hospitals" || ownershipFilter === "all") return places;
+            return places.filter((p) => p.ownership === ownershipFilter);
+        }
+
+        function placeCardHTML(layer, place, center) {
+            const km = distanceKm(center, place).toFixed(1);
+            const directions = directionsUrl(place);
+            const tel = place.phone.split(/[;,]/)[0].replace(/[^\d+]/g, "");
             return `
-      <article class="rounded-xl bg-canvas dark:bg-night-700 p-3">
-        <div class="flex items-start justify-between gap-2">
-          <p class="text-xs font-bold dark:text-white">${place.name}</p>
-          ${place.type ? `<span class="shrink-0 rounded-md bg-brand-soft dark:bg-accent-400/15 px-1.5 py-0.5 text-[9px] font-bold uppercase text-brand dark:text-accent-400">${typeLabel(place.type)}</span>` : ""}
+      <article class="place-card">
+        <div class="place-card-head">
+          <p class="place-card-name"><span class="place-dot" style="background:${pinColor(layer, place)}"></span>${esc(placeName(place, layer))}</p>
+          ${place.ownership ? `<span class="place-badge">${typeLabel(place.ownership)}</span>` : ""}
         </div>
-        ${place.address ? `<p class="mt-1 text-[11px] text-muted dark:text-mist-300">${place.address}</p>` : ""}
-        <p class="mt-1 text-[11px] text-muted dark:text-mist-300">${t("emergency.map.kmAway", { km: dist })}${place.phone ? ` · <bdi>${place.phone}</bdi>` : ""}</p>
-        ${place.hours ? `<p class="mt-0.5 text-[10px] text-muted dark:text-mist-300"><bdi>${place.hours}</bdi></p>` : ""}
-        <a href="${dir}" target="_blank" rel="noopener"
-           class="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-brand dark:text-accent-400 hover:underline">
-          ${t("emergency.map.directions")}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3 rtl:-scale-x-100"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
-        </a>
+        ${place.address ? `<p class="place-meta">${esc(place.address)}</p>` : ""}
+        <p class="place-meta">${t("emergency.map.kmAway", { km })}${tel ? ` · <a href="tel:${tel}" class="place-phone"><bdi>${esc(place.phone)}</bdi></a>` : ""}</p>
+        ${place.hours ? `<p class="place-hours"><bdi>${esc(place.hours)}</bdi></p>` : ""}
+        <div class="place-actions">
+          <button type="button" class="place-action" data-focus="${esc(place.id)}">${t("emergency.map.showOnMap")}</button>
+          <a href="${esc(directions)}" target="_blank" rel="noopener" class="place-action">
+            ${t("emergency.map.directions")}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="place-action-icon"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+          </a>
+        </div>
       </article>`;
         }
 
-        function renderPlaces(layer, places, center, offline) {
-            const statusEl = document.getElementById("placesStatus");
-            const listEl = document.getElementById("placesList");
-            const vars = { count: places.length, layer: layerLabel(layer), city: cityLabel(center) };
-            lastRender = [layer, places, center, offline];
+        function renderStatus(layer, count, center, offline) {
+            const vars = { count, layer: layerLabel(layer), city: cityLabel(center) };
+            document.getElementById("placesStatus").textContent = count
+                ? t("emergency.map.found", vars) + (offline ? t("emergency.map.offline") : "")
+                : t("emergency.map.none", vars);
+            document.getElementById("googleSearchLink").href = googleSearchUrl(layer, center);
+        }
 
-            if (!places.length) {
-                statusEl.textContent = t("emergency.map.none", vars);
-                listEl.innerHTML = "";
-            } else {
-                statusEl.textContent = t("emergency.map.found", vars) + (offline ? t("emergency.map.offline") : "");
-                listEl.innerHTML = places.map((p) => placeCardHTML(p, center)).join("");
+        /* The nearest few first; "Show all" reveals the rest */
+        function renderList(layer, places, center) {
+            const shown = showAllPlaces ? places : places.slice(0, LIST_PREVIEW);
+            document.getElementById("placesList").innerHTML = shown.map((p) => placeCardHTML(layer, p, center)).join("");
+            const more = document.getElementById("placesMore");
+            more.classList.toggle("hidden", places.length <= LIST_PREVIEW);
+            more.textContent = showAllPlaces ? t("emergency.map.showLess") : t("emergency.map.showAll", { n: places.length });
+        }
+
+        /* Popup body for a pin — built as DOM so OSM text is never parsed as HTML */
+        function placeInfo(layer, place) {
+            const box = document.createElement("div");
+            box.className = "map-info";
+            box.dir = M3akI18n.dir();
+            const title = document.createElement("strong");
+            title.textContent = placeName(place, layer);
+            const lines = [place.ownership && typeLabel(place.ownership), place.address, place.phone]
+                .filter(Boolean)
+                .map((text) => {
+                    const line = document.createElement("div");
+                    line.textContent = text;
+                    return line;
+                });
+            const link = document.createElement("a");
+            link.href = directionsUrl(place);
+            link.target = "_blank";
+            link.rel = "noopener";
+            link.className = "map-info-link";
+            link.textContent = t("emergency.map.directions");
+            box.append(title, ...lines, link);
+            return box;
+        }
+
+        /* ── Google Maps JavaScript API (key set) ── */
+        function openGoogleInfo(layer, place, marker) {
+            infoWindow.setContent(placeInfo(layer, place));
+            infoWindow.open({ map, anchor: marker });
+        }
+
+        const googleView = {
+            show(layer, places, center) {
+                this.clear();
+                const bounds = new gm.LatLngBounds();
+                places.forEach((place) => {
+                    const color = pinColor(layer, place);
+                    const pin = new gm.PinElement({ background: color, borderColor: color, glyphColor: "#FFFFFF" });
+                    const marker = new gm.Marker({
+                        map,
+                        position: { lat: place.lat, lng: place.lon },
+                        content: pin.element,
+                        title: placeName(place, layer)
+                    });
+                    marker.addListener("click", () => openGoogleInfo(layer, place, marker));
+                    markerById.set(place.id, marker);
+                    bounds.extend(marker.position);
+                });
+
+                if (places.length > 1) {
+                    map.fitBounds(bounds, 48);
+                } else {
+                    const only = places[0] || center;
+                    map.setCenter({ lat: only.lat, lng: only.lon });
+                    map.setZoom(places.length ? 16 : center.zoom);
+                }
+            },
+            focus(layer, place) {
+                map.setCenter({ lat: place.lat, lng: place.lon });
+                map.setZoom(17);
+                const marker = markerById.get(place.id);
+                if (marker) openGoogleInfo(layer, place, marker);
+            },
+            clear() {
+                infoWindow.close();
+                markerById.forEach((marker) => { marker.map = null; });
+                markerById = new Map();
             }
+        };
 
-            markerLayer.clearLayers();
-            const bounds = [];
-            places.forEach((p) => {
-                const marker = L.marker([p.lat, p.lon]).addTo(markerLayer);
-                marker.bindPopup(
-                    `<strong>${p.name}</strong>` +
-                    (p.type ? `<br>${typeLabel(p.type)}` : "") +
-                    (p.address ? `<br>${p.address}` : "") +
-                    (p.phone ? `<br><bdi>${p.phone}</bdi>` : "")
-                );
-                bounds.push([p.lat, p.lon]);
+        /* ── Keyless fallback: Leaflet + CARTO street tiles, same pins ── */
+        const leafletView = {
+            show(layer, places, center) {
+                this.clear();
+                places.forEach((place) => {
+                    const marker = L.circleMarker([place.lat, place.lon], {
+                        radius: 8, color: "#FFFFFF", weight: 2, fillColor: pinColor(layer, place), fillOpacity: 1
+                    });
+                    marker.bindTooltip(placeName(place, layer));
+                    marker.bindPopup(() => placeInfo(layer, place));
+                    marker.addTo(leafletLayer);
+                    markerById.set(place.id, marker);
+                });
+
+                if (places.length) {
+                    map.fitBounds(places.map((p) => [p.lat, p.lon]), { padding: [32, 32], maxZoom: 15 });
+                } else {
+                    map.setView([center.lat, center.lon], center.zoom);
+                }
+            },
+            focus(layer, place) {
+                map.setView([place.lat, place.lon], 17);
+                const marker = markerById.get(place.id);
+                if (marker) marker.openPopup();
+            },
+            clear() {
+                leafletLayer.clearLayers();
+                markerById = new Map();
+            }
+        };
+
+        function renderResults() {
+            if (!lastResult) return;
+            const { layer, center, offline } = lastResult;
+            const places = visiblePlaces();
+            renderStatus(layer, places.length, center, offline);
+            renderList(layer, places, center);
+            if (view) view.show(layer, places, center);
+        }
+
+        function focusPlace(id) {
+            const place = lastResult && lastResult.places.find((p) => p.id === id);
+            if (!place || !view) return;
+            document.getElementById("mapSection").scrollIntoView({ behavior: "smooth", block: "start" });
+            view.focus(lastResult.layer, place);
+        }
+
+        function paintOwnership() {
+            document.querySelectorAll("[data-ownership]").forEach((btn) => {
+                btn.setAttribute("aria-pressed", String(btn.dataset.ownership === ownershipFilter));
             });
+        }
 
-            if (bounds.length) {
-                map.fitBounds(bounds, { padding: [24, 24], maxZoom: 15 });
-            } else {
-                map.setView([center.lat, center.lon], center.zoom);
-            }
+        function showNoCity() {
+            lastResult = null;
+            document.getElementById("mapLoading").classList.add("hidden");
+            document.getElementById("placesStatus").textContent = t("emergency.map.noCity");
+            document.getElementById("placesList").innerHTML = "";
+            document.getElementById("placesMore").classList.add("hidden");
+            if (view) view.clear();
         }
 
         async function loadLayer(layer) {
             currentLayer = layer;
+            showAllPlaces = false;
             const token = ++requestToken;
 
+            document.getElementById("ownershipFilter").classList.toggle("hidden", layer !== "hospitals");
             document.querySelectorAll(".map-tab").forEach((tab) => {
                 const active = tab.dataset.layer === layer;
                 tab.classList.toggle("bg-brand-soft", active);
@@ -1533,79 +1841,161 @@
             });
 
             const cityKey = getCityKey();
-            const loadingEl = document.getElementById("mapLoading");
-            const statusEl = document.getElementById("placesStatus");
-
             if (!cityKey) {
-                lastRender = null;
-                loadingEl.classList.add("hidden");
-                statusEl.textContent = t("emergency.map.noCity");
-                document.getElementById("placesList").innerHTML = "";
-                markerLayer.clearLayers();
+                showNoCity();
                 return;
             }
 
-            const center = CITIES[cityKey];
+            const loadingEl = document.getElementById("mapLoading");
             loadingEl.classList.remove("hidden");
+            const { places, offline } = await placesFor(cityKey, layer);
+            if (token !== requestToken) return;   /* another tab was picked meanwhile */
+            loadingEl.classList.add("hidden");
+            lastResult = { layer, places, center: CITIES[cityKey], offline };
+            renderResults();
+        }
 
+        function loadLeaflet() {
+            if (window.L) return Promise.resolve();
+            const css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = LEAFLET_CSS.href;
+            css.integrity = LEAFLET_CSS.integrity;
+            css.crossOrigin = "";
+            document.head.appendChild(css);
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = LEAFLET_JS.src;
+                script.integrity = LEAFLET_JS.integrity;
+                script.crossOrigin = "";
+                script.onload = resolve;
+                script.onerror = () => reject(new Error("Leaflet failed to load"));
+                document.head.appendChild(script);
+            });
+        }
+
+        async function startLeafletMap() {
+            if (fallbackStarted) return;
+            fallbackStarted = true;
+            view = null;
+            gm = null;
+            markerById = new Map();
+            const container = document.getElementById("emergencyMap");
+            container.replaceChildren();   /* drop a half-built Google map, if any */
             try {
-                const results = await fetchOverpassLayer(layer, center);
-                if (token !== requestToken) return;
-                renderPlaces(layer, results, center, false);
+                await loadLeaflet();
             } catch (err) {
-                if (token !== requestToken) return;
-                const fallback = (FALLBACK[cityKey] && FALLBACK[cityKey][layer]) || [];
-                renderPlaces(layer, fallback, center, true);
-            } finally {
-                if (token === requestToken) loadingEl.classList.add("hidden");
+                toast(t("emergency.map.loadError"));
+                return;   /* the list below still works on its own */
+            }
+            const center = defaultCenter();
+            const dark = document.documentElement.classList.contains("dark");
+            map = L.map(container).setView([center.lat, center.lon], center.zoom);
+            L.tileLayer(dark ? TILES.dark : TILES.light, {
+                attribution: TILES.attribution,
+                subdomains: "abcd",
+                maxZoom: 20
+            }).addTo(map);
+            leafletLayer = L.layerGroup().addTo(map);
+            view = leafletView;
+            renderResults();   /* places may have arrived while the map was loading */
+        }
+
+        /* Google calls this when the key is rejected (wrong key, referrer
+           not allowed, billing off…) — fall back instead of a broken map. */
+        window.gm_authFailure = () => {
+            toast(t("emergency.map.loadError"));
+            startLeafletMap();
+        };
+
+        function loadGoogleMaps() {
+            if (window.google && google.maps && google.maps.importLibrary) return Promise.resolve();
+            return new Promise((resolve, reject) => {
+                window.m3akEmergencyMapsReady = resolve;
+                const script = document.createElement("script");
+                script.src = "https://maps.googleapis.com/maps/api/js?" + new URLSearchParams({
+                    key: MAPS_CONFIG.googleMapsApiKey,
+                    v: "weekly",
+                    loading: "async",
+                    callback: "m3akEmergencyMapsReady",
+                    language: M3akI18n.get(),
+                    region: "MA"
+                });
+                script.async = true;
+                script.onerror = () => reject(new Error("Google Maps script failed to load"));
+                document.head.appendChild(script);
+            });
+        }
+
+        async function startGoogleMap() {
+            if (!MAPS_CONFIG.googleMapsApiKey) {
+                startLeafletMap();
+                return;
+            }
+            try {
+                await loadGoogleMaps();
+                const [maps, markers, core] = await Promise.all(
+                    ["maps", "marker", "core"].map((name) => google.maps.importLibrary(name)));
+                gm = {
+                    Map: maps.Map, InfoWindow: maps.InfoWindow, LatLngBounds: core.LatLngBounds,
+                    Marker: markers.AdvancedMarkerElement, PinElement: markers.PinElement
+                };
+                const center = defaultCenter();
+                map = new gm.Map(document.getElementById("emergencyMap"), {
+                    center: { lat: center.lat, lng: center.lon },
+                    zoom: center.zoom,
+                    mapId: MAPS_CONFIG.googleMapsMapId || "DEMO_MAP_ID",
+                    colorScheme: document.documentElement.classList.contains("dark") ? "DARK" : "LIGHT",
+                    mapTypeControl: false,
+                    streetViewControl: false
+                });
+                infoWindow = new gm.InfoWindow();
+                view = googleView;
+                renderResults();   /* places may have arrived while Google was loading */
+            } catch (err) {
+                startLeafletMap();
             }
         }
 
         function initMap() {
-            /* Leaflet's default marker icons are relative-pathed; loading via
-               CDN <script>/<link> tags (no bundler) breaks them unless the
-               URLs are pointed at the CDN explicitly. */
-            delete L.Icon.Default.prototype._getIconUrl;
-            L.Icon.Default.mergeOptions({
-                iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-                iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-                shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
-            });
-
-            map = L.map("leafletMap", { zoomControl: true, attributionControl: true });
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: "&copy; OpenStreetMap contributors",
-                maxZoom: 19
-            }).addTo(map);
-            markerLayer = L.layerGroup().addTo(map);
-
-            const cityKey = getCityKey() || "agadir";
-            map.setView([CITIES[cityKey].lat, CITIES[cityKey].lon], CITIES[cityKey].zoom);
-
             document.querySelectorAll(".map-tab").forEach((tab) => {
                 tab.addEventListener("click", () => loadLayer(tab.dataset.layer));
             });
+            document.querySelectorAll("[data-ownership]").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    ownershipFilter = btn.dataset.ownership;
+                    showAllPlaces = false;
+                    paintOwnership();
+                    renderResults();
+                });
+            });
+            document.getElementById("placesMore").addEventListener("click", () => {
+                showAllPlaces = !showAllPlaces;
+                if (lastResult) renderList(lastResult.layer, visiblePlaces(), lastResult.center);
+            });
+            document.getElementById("placesList").addEventListener("click", (e) => {
+                const button = e.target.closest("[data-focus]");
+                if (button) focusPlace(button.dataset.focus);
+            });
 
-            loadLayer("hospitals");
+            paintOwnership();
+            loadLayer(currentLayer);   /* data and map load side by side */
+            startGoogleMap();
         }
 
         initMap();
 
-        /* Re-center and reload if the saved city changes in another tab
+        /* Reload if the saved city changes in another tab
            (My Space updates the profile via localStorage). */
         window.addEventListener("storage", (e) => {
-            if (e.key === "m3ak.session" && map) {
-                const cityKey = getCityKey();
-                if (cityKey) map.setView([CITIES[cityKey].lat, CITIES[cityKey].lon], CITIES[cityKey].zoom);
-                loadLayer(currentLayer);
-            }
+            if (e.key === "m3ak.session") loadLayer(currentLayer);
         });
 
-        /* Status line, cards and popups are script-built: redraw them from the
-           last results on a language switch instead of re-querying Overpass. */
+        /* Status line, cards, pins and the embed are script-built: redraw them
+           from the last results on a language switch instead of re-querying. */
         document.addEventListener("m3ak:languagechange", () => {
-            if (lastRender) {
-                renderPlaces(...lastRender);
+            if (lastResult) {
+                renderResults();
             } else if (!getCityKey()) {
                 document.getElementById("placesStatus").textContent = t("emergency.map.noCity");
             }
