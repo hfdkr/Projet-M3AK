@@ -117,7 +117,8 @@ window.M3akTranslations = {
                 mic: "AI voice assistance is currently unavailable",
                 langSelected: "{lang} selected for voice",
                 playing: "Playing “{title}”…",
-                history: "Opening your full voice history…"
+                history: "Opening your full voice history…",
+                reset: "Conversation reset"
             }
         },
 
@@ -1096,6 +1097,7 @@ window.M3akTranslations = {
                 satisfaction: "نسبة الرضا"
             },
             transcript: "النص المباشر لمحادثة معاك",
+            reset: "إعادة تعيين",
             placeholder: "اكتب رسالة أو تحدَّث…",
             speak: "تحدَّث",
             send: "إرسال",
@@ -1123,7 +1125,8 @@ window.M3akTranslations = {
                 mic: "المساعدة الصوتية بالذكاء الاصطناعي غير متاحة حالياً",
                 langSelected: "تم اختيار {lang} للمساعد الصوتي",
                 playing: "جارٍ تشغيل «{title}»…",
-                history: "جارٍ فتح سجلك الصوتي الكامل…"
+                history: "جارٍ فتح سجلك الصوتي الكامل…",
+                reset: "تمت إعادة تعيين المحادثة"
             }
         },
 
@@ -2478,6 +2481,7 @@ window.M3akTranslations = {
                 satisfaction: "Satisfaction"
             },
             transcript: "Transcription en direct de la conversation M3ak",
+            reset: "Réinitialiser",
             placeholder: "Écrivez un message ou parlez…",
             speak: "Parler",
             send: "Envoyer",
@@ -2506,7 +2510,8 @@ window.M3akTranslations = {
                 mic: "L'assistance vocale IA est actuellement indisponible",
                 langSelected: "{lang} sélectionné pour la voix",
                 playing: "Lecture de « {title} »…",
-                history: "Ouverture de votre historique vocal complet…"
+                history: "Ouverture de votre historique vocal complet…",
+                reset: "Conversation réinitialisée"
             }
         },
 
